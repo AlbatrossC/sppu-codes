@@ -1,0 +1,28 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<h2>Welcome to Code Storage</h2>
+<p>Select a subject to view its content:</p>
+<ul>
+    <li><a href="/oop">OOP</a></li>
+    <li><a href="/cg">Computer Graphics</a></li>
+    <li><a href="/dsl">Data Structures & Algorithms</a></li>
+    <li><a href="/osl">Operating System Concepts</a></li>
+</ul>
+
+<h3>Important Notes</h3>
+<ol>
+    <li>
+        Add Linkers for <code>graphics.h</code>.<br>
+        Set Up Compiler Options:<br>
+        Go to <strong>Tools > Compiler Options</strong>.<br>
+        Under the <strong>Linker Settings</strong> tab, add the following under <strong>Other linker options</strong>:
+        <pre>
+-lbgi -lgdi32 -lcomdlg32 -luuid -loleaut32 -lole32
+        </pre>
+    </li>
+</ol>
+
+
+
+{% endblock %}

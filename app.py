@@ -7,9 +7,12 @@ app = Flask(__name__)
 # Function to load questions from JSON file
 def load_questions(subject):
     file_path = os.path.join('data', f'{subject}.json')
-    with open(file_path, 'r') as file:
-        questions = json.load(file)
-    return questions
+    try:
+        with open(file_path, 'r') as file:
+            questions = json.load(file)
+        return questions
+    except FileNotFoundError:
+        return {"error": "File not found"}
 
 # Function to read code from a file
 def read_code_file(file_name):
@@ -35,5 +38,6 @@ def code_file(filename):
     # Read and return the content of the code file
     return read_code_file(filename)
 
+# Only run app.run() when the script is executed directly (i.e., not when imported)
 if __name__ == '__main__':
     app.run(debug=True)

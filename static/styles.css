@@ -4,8 +4,13 @@ body {
     line-height: 1.6;
 }
 
-h1, h2, h3 {
-    font-size: 1.5em;
+h1 {
+    font-size: 1.5em;  /* Keep h1 size larger */
+    margin-bottom: 10px;
+}
+
+h2, h3 {
+    font-size: 1.2em;  /* Reduced h2 and h3 font size */
     margin-bottom: 10px;
 }
 
@@ -34,34 +39,85 @@ li {
 }
 
 pre {
-    background-color: #f0f0f0;
-    border: 1px solid #ccc;
+    background-color: #1e1e1e; /* Dark background for code */
+    border: 1px solid #444;
     padding: 10px;
     overflow: auto;
     white-space: pre-wrap;
+    color: #f8f8f2; /* Light text for code */
+    font-family: 'Roboto Mono', monospace; /* Use Roboto Mono for better readability */
+    font-size: 15px; /* Increased font size for better readability */
+    line-height: 1.5; /* Increased line height for clarity */
+    border-radius: 5px; /* Rounded corners */
 }
 
 #modal {
     display: none;
     position: fixed;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    border: 1px solid black;
-    padding: 10px;
-    background-color: white;
-    width: 80%;
-    max-height: 80%;
-    overflow-y: auto;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.8); /* Darker semi-transparent background */
     z-index: 1000;
 }
 
+.modal-content {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: white;
+    border: 1px solid black;
+    border-radius: 8px; /* Rounded corners for the modal */
+    width: 80%;
+    max-height: 80%;
+    overflow: hidden; /* Prevent scrolling of the modal itself */
+}
+
+.modal-buttons {
+    display: flex;
+    justify-content: space-between;
+    padding: 10px; /* Add some padding for better appearance */
+    background-color: #f9f9f9; /* Light background for the button area */
+    border-bottom: 1px solid #ccc; /* Separator line */
+}
+
+#modalTitle {
+    margin: 10px; /* Add some margin for better spacing */
+}
+
+#modalContent {
+    max-height: calc(60vh - 80px); /* Adjusted height for content to account for buttons and title */
+    overflow-y: auto; /* Allow scrolling for content */
+    padding: 10px; /* Add some padding */
+}
+
 button {
-    margin: 5px;
+    margin: 0 5px; /* Adjusted margin for better alignment */
     padding: 5px 10px;
     cursor: pointer;
+    border: none;
+    border-radius: 5px; /* Rounded corners for buttons */
+    color: white; /* White text for buttons */
+}
+
+button.copy {
+    background-color: #28a745; /* Green background for copy button */
+}
+
+button.copy:hover {
+    background-color: #218838; /* Darker green on hover */
+}
+
+button.close {
+    background-color: #dc3545; /* Red background for close button */
+}
+
+button.close:hover {
+    background-color: #c82333; /* Darker red on hover */
 }
 
 button:hover {
-    background-color: #e0e0e0;
+    opacity: 0.9; /* Slight transparency on hover */
 }

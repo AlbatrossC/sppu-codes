@@ -8,20 +8,24 @@ app = Flask(__name__)
 def load_questions(subject):
     file_path = os.path.join('data', f'{subject}.json')
     try:
-        with open(file_path, 'r') as file:
+        with open(file_path, 'r', encoding='utf-8') as file:  # Specify UTF-8 encoding
             questions = json.load(file)
         return questions
     except FileNotFoundError:
         return {"error": "File not found"}
+    except json.JSONDecodeError:
+        return {"error": "Error decoding JSON"}
 
 # Function to read code from a file
 def read_code_file(file_name):
     try:
         file_path = os.path.join('code', file_name)  # Ensure it points to the right directory
-        with open(file_path, 'r') as file:
+        with open(file_path, 'r', encoding='utf-8') as file:  # Specify UTF-8 encoding
             return file.read()
     except FileNotFoundError:
         return "Code file not found."
+    except UnicodeDecodeError:
+        return "Error reading code file due to invalid encoding."
 
 @app.route('/')
 def home():

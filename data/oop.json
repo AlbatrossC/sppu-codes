@@ -1,28 +1,8 @@
 {
     "Group A": [
         {
-            "question": "What is polymorphism?",
-            "answer": "Polymorphism is the ability of an object to take on many forms."
-        },
-        {
-            "question": "Show an example of polymorphism in Python.",
-            "answer": "sample.py"
+            
         }
-    ],
-    "Group B": [
-        {
-            "question": "Explain inheritance with an example.",
-            "answer": "sample.cpp"
-        }
-    ],
-    "Group C": [
-        {
-            "question": "What is abstraction?",
-            "answer": "Abstraction is the concept of hiding the complex reality while exposing only the necessary parts."
-        },
-        {
-            "question": "Give an example of an abstract class.",
-            "answer": "sample.py"
-        }
+        
     ]
 }

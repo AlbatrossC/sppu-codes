@@ -7,57 +7,11 @@
     <ul>
         {% for item in items %}
             <li>
-                <a href="#" onclick="showModal(`{{ item.question | e }}`, `{{ item.answer | e }}`)">
+                <a href="#" onclick="showModal('{{ item.question | e }}', '{{ item.answer | e }}')">
                     {{ item.question }}
                 </a>
             </li>
         {% endfor %}
     </ul>
 {% endfor %}
-
-<!-- Modal Template -->
-<div id="modal" style="display:none; position:fixed; top:50%; left:50%; transform:translate(-50%, -50%); border:1px solid black; padding:10px; background-color:white; max-height:80%; width:80%;">
-    <h3 id="modalTitle"></h3>
-    <div style="border: 1px solid #ccc; border-radius: 5px; padding: 10px; background-color: #f9f9f9; max-height: 60vh; overflow-y: auto;">
-        <pre id="codeBlock" style="margin: 0;"></pre>
-    </div>
-    <button onclick="copyToClipboard(document.getElementById('codeBlock').innerText)">Copy Code</button>
-    <button onclick="closeModal()">Close</button>
-</div>
-
-<script>
-    function showModal(title, answer) {
-        if (answer.endsWith(".py") || answer.endsWith(".cpp")) {
-            // Load code from file using AJAX
-            fetch(`/code/${answer}`)
-                .then(response => response.text())
-                .then(code => {
-                    document.getElementById('modalTitle').innerText = title;
-                    document.getElementById('codeBlock').innerText = code;
-                    document.getElementById('modal').style.display = 'block';
-                })
-                .catch(err => {
-                    document.getElementById('modalTitle').innerText = "Error";
-                    document.getElementById('codeBlock').innerText = "Could not load code.";
-                    document.getElementById('modal').style.display = 'block';
-                });
-        } else {
-            document.getElementById('modalTitle').innerText = title;
-            document.getElementById('codeBlock').innerText = answer;
-            document.getElementById('modal').style.display = 'block';
-        }
-    }
-
-    function closeModal() {
-        document.getElementById('modal').style.display = 'none';
-    }
-
-    function copyToClipboard(text) {
-        navigator.clipboard.writeText(text).then(() => {
-            alert("Code copied to clipboard!");
-        }).catch(() => {
-            alert("Failed to copy code.");
-        });
-    }
-</script>
 {% endblock %}

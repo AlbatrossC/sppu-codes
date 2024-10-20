@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Code Storage</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
 </head>
 <body>
     <h1>Welcome to Code Storage</h1>
@@ -17,5 +18,59 @@
     <div>
         {% block content %}{% endblock %}
     </div>
+
+    <!-- Modal Template -->
+    <div id="modal" style="display:none; position:fixed; top:50%; left:50%; transform:translate(-50%, -50%); border:1px solid black; padding:10px; background-color:white; max-height:80%; width:80%; overflow-y:auto;">
+        <h3 id="modalTitle"></h3>
+        <div style="border: 1px solid #ccc; border-radius: 5px; padding: 10px; background-color: #f9f9f9; max-height: 60vh; overflow-y: auto;">
+            <pre id="codeBlock" style="margin: 0;"></pre>
+        </div>
+        <button onclick="copyToClipboard(document.getElementById('codeBlock').innerText)">Copy Code</button>
+        <button onclick="closeModal()">Close</button>
+    </div>
+
+    <script>
+        function showModal(title, answer) {
+            const modal = document.getElementById('modal');
+            const modalTitle = document.getElementById('modalTitle');
+            const codeBlock = document.getElementById('codeBlock');
+
+            if (answer.endsWith(".py") || answer.endsWith(".cpp")) {
+                fetch(`/code/${answer}`)
+                    .then(response => {
+                        if (!response.ok) {
+                            throw new Error("Network response was not ok");
+                        }
+                        return response.text();
+                    })
+                    .then(code => {
+                        modalTitle.innerText = title;
+                        codeBlock.innerText = code;
+                        modal.style.display = 'block';
+                    })
+                    .catch(err => {
+                        modalTitle.innerText = "Error";
+                        codeBlock.innerText = "Could not load code.";
+                        modal.style.display = 'block';
+                    });
+            } else {
+                modalTitle.innerText = title;
+                codeBlock.innerText = answer;
+                modal.style.display = 'block';
+            }
+        }
+
+        function closeModal() {
+            document.getElementById('modal').style.display = 'none';
+        }
+
+        function copyToClipboard(text) {
+            navigator.clipboard.writeText(text).then(() => {
+                alert("Code copied to clipboard!");
+            }).catch(() => {
+                alert("Failed to copy code.");
+            });
+        }
+    </script>
 </body>
 </html>

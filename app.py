@@ -8,7 +8,7 @@ app = Flask(__name__)
 def load_questions(subject):
     file_path = os.path.join('data', f'{subject}.json')
     try:
-        with open(file_path, 'r', encoding='utf-8') as file:  # Specify UTF-8 encoding
+        with open(file_path, 'r', encoding='utf-8') as file:
             questions = json.load(file)
         return questions
     except FileNotFoundError:
@@ -19,8 +19,8 @@ def load_questions(subject):
 # Function to read code from a file
 def read_code_file(file_name):
     try:
-        file_path = os.path.join('code', file_name)  # Ensure it points to the right directory
-        with open(file_path, 'r', encoding='utf-8') as file:  # Specify UTF-8 encoding
+        file_path = os.path.join('code', file_name)
+        with open(file_path, 'r', encoding='utf-8') as file:
             return file.read()
     except FileNotFoundError:
         return "Code file not found."
@@ -31,7 +31,6 @@ def read_code_file(file_name):
 def home():
     return render_template('index.html')
 
-# Dynamic route for each subject
 @app.route('/<subject>')
 def subject_page(subject):
     questions = load_questions(subject)
@@ -39,10 +38,8 @@ def subject_page(subject):
 
 @app.route('/code/<path:filename>')
 def code_file(filename):
-    # Read and return the content of the code file
     return read_code_file(filename)
 
-# Entry point for running the application
 if __name__ == '__main__':
-    port = int(os.environ.get("PORT", 5000))  # Default to 5000 if PORT not set
+    port = int(os.environ.get("PORT", 5000))
     app.run(host='0.0.0.0', port=port, debug=True)

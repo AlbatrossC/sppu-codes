@@ -30,7 +30,7 @@
     "Group C": [
         {
             "question": "Write a C++ program to manage a student club's membership using a singly linked list.",
-            "answer": "dsl/grpC_19.cpp"
+            "answer": "dsl/grpC_19.py"
         },
         {
             "question": "Write a C++ program to store a binary number using doubly linked lists and perform specified operations.",

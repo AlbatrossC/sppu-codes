@@ -10,7 +10,7 @@
         },
         {
             "question": "Write a Python program to compute the net amount of a bank account based on a transaction log from console input.",
-            "answer": "dsl/grpA_3.py"
+            "answer": "dsl/grpA_4.py"
         }
     ],
     "Group B": [

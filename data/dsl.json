@@ -2,63 +2,63 @@
     "Group A": [
         {
             "question": "In second year computer engineering class, group A students play cricket, group B students play badminton and group C students play football. Write a Python program using functions to compute the following: - a) List of students who play both cricket and badminton b) List of students who play either cricket or badminton but not both c) Number of students who play neither cricket nor badminton d) Number of students who play cricket and football but not badminton. (Note: While realizing the group, duplicate entries should be avoided, Do not use SET built-in functions)",
-            "answer": "python/grpA_1.py"
+            "answer": "dsl/grpA_1.py"
         },
         {
             "question": "Write a Python program to store marks scored in the subject 'Fundamentals of Data Structure' by N students in the class. Write functions to compute the following: a) The average score of the class b) Highest score and lowest score of the class c) Count of students who were absent for the test d) Display mark with the highest frequency.",
-            "answer": "python/grpA_2.py"
+            "answer": "dsl/grpA_2.py"
         },
         {
             "question": "Write a Python program that computes the net amount of a bank account based on a transaction log from console input. The transaction log format is shown as follows: D 100 W 200 (Withdrawal is not allowed if balance goes negative. Write functions for withdraw and deposit). D means deposit, while W means withdrawal. Suppose the following input is supplied to the program: D 300, D 300, W 200, D 100. Then, the output should be: 500.",
-            "answer": "python/grpA_3.py"
+            "answer": "dsl/grpA_3.py"
         }
     ],
     "Group B": [
         {
             "question": "a) Write a Python program to store roll numbers of students in an array who attended the training program in random order. Write a function for searching whether a particular student attended the training program or not, using Linear search and Sentinel search. b) Write a Python program to store roll numbers of students in an array who attended the training program in sorted order. Write a function for searching whether a particular student attended the training program or not, using Binary search and Fibonacci search.",
-            "answer": "python/grpB_1.py"
+            "answer": "dsl/grpB_1.py"
         },
         {
             "question": "Write a Python program to store second-year percentage of students in an array. Write a function for sorting the array of floating point numbers in ascending order using a) Insertion sort b) Shell Sort and display the top five scores.",
-            "answer": "python/grpB_2.py"
+            "answer": "dsl/grpB_2.py"
         },
         {
             "question": "Write a Python program to store the 10th class percentage of students in an array. Write a function for sorting the array of floating point numbers in ascending order using Radix sort and display the top five scores.",
-            "answer": "python/grpB_3.py"
+            "answer": "dsl/grpB_3.py"
         }
     ],
     "Group C": [
         {
             "question": "The Department of Computer Engineering has a student's club named 'Pinnacle Club'. Students of second, third, and final year of the department can be granted membership on request. Similarly, one may cancel the membership of the club. The first node is reserved for the president of the club, and the last node is reserved for the secretary of the club. Write a C++ program to maintain the club members' information using a singly linked list. Store student PRN and Name. Write functions to: a) Add and delete members as well as president or even secretary. b) Compute the total number of members of the club c) Display members d) Two linked lists exist for two divisions. Concatenate two lists.",
-            "answer": "cpp/grpC_19.cpp"
+            "answer": "dsl/grpC_19.cpp"
         },
         {
             "question": "Write a C++ program for storing a binary number using doubly linked lists. Write functions to: a) Compute 1's and 2's complement b) Add two binary numbers.",
-            "answer": "cpp/grpC_2.cpp"
+            "answer": "dsl/grpC_2.cpp"
         }
     ],
     "Group D": [
         {
             "question": "A palindrome is a string of characters that‘s the same forward and backward. Typically, punctuation, capitalization, and spaces are ignored. For example, 'Poor Dan is in a droop' is a palindrome, as can be seen by examining the characters 'poordanisinadroop' and observing that they are the same forward and backward. One way to check for a palindrome is to reverse the characters in the string and then compare them to the original—in a palindrome, the sequence will be identical. Write a C++ program with functions to: a) Print the original string followed by the reversed string using a stack b) Check whether the given string is a palindrome or not.",
-            "answer": "cpp/grpD_1.cpp"
+            "answer": "dsl/grpD_1.cpp"
         },
         {
             "question": "Implement a C++ program for expression conversion from infix to postfix and its evaluation using a stack based on the following conditions: 1) Operands and operators must both be single characters. 2) Input Postfix expression must be in the desired format. 3) Only '+', '-', '*', and '/' operators are expected.",
-            "answer": "cpp/grpD_2.cpp"
+            "answer": "dsl/grpD_2.cpp"
         }
     ],
     "Group E": [
         {
             "question": "Queues are frequently used in computer programming, and a typical example is the creation of a job queue by an operating system. If the operating system does not use priorities, then the jobs are processed in the order they enter the system. Write a C++ program for simulating a job queue. Write functions to add a job and delete a job from the queue.",
-            "answer": "cpp/grpE_1.cpp"
+            "answer": "dsl/grpE_1.cpp"
         },
         {
             "question": "Write a program to implement a priority queue in C++ using an inorder list to store the items in the queue. Create a class that includes the data items (which should be a template) and the priority (which should be int). The inorder list should contain these objects, with the operator <= overloaded so that the items with the highest priority appear at the start of the list (which will make it relatively easy to retrieve the highest-priority item).",
-            "answer": "cpp/grpE_2.cpp"
+            "answer": "dsl/grpE_2.cpp"
         },
         {
             "question": "A double-ended queue (deque) is a linear list in which additions and deletions may be made at either end. Obtain a data representation mapping a deque into a one-dimensional array. Write a C++ program to simulate a deque with functions to add and delete elements from either end of the deque.",
-            "answer": "cpp/grpE_3.cpp"
+            "answer": "dsl/grpE_3.cpp"
         }
     ]
 }

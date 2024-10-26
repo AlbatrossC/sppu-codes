@@ -1,0 +1,306 @@
+/* Reset default styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* Base styles - will apply to all devices */
+html, body {
+    height: 100%;
+    margin: 0;
+}
+
+body {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+    line-height: 1.6;
+    color: #333;
+    margin: 0 auto;
+    padding: clamp(10px, 2vw, 20px);
+    background-color: #f8f9fa;
+    display: flex;
+    flex-direction: column;
+}
+
+.content {
+    flex: 1;
+}
+
+/* Container width control */
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    width: 100%;
+    padding: 0 15px;
+}
+
+header {
+    margin-bottom: clamp(20px, 4vw, 30px);
+    padding: clamp(15px, 3vw, 20px) 0;
+    border-bottom: 2px solid #e9ecef;
+    text-align: center;
+}
+
+header h1 {
+    margin: 0;
+    color: #212529;
+    font-size: clamp(1.75rem, 4vw, 2.5rem);
+}
+
+.group {
+    margin-bottom: clamp(20px, 4vw, 40px);
+    width: 100%;
+}
+
+.group h2 {
+    color: #343a40;
+    margin-bottom: clamp(15px, 3vw, 20px);
+    font-size: clamp(1.5rem, 3vw, 2rem);
+}
+
+/* Question Item Styles - Responsive */
+.question-item {
+    background-color: #ffffff;
+    border: 1px solid #dee2e6;
+    border-radius: 8px;
+    padding: clamp(12px, 2.5vw, 20px);
+    margin-bottom: clamp(15px, 3vw, 20px);
+    box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+}
+
+.question-item p {
+    font-size: clamp(15px, 1vw, 16px);
+    color: #212529;
+    margin-bottom: 15px;
+}
+
+.question-item ol, 
+.question-item ul {
+    margin-left: clamp(15px, 2vw, 20px);
+    margin-bottom: 15px;
+}
+
+.question-item li {
+    margin-bottom: 8px;
+    color: #495057;
+}
+
+/* Interactive Elements - Touch-friendly */
+.view-code-btn {
+    display: inline-block;
+    text-decoration: none;
+    color: #0d6efd;
+    font-weight: 500;
+    padding: 8px 12px;
+    border: 1px solid #0d6efd;
+    border-radius: 6px;
+    transition: all 0.2s ease;
+    background-color: transparent;
+    cursor: pointer;
+    font-size: 14px;
+}
+
+.view-code-btn:hover {
+    background-color: #0d6efd;
+    color: #ffffff;
+}
+
+/* Answer Box Styles - Responsive */
+.answer-box {
+    display: none;
+    border: 1px solid #2d333b;
+    border-radius: 8px;
+    padding: clamp(12px, 2.5vw, 20px);
+    background-color: #1e1e1e;
+    margin-top: 15px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+.answer-box h3 {
+    color: #e6edf3;
+    font-size: clamp(1.1rem, 2vw, 1.2rem);
+    margin-bottom: 15px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid #30363d;
+}
+
+.answer-box pre {
+    background-color: #2d333b;
+    border-radius: 6px;
+    padding: clamp(12px, 2vw, 16px);
+    overflow-x: auto;
+    color: #e6edf3;
+    font-family: 'Consolas', 'Monaco', 'Courier New', monospace;
+    font-size: clamp(13px, 1vw, 14px);
+    line-height: 1.5;
+    white-space: pre-wrap;
+    word-wrap: break-word;
+    margin-bottom: 15px;
+}
+
+/* Button Container - Responsive Grid */
+.copy-close-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+    gap: clamp(8px, 1.5vw, 10px);
+    margin-top: 15px;
+}
+
+/* Button Styles - Touch-friendly */
+.copy-btn, 
+.close-btn {
+    padding: clamp(4px, 1vw, 8px) clamp(8px, 1.5vw, 12px);
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: clamp(11px, 0.8vw, 13px);
+    font-weight: 500;
+    transition: background-color 0.2s ease;
+    min-height: 36px;
+}
+
+.copy-btn {
+    background-color: #238636;
+    color: #ffffff;
+}
+
+.copy-btn:hover {
+    background-color: #2ea043;
+}
+
+.close-btn {
+    background-color: #FF3B30;
+    color: #ffffff;
+    border: 1px solid #FF3B30;
+    padding: 10px 15px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.close-btn:hover {
+    background-color: #D32F2F;
+}
+
+/* Subject List Grid - Responsive */
+.subject-list {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(min(280px, 100%), 1fr));
+    gap: clamp(1rem, 2vw, 2rem);
+    list-style: none;
+}
+
+.subject-list li {
+    transition: transform 0.2s;
+}
+
+.subject-list li:hover {
+    transform: translateY(-5px);
+}
+
+.subject-list a {
+    display: block;
+    background: white;
+    padding: clamp(1.25rem, 3vw, 2rem);
+    border-radius: 12px;
+    text-decoration: none;
+    color: #333;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    height: 100%;
+    transition: box-shadow 0.2s;
+}
+
+.subject-list a:hover {
+    box-shadow: 0 8px 12px rgba(0, 0, 0, 0.15);
+}
+
+.subject-list .short-form {
+    display: block;
+    font-size: clamp(1.5rem, 3vw, 2rem);
+    font-weight: bold;
+    color: #2c3e50;
+    margin-bottom: 0.5rem;
+}
+
+.subject-list .full-name {
+    display: block;
+    font-size: clamp(0.9rem, 1vw, 1rem);
+    color: #666;
+    line-height: 1.4;
+}
+
+/* Selection styles */
+.answer-box pre::selection {
+    background-color: #264f78;
+    color: #ffffff;
+}
+
+.answer-box pre::-moz-selection {
+    background-color: #264f78;
+    color: #ffffff;
+}
+
+/* Footer styles */
+.footer {
+    text-align: center;
+    padding: 15px 0;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-size: 0.85rem;
+    color: #666;
+    border-top: 1px solid #eaeaea;
+    margin-top: auto;
+}
+
+.footer a {
+    color: #2d76cc;
+    text-decoration: none;
+    transition: color 0.2s ease;
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+}
+
+.footer a:hover {
+    color: #1d5bb1;
+    text-decoration: underline;
+}
+
+.footer p {
+    margin: 3px 0;
+}
+
+.footer__contributors {
+    color: #888;
+    font-size: 0.8rem;
+}
+
+.github-icon {
+    width: 16px;
+    height: 16px;
+    vertical-align: middle;
+}
+
+/* Print styles */
+@media print {
+    body {
+        background: white;
+        color: black;
+    }
+    
+    .copy-close-container,
+    .question-item a {
+        display: none;
+    }
+    
+    .answer-box {
+        border: 1px solid #000;
+        background: white;
+        color: black;
+    }
+    
+    .answer-box pre {
+        background: white;
+        color: black;
+        border: 1px solid #ccc;
+    }
+}

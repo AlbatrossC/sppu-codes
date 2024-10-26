@@ -1,7 +1,7 @@
-grp_a = ['Alice', 'Bob', 'Charlie', 'David']    # Students who play Cricket
-grp_b = ['Bob', 'Eve', 'Charlie']               # Students who play Badminton
-grp_c = ['Alice', 'Frank', 'Charlie', 'Eve']    # Students who play Football
-total_students = ['Alice', 'Bob', 'Charlie', 'David', 'Eve', 'Frank']  # All students
+grp_a = ['Alice', 'Bob', 'Charlie', 'David']    
+grp_b = ['Bob', 'Eve', 'Charlie']               
+grp_c = ['Alice', 'Frank', 'Charlie', 'Eve']   
+total_students = ['Alice', 'Bob', 'Charlie', 'David', 'Eve', 'Frank']  
 
 #a) List of students who play both cricket and badminton
 def crick_bad(grp_a , grp_b):

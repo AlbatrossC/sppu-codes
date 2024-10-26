@@ -16,7 +16,7 @@ transactions = transaction_log.split(", ")
 
 for transaction in transactions:
     action, amount = transaction.split()
-    amount = int(amount)  # Convert amount to integer
+    amount = int(amount)  
     
     if action == 'D':
         balance = deposit(balance, amount)

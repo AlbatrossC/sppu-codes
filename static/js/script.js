@@ -3,8 +3,9 @@ function loadFile(subject, fileName, questionText, element) {
     console.log(`Attempting to load file: ${subject}/${fileName}`);
 
     const answerBox = document.getElementById(element.nextElementSibling.id);
-    const questionTitle = document.getElementById('questionText' + answerBox.id.match(/\d+[a-z]?/)[0]);
-    const codeContent = document.getElementById('codeContent' + answerBox.id.match(/\d+[a-z]?/)[0]);
+    const questionId = answerBox.id.match(/\d+[a-z]?/)[0];
+    const questionTitle = document.getElementById('questionText' + questionId);
+    const codeContent = document.getElementById('codeContent' + questionId);
 
     // Show loading state
     codeContent.innerText = 'Loading...';
@@ -14,7 +15,7 @@ function loadFile(subject, fileName, questionText, element) {
         .then(response => {
             console.log('Response status:', response.status);
             if (!response.ok) {
-                throw new Error(`HTTP error! status: ${response.status}`);
+                throw new Error(`HTTP error! Status: ${response.status}`);
             }
             return response.text();
         })
@@ -23,6 +24,7 @@ function loadFile(subject, fileName, questionText, element) {
             questionTitle.innerText = questionText;
             codeContent.innerText = data;
 
+            // Scroll to the question item
             const questionBox = element.closest('.question-item');
             const headerOffset = document.querySelector('header').offsetHeight;
             const position = questionBox.getBoundingClientRect().top + window.pageYOffset;

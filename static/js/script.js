@@ -1,31 +1,33 @@
-// static/js/script.js
 function loadFile(subject, fileName, questionText, element) {
-    const answerBox = document.getElementById(element.nextElementSibling.id);
-    const questionTitle = document.getElementById('questionText' + answerBox.id.match(/\d+/)[0]);
-    const codeContent = document.getElementById('codeContent' + answerBox.id.match(/\d+/)[0]);
+    // Log the attempt to load the file
+    console.log(`Attempting to load file: ${subject}/${fileName}`);
 
-    // Use Flask route to load the file content
+    const answerBox = document.getElementById(element.nextElementSibling.id);
+    const questionTitle = document.getElementById('questionText' + answerBox.id.match(/\d+[a-z]?/)[0]);
+    const codeContent = document.getElementById('codeContent' + answerBox.id.match(/\d+[a-z]?/)[0]);
+
+    // Show loading state
+    codeContent.innerText = 'Loading...';
+    answerBox.style.display = 'block';
+
     fetch(`/answers/${subject}/${fileName}`)
         .then(response => {
+            console.log('Response status:', response.status);
             if (!response.ok) {
-                throw new Error('Network response was not ok');
+                throw new Error(`HTTP error! status: ${response.status}`);
             }
             return response.text();
         })
         .then(data => {
+            console.log('File loaded successfully');
             questionTitle.innerText = questionText;
             codeContent.innerText = data;
-            answerBox.style.display = 'block';
 
-            // Scroll to the question and answer from the position of the "View Answer" link
-            const questionBox = element.closest('.question-item'); // Get the question box
-            const headerOffset = document.querySelector('header').offsetHeight; // Get header height
+            const questionBox = element.closest('.question-item');
+            const headerOffset = document.querySelector('header').offsetHeight;
+            const position = questionBox.getBoundingClientRect().top + window.pageYOffset;
+            const offsetPosition = position - headerOffset;
 
-            // Calculate the position of the question and answer box
-            const position = questionBox.getBoundingClientRect().top + window.pageYOffset; // Get the absolute position
-            const offsetPosition = position - headerOffset; // Adjust for header height
-
-            // Smoothly scroll to the position from the "View Answer" link
             window.scrollTo({
                 top: offsetPosition,
                 behavior: 'smooth'
@@ -33,7 +35,8 @@ function loadFile(subject, fileName, questionText, element) {
         })
         .catch(err => {
             console.error('Error loading file:', err);
-            alert('Failed to load the file. Please try again.');
+            codeContent.innerText = `Error loading file: ${err.message}`;
+            alert(`Failed to load ${fileName}. Error: ${err.message}`);
         });
 }
 
@@ -41,14 +44,16 @@ function copyCode(elementId) {
     const codeElement = document.getElementById(elementId);
     const codeText = codeElement.innerText;
 
-    navigator.clipboard.writeText(codeText).then(() => {
-        alert('Code copied to clipboard!');
-    }, () => {
-        alert('Failed to copy code!');
-    });
+    navigator.clipboard.writeText(codeText)
+        .then(() => {
+            alert('Code copied to clipboard!');
+        })
+        .catch(err => {
+            console.error('Failed to copy code:', err);
+            alert('Failed to copy code! Please try selecting and copying manually.');
+        });
 }
 
 function closeBox(boxId) {
-    const answerBox = document.getElementById(boxId);
-    answerBox.style.display = 'none';
+    document.getElementById(boxId).style.display = 'none';
 }

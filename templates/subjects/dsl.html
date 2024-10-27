@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Data Structures Laboratory(DSL)</title>
+    <title>Data Structures Laboratory (DSL)</title>
     <link rel="stylesheet" href="../static/css/styles.css">
     <script src="../static/js/script.js" defer></script>
 </head>
@@ -74,9 +74,40 @@
         </div>
     </div>
 
-    
+    <!-- Group B -->
+    <div class="group">
+        <h3>Group B</h3>
 
-    <!-- Add more groups or questions in a similar format as needed -->
-    
+        <!-- Question 11a -->
+        <div class="question-item">
+            <p><strong>Q11a:</strong> Write a Python program to store roll numbers of students in an array who attended a training program in random order. Write a function to search for whether a particular student attended the training program or not using Linear search and Sentinel search.</p>
+            <button class="view-code-btn" onclick="loadFile('dsl', 'grpB_11a.py', 'Python program for student roll number searches using Linear and Sentinel search', this)">View Code</button>
+            
+            <div class="answer-box" id="answerBox11a">
+                <h3 id="questionText11a"></h3>
+                <pre id="codeContent11a"></pre>
+                <div class="copy-close-container">
+                    <button class="copy-btn" onclick="copyCode('codeContent11a')">Copy Code</button>
+                    <button class="close-btn" onclick="closeBox('answerBox11a')">Close</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Question 11b -->
+        <div class="question-item">
+            <p><strong>Q11b:</strong> Write a Python program to store roll numbers of students in an array who attended the training program in sorted order. Write a function to search for whether a particular student attended the training program or not using Binary search and Fibonacci search.</p>
+            <button class="view-code-btn" onclick="loadFile('dsl', 'grpB_11b.py', 'Python program for student roll number searches using Binary and Fibonacci search', this)">View Code</button>
+            
+            <div class="answer-box" id="answerBox11b">
+                <h3 id="questionText11b"></h3>
+                <pre id="codeContent11b"></pre>
+                <div class="copy-close-container">
+                    <button class="copy-btn" onclick="copyCode('codeContent11b')">Copy Code</button>
+                    <button class="close-btn" onclick="closeBox('answerBox11b')">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
 </body>
 </html>

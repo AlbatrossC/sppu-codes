@@ -162,9 +162,52 @@
         </div>
     </div>
 
-    <!-- Group C -->
     <div class="group">
         <h3>Group C</h3>
+    
+        <!-- Question 19 -->
+        <div class="question-item">
+            <p><strong>Q19:</strong> Department of Computer Engineering has a student club named 'Pinnacle Club'. Students of second, third, and final year of the department can be granted membership on request. Similarly, one may cancel the membership of the club. The first node is reserved for the president of the club, and the last node is reserved for the secretary. Write a C++ program to maintain the club members' information using a singly linked list. Store student PRN and Name. Write functions to:<br>
+            a) Add and delete the members as well as the president or secretary.<br>
+            b) Compute the total number of club members.<br>
+            c) Display members.<br>
+            d) Concatenate two linked lists for two divisions.
+            </p>
+            <button class="view-code-btn" onclick="loadFile('dsl', 'grpC_19.cpp', 'C++ program for managing Pinnacle Club using singly linked list', this)">View Code</button>
+    
+            <div class="answer-box" id="answerBox19">
+                <h3 id="questionText19"></h3>
+                <pre id="codeContent19"></pre>
+                <div class="copy-close-container">
+                    <button class="copy-btn" onclick="copyCode('codeContent19')">Copy Code</button>
+                    <button class="close-btn" onclick="closeBox('answerBox19')">Close</button>
+                </div>
+            </div>
+        </div>
+    
+        <!-- Question 23 -->
+        <div class="question-item">
+            <p><strong>Q23:</strong> Write a C++ program for storing binary numbers using doubly linked lists. Write functions:<br>
+            a) To compute 1's and 2's complement.<br>
+            b) To add two binary numbers.
+            </p>
+            <button class="view-code-btn" onclick="loadFile('dsl', 'grpC_23.cpp', 'C++ program for binary number operations using doubly linked lists', this)">View Code</button>
+    
+            <div class="answer-box" id="answerBox23">
+                <h3 id="questionText23"></h3>
+                <pre id="codeContent23"></pre>
+                <div class="copy-close-container">
+                    <button class="copy-btn" onclick="copyCode('codeContent23')">Copy Code</button>
+                    <button class="close-btn" onclick="closeBox('answerBox23')">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+
+    <!-- Group D -->
+    <div class="group">
+        <h3>Group D</h3>
 
         <!-- Question 25 -->
         <div class="question-item">
@@ -172,7 +215,7 @@
             a) To print original string followed by reversed string using stack<br>
             b) To check whether given string is palindrome or not.
             </p>
-            <button class="view-code-btn" onclick="loadFile('dsl', 'grpC_25.cpp', 'C++ program for checking palindromes using stack', this)">View Code</button>
+            <button class="view-code-btn" onclick="loadFile('dsl', 'grpD_25.cpp', 'C++ program for checking palindromes using stack', this)">View Code</button>
 
             <div class="answer-box" id="answerBox25">
                 <h3 id="questionText25"></h3>
@@ -191,7 +234,7 @@
             2. Input postfix expression must be in a desired format.<br>
             3. Only '+', '-', '*', and '/' operators are expected.
             </p>
-            <button class="view-code-btn" onclick="loadFile('dsl', 'grpC_27.cpp', 'C++ program for expression conversion and evaluation', this)">View Code</button>
+            <button class="view-code-btn" onclick="loadFile('dsl', 'grpD_27.cpp', 'C++ program for expression conversion and evaluation', this)">View Code</button>
 
             <div class="answer-box" id="answerBox27">
                 <h3 id="questionText27"></h3>
@@ -199,6 +242,62 @@
                 <div class="copy-close-container">
                     <button class="copy-btn" onclick="copyCode('codeContent27')">Copy Code</button>
                     <button class="close-btn" onclick="closeBox('answerBox27')">Close</button>
+                </div>
+            </div>
+        </div>
+    
+    <!-- Group E -->
+    <div class="group">
+        <h3>Group E</h3>
+
+
+        <!-- Question 29 -->
+        <div class="question-item">
+            <p><strong>Q29:</strong> Queues are frequently used in computer programming, and a typical example is the creation of a job queue by an operating system. If the operating system does not use priorities, then the jobs are processed in the order they enter the system. Write a C++ program for simulating a job queue. Write functions to add a job and delete a job from the queue.
+            </p>
+            <button class="view-code-btn" onclick="loadFile('dsl', 'grpE_29.cpp', 'C++ program for simulating a job queue', this)">View Code</button>
+
+            <div class="answer-box" id="answerBox29">
+                <h3 id="questionText29"></h3>
+                <pre id="codeContent29"></pre>
+                <div class="copy-close-container">
+                    <button class="copy-btn" onclick="copyCode('codeContent29')">Copy Code</button>
+                    <button class="close-btn" onclick="closeBox('answerBox29')">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+        <!-- Question 30 -->
+        <div class="question-item">
+            <p><strong>Q30:</strong> Write a program to implement a priority queue in C++ using an inorder list to store the items in the queue. Create a class that includes the data items (which should be template) and the priority (which should be int). The inorder list should contain these objects, with operator <= overloaded so that the items with highest priority appear at the start of the list (which will make it relatively easy to retrieve the highest item).
+            </p>
+            <button class="view-code-btn" onclick="loadFile('dsl', 'grpE_30.cpp', 'C++ program for implementing a priority queue', this)">View Code</button>
+
+            <div class="answer-box" id="answerBox30">
+                <h3 id="questionText30"></h3>
+                <pre id="codeContent30"></pre>
+                <div class="copy-close-container">
+                    <button class="copy-btn" onclick="copyCode('codeContent30')">Copy Code</button>
+                    <button class="close-btn" onclick="closeBox('answerBox30')">Close</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Question 31 -->
+        <div class="question-item">
+            <p><strong>Q31:</strong> A double-ended queue (deque) is a linear list in which additions and deletions may be made at either end. Obtain a data representation mapping a deque into a one-dimensional array. Write a C++ program to simulate a deque with functions to add and delete elements from either end of the deque.
+            </p>
+            <button class="view-code-btn" onclick="loadFile('dsl', 'grpE_31.cpp', 'C++ program for simulating a double-ended queue', this)">View Code</button>
+
+            <div class="answer-box" id="answerBox31">
+                <h3 id="questionText31"></h3>
+                <pre id="codeContent31"></pre>
+                <div class="copy-close-container">
+                    <button class="copy-btn" onclick="copyCode('codeContent31')">Copy Code</button>
+                    <button class="close-btn" onclick="closeBox('answerBox31')">Close</button>
                 </div>
             </div>
         </div>

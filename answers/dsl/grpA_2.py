@@ -35,7 +35,6 @@ def count_absent():
 
 
 def highest_frequency_mark():
-
     frequency = {}
     for mark in marks:
         if mark in frequency:

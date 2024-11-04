@@ -15,7 +15,7 @@ body {
     line-height: 1.6;
     color: #333;
     margin: 0 auto;
-    padding: clamp(10px, 2vw, 20px);
+    padding: clamp(10px, 1vw, 15px);
     background-color: #f8f9fa;
     display: flex;
     flex-direction: column;
@@ -26,15 +26,15 @@ body {
 }
 
 .container {
-    max-width: 1200px;
+    max-width: 1100px;
     margin: 0 auto;
     width: 100%;
     padding: 0 15px;
 }
 
 header {
-    margin-bottom: clamp(20px, 4vw, 30px);
-    padding: clamp(15px, 3vw, 20px) 0;
+    margin-bottom: clamp(15px, 3vw, 20px);
+    padding: clamp(10px, 2vw, 15px) 0;
     border-bottom: 2px solid #e9ecef;
     text-align: center;
 }
@@ -42,25 +42,25 @@ header {
 header h1 {
     margin: 0;
     color: #212529;
-    font-size: clamp(1.75rem, 4vw, 2.5rem);
+    font-size: clamp(1.5rem, 3vw, 2rem);
 }
 
 .group {
-    margin-bottom: clamp(20px, 4vw, 40px);
+    margin-bottom: clamp(15px, 3vw, 30px);
     width: 100%;
 }
 
 .group h2 {
     color: #343a40;
-    margin-bottom: clamp(15px, 3vw, 20px);
-    font-size: clamp(1.5rem, 3vw, 2rem);
+    margin-bottom: clamp(10px, 2vw, 15px);
+    font-size: clamp(1.25rem, 2.5vw, 1.75rem);
 }
 
-/* Subject List Grid - Responsive */
+/* Updated Subject List Grid - Fixed width columns */
 .subject-list {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(min(280px, 100%), 1fr));
-    gap: clamp(1rem, 2vw, 2rem);
+    grid-template-columns: repeat(4, 1fr);
+    gap: clamp(0.5rem, 1.5vw, 1.5rem);
     list-style: none;
 }
 
@@ -73,14 +73,17 @@ header h1 {
 }
 
 .subject-list a {
-    display: block;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
     background: white;
-    padding: clamp(1.25rem, 3vw, 2rem);
+    padding: clamp(1rem, 2vw, 1.5rem);
     border-radius: 12px;
     text-decoration: none;
     color: #333;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
     height: 100%;
+    min-height: 100px;
     transition: box-shadow 0.2s;
 }
 
@@ -90,15 +93,15 @@ header h1 {
 
 .subject-list .short-form {
     display: block;
-    font-size: clamp(1.5rem, 3vw, 2rem);
+    font-size: clamp(1.3rem, 2.5vw, 1.75rem);
     font-weight: bold;
     color: #2c3e50;
-    margin-bottom: 0.5rem;
+    margin-bottom: 0.4rem;
 }
 
 .subject-list .full-name {
     display: block;
-    font-size: clamp(0.9rem, 1vw, 1rem);
+    font-size: clamp(0.8rem, 0.9vw, 0.9rem);
     color: #666;
     line-height: 1.4;
 }
@@ -106,9 +109,9 @@ header h1 {
 /* Footer styles */
 .footer {
     text-align: center;
-    padding: 15px 0;
+    padding: 10px 0;
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    font-size: 0.85rem;
+    font-size: 0.8rem;
     color: #666;
     border-top: 1px solid #eaeaea;
     margin-top: auto;
@@ -134,11 +137,24 @@ header h1 {
 
 .footer__contributors {
     color: #888;
-    font-size: 0.8rem;
+    font-size: 0.75rem;
 }
 
 .github-icon {
     width: 16px;
     height: 16px;
     vertical-align: middle;
+}
+
+/* Media Queries for Responsive Layout */
+@media (max-width: 1200px) {
+    .subject-list {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (max-width: 600px) {
+    .subject-list {
+        grid-template-columns: 1fr;
+    }
 }

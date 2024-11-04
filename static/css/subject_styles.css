@@ -7,7 +7,6 @@
 
 html, body {
     height: 100%;
-    margin: 0;
 }
 
 body {
@@ -19,49 +18,61 @@ body {
     background-color: #f8f9fa;
     display: flex;
     flex-direction: column;
-    position: relative; /* Allow absolute positioning of child elements */
 }
 
 .content {
     flex: 1;
 }
 
+/* Header styling */
 header {
-    display: flex; /* Use flexbox for alignment */
-    align-items: center; /* Center items vertically */
-    justify-content: space-between; /* Space between items */
-    margin-bottom: clamp(20px, 4vw, 30px);
-    padding: clamp(13px, 3vw, 20px) 20px; /* Add horizontal padding */
+    display: flex;
+    align-items: center;
+    padding: clamp(13px, 3vw, 20px) 20px;
+    background-color: #fff;
     border-bottom: 1px solid #e9ecef;
-    background-color: #ffffff; /* Optional: Set background color for better visibility */
 }
 
+/* Home button on the left */
+.home-btn {
+    background-color: #4CAF50;
+    color: #fff;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+    order: -1;
+    transition: background-color 0.2s;
+}
+
+.home-btn:hover {
+    background-color: #45a049;
+}
+
+/* Center-align header text */
 header h3 {
-    flex-grow: 1; /* Allow the heading to take available space */
-    text-align: center; /* Center the heading */
+    flex-grow: 1;
+    text-align: center;
     color: #212529;
     font-size: clamp(1.75rem, 4vw, 2.5rem);
 }
 
-/* Home Button Styles */
-.home-btn {
-    background-color: #4CAF50;
-    color: white;
-    padding: 10px 20px;
-    border: none;   
-    border-radius: 5px;  
-    cursor: pointer;
-    font-size: 16px;
-    z-index: 1000; /* Ensure it appears above other elements */
+/* Responsive adjustments for mobile */
+@media (max-width: 768px) {
+    header {
+        justify-content: center;
+    }
+    .home-btn {
+        order: -1;
+        flex: 1 0 auto;
+        margin-right: auto;
+    }
 }
 
-.home-btn:hover {
-    background-color: #45a049;  
-}
-
-/* Question Item Styles - Responsive */
+/* Question Item Styles */
 .question-item {
-    background-color: #ffffff;
+    background-color: #fff;
     border: 1px solid #dee2e6;
     border-radius: 8px;
     padding: clamp(12px, 2.5vw, 20px);
@@ -86,7 +97,7 @@ header h3 {
     color: #495057;
 }
 
-/* Interactive Elements - Touch-friendly */
+/* Interactive Elements */
 .view-code-btn {
     display: inline-block;
     text-decoration: none;
@@ -95,7 +106,7 @@ header h3 {
     padding: 8px 12px;
     border: 1px solid #0d6efd;
     border-radius: 6px;
-    transition: all 0.2s ease;
+    transition: background-color 0.2s;
     background-color: transparent;
     cursor: pointer;
     font-size: 14px;
@@ -103,10 +114,10 @@ header h3 {
 
 .view-code-btn:hover {
     background-color: #0d6efd;
-    color: #ffffff;
+    color: #fff;
 }
 
-/* Answer Box Styles - Responsive */
+/* Answer Box Styles */
 .answer-box {
     display: none;
     border: 1px solid #2d333b;
@@ -139,7 +150,7 @@ header h3 {
     margin-bottom: 15px;
 }
 
-/* Button Container - Responsive Grid */
+/* Button Container */
 .copy-close-container {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
@@ -155,13 +166,13 @@ header h3 {
     cursor: pointer;
     font-size: clamp(11px, 0.8vw, 13px);
     font-weight: 500;
-    transition: background-color 0.2s ease;
+    transition: background-color 0.2s;
     min-height: 36px;
 }
 
 .copy-btn {
     background-color: #238636;
-    color: #ffffff;
+    color: #fff;
 }
 
 .copy-btn:hover {
@@ -170,7 +181,7 @@ header h3 {
 
 .close-btn {
     background-color: #FF3B30;
-    color: #ffffff;
+    color: #fff;
     border: 1px solid #FF3B30;
     padding: 10px 15px;
     border-radius: 5px;
@@ -183,12 +194,8 @@ header h3 {
 }
 
 /* Answer Box Text Selection Styles */
-.answer-box pre::selection {
-    background-color: #264f78;
-    color: #ffffff;
-}
-
+.answer-box pre::selection,
 .answer-box pre::-moz-selection {
     background-color: #264f78;
-    color: #ffffff;
+    color: #fff;
 }

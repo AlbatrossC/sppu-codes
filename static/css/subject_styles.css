@@ -12,10 +12,10 @@ html, body {
 body {
     font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
     line-height: 1.4;
-    color: #010101;
+    color: #e6edf3; /* Light color for text */
     margin: auto;
     padding: clamp(10px, 2vw, 10px);
-    background-color: #f8f9fa;
+    background-color: #121212; /* Dark background */
     display: flex;
     flex-direction: column;
 }
@@ -29,13 +29,13 @@ header {
     display: flex;
     align-items: center;
     padding: clamp(13px, 3vw, 20px) 20px;
-    background-color: #fff;
-    border-bottom: 1px solid #e9ecef;
+    background-color: #1e1e1e; /* Darker header background */
+    border-bottom: 1px solid #333;
 }
 
 /* Home button on the left */
 .home-btn {
-    background-color: #4CAF50;
+    background-color: #238636;
     color: #fff;
     padding: 10px 20px;
     border: none;
@@ -47,14 +47,14 @@ header {
 }
 
 .home-btn:hover {
-    background-color: #45a049;
+    background-color: #2ea043;
 }
 
 /* Center-align header text */
 header h3 {
     flex-grow: 1;
     text-align: center;
-    color: #212529;
+    color: #e6edf3;
     font-size: clamp(1.75rem, 4vw, 2.5rem);
 }
 
@@ -72,17 +72,17 @@ header h3 {
 
 /* Question Item Styles */
 .question-item {
-    background-color: #fff;
-    border: 1px solid #dee2e6;
+    background-color: #1e1e1e; /* Dark background for question items */
+    border: 1px solid #333;
     border-radius: 8px;
     padding: clamp(12px, 2.5vw, 20px);
     margin-bottom: clamp(15px, 3vw, 20px);
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.4);
 }
 
 .question-item p {
     font-size: clamp(15px, 1vw, 16px);
-    color: #212529;
+    color: #e6edf3;
     margin-bottom: 15px;
 }
 
@@ -94,38 +94,38 @@ header h3 {
 
 .question-item li {
     margin-bottom: 8px;
-    color: #495057;
+    color: #c9d1d9;
 }
 
 /* Interactive Elements */
 .view-code-btn {
     display: inline-block;
     text-decoration: none;
-    color: #0d6efd;
+    color: #58a6ff;
     font-weight: 500;
     padding: 8px 12px;
-    border: 1px solid #0d6efd;
+    border: 1px solid #58a6ff;
     border-radius: 6px;
-    transition: background-color 0.2s;
     background-color: transparent;
     cursor: pointer;
     font-size: 14px;
+    transition: background-color 0.2s;
 }
 
 .view-code-btn:hover {
-    background-color: #0d6efd;
+    background-color: #58a6ff;
     color: #fff;
 }
 
 /* Answer Box Styles */
 .answer-box {
     display: none;
-    border: 1px solid #2d333b;
+    border: 1px solid #333;
     border-radius: 8px;
     padding: clamp(12px, 2.5vw, 20px);
-    background-color: #1e1e1e;
+    background-color: #0d1117; /* Darker answer box background */
     margin-top: 15px;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.6);
 }
 
 .answer-box h3 {
@@ -133,21 +133,52 @@ header h3 {
     font-size: clamp(1.1rem, 2vw, 1.2rem);
     margin-bottom: 15px;
     padding-bottom: 10px;
-    border-bottom: 1px solid #30363d;
+    border-bottom: 1px solid #333;
 }
 
 .answer-box pre {
-    background-color: #2d333b;
-    border-radius: 6px;
-    padding: clamp(12px, 2vw, 16px);
+    background: linear-gradient(145deg, #0d1117, #1c1c1c);
+    border-radius: 8px;
+    padding: clamp(16px, 2.5vw, 20px);
     overflow-x: auto;
-    color: #e6edf3;
     font-family: 'Fira Code', 'JetBrains Mono', 'Source Code Pro', monospace;
-    font-size: clamp(13px, 1vw, 14px);
-    line-height: 1.5;
+    font-size: clamp(14px, 1.1vw, 15px);
+    line-height: 1.6;
     white-space: pre-wrap;
     word-wrap: break-word;
-    margin-bottom: 15px;
+    margin-bottom: 20px;
+    color: #D1D5DB;
+
+    border: 2px solid #333;
+    box-shadow: 0px 6px 15px rgba(0, 0, 0, 0.6);
+}
+
+/* Syntax highlighting */
+.answer-box pre .comment { color: #7A7A7A; font-style: italic; }
+.answer-box pre .keyword { color: #FF6D6D; font-weight: bold; }
+.answer-box pre .string { color: #A6E22E; }
+
+/* Enhanced scrollbar */
+.answer-box pre::-webkit-scrollbar {
+    height: 10px;
+}
+
+.answer-box pre::-webkit-scrollbar-thumb {
+    background-color: #444;
+    border-radius: 5px;
+    border: 2px solid #0d1117;
+}
+
+.answer-box pre::-webkit-scrollbar-track {
+    background: #0d1117;
+}
+
+/* Mobile device adjustments */
+@media (max-width: 600px) {
+    .answer-box pre {
+        padding: 20px;
+        font-size: 1rem;
+    }
 }
 
 /* Button Container */
@@ -180,22 +211,19 @@ header h3 {
 }
 
 .close-btn {
-    background-color: #FF3B30;
+    background-color: #D32F2F;
     color: #fff;
-    border: 1px solid #FF3B30;
-    padding: 10px 15px;
-    border-radius: 5px;
-    cursor: pointer;
-    transition: background-color 0.3s;
+    border: 1px solid #D32F2F;
 }
 
 .close-btn:hover {
-    background-color: #D32F2F;
+    background-color: #b71c1c;
 }
 
-/* Answer Box Text Selection Styles */
+/* Optional Text Selection */
 .answer-box pre::selection,
 .answer-box pre::-moz-selection {
     background-color: #264f78;
     color: #fff;
 }
+    

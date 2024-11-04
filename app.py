@@ -3,10 +3,6 @@ import os
 
 app = Flask(__name__)
 
-# Enable debug logging
-import logging
-logging.basicConfig(level=logging.DEBUG)
-
 @app.route('/')
 def index():
     return render_template('index.html')
@@ -15,37 +11,24 @@ def index():
 def subject(subject_name):
     try:
         return render_template(f'subjects/{subject_name}.html')
-    except Exception as e:
-        app.logger.error(f"Error loading subject template: {e}")
-        abort(404)
+    except Exception:
+        return render_template("error.html")
 
 @app.route('/answers/<subject>/<filename>')
 def get_answer(subject, filename):
-    try:
-        app.logger.info(f"Attempting to serve: {subject}/{filename}")
-        
-        # Get absolute path to the answers directory
+    try:      
         base_dir = os.path.abspath(os.path.dirname(__file__))
         answers_dir = os.path.join(base_dir, 'answers', subject)
-        
-        # Log the full path and file existence
-        full_path = os.path.join(answers_dir, filename)
-        app.logger.info(f"Full path: {full_path}")
-        app.logger.info(f"File exists: {os.path.exists(full_path)}")
-        
-        # Check if directory exists
+
         if not os.path.exists(answers_dir):
-            app.logger.error(f"Directory not found: {answers_dir}")
             abort(404)
-            
-        # Check if file exists
+
+        full_path = os.path.join(answers_dir, filename)
         if not os.path.exists(full_path):
-            app.logger.error(f"File not found: {full_path}")
             abort(404)
             
         return send_from_directory(answers_dir, filename)
-    except Exception as e:
-        app.logger.error(f"Error serving file: {e}")
+    except Exception:
         abort(404)
 
 if __name__ == '__main__':

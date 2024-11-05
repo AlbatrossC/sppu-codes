@@ -31,5 +31,13 @@ def get_answer(subject, filename):
     except Exception:
         abort(404)
 
+# Route to serve images
+@app.route('/images/<filename>')
+def get_image(filename):
+    base_dir = os.path.abspath(os.path.dirname(__file__))
+    images_dir = os.path.join(base_dir, 'images')
+    
+    return send_from_directory(images_dir, filename)
+
 if __name__ == '__main__':
     app.run(host='0.0.0.0', port=3000, debug=True)

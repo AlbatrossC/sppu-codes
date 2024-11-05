@@ -226,4 +226,37 @@ header h3 {
     background-color: #264f78;
     color: #fff;
 }
-    
+.info-box {
+    background-color: rgba(0, 0, 0, 0.2);
+    border-radius: 4px;
+    padding: 8px 16px;
+    display: inline-flex;
+    align-items: center;
+    max-width: 600px;
+    margin: 10px 0;
+}
+
+.info-box p {
+    margin: 0;
+    color: #ffeb3b;
+    font-size: 14px;
+    white-space: nowrap;
+}
+
+.info-box a {
+    color: #ffeb3b;
+    text-decoration: none;
+    font-weight: 600;
+    padding: 0 4px;
+    border-radius: 3px;
+    transition: all 0.2s ease;
+}
+
+.info-box a:hover {
+    background-color: #ffeb3b;
+    color: #000;
+    cursor: pointer;
+}
+
+
+

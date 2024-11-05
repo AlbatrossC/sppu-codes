@@ -3,38 +3,38 @@
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-}
-
-html, body {
+  }
+  
+  html, body {
     height: 100%;
-}
-
-body {
+  }
+  
+  body {
     font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
     line-height: 1.4;
     color: #e6edf3; /* Light color for text */
-    margin: auto;
-    padding: clamp(10px, 2vw, 10px);
+    margin: 0;
+    padding: 20px;
     background-color: #121212; /* Dark background */
     display: flex;
     flex-direction: column;
-}
-
-.content {
+  }
+  
+  .content {
     flex: 1;
-}
-
-/* Header styling */
-header {
+  }
+  
+  /* Header styling */
+  header {
     display: flex;
     align-items: center;
-    padding: clamp(13px, 3vw, 20px) 20px;
+    padding: 20px;
     background-color: #1e1e1e; /* Darker header background */
     border-bottom: 1px solid #333;
-}
-
-/* Home button on the left */
-.home-btn {
+  }
+  
+  /* Home button on the left */
+  .home-btn {
     background-color: #238636;
     color: #fff;
     padding: 10px 20px;
@@ -43,62 +43,69 @@ header {
     cursor: pointer;
     font-size: 16px;
     order: -1;
+    margin-right: auto;
     transition: background-color 0.2s;
-}
-
-.home-btn:hover {
+  }
+  
+  .home-btn:hover {
     background-color: #2ea043;
-}
-
-/* Center-align header text */
-header h3 {
+  }
+  
+  /* Center-align header text */
+  header h3 {
     flex-grow: 1;
     text-align: center;
     color: #e6edf3;
-    font-size: clamp(1.75rem, 4vw, 2.5rem);
-}
-
-/* Responsive adjustments for mobile */
-@media (max-width: 768px) {
+    font-size: 2rem;
+  }
+  
+  /* Responsive adjustments for mobile */
+  @media (max-width: 768px) {
     header {
-        justify-content: center;
+      flex-direction: column;
+      align-items: flex-start;
+      padding: 15px 20px;
     }
     .home-btn {
-        order: -1;
-        flex: 1 0 auto;
-        margin-right: auto;
+      order: -1;
+      margin-right: 0;
+      margin-bottom: 10px;
     }
-}
-
-/* Question Item Styles */
-.question-item {
+    header h3 {
+      text-align: left;
+      font-size: 1.8rem;
+    }
+  }
+  
+  /* Question Item Styles */
+  .question-item {
     background-color: #1e1e1e; /* Dark background for question items */
     border: 1px solid #333;
     border-radius: 8px;
-    padding: clamp(12px, 2.5vw, 20px);
-    margin-bottom: clamp(15px, 3vw, 20px);
+    padding: 20px;
+    margin-bottom: 20px;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.4);
-}
-
-.question-item p {
-    font-size: clamp(15px, 1vw, 16px);
+  }
+  
+  .question-item p {
+    font-size: 16px;
     color: #e6edf3;
     margin-bottom: 15px;
-}
-
-.question-item ol, 
-.question-item ul {
-    margin-left: clamp(15px, 2vw, 20px);
+  }
+  
+  .question-item ol,
+  .question-item ul {
+    margin-left: 20px;
     margin-bottom: 15px;
-}
-
-.question-item li {
+  }
+  
+  .question-item li {
     margin-bottom: 8px;
     color: #c9d1d9;
-}
-
-/* Interactive Elements */
-.view-code-btn {
+  }
+  
+  /* Interactive Elements */
+  .view-code-btn {
     display: inline-block;
     text-decoration: none;
     color: #58a6ff;
@@ -110,153 +117,151 @@ header h3 {
     cursor: pointer;
     font-size: 14px;
     transition: background-color 0.2s;
-}
-
-.view-code-btn:hover {
+  }
+  
+  .view-code-btn:hover {
     background-color: #58a6ff;
     color: #fff;
-}
-
-/* Answer Box Styles */
-.answer-box {
+  }
+  
+  /* Answer Box Styles */
+  .answer-box {
     display: none;
-    border: 1px solid #333;
-    border-radius: 8px;
-    padding: clamp(12px, 2.5vw, 20px);
-    background-color: #0d1117; /* Darker answer box background */
-    margin-top: 15px;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.6);
-}
-
-.answer-box h3 {
+    margin-top: 20px;
+  }
+  
+  .answer {
     color: #e6edf3;
-    font-size: clamp(1.1rem, 2vw, 1.2rem);
-    margin-bottom: 15px;
-    padding-bottom: 10px;
-    border-bottom: 1px solid #333;
-}
-
-.answer-box pre {
-    background: linear-gradient(145deg, #0d1117, #1c1c1c);
+    font-size: 1.2rem;
+    margin-bottom: 12px;
+  }
+  
+  .answer-box pre {
+    background-color: #121212;
     border-radius: 8px;
-    padding: clamp(16px, 2.5vw, 20px);
+    padding: 24px;
     overflow-x: auto;
     font-family: 'Fira Code', 'JetBrains Mono', 'Source Code Pro', monospace;
-    font-size: clamp(14px, 1.1vw, 15px);
-    line-height: 1.6;
+    font-size: 16px;
+    line-height: 1.7;
     white-space: pre-wrap;
     word-wrap: break-word;
-    margin-bottom: 20px;
-    color: #ffffff;
-
-    border: 2px solid #333;
+    margin-bottom: 24px;
+    color: #F0F0F0;
+    border: 2px solid #4B4B4B;
     box-shadow: 0px 6px 15px rgba(0, 0, 0, 0.6);
-}
-
-/* Syntax highlighting */
-.answer-box pre .comment { color: #ffffff; font-style: italic; }
-.answer-box pre .keyword { color: #FF6D6D; font-weight: bold; }
-.answer-box pre .string { color: #A6E22E; }
-
-/* Enhanced scrollbar */
-.answer-box pre::-webkit-scrollbar {
-    height: 10px;
-}
-
-.answer-box pre::-webkit-scrollbar-thumb {
-    background-color: #444;
-    border-radius: 5px;
+    width: fit-content;
+    max-width: 100%;
+  }
+  
+  /* Syntax highlighting */
+  .answer-box pre .comment { color: #A6A6A6; font-style: italic; }
+  .answer-box pre .keyword { color: #FF7373; font-weight: bold; }
+  .answer-box pre .string { color: #B3E673; }
+  
+  /* Enhanced scrollbar */
+  .answer-box pre::-webkit-scrollbar {
+    height: 12px;
+  }
+  
+  .answer-box pre::-webkit-scrollbar-thumb {
+    background-color: #505050;
+    border-radius: 6px;
     border: 2px solid #0d1117;
-}
-
-.answer-box pre::-webkit-scrollbar-track {
+  }
+  
+  .answer-box pre::-webkit-scrollbar-track {
     background: #0d1117;
-}
-
-/* Mobile device adjustments */
-@media (max-width: 600px) {
-    .answer-box pre {
-        padding: 20px;
-        font-size: 1rem;
+  }
+  
+  /* Mobile device adjustments */
+  @media (max-width: 600px) {
+    .answer {
+      font-size: 0.95rem;
     }
-}
-
-/* Button Container */
-.copy-close-container {
+  
+    .answer-box pre {
+      padding: 18px;
+      font-size: 0.95rem;
+    }
+  }
+  
+  /* Button Container */
+  .copy-close-container {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
-    gap: clamp(8px, 1.5vw, 10px);
+    gap: 10px;
     margin-top: 15px;
-}
-
-.copy-btn, 
-.close-btn {
-    padding: clamp(4px, 1vw, 8px) clamp(8px, 1.5vw, 12px);
+  }
+  
+  .copy-btn,
+  .close-btn {
+    padding: 8px 12px;
     border: none;
     border-radius: 4px;
     cursor: pointer;
-    font-size: clamp(11px, 0.8vw, 13px);
+    font-size: 13px;
     font-weight: 500;
     transition: background-color 0.2s;
     min-height: 36px;
-}
-
-.copy-btn {
+  }
+  
+  .copy-btn {
     background-color: #238636;
     color: #fff;
-}
-
-.copy-btn:hover {
+  }
+  
+  .copy-btn:hover {
     background-color: #2ea043;
-}
-
-.close-btn {
+  }
+  
+  .close-btn {
     background-color: #D32F2F;
     color: #fff;
     border: 1px solid #D32F2F;
-}
-
-.close-btn:hover {
+  }
+  
+  .close-btn:hover {
     background-color: #b71c1c;
-}
-
-/* Optional Text Selection */
-.answer-box pre::selection,
-.answer-box pre::-moz-selection {
+  }
+  
+  /* Optional Text Selection */
+  .answer-box pre::selection,
+  .answer-box pre::-moz-selection {
     background-color: #264f78;
     color: #fff;
-}
-.info-box {
+  }
+  
+  .info-box {
     background-color: rgba(0, 0, 0, 0.2);
     border-radius: 4px;
-    padding: 8px 16px;
+    padding: 12px 16px;
     display: inline-flex;
     align-items: center;
-    max-width: 600px;
+    flex-wrap: wrap;
+    max-width: 90%;
     margin: 10px 0;
-}
-
-.info-box p {
+    box-sizing: border-box;
+  }
+  
+  .info-box p {
     margin: 0;
     color: #ffeb3b;
     font-size: 14px;
-    white-space: nowrap;
-}
-
-.info-box a {
+    line-height: 1.4;
+  }
+  
+  .info-box a {
     color: #ffeb3b;
     text-decoration: none;
     font-weight: 600;
-    padding: 0 4px;
+    padding: 2px 4px;
     border-radius: 3px;
     transition: all 0.2s ease;
-}
-
-.info-box a:hover {
+  }
+  
+  .info-box a:hover {
     background-color: #ffeb3b;
     color: #000;
     cursor: pointer;
-}
-
-
-
+  }

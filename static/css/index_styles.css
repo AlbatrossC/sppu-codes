@@ -13,10 +13,10 @@ html, body {
 body {
     font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
     line-height: 1.6;
-    color: #e0e0e0; /* Light text color for dark background */
+    color: #e0e0e0;
     margin: 0 auto;
     padding: clamp(10px, 1vw, 15px);
-    background-color: #121212; /* Dark background color */
+    background-color: #121212;
     display: flex;
     flex-direction: column;
 }
@@ -35,14 +35,36 @@ body {
 header {
     margin-bottom: clamp(15px, 3vw, 20px);
     padding: clamp(10px, 2vw, 15px) 0;
-    border-bottom: 2px solid #333; /* Darker border color */
-    text-align: center;
+    border-bottom: 2px solid #333;
+    position: relative;
+}
+
+.header__container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
 }
 
 header h1 {
     margin: 0;
-    color: #ffffff; /* White text for header */
+    color: #ffffff;
     font-size: clamp(1.5rem, 3vw, 2rem);
+    text-align: center;
+    flex: 1;
+}
+
+.submit-button {
+    background-color: #2d76cc;
+    color: #ffffff;
+    padding: 10px 20px;
+    border-radius: 5px;
+    text-decoration: none;
+    font-weight: bold;
+    transition: background-color 0.3s ease;
+}
+
+.submit-button:hover {
+    background-color: #1d5bb1;
 }
 
 .group {
@@ -51,12 +73,11 @@ header h1 {
 }
 
 .group h2 {
-    color: #e0e0e0; /* Light text color for group headings */
+    color: #e0e0e0;
     margin-bottom: clamp(10px, 2vw, 15px);
     font-size: clamp(1.25rem, 2.5vw, 1.75rem);
 }
 
-/* Updated Subject List Grid - Fixed width columns */
 .subject-list {
     display: grid;
     grid-template-columns: repeat(4, 1fr);
@@ -76,85 +97,55 @@ header h1 {
     display: flex;
     flex-direction: column;
     justify-content: center;
-    background: #1e1e1e; /* Dark card background */
+    background: #1e1e1e;
     padding: clamp(1rem, 2vw, 1.5rem);
     border-radius: 12px;
     text-decoration: none;
-    color: #e0e0e0; /* Light text color */
-    box-shadow: 0 4px 6px rgba(255, 255, 255, 0.1); /* Lighter shadow */
+    color: #e0e0e0;
+    box-shadow: 0 4px 6px rgba(255, 255, 255, 0.1);
     height: 100%;
     min-height: 100px;
     transition: box-shadow 0.2s;
 }
 
 .subject-list a:hover {
-    box-shadow: 0 8px 12px rgba(255, 255, 255, 0.2); /* Lighter shadow on hover */
+    box-shadow: 0 8px 12px rgba(255, 255, 255, 0.2);
 }
 
 .subject-list .short-form {
-    display: block;
-    font-size: clamp(1.3rem, 2.5vw, 1.75rem);
+    font-size: clamp(1.2rem, 2.5vw, 1.5rem);
     font-weight: bold;
-    color: #ffffff; /* White text for short form */
-    margin-bottom: 0.4rem;
 }
 
 .subject-list .full-name {
-    display: block;
-    font-size: clamp(0.8rem, 0.9vw, 0.9rem);
-    color: #b0b0b0; /* Slightly lighter text for full names */
-    line-height: 1.4;
+    font-size: clamp(0.9rem, 1.5vw, 1rem);
+    color: #ccc;
 }
 
-/* Footer styles */
 .footer {
     text-align: center;
-    padding: 10px 0;
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    font-size: 0.8rem;
-    color: #b0b0b0; /* Light footer text color */
-    border-top: 1px solid #333; /* Darker footer border */
-    margin-top: auto;
+    padding: clamp(20px, 3vw, 40px);
+    color: #aaa;
+    font-size: clamp(0.8rem, 1.2vw, 1rem);
+    border-top: 2px solid #333;
 }
 
 .footer a {
-    color: #2d76cc; /* Link color */
+    color: #aaa;
     text-decoration: none;
-    transition: color 0.2s ease;
-    display: inline-flex;
-    align-items: center;
-    gap: 5px;
 }
 
 .footer a:hover {
-    color: #1d5bb1; /* Darker link color on hover */
-    text-decoration: underline;
-}
-
-.footer p {
-    margin: 3px 0;
+    color: #ccc;
 }
 
 .footer__contributors {
-    color: #888; /* Contributors text color */
-    font-size: 0.75rem;
+    font-size: clamp(0.7rem, 1.1vw, 0.9rem);
 }
 
 .github-icon {
     width: 16px;
     height: 16px;
+    margin-right: 5px;
     vertical-align: middle;
-}
-
-/* Media Queries for Responsive Layout */
-@media (max-width: 1200px) {
-    .subject-list {
-        grid-template-columns: repeat(2, 1fr);
-    }
-}
-
-@media (max-width: 600px) {
-    .subject-list {
-        grid-template-columns: 1fr;
-    }
 }

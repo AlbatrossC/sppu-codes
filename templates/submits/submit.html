@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Student Information Form</title>
+</head>
+<body>
+    <h1>Student Information Form</h1>
+    <form id="studentForm">
+
+        <!-- Year Selection -->
+        <div>
+            <label for="year">Select Year:</label>
+            <select id="year" name="year" required>
+                <option value="" selected disabled>Select Year</option>
+                <option value="FE">FE (First Year)</option>
+                <option value="SE">SE (Second Year)</option>
+                <option value="TE">TE (Third Year)</option>
+                <option value="BE">BE (Fourth Year)</option>
+            </select>
+        </div>
+
+        <!-- Branch Selection -->
+        <div>
+            <label for="branch">Select Branch:</label>
+            <select id="branch" name="branch" required>
+                <option value="" selected disabled>Select Branch</option>
+            </select>
+        </div>
+
+        <!-- Semester Selection -->
+        <div>
+            <label for="semester">Select Semester:</label>
+            <select id="semester" name="semester" required>
+                <option value="" selected disabled>Select Semester</option>
+            </select>
+        </div>
+
+        <!-- Subject Selection -->
+        <div>
+            <label for="subject">Select Subject:</label>
+            <select id="subject" name="subject" required>
+                <option value="" selected disabled>Select Subject</option>
+            </select>
+        </div>
+
+        <button type="button" onclick="showAdditionalFields()">Next</button>
+
+        <!-- Additional Fields -->
+        <div id="additionalFields" style="display: none;">
+            <!-- Name (Optional, defaults to Anonymous) -->
+            <div>
+                <label for="name">Name (optional):</label>
+                <input type="text" id="name" name="name" placeholder="Anonymous" onfocus="clearPlaceholder()" onblur="setPlaceholder()" style="color: grey;">
+            </div>
+
+            <!-- Question (Required) -->
+            <div>
+                <label for="question">Question:</label>
+                <textarea id="question" name="question" required></textarea>
+            </div>
+
+            <!-- Answer (Required) -->
+            <div>
+                <label for="answer">Answer:</label>
+                <textarea id="answer" name="answer" required></textarea>
+            </div>
+
+            <!-- Submit Button -->
+            <button type="submit">Submit</button>
+        </div>
+    </form>
+
+    <!-- Display Section for Submissions -->
+    <h2>Submission Data</h2>
+    <div id="submissionDisplay"></div>
+
+    <script>
+        const yearSelect = document.getElementById('year');
+        const branchSelect = document.getElementById('branch');
+        const semesterSelect = document.getElementById('semester');
+        const subjectSelect = document.getElementById('subject');
+        const studentForm = document.getElementById('studentForm');
+        const submissionDisplay = document.getElementById('submissionDisplay');
+
+        // Function to show additional fields on Next button click
+        function showAdditionalFields() {
+            const additionalFields = document.getElementById('additionalFields');
+            additionalFields.style.display = 'block';
+        }
+
+        // Function to set Name placeholder to "Anonymous"
+        function setPlaceholder() {
+            const nameInput = document.getElementById('name');
+            if (nameInput.value === '') {
+                nameInput.placeholder = 'Anonymous';
+                nameInput.style.color = 'grey';
+            }
+        }
+
+        // Function to clear Name placeholder when focused
+        function clearPlaceholder() {
+            const nameInput = document.getElementById('name');
+            if (nameInput.placeholder === 'Anonymous') {
+                nameInput.placeholder = '';
+                nameInput.style.color = 'black';
+            }
+        }
+
+        // Update Branches, Semesters, and Subjects based on Year and Semester
+        yearSelect.addEventListener('change', function() {
+            const year = yearSelect.value;
+            updateBranches(year);
+            updateSemesters(year);
+            updateSubjects(year, semesterSelect.value);
+        });
+
+        semesterSelect.addEventListener('change', function() {
+            updateSubjects(yearSelect.value, semesterSelect.value);
+        });
+
+        function updateBranches(year) {
+            branchSelect.innerHTML = '<option value="" selected disabled>Select Branch</option>';
+            if (year === 'FE') {
+                branchSelect.innerHTML += '<option value="Common">Common</option>';
+            } else {
+                branchSelect.innerHTML += 
+                    '<option value="Comp">Computer Engineering</option>' +
+                    '<option value="IT">Information Technology</option>' +
+                    '<option value="AI_DS">AI & DS</option>' +
+                    '<option value="AI_ML">AI & ML</option>';
+            }
+        }
+
+        function updateSemesters(year) {
+            semesterSelect.innerHTML = '<option value="" selected disabled>Select Semester</option>';
+            if (year === 'FE') {
+                semesterSelect.innerHTML += '<option value="Sem1_Sem2">Sem1 & Sem2</option>';
+            } else if (year === 'SE') {
+                semesterSelect.innerHTML += '<option value="Sem3">Sem 3</option><option value="Sem4">Sem 4</option>';
+            } else if (year === 'TE') {
+                semesterSelect.innerHTML += '<option value="Sem5">Sem 5</option><option value="Sem6">Sem 6</option>';
+            } else if (year === 'BE') {
+                semesterSelect.innerHTML += '<option value="Sem7">Sem 7</option><option value="Sem8">Sem 8</option>';
+            }
+        }
+
+        function updateSubjects(year, semester) {
+            subjectSelect.innerHTML = '<option value="" selected disabled>Select Subject</option>';
+            if (year === 'FE') {
+                subjectSelect.innerHTML += '<option value="PPS">PPS</option>';
+            } else if (year === 'SE' && semester === 'Sem3') {
+                subjectSelect.innerHTML += '<option value="OOP">OOP</option><option value="CGL">CGL</option><option value="OSL">OSL</option><option value="DSL">DSL</option>';
+            } else if (year === 'SE' && semester === 'Sem4') {
+                subjectSelect.innerHTML += '<option value="IOTL">IOTL</option><option value="DSAL">DSAL</option>';
+            } else {
+                subjectSelect.innerHTML += '<option value="">No Subjects Available</option>';
+            }
+        }
+
+        studentForm.addEventListener('submit', function(event) {
+            event.preventDefault();
+
+            const year = yearSelect.value;
+            const branch = branchSelect.value;
+            const semester = semesterSelect.value;
+            const subject = subjectSelect.value;
+            const name = document.getElementById('name').value || 'Anonymous';
+            const question = document.getElementById('question').value;
+            const answer = document.getElementById('answer').value;
+
+            const submissionHTML = `
+                <p><strong>Year:</strong> ${year}</p>
+                <p><strong>Branch:</strong> ${branch}</p>
+                <p><strong>Semester:</strong> ${semester}</p>
+                <p><strong>Subject:</strong> ${subject}</p>
+                <p><strong>Name:</strong> ${name}</p>
+                <p><strong>Question:</strong> ${question}</p>
+                <p><strong>Answer:</strong> ${answer}</p>
+                <hr>
+            `;
+
+            submissionDisplay.innerHTML += submissionHTML;
+            studentForm.reset();
+            additionalFields.style.display = 'none';
+        });
+    </script>
+</body>
+</html>

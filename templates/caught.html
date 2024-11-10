@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>SPPU - Notice</title>
+    <style>
+        body {
+            font-family: Times New Roman, serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f5f5f5;
+        }
+        .header {
+            background-color: #00308F;
+            padding: 10px;
+        }
+        .logo-container {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        .logo-text {
+            color: white;
+        }
+        .logo-text h1 {
+            font-size: 22px;
+            margin: 0;
+        }
+        .main-content {
+            max-width: 800px;
+            margin: 20px auto;
+            padding: 20px;
+            background-color: #fff;
+            border: 1px solid #ccc;
+        }
+        .notice-header {
+            border-bottom: 2px solid #00308F;
+            padding: 10px;
+            margin-bottom: 20px;
+            font-weight: bold;
+        }
+        .warning-box {
+            border: 1px solid #666;
+            padding: 15px;
+            margin: 15px 0;
+            background-color: #fff;
+        }
+        .details-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 15px 0;
+        }
+        .details-table td {
+            padding: 8px;
+            border: 1px solid #ccc;
+        }
+        .details-table tr td:first-child {
+            width: 150px;
+            background-color: #f9f9f9;
+        }
+        .footer {
+            text-align: center;
+            padding: 10px;
+            background-color: #00308F;
+            color: white;
+            font-size: 12px;
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <div class="logo-container">
+            <img src="https://onlinetranscripts.org/wp-content/uploads/2020/02/Savitribai-Phule-Pune-University.png" 
+                 alt="SPPU Logo" 
+                 style="background: white; border-radius: 50%; width: 50px; height: 50px;">
+            <div class="logo-text">
+                <h1>Savitribai Phule Pune University</h1>
+            </div>
+        </div>
+    </div>
+
+    <div class="main-content">
+        <div class="notice-header">
+            Notice: Unauthorized Resource Access During Examination
+        </div>
+
+        <div class="warning-box">
+            <p>Your attempt to access this resource during examination hours has been recorded.</p>
+            
+            <table class="details-table">
+                <tr>
+                    <td>Date</td>
+                    <td id="date"></td>
+                </tr>
+                <tr>
+                    <td>Time</td>
+                    <td id="time"></td>
+                </tr>
+                <tr>
+                    <td>IP Address</td>
+                    <td id="ipAddress"></td>
+                </tr>
+                <tr>
+                    <td>Location</td>
+                    <td id="location"></td>
+                </tr>
+            </table>
+        </div>
+
+        <div style="padding: 15px;">
+            <ul>
+                <li>This resource is for learning purposes only</li>
+                <li>Access during examinations is not permitted</li>
+                <li>This incident has been logged</li>
+                <li>May result in examination disqualification</li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="footer">
+        © 2024 SPPU Examination Department
+    </div>
+
+    <script>
+        // Separate Date and Time
+        const now = new Date();
+        document.getElementById('date').textContent = now.toLocaleDateString();
+        document.getElementById('time').textContent = now.toLocaleTimeString();
+
+        // Fetch real IP and location information
+        fetch('https://api.ipify.org?format=json')
+            .then(response => response.json())
+            .then(data => {
+                document.getElementById('ipAddress').textContent = data.ip;
+
+                // Fetch location based on IP
+                return fetch(`https://ipapi.co/${data.ip}/json/`);
+            })
+            .then(response => response.json())
+            .then(locationData => {
+                document.getElementById('location').textContent = locationData.city + ", " + locationData.region + ", " + locationData.country_name;
+            })
+            .catch(() => {
+                // Fallback in case of error
+                document.getElementById('ipAddress').textContent = "172.16." + Math.floor(Math.random() * 255) + "." + Math.floor(Math.random() * 255);
+                document.getElementById('location').textContent = "University Network";
+            });
+    </script>
+</body>
+</html>

@@ -8,11 +8,14 @@ app = Flask(__name__)
 def index():
     return render_template('index.html')
 
+@app.route('/caught')
+def caught():
+    return render_template('caught.html')
+
 #For Code submit and submissions page.
 @app.route('/submit')
 def submit():
     return render_template('submits/submit.html')
-
 
 #Dynamic Subject page: templates/subjects/.. e"x oop.html , dsl.html
 @app.route('/<subject_name>')

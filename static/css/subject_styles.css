@@ -58,7 +58,12 @@
     color: #e6edf3;
     font-size: 2rem;
   }
-  
+
+  a {
+    text-decoration: none;
+    color: inherit;
+  }
+
   /* Responsive adjustments for mobile */
   @media (max-width: 768px) {
     header {

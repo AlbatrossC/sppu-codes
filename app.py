@@ -3,7 +3,7 @@ import os
 
 app = Flask(__name__)
 
-#Home Page: Index.html
+# Home Page: Index.html
 @app.route('/')
 def index():
     return render_template('index.html')
@@ -12,21 +12,21 @@ def index():
 def caught():
     return render_template('caught.html')
 
-#For Code submit and submissions page.
+# For Code submit and submissions page
 @app.route('/submit')
 def submit():
     return render_template('submits/submit.html')
 
-#Dynamic Subject page: templates/subjects/.. e"x oop.html , dsl.html
+# Dynamic Subject page: templates/subjects/... e.g., oop.html, dsl.html
 @app.route('/<subject_name>')
 def subject(subject_name):
     try:
         return render_template(f'subjects/{subject_name}.html')
     except Exception:
         return render_template("error.html")
-    
-#File name: to get link for a file. for ex. https://codecave.vercel.app/answers/dsl/grpA_1.py
-@app.route('/answers/<subject>/<filename>')
+
+#files 
+@app.route('/<subject>/<filename>')
 def get_answer(subject, filename):
     try:      
         base_dir = os.path.abspath(os.path.dirname(__file__))

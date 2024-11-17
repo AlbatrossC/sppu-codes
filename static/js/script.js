@@ -11,7 +11,8 @@ function loadFile(subject, fileName, questionText, element) {
     codeContent.innerText = 'Loading...';
     answerBox.style.display = 'block';
 
-    fetch(`/answers/${subject}/${fileName}`)
+    // Update fetch URL to reflect the new route
+    fetch(`/${subject}/${fileName}`)
         .then(response => {
             console.log('Response status:', response.status);
             if (!response.ok) {

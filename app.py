@@ -17,6 +17,11 @@ def caught():
 def submit():
     return render_template('submits/submit.html')
 
+# For Downloading codes
+@app.route('/download')
+def download():
+    return render_template('download.html')
+
 # Dynamic Subject page: templates/subjects/... e.g., oop.html, dsl.html
 @app.route('/<subject_name>')
 def subject(subject_name):

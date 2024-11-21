@@ -1,15 +1,23 @@
 def binary_search(roll_numbers, target):
-    left, right = 0, len(roll_numbers) - 1
-    while left <= right:
-        mid = left + (right - left) // 2
+    low = 0
+    high = len(roll_numbers) - 1
+
+    while low <= high:
+        mid = (low + high) // 2
+
         if roll_numbers[mid] == target:
-            print(f"Roll number {target} attended the training program.")
-            return
-        elif roll_numbers[mid] < target:
-            left = mid + 1
+            if roll_numbers[mid] == target:
+                print(f"Binary Search: Roll number {target} found at index {mid}.")
+                return
+        
+        elif roll_numbers[mid] > target:
+            high = mid - 1
+
         else:
-            right = mid - 1
-    print(f"Roll number {target} did not attend the training program.")
+            low = mid + 1
+    print("Binary Search: Roll number not found.")
+
+
 
 def fibonacci_search(roll_numbers, target):
     fib_m2 = 0
@@ -33,19 +41,21 @@ def fibonacci_search(roll_numbers, target):
             fib_m1 -= fib_m2
             fib_m2 = fib_m1 - fib_m2
         else:
-            print(f"Roll number {target} attended the training program.")
+            print(f"Roll number {target} found at {i}")
             return
             
     if fib_m1 and offset + 1 < len(roll_numbers) and roll_numbers[offset + 1] == target:
-        print(f"Roll number {target} attended the training program.")
+        print(f"Roll number {target} found at {i}")
     else:
         print(f"Roll number {target} did not attend the training program.")
+
 
 roll_numbers = []
 num_students = int(input("Enter the number of students who attended the training program: "))
 for _ in range(num_students):
     roll = int(input("Enter roll number: "))
     roll_numbers.append(roll)
+
 
 roll_numbers.sort()
 target_roll = int(input("Enter the roll number to search: "))

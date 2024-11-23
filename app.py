@@ -18,9 +18,9 @@ def submit():
     return render_template('submits/submit.html')
 
 # For Downloading codes
-@app.route('/download')
+@app.route('/test')
 def download():
-    return render_template('download.html')
+    return render_template('test.html')
 
 # Dynamic Subject page: templates/subjects/... e.g., oop.html, dsl.html
 @app.route('/<subject_name>')

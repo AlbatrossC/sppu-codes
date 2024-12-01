@@ -48,6 +48,12 @@ def get_answer(subject, filename):
     except Exception:
         abort(404)
 
+#Testing
+@app.route('/loaderio-a833ae5131281cfe4daf880e5d3580d6/')
+def loaderio_folder_verification():
+    return "loaderio-a833ae5131281cfe4daf880e5d3580d6"
+
+
 # Route to serve images
 @app.route('/images/<filename>')
 def get_image(filename):

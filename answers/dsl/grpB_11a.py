@@ -1,9 +1,9 @@
 def linear_search(roll_numbers, target):
     for roll in roll_numbers:
         if roll == target:
-            print(f"Roll number {target} attended the training program.")
+            print(f"Linear Search: Roll number {target} attended the training program.")
             return
-    print(f"Roll number {target} did not attend the training program.")
+    print(f"Linear Search: Roll number {target} did not attend the training program.")
 
 def sentinel_search(roll_numbers, target):
     n = len(roll_numbers)
@@ -14,9 +14,9 @@ def sentinel_search(roll_numbers, target):
         i += 1
     roll_numbers[-1] = last
     if i < n - 1 or roll_numbers[-1] == target:
-        print(f"Roll number {target} attended the training program.")
+        print(f"Sentinel Search: Roll number {target} attended the training program.")
     else:
-        print(f"Roll number {target} did not attend the training program.")
+        print(f"Sentinel Search: Roll number {target} did not attend the training program.")
 
 roll_numbers = []
 num_students = int(input("Enter the number of students who attended the training program: "))

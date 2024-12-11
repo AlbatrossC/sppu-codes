@@ -1,56 +1,56 @@
 #include <iostream>
 using namespace std;
 
-template <class T>
-void SelectionSort(T a[], int n) {
-    for (int i = 0; i < n; i++) {
-        int min_index = i;
-        for (int j = i + 1; j < n; j++) {
-            if (a[j] < a[min_index]) {
-                min_index = j;
+template <typename T>
+void SelectionSort(T arr[], int size) {
+    for (int i = 0; i < size - 1; i++) {
+        int minIndex = i;
+        for (int j = i + 1; j < size; j++) {
+            if (arr[minIndex] > arr[j]) {
+                minIndex = j;
             }
         }
-        T temp = a[min_index];
-        a[min_index] = a[i];
-        a[i] = temp;
+        // temp -> minIndex -> i -> temp
+        T temp = arr[minIndex];
+        arr[minIndex] = arr[i];
+        arr[i] = temp;
     }
-}
-
-template <class T>
-void in_out(T a[], int max_size) {
-    int n;
-    cout << "Enter the number of elements (max " << max_size << "): ";
-    cin >> n;
-
-    if (n > max_size || n <= 0) {
-        cout << "Invalid size! Must be between 1 and " << max_size << ".\n";
-        return;
-    }
-
-    for (int i = 0; i < n; i++) {
-        cout << "Element no." << (i + 1) << ": ";
-        cin >> a[i];
-    }
-
-    SelectionSort(a, n);
-
-    cout << "Sorted Array: ";
-    for (int i = 0; i < n; i++) {
-        cout << a[i] << " ";
-    }
-    cout << endl;
 }
 
 int main() {
-    const int max_size = 10;
-    int int_arr[max_size];
-    float float_arr[max_size];
+    int intArr[] = {64, 90, 25, 12, 22, 11};
+    int intSize = sizeof(intArr) / sizeof(intArr[0]);
 
-    cout << "Integer Array Sorting:\n";
-    in_out(int_arr, max_size);
+    cout << "Original Integer Array: ";
+    for (int i = 0; i < intSize; i++) {
+        cout << intArr[i] << " ";
+    }
+    cout << endl;
 
-    cout << "Floating Array Sorting:\n";
-    in_out(float_arr, max_size);
+    SelectionSort(intArr, intSize);
+
+    cout << "Sorted Integer Array: ";
+    for (int i = 0; i < intSize; ++i) {
+        cout << intArr[i] << " ";
+    }
+    cout << endl;
+
+    float floatArr[] = {64.1, 25.5, 12.2, 22.8, 11.3};
+    int floatSize = sizeof(floatArr) / sizeof(floatArr[0]);
+
+    cout << "Original Floating-Point Array: ";
+    for (int i = 0; i < floatSize; i++) {
+        cout << floatArr[i] << " ";
+    }
+    cout << endl;
+
+    SelectionSort(floatArr, floatSize);
+
+    cout << "Sorted Floating-Point Array: ";
+    for (int i = 0; i < floatSize; i++) {
+        cout << floatArr[i] << " ";
+    }
+    cout << endl;
 
     return 0;
 }

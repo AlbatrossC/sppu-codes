@@ -1,6 +1,6 @@
 #include <iostream>
-#include <vector>
 #include <algorithm>
+#include <vector>
 using namespace std;
 
 class Person {
@@ -11,58 +11,65 @@ public:
 
     void input() {
         cout << "Enter Name: ";
-        cin >> ws; // Clear any leading whitespace
         getline(cin, name);
-        cout << "Enter DOB (DD/MM/YYYY): ";
+
+        cout << "Enter Date of Birth (DD/MM/YYYY): ";
         getline(cin, DOB);
-        cout << "Enter Phone Number: ";
+
+        cout << "Enter Telephone Number: ";
         getline(cin, number);
     }
 
     void display() const {
-        cout << "Name: " << name << "\nDOB: " << DOB << "\nPhone Number: " << number << "\n";
+        cout << "Name: " << name << " | Date of Birth: " << DOB << " | Number: " << number << endl;
     }
 };
 
-bool Sortingbyname(const Person &a, const Person &b) {
+bool sortByName(const Person& a, const Person& b) {
     return a.name < b.name;
 }
 
-void Searchbyname(const vector<Person> &people, const string &searchname) {
+void searchByName(const vector<Person>& people, const string& searchName) {
     bool found = false;
-    for (const auto &person : people) {
-        if (person.name == searchname) {
+    for (const auto& person : people) {
+        if (person.name == searchName) {
             person.display();
             found = true;
+            break;
         }
     }
+
     if (!found) {
-        cout << "No record found for name: " << searchname << "\n";
+        cout << "No person found with the name " << searchName << "." << endl;
     }
 }
 
 int main() {
+    vector<Person> people;
+
     int n;
     cout << "Enter the number of people: ";
     cin >> n;
+    cin.ignore();
 
-    vector<Person> people(n);
-    for (auto &person : people) {
+    for (int i = 0; i < n; i++) {
+        Person person;
         person.input();
+        people.push_back(person);
     }
 
-    sort(people.begin(), people.end(), Sortingbyname);
+    sort(people.begin(), people.end(), sortByName);
 
     cout << "\nSorted Records:\n";
-    for (const auto &person : people) {
+    for (const auto& person : people) {
         person.display();
     }
 
-    string searchName;
-    cout << "\nEnter a name to search: ";
-    cin >> ws; // Clear any leading whitespace
-    getline(cin, searchName);
-    Searchbyname(people, searchName);
+    string search;
+    cout << "Enter the name to search: ";
+    getline(cin, search);
+
+    searchByName(people, search);
 
     return 0;
 }

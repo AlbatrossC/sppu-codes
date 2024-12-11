@@ -1,26 +1,24 @@
 #include <iostream>
 #include <map>
-#include <string>
 using namespace std;
 
 int main() {
-    map<string, long long> statePopulations = {
-        {"California", 39538223},
-        {"Texas", 29145505},
-        {"Florida", 21538187},
-        {"New York", 20201249},
-        {"Illinois", 12812508}
+    map<string, long long> statePopulation = {
+        {"Uttar Pradesh", 231502578},
+        {"Maharashtra", 123144223},
+        {"Bihar", 127104093},
+        {"West Bengal", 100671234},
+        {"Madhya Pradesh", 84935639}
     };
 
     string stateName;
-    cout << "Enter the state name to find its population: ";
+    cout << "Enter the name of the state to find its population: ";
     getline(cin, stateName);
 
-    auto it = statePopulations.find(stateName);
-    if (it != statePopulations.end()) {
-        cout << "The population of " << stateName << " is " << it->second << ".\n";
+    if (statePopulation.find(stateName) != statePopulation.end()) {
+        cout << "The population of " << stateName << " is " << statePopulation[stateName] << "." << endl;
     } else {
-        cout << "State not found. Please check the name and try again.\n";
+        cout << "State not found." << endl;
     }
 
     return 0;

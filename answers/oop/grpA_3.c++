@@ -9,18 +9,16 @@ private:
 
 public:
     void add() {
-        cout << "\nEnter the Publication information: " << endl;
-        cout << "Enter Title of the Publication: ";
+        cout << "Enter Title: ";
         cin.ignore();
         getline(cin, title);
-        cout << "Enter Price of Publication: ";
+        cout << "Enter Price: ";
         cin >> price;
     }
 
     void display() {
-        cout << "\n--------------------------------------------------";
-        cout << "\nTitle of Publication: " << title;
-        cout << "\nPublication Price: " << price;
+        cout << "Title: " << title << endl;
+        cout << "Price: " << price << endl;
     }
 };
 
@@ -32,22 +30,21 @@ public:
     void add_book() {
         try {
             add();
-            cout << "Enter Page Count of Book: ";
+            cout << "Enter Pages: ";
             cin >> page_count;
             if (page_count <= 0) {
                 throw page_count;
             }
         }
         catch (...) {
-            cout << "\nInvalid Page Count!!!";
+            cout << "Invalid page count!" << endl;
             page_count = 0;
         }
     }
 
     void display_book() {
         display();
-        cout << "\nPage Count: " << page_count;
-        cout << "\n--------------------------------------------------\n";
+        cout << "Pages: " << page_count << endl;
     }
 };
 
@@ -59,21 +56,20 @@ public:
     void add_tape() {
         try {
             add();
-            cout << "Enter Play Duration of the Tape: ";
+            cout << "Enter Play Time (minutes): ";
             cin >> play_time;
             if (play_time <= 0)
                 throw play_time;
         }
         catch (...) {
-            cout << "\nInvalid Play Time!!!";
+            cout << "Invalid play time!" << endl;
             play_time = 0;
         }
     }
 
     void display_tape() {
         display();
-        cout << "\nPlay Time: " << play_time << " min";
-        cout << "\n--------------------------------------------------\n";
+        cout << "Play Time: " << play_time << " min" << endl;
     }
 };
 
@@ -83,14 +79,13 @@ int main() {
     int ch, b_count = 0, t_count = 0;
 
     do {
-        cout << "\n* * * * * PUBLICATION DATABASE SYSTEM * * * * *";
-        cout << "\n--------------------MENU-----------------------";
-        cout << "\n1. Add Information to Books";
-        cout << "\n2. Add Information to Tapes";
-        cout << "\n3. Display Books Information";
-        cout << "\n4. Display Tapes Information";
-        cout << "\n5. Exit";
-        cout << "\n\nEnter your choice: ";
+        cout << "* PUBLICATION DATABASE *" << endl;
+        cout << "1. Add Book" << endl;
+        cout << "2. Add Tape" << endl;
+        cout << "3. Show Books" << endl;
+        cout << "4. Show Tapes" << endl;
+        cout << "5. Exit" << endl;
+        cout << "Enter choice: ";
         cin >> ch;
 
         switch (ch) {
@@ -103,13 +98,13 @@ int main() {
             t_count++;
             break;
         case 3:
-            cout << "\n* * * * BOOK PUBLICATION DATABASE SYSTEM * * * *";
+            cout << "* BOOKS *" << endl;
             for (int j = 0; j < b_count; j++) {
                 b1[j].display_book();
             }
             break;
         case 4:
-            cout << "\n* * * * TAPE PUBLICATION DATABASE SYSTEM * * * *";
+            cout << "* TAPES *" << endl;
             for (int j = 0; j < t_count; j++) {
                 t1[j].display_tape();
             }
@@ -117,7 +112,7 @@ int main() {
         case 5:
             exit(0);
         default:
-            cout << "\nInvalid choice! Please try again.";
+            cout << "Invalid choice!" << endl;
         }
     } while (ch != 5);
 

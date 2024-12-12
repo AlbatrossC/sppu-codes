@@ -30,17 +30,17 @@ public:
         return result;
     }
 
-    friend ostream& operator<<(ostream& out, const Complex& c) {
-        out << c.real << " + " << c.imag << "i" << endl;
-        return out;
-    }
-
     friend istream& operator>>(istream& in, Complex& c) {
         cout << "Enter the real part: ";
         in >> c.real;
         cout << "Enter the imaginary part: ";
         in >> c.imag;
         return in;
+    }
+
+    friend ostream& operator<<(ostream& out, const Complex& c) {
+        out << c.real << " + " << c.imag << "i" << endl;
+        return out;
     }
 };
 

@@ -172,7 +172,7 @@ header h1 {
     grid-template-columns: repeat(auto-fill, minmax(280px, 280px));
     gap: 1.5rem;
     list-style: none;
-    justify-content: center;
+    justify-content: start;
 }
 
 .subject-list li {

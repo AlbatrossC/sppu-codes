@@ -66,5 +66,9 @@ def get_image(filename):
     
     return send_from_directory(images_dir, filename)
 
+@app.route('/sitemap.xml')
+def sitemap():
+    return send_from_directory('.', 'sitemap.xml')
+
 if __name__ == '__main__':
     app.run(host='0.0.0.0', port=3000, debug=True)

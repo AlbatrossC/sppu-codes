@@ -67,10 +67,10 @@ def get_image(filename):
 
 @app.route('/sitemap.xml')
 def sitemap():
-    return send_from_directory('.', 'sitemap.xml')
+    return send_from_directory('seo', 'sitemap.xml')
 @app.route('/robots.txt')
 def robots():
-    return send_from_directory('.', 'robots.txt')
+    return send_from_directory('seo', 'robots.txt')
 
 if __name__ == '__main__':
     app.run(host='0.0.0.0', port=3000, debug=True)

@@ -57,7 +57,6 @@ def get_answer(subject, filename):
 def loaderio_folder_verification():
     return "loaderio-a833ae5131281cfe4daf880e5d3580d6"
 
-
 # Route to serve images
 @app.route('/images/<filename>')
 def get_image(filename):
@@ -69,6 +68,9 @@ def get_image(filename):
 @app.route('/sitemap.xml')
 def sitemap():
     return send_from_directory('.', 'sitemap.xml')
+@app.route('/robots.txt')
+def robots():
+    return send_from_directory('.', 'robots.txt')
 
 if __name__ == '__main__':
     app.run(host='0.0.0.0', port=3000, debug=True)

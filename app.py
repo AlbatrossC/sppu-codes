@@ -1,4 +1,4 @@
-from flask import Flask, render_template, send_from_directory, abort
+from flask import Flask, render_template, send_from_directory, abort, send_file
 import os
 
 app = Flask(__name__)
@@ -71,6 +71,9 @@ def sitemap():
 @app.route('/robots.txt')
 def robots():
     return send_from_directory('seo', 'robots.txt')
+@app.route('/google456489e61e0d5f11.html')
+def google_verification():
+    return send_file('seo/google456489e61e0d5f11.html', mimetype='text/html')
 
 if __name__ == '__main__':
     app.run(host='0.0.0.0', port=3000, debug=True)

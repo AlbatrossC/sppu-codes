@@ -76,4 +76,4 @@ def google_verification():
     return send_file('seo/google456489e61e0d5f11.html', mimetype='text/html')
 
 if __name__ == '__main__':
-    app.run(host='0.0.0.0', port=3000, debug=True)
+    app.run(host='0.0.0.0', port=  int("3000") , debug=True)

@@ -412,3 +412,28 @@ header h1 {
     cursor: pointer;
     font-size: 1.5rem;
 }
+.menu-button {
+    height: var(--button-height);
+    padding: 0 clamp(1rem, 2vw, 1.25rem);
+    border-radius: var(--border-radius);
+    text-decoration: none;
+    font-weight: 500;
+    font-size: var(--button-font-size);
+    transition: all 0.2s ease;
+    background-color: var(--accent-color);
+    color: #ffffff;
+    border: none;
+    cursor: pointer;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-width: clamp(100px, 15vw, 140px);
+    box-shadow: 0 4px 8px var(--shadow-color);
+    letter-spacing: 0.3px;
+}
+
+.menu-button:hover {
+    background-color: var(--accent-hover);
+    transform: translateY(-1px);
+    box-shadow: 0 4px 8px rgba(45, 118, 204, 0.2);
+}

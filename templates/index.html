@@ -1,12 +1,13 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
+    <div class="menu-overlay"></div>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>SPPU Codes</title>
     <link rel="icon" href="{{ url_for('get_image', filename='favicon.ico') }}" type="image/x-icon">
-    <link rel="stylesheet" href="static/css/index_styles.css?v=1.4">
+    <link rel="stylesheet" href="static/css/index_styles.css?v=1.5">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
 
     <!-- For Google Seo-->
     <meta name="description"
@@ -40,17 +41,21 @@
 </head>
 
 <body>
-
     <div class="content">
         <header>
-            <a href="/" style="text-decoration: none;">
-                <h1>SPPU Codes</h1>
-            </a>
-            <div class="header__actions">
-                <a href="/submit" class="submit-button">Submit Codes</a>
-                <a href="/download" class="download-button">Download Codes</a>
-                <button id="menu-stats" class="menu-button">Stats</button>
-                <a href="https://sppucodesfuckcss.vercel.app/" class="submit-button">Fuck CSS</a>
+            <div class="header__container">
+                <a href="/" style="text-decoration: none;">
+                    <h1>SPPU Codes</h1>
+                </a>
+                <button class="mobile-menu-toggle">
+                    <i class="fas fa-bars"></i>
+                </button>
+                <div class="header__actions">
+                    <a href="/submit" class="submit-button">Submit Codes</a>
+                    <a href="/download" class="download-button">Download Codes</a>
+                    <button id="menu-stats" class="menu-button">Stats</button>
+                    <a href="https://sppucodesfuckcss.vercel.app/" class="submit-button">Fuck CSS</a>
+                </div>
             </div>
         </header>
 
@@ -93,6 +98,7 @@
                         </li>
                     </ul>
                 </div>
+            </section>
         </main>
     </div>
 
@@ -106,7 +112,5 @@
     </div>
 
     <script src="{{ url_for('static', filename='js/index.js') }}"></script>
-
 </body>
-
 </html>

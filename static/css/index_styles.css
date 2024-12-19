@@ -373,3 +373,137 @@ button,
     display: none;
     /* Hide the modal */
 }
+/* Mobile Menu Toggle Button */
+.mobile-menu-toggle {
+    display: none;
+    background: var(--accent-color);
+    border: none;
+    color: white;
+    font-size: 1.25rem;
+    cursor: pointer;
+    padding: 0.5rem;
+    border-radius: 8px;
+    width: 45px;
+    height: 45px;
+    transition: all 0.3s ease;
+}
+.mobile-menu-toggle.active {
+    position: fixed;
+    right: 20px;
+    top: 20px;
+    background: transparent;
+    color: white;
+}
+.mobile-menu-toggle.active .fa-bars:before {
+    content: "\f00d"; /* FontAwesome X icon */
+}
+.mobile-menu-toggle:hover {
+    background-color: var(--accent-hover);
+}
+
+/* Header Container */
+.header__container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 max(15px, 4vw);
+}
+
+/* Header Actions (Navigation Menu) */
+.header__actions {
+    display: flex;
+    gap: 1rem;
+    align-items: center;
+}
+
+/* Media Queries for Mobile */
+@media (max-width: 768px) {
+    .mobile-menu-toggle {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        z-index: 1001;
+    }
+
+    /* Mobile Menu Panel */
+    .header__actions {
+        position: fixed;
+        top: 0;
+        right: -100%;
+        height: 100vh;
+        width: 85%;
+        max-width: 320px;
+        background: linear-gradient(145deg, var(--secondary-bg), var(--primary-bg));
+        flex-direction: column;
+        padding: 100px 24px 24px;
+        transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        z-index: 1000;
+        box-shadow: -5px 0 25px rgba(0, 0, 0, 0.3);
+        border-left: 1px solid var(--border-color);
+    }
+
+    /* Active Menu State */
+    .header__actions.active {
+        right: 0;
+    }
+
+    /* Menu Item Styling */
+    .header__actions a,
+    .header__actions button {
+        width: 100%;
+        padding: 16px;
+        margin: 8px 0;
+        border-radius: 12px;
+        font-size: 1rem;
+        font-weight: 500;
+        text-align: center;
+        transition: all 0.2s ease;
+        background-color: rgba(255, 255, 255, 0.05);
+        border: 1px solid var(--border-color);
+    }
+
+    /* Menu Item Hover Effects */
+    .header__actions a:hover,
+    .header__actions button:hover {
+        transform: translateY(-2px);
+        background-color: rgba(255, 255, 255, 0.1);
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+    }
+
+    /* Overlay for Menu Background */
+    .menu-overlay {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-color: rgba(0, 0, 0, 0.5);
+        backdrop-filter: blur(4px);
+        opacity: 0;
+        visibility: hidden;
+        transition: all 0.3s ease;
+        z-index: 999;
+    }
+
+    .menu-overlay.active {
+        opacity: 1;
+        visibility: visible;
+    }
+
+    /* Animation for Menu Items */
+    .header__actions a,
+    .header__actions button {
+        opacity: 0;
+        transform: translateX(20px);
+        transition: all 0.3s ease;
+        transition-delay: calc(var(--item-index) * 0.1s);
+    }
+
+    .header__actions.active a,
+    .header__actions.active button {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}

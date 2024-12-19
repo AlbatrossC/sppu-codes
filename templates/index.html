@@ -1,22 +1,27 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>SPPU - Codes</title>
+    <title>SPPU Codes</title>
     <link rel="icon" href="{{ url_for('get_image', filename='favicon.ico') }}" type="image/x-icon">
     <link rel="stylesheet" href="static/css/index_styles.css?v=1.3">
 
     <!-- For Google Seo-->
-    <meta name="description" content="Explore resources and programming lab codes for SPPU students, including Object-Oriented Programming Lab (OOPL), Computer Graphics Lab (CGL), Data Structures Laboratory (DSL), Operating Systems (OSL), Internet of Things (IoTL), and more. Perfect for SPPU students looking for study materials and programming support.">
-    <meta name="keywords" content="SPPU, programming codes, lab materials, OOPL, CGL, DSL, IoTL, DSAL, study materials, SPPU students">
+    <meta name="description"
+        content="Explore resources and programming lab codes for SPPU students, including Object-Oriented Programming Lab (OOPL), Computer Graphics Lab (CGL), Data Structures Laboratory (DSL), Operating Systems (OSL), Internet of Things (IoTL), and more. Perfect for SPPU students looking for study materials and programming support.">
+    <meta name="keywords"
+        content="SPPU, programming codes, lab materials, OOPL, CGL, DSL, IoTL, DSAL, study materials, SPPU students">
     <link rel="canonical" href="https://sppucodes.vercel.app/">
 
     <!-- Open Graph Meta Tags -->
     <meta property="og:title" content="SPPU Codes - Lab Programming Resources and Study Materials">
-    <meta property="og:description" content="Explore resources and programming lab codes for SPPU students, including Object-Oriented Programming Lab (OOPL), Computer Graphics Lab (CGL), Data Structures Laboratory (DSL), Operating Systems (OSL), Internet of Things (IoTL), and more.">
+    <meta property="og:description"
+        content="Explore resources and programming lab codes for SPPU students, including Object-Oriented Programming Lab (OOPL), Computer Graphics Lab (CGL), Data Structures Laboratory (DSL), Operating Systems (OSL), Internet of Things (IoTL), and more.">
     <meta property="og:url" content="https://sppucodes.vercel.app/">
-    <meta property="og:type" content="website">   
+    <meta property="og:type" content="website">
+
     <!-- Structured Data -->
     <script type="application/ld+json">
     {
@@ -31,86 +36,76 @@
           "educationalRole": "Student"
         }
     }
-    </script>  
+    </script>
 </head>
+
 <body>
 
-<div class="content">
-    <header>
-        <a href="/" style="text-decoration: none;">
-            <h1>SPPU Codes</h1>
-        </a>
-        <div class="header__actions">
-            <a href="/submit" class="submit-button">Submit Codes</a>
-            <a href="/download" class="download-button">Download Codes</a>
-            <button id="menu-stats" class="menu-button">Stats</button>
-        </div>
-    </header>
-
-    <main>
-        <section>
-            <h2>Semester 3 Subjects</h2>
-            <div class="group">
-                <ul class="subject-list">
-                    <li>
-                        <h3><a href="/oop"><span class="short-form">OOPL</span><span class="full-name">Object-Oriented Programming Lab</span></a></h3>
-                    </li>
-                    <li>
-                        <h3><a href="/cgl"><span class="short-form">CGL</span><span class="full-name">Computer Graphics Lab</span></a></h3>
-                    </li>
-                    <li>
-                        <h3><a href="/dsl"><span class="short-form">DSL</span><span class="full-name">Data Structures Laboratory</span></a></h3>
-                    </li>
-                    <li>
-                        <h3><a href="/osl"><span class="short-form">OSL</span><span class="full-name">Operating Systems Lab</span></a></h3>
-                    </li>
-                </ul>
+    <div class="content">
+        <header>
+            <a href="/" style="text-decoration: none;">
+                <h1>SPPU Codes</h1>
+            </a>
+            <div class="header__actions">
+                <a href="/submit" class="submit-button">Submit Codes</a>
+                <a href="/download" class="download-button">Download Codes</a>
+                <button id="menu-stats" class="menu-button">Stats</button>
             </div>
-        </section>
+        </header>
 
-        <section>
-            <h2>Semester 4 Subjects</h2>
-            <div class="group">
-                <ul class="subject-list">
-                    <li>
-                        <h3><a href="/iotl"><span class="short-form">IoTL</span><span class="full-name">Internet of Things Laboratory</span></a></h3>
-                    </li>
-                    <li>
-                        <h3><a href="/dsal"><span class="short-form">DSAL</span><span class="full-name">Data Structures and Algorithms Laboratory</span></a></h3>
-                    </li>
-                </ul>
-            </div>
-    </main>
-</div>
+        <main>
+            <section>
+                <h2>Semester 3 Subjects</h2>
+                <div class="group">
+                    <ul class="subject-list">
+                        <li>
+                            <h3><a href="/oop"><span class="short-form">OOPL</span><span
+                                        class="full-name">Object-Oriented Programming Lab</span></a></h3>
+                        </li>
+                        <li>
+                            <h3><a href="/cgl"><span class="short-form">CGL</span><span class="full-name">Computer
+                                        Graphics Lab</span></a></h3>
+                        </li>
+                        <li>
+                            <h3><a href="/dsl"><span class="short-form">DSL</span><span class="full-name">Data
+                                        Structures Laboratory</span></a></h3>
+                        </li>
+                        <li>
+                            <h3><a href="/osl"><span class="short-form">OSL</span><span class="full-name">Operating
+                                        Systems Lab</span></a></h3>
+                        </li>
+                    </ul>
+                </div>
+            </section>
 
-<!-- Modal Structure -->
-<div id="stats-modal" class="modal hidden">
-    <div class="modal-content">
-        <span id="close-modal" class="close-button">&times;</span>
-        <script src="https://static.elfsight.com/platform/platform.js" async></script>
-        <div class="elfsight-app-b95e0d8e-80e3-4ee9-aa4d-e71355b1d378" data-elfsight-app-lazy></div>
+            <section>
+                <h2>Semester 4 Subjects</h2>
+                <div class="group">
+                    <ul class="subject-list">
+                        <li>
+                            <h3><a href="/iotl"><span class="short-form">IoTL</span><span class="full-name">Internet of
+                                        Things Laboratory</span></a></h3>
+                        </li>
+                        <li>
+                            <h3><a href="/dsal"><span class="short-form">DSAL</span><span class="full-name">Data
+                                        Structures and Algorithms Laboratory</span></a></h3>
+                        </li>
+                    </ul>
+                </div>
+        </main>
     </div>
-</div>
 
-<script>
-    // Modal toggle logic
-    const menuStats = document.getElementById('menu-stats');
-    const statsModal = document.getElementById('stats-modal');
-    const closeModal = document.getElementById('close-modal');
+    <!-- Modal Structure -->
+    <div id="stats-modal" class="modal hidden">
+        <div class="modal-content">
+            <span id="close-modal" class="close-button">&times;</span>
+            <script src="https://static.elfsight.com/platform/platform.js" async></script>
+            <div class="elfsight-app-b95e0d8e-80e3-4ee9-aa4d-e71355b1d378" data-elfsight-app-lazy></div>
+        </div>
+    </div>
 
-    menuStats.addEventListener('click', () => {
-        statsModal.classList.remove('hidden');
-    });
+    <script src="{{ url_for('static', filename='js/index.js') }}"></script>
 
-    closeModal.addEventListener('click', () => {
-        statsModal.classList.add('hidden');
-    });
-
-    window.addEventListener('click', (event) => {
-        if (event.target === statsModal) {
-            statsModal.classList.add('hidden');
-        }
-    });
-</script>
 </body>
+
 </html>

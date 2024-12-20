@@ -118,9 +118,9 @@ a {
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  width: 90%;
-  max-width: 800px;
-  max-height: 80vh;
+  width: 95%;
+  max-width: 1000px;
+  max-height: 90vh;
   background-color: #1e1e1e;
   border-radius: 12px;
   padding: 20px;
@@ -162,10 +162,10 @@ a {
 
 /* Modal content container */
 .modal-content {
-  max-height: calc(80vh - 120px);
+  max-height: calc(90vh - 70px);
   overflow-y: auto;
   padding-right: 10px;
-  margin-bottom: 20px;
+  margin-bottom: 60px;
 }
 
 /* Scrollbar styling */
@@ -204,14 +204,18 @@ a {
 .answer-box pre .keyword { color: #FF7373; font-weight: bold; }
 .answer-box pre .string { color: #B3E673; }
 
-/* Button container */
+/* Fixed Button Container */
 .copy-close-container {
   display: flex;
   justify-content: flex-end;
   gap: 10px;
-  padding-top: 15px;
+  padding: 10px 20px;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  background-color: #1e1e1e;
   border-top: 1px solid #333;
-  margin-top: 15px;
 }
 
 /* Button styling */
@@ -300,13 +304,13 @@ a {
       align-items: flex-start;
       padding: 15px 20px;
   }
-  
+
   .home-btn {
       order: -1;
       margin-right: 0;
       margin-bottom: 10px;
   }
-  
+
   header h3 {
       text-align: left;
       font-size: 1.8rem;
@@ -314,17 +318,17 @@ a {
 
   .answer-box {
       width: 95%;
-      max-height: 90vh;
+      max-height: 95vh;
   }
-  
+
   .modal-content {
-      max-height: calc(90vh - 140px);
+      max-height: calc(95vh - 120px);
   }
-  
+
   .copy-close-container {
       flex-direction: column;
   }
-  
+
   .copy-btn,
   .close-btn {
       width: 100%;

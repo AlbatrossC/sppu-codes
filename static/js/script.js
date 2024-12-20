@@ -1,5 +1,9 @@
+// Create backdrop element
+const backdrop = document.createElement('div');
+backdrop.className = 'modal-backdrop';
+document.body.appendChild(backdrop);
+
 function loadFile(subject, fileName, questionText, element) {
-    // Log the attempt to load the file
     console.log(`Attempting to load file: ${subject}/${fileName}`);
 
     const answerBox = document.getElementById(element.nextElementSibling.id);
@@ -9,9 +13,22 @@ function loadFile(subject, fileName, questionText, element) {
 
     // Show loading state
     codeContent.innerText = 'Loading...';
+    
+    // Show modal and backdrop
     answerBox.style.display = 'block';
+    backdrop.style.display = 'block';
+    document.body.style.overflow = 'hidden'; // Prevent background scrolling
 
-    // Update fetch URL to reflect the new route
+    // Wrap content in scrollable container if not already wrapped
+    if (!answerBox.querySelector('.modal-content')) {
+        const modalContent = document.createElement('div');
+        modalContent.className = 'modal-content';
+        while (answerBox.children.length > 0) {
+            modalContent.appendChild(answerBox.children[0]);
+        }
+        answerBox.appendChild(modalContent);
+    }
+
     fetch(`/${subject}/${fileName}`)
         .then(response => {
             console.log('Response status:', response.status);
@@ -24,17 +41,6 @@ function loadFile(subject, fileName, questionText, element) {
             console.log('File loaded successfully');
             questionTitle.innerText = questionText;
             codeContent.innerText = data;
-
-            // Scroll to the question item
-            const questionBox = element.closest('.question-item');
-            const headerOffset = document.querySelector('header').offsetHeight;
-            const position = questionBox.getBoundingClientRect().top + window.pageYOffset;
-            const offsetPosition = position - headerOffset;
-
-            window.scrollTo({
-                top: offsetPosition,
-                behavior: 'smooth'
-            });
         })
         .catch(err => {
             console.error('Error loading file:', err);
@@ -58,5 +64,26 @@ function copyCode(elementId) {
 }
 
 function closeBox(boxId) {
-    document.getElementById(boxId).style.display = 'none';
+    const answerBox = document.getElementById(boxId);
+    answerBox.style.display = 'none';
+    backdrop.style.display = 'none';
+    document.body.style.overflow = ''; // Restore background scrolling
 }
+
+// Close modal when clicking backdrop
+backdrop.addEventListener('click', function() {
+    const visibleModal = document.querySelector('.answer-box[style*="display: block"]');
+    if (visibleModal) {
+        closeBox(visibleModal.id);
+    }
+});
+
+// Close modal with Escape key
+document.addEventListener('keydown', function(event) {
+    if (event.key === 'Escape') {
+        const visibleModal = document.querySelector('.answer-box[style*="display: block"]');
+        if (visibleModal) {
+            closeBox(visibleModal.id);
+        }
+    }
+});

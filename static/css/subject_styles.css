@@ -1,5 +1,7 @@
 /* Reset default styles */
-* {
+*,
+*:before,
+*:after {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
@@ -10,31 +12,37 @@ html, body {
 }
 
 body {
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
-  line-height: 1.4;
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+  line-height: 1.6;
   color: #e6edf3;
-  margin: 0;
-  padding: 20px;
   background-color: #121212;
   display: flex;
   flex-direction: column;
+  min-height: 100vh;
+  overflow-x: hidden;
 }
 
 .content {
   flex: 1;
+  padding: 20px;
 }
 
 /* Header styling */
 header {
   display: flex;
   align-items: center;
-  padding: 20px;
+  justify-content: center; /* Center the text */
+  padding: 15px 20px;
   background-color: #1e1e1e;
   border-bottom: 1px solid #333;
+  position: relative; /* Set to relative for absolute positioning of child */
 }
 
-/* Home button */
+/* Position Home button at top-left */
 .home-btn {
+  position: absolute;
+  top: 15px;
+  left: 20px; /* Match the header padding-left */
   background-color: #238636;
   color: #fff;
   padding: 10px 20px;
@@ -42,9 +50,8 @@ header {
   border-radius: 5px;
   cursor: pointer;
   font-size: 16px;
-  order: -1;
-  margin-right: auto;
-  transition: background-color 0.2s;
+  transition: background-color 0.2s ease;
+  z-index: 1; /* Ensure button is above text */
 }
 
 .home-btn:hover {
@@ -53,15 +60,19 @@ header {
 
 /* Header text */
 header h3 {
-  flex-grow: 1;
-  text-align: center;
+  font-size: 1.75rem;
   color: #e6edf3;
-  font-size: 2rem;
+  margin: 0 auto; /* Center the text within the remaining space */
 }
 
 a {
   text-decoration: none;
   color: inherit;
+  transition: color 0.2s ease;
+}
+
+a:hover {
+  color: #58a6ff;
 }
 
 /* Question Item Styles */
@@ -94,16 +105,15 @@ a {
 /* View Code Button */
 .view-code-btn {
   display: inline-block;
-  text-decoration: none;
-  color: #58a6ff;
-  font-weight: 500;
   padding: 8px 12px;
   border: 1px solid #58a6ff;
   border-radius: 6px;
   background-color: transparent;
-  cursor: pointer;
+  color: #58a6ff;
   font-size: 14px;
-  transition: background-color 0.2s;
+  font-weight: 500;
+  text-decoration: none;
+  transition: all 0.2s ease;
 }
 
 .view-code-btn:hover {
@@ -125,7 +135,7 @@ a {
   border-radius: 12px;
   padding: 20px;
   z-index: 1000;
-  box-shadow: 0 5px 30px rgba(0, 0, 0, 0.5);
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.5);
   overflow: hidden;
   animation: modalFadeIn 0.3s ease-out;
 }
@@ -146,12 +156,12 @@ a {
 /* Animation keyframes */
 @keyframes modalFadeIn {
   from {
-      opacity: 0;
-      transform: translate(-50%, -48%);
+    opacity: 0;
+    transform: translate(-50%, -48%);
   }
   to {
-      opacity: 1;
-      transform: translate(-50%, -50%);
+    opacity: 1;
+    transform: translate(-50%, -50%);
   }
 }
 
@@ -196,7 +206,7 @@ a {
   word-wrap: break-word;
   color: #F0F0F0;
   border: 2px solid #4B4B4B;
-  box-shadow: 0px 6px 15px rgba(0, 0, 0, 0.6);
+  box-shadow: 0 6px 15px rgba(0, 0, 0, 0.6);
 }
 
 /* Syntax highlighting */
@@ -300,46 +310,45 @@ a {
 /* Mobile responsiveness */
 @media (max-width: 768px) {
   header {
-      flex-direction: column;
-      align-items: flex-start;
-      padding: 15px 20px;
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 15px 20px;
   }
 
   .home-btn {
-      order: -1;
-      margin-right: 0;
-      margin-bottom: 10px;
+    position: static; /* Reset absolute positioning for mobile */
+    margin-bottom: 10px;
   }
 
   header h3 {
-      text-align: left;
-      font-size: 1.8rem;
+    text-align: left;
+    font-size: 1.5rem;
   }
 
   .answer-box {
-      width: 95%;
-      max-height: 95vh;
+    width: 95%;
+    max-height: 95vh;
   }
 
   .modal-content {
-      max-height: calc(95vh - 120px);
+    max-height: calc(95vh - 120px);
   }
 
   .copy-close-container {
-      flex-direction: column;
+    flex-direction: column;
   }
 
   .copy-btn,
   .close-btn {
-      width: 100%;
+    width: 100%;
   }
 
   .question-item {
-      padding: 15px;
+    padding: 15px;
   }
 
   .answer-box pre {
-      padding: 18px;
-      font-size: 14px;
+    padding: 18px;
+    font-size: 14px;
   }
 }

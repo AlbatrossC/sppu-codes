@@ -31,18 +31,18 @@ body {
 header {
   display: flex;
   align-items: center;
-  justify-content: center; /* Center the text */
-  padding: 15px 20px;
+  justify-content: center;
+  padding: 20px;
   background-color: #1e1e1e;
   border-bottom: 1px solid #333;
-  position: relative; /* Set to relative for absolute positioning of child */
+  position: relative;
 }
 
-/* Position Home button at top-left */
 .home-btn {
   position: absolute;
-  top: 15px;
-  left: 20px; /* Match the header padding-left */
+  top: 50%;
+  left: 20px;
+  transform: translateY(-50%);
   background-color: #238636;
   color: #fff;
   padding: 10px 20px;
@@ -51,18 +51,18 @@ header {
   cursor: pointer;
   font-size: 16px;
   transition: background-color 0.2s ease;
-  z-index: 1; /* Ensure button is above text */
+  z-index: 1;
 }
 
 .home-btn:hover {
   background-color: #2ea043;
 }
 
-/* Header text */
 header h3 {
   font-size: 1.75rem;
   color: #e6edf3;
-  margin: 0 auto; /* Center the text within the remaining space */
+  margin: 0 auto;
+  text-align: center;
 }
 
 a {
@@ -80,7 +80,7 @@ a:hover {
   background-color: #1e1e1e;
   border: 1px solid #333;
   border-radius: 8px;
-  padding: 20px;
+  padding: 25px;
   margin-bottom: 20px;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.4);
 }
@@ -105,7 +105,7 @@ a:hover {
 /* View Code Button */
 .view-code-btn {
   display: inline-block;
-  padding: 8px 12px;
+  padding: 10px 14px;
   border: 1px solid #58a6ff;
   border-radius: 6px;
   background-color: transparent;
@@ -128,19 +128,19 @@ a:hover {
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  width: 95%;
-  max-width: 1000px;
+  width: 90%;
+  max-width: 1200px;
+  height: auto;
   max-height: 90vh;
   background-color: #1e1e1e;
   border-radius: 12px;
-  padding: 20px;
+  padding: 25px;
   z-index: 1000;
   box-shadow: 0 5px 15px rgba(0, 0, 0, 0.5);
   overflow: hidden;
   animation: modalFadeIn 0.3s ease-out;
 }
 
-/* Modal backdrop */
 .modal-backdrop {
   display: none;
   position: fixed;
@@ -153,7 +153,6 @@ a:hover {
   animation: backdropFadeIn 0.3s ease-out;
 }
 
-/* Animation keyframes */
 @keyframes modalFadeIn {
   from {
     opacity: 0;
@@ -172,13 +171,13 @@ a:hover {
 
 /* Modal content container */
 .modal-content {
-  max-height: calc(90vh - 70px);
+  height: calc(90vh - 100px);
   overflow-y: auto;
   padding-right: 10px;
   margin-bottom: 60px;
 }
 
-/* Scrollbar styling */
+/* Custom scrollbar for modal content */
 .modal-content::-webkit-scrollbar {
   width: 12px;
 }
@@ -202,11 +201,43 @@ a:hover {
   font-family: 'Fira Code', 'JetBrains Mono', 'Source Code Pro', monospace;
   font-size: 16px;
   line-height: 1.7;
-  white-space: pre-wrap;
-  word-wrap: break-word;
   color: #F0F0F0;
   border: 2px solid #4B4B4B;
   box-shadow: 0 6px 15px rgba(0, 0, 0, 0.6);
+  width: 100%;
+  position: relative;
+}
+
+/* Desktop: No horizontal scroll */
+@media (min-width: 769px) {
+  .answer-box pre {
+    white-space: pre-wrap;
+    word-wrap: break-word;
+  }
+}
+
+/* Mobile: Enable horizontal scroll */
+@media (max-width: 768px) {
+  .answer-box pre {
+    white-space: pre;
+    overflow-x: auto;
+  }
+}
+
+/* Custom scrollbar for code blocks */
+.answer-box pre::-webkit-scrollbar {
+  height: 12px;
+}
+
+.answer-box pre::-webkit-scrollbar-track {
+  background: #121212;
+  border-radius: 6px;
+}
+
+.answer-box pre::-webkit-scrollbar-thumb {
+  background-color: #505050;
+  border-radius: 6px;
+  border: 2px solid #121212;
 }
 
 /* Syntax highlighting */
@@ -219,7 +250,7 @@ a:hover {
   display: flex;
   justify-content: flex-end;
   gap: 10px;
-  padding: 10px 20px;
+  padding: 15px 25px;
   position: absolute;
   bottom: 0;
   left: 0;
@@ -231,7 +262,7 @@ a:hover {
 /* Button styling */
 .copy-btn,
 .close-btn {
-  padding: 8px 16px;
+  padding: 10px 18px;
   border: none;
   border-radius: 6px;
   cursor: pointer;
@@ -263,13 +294,12 @@ a:hover {
 .info-box {
   background-color: rgba(0, 0, 0, 0.2);
   border-radius: 4px;
-  padding: 12px 16px;
+  padding: 16px;
   display: inline-flex;
   align-items: center;
   flex-wrap: wrap;
   max-width: 90%;
   margin: 10px 0;
-  box-sizing: border-box;
 }
 
 .info-box p {
@@ -296,8 +326,8 @@ a:hover {
 
 /* Image section styling */
 .image-section {
-  margin: 15px 0;
-  text-align: start;
+  margin: 20px 0;
+  text-align: center;
 }
 
 .image-section img {
@@ -312,11 +342,11 @@ a:hover {
   header {
     flex-direction: column;
     align-items: flex-start;
-    padding: 15px 20px;
+    padding: 20px;
   }
 
   .home-btn {
-    position: static; /* Reset absolute positioning for mobile */
+    position: static;
     margin-bottom: 10px;
   }
 
@@ -327,15 +357,18 @@ a:hover {
 
   .answer-box {
     width: 95%;
-    max-height: 95vh;
+    height: 95vh;
+    max-height: none;
+    padding: 20px;
   }
 
   .modal-content {
-    max-height: calc(95vh - 120px);
+    height: calc(95vh - 120px);
   }
 
   .copy-close-container {
     flex-direction: column;
+    padding: 15px;
   }
 
   .copy-btn,
@@ -344,7 +377,7 @@ a:hover {
   }
 
   .question-item {
-    padding: 15px;
+    padding: 20px;
   }
 
   .answer-box pre {

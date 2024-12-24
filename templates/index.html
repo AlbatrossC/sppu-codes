@@ -7,6 +7,7 @@
     <title>SPPU Codes</title>
     <link rel="icon" href="{{ url_for('get_image', filename='favicon.ico') }}" type="image/x-icon">
     <link rel="stylesheet" href="static/css/index_styles.css?v=1.5">
+    <link rel="stylesheet" href="static/css/footer.css?v=1.5">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
 
     <!-- For Google Seo-->
@@ -101,7 +102,7 @@
             </section>
         </main>
     </div>
-
+      
     <!-- Modal Structure -->
     <div id="stats-modal" class="modal hidden">
         <div class="modal-content">
@@ -110,6 +111,26 @@
             <div class="elfsight-app-b95e0d8e-80e3-4ee9-aa4d-e71355b1d378" data-elfsight-app-lazy></div>
         </div>
     </div>
+
+    <footer class="footer">
+        <div class="footer__content">
+            <div class="footer__love">
+                Made with ❤️ for SPPU students
+            </div>
+            <div class="footer__creator">
+                Created by <a href="https://github.com/sohamj123" target="_blank" rel="noopener">Soham Jadhav</a>
+            </div>
+            <div class="footer__links">
+                <a href="https://github.com/sohamj123/sppu-codes" target="_blank" rel="noopener">
+                    <i class="fab fa-github"></i> View Source
+                </a>
+                <span class="footer__separator">|</span>
+                <a href="/disclaimer">Disclaimer</a>
+                <span class="footer__separator">|</span>
+                <a href="/contact">Contact</a>
+            </div>
+        </div>
+    </footer>
 
     <script src="{{ url_for('static', filename='js/index.js') }}"></script>
 </body>

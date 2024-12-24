@@ -1,0 +1,62 @@
+/* Footer Styling */
+.footer {
+    background-color: var(--secondary-bg);
+    border-top: 1px solid var(--border-color);
+    padding: 1rem 0;
+    margin-top: auto;
+}
+
+.footer__content {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 1rem;
+    text-align: center;
+    font-size: 0.9rem;
+    color: var(--text-muted);
+}
+
+.footer__love {
+    margin-bottom: 0.5rem;
+}
+
+.footer__creator {
+    margin-bottom: 0.5rem;
+}
+
+.footer__links {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 0.5rem;
+    flex-wrap: wrap;
+}
+
+.footer__separator {
+    color: var(--border-color);
+}
+
+.footer a {
+    color: var(--text-muted);
+    text-decoration: none;
+    transition: color 0.2s ease;
+}
+
+.footer a:hover {
+    color: var(--text-primary);
+}
+
+.fab.fa-github {
+    font-size: 1.1rem;
+    vertical-align: middle;
+}
+
+@media (max-width: 768px) {
+    .footer__links {
+        flex-direction: column;
+        gap: 0.75rem;
+    }
+    
+    .footer__separator {
+        display: none;
+    }
+}

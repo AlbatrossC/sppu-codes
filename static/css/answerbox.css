@@ -1,0 +1,197 @@
+/* Modal/Popup styles */
+.answer-box {
+    display: none;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 90%;
+    max-width: 1200px;
+    height: auto;
+    max-height: 90vh;
+    background-color: #1e1e1e;
+    border-radius: 12px;
+    padding: 25px;
+    z-index: 1000;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.5);
+    overflow: hidden;
+    animation: modalFadeIn 0.3s ease-out;
+  }
+  
+  .modal-backdrop {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.75);
+    z-index: 999;
+    animation: backdropFadeIn 0.3s ease-out;
+  }
+  
+  @keyframes modalFadeIn {
+    from {
+      opacity: 0;
+      transform: translate(-50%, -48%);
+    }
+    to {
+      opacity: 1;
+      transform: translate(-50%, -50%);
+    }
+  }
+  
+  @keyframes backdropFadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+  }
+  
+  /* Modal content container */
+  .modal-content {
+    height: calc(90vh - 100px);
+    overflow-y: auto;
+    padding-right: 10px;
+    margin-bottom: 60px;
+  }
+  
+  /* Custom scrollbar for modal content */
+  .modal-content::-webkit-scrollbar {
+    width: 12px;
+  }
+  
+  .modal-content::-webkit-scrollbar-track {
+    background: #121212;
+    border-radius: 6px;
+  }
+  
+  .modal-content::-webkit-scrollbar-thumb {
+    background-color: #505050;
+    border-radius: 6px;
+    border: 2px solid #121212;
+  }
+  
+  /* Code block styling */
+  .answer-box pre {
+    background-color: #121212;
+    border-radius: 8px;
+    padding: 24px;
+    font-family: 'Fira Code', 'JetBrains Mono', 'Source Code Pro', monospace;
+    font-size: 16px;
+    line-height: 1.7;
+    color: #F0F0F0;
+    border: 2px solid #4B4B4B;
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.6);
+    width: 100%;
+    position: relative;
+  }
+  
+  /* Desktop: No horizontal scroll */
+  @media (min-width: 769px) {
+    .answer-box pre {
+      white-space: pre-wrap;
+      word-wrap: break-word;
+    }
+  }
+  
+  /* Mobile: Enable horizontal scroll */
+  @media (max-width: 768px) {
+    .answer-box pre {
+      white-space: pre;
+      overflow-x: auto;
+    }
+  }
+  
+  /* Custom scrollbar for code blocks */
+  .answer-box pre::-webkit-scrollbar {
+    height: 12px;
+  }
+  
+  .answer-box pre::-webkit-scrollbar-track {
+    background: #121212;
+    border-radius: 6px;
+  }
+  
+  .answer-box pre::-webkit-scrollbar-thumb {
+    background-color: #505050;
+    border-radius: 6px;
+    border: 2px solid #121212;
+  }
+  
+  /* Syntax highlighting */
+  .answer-box pre .comment { color: #A6A6A6; font-style: italic; }
+  .answer-box pre .keyword { color: #FF7373; font-weight: bold; }
+  .answer-box pre .string { color: #B3E673; }
+  
+  /* Fixed Button Container */
+  .copy-close-container {
+    display: flex;
+    justify-content: flex-end;
+    gap: 10px;
+    padding: 15px 25px;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    background-color: #1e1e1e;
+    border-top: 1px solid #333;
+  }
+  
+  /* Button styling */
+  .copy-btn,
+  .close-btn {
+    padding: 10px 18px;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 14px;
+    font-weight: 500;
+    transition: all 0.2s ease;
+    min-height: 36px;
+  }
+  
+  .copy-btn {
+    background-color: #238636;
+    color: #fff;
+  }
+  
+  .copy-btn:hover {
+    background-color: #2ea043;
+  }
+  
+  .close-btn {
+    background-color: #D32F2F;
+    color: #fff;
+  }
+  
+  .close-btn:hover {
+    background-color: #b71c1c;
+  }
+  
+  /* Mobile responsiveness for modal */
+  @media (max-width: 768px) {
+    .answer-box {
+      width: 95%;
+      height: 95vh;
+      max-height: none;
+      padding: 20px;
+    }
+  
+    .modal-content {
+      height: calc(95vh - 120px);
+    }
+  
+    .copy-close-container {
+      flex-direction: column;
+      padding: 15px;
+    }
+  
+    .copy-btn,
+    .close-btn {
+      width: 100%;
+    }
+  
+    .answer-box pre {
+      padding: 18px;
+      font-size: 14px;
+    }
+  }

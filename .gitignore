@@ -1,2 +1,9 @@
 # WTF is this folder!!! why does it exists. It is fcking irritating!!! AHHHHHHHHHHHH!!!
 .vscode/
+
+# Database
+instance/
+*.db
+
+__pycache__/
+*.pyc

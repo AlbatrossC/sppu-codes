@@ -1,7 +1,17 @@
-from flask import Flask, render_template, send_from_directory, abort, send_file
+from flask import Flask, render_template, send_from_directory, abort
 import os
+from flask import Blueprint
+from inputs.contact import contact, db 
+
 
 app = Flask(__name__)
+app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///contact.db'
+db.init_app(app)
+app.register_blueprint(contact)
+
+# Create tables
+with app.app_context():
+    db.create_all()
 
 # Home Page: Index.html
 @app.route('/')

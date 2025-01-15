@@ -463,3 +463,56 @@ button,
         transform: translateX(0)
     }
 }
+/* Container styling */
+.search-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 20px 0;
+}
+
+/* Wrapper for search input and icon */
+.search-wrapper {
+    display: flex;
+    align-items: center;
+    background-color: #1e1e1e; /* Dark background */
+    border: 2px solid #333; /* Slightly lighter border */
+    border-radius: 25px;
+    padding: 5px 10px;
+    transition: all 0.3s ease;
+    width: 100%;
+    max-width: 400px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.5); /* Subtle shadow for depth */
+}
+
+.search-wrapper:hover {
+    border-color: #555; /* Lighter border on hover */
+    box-shadow: 0 4px 8px rgba(255, 255, 255, 0.1); /* Subtle highlight on hover */
+}
+
+/* Search icon styling */
+.search-icon {
+    color: #aaa; /* Light gray for the icon */
+    margin-right: 10px;
+    font-size: 18px;
+}
+
+/* Input field styling */
+#subject-search {
+    border: none;
+    outline: none;
+    font-size: 16px;
+    width: 100%;
+    background: transparent;
+    color: #eee; /* Light text color */
+}
+
+#subject-search::placeholder {
+    color: #666; /* Placeholder text in gray */
+    font-style: italic;
+}
+
+/* Focus effect for input field */
+#subject-search:focus {
+    color: #fff; /* White text on focus */
+}

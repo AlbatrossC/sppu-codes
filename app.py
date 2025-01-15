@@ -1,4 +1,4 @@
-from flask import Flask, render_template, send_from_directory, abort, send_file
+from flask import Flask, render_template, send_from_directory, abort
 import os
 
 app = Flask(__name__)
@@ -8,20 +8,13 @@ app = Flask(__name__)
 def index():
     return render_template('index.html')
 
-@app.route('/caught')
-def caught():
-    return render_template('caught.html')
-
-# For Code submit and submissions page
-@app.route('/submit')
-def submit():
-    return render_template('submits/submit.html')
-
 # For Downloading codes
 downloads_folder = os.path.join(app.root_path, 'downloads')
+
 @app.route('/download')
 def download():
     return render_template('download.html')
+
 @app.route('/downloads/<filename>')
 def download_file(filename):
     return send_from_directory(downloads_folder, filename)
@@ -34,7 +27,7 @@ def subject(subject_name):
     except Exception:
         return render_template("error.html")
 
-#files 
+# Serve files
 @app.route('/<subject>/<filename>')
 def get_answer(subject, filename):
     try:      
@@ -52,11 +45,6 @@ def get_answer(subject, filename):
     except Exception:
         abort(404)
 
-#Testing
-@app.route('/loaderio-a833ae5131281cfe4daf880e5d3580d6/')
-def loaderio_folder_verification():
-    return "loaderio-a833ae5131281cfe4daf880e5d3580d6"
-
 # Route to serve images
 @app.route('/images/<filename>')
 def get_image(filename):
@@ -68,12 +56,10 @@ def get_image(filename):
 @app.route('/sitemap.xml')
 def sitemap():
     return send_from_directory('seo', 'sitemap.xml')
+
 @app.route('/robots.txt')
 def robots():
     return send_from_directory('seo', 'robots.txt')
-@app.route('/google456489e61e0d5f11.html')
-def google_verification():
-    return send_file('seo/google456489e61e0d5f11.html', mimetype='text/html')
 
 if __name__ == '__main__':
-    app.run(host='0.0.0.0', port=  int("3000") , debug=True)
+    app.run(host='0.0.0.0', port=int("3000"), debug=True)

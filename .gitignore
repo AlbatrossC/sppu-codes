@@ -1,6 +1,13 @@
 # WTF is this folder!!! why does it exists. It is fcking irritating!!! AHHHHHHHHHHHH!!!
 .vscode/
 
+<<<<<<< HEAD
 #Aim is to provide no css to this branch
 *.css
 static/css/
+=======
+
+__pycache__/
+*.pyc
+
+>>>>>>> main

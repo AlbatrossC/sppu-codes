@@ -1,22 +1,24 @@
-<!DOCTYPE html> 
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>CGL Codes</title>
-    <link rel="stylesheet" href="../static/css/answerbox.css?v=1.1">
-    <link rel="stylesheet" href="../static/css/subjectlayout.css?v=1.1">
+    <!-- External CSS -->
+    <link rel="stylesheet" href="../static/css/answerbox.css?v=1.3">
+    <link rel="stylesheet" href="../static/css/subjectlayout.css?v=1.3">
+    <!-- Favicon -->
     <link rel="icon" href="{{ url_for('get_image', filename='favicon.ico') }}" type="image/x-icon">
+    <!-- Google Font -->
     <link href="https://fonts.googleapis.com/css2?family=Fira+Code&display=swap" rel="stylesheet">
+    <!-- JavaScript -->
     <script src="../static/js/script.js" defer></script>
-
-    <link rel="canonical" href="https:/vercel.app/cgl">
-
+    <!-- Canonical URL -->
+    <link rel="canonical" href="https://vercel.app/cgl">
+    <!-- Meta Tags -->
     <meta name="keywords" content="Computer Graphics, CGL, C++ programs, scan fill algorithm, Cohen-Sutherland line clipping, DDA line, Bresenham's circle drawing, OpenGL, 2D transformations, Hilbert curve, fractals, operator overloading, 3D transformations">
-
     <meta name="description" content="Explore detailed tutorials and programs on Computer Graphics including algorithms like scan fill, Cohen-Sutherland line clipping, and more. Dive into OpenGL examples, 2D/3D transformations, fractals, and advanced C++ concepts.">
-    
-    <!-- Schema.org JSON-LD Markup -->
+    <!-- FAQ Schema -->
     <script type="application/ld+json">
         {
             "@context": "https://schema.org",
@@ -32,7 +34,7 @@
                 },
                 {
                     "@type": "Question",
-                    "name": "Q3a: Write a C++ program to draw the following pattern. Use DDA line and Bresenham‘s circle drawing algorithm. Apply the concept of encapsulation."
+                    "name": "Q3a: Write a C++ program to draw the following pattern. Use DDA line and Bresenham's circle drawing algorithm. Apply the concept of encapsulation."
                 },
                 {
                     "@type": "Question",
@@ -44,31 +46,37 @@
                 },
                 {
                     "@type": "Question",
-                    "name": "Q6b: Write C++ program to draw 3-D cube and perform following transformations on it using OpenGL i) Scaling ii) Translation iii) Rotation about an axis (X/Y/Z)."
+                    "name": "Q6b: Write C++ program to draw a 3-D cube and perform following transformations on it using OpenGL i) Scaling ii) Translation iii) Rotation about an axis (X/Y/Z)."
                 }
             ]
         }
-    </script>    
+    </script>
 </head>
 <body>
+    <!-- Header Section -->
     <header>
-        <h3><a href="/cgl" class="a">Computer Graphics Laboratory(CGL) Codes</a></h3>
+        <h3>
+            <a href="/cgl" class="a">Computer Graphics Laboratory (CGL) Codes</a>
+        </h3>
         <button onclick="location.href='/'" class="home-btn" aria-label="Go to home page">Home</button>
     </header>
-
-    <!-- Yellow information box -->
+    
+    <!-- Info Section -->
     <div class="info-box">
-        <p>If the code doesn't load, you can check it out on <a href="https://github.com/AlbatrossC/codes/tree/main/answers/cgl" target="_blank">GitHub</a></p>
+        <p>
+            If the code doesn't load, you can check it out on 
+            <a href="https://github.com/AlbatrossC/codes/tree/main/answers/cgl" target="_blank">GitHub</a>
+        </p>
     </div>
-
+    
+    <!-- Group A -->
     <div class="group">
         <h3>Group A</h3>
-
-        <!-- Question 1 -->
+        
+        <!-- Q1 -->
         <div class="question-item">
             <p><strong>Q1: </strong>Write C++ program to draw a concave polygon and fill it with desired color using scan fill algorithm</p>
             <button class="view-code-btn" onclick="loadFile('cgl', 'grpA_1.cpp', 'Scan Fill algorithm', this)">View Code</button>
-
             <div class="answer-box" id="answerBox1">
                 <h3 id="questionText1"></h3>
                 <pre id="codeContent1"></pre>
@@ -78,12 +86,11 @@
                 </div>
             </div>
         </div>
-
-        <!-- Question 2 -->
+        
+        <!-- Q2 -->
         <div class="question-item">
             <p><strong>Q2:</strong> Write a C++ program to implement the Cohen-Sutherland line clipping algorithm.</p>
             <button class="view-code-btn" onclick="loadFile('cgl', 'grpA_2.cpp', 'C++ program for Cohen-Sutherland Line Clipping', this)">View Code</button>
-
             <div class="answer-box" id="answerBox2">
                 <h3 id="questionText2"></h3>
                 <pre id="codeContent2"></pre>
@@ -93,18 +100,14 @@
                 </div>
             </div>
         </div>
-
-        <!-- Question 3a -->
+        
+        <!-- Q3a -->
         <div class="question-item">
-            <p><strong>Q3a: </strong> Write a C++ program to draw the following pattern. Use DDA line and Bresenham‘s circle drawing algorithm. Apply the concept of encapsulation.</p>
-            
-            <!-- Image Section -->
+            <p><strong>Q3a: </strong>Write a C++ program to draw the following pattern. Use DDA line and Bresenham's circle drawing algorithm. Apply the concept of encapsulation.</p>
             <div class="image-section">
                 <img src="/images/grpA_3a.webp" alt="Pattern for C++ Program" width="300">
             </div>
-            
             <button class="view-code-btn" onclick="loadFile('cgl', 'grpA_3a.cpp', 'C++ program for DDA Line and Bresenham’s Circle Drawing', this)">View Code</button>
-
             <div class="answer-box" id="answerBox3a">
                 <h3 id="questionText3a"></h3>
                 <pre id="codeContent3a"></pre>
@@ -115,20 +118,15 @@
             </div>
         </div>
     </div>
-
+    
+    <!-- Group B -->
     <div class="group">
         <h3>Group B</h3>
-
-        <!-- Question 4a -->
+        
+        <!-- Q4a -->
         <div class="question-item">
-            <p><strong>Q4a: </strong> Write a C++ program to draw a 2-D object and perform the following basic transformations:<br>
-                1. Scaling<br>
-                2. Translation<br>
-                3. Rotation.<br>
-                Apply the concept of operator overloading.</p>
-            
+            <p><strong>Q4a: </strong>Write a C++ program to draw a 2-D object and perform the following basic transformations:<br> 1. Scaling<br> 2. Translation<br> 3. Rotation.<br> Apply the concept of operator overloading.</p>
             <button class="view-code-btn" onclick="loadFile('cgl', 'grpB_4a.cpp', 'C++ program for 2-D object transformations', this)">View Code</button>
-
             <div class="answer-box" id="answerBox4a">
                 <h3 id="questionText4a"></h3>
                 <pre id="codeContent4a"></pre>
@@ -138,13 +136,11 @@
                 </div>
             </div>
         </div>
-
-        <!-- Question 5b -->
+        
+        <!-- Q5b -->
         <div class="question-item">
-            <p><strong>Q5b: </strong> Write a C++ program to generate a Hilbert curve using the concept of fractals.</p>
-                        
+            <p><strong>Q5b: </strong>Write a C++ program to generate a Hilbert curve using the concept of fractals.</p>
             <button class="view-code-btn" onclick="loadFile('cgl', 'grpB_5b.cpp', 'C++ program for generating Hilbert curve', this)">View Code</button>
-
             <div class="answer-box" id="answerBox5b">
                 <h3 id="questionText5b"></h3>
                 <pre id="codeContent5b"></pre>
@@ -154,24 +150,22 @@
                 </div>
             </div>
         </div>
-
-        <div class="group">
-            <h3>Group C</h3>
-            
-            <!-- Question 6b -->
-            <div class="question-item">
-                <p><strong>Q6b: </strong> Write C++ program to draw 3-D cube and perform following transformations on it using
-                    OpenGL i) Scaling ii) Translation iii) Rotation about an axis (X/Y/Z). </p>
-                            
-                <button class="view-code-btn" onclick="loadFile('cgl', 'grpC_6b.cpp', 'C++ program for generating Hilbert curve', this)">View Code</button>
+    </div>
     
-                <div class="answer-box" id="answerBox6b">
-                    <h3 id="questionText6b"></h3>
-                    <pre id="codeContent6b"></pre>
-                    <div class="copy-close-container">
-                        <button class="copy-btn" onclick="copyCode('codeContent6b')">Copy Code</button>
-                        <button class="close-btn" onclick="closeBox('answerBox6b')">Close</button>
-                    </div>
+    <!-- Group C -->
+    <div class="group">
+        <h3>Group C</h3>
+        
+        <!-- Q6b -->
+        <div class="question-item">
+            <p><strong>Q6b: </strong>Write C++ program to draw 3-D cube and perform following transformations on it using OpenGL:<br> i) Scaling<br> ii) Translation<br> iii) Rotation about an axis (X/Y/Z).</p>
+            <button class="view-code-btn" onclick="loadFile('cgl', 'grpC_6b.cpp', 'C++ program for 3-D cube transformations', this)">View Code</button>
+            <div class="answer-box" id="answerBox6b">
+                <h3 id="questionText6b"></h3>
+                <pre id="codeContent6b"></pre>
+                <div class="copy-close-container">
+                    <button class="copy-btn" onclick="copyCode('codeContent6b')">Copy Code</button>
+                    <button class="close-btn" onclick="closeBox('answerBox6b')">Close</button>
                 </div>
             </div>
         </div>

@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DSAL Codes</title>
+    <link rel="stylesheet" href="../static/css/answerbox.css?v=1.3">
+    <link rel="stylesheet" href="../static/css/subjectlayout.css?v=1.3">
+    <link href="https://fonts.googleapis.com/css2?family=Fira+Code&display=swap" rel="stylesheet">
+    <link rel="icon" href="{{ url_for('get_image', filename='favicon.ico') }}" type="image/x-icon">
+    <script src="../static/js/script.js" defer></script>
+    <link rel="canonical" href="https://vercel.app/dsal">
+    <meta name="keywords" content="Add your keywords here">
+    <meta name="description" content="Add your description here">
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "FAQPage",
+        "mainEntity": [
+          {
+            "@type": "Question",
+            "name": "Q1: Consider telephone book database of N clients. Make use of a hash table implementation to quickly look up client’s telephone number. Make use of two collision handling techniques and compare them using number of comparisons required to find a set of telephone numbers."
+          },
+          {
+            "@type": "Question",
+            "name": "Q2: Implement all the functions of a dictionary (ADT) using hashing and handle collisions using chaining with/without replacement. Data: Set of (key, value) pairs, Keys are mapped to values, Keys must be comparable, Keys must be unique. Standard Operations: Insert(key, value), Find(key), Delete(key)."
+          }
+        ]
+      }
+    </script>
+  </head>
+  <body>
+    <header>
+      <h3><a href="/dsal" class="a">Data Structures and Algorithms Laboratory (DSAL) Codes</a></h3>
+      <button onclick="location.href='/'" class="home-btn" aria-label="Go to home page">Home</button>
+    </header>
+    <div class="info-box">
+      <p>If the code doesn't load, you can check it out on <a href="https://github.com/AlbatrossC/codes/tree/main/answers/dsal" target="_blank">GitHub</a></p>
+    </div>
+    <div class="group">
+      <h3>Group A</h3>
+      <div class="question-item">
+        <p><strong>Q1: </strong>Consider telephone book database of N clients. Make use of a hash table implementation to quickly look up client’s telephone number. Make use of two collision handling techniques and compare them using number of comparisons required to find a set of telephone numbers.</p>
+        <button class="view-code-btn" onclick="loadFile('dsal', 'telephonebook.py', 'Telephone Book Hash Table', this)">View Code</button>
+        <div class="answer-box" id="answerBox1">
+          <h3 id="questionText1"></h3>
+          <pre id="codeContent1"></pre>
+          <div class="copy-close-container">
+            <button class="copy-btn" onclick="copyCode('codeContent1')">Copy Code</button>
+            <button class="close-btn" onclick="closeBox('answerBox1')">Close</button>
+          </div>
+        </div>
+      </div>
+      <div class="question-item">
+        <p><strong>Q2: </strong>Implement all the functions of a dictionary (ADT) using hashing and handle collisions using chaining with/without replacement. Data: Set of (key, value) pairs, Keys are mapped to values, Keys must be comparable, Keys must be unique. Standard Operations: Insert(key, value), Find(key), Delete(key).</p>
+        <button class="view-code-btn" onclick="loadFile('subject-code', 'dictionary.cpp', 'Dictionary Using Hashing', this)">View Code</button>
+        <div class="answer-box" id="answerBox2">
+          <h3 id="questionText2"></h3>
+          <pre id="codeContent2"></pre>
+          <div class="copy-close-container">
+            <button class="copy-btn" onclick="copyCode('codeContent2')">Copy Code</button>
+            <button class="close-btn" onclick="closeBox('answerBox2')">Close</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>

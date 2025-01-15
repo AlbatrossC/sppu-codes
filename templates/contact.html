@@ -190,12 +190,10 @@
         <h1>Contact Us</h1>
         <a href="/" class="home-button">Home</a>
     </header>
-
     <div class="content">
         <div class="container">
-            <!-- Display success or error messages -->
             {% if message %}
-                <div class="feedback {{ 'success' if message == 'Message sent successfully' else 'error' }}">
+                <div class="feedback {{ 'success' if message=='Message sent successfully' else 'error' }}">
                     {{ message }}
                 </div>
             {% endif %}
@@ -215,10 +213,9 @@
                         <textarea id="message" name="message" placeholder="Your message" required></textarea>
                     </div>
                     <button type="submit" class="submit-button">Send Message</button>
-                </form>                
+                </form>
             </section>
         </div>
     </div>
-
 </body>
 </html>

@@ -1,17 +1,7 @@
 from flask import Flask, render_template, send_from_directory, abort
 import os
-from flask import Blueprint
-from inputs.contact import contact, db 
-
 
 app = Flask(__name__)
-app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///contact.db'
-db.init_app(app)
-app.register_blueprint(contact)
-
-# Create tables
-with app.app_context():
-    db.create_all()
 
 # Home Page: Index.html
 @app.route('/')
@@ -20,9 +10,11 @@ def index():
 
 # For Downloading codes
 downloads_folder = os.path.join(app.root_path, 'downloads')
+
 @app.route('/download')
 def download():
     return render_template('download.html')
+
 @app.route('/downloads/<filename>')
 def download_file(filename):
     return send_from_directory(downloads_folder, filename)
@@ -35,7 +27,7 @@ def subject(subject_name):
     except Exception:
         return render_template("error.html")
 
-#files 
+# Serve files
 @app.route('/<subject>/<filename>')
 def get_answer(subject, filename):
     try:      
@@ -64,9 +56,10 @@ def get_image(filename):
 @app.route('/sitemap.xml')
 def sitemap():
     return send_from_directory('seo', 'sitemap.xml')
+
 @app.route('/robots.txt')
 def robots():
     return send_from_directory('seo', 'robots.txt')
 
 if __name__ == '__main__':
-    app.run(host='0.0.0.0', port=  int("3000") , debug=True)
+    app.run(host='0.0.0.0', port=int("3000"), debug=True)

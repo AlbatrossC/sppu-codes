@@ -1,25 +1,19 @@
-// Create backdrop element
 const backdrop = document.createElement('div');
 backdrop.className = 'modal-backdrop';
 document.body.appendChild(backdrop);
 
 function loadFile(subject, fileName, questionText, element) {
     console.log(`Attempting to load file: ${subject}/${fileName}`);
-
     const answerBox = document.getElementById(element.nextElementSibling.id);
     const questionId = answerBox.id.match(/\d+[a-z]?/)[0];
     const questionTitle = document.getElementById('questionText' + questionId);
     const codeContent = document.getElementById('codeContent' + questionId);
 
-    // Show loading state
     codeContent.innerText = 'Loading...';
-    
-    // Show modal and backdrop
     answerBox.style.display = 'block';
     backdrop.style.display = 'block';
-    document.body.style.overflow = 'hidden'; // Prevent background scrolling
+    document.body.style.overflow = 'hidden';
 
-    // Wrap content in scrollable container if not already wrapped
     if (!answerBox.querySelector('.modal-content')) {
         const modalContent = document.createElement('div');
         modalContent.className = 'modal-content';
@@ -67,10 +61,9 @@ function closeBox(boxId) {
     const answerBox = document.getElementById(boxId);
     answerBox.style.display = 'none';
     backdrop.style.display = 'none';
-    document.body.style.overflow = ''; // Restore background scrolling
+    document.body.style.overflow = '';
 }
 
-// Close modal when clicking backdrop
 backdrop.addEventListener('click', function() {
     const visibleModal = document.querySelector('.answer-box[style*="display: block"]');
     if (visibleModal) {
@@ -78,7 +71,6 @@ backdrop.addEventListener('click', function() {
     }
 });
 
-// Close modal with Escape key
 document.addEventListener('keydown', function(event) {
     if (event.key === 'Escape') {
         const visibleModal = document.querySelector('.answer-box[style*="display: block"]');

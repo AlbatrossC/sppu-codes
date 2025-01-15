@@ -1,11 +1,9 @@
-/* Reset default styles */
 * {
     margin: 0;
     padding: 0;
-    box-sizing: border-box;
+    box-sizing: border-box
 }
 
-/* CSS Variables */
 :root {
     --primary-bg: #121212;
     --secondary-bg: #1e1e1e;
@@ -15,7 +13,7 @@
     --accent-color: #2d76cc;
     --accent-hover: #1d5bb1;
     --shadow-color: rgba(255, 255, 255, 0.1);
-    --border-radius: 8px;
+    --border-radius: 8px
 }
 
 body {
@@ -25,15 +23,14 @@ body {
     background-color: var(--primary-bg);
     min-height: 100vh;
     display: flex;
-    flex-direction: column;
+    flex-direction: column
 }
 
-/* Header Styles */
 header {
     background-color: var(--primary-bg);
     border-bottom: 2px solid var(--border-color);
     padding: 20px 15px;
-    margin-bottom: 30px;
+    margin-bottom: 30px
 }
 
 .header-container {
@@ -42,7 +39,7 @@ header {
     padding: 0;
     display: flex;
     flex-direction: column;
-    align-items: center;
+    align-items: center
 }
 
 header h1 {
@@ -50,7 +47,7 @@ header h1 {
     font-size: clamp(1.5rem, 3vw, 2rem);
     margin-bottom: 15px;
     text-align: center;
-    padding: 0 15px;
+    padding: 0 15px
 }
 
 .note {
@@ -60,14 +57,14 @@ header h1 {
     text-align: center;
     padding: 10px 15px;
     background-color: #222;
-    border-radius: var(--border-radius);
+    border-radius: var(--border-radius)
 }
 
 .search-container {
     display: flex;
     width: 100%;
     max-width: 500px;
-    padding: 0 15px;
+    padding: 0 15px
 }
 
 .search-input {
@@ -78,26 +75,25 @@ header h1 {
     background-color: var(--secondary-bg);
     color: var(--text-primary);
     font-size: 1rem;
-    transition: all 0.3s ease;
+    transition: all 0.3s ease
 }
 
 .search-input:focus {
     outline: none;
     border-color: var(--accent-color);
-    box-shadow: 0 0 0 3px rgba(45, 118, 204, 0.2);
+    box-shadow: 0 0 0 3px rgba(45, 118, 204, 0.2)
 }
 
-/* Main Content Styles */
 .main-container {
     flex: 1;
     width: 100%;
     max-width: 100%;
     margin: 0 auto;
-    padding: 0 15px;
+    padding: 0 15px
 }
 
 .semester-section {
-    margin-bottom: 40px;
+    margin-bottom: 40px
 }
 
 .semester-title {
@@ -107,7 +103,7 @@ header h1 {
     padding-bottom: 10px;
     border-bottom: 2px solid var(--border-color);
     position: relative;
-    padding: 0 15px;
+    padding: 0 15px
 }
 
 .semester-title::before {
@@ -117,14 +113,14 @@ header h1 {
     bottom: -2px;
     width: 50px;
     height: 4px;
-    background-color: var(--accent-color);
+    background-color: var(--accent-color)
 }
 
 .small-subject-container {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
     gap: 20px;
-    padding: 0 15px;
+    padding: 0 15px
 }
 
 .small-subject-item {
@@ -137,7 +133,7 @@ header h1 {
     transition: all 0.3s ease;
     box-shadow: 0 4px 6px var(--shadow-color);
     position: relative;
-    overflow: hidden;
+    overflow: hidden
 }
 
 .small-subject-item::before {
@@ -150,22 +146,22 @@ header h1 {
     background-color: var(--accent-color);
     transform: scaleY(0);
     transition: transform 0.3s ease;
-    transform-origin: bottom;
+    transform-origin: bottom
 }
 
 .small-subject-item:hover {
     transform: translateY(-5px);
-    box-shadow: 0 8px 16px rgba(255, 255, 255, 0.2);
+    box-shadow: 0 8px 16px rgba(255, 255, 255, 0.2)
 }
 
 .small-subject-item:hover::before {
-    transform: scaleY(1);
+    transform: scaleY(1)
 }
 
 .small-subject-item h3 {
     color: var(--text-primary);
     margin-bottom: 15px;
-    font-size: 1.1rem;
+    font-size: 1.1rem
 }
 
 .download-btn {
@@ -178,27 +174,24 @@ header h1 {
     font-weight: 600;
     transition: all 0.3s ease;
     margin-top: auto;
-    align-self: flex-start;
+    align-self: flex-start
 }
 
 .download-btn:hover {
     background-color: #218838;
     transform: translateY(-2px);
-    box-shadow: 0 4px 8px rgba(40, 167, 69, 0.3);
+    box-shadow: 0 4px 8px rgba(40, 167, 69, 0.3)
 }
 
-/* Responsive Design */
-@media (max-width: 768px) {
+@media (max-width:768px) {
     .small-subject-container {
         grid-template-columns: 1fr;
-        padding: 0 15px;
+        padding: 0 15px
     }
-
     .search-container {
-        flex-direction: column;
+        flex-direction: column
     }
-
     .search-input {
-        width: 100%;
+        width: 100%
     }
 }

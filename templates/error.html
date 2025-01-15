@@ -3,9 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Page Not Found - SPPU Codes</title>
+    <title>SPPU Error</title>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/lodash.js/4.17.21/lodash.min.js"></script>
-    <link rel="stylesheet" href="static/css/error_styles.css?v=1.4">
+    <link rel="stylesheet" href="static/css/error_styles.css?v=1.6">
 </head>
 <body>
     <header>
@@ -13,7 +13,6 @@
             <h1>SPPU Codes</h1>
         </a>
     </header>
-    
     <div class="main-container">
         <div class="content-wrapper">
             <section class="error-section">
@@ -21,7 +20,6 @@
                     <h2 class="error-code">404</h2>
                     <p class="error-message">Page Not Found</p>
                 </div>
-                
                 <div class="error-reasons">
                     <h3>Why am I seeing this?</h3>
                     <ul>
@@ -32,25 +30,18 @@
                     </ul>
                 </div>
             </section>
-
             <section class="search-section">
                 <div class="search-container">
                     <h3 class="search-title">Search Available Subjects</h3>
-                    <input 
-                        type="text" 
-                        placeholder="Type to search (e.g., OOPL, DSL)"
-                        id="search"
-                    >
+                    <input type="text" placeholder="Type to search (e.g., OOPL, DSL)" id="search">
                     <div class="results" id="results"></div>
                 </div>
             </section>
         </div>
     </div>
-
     <footer class="footer">
         <p>Made with ❤️ for SPPU Students</p>
     </footer>
-
     <script>
         const subjects = [
             { short: 'OOPL', full: 'Object-Oriented Programming Lab', href: '/oop' },
@@ -62,7 +53,7 @@
         const resultsContainer = document.getElementById('results');
 
         const debounceSearch = _.debounce((searchTerm) => {
-            const filteredSubjects = subjects.filter(subject => 
+            const filteredSubjects = subjects.filter(subject =>
                 subject.short.toLowerCase().includes(searchTerm.toLowerCase()) ||
                 subject.full.toLowerCase().includes(searchTerm.toLowerCase())
             );

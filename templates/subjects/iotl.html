@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>IoTL Codes</title>
+    <link rel="stylesheet" href="../static/css/answerbox.css?v=1.3">
+    <link rel="stylesheet" href="../static/css/subjectlayout.css?v=1.3">
+    <link href="https://fonts.googleapis.com/css2?family=Fira+Code&display=swap" rel="stylesheet">
+    <link rel="icon" href="{{ url_for('get_image', filename='favicon.ico') }}" type="image/x-icon">
+    <script src="../static/js/script.js" defer></script>
+    <link rel="canonical" href="https://vercel.app/subject-code">
+    <meta name="keywords" content="IoT, Arduino, LED control, blinking LED">
+    <meta name="description" content="IoT programming exercises: Control LED using Arduino, create counters, and illuminate LEDs based on conditions.">
+    <script type="application/ld+json">
+        {
+            "@context": "https://schema.org",
+            "@type": "FAQPage",
+            "mainEntity": [
+                { "@type": "Question", "name": "Q5: Write a program using Arduino to control LED (One or more ON/OFF) or Blinking." },
+                { "@type": "Question", "name": "Q6: Create a program that illuminates the green LED if the counter is less than 100, illuminates the yellow LED otherwise." }
+            ]
+        }
+    </script>
+</head>
+<body>
+    <header>
+        <h3>
+            <a href="/iotl" class="a">Internet of Things Laboratory (IoTL) Codes</a>
+        </h3>
+        <button onclick="location.href='/'" class="home-btn" aria-label="Go to home page">Home</button>
+    </header>
+    <div class="info-box">
+        <p>
+            If the code doesn't load, you can check it out on 
+            <a href="https://github.com/AlbatrossC/codes/tree/main/answers/iotl" target="_blank">GitHub</a>
+        </p>
+    </div>
+    <div class="group">
+        <h3>Group B</h3>
+        <div class="question-item">
+            <p><strong>Q5: </strong>Write a program using Arduino to control LED (One or more ON/OFF) or Blinking.</p>
+            <button class="view-code-btn" onclick="loadFile('iotl', 'blinking.c++', 'Blinking', this)">View Code</button>
+            <div class="answer-box" id="answerBox5">
+                <h3 id="questionText5"></h3>
+                <pre id="codeContent5"></pre>
+                <div class="copy-close-container">
+                    <button class="copy-btn" onclick="copyCode('codeContent5')">Copy Code</button>
+                    <button class="close-btn" onclick="closeBox('answerBox5')">Close</button>
+                </div>
+            </div>
+        </div>
+        <div class="question-item">
+            <p><strong>Q6: </strong>Create a program that illuminates the green LED if the counter is less than 100, illuminates the yellow LED otherwise.</p>
+            <button class="view-code-btn" onclick="loadFile('iotl', 'counter.c++', 'LED Counter', this)">View Code</button>
+            <div class="answer-box" id="answerBox6">
+                <h3 id="questionText6"></h3>
+                <pre id="codeContent6"></pre>
+                <div class="copy-close-container">
+                    <button class="copy-btn" onclick="copyCode('codeContent6')">Copy Code</button>
+                    <button class="close-btn" onclick="closeBox('answerBox6')">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

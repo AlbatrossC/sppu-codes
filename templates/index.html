@@ -1,27 +1,79 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <div class="menu-overlay"></div>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>SPPU Codes</title>
-    <link rel="icon" href="{{ url_for('get_image', filename='favicon.ico') }}" type="image/x-icon">
-    <link rel="stylesheet" href="static/css/index_styles.css?v=1.8">
-    <link rel="stylesheet" href="static/css/footer.css?v=1.8">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
-    <meta name="description" content="Explore resources and programming lab codes for SPPU students, including Object-Oriented Programming Lab (OOPL), Computer Graphics Lab (CGL), Data Structures Laboratory (DSL), Operating Systems (OSL), Internet of Things (IoTL), and more. Perfect for SPPU students looking for study materials and programming support.">
-    <meta name="keywords" content="SPPU, programming codes, lab materials, OOPL, CGL, DSL, IoTL, DSAL, study materials, SPPU students">
-    <link rel="canonical" href="https://sppucodes.vercel.app/">
-    <meta property="og:title" content="SPPU Codes - Lab Programming Resources and Study Materials">
-    <meta property="og:description" content="Explore resources and programming lab codes for SPPU students, including Object-Oriented Programming Lab (OOPL), Computer Graphics Lab (CGL), Data Structures Laboratory (DSL), Operating Systems (OSL), Internet of Things (IoTL), and more.">
-    <meta property="og:url" content="https://sppucodes.vercel.app/">
-    <meta property="og:type" content="website">
-    <script type="application/ld+json">
+    <head>
+        <!-- Basic Meta Tags -->
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>SPPU Codes | Lab Codes & Study Materials for SPPU Students</title>
+        <meta name="description" content="Access SPPU lab codes, practical manuals, and study materials for Savitribai Phule Pune University students. Verified resources for OOPL, CGL, DSL, IoTL, DSAL, OS, and more.">
+        <meta name="keywords" content="
+            SPPU codes, 
+            SPPU lab manuals, 
+            SPPU practical solutions, 
+            Savitribai Phule Pune University, 
+            OOPL lab codes, 
+            CGL programming, 
+            DSL lab solutions, 
+            IoT lab programs, 
+            OS lab codes, 
+            DSAL practicals, 
+            SPPU engineering labs, 
+            Pune University syllabus,  
+            SPPU external exam solutions, 
+            SPPU verified programming resources">
+        <link rel="canonical" href="https://sppucodes.vercel.app/">
+    
+        <!-- SEO Enhancements -->
+        <meta name="robots" content="index, follow">
+        <meta name="author" content="SPPU Codes Team">
+        <meta name="language" content="English">
+        <meta name="geo.region" content="IN-MH">
+        <meta name="geo.placename" content="Pune">
+        <meta name="geo.position" content="18.5204;73.8567">
+        <meta name="ICBM" content="18.5204, 73.8567">
+    
+        <!-- Preload & Optimization -->
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="dns-prefetch" href="//cdnjs.cloudflare.com">
+        <link rel="preload" href="static/css/index_styles.css" as="style">
+        <link rel="preload" href="static/js/main.js" as="script">
+    
+        <!-- Favicon & Stylesheets -->
+        <link rel="icon" href="{{ url_for('get_image', filename='favicon.ico') }}" type="image/x-icon">
+        <link rel="stylesheet" href="static/css/index_styles.css?v=2.1">
+        <link rel="stylesheet" href="static/css/footer.css?v=2.1">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    
+        <!-- Combined Structured Data -->
+        <script type="application/ld+json">
         {
             "@context": "https://schema.org",
-            "@type": "EducationalWebsite",
+            "@type": "EducationalOrganization",
             "name": "SPPU Codes",
-            "description": "Programming lab codes and study materials for SPPU students",
+            "url": "https://sppucodes.vercel.app/",
+            "description": "Programming lab codes and study materials for SPPU students. Resources include OOPL, CGL, DSL, IoTL, DSAL, and more.",
+            "keywords": [
+                "SPPU",
+                "SPPU codes",
+                "Savitribai Phule Pune University",
+                "OOPL",
+                "CGL",
+                "DSL",
+                "IoTL",
+                "DSAL",
+                "SPPU lab manuals",
+                "SPPU study materials"
+            ],
+            "location": {
+                "@type": "Place",
+                "name": "Savitribai Phule Pune University",
+                "address": {
+                    "@type": "PostalAddress",
+                    "addressLocality": "Pune",
+                    "addressRegion": "Maharashtra",
+                    "addressCountry": "India"
+                }
+            },
             "educationalLevel": ["Undergraduate", "College"],
             "audience": {
                 "@type": "Audience",
@@ -29,8 +81,22 @@
                 "educationalRole": "Student"
             }
         }
-    </script>
-</head>
+        </script>
+        <script type="application/ld+json">
+        {
+            "@context": "https://schema.org",
+            "@type": "Course",
+            "name": "SPPU Lab Codes and Solutions",
+            "description": "Complete collection of verified lab programs for Savitribai Phule Pune University Computer Engineering students",
+            "provider": {
+                "@type": "Organization",
+                "name": "SPPU Codes",
+                "sameAs": "https://sppucodes.vercel.app/"
+            }
+        }
+        </script>
+    </head>
+    
 <body>
     <div class="content">
         <header>

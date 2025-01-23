@@ -60,6 +60,15 @@ def sitemap():
 @app.route('/robots.txt')
 def robots():
     return send_from_directory('.', 'robots.txt')
+# Route for Google verification
+@app.route('/google456489e61e0d5f11.html')
+def google_verification():
+    return send_from_directory('.', 'google456489e61e0d5f11.html')
+
+# Route for Bing verification
+@app.route('/BingSiteAuth.xml')
+def bing_verification():
+    return send_from_directory('.', 'BingSiteAuth.xml')
 
 if __name__ == '__main__':
     app.run(host='0.0.0.0', port=int("3000"), debug=True)

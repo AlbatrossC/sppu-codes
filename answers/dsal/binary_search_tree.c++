@@ -1,5 +1,5 @@
 #include <iostream>
-#include <algorithm> // For std::max
+#include <algorithm>
 using namespace std;
 
 struct Node {
@@ -11,7 +11,7 @@ struct Node {
 };
 
 Node* insert(Node* root, int val) {
-    if (!root) 
+    if (!root)
         return new Node(val);
     if (val < root->data)
         root->left = insert(root->left, val);
@@ -21,7 +21,7 @@ Node* insert(Node* root, int val) {
 }
 
 void inorder(Node* root) {
-    if (!root) 
+    if (!root)
         return;
     inorder(root->left);
     cout << root->data << " ";
@@ -29,7 +29,7 @@ void inorder(Node* root) {
 }
 
 int findHeight(Node* root) {
-    if (!root) 
+    if (!root)
         return 0;
     int leftHeight = findHeight(root->left);
     int rightHeight = findHeight(root->right);
@@ -37,7 +37,7 @@ int findHeight(Node* root) {
 }
 
 int findMin(Node* root) {
-    if (!root) 
+    if (!root)
         return -1;
     while (root->left)
         root = root->left;
@@ -45,7 +45,7 @@ int findMin(Node* root) {
 }
 
 void mirror(Node* root) {
-    if (!root) 
+    if (!root)
         return;
     swap(root->left, root->right);
     mirror(root->left);
@@ -53,9 +53,9 @@ void mirror(Node* root) {
 }
 
 bool search(Node* root, int val) {
-    if (!root) 
+    if (!root)
         return false;
-    if (root->data == val) 
+    if (root->data == val)
         return true;
     if (val < root->data)
         return search(root->left, val);
@@ -85,14 +85,14 @@ int main() {
     int minValue = findMin(root);
     cout << "Minimum data value in the BST: " << minValue << endl;
 
-    mirror(root);
+    int searchValue = 80;
+    bool isFound = search(root, searchValue);
+    cout << "Search for " << searchValue << ": " << (isFound ? "Found" : "Not Found") << endl;
+
+    mirror(root);  // Now mirror the tree after searching
     cout << "Inorder traversal after mirroring the tree: ";
     inorder(root);
     cout << endl;
-
-    int searchValue = 40;
-    bool isFound = search(root, searchValue);
-    cout << "Search for " << searchValue << ": " << (isFound ? "Found" : "Not Found") << endl;
 
     return 0;
 }

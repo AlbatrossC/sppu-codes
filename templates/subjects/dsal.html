@@ -29,40 +29,122 @@
       }
     </script>
   </head>
-  <body>
+
+
+<body>
     <header>
-      <h3><a href="/dsal" class="a">Data Structures and Algorithms Laboratory (DSAL) Codes</a></h3>
-      <button onclick="location.href='/'" class="home-btn" aria-label="Go to home page">Home</button>
+        <h3><a href="/dsal" class="a">Data Structures and Algorithms Laboratory (DSAL) Codes</a></h3>
+        <button onclick="location.href='/'" class="home-btn" aria-label="Go to home page">Home</button>
     </header>
     <div class="info-box">
-      <p>If the code doesn't load, you can check it out on <a href="https://github.com/AlbatrossC/codes/tree/main/answers/dsal" target="_blank">GitHub</a></p>
+        <p>If the code doesn't load, you can check it out on <a href="https://github.com/AlbatrossC/codes/tree/main/answers/dsal" target="_blank">GitHub</a></p>
     </div>
+    
     <div class="group">
-      <h3>Group A</h3>
-      <div class="question-item">
-        <p><strong>Q1: </strong>Consider telephone book database of N clients. Make use of a hash table implementation to quickly look up client’s telephone number. Make use of two collision handling techniques and compare them using number of comparisons required to find a set of telephone numbers.</p>
-        <button class="view-code-btn" onclick="loadFile('dsal', 'telephonebook.py', 'Telephone Book Hash Table', this)">View Code</button>
-        <div class="answer-box" id="answerBox1">
-          <h3 id="questionText1"></h3>
-          <pre id="codeContent1"></pre>
-          <div class="copy-close-container">
-            <button class="copy-btn" onclick="copyCode('codeContent1')">Copy Code</button>
-            <button class="close-btn" onclick="closeBox('answerBox1')">Close</button>
-          </div>
+        <h3>Group A</h3>
+
+        <!-- Question 1 -->
+        <div class="question-item">
+            <p><strong>Q1: </strong>Consider telephone book database of N clients. Make use of a hash table implementation to quickly look up client’s telephone number. Make use of two collision handling techniques and compare them using number of comparisons required to find a set of telephone numbers.</p>
+            <button class="view-code-btn" onclick="loadFile('dsal', 'telephonebook.py', 'Telephone Book Hash Table', this)">View Code</button>
+            <div class="answer-box" id="answerBox1">
+                <h3 id="questionText1"></h3>
+                <pre id="codeContent1"></pre>
+                <div class="copy-close-container">
+                    <button class="copy-btn" onclick="copyCode('codeContent1')">Copy Code</button>
+                    <button class="close-btn" onclick="closeBox('answerBox1')">Close</button>
+                </div>
+            </div>
         </div>
-      </div>
-      <div class="question-item">
-        <p><strong>Q2: </strong>Implement all the functions of a dictionary (ADT) using hashing and handle collisions using chaining with/without replacement. Data: Set of (key, value) pairs, Keys are mapped to values, Keys must be comparable, Keys must be unique. Standard Operations: Insert(key, value), Find(key), Delete(key).</p>
-        <button class="view-code-btn" onclick="loadFile('subject-code', 'dictionary.cpp', 'Dictionary Using Hashing', this)">View Code</button>
-        <div class="answer-box" id="answerBox2">
-          <h3 id="questionText2"></h3>
-          <pre id="codeContent2"></pre>
-          <div class="copy-close-container">
-            <button class="copy-btn" onclick="copyCode('codeContent2')">Copy Code</button>
-            <button class="close-btn" onclick="closeBox('answerBox2')">Close</button>
-          </div>
+
+        <!-- Question 2 -->
+        <div class="question-item">
+            <p><strong>Q2: </strong>Implement all the functions of a dictionary (ADT) using hashing and handle collisions using chaining with/without replacement. Data: Set of (key, value) pairs, Keys are mapped to values, Keys must be comparable, Keys must be unique. Standard Operations: Insert(key, value), Find(key), Delete(key).</p>
+            <button class="view-code-btn" onclick="loadFile('subject-code', 'dictionary.cpp', 'Dictionary Using Hashing', this)">View Code</button>
+            <div class="answer-box" id="answerBox2">
+                <h3 id="questionText2"></h3>
+                <pre id="codeContent2"></pre>
+                <div class="copy-close-container">
+                    <button class="copy-btn" onclick="copyCode('codeContent2')">Copy Code</button>
+                    <button class="close-btn" onclick="closeBox('answerBox2')">Close</button>
+                </div>
+            </div>
         </div>
-      </div>
+
+        <!-- Question 3 -->
+        <div class="question-item">
+            <p><strong>Q3: </strong>For a given set of elements create a skip list. Find the element in the set that is closest to some given value. (Note: Decide the level of element in the list randomly with some upper limit).</p>
+            <button class="view-code-btn" onclick="loadFile('dsal', 'skiplist.cpp', 'Skip List', this)">View Code</button>
+            <div class="answer-box" id="answerBox3">
+                <h3 id="questionText3"></h3>
+                <pre id="codeContent3"></pre>
+                <div class="copy-close-container">
+                    <button class="copy-btn" onclick="copyCode('codeContent3')">Copy Code</button>
+                    <button class="close-btn" onclick="closeBox('answerBox3')">Close</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Question 4 -->
+        <div class="question-item">
+            <p><strong>Q4: </strong>To create ADT that implements the "set" concept.
+            <br>a. Add (new Element) - Place a value into the set
+            <br>b. Remove (element) - Remove the value
+            <br>c. Contains (element) - Return true if element is in collection
+            <br>d. Size() - Return number of values in collection
+            <br>e. Iterator() - Return an iterator used to loop over collection
+            <br>f. Intersection of two sets
+            <br>g. Union of two sets
+            <br>h. Difference between two sets
+            <br>i. Subset</p>
+            <button class="view-code-btn" onclick="loadFile('dsal', 'set_adt.cpp', 'Set ADT', this)">View Code</button>
+            <div class="answer-box" id="answerBox4">
+                <h3 id="questionText4"></h3>
+                <pre id="codeContent4"></pre>
+                <div class="copy-close-container">
+                    <button class="copy-btn" onclick="copyCode('codeContent4')">Copy Code</button>
+                    <button class="close-btn" onclick="closeBox('answerBox4')">Close</button>
+                </div>
+            </div>
+        </div>
     </div>
-  </body>
+
+    <div class="group">
+        <h3>Group B</h3>
+
+        <!-- Question 5 -->
+        <div class="question-item">
+            <p><strong>Q5: </strong>A book consists of chapters, chapters consist of sections, and sections consist of subsections. Construct a tree and print the nodes. Find the time and space requirements of your method.</p>
+            <button class="view-code-btn" onclick="loadFile('dsal', 'book_tree.cpp', 'Book Tree', this)">View Code</button>
+            <div class="answer-box" id="answerBox5">
+                <h3 id="questionText5"></h3>
+                <pre id="codeContent5"></pre>
+                <div class="copy-close-container">
+                    <button class="copy-btn" onclick="copyCode('codeContent5')">Copy Code</button>
+                    <button class="close-btn" onclick="closeBox('answerBox5')">Close</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Question 6 -->
+        <div class="question-item">
+            <p><strong>Q6: </strong>Beginning with an empty binary search tree, construct a binary search tree by inserting the values in the order given. After constructing the binary tree:
+            <br>i. Insert a new node
+            <br>ii. Find the number of nodes in the longest path from root
+            <br>iii. Find the minimum data value in the tree
+            <br>iv. Change the tree so that the roles of the left and right pointers are swapped at every node
+            <br>v. Search for a value</p>
+            <button class="view-code-btn" onclick="loadFile('dsal', 'binary_search_tree.c++', 'Binary Search Tree', this)">View Code</button>
+            <div class="answer-box" id="answerBox6">
+                <h3 id="questionText6"></h3>
+                <pre id="codeContent6"></pre>
+                <div class="copy-close-container">
+                    <button class="copy-btn" onclick="copyCode('codeContent6')">Copy Code</button>
+                    <button class="close-btn" onclick="closeBox('answerBox6')">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+
 </html>

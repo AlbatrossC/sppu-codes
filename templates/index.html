@@ -1,227 +1,268 @@
 <!DOCTYPE html>
 <html lang="en">
     <head>
-        <!-- Google tag (gtag.js) -->
+        <!-- Google Tag Manager -->
+        <script>
+            (function(w, d, s, l, i) {
+                w[l] = w[l] || [];
+                w[l].push({
+                    'gtm.start': new Date().getTime(),
+                    event: 'gtm.js'
+                });
+                var f = d.getElementsByTagName(s)[0],
+                    j = d.createElement(s),
+                    dl = l != 'dataLayer' ? '&l=' + l : '';
+                j.async = true;
+                j.src = 'https://www.googletagmanager.com/gtm.js?id=' + i + dl;
+                f.parentNode.insertBefore(j, f);
+            })(window, document, 'script', 'dataLayer', 'GTM-KC8GZC6H');
+        </script>
+        <!-- End Google Tag Manager -->
+    
+        <!-- Google Analytics script -->
         <script async src="https://www.googletagmanager.com/gtag/js?id=G-1R5FFVKTF8"></script>
         <script>
             window.dataLayer = window.dataLayer || [];
-            function gtag(){dataLayer.push(arguments);}
+    
+            function gtag() {
+                dataLayer.push(arguments);
+            }
             gtag('js', new Date());
-
             gtag('config', 'G-1R5FFVKTF8');
         </script>
+    
         <!-- Basic Meta Tags -->
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>SPPU Codes | Lab Codes & Study Materials for SPPU Students</title>
-        <meta name="description" content="SPPU CODES:Access SPPU lab codes, practical manuals, and study materials for Savitribai Phule Pune University students. Verified resources for OOPL, CGL, DSL, IoTL, DSAL, OS, and more.">
-        <meta name="keywords" content="
-            SPPU codes, 
-            SPPU lab manuals, 
-            SPPU practical solutions, 
-            Savitribai Phule Pune University, 
-            OOPL lab codes, 
-            CGL programming, 
-            DSL lab solutions, 
-            IoT lab programs, 
-            OS lab codes, 
-            DSAL practicals, 
-            SPPU engineering labs, 
-            Pune University syllabus,  
-            SPPU external exam solutions, 
-            SPPU verified programming resources">
+        <meta name="description" content="SPPU CODES: Access SPPU lab codes, practical manuals, and study materials for Savitribai Phule Pune University students. Verified resources for OOPL, CGL, DSL, IoTL, DSAL, OS, and more.">
+        <meta name="keywords" content="SPPU codes, SPPU lab manuals, SPPU practical solutions, Savitribai Phule Pune University, OOPL lab codes, CGL programming, DSL lab solutions, IoT lab programs, OS lab codes, DSAL practicals, SPPU engineering labs, Pune University syllabus, SPPU external exam solutions, SPPU verified programming resources">
         <link rel="canonical" href="https://sppucodes.vercel.app/">
     
-        <!-- SEO Enhancements -->
+        <!-- SEO & Performance Enhancements -->
         <meta name="robots" content="index, follow">
         <meta name="author" content="SPPU Codes Team">
         <meta name="language" content="English">
-        <meta name="geo.region" content="IN-MH">
-        <meta name="geo.placename" content="Pune">
-        <meta name="geo.position" content="18.5204;73.8567">
-        <meta name="ICBM" content="18.5204, 73.8567">
     
-        <!-- Preload & Optimization -->
+        <!-- Preload & Performance Optimization -->
         <link rel="preconnect" href="https://fonts.googleapis.com">
-        <link rel="dns-prefetch" href="//cdnjs.cloudflare.com">
-        <link rel="preload" href="static/css/index_styles.css" as="style">
-        <link rel="preload" href="static/js/main.js" as="script">
+        <link rel="preconnect" href="https://cdnjs.cloudflare.com" crossorigin>
     
-        <!-- Favicon & Stylesheets -->
+        <!-- Main CSS -->
+        <link rel="stylesheet" href="static/css/index_styles.css?v=2.2" media="all">
+        <link rel="stylesheet" href="static/css/footer.css?v=2.2" media="all">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" media="all">
+    
+        <!-- Favicon -->
         <link rel="icon" href="{{ url_for('get_image', filename='favicon.ico') }}" type="image/x-icon">
-        <link rel="stylesheet" href="static/css/index_styles.css?v=2.1">
-        <link rel="stylesheet" href="static/css/footer.css?v=2.1">
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     
-        <!-- Combined Structured Data -->
+        <!-- Structured Data -->
         <script type="application/ld+json">
-        {
-            "@context": "https://schema.org",
-            "@type": "EducationalOrganization",
-            "name": "SPPU Codes",
-            "url": "https://sppucodes.vercel.app/",
-            "description": "Programming lab codes and study materials for SPPU students. Resources include OOPL, CGL, DSL, IoTL, DSAL, and more.",
-            "keywords": [
-                "SPPU",
-                "SPPU codes",
-                "Savitribai Phule Pune University",
-                "OOPL",
-                "CGL",
-                "DSL",
-                "IoTL",
-                "DSAL",
-                "SPPU lab manuals",
-                "SPPU study materials"
-            ],
-            "location": {
-                "@type": "Place",
-                "name": "Savitribai Phule Pune University",
-                "address": {
-                    "@type": "PostalAddress",
-                    "addressLocality": "Pune",
-                    "addressRegion": "Maharashtra",
-                    "addressCountry": "India"
-                }
-            },
-            "educationalLevel": ["Undergraduate", "College"],
-            "audience": {
-                "@type": "Audience",
-                "audienceType": "Students",
-                "educationalRole": "Student"
-            }
-        }
-        </script>
-        <script type="application/ld+json">
-        {
-            "@context": "https://schema.org",
-            "@type": "Course",
-            "name": "SPPU Lab Codes and Solutions",
-            "description": "Complete collection of verified lab programs for Savitribai Phule Pune University Computer Engineering students",
-            "provider": {
-                "@type": "Organization",
+            {
+                "@context": "https://schema.org",
+                "@type": "EducationalOrganization",
                 "name": "SPPU Codes",
-                "sameAs": "https://sppucodes.vercel.app/"
+                "url": "https://sppucodes.vercel.app/",
+                "description": "Programming lab codes and study materials for SPPU students.",
+                "location": {
+                    "@type": "Place",
+                    "name": "Savitribai Phule Pune University",
+                    "address": {
+                        "@type": "PostalAddress",
+                        "addressLocality": "Pune",
+                        "addressRegion": "Maharashtra",
+                        "addressCountry": "India"
+                    }
+                },
+                "educationalLevel": ["Undergraduate", "College"],
+                "audience": {
+                    "@type": "Audience",
+                    "audienceType": "Students"
+                }
             }
-        }
         </script>
+
+        <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box
+        }
+
+        :root {
+            --primary-bg: #121212;
+            --secondary-bg: #1e1e1e;
+            --border-color: #333;
+            --text-primary: #e0e0e0;
+            --text-secondary: #ccc;
+            --text-muted: #aaa;
+            --accent-color: #2d76cc;
+            --accent-hover: #1d5bb1;
+            --shadow-color: rgba(255, 255, 255, 0.1);
+            --shadow-hover: rgba(255, 255, 255, 0.2);
+            --container-padding: clamp(10px, 1vw, 15px);
+            --section-spacing: clamp(15px, 3vw, 30px);
+            --border-radius: 8px;
+            --button-height: clamp(36px, 5vh, 42px);
+            --button-font-size: clamp(0.875rem, 1.5vw, 1rem)
+        }
+
+        html {
+            font-size: 16px;
+            scroll-behavior: smooth
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            line-height: 1.6;
+            color: var(--text-primary);
+            background-color: var(--primary-bg);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            overflow-x: hidden
+        }
+
+        .content {
+            flex: 1;
+            width: 100%;
+            padding: var(--container-padding)
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            width: 100%;
+            padding: 0 max(15px, 4vw)
+        }
+        </style>
     </head>
+    
 
-<body>
-    <div class="content">
-        <header>
-            <div class="header__container">
-                <a href="/" style="text-decoration: none;">
-                    <h1>SPPU Codes</h1>
-                </a>
-                <button class="mobile-menu-toggle">
-                    <i class="fas fa-bars"></i>
-                </button>
-                <div class="header__actions">
-                    <a href="/submit" class="submit-button">Submit Codes</a>
-                    <a href="/download" class="download-button">Download Codes</a>
-                    <button id="menu-stats" class="menu-button">Stats</button>
-                    <a href="https://sppucodesfuckcss.vercel.app/" class="submit-button">Fuck CSS</a>
-                </div>
-            </div>
-        </header>
-        <main>
-            <div class="search-container">
-                <div class="search-wrapper">
-                    <i class="fas fa-search search-icon"></i>
-                    <input type="text" id="subject-search" placeholder="Search subjects...">
-                </div>
-            </div>
-            <section>
-                <h2>Semester 3 Subjects</h2>
-                <div class="group">
-                    <ul class="subject-list">
-                        <li>
-                            <h3>
-                                <a href="/oop">
-                                    <span class="short-form">OOPL</span>
-                                    <span class="full-name">Object-Oriented Programming Lab</span>
-                                </a>
-                            </h3>
-                        </li>
-                        <li>
-                            <h3>
-                                <a href="/cgl">
-                                    <span class="short-form">CGL</span>
-                                    <span class="full-name">Computer Graphics Lab</span>
-                                </a>
-                            </h3>
-                        </li>
-                        <li>
-                            <h3>
-                                <a href="/dsl">
-                                    <span class="short-form">DSL</span>
-                                    <span class="full-name">Data Structures Laboratory</span>
-                                </a>
-                            </h3>
-                        </li>
-                        <li>
-                            <h3>
-                                <a href="/osl">
-                                    <span class="short-form">OSL</span>
-                                    <span class="full-name">Operating Systems Lab</span>
-                                </a>
-                            </h3>
-                        </li>
-                    </ul>
-                </div>
-            </section>
-            <section>
-                <h2>Semester 4 Subjects</h2>
-                <div class="group">
-                    <ul class="subject-list">
-                        <li>
-                            <h3>
-                                <a href="/iotl">
-                                    <span class="short-form">IoTL</span>
-                                    <span class="full-name">Internet of Things Laboratory</span>
-                                </a>
-                            </h3>
-                        </li>
-                        <li>
-                            <h3>
-                                <a href="/dsal">
-                                    <span class="short-form">DSAL</span>
-                                    <span class="full-name">Data Structures and Algorithms Laboratory</span>
-                                </a>
-                            </h3>
-                        </li>
-                    </ul>
-                </div>
-            </section>
-        </main>
-    </div>
+    <body>
+        <!-- Google Tag Manager (noscript) -->
+        <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-KC8GZC6H"
+        height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+        <!-- End Google Tag Manager (noscript) -->
 
-    <div id="stats-modal" class="modal hidden">
-        <div class="modal-content">
-            <span id="close-modal" class="close-button">&times;</span>
-            <script src="https://static.elfsight.com/platform/platform.js" async></script>
-            <div class="elfsight-app-b95e0d8e-80e3-4ee9-aa4d-e71355b1d378" data-elfsight-app-lazy></div>
+        <div class="content">
+            <header>
+                <div class="header__container">
+                    <a href="/" style="text-decoration: none;">
+                        <h1>SPPU Codes</h1>
+                    </a>
+                    <button class="mobile-menu-toggle" aria-label="Toggle Mobile Menu">
+                        <i class="fas fa-bars" aria-hidden="true"></i>
+                    </button>
+                    <div class="header__actions">
+                        <a href="/submit" class="submit-button">Submit Codes</a>
+                        <a href="/download" class="download-button">Download Codes</a>
+                        <button id="menu-stats" class="menu-button">Stats</button>
+                    </div>
+                </div>
+            </header>
+
+            <main>
+                <div class="search-container">
+                    <div class="search-wrapper">
+                        <i class="fas fa-search search-icon" aria-hidden="true"></i>
+                        <input type="text" id="subject-search" placeholder="Search subjects..." aria-label="Search Subjects">
+                    </div>
+                </div>
+
+                <section>
+                    <h2>Semester 3 Subjects</h2>
+                    <div class="group">
+                        <ul class="subject-list">
+                            <li>
+                                <h3>
+                                    <a href="/oop">
+                                        <span class="short-form">OOPL</span>
+                                        <span class="full-name">Object-Oriented Programming Lab</span>
+                                    </a>
+                                </h3>
+                            </li>
+                            <li>
+                                <h3>
+                                    <a href="/cgl">
+                                        <span class="short-form">CGL</span>
+                                        <span class="full-name">Computer Graphics Lab</span>
+                                    </a>
+                                </h3>
+                            </li>
+                            <li>
+                                <h3>
+                                    <a href="/dsl">
+                                        <span class="short-form">DSL</span>
+                                        <span class="full-name">Data Structures Laboratory</span>
+                                    </a>
+                                </h3>
+                            </li>
+                            <li>
+                                <h3>
+                                    <a href="/osl">
+                                        <span class="short-form">OSL</span>
+                                        <span class="full-name">Operating Systems Lab</span>
+                                    </a>
+                                </h3>
+                            </li>
+                        </ul>
+                    </div>
+                </section>
+
+                <section>
+                    <h2>Semester 4 Subjects</h2>
+                    <div class="group">
+                        <ul class="subject-list">
+                            <li>
+                                <h3>
+                                    <a href="/iotl">
+                                        <span class="short-form">IoTL</span>
+                                        <span class="full-name">Internet of Things Laboratory</span>
+                                    </a>
+                                </h3>
+                            </li>
+                            <li>
+                                <h3>
+                                    <a href="/dsal">
+                                        <span class="short-form">DSAL</span>
+                                        <span class="full-name">Data Structures and Algorithms Laboratory</span>
+                                    </a>
+                                </h3>
+                            </li>
+                        </ul>
+                    </div>
+                </section>
+            </main>
         </div>
-    </div>
 
-    <footer class="footer">
-        <div class="footer__content">
-            <div class="footer__love">Made with ❤️ for SPPU students</div>
-            <div class="footer__creator">
-                Created by <a href="https://github.com/AlbatrossC" target="_blank" rel="noopener">Soham Jadhav</a>
-            </div>
-            <div class="footer__links">
-                <a href="https://github.com/AlbatrossC/sppu-codes" target="_blank" rel="noopener">
-                    <i class="fab fa-github"></i> View Source
-                </a>
-                <span class="footer__separator">|</span>
-                <a href="/disclaimer">Disclaimer</a>
-                <span class="footer__separator">|</span>
-                <a href="/contact">Contact</a>
+        <div id="stats-modal" class="modal hidden">
+            <div class="modal-content">
+                <span id="close-modal" class="close-button">&times;</span>
+                <div class="elfsight-app-b95e0d8e-80e3-4ee9-aa4d-e71355b1d378" data-elfsight-app-lazy></div>
             </div>
         </div>
-    </footer>
-    <script src="{{ url_for('static', filename='js/index.js') }}"></script>
-    <script src="{{ url_for('static', filename='js/overlay.js') }}"></script>
-</body>
+
+        <footer class="footer">
+            <div class="footer__content">
+                <div class="footer__love">Made with ❤️ for SPPU students</div>
+                <div class="footer__creator">
+                    Created by <a href="https://github.com/AlbatrossC" target="_blank" rel="noopener noreferrer">Soham Jadhav</a>
+                </div>
+                <div class="footer__links">
+                    <a href="https://github.com/AlbatrossC/sppu-codes" target="_blank" rel="noopener noreferrer">
+                        <i class="fab fa-github" aria-hidden="true"></i> View Source
+                    </a>
+                    <span class="footer__separator">|</span>
+                    <a href="/disclaimer">Disclaimer</a>
+                    <span class="footer__separator">|</span>
+                    <a href="/contact">Contact</a>
+                </div>
+            </div>
+        </footer>
+
+        <!-- Defer JavaScript Loading -->
+        <script src="{{ url_for('static', filename='js/index.js') }}" defer></script>
+        <script src="{{ url_for('static', filename='js/overlay.js') }}" defer></script>
+    </body>
 </html>

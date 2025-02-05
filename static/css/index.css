@@ -1,0 +1,104 @@
+body {
+    padding-top: var(--header-height);
+}
+
+/* Subject List Styling */
+.subject-list {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 1.5rem;
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.subject-list li {
+    transition: transform 0.3s ease, opacity 0.3s ease;
+    opacity: 1;
+    animation: fadeIn 0.5s ease forwards;
+}
+
+.subject-list li.hidden {
+    display: none;
+}
+
+.subject-list a {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    background: var(--secondary-bg);
+    padding: 1.75rem;
+    border-radius: var(--border-radius);
+    text-decoration: none;
+    color: var(--text-primary);
+    box-shadow: 0 4px 6px var(--shadow-color);
+    height: 160px;
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+}
+
+.subject-list a:hover {
+    box-shadow: 0 8px 16px var(--shadow-hover);
+}
+
+/* New Blue Line Animation on Hover */
+.subject-list a::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 0;
+    height: 3px;
+    background-color: var(--accent-primary);  /* Assuming blue is your accent color */
+    transition: width 0.3s ease-out;
+}
+
+.subject-list a:hover::after {
+    width: 100%;
+}
+
+/* Animation for fading in items */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Style for no results message */
+.no-results-message {
+    text-align: center;
+    padding: 2rem;
+    color: var(--text-muted);
+    display: none;
+}
+
+.no-results-message.visible {
+    display: block;
+}
+
+/* Responsive styles */
+@media (max-width: 768px) {
+    .main-content {
+        padding-left: 3%;
+        padding-right: 3%;
+    }
+
+    .subject-list {
+        grid-template-columns: 1fr;
+        gap: 1rem;
+    }
+
+    .subject-list a {
+        height: 140px;
+        padding: 1.25rem;
+    }
+}
+a {
+    text-decoration: none;
+}

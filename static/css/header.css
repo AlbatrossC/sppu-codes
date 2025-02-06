@@ -1,8 +1,8 @@
 :root {
     --primary-bg: #121212;
     --secondary-bg: #1e1e1e;
-    --accent-primary: #2980b9;
-    --accent-secondary: #27ae60;
+    --accent-primary: #2d76cc;
+    --accent-secondary: #28A745;
     --text-primary: #ffffff;
     --text-secondary: #b0b0b0;
     --border-color: rgba(255, 255, 255, 0.1);
@@ -26,6 +26,7 @@ body {
     line-height: 1.6;
 }
 
+/* HEADER */
 header {
     position: fixed;
     top: 0;
@@ -39,9 +40,17 @@ header {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    padding: 0 5%;
+    padding: 0 3%; /* Adjusted padding to accommodate all buttons */
+    transition: background 0.3s ease, box-shadow 0.3s ease;
 }
 
+/* HEADER SCROLL EFFECT */
+header.scrolled {
+    background: var(--secondary-bg);
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3);
+}
+
+/* HEADER CONTENT */
 .header__container {
     display: flex;
     align-items: center;
@@ -49,33 +58,45 @@ header {
     width: 100%;
 }
 
+/* LOGO & TITLE */
 header h1 {
     font-size: 1.8rem;
     font-weight: 700;
     color: var(--text-primary);
-    transition: transform var(--transition-speed) ease;
+    transition: transform var(--transition-speed) ease, color var(--transition-speed);
+    cursor: pointer;
 }
 
 header h1:hover {
     transform: scale(1.05);
+    color: var(--accent-primary);
 }
 
+/* MOBILE MENU TOGGLE */
 .mobile-menu-toggle {
     display: none;
     background: none;
     border: none;
     color: var(--text-primary);
     font-size: 1.5rem;
+    cursor: pointer;
+    transition: color var(--transition-speed);
 }
 
+.mobile-menu-toggle:hover {
+    color: var(--accent-primary);
+}
+
+/* HEADER ACTION BUTTONS */
 .header__actions {
     display: flex;
     align-items: center;
-    gap: 1rem;
+    gap: 1rem; /* Increased gap for better visual spacing */
 }
 
 .submit-button,
-.download-button {
+.download-button,
+.resources-button {
     text-decoration: none;
     padding: 12px 24px;
     border-radius: var(--border-radius-round);
@@ -85,11 +106,14 @@ header h1:hover {
     display: inline-flex;
     align-items: center;
     gap: 8px;
-    overflow: hidden;
     font-size: 1rem;
     border: 2px solid transparent;
+    cursor: pointer;
+    position: relative;
+    overflow: hidden;
 }
 
+/* BUTTONS HOVER & ACTIVE EFFECTS */
 .submit-button {
     background-color: var(--accent-primary);
     color: white;
@@ -100,19 +124,32 @@ header h1:hover {
     color: white;
 }
 
+.resources-button {
+    background-color: yellow;
+    color: black;
+}
+
 .submit-button:hover,
-.download-button:hover {
+.download-button:hover,
+.resources-button:hover {
     transform: translateY(-3px);
     box-shadow: 0 6px 20px rgba(0, 0, 0, 0.2);
 }
 
-/* Search Bar Styles */
+.submit-button:active,
+.download-button:active,
+.resources-button:active {
+    transform: scale(0.95);
+}
+
+/* SEARCH BAR */
 .search-container {
     position: absolute;
     left: 50%;
     transform: translateX(-50%);
-    width: 70%;
-    max-width: 300px;
+    width: 60%;
+    max-width: 320px;
+    transition: width 0.3s ease;
 }
 
 .search-wrapper {
@@ -120,13 +157,24 @@ header h1:hover {
     align-items: center;
     background-color: var(--secondary-bg);
     border-radius: var(--border-radius-soft);
-    width: 100%;
-    padding: 8px;
+    padding: 10px;
+    transition: background var(--transition-speed), box-shadow var(--transition-speed);
+    border: 1px solid var(--border-color);
+}
+
+.search-wrapper:hover {
+    background-color: rgba(255, 255, 255, 0.1);
+    box-shadow: 0 0 10px rgba(255, 255, 255, 0.1);
 }
 
 .search-icon {
     color: var(--text-secondary);
     margin-right: 10px;
+    transition: color var(--transition-speed);
+}
+
+.search-wrapper:hover .search-icon {
+    color: var(--accent-primary);
 }
 
 #subject-search {
@@ -141,9 +189,14 @@ header h1:hover {
 
 #subject-search::placeholder {
     color: var(--text-secondary);
+    transition: color var(--transition-speed);
 }
 
-/* Mobile Styles */
+.search-wrapper:hover #subject-search::placeholder {
+    color: var(--text-primary);
+}
+
+/* MOBILE RESPONSIVENESS */
 @media (max-width: 768px) {
     header {
         height: 70px;

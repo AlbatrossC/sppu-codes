@@ -1,5 +1,11 @@
+/* General Body Styling */
 body {
     padding-top: var(--header-height);
+    background: var(--primary-bg);
+    color: var(--text-primary);
+    font-family: 'Inter', sans-serif;
+    line-height: 1.6;
+    margin: 0;
 }
 
 /* Subject List Styling */
@@ -7,11 +13,12 @@ body {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
     gap: 1.5rem;
-    list-style: none;
     padding: 0;
     margin: 0;
+    list-style: none;
 }
 
+/* Individual Subject Cards */
 .subject-list li {
     transition: transform 0.3s ease, opacity 0.3s ease;
     opacity: 1;
@@ -22,43 +29,55 @@ body {
     display: none;
 }
 
+/* Subject Card Styling */
 .subject-list a {
     display: flex;
     flex-direction: column;
     justify-content: center;
+    align-items: center;
     background: var(--secondary-bg);
     padding: 1.75rem;
     border-radius: var(--border-radius);
     text-decoration: none;
     color: var(--text-primary);
-    box-shadow: 0 4px 6px var(--shadow-color);
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
     height: 160px;
-    transition: all 0.3s ease;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
     position: relative;
     overflow: hidden;
+    text-align: center;
 }
 
+/* Increase Short Form Size */
+.short-form {
+    font-size: 1.5rem; /* Increased size */
+    font-weight: bold;
+}
+
+/* Hover Effects */
 .subject-list a:hover {
-    box-shadow: 0 8px 16px var(--shadow-hover);
+    transform: translateY(-3px);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15);
 }
 
-/* New Blue Line Animation on Hover */
+/* Bottom Border Hover Animation */
 .subject-list a::after {
     content: '';
     position: absolute;
     bottom: 0;
-    left: 0;
+    left: 50%;
     width: 0;
     height: 3px;
-    background-color: var(--accent-primary);  /* Assuming blue is your accent color */
-    transition: width 0.3s ease-out;
+    background-color: var(--accent-primary);
+    transition: width 0.3s ease-out, left 0.3s ease-out;
 }
 
 .subject-list a:hover::after {
     width: 100%;
+    left: 0;
 }
 
-/* Animation for fading in items */
+/* Fade-In Animation */
 @keyframes fadeIn {
     from {
         opacity: 0;
@@ -70,7 +89,7 @@ body {
     }
 }
 
-/* Style for no results message */
+/* No Results Message */
 .no-results-message {
     text-align: center;
     padding: 2rem;
@@ -82,11 +101,10 @@ body {
     display: block;
 }
 
-/* Responsive styles */
+/* Responsive Styles */
 @media (max-width: 768px) {
     .main-content {
-        padding-left: 3%;
-        padding-right: 3%;
+        padding: 3%;
     }
 
     .subject-list {
@@ -98,7 +116,13 @@ body {
         height: 140px;
         padding: 1.25rem;
     }
+
+    .short-form {
+        font-size: 1.7rem; /* Slightly larger on smaller screens */
+    }
 }
+
+/* Remove Default Link Underline */
 a {
     text-decoration: none;
 }

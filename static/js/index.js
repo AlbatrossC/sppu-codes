@@ -1,72 +1,76 @@
-// Ensure DOM is fully loaded before executing scripts
-document.addEventListener('DOMContentLoaded', function () {
-    // Safe element selection with fallback
-    const safeSelect = (selector) => document.querySelector(selector);
-    const safeSelectAll = (selector) => document.querySelectorAll(selector);
+document.addEventListener('DOMContentLoaded', function() {
+    // Header elements
+    const header = document.querySelector('header');
+    const mobileMenuToggle = document.querySelector('.mobile-menu-toggle');
+    const headerActions = document.querySelector('.header__actions');
+    const searchContainer = document.querySelector('.search-container');
+    let isMenuOpen = false;
 
-    // Modal functionality
-    const statsModal = safeSelect('#stats-modal');
-    const statsButton = safeSelect('#menu-stats');
-    const closeModalButton = safeSelect('#close-modal');
-
-    // Null checks to prevent errors
-    if (statsButton && closeModalButton && statsModal) {
-        // Open stats modal
-        statsButton.addEventListener('click', () => {
-            statsModal.classList.remove('hidden');
-        });
-
-        // Close stats modal
-        closeModalButton.addEventListener('click', () => {
-            statsModal.classList.add('hidden');
-        });
-
-        // Close stats modal when clicking outside of it
-        window.addEventListener('click', (event) => {
-            if (event.target === statsModal) {
-                statsModal.classList.add('hidden');
-            }
-        });
-    }
-
-    // Mobile menu functionality
-    const menuToggle = safeSelect('.mobile-menu-toggle');
-    const headerActions = safeSelect('.header__actions');
-    const menuOverlay = safeSelect('.menu-overlay');
-    const body = document.body;
-
-    // Ensure all required elements exist
-    if (menuToggle && headerActions && menuOverlay) {
-        const menuItems = headerActions.children;
-
-        // Set custom property for each menu item
-        Array.from(menuItems).forEach((item, index) => {
-            item.style.setProperty('--item-index', index);
-        });
-
-        // Toggle mobile menu
-        menuToggle.addEventListener('click', function () {
-            headerActions.classList.toggle('active');
-            menuOverlay.classList.toggle('active');
-            menuToggle.classList.toggle('active');
-            body.style.overflow = headerActions.classList.contains('active') ? 'hidden' : '';
-        });
-
-        // Close mobile menu when clicking on the overlay
-        menuOverlay.addEventListener('click', function () {
-            headerActions.classList.remove('active');
-            menuOverlay.classList.remove('active');
-            menuToggle.classList.remove('active');
-            body.style.overflow = '';
-        });
-    }
-
-    // Search functionality
-    const searchInput = safeSelect('#subject-search');
-    const subjectItems = safeSelectAll('.subject-list li');
+    // Search elements
+    const searchInput = document.querySelector('#subject-search');
+    const subjectItems = document.querySelectorAll('.subject-list li');
     let searchTimeout;
 
-    // Ensure search elements exist
+    // Header scroll effect
+    window.addEventListener('scroll', () => {
+        if (window.scrollY > 50) {
+            header.classList.add('scrolled');
+        } else {
+            header.classList.remove('scrolled');
+        }
+    });
+
+    // Mobile menu toggle
+    mobileMenuToggle.addEventListener('click', () => {
+        isMenuOpen = !isMenuOpen;
+        headerActions.classList.toggle('active');
+        searchContainer.classList.toggle('active');
+        mobileMenuToggle.setAttribute('aria-expanded', isMenuOpen);
+        
+        // Change icon based on menu state
+        const icon = mobileMenuToggle.querySelector('i');
+        if (isMenuOpen) {
+            icon.classList.remove('fa-bars');
+            icon.classList.add('fa-times');
+        } else {
+            icon.classList.remove('fa-times');
+            icon.classList.add('fa-bars');
+        }
+    });
+
+    // Close mobile menu when clicking outside
+    document.addEventListener('click', (event) => {
+        const isClickInsideHeader = header.contains(event.target);
+        
+        if (!isClickInsideHeader && isMenuOpen) {
+            isMenuOpen = false;
+            headerActions.classList.remove('active');
+            searchContainer.classList.remove('active');
+            mobileMenuToggle.setAttribute('aria-expanded', false);
+            const icon = mobileMenuToggle.querySelector('i');
+            icon.classList.remove('fa-times');
+            icon.classList.add('fa-bars');
+        }
+    });
+
+    // Handle window resize
+    let resizeTimer;
+    window.addEventListener('resize', () => {
+        clearTimeout(resizeTimer);
+        resizeTimer = setTimeout(() => {
+            if (window.innerWidth > 768 && isMenuOpen) {
+                isMenuOpen = false;
+                headerActions.classList.remove('active');
+                searchContainer.classList.remove('active');
+                mobileMenuToggle.setAttribute('aria-expanded', false);
+                const icon = mobileMenuToggle.querySelector('i');
+                icon.classList.remove('fa-times');
+                icon.classList.add('fa-bars');
+            }
+        }, 250);
+    });
+
+    // Search functionality
     if (searchInput && subjectItems.length > 0) {
         // Function to highlight matching text
         function highlightMatch(item, searchTerm) {
@@ -107,7 +111,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
             // Add "no results" message if all items are hidden
             const allHidden = Array.from(subjectItems).every(item => item.classList.contains('hidden'));
-            let noResultsMsg = safeSelect('.no-results-message');
+            let noResultsMsg = document.querySelector('.no-results-message');
             
             if (allHidden && searchTerm !== '') {
                 if (!noResultsMsg) {

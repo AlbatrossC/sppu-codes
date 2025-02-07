@@ -8,13 +8,20 @@ body {
     margin: 0;
 }
 
+/* Main Content Wrapper */
+.main-content {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 2rem 3%;
+}
+
 /* Subject List Styling */
 .subject-list {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
     gap: 1.5rem;
     padding: 0;
-    margin: 0;
+    margin: 2rem 0;
     list-style: none;
 }
 
@@ -37,7 +44,7 @@ body {
     align-items: center;
     background: var(--secondary-bg);
     padding: 1.75rem;
-    border-radius: var(--border-radius);
+    border-radius: var(--border-radius-soft);
     text-decoration: none;
     color: var(--text-primary);
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
@@ -46,18 +53,26 @@ body {
     position: relative;
     overflow: hidden;
     text-align: center;
+    border: 1px solid var(--border-color);
 }
 
-/* Increase Short Form Size */
+/* Subject Text Styling */
 .short-form {
-    font-size: 1.5rem; /* Increased size */
+    font-size: 1.5rem;
     font-weight: bold;
+    margin-bottom: 0.5rem;
+}
+
+.full-name {
+    font-size: 1.0rem;
+    color: var(--text-secondary);
 }
 
 /* Hover Effects */
 .subject-list a:hover {
     transform: translateY(-3px);
-    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15);
+    box-shadow: 0 8px 15px rgba(0, 0, 0, 0.15);
+    border-color: var(--accent-primary);
 }
 
 /* Bottom Border Hover Animation */
@@ -93,18 +108,31 @@ body {
 .no-results-message {
     text-align: center;
     padding: 2rem;
-    color: var(--text-muted);
+    color: var(--text-secondary);
+    background: var(--secondary-bg);
+    border-radius: var(--border-radius-soft);
+    margin: 2rem auto;
+    max-width: 500px;
     display: none;
+    border: 1px solid var(--border-color);
 }
 
 .no-results-message.visible {
     display: block;
 }
 
+/* Search Highlight Styling */
+mark {
+    background-color: rgba(45, 118, 204, 0.15);
+    color: var(--text-primary);
+    padding: 0 2px;
+    border-radius: 2px;
+}
+
 /* Responsive Styles */
 @media (max-width: 768px) {
     .main-content {
-        padding: 3%;
+        padding: 1.5rem 3%;
     }
 
     .subject-list {
@@ -118,11 +146,12 @@ body {
     }
 
     .short-form {
-        font-size: 1.7rem; /* Slightly larger on smaller screens */
+        font-size: 1.7rem;
     }
 }
 
-/* Remove Default Link Underline */
-a {
-    text-decoration: none;
+/* Focus State for Accessibility */
+.subject-list a:focus {
+    outline: none;
+    box-shadow: 0 0 0 2px var(--accent-primary);
 }

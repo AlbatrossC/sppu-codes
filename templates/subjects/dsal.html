@@ -46,41 +46,13 @@
         <!-- Question 1 -->
         <div class="question-item">
             <p><strong>Q1: </strong>Consider telephone book database of N clients. Make use of a hash table implementation to quickly look up client’s telephone number. Make use of two collision handling techniques and compare them using number of comparisons required to find a set of telephone numbers.</p>
-            <button class="view-code-btn" onclick="loadFile('dsal', 'telephonebook.py', 'Telephone Book Hash Table', this)">View Code</button>
+            <button class="view-code-btn" onclick="loadFile('dsal', '1_telephonebook.py', 'Telephone Book Hash Table', this)">View Code</button>
             <div class="answer-box" id="answerBox1">
                 <h3 id="questionText1"></h3>
                 <pre id="codeContent1"></pre>
                 <div class="copy-close-container">
                     <button class="copy-btn" onclick="copyCode('codeContent1')">Copy Code</button>
                     <button class="close-btn" onclick="closeBox('answerBox1')">Close</button>
-                </div>
-            </div>
-        </div>
-
-        <!-- Question 2 -->
-        <div class="question-item">
-            <p><strong>Q2: </strong>Implement all the functions of a dictionary (ADT) using hashing and handle collisions using chaining with/without replacement. Data: Set of (key, value) pairs, Keys are mapped to values, Keys must be comparable, Keys must be unique. Standard Operations: Insert(key, value), Find(key), Delete(key).</p>
-            <button class="view-code-btn" onclick="loadFile('dsal', 'dictionary.py', 'Dictionary Using Hashing', this)">View Code</button>
-            <div class="answer-box" id="answerBox2">
-                <h3 id="questionText2"></h3>
-                <pre id="codeContent2"></pre>
-                <div class="copy-close-container">
-                    <button class="copy-btn" onclick="copyCode('codeContent2')">Copy Code</button>
-                    <button class="close-btn" onclick="closeBox('answerBox2')">Close</button>
-                </div>
-            </div>
-        </div>
-
-        <!-- Question 3 -->
-        <div class="question-item">
-            <p><strong>Q3: </strong>For a given set of elements create a skip list. Find the element in the set that is closest to some given value. (Note: Decide the level of element in the list randomly with some upper limit).</p>
-            <button class="view-code-btn" onclick="loadFile('dsal', 'skiplist.cpp', 'Skip List', this)">View Code</button>
-            <div class="answer-box" id="answerBox3">
-                <h3 id="questionText3"></h3>
-                <pre id="codeContent3"></pre>
-                <div class="copy-close-container">
-                    <button class="copy-btn" onclick="copyCode('codeContent3')">Copy Code</button>
-                    <button class="close-btn" onclick="closeBox('answerBox3')">Close</button>
                 </div>
             </div>
         </div>
@@ -97,7 +69,7 @@
             <br>g. Union of two sets
             <br>h. Difference between two sets
             <br>i. Subset</p>
-            <button class="view-code-btn" onclick="loadFile('dsal', 'set_adt.cpp', 'Set ADT', this)">View Code</button>
+            <button class="view-code-btn" onclick="loadFile('dsal', '4_set_adt.py', 'Set ADT', this)">View Code</button>
             <div class="answer-box" id="answerBox4">
                 <h3 id="questionText4"></h3>
                 <pre id="codeContent4"></pre>
@@ -115,7 +87,7 @@
         <!-- Question 5 -->
         <div class="question-item">
             <p><strong>Q5: </strong>A book consists of chapters, chapters consist of sections, and sections consist of subsections. Construct a tree and print the nodes. Find the time and space requirements of your method.</p>
-            <button class="view-code-btn" onclick="loadFile('dsal', 'book_tree.cpp', 'Book Tree', this)">View Code</button>
+            <button class="view-code-btn" onclick="loadFile('dsal', '5_book_tree.cpp', 'Book Tree', this)">View Code</button>
             <div class="answer-box" id="answerBox5">
                 <h3 id="questionText5"></h3>
                 <pre id="codeContent5"></pre>
@@ -134,7 +106,7 @@
             <br>iii. Find the minimum data value in the tree
             <br>iv. Change the tree so that the roles of the left and right pointers are swapped at every node
             <br>v. Search for a value</p>
-            <button class="view-code-btn" onclick="loadFile('dsal', 'binary_search_tree.c++', 'Binary Search Tree', this)">View Code</button>
+            <button class="view-code-btn" onclick="loadFile('dsal', '6_binary_search_tree.c++', 'Binary Search Tree', this)">View Code</button>
             <div class="answer-box" id="answerBox6">
                 <h3 id="questionText6"></h3>
                 <pre id="codeContent6"></pre>
@@ -144,6 +116,52 @@
                 </div>
             </div>
         </div>
+
+        <!-- Question 9 -->
+        <div class="question-item">
+            <p><strong>Q9: </strong>Convert given binary tree into threaded binary tree. Analyze time and space complexity of the algorithm.</p>
+            <button class="view-code-btn" onclick="loadFile('dsal', '9_threaded_binary_tree.cpp', 'Threaded Binary Tree', this)">View Code</button>
+            <div class="answer-box" id="answerBox9">
+                <h3 id="questionText9"></h3>
+                <pre id="codeContent9"></pre>
+                <div class="copy-close-container">
+                    <button class="copy-btn" onclick="copyCode('codeContent9')">Copy Code</button>
+                    <button class="close-btn" onclick="closeBox('answerBox9')">Close</button>
+                </div>
+            </div>
+        </div>
+    
+    <div class="group">
+        <h3>Group C</h3>
+
+        <!-- Question 13 -->
+        <div class="question-item">
+            <p><strong>Q13: </strong>Represent a given graph using adjacency matrix/list to perform DFS and using adjacency list to perform BFS. Use the map of the area around the college as the graph. Identify the prominent landmarks as nodes and perform DFS and BFS on that.</p>
+            <button class="view-code-btn" onclick="loadFile('dsal', '13_graph_dfs_bfs.cpp', 'Graph DFS and BFS', this)">View Code</button>
+            <div class="answer-box" id="answerBox13">
+                <h3 id="questionText13"></h3>
+                <pre id="codeContent13"></pre>
+                <div class="copy-close-container">
+                    <button class="copy-btn" onclick="copyCode('codeContent13')">Copy Code</button>
+                    <button class="close-btn" onclick="closeBox('answerBox13')">Close</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Question 14 -->
+        <div class="question-item">
+            <p><strong>Q14: </strong>There are flight paths between cities. If there is a flight between city A and city B then there is an edge between the cities. The cost of the edge can be the time that flight takes to reach city B from A, or the amount of fuel used for the journey. Represent this as a graph. The node can be represented by the airport name or name of the city. Use adjacency list representation of the graph or use adjacency matrix representation of the graph. Check whether the graph is connected or not. Justify the storage representation used.</p>
+            <button class="view-code-btn" onclick="loadFile('dsal', '14_flight_graph.cpp', 'Flight Graph', this)">View Code</button>
+            <div class="answer-box" id="answerBox14">
+                <h3 id="questionText14"></h3>
+                <pre id="codeContent14"></pre>
+                <div class="copy-close-container">
+                    <button class="copy-btn" onclick="copyCode('codeContent14')">Copy Code</button>
+                    <button class="close-btn" onclick="closeBox('answerBox14')">Close</button>
+                </div>
+            </div>
+        </div>
+
     </div>
     <script src="{{ url_for('static', filename='js/overlay.js') }}"></script>
 </body>

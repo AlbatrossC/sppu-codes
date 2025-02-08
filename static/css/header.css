@@ -59,17 +59,33 @@ header.scrolled {
 }
 
 /* LOGO & TITLE */
+.logo-link {
+    display: flex;
+    align-items: center;
+    text-decoration: none; /* This removes the underline */
+    gap: 12px; /* Adds consistent spacing between logo and text */
+}
+
+.logo-link img {
+    width: 40px;
+    height: 40px;
+    object-fit: contain; /* Ensures logo maintains aspect ratio */
+}
+
 header h1 {
     font-size: 1.8rem;
     font-weight: 700;
     color: var(--text-primary);
     transition: transform var(--transition-speed) ease, color var(--transition-speed);
-    cursor: pointer;
-    margin-right: 20px;
+    margin: 0; /* Remove any default margins */
 }
 
-header h1:hover {
-    transform: scale(1.05);
+/* Hover effect for the entire logo+text combination */
+.logo-link:hover {
+    text-decoration: none; /* Ensures no underline appears on hover */
+}
+
+.logo-link:hover h1 {
     color: var(--accent-primary);
 }
 
@@ -238,4 +254,15 @@ header h1:hover {
         text-align: center;
         padding: 12px;
     }
+}
+.visually-hidden {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    border: 0;
+    white-space: nowrap;
 }

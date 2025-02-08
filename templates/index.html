@@ -23,7 +23,6 @@
         <script async src="https://www.googletagmanager.com/gtag/js?id=G-1R5FFVKTF8"></script>
         <script>
             window.dataLayer = window.dataLayer || [];
-    
             function gtag() {
                 dataLayer.push(arguments);
             }
@@ -34,24 +33,43 @@
         <!-- Basic Meta Tags -->
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>SPPU Codes | Lab Codes & Study Materials for SPPU Students</title>
-        <meta name="description" content="SPPU CODES: Access SPPU lab codes, practical manuals, and study materials for Savitribai Phule Pune University students. Verified resources for OOPL, CGL, DSL, IoTL, DSAL, OS, and more.">
-        <meta name="keywords" content="SPPU codes, SPPU lab manuals, SPPU practical solutions, Savitribai Phule Pune University, OOPL lab codes, CGL programming, DSL lab solutions, IoT lab programs, OS lab codes, DSAL practicals, SPPU engineering labs, Pune University syllabus, SPPU external exam solutions, SPPU verified programming resources">
+        <title>SPPU Codes - Lab Programs & Study Materials for Engineering Students | Pune University</title>
+        <meta name="description" content="Get verified SPPU lab codes, practical manuals & study materials for Computer Engineering. Complete solutions for OOPL, CGL, DSL, IoTL, DSAL, OS practicals. Free download available.">
+        <meta name="keywords" content="SPPU codes, Pune University lab codes, SPPU practical solutions, engineering lab programs, OOPL practical codes, CGL programs, DSL solutions, IoT lab codes, OS practical codes, DSAL programs, computer engineering practicals">
+        
+        <!-- OpenGraph Meta Tags -->
+        <meta property="og:title" content="SPPU Codes - Lab Programs & Study Materials">
+        <meta property="og:description" content="Complete collection of verified SPPU lab codes and practical solutions for Computer Engineering students.">
+        <meta property="og:image" content="https://sppucodes.vercel.app/images/logo.png">
+        <meta property="og:url" content="https://sppucodes.vercel.app">
+        <meta property="og:type" content="website">
+        
+        <!-- Twitter Card Meta Tags -->
+        <meta name="twitter:card" content="summary_large_image">
+        <meta name="twitter:title" content="SPPU Codes - Engineering Lab Programs">
+        <meta name="twitter:description" content="Access verified SPPU practical codes and study materials for Computer Engineering.">
+        <meta name="twitter:image" content="https://sppucodes.vercel.app/images/logo.png">
+        
         <link rel="canonical" href="https://sppucodes.vercel.app/">
     
         <!-- SEO & Performance Enhancements -->
-        <meta name="robots" content="index, follow">
+        <meta name="robots" content="index, follow, max-image-preview:large">
         <meta name="author" content="SPPU Codes Team">
         <meta name="language" content="English">
+        
+        <!-- Site Verification -->
+        <meta name="google-site-verification" content="your-verification-code">
     
         <!-- Preload & Performance Optimization -->
         <link rel="preconnect" href="https://fonts.googleapis.com">
         <link rel="preconnect" href="https://cdnjs.cloudflare.com" crossorigin>
+        <link rel="preload" href="static/css/index.css" as="style">
+        <link rel="preload" href="static/js/index.js" as="script">
     
         <!-- Main CSS -->
-        <link rel="stylesheet" href="static/css/index.css?v=2.2" media="all">
-        <link rel="stylesheet" href="static/css/header.css?v=2.2" media="all">
-        <link rel="stylesheet" href="static/css/footer.css?v=2.2" media="all">
+        <link rel="stylesheet" href="static/css/index.css?v=2.3" media="all">
+        <link rel="stylesheet" href="static/css/header.css?v=2.3" media="all">
+        <link rel="stylesheet" href="static/css/footer.css?v=2.3" media="all">
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" media="all">
     
         <!-- Favicon -->
@@ -61,24 +79,41 @@
         <script type="application/ld+json">
             {
                 "@context": "https://schema.org",
-                "@type": "EducationalOrganization",
+                "@type": "WebSite",
                 "name": "SPPU Codes",
                 "url": "https://sppucodes.vercel.app/",
-                "description": "Programming lab codes and study materials for SPPU students.",
-                "location": {
-                    "@type": "Place",
-                    "name": "Savitribai Phule Pune University",
-                    "address": {
-                        "@type": "PostalAddress",
-                        "addressLocality": "Pune",
-                        "addressRegion": "Maharashtra",
-                        "addressCountry": "India"
+                "description": "Comprehensive collection of SPPU lab codes and study materials for engineering students",
+                "potentialAction": {
+                    "@type": "SearchAction",
+                    "target": "https://sppucodes.vercel.app/search?q={search_term_string}",
+                    "query-input": "required name=search_term_string"
+                },
+                "publisher": {
+                    "@type": "Organization",
+                    "name": "SPPU Codes",
+                    "logo": {
+                        "@type": "ImageObject",
+                        "url": "https://sppucodes.vercel.app/images/logo.png",
+                        "width": "112",
+                        "height": "112"
                     }
                 },
-                "educationalLevel": ["Undergraduate", "College"],
-                "audience": {
-                    "@type": "Audience",
-                    "audienceType": "Students"
+                "mainEntity": {
+                    "@type": "ItemList",
+                    "itemListElement": [
+                        {
+                            "@type": "Course",
+                            "name": "Object-Oriented Programming Lab",
+                            "courseCode": "OOPL",
+                            "description": "Complete OOPL practical solutions for SPPU students"
+                        },
+                        {
+                            "@type": "Course",
+                            "name": "Computer Graphics Lab",
+                            "courseCode": "CGL",
+                            "description": "Verified CGL practical codes and solutions"
+                        }
+                    ]
                 }
             }
         </script>
@@ -139,7 +174,6 @@
         </style>
     </head>
     
-
     <body>
         <!-- Google Tag Manager (noscript) -->
         <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-KC8GZC6H"
@@ -149,7 +183,8 @@
         <div class="content">
             <header>
                 <div class="header__container">
-                    <a href="/" style="text-decoration: none;">
+                    <a href="/" class="logo-link" aria-label="SPPU Codes Home">
+                        <img src="images/logo.png" alt="SPPU Codes Logo" width="40" height="40">
                         <h1>SPPU Codes</h1>
                     </a>
                     
@@ -164,25 +199,24 @@
                         <i class="fas fa-bars" aria-hidden="true"></i>
                     </button>
                     
-                    <div class="header__actions">
+                    <nav class="header__actions" aria-label="Main navigation">
                         <a href="/submit" class="submit-button">Submit Codes</a>
                         <a href="/download" class="download-button">Download Codes</a>
                         <a href="/resources" class="resources-button">Resources</a>
-                    </div>
+                    </nav>
                 </div>
             </header>
             
-
             <main>
+                <h1 class="visually-hidden">SPPU Codes: Engineering Lab Manuals, Study Materials & University Resources</h1>
 
-
-                <section>
-                    <h2>Semester 3 Subjects</h2>
+                <section aria-labelledby="sem3-heading">
+                    <h2 id="sem3-heading">Semester 3 Subjects</h2>
                     <div class="group">
                         <ul class="subject-list">
                             <li>
                                 <h3>
-                                    <a href="/oop">
+                                    <a href="/oop" title="Object-Oriented Programming Lab Codes">
                                         <span class="short-form">OOPL</span>
                                         <span class="full-name">Object-Oriented Programming Lab</span>
                                     </a>
@@ -190,7 +224,7 @@
                             </li>
                             <li>
                                 <h3>
-                                    <a href="/cgl">
+                                    <a href="/cgl" title="Computer Graphics Lab Programs">
                                         <span class="short-form">CGL</span>
                                         <span class="full-name">Computer Graphics Lab</span>
                                     </a>
@@ -198,7 +232,7 @@
                             </li>
                             <li>
                                 <h3>
-                                    <a href="/dsl">
+                                    <a href="/dsl" title="Data Structures Lab Solutions">
                                         <span class="short-form">DSL</span>
                                         <span class="full-name">Data Structures Laboratory</span>
                                     </a>
@@ -206,7 +240,7 @@
                             </li>
                             <li>
                                 <h3>
-                                    <a href="/osl">
+                                    <a href="/osl" title="Operating Systems Lab Programs">
                                         <span class="short-form">OSL</span>
                                         <span class="full-name">Operating Systems Lab</span>
                                     </a>
@@ -216,13 +250,13 @@
                     </div>
                 </section>
 
-                <section>
-                    <h2>Semester 4 Subjects</h2>
+                <section aria-labelledby="sem4-heading">
+                    <h2 id="sem4-heading">Semester 4 Subjects</h2>
                     <div class="group">
                         <ul class="subject-list">
                             <li>
                                 <h3>
-                                    <a href="/iotl">
+                                    <a href="/iotl" title="Internet of Things Lab Programs">
                                         <span class="short-form">IoTL</span>
                                         <span class="full-name">Internet of Things Laboratory</span>
                                     </a>
@@ -230,7 +264,7 @@
                             </li>
                             <li>
                                 <h3>
-                                    <a href="/dsal">
+                                    <a href="/dsal" title="Data Structures and Algorithms Lab Solutions">
                                         <span class="short-form">DSAL</span>
                                         <span class="full-name">Data Structures and Algorithms Laboratory</span>
                                     </a>
@@ -261,7 +295,7 @@
         </footer>
 
         <!-- Defer JavaScript Loading -->
-        <script src="{{ url_for('static', filename='js/index.js') }}" defer></script>
-        <script src="{{ url_for('static', filename='js/overlay.js') }}" defer></script>
+        <script src="/static/js/index.js" defer></script>
+        <script src="/static/js/overlay.js" defer></script>
     </body>
 </html>

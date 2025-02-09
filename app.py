@@ -26,6 +26,11 @@ def subject(subject_name):
         return render_template(f'subjects/{subject_name}.html')
     except Exception:
         return render_template("error.html")
+    
+# Disclaimer
+@app.route('/disclaimer')
+def disclaimer():
+    return render_template('disclaimer.html')
 
 # Serve files
 @app.route('/<subject>/<filename>')

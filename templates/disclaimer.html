@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Disclaimer - SPPU Codes</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+        }
+
+        body {
+            background-color: #121212;
+            color: #ffffff;
+            line-height: 1.6;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .header {
+            background-color: #1e1e1e;
+            padding: 1rem 2%;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            width: 100%;
+            text-align: center;
+            position: relative;
+        }
+        .home-btn {
+            background-color: #6dde4a;  /* Light green */
+            color: white;
+            padding: 0.6rem 1.2rem;
+            border: 2px solid transparent;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 0.95rem;
+            font-weight: 500;
+            text-decoration: none;
+            transition: all 0.2s ease;
+            position: absolute;
+            left: 2%;
+            top: 50%;
+            transform: translateY(-50%);
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+        }
+
+        .home-btn:hover {
+            background-color: #22c55e;  /* Darker green */
+            border-color: #4ade80;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+        }
+
+        .header-title {
+            color: #ffffff;
+            font-size: 1.75rem;
+            font-weight: 600;
+            margin: 0 auto;
+        }
+
+        .container {
+            flex: 1;
+            width: 90%;
+            margin: 2rem auto;
+            padding: 2rem;
+            background-color: #1e1e1e;
+            border-radius: 12px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        h1 {
+            color: #2d76cc;
+            font-size: 2.5rem;
+            margin-bottom: 1.5rem;
+            border-bottom: 2px solid #2d76cc;
+            padding-bottom: 0.5rem;
+        }
+
+        h2 {
+            color: #2d76cc;
+            font-size: 1.75rem;
+            margin: 2rem 0 1rem 0;
+        }
+
+        p {
+            margin-bottom: 1rem;
+            color: rgba(255, 255, 255, 0.9);
+            font-size: 1rem;
+            line-height: 1.7;
+        }
+
+        ul {
+            margin: 1rem 0;
+            padding-left: 2rem;
+        }
+
+        li {
+            margin-bottom: 0.75rem;
+            color: rgba(255, 255, 255, 0.9);
+            font-size: 1rem;
+        }
+
+        .highlight {
+            color: #ffffff;
+            font-weight: 600;
+        }
+
+        .highlight:hover {
+            color: #2d76cc;
+        }
+
+        .warning {
+            background-color: rgba(45, 118, 204, 0.1);
+            border-left: 4px solid #2d76cc;
+            padding: 1.5rem;
+            margin: 2rem 0;
+            border-radius: 0 4px 4px 0;
+        }
+
+        @media (max-width: 768px) {
+            .header {
+                padding: 1rem 4%;
+            }
+            
+            .home-btn {
+                position: static;
+                transform: none;
+                margin-bottom: 1rem;
+                display: inline-block;
+            }
+
+            .header-title {
+                font-size: 1.5rem;
+                display: block;
+            }
+
+            .container {
+                width: 95%;
+                padding: 1.5rem;
+            }
+
+            h1 {
+                font-size: 2rem;
+            }
+
+            h2 {
+                font-size: 1.5rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .home-btn {
+                width: 100%;
+                text-align: center;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header class="header">
+        <a href="/" class="home-btn">Home</a>
+        <div class="header-title"><span class="highlight">SPPU Codes Disclaimer</span></div>
+    </header>
+
+    <div class="container">
+        <h1>Important Information</h1>
+        
+        <div class="warning">
+            <p><strong>Official Notice:</strong> This platform (SPPU Codes) is an independent student initiative and is not affiliated with Savitribai Phule Pune University (SPPU) in any capacity.</p>
+        </div>
+
+        <h2>Purpose & Scope</h2>
+        <p>This educational resource aims to help computer science students by providing:</p>
+        <ul>
+            <li>Practical coding examples</li>
+            <li>Algorithm implementation guides</li>
+            <li>Programming concept demonstrations</li>
+        </ul>
+
+        <h2>Content Sources</h2>
+        <p>Materials are compiled from multiple channels:</p>
+        <ul>
+            <li>Academic references and faculty materials</li>
+            <li>AI-assisted code generation (ChatGPT/Claude)</li>
+            <li>Peer-contributed solutions</li>
+            <li>Open-source programming resources</li>
+        </ul>
+
+        <h2>Development Background</h2>
+        <p>Created by students for students, this platform leverages:</p>
+        <ul>
+            <li>Modern web development frameworks</li>
+            <li>AI-powered documentation tools</li>
+            <li>Collaborative content verification</li>
+        </ul>
+
+        <h2>Responsible Usage Guide</h2>
+        <div class="warning">
+            <p><strong>Academic Integrity:</strong></p>
+            <ul>
+                <li>Treat code samples as learning references, not final solutions</li>
+                <li>Always analyze and understand code before implementation</li>
+                <li>Modify code to develop your unique solutions</li>
+                <li>Validate all code through proper testing procedures</li>
+            </ul>
+        </div>
+
+        <h2>Limitations</h2>
+        <p>While we strive for accuracy:</p>
+        <ul>
+            <li>Code may not follow all university guidelines</li>
+            <li>Some solutions might not be optimized</li>
+        </ul>
+    </div>
+</body>
+</html>

@@ -1,0 +1,348 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SPPU CODES- Submit Code</title>
+    <!-- Favicon -->
+    <link rel="icon" href="{{ url_for('get_image', filename='favicon.ico') }}" type="image/x-icon">
+    <style>
+        :root {
+            --primary-bg: #121212;
+            --secondary-bg: #1e1e1e;
+            --header-bg: #1a1a1a;
+            --border-color: #333;
+            --text-primary: #e0e0e0;
+            --text-secondary: #ccc;
+            --accent-color: #4CAF50;
+            --accent-hover: #45a049;
+            --transition-speed: 0.3s;
+            --blue-accent: #2d76cc;
+            --blue-hover: #2565a1;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background-color: var(--primary-bg);
+            color: var(--text-primary);
+            line-height: 1.6;
+            font-size: 16px;
+            transition: background-color 0.5s ease;
+        }
+
+        .header {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background-color: var(--header-bg);
+            padding: 1rem 2rem;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+            position: relative;
+            animation: slideDown 0.5s ease-out;
+        }
+
+        @keyframes slideDown {
+            from { transform: translateY(-100%); }
+            to { transform: translateY(0); }
+        }
+
+        .header-title {
+            font-size: 1.5rem;
+            font-weight: bold;
+            text-align: center;
+            opacity: 0;
+            animation: fadeIn 0.5s ease-out 0.3s forwards;
+        }
+
+        .home-btn {
+            background: var(--accent-color);
+            color: white;
+            text-decoration: none;
+            padding: 0.75rem 1.5rem;
+            border-radius: 6px;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            position: absolute;
+            left: 2rem;
+            opacity: 0;
+            animation: fadeIn 0.5s ease-out 0.3s forwards;
+        }
+
+        .home-btn:hover {
+            background: var(--accent-hover);
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(76, 175, 80, 0.2);
+        }
+
+        .submit-container {
+            max-width: 600px;
+            margin: 2rem auto;
+            padding: 0 1rem;
+            opacity: 0;
+            animation: fadeIn 0.5s ease-out 0.5s forwards;
+        }
+
+        .step-indicator {
+            display: flex;
+            justify-content: center;
+            margin-bottom: 2rem;
+            color: var(--text-secondary);
+        }
+
+        .step-indicator > div {
+            margin: 0 1rem;
+            font-weight: bold;
+            opacity: 0.5;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            position: relative;
+        }
+
+        .step-indicator > div.active {
+            color: var(--blue-accent);
+            opacity: 1;
+            transform: scale(1.05);
+        }
+
+        .step-indicator > div.active::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 100%;
+            height: 2px;
+            background-color: var(--blue-accent);
+            animation: scaleX 0.3s ease-out forwards;
+        }
+
+        @keyframes scaleX {
+            from { transform: scaleX(0); }
+            to { transform: scaleX(1); }
+        }
+
+        label {
+            display: block;
+            margin-bottom: 0.75rem;
+            color: var(--text-secondary);
+            font-size: 1rem;
+            transition: color 0.3s ease;
+        }
+
+        input, select, textarea {
+            width: 100%;
+            padding: 1rem;
+            background: var(--secondary-bg);
+            color: var(--text-primary);
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            margin-bottom: 1.5rem;
+            font-size: 1rem;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        input:hover, select:hover, textarea:hover {
+            border-color: var(--blue-accent);
+        }
+
+        input:focus, select:focus, textarea:focus {
+            border-color: var(--blue-accent);
+            box-shadow: 0 0 0 3px rgba(45, 118, 204, 0.2);
+            outline: none;
+            transform: translateY(-1px);
+        }
+
+        textarea {
+            min-height: 120px;
+            resize: vertical;
+        }
+
+        select {
+            appearance: none;
+            background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%23e0e0e0'%3e%3cpath d='M7 10l5 5 5-5z'/%3e%3c/svg%3e");
+            background-repeat: no-repeat;
+            background-position: right 1rem center;
+            background-size: 12px;
+            cursor: pointer;
+        }
+
+        .btn {
+            width: 100%;
+            padding: 1rem;
+            background: var(--blue-accent);
+            color: white;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 1rem;
+            font-weight: bold;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .btn:hover {
+            background: var(--blue-hover);
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(45, 118, 204, 0.2);
+        }
+
+        .btn:active {
+            transform: translateY(0);
+        }
+
+        #part2 {
+            display: none;
+            animation: slideUp 0.4s ease-out;
+        }
+
+        @keyframes slideUp {
+            from { 
+                transform: translateY(20px);
+                opacity: 0;
+            }
+            to { 
+                transform: translateY(0);
+                opacity: 1;
+            }
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        .flash-message {
+            padding: 1rem;
+            margin: 1rem auto;
+            max-width: 600px;
+            border-radius: 8px;
+            text-align: center;
+            font-weight: bold;
+            animation: slideIn 0.5s ease-out;
+            transform-origin: top;
+        }
+
+        @keyframes slideIn {
+            from {
+                transform: translateY(-20px);
+                opacity: 0;
+            }
+            to {
+                transform: translateY(0);
+                opacity: 1;
+            }
+        }
+
+        .flash-message.success {
+            background-color: var(--accent-color);
+            color: white;
+            box-shadow: 0 4px 12px rgba(76, 175, 80, 0.2);
+        }
+
+        .flash-message.error {
+            background-color: #f44336;
+            color: white;
+            box-shadow: 0 4px 12px rgba(244, 67, 54, 0.2);
+        }
+    </style>
+</head>
+<body>
+    <header class="header">
+        <a href="/" class="home-btn">Home</a>
+        <div class="header-title">Submit Code</div>
+    </header>
+
+    <!-- Flash Messages Section -->
+    {% with messages = get_flashed_messages(with_categories=true) %}
+        {% if messages %}
+            {% for category, message in messages %}
+                <div class="flash-message {{ category }}">{{ message }}</div>
+            {% endfor %}
+        {% endif %}
+    {% endwith %}
+
+    <div class="submit-container">
+        <div class="step-indicator">
+            <div id="step1" class="active">Step 1</div>
+            <div id="step2">Step 2</div>
+        </div>
+        
+        <form method="POST" action="/submit">
+            <div id="part1">
+                <div>
+                    <label for="name">Name (Optional)</label>
+                    <input type="text" id="name" name="name" placeholder="Anonymous">
+                </div>
+                
+                <div>
+                    <label for="year">Year</label>
+                    <select id="year" name="year" required>
+                        <option value="">Select your year</option>
+                        <option value="FE">First Year</option>
+                        <option value="SE">Second Year</option>
+                        <option value="TE">Third Year</option>
+                        <option value="BE">Final Year</option>
+                    </select>
+                </div>
+                
+                <div>
+                    <label for="branch">Branch</label>
+                    <select id="branch" name="branch" required>
+                        <option value="">Select your branch</option>
+                        <option value="CS">Computer Science</option>
+                        <option value="IT">Information Technology</option>
+                        <option value="AI DS">AI & Data Science</option>
+                        <option value="AI ML">AI & Machine Learning</option>
+                    </select>
+                </div>
+                
+                <button type="button" class="btn" onclick="showPart2()">Continue →</button>
+            </div>
+
+            <div id="part2">
+                <div>
+                    <label for="subject">Subject Name</label>
+                    <input type="text" id="subject" name="subject" required placeholder="Enter subject name">
+                </div>
+                
+                <div>
+                    <label for="question">Question</label>
+                    <textarea id="question" name="question" placeholder="Type your question here" required></textarea>
+                </div>
+                
+                <div>
+                    <label for="answer">Answer</label>
+                    <textarea id="answer" name="answer" placeholder="Type your answer here" required></textarea>
+                </div>
+                
+                <button type="submit" class="btn">Submit Code</button>
+            </div>
+        </form>
+    </div>
+
+    <script>
+        function showPart2() {
+            const name = document.getElementById('name').value;
+            const year = document.getElementById('year').value;
+            const branch = document.getElementById('branch').value;
+
+            if (year && branch) {
+                document.getElementById('part1').style.display = 'none';
+                document.getElementById('part2').style.display = 'block';
+                document.getElementById('step1').classList.remove('active');
+                document.getElementById('step2').classList.add('active');
+                
+                if (!name) {
+                    document.getElementById('name').value = 'Anonymous';
+                }
+            } else {
+                alert('Please select Year and Branch to continue');
+            }
+        }
+    </script>
+</body>
+</html>

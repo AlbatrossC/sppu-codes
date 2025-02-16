@@ -12,6 +12,7 @@ document.addEventListener("DOMContentLoaded", () => {
             border-radius: 10px;
             box-shadow: 0 4px 6px rgba(0,0,0,0.1);
             transition: all 0.3s ease;
+            pointer-events: none;  /* Add this line to make it click-through */
         }
         #gif-overlay:hover {
             transform: scale(1.05);

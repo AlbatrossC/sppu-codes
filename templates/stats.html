@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Subject Stats</title>
+    <style>
+        :root {
+            --primary-bg: #000;
+            --secondary-bg: #1a1a1a;
+            --text-primary: #fff;
+            --text-secondary: #b3b3b3;
+            --border-color: #333;
+            --accent-primary: #007BFF;
+            --header-height: 60px;
+            --border-radius-soft: 12px;
+            --transition-speed: 0.3s;
+        }
+
+        body {
+            padding-top: var(--header-height);
+            background: var(--primary-bg);
+            color: var(--text-primary);
+            font-family: 'Inter', sans-serif;
+            line-height: 1.6;
+            margin: 0;
+        }
+
+        .main-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2rem 3%;
+        }
+
+        .total-questions {
+            text-align: center;
+            margin-bottom: 2rem;
+            font-size: 1.25rem;
+            color: var(--text-secondary);
+            font-weight: 500;
+            letter-spacing: 0.5px;
+        }
+
+        .subject-list {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 1.5rem;
+            padding: 0;
+            margin: 0;
+            list-style: none;
+        }
+
+        .subject-list li {
+            transition: transform var(--transition-speed) ease, opacity var(--transition-speed) ease;
+            opacity: 1;
+            animation: fadeIn 0.5s ease forwards;
+        }
+
+        .subject-list a {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            background: var(--secondary-bg);
+            padding: 2rem;
+            border-radius: var(--border-radius-soft);
+            text-decoration: none;
+            color: var(--text-primary);
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            height: 160px;
+            transition: all var(--transition-speed) ease;
+            position: relative;
+            overflow: hidden;
+            text-align: center;
+            border: 1px solid var(--border-color);
+        }
+
+        .short-form {
+            font-size: 2rem;
+            font-weight: 600;
+            margin-bottom: 0.75rem;
+            color: var(--accent-primary);
+            letter-spacing: 0.5px;
+        }
+
+        .full-name {
+            font-size: 1.1rem;
+            color: var(--text-secondary);
+            font-weight: 400;
+            letter-spacing: 0.5px;
+        }
+
+        .subject-list a:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+            border-color: var(--accent-primary);
+        }
+
+        .subject-list a::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            width: 0;
+            height: 3px;
+            background-color: var(--accent-primary);
+            transition: width var(--transition-speed) ease-out, left var(--transition-speed) ease-out;
+        }
+
+        .subject-list a:hover::after {
+            width: 100%;
+            left: 0;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @media (max-width: 768px) {
+            .main-content {
+                padding: 1.5rem 3%;
+            }
+
+            .subject-list {
+                grid-template-columns: 1fr;
+                gap: 1rem;
+            }
+
+            .subject-list a {
+                height: 140px;
+                padding: 1.5rem;
+            }
+
+            .short-form {
+                font-size: 1.8rem;
+            }
+
+            .full-name {
+                font-size: 1rem;
+            }
+        }
+
+        .subject-list a:focus {
+            outline: none;
+            box-shadow: 0 0 0 2px var(--accent-primary);
+        }
+    </style>
+</head>
+<body>
+    <div class="main-content">
+        <div class="total-questions">Total Questions: {{ results.total_questions }}</div>
+        <ul class="subject-list">
+            {% for subject, count in results.subjects.items() %}
+            <li>
+                <a href="#">
+                    <span class="short-form">{{ subject }}</span>
+                    <span class="full-name">{{ count }} Questions</span>
+                </a>
+            </li>
+            {% endfor %}
+        </ul>
+    </div>
+</body>
+</html>

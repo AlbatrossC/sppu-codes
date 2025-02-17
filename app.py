@@ -1,8 +1,13 @@
-from flask import Flask, render_template, send_from_directory, abort, request
+from flask import Flask, render_template, send_from_directory, abort, request, redirect, url_for, flash
 import os
 import psycopg2
+from hosting.quecount import quecount_bp
 
 app = Flask(__name__)
+app.secret_key = 'karlos'
+
+# Register the quecount blueprint
+app.register_blueprint(quecount_bp)
 
 DATABASE_URL = os.getenv("DATABASE_URL")
 
@@ -13,12 +18,6 @@ def connect_db():
     except Exception as e:
         print(f"Database connection error: {e}")
         return None
-
-
-from flask import Flask, render_template, request, redirect, url_for, flash
-
-app = Flask(__name__)
-app.secret_key = 'your_secret_key'  # Required for flash messages
 
 @app.route('/submit', methods=["GET", "POST"])
 def submit():
@@ -43,12 +42,10 @@ def submit():
                 conn.commit()
                 flash("Code Sent Successfully! Thank you", "success")
                 return redirect(url_for('submit'))
-
             else:
                 flash("PLEASE FILL ALL NECESSARY FIELDS", "error")
 
             cur.close()
-
         except Exception as e:
             flash(f"Error inserting data: {e}", "error")
         finally:
@@ -56,8 +53,6 @@ def submit():
 
     return render_template("submit.html")
 
-
-@app.route("/contact", methods=["GET", "POST"])
 @app.route("/contact", methods=["GET", "POST"])
 def contact():
     conn = connect_db()
@@ -89,7 +84,6 @@ def contact():
 
     return render_template("contact.html")
 
-# Home Page: Index.html
 @app.route('/')
 def index():
     return render_template('index.html')
@@ -101,11 +95,14 @@ downloads_folder = os.path.join(app.root_path, 'downloads')
 def download():
     return render_template('download.html')
 
+@app.route('/disclaimer')
+def disclaimer():
+    return render_template('disclaimer.html')
+
 @app.route('/downloads/<filename>')
 def download_file(filename):
     return send_from_directory(downloads_folder, filename)
 
-# Dynamic Subject page: templates/subjects/... e.g., oop.html, dsl.html
 @app.route('/<subject_name>')
 def subject(subject_name):
     try:
@@ -113,7 +110,6 @@ def subject(subject_name):
     except Exception:
         return render_template("error.html")
 
-# Serve files
 @app.route('/<subject>/<filename>')
 def get_answer(subject, filename):
     try:      
@@ -131,12 +127,10 @@ def get_answer(subject, filename):
     except Exception:
         abort(404)
 
-# Route to serve images
 @app.route('/images/<filename>')
 def get_image(filename):
     base_dir = os.path.abspath(os.path.dirname(__file__))
     images_dir = os.path.join(base_dir, 'images')
-    
     return send_from_directory(images_dir, filename)
 
 @app.route('/sitemap.xml')

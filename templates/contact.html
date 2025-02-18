@@ -3,221 +3,222 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Disclaimer - SPPU Codes</title>
-    <!-- Favicon -->
-    <link rel="icon" href="{{ url_for('get_image', filename='favicon.ico') }}" type="image/x-icon">
+    <title>Contact Page</title>
     <style>
+        /* Reset default styles */
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+        }
+
+        /* Variables */
+        :root {
+            --primary-bg: #121212;
+            --secondary-bg: #1e1e1e;
+            --border-color: #333;
+            --text-primary: #e0e0e0;
+            --text-secondary: #ccc;
+            --text-muted: #aaa;
+            --accent-color: #2d76cc;
+            --accent-hover: #1d5bb1;
+            --shadow-color: rgba(255, 255, 255, 0.1);
+            --shadow-hover: rgba(255, 255, 0.2);
+            --container-padding: clamp(10px, 1vw, 15px);
+            --section-spacing: clamp(15px, 3vw, 30px);
+            --border-radius: 8px;
+            --button-height: clamp(36px, 5vh, 42px);
+            --button-font-size: clamp(0.875rem, 1.5vw, 1rem);
+        }
+
+        /* Base styles */
+        html {
+            font-size: 16px;
+            scroll-behavior: smooth;
         }
 
         body {
-            background-color: #121212;
-            color: #ffffff;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
             line-height: 1.6;
+            color: var(--text-primary);
+            background-color: var(--primary-bg);
             min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            overflow-x: hidden;
+        }
+
+        /* Layout */
+        .content {
+            flex: 1;
+            width: 100%;
+            padding: var(--container-padding);
+        }
+
+        .container {
+            max-width: 800px; /* Reduced width */
+            margin: 0 auto;
+            width: 100%;
+            padding: 0 max(15px, 4vw);
+        }
+
+        /* Header */
+        header {
+            background-color: var(--primary-bg);
+            border-bottom: 2px solid var(--border-color);
+            padding: 12px 0;
+            margin-bottom: var(--section-spacing);
+            text-align: center;
+            position: relative;
+        }
+
+        header h1 {
+            color: #ffffff;
+            font-size: 2rem;
+            margin: 0;
+        }
+
+        header a.home-button {
+            background-color: #28a745;
+            color: #ffffff;
+            padding: 10px 20px;
+            text-decoration: none;
+            border-radius: 5px;
+            font-size: 1rem;
+            position: absolute;
+            top: 15px;
+            left: 15px;
+        }
+
+        header a.home-button:hover {
+            background-color: #218838;
+        }
+
+        /* Contact Form */
+        form {
+            display: flex;
+            flex-direction: column;
+            gap: var(--section-spacing);
+            background-color: var(--secondary-bg);
+            padding: var(--container-padding);
+            border-radius: var(--border-radius);
+            box-shadow: 0 4px 8px var(--shadow-color);
+        }
+
+        .group {
             display: flex;
             flex-direction: column;
         }
 
-        .header {
-            background-color: #1e1e1e;
-            padding: 1rem 2%;
-            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
-            position: sticky;
-            top: 0;
-            z-index: 1000;
+        .group label {
+            color: var(--text-primary);
+            font-size: 1rem;
+            margin-bottom: 8px;
+        }
+
+        .group label span {
+            color: red;
+        }
+
+        .group input,
+        .group textarea {
+            padding: 10px;
+            font-size: 1rem;
+            color: var(--text-primary);
+            background-color: var(--secondary-bg);
+            border: 1px solid var(--border-color);
+            border-radius: var(--border-radius);
+            transition: border 0.3s ease;
             width: 100%;
-            text-align: center;
-            position: relative;
         }
-        .home-btn {
-            background-color: #6dde4a;  /* Light green */
-            color: white;
-            padding: 0.6rem 1.2rem;
-            border: 2px solid transparent;
-            border-radius: 6px;
-            cursor: pointer;
-            font-size: 0.95rem;
-            font-weight: 500;
+
+        .group input:focus,
+        .group textarea:focus {
+            border-color: var(--accent-color);
+            outline: none;
+        }
+
+        .group textarea {
+            min-height: 100px; /* Reduced height */
+            resize: vertical;
+        }
+
+        button.submit-button {
+            align-self: flex-start;
+            margin-top: var(--section-spacing);
+            background-color: var(--accent-color);
+            height: var(--button-height);
+            padding: 0 clamp(1rem, 2vw, 1.25rem);
+            border-radius: var(--border-radius);
             text-decoration: none;
+            font-weight: 500;
+            font-size: var(--button-font-size);
+            color: #ffffff;
             transition: all 0.2s ease;
-            position: absolute;
-            left: 2%;
-            top: 50%;
-            transform: translateY(-50%);
-            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+            white-space: nowrap;
+            border: none;
+            cursor: pointer;
         }
 
-        .home-btn:hover {
-            background-color: #22c55e;  /* Darker green */
-            border-color: #4ade80;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+        button.submit-button:hover {
+            background-color: var(--accent-hover);
+            transform: translateY(-1px);
+            box-shadow: 0 4px 8px rgba(45, 118, 204, 0.2);
         }
 
-        .header-title {
-            color: #ffffff;
-            font-size: 1.75rem;
-            font-weight: 600;
-            margin: 0 auto;
-        }
-
-        .container {
-            flex: 1;
-            width: 90%;
-            margin: 2rem auto;
-            padding: 2rem;
-            background-color: #1e1e1e;
-            border-radius: 12px;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-        }
-
-        h1 {
-            color: #2d76cc;
-            font-size: 2.5rem;
-            margin-bottom: 1.5rem;
-            border-bottom: 2px solid #2d76cc;
-            padding-bottom: 0.5rem;
-        }
-
-        h2 {
-            color: #2d76cc;
-            font-size: 1.75rem;
-            margin: 2rem 0 1rem 0;
-        }
-
-        p {
-            margin-bottom: 1rem;
-            color: rgba(255, 255, 255, 0.9);
-            font-size: 1rem;
-            line-height: 1.7;
-        }
-
-        ul {
-            margin: 1rem 0;
-            padding-left: 2rem;
-        }
-
-        li {
-            margin-bottom: 0.75rem;
-            color: rgba(255, 255, 255, 0.9);
+        /* Feedback messages */
+        .feedback {
+            margin-bottom: var(--section-spacing);
+            padding: 10px;
+            border-radius: var(--border-radius);
             font-size: 1rem;
         }
 
-        .highlight {
-            color: #ffffff;
-            font-weight: 600;
+        .feedback.success {
+            background-color: #28a745;
+            color: #fff;
         }
 
-        .highlight:hover {
-            color: #2d76cc;
-        }
-
-        .warning {
-            background-color: rgba(45, 118, 204, 0.1);
-            border-left: 4px solid #2d76cc;
-            padding: 1.5rem;
-            margin: 2rem 0;
-            border-radius: 0 4px 4px 0;
-        }
-
-        @media (max-width: 768px) {
-            .header {
-                padding: 1rem 4%;
-            }
-            
-            .home-btn {
-                position: static;
-                transform: none;
-                margin-bottom: 1rem;
-                display: inline-block;
-            }
-
-            .header-title {
-                font-size: 1.5rem;
-                display: block;
-            }
-
-            .container {
-                width: 95%;
-                padding: 1.5rem;
-            }
-
-            h1 {
-                font-size: 2rem;
-            }
-
-            h2 {
-                font-size: 1.5rem;
-            }
-        }
-
-        @media (max-width: 480px) {
-            .home-btn {
-                width: 100%;
-                text-align: center;
-            }
+        .feedback.error {
+            background-color: #e74c3c;
+            color: #fff;
         }
     </style>
 </head>
 <body>
-    <header class="header">
-        <a href="/" class="home-btn">Home</a>
-        <div class="header-title"><span class="highlight">SPPU Codes Disclaimer</span></div>
+    <header>
+        <h1>Contact Us</h1>
+        <a href="/" class="home-button">Home</a>
     </header>
 
-    <div class="container">
-        <h1>Important Information</h1>
-        
-        <div class="warning">
-            <p><strong>Official Notice:</strong> This platform (SPPU Codes) is an independent student initiative and is not affiliated with Savitribai Phule Pune University (SPPU) in any capacity.</p>
+    <div class="content">
+        <div class="container">
+            <!-- Display success or error messages -->
+            {% if message %}
+                <div class="feedback {{ 'success' if message == 'Message sent successfully' else 'error' }}">
+                    {{ message }}
+                </div>
+            {% endif %}
+            <section class="group">
+                <h2>Get in Touch</h2>
+                <form action="/contact" method="POST">
+                    <div class="group">
+                        <label for="name">Name <span>*</span></label>
+                        <input type="text" id="name" name="name" placeholder="Your name" required>
+                    </div>
+                    <div class="group">
+                        <label for="email">Email <span>*</span></label>
+                        <input type="email" id="email" name="email" placeholder="Your email address" required>
+                    </div>
+                    <div class="group">
+                        <label for="message">Message <span>*</span></label>
+                        <textarea id="message" name="message" placeholder="Your message" required></textarea>
+                    </div>
+                    <button type="submit" class="submit-button">Send Message</button>
+                </form>                
+            </section>
         </div>
-
-        <h2>Purpose & Scope</h2>
-        <p>This educational resource aims to help computer science students by providing:</p>
-        <ul>
-            <li>Practical coding examples</li>
-            <li>Algorithm implementation guides</li>
-            <li>Programming concept demonstrations</li>
-        </ul>
-
-        <h2>Content Sources</h2>
-        <p>Materials are compiled from multiple channels:</p>
-        <ul>
-            <li>Academic references and faculty materials</li>
-            <li>AI-assisted code generation (ChatGPT/Claude)</li>
-            <li>Peer-contributed solutions</li>
-            <li>Open-source programming resources</li>
-        </ul>
-
-        <h2>Development Background</h2>
-        <p>Created by students for students, this platform leverages:</p>
-        <ul>
-            <li>Modern web development frameworks</li>
-            <li>AI-powered documentation tools</li>
-            <li>Collaborative content verification</li>
-        </ul>
-
-        <h2>Responsible Usage Guide</h2>
-        <div class="warning">
-            <p><strong>Academic Integrity:</strong></p>
-            <ul>
-                <li>Treat code samples as learning references, not final solutions</li>
-                <li>Always analyze and understand code before implementation</li>
-                <li>Modify code to develop your unique solutions</li>
-                <li>Validate all code through proper testing procedures</li>
-            </ul>
-        </div>
-
-        <h2>Limitations</h2>
-        <p>While we strive for accuracy:</p>
-        <ul>
-            <li>Code may not follow all university guidelines</li>
-            <li>Some solutions might not be optimized</li>
-        </ul>
     </div>
+
 </body>
 </html>

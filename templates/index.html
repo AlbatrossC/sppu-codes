@@ -1,15 +1,10 @@
 <!DOCTYPE html>
 <html lang="en">
     <head>    
-        <!-- Google Analytics script -->
-        <script async src="https://www.googletagmanager.com/gtag/js?id=G-1R5FFVKTF8"></script>
-        <script>
-            window.dataLayer = window.dataLayer || [];
-            function gtag() { dataLayer.push(arguments); }
-            gtag('js', new Date());
-            gtag('config', 'G-1R5FFVKTF8');
-        </script>
-    
+        <!-- Preload critical assets -->
+        <link rel="preload" href="static/css/index.css?v=2.3" as="style">
+        <link rel="preload" href="images/logo.webp" as="image">
+        
         <!-- Basic Meta Tags -->
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -84,68 +79,107 @@
                     }
                 }
             }
-            </script>
-            
+        </script>
 
         <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box
-        }
+            /* Critical CSS inlined for faster render */
+            * {
+                margin: 0;
+                padding: 0;
+                box-sizing: border-box
+            }
 
-        :root {
-            --primary-bg: #121212;
-            --secondary-bg: #1e1e1e;
-            --border-color: #333;
-            --text-primary: #e0e0e0;
-            --text-secondary: #ccc;
-            --text-muted: #aaa;
-            --accent-color: #2d76cc;
-            --accent-hover: #1d5bb1;
-            --container-padding: clamp(10px, 1vw, 15px);
-        }
+            :root {
+                --primary-bg: #121212;
+                --secondary-bg: #1e1e1e;
+                --border-color: #333;
+                --text-primary: #e0e0e0;
+                --text-secondary: #ccc;
+                --text-muted: #aaa;
+                --accent-color: #2d76cc;
+                --accent-hover: #1d5bb1;
+                --container-padding: clamp(10px, 1vw, 15px);
+            }
 
-        html {
-            font-size: 15px;
-            scroll-behavior: smooth
-        }
+            html {
+                font-size: 15px;
+                scroll-behavior: smooth
+            }
 
-        body {
-            padding-top: var(--header-height);
-            background: var(--primary-bg);
-            color: var(--text-primary);
-            font-family: 'Inter', sans-serif;
-            line-height: 1.6;
-            margin: 0;
-        }
+            body {
+                padding-top: var(--header-height);
+                background: var(--primary-bg);
+                color: var(--text-primary);
+                font-family: 'Inter', sans-serif;
+                line-height: 1.6;
+                margin: 0;
+            }
 
-        .content {
-            flex: 1;
-            width: 100%;
-            padding: var(--container-padding)
-        }
+            .content {
+                flex: 1;
+                width: 100%;
+                padding: var(--container-padding)
+            }
 
-        /* Subject Card Styling */
-        .subject-list a {
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            background: var(--secondary-bg);
-            padding: 1.75rem;
-            border-radius: var(--border-radius-soft);
-            text-decoration: none;
-            color: var(--text-primary);
-            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-            height: 155px;
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
-            position: relative;
-            overflow: hidden;
-            text-align: center;
-            border: 1px solid var(--border-color);
-        }
+            /* Subject Card Styling */
+            .subject-list a {
+                display: flex;
+                flex-direction: column;
+                justify-content: center;
+                align-items: center;
+                background: var(--secondary-bg);
+                padding: 1.75rem;
+                border-radius: var(--border-radius-soft);
+                text-decoration: none;
+                color: var(--text-primary);
+                box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+                height: 155px;
+                transition: transform 0.3s ease, box-shadow 0.3s ease;
+                position: relative;
+                overflow: hidden;
+                text-align: center;
+                border: 1px solid var(--border-color);
+            }
+
+            /* High-priority styles for LCP element */
+            #sem3-heading {
+                font-size: 1.5rem;
+                margin: 1rem 0;
+                color: var(--text-primary);
+                font-weight: 600;
+            }
+
+            .visually-hidden {
+                position: absolute;
+                width: 1px;
+                height: 1px;
+                padding: 0;
+                margin: -1px;
+                overflow: hidden;
+                clip: rect(0, 0, 0, 0);
+                border: 0;
+            }
         </style>
+        
+        <!-- Lazy load Google Tag Manager -->
+        <script>
+            // Defer GTM loading
+            window.addEventListener('load', function() {
+                setTimeout(function() {
+                    const script = document.createElement('script');
+                    script.src = 'https://www.googletagmanager.com/gtag/js?id=G-1R5FFVKTF8';
+                    script.async = true;
+                    document.head.appendChild(script);
+                    
+                    script.onload = function() {
+                        window.dataLayer = window.dataLayer || [];
+                        function gtag() { dataLayer.push(arguments); }
+                        gtag('js', new Date());
+                        gtag('config', 'G-1R5FFVKTF8');
+                    };
+                }, 3000); // Load GTM after 3 seconds
+            });
+        </script>
     </head>
     
     <body>
@@ -153,7 +187,7 @@
             <header>
                 <div class="header__container">
                     <a href="/" class="logo-link" aria-label="SPPU Codes Home">
-                        <img src="images/logo.webp" alt="SPPU Codes Logo" width="40" height="40">
+                        <img src="images/logo.webp" alt="SPPU Codes Logo" width="40" height="40" fetchpriority="high">
                         <h1>SPPU Codes</h1>
                     </a>
                     
@@ -218,7 +252,7 @@
                     </div>
                 </section>
 
-                <section aria-labelledby="sem4-heading">
+                <section aria-labelledby="sem4-heading" loading="lazy">
                     <h2 id="sem4-heading">Semester 4 Subjects</h2>
                     <div class="group">
                         <ul class="subject-list">
@@ -260,6 +294,7 @@
             </div>
         </footer>
 
+        <!-- Defer non-critical JavaScript -->
         <script src="/static/js/index.js" defer></script>
     </body>
 </html>

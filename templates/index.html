@@ -5,9 +5,7 @@
         <script async src="https://www.googletagmanager.com/gtag/js?id=G-1R5FFVKTF8"></script>
         <script>
             window.dataLayer = window.dataLayer || [];
-            function gtag() {
-                dataLayer.push(arguments);
-            }
+            function gtag() { dataLayer.push(arguments); }
             gtag('js', new Date());
             gtag('config', 'G-1R5FFVKTF8');
         </script>
@@ -19,39 +17,27 @@
         <meta name="description" content="SPPU Codes – Find SPPU programming codes, assignments, and practical solutions. Get structured and easy-to-understand code for various subjects.">
         <meta name="keywords" content="SPPU codes, Pune University lab codes, SPPU practical solutions, engineering lab programs, OOPL practical codes, CGL programs, DSL solutions, IoT lab codes, OS practical codes, DSAL programs, computer engineering practicals">
         
-        <!-- OpenGraph Meta Tags -->
+        <!-- OpenGraph and Twitter Meta Tags -->
         <meta property="og:title" content="SPPU Codes - Lab Programs & Study Materials">
         <meta property="og:description" content="Complete collection of verified SPPU lab codes and practical solutions for Computer Engineering students.">
         <meta property="og:image" content="https://sppucodes.vercel.app/images/logo.png">
         <meta property="og:url" content="https://sppucodes.vercel.app">
         <meta property="og:type" content="website">
-        
-        <!-- Twitter Card Meta Tags -->
         <meta name="twitter:card" content="summary_large_image">
         <meta name="twitter:title" content="SPPU Codes - Engineering Lab Programs">
-        <meta name="twitter:description" content="Access verified SPPU practical
-         codes and study materials for Computer Engineering.">
+        <meta name="twitter:description" content="Access verified SPPU practical codes and study materials for Computer Engineering.">
         <meta name="twitter:image" content="https://sppucodes.vercel.app/images/logo.png">
         
         <link rel="canonical" href="https://sppucodes.vercel.app/">
-    
-        <!-- SEO & Performance Enhancements -->
         <meta name="robots" content="index, follow, max-image-preview:large">
         <meta name="author" content="SPPU Codes Team">
         <meta name="language" content="English">
             
-        <!-- Preload & Performance Optimization -->
-        <link rel="preconnect" href="https://fonts.googleapis.com">
-        <link rel="preconnect" href="https://cdnjs.cloudflare.com" crossorigin>
-        <link rel="preload" href="static/css/index.css" as="style">
-        <link rel="preload" href="static/js/index.js" as="script">
-    
-        <!-- Main CSS -->
+        <!-- CSS -->
         <link rel="stylesheet" href="static/css/index.css?v=2.3" media="all">
         <link rel="stylesheet" href="static/css/header.css?v=2.3" media="all">
         <link rel="stylesheet" href="static/css/footer.css?v=2.3" media="all">
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" media="all">
-    
+        
         <!-- Favicon -->
         <link rel="icon" href="{{ url_for('get_image', filename='favicon.ico') }}" type="image/x-icon">
 
@@ -165,13 +151,12 @@
                     
                     <div class="search-container">
                         <div class="search-wrapper">
-                            <i class="fas fa-search search-icon" aria-hidden="true"></i>
                             <input type="text" id="subject-search" placeholder="Search subjects..." aria-label="Search Subjects">
                         </div>
                     </div>
             
                     <button class="mobile-menu-toggle" aria-label="Toggle Mobile Menu">
-                        <i class="fas fa-bars" aria-hidden="true"></i>
+                        <span class="menu-icon"></span>
                     </button>
                     
                     <nav class="header__actions" aria-label="Main navigation">
@@ -258,9 +243,7 @@
                     Created by <a href="https://github.com/AlbatrossC" target="_blank" rel="noopener noreferrer">Soham Jadhav</a>
                 </div>
                 <div class="footer__links">
-                    <a href="https://github.com/AlbatrossC/sppu-codes" target="_blank" rel="noopener noreferrer">
-                        <i class="fab fa-github" aria-hidden="true"></i> View Source
-                    </a>
+                    <a href="https://github.com/AlbatrossC/sppu-codes" target="_blank" rel="noopener noreferrer">View Source</a>
                     <span class="footer__separator">|</span>
                     <a href="/disclaimer">Disclaimer</a>
                     <span class="footer__separator">|</span>
@@ -269,7 +252,6 @@
             </div>
         </footer>
 
-        <!-- Defer JavaScript Loading -->
         <script src="/static/js/index.js" defer></script>
     </body>
 </html>

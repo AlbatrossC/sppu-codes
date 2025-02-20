@@ -55,33 +55,32 @@ def submit():
 
 @app.route("/contact", methods=["GET", "POST"])
 def contact():
-    conn = connect_db()
-    if conn is None:
-        return "Database connection error. Please try again later."
-
     if request.method == "POST":
-        try:
-            cur = conn.cursor()
+        name = request.form.get("name")
+        email = request.form.get("email")
+        message = request.form.get("message")  # Changed from "msg" to "message"
 
-            name = request.form.get("name")
-            email = request.form.get("email")
-            message = request.form.get("msg")
+        if name and email and message:
+            try:
+                conn = connect_db()
+                if conn is None:
+                    flash("Database connection error. Please try again later.", "error")
+                    return redirect(url_for('contact'))
 
-            if name and email and message:
+                cur = conn.cursor()
                 cur.execute("INSERT INTO contacts (name, email, message) VALUES (%s, %s, %s)", 
-                            (name, email, message))
+                          (name, email, message))
                 conn.commit()
+                cur.close()
+                conn.close()
+                
                 flash("Message sent successfully! Thank you", "success")
-                return redirect(url_for('contact'))
-            else:
-                flash("PLEASE FILL ALL NECESSARY FIELDS", "error")
-
-            cur.close()
-        except Exception as e:
-            flash(f"Error inserting data: {e}", "error")
-        finally:
-            conn.close()
-
+            except Exception as e:
+                flash(f"Error inserting data: {e}", "error")
+            return redirect(url_for('contact'))
+        else:
+            flash("PLEASE FILL ALL NECESSARY FIELDS", "error")
+            
     return render_template("contact.html")
 
 @app.route('/')

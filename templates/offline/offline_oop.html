@@ -1,8 +1,103 @@
 <!DOCTYPE html>
 
 <html lang="en">
-<head><meta charset="utf-8"/><meta content="width=device-width,initial-scale=1" name="viewport"/><style>*{margin:0;padding:0;box-sizing:border-box}body{font:15px/1.5 system-ui;background:#121212;color:#fff;padding:8px;min-height:100vh}.c{display:flex;flex-direction:column;gap:1px;background:#1a1a1a;border:1px solid #333;border-radius:6px;overflow:hidden}.q{background:#1a1a1a;border-bottom:1px solid #333}.h{display:flex;padding:12px;cursor:pointer;gap:8px;align-items:center}.h:hover{background:#252525}.n{color:#2196f3;font-weight:600;min-width:30px}.x{flex:1;color:#fff}.b{border:1px solid #2196f3;background:0;color:#2196f3;width:24px;height:24px;border-radius:4px;cursor:pointer}.b:hover{background:#2196f3;color:#fff}.a{height:0;overflow:hidden;transition:.2s}.a pre{padding:12px;background:#252525;font-family:monospace;white-space:pre-wrap;word-wrap:break-word;font-size:14px;line-height:1.5;color:#e0e0e0}.o{height:auto}@media(min-width:800px){body{padding:15px 10%}}@media(min-width:1200px){body{padding:20px 15%}}</style></head>
-<body><header style="padding:12px;background:#1a1a1a;margin:0 0 12px;display:flex;justify-content:space-between;align-items:center;border-radius:6px"><h3 style="color:#fff;margin:0">Object Oriented Programming (OOP) Codes</h3><a href="/" style="padding:6px 12px;background:#2196f3;color:#fff;text-decoration:none;border-radius:4px">Home</a></header><div style="background:#1e3a5f;color:#fff;padding:12px;margin-bottom:12px;border-radius:6px">Offline Mode Active 🌐</div><div class="c"><div class="q" id="q1"><div class="h" onclick="t(1)"><span class="n">Q1</span><div class="x">Implement a class Complex which represents the Complex Number data type: 1) Constructor (including a default constructor which creates the complex number 0 + 0i). 2) Overload operator + to add two complex numbers. 3) Overload operator * to multiply two complex numbers. 4) Overload operators &lt;&lt; and&gt;&gt; to print and read Complex Numbers.</div><button class="b">+</button></div><div class="a" id="a1"><pre>#include &lt;iostream&gt;
+<head><meta charset="utf-8"/><meta content="width=device-width,initial-scale=1" name="viewport"/><style>
+            body {
+                font-family: system-ui;
+                margin: 0;
+                padding: 0;
+                background: #000000;
+                color: #fff;
+                font-size: 18px;
+                line-height: 1.6;
+            }
+            
+            .c {
+                max-width: 1000px;
+                margin: 0 auto;
+                padding: 0 20px;
+            }
+            
+            .q {
+                border-bottom: 1px solid #1a1a1a;
+                margin-bottom: 15px;
+            }
+            
+            .h {
+                display: flex;
+                gap: 20px;
+                align-items: center;
+                cursor: pointer;
+                padding: 20px;
+            }
+            
+            .h:hover {
+                background: #111111;
+            }
+            
+            .n {
+                color: #3b82f6;
+                font-size: 20px;
+                font-weight: bold;
+                min-width: 40px;
+            }
+            
+            .x {
+                flex: 1;
+                font-size: 18px;
+            }
+            
+            .b {
+                border: 2px solid #3b82f6;
+                background: none;
+                color: #3b82f6;
+                width: 30px;
+                height: 30px;
+                border-radius: 4px;
+                cursor: pointer;
+                font-size: 20px;
+            }
+            
+            .a {
+                display: none;
+            }
+            
+            .a pre {
+                background: #111111;
+                padding: 25px;
+                margin: 0 20px 20px 80px;
+                overflow-x: auto;
+                font-size: 16px;
+                border-radius: 4px;
+                color: #e2e8f0;
+            }
+            
+            .o {
+                display: block;
+            }
+            
+            @media(max-width: 768px) {
+                body {
+                    font-size: 16px;
+                }
+                
+                .c {
+                    padding: 0 15px;
+                }
+                
+                .h {
+                    padding: 15px;
+                    gap: 15px;
+                }
+                
+                .a pre {
+                    margin: 0 15px 15px 60px;
+                    padding: 20px;
+                    font-size: 14px;
+                }
+            }
+        </style></head>
+<body><header style="padding: 25px 40px; background: #000000; margin-bottom: 30px; display: flex; justify-content: space-between; align-items: center;"><h3 style="color: #fff; margin: 0; font-size: 24px;">Object Oriented Programming (OOP) Codes</h3><a href="/" style="color: #3b82f6; text-decoration: none; font-size: 18px;">← Home</a></header><div style="background: #111111; padding: 15px 40px; margin-bottom: 30px;"><span style="background: #ffeb3b; color: #000; padding: 5px 10px; font-size: 16px; border-radius: 4px;">🌐 Offline Mode</span></div><div class="c"><div class="q" id="q1"><div class="h" onclick="t(1)"><span class="n">Q1</span><div class="x">Implement a class Complex which represents the Complex Number data type: 1) Constructor (including a default constructor which creates the complex number 0 + 0i). 2) Overload operator + to add two complex numbers. 3) Overload operator * to multiply two complex numbers. 4) Overload operators &lt;&lt; and&gt;&gt; to print and read Complex Numbers.</div><button class="b">+</button></div><div class="a" id="a1"><pre>#include &lt;iostream&gt;
 using namespace std;
 
 class Complex {
@@ -540,5 +635,12 @@ int main() {
 
     return 0;
 }
-</pre></div></div></div><script>function t(i){let a=document.getElementById('a'+i),b=a.parentElement.querySelector('.b'),p=a.querySelector('pre');a.classList.contains('o')?(a.style.height=0,a.classList.remove('o'),b.style.background='',b.style.color=''):(a.style.height=p.offsetHeight+'px',a.classList.add('o'),b.style.background='#2196f3',b.style.color='#fff')}</script></body>
+</pre></div></div></div><script>
+            function t(i) {
+                let a = document.getElementById('a'+i);
+                let b = a.parentElement.querySelector('.b');
+                a.classList.toggle('o');
+                b.textContent = a.classList.contains('o') ? '-' : '+';
+            }
+        </script></body>
 </html>

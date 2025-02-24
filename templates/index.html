@@ -140,7 +140,8 @@
             .content {
                 flex: 1;
                 width: 100%;
-                padding: var(--container-padding)
+                padding: var(--container-padding);
+                position: relative;
             }
 
             /* Subject Card Styling */
@@ -185,7 +186,6 @@
         
         <!-- Lazy load Google Tag Manager -->
         <script>
-            // Defer GTM loading
             window.addEventListener('load', function() {
                 setTimeout(function() {
                     const script = document.createElement('script');
@@ -199,7 +199,7 @@
                         gtag('js', new Date());
                         gtag('config', 'G-1R5FFVKTF8');
                     };
-                }, 3000); // Load GTM after 3 seconds
+                }, 3000);
             });
         </script>
     </head>
@@ -230,6 +230,16 @@
                     </nav>
                 </div>
             </header>
+            
+            <!-- Popup Container -->
+            <div class="popup" id="offline-popup">
+                <div class="popup-content">
+                    Offline functionality is now available! Visit the site once online to enable offline access later.
+                </div>
+                <div class="progress-bar-container">
+                    <div class="progress-bar"></div>
+                </div>
+            </div>
             
             <main>
                 <section aria-labelledby="sem3-heading">
@@ -318,5 +328,22 @@
 
         <!-- Defer non-critical JavaScript -->
         <script src="/static/js/index.js" defer></script>
+        
+        <!-- Popup JavaScript -->
+        <script>
+            document.addEventListener('DOMContentLoaded', function() {
+                const popup = document.getElementById('offline-popup');
+                
+                // Show popup
+                setTimeout(() => {
+                    popup.classList.add('visible');
+                }, 1000);
+                
+                // Hide popup after 5 seconds
+                setTimeout(() => {
+                    popup.classList.remove('visible');
+                }, 7000); // Hide after 6 seconds (5s animation + 1s delay)
+            });
+        </script>
     </body>
 </html>

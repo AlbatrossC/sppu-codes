@@ -93,6 +93,7 @@ downloads_folder = os.path.join(app.root_path, 'downloads')
 @app.route('/download')
 def download():
     return render_template('download.html')
+
 @app.route('/downloads/<filename>')
 def download_file(filename):
     return send_from_directory(downloads_folder, filename)
@@ -103,6 +104,14 @@ def subject(subject_name):
         return render_template(f'subjects/{subject_name}.html')
     except Exception:
         return render_template("error.html")
+
+@app.route('/offline/<offline_page>')
+def offline(offline_page):
+    try:
+        return render_template(f'offline/{offline_page}.html')
+    except Exception:
+        return render_template("error.html")
+
 @app.route('/<subject>/<filename>')
 def get_answer(subject, filename):
     try:      

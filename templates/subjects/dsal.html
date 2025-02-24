@@ -32,6 +32,21 @@
 
 
 <body>
+    <!-- For offline redirection -->
+    <script>
+        // Redirect to the offline version if the user is offline
+        if (!navigator.onLine) {
+            let currentPage = window.location.pathname.replace(/^\/|\/$/g, '') || 'index';
+            window.location.href = `/offline/offline_${currentPage}`;
+        }
+    
+        // Listen for offline status change and redirect if necessary
+        window.addEventListener('offline', function () {
+            let currentPage = window.location.pathname.replace(/^\/|\/$/g, '') || 'index';
+            window.location.href = `/offline/offline_${currentPage}`;
+        });
+    </script>
+
     <header>
         <h3><a href="/dsal" class="a">Data Structures and Algorithms Laboratory (DSAL) Codes</a></h3>
         <button onclick="location.href='/'" class="home-btn" aria-label="Go to home page">Home</button>

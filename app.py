@@ -112,6 +112,10 @@ def offline(offline_page):
     except Exception:
         return render_template("error.html")
 
+@app.route('/sw.js')
+def serve_sw():
+    return send_from_directory('.', 'sw.js', mimetype='application/javascript')
+
 @app.route('/<subject>/<filename>')
 def get_answer(subject, filename):
     try:      

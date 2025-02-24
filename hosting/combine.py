@@ -2,185 +2,140 @@ import os
 from bs4 import BeautifulSoup
 import re
 
-def clean_question_text(text):
-    text = re.sub(r'\*\*Q\d+:?\s*\*\*|Q\d+:\s*', '', text)
-    return ' '.join(text.split())
+def clean_text(t): return ' '.join(re.sub(r'\*\*Q\d+:?\s*\*\*|Q\d+:\s*','',t).split())
 
 def combine_qa(html_path, answer_dir, output_path):
     try:
-        with open(html_path, 'r', encoding='utf-8') as file:
-            soup = BeautifulSoup(file, 'html.parser')
-
-        # Ensure HTML structure exists
-        if not soup.html:
-            soup.append(soup.new_tag('html'))
+        with open(html_path,'r',encoding='utf-8') as f:
+            s = BeautifulSoup(f,'html.parser')
+            
+        if not s.html: s.append(s.new_tag('html'))
+        if not s.head: s.html.insert(0,s.new_tag('head'))
+        if not s.body: s.html.append(s.new_tag('body'))
         
-        if not soup.head:
-            soup.html.insert(0, soup.new_tag('head'))
+        m1 = s.new_tag('meta',charset='utf-8')
+        m2 = s.new_tag('meta',attrs={'name':'viewport','content':'width=device-width,initial-scale=1'})
+        s.head.extend([m1,m2])
         
-        if not soup.body:
-            soup.html.append(soup.new_tag('body'))
-
-        # Extract subject name from the original link if available
-        subject_link = soup.find('a', class_='a')
-        subject_name = subject_link.text if subject_link else "Unknown Subject"
-
-        # Create header
-        header = soup.new_tag('header')
-        header['style'] = 'padding: 10px; background: #f5f5f5; margin-bottom: 10px; display: flex; justify-content: space-between; align-items: center;'
+        subj = s.find('a',class_='a')
+        subj_name = subj.text if subj else "Subject"
         
-        h3 = soup.new_tag('h3')
-        h3.string = subject_name
+        h = s.new_tag('header')
+        h['style'] = 'padding:12px;background:#1a1a1a;margin:0 0 12px;display:flex;justify-content:space-between;align-items:center;border-radius:6px'
         
-        home_btn = soup.new_tag('a')
-        home_btn['href'] = '/'
-        home_btn['style'] = 'padding: 5px 10px; background: #2196f3; color: white; text-decoration: none; border-radius: 4px;'
-        home_btn.string = 'Home'
+        h3 = s.new_tag('h3')
+        h3['style'] = 'color:#fff;margin:0'
+        h3.string = subj_name
         
-        header.extend([h3, home_btn])
-
-        # Create offline note
-        offline_note = soup.new_tag('div')
-        offline_note['style'] = 'background: #fff3cd; padding: 15px; margin-bottom: 10px; border: 1px solid #ffeeba; border-radius: 4px;'
-        offline_note.string = "You’re Offline, But Still Connected! 🌐 Don’t worry—this page is available for you to explore even without the internet. Enjoy your offline access!"
-
-        # Create main container
-        container = soup.new_tag('div')
-        container['class'] = 'c'
-
-        questions = soup.find_all('div', class_='question-item')
+        btn = s.new_tag('a')
+        btn['href'] = '/'
+        btn['style'] = 'padding:6px 12px;background:#2196f3;color:#fff;text-decoration:none;border-radius:4px'
+        btn.string = 'Home'
         
-        if not questions:
-            print(f"Warning: No questions found in {html_path}")
-            return False
-
-        for i, question in enumerate(questions, 1):
-            question_p = question.find('p')
-            if not question_p:
-                continue
-                
-            question_text = clean_question_text(question_p.text.strip())
+        h.extend([h3,btn])
+        
+        note = s.new_tag('div')
+        note['style'] = 'background:#1e3a5f;color:#fff;padding:12px;margin-bottom:12px;border-radius:6px'
+        note.string = "Offline Mode Active 🌐"
+        
+        c = s.new_tag('div')
+        c['class'] = 'c'
+        
+        qs = s.find_all('div',class_='question-item')
+        if not qs: return False
+        
+        for i,q in enumerate(qs,1):
+            qp = q.find('p')
+            if not qp: continue
             
-            button = question.find('button', class_='view-code-btn')
-            if not button or 'onclick' not in button.attrs:
-                continue
-                
-            filename = button['onclick'].split(',')[1].strip().strip("'")
-            answer_path = os.path.join(answer_dir, filename)
-
-            answer_content = ""
-            if os.path.exists(answer_path):
-                with open(answer_path, 'r', encoding='utf-8') as answer_file:
-                    answer_content = answer_file.read()
-
-            qa_div = soup.new_tag('div')
-            qa_div['class'] = 'q'
-            qa_div['id'] = f'q{i}'
-
-            q_header = soup.new_tag('div')
-            q_header['class'] = 'h'
-            q_header['onclick'] = f't("{i}")'
+            qt = clean_text(qp.text.strip())
+            b = q.find('button',class_='view-code-btn')
+            if not b or 'onclick' not in b.attrs: continue
             
-            num = soup.new_tag('span')
-            num['class'] = 'n'
-            num.string = f'Q{i}'
+            fn = b['onclick'].split(',')[1].strip().strip("'")
+            ap = os.path.join(answer_dir,fn)
             
-            text = soup.new_tag('div')
-            text['class'] = 'x'
-            text.string = question_text
+            ac = ""
+            if os.path.exists(ap):
+                with open(ap,'r',encoding='utf-8') as af:
+                    ac = af.read()
             
-            btn = soup.new_tag('button')
-            btn['class'] = 'b'
-            btn.string = '+'
+            qd = s.new_tag('div')
+            qd['class'] = 'q'
+            qd['id'] = f'q{i}'
             
-            answer = soup.new_tag('div')
-            answer['class'] = 'a'
-            answer['id'] = f'a{i}'
+            qh = s.new_tag('div')
+            qh['class'] = 'h'
+            qh['onclick'] = f't({i})'
             
-            pre = soup.new_tag('pre')
-            pre.string = answer_content or "Not found"
+            n = s.new_tag('span')
+            n['class'] = 'n'
+            n.string = f'Q{i}'
             
-            q_header.extend([num, text, btn])
-            answer.append(pre)
-            qa_div.extend([q_header, answer])
-            container.append(qa_div)
-
-        # Clear body and add new structure
-        soup.body.clear()
-        soup.body.extend([header, offline_note, container])
-
-        # Add styles
-        style = soup.new_tag('style')
-        style.string = """
-*{margin:0;padding:0;box-sizing:border-box}
-body{font:15px/1.5 system-ui;background:#fff;margin:0;padding:8px}
-.c{display:flex;flex-direction:column;gap:1px;background:#eee;border:1px solid #ddd}
-.q{background:#fff}
-.h{display:flex;padding:10px;cursor:pointer;gap:8px;align-items:center;border-bottom:1px solid #eee}
-.h:hover{background:#f5f5f5}
-.n{color:#2196f3;font-weight:600;min-width:30px}
-.x{flex:1;color:#000;font-size:15px}
-.b{border:none;background:#eee;color:#666;width:24px;height:24px;border-radius:4px;cursor:pointer}
-.a{height:0;overflow:hidden;transition:.2s}
-.a pre{padding:12px;background:#fff;font-family:monospace;white-space:pre-wrap;word-wrap:break-word;font-size:14px;line-height:1.5;color:#333;border-bottom:1px solid #eee}
-.o{height:auto}
-@media(min-width:800px){body{padding:15px 10%}}
-@media(min-width:1200px){body{padding:15px 15%}}"""
-
-        # Add script
-        script = soup.new_tag('script')
-        script.string = """
-function t(i){
-let a=document.getElementById('a'+i),
-b=a.parentElement.querySelector('.b');
-a.classList.toggle('o');
-if(a.classList.contains('o')){
-b.style.background='#2196f3';
-b.style.color='#fff'
-}else{
-b.style.background='';
-b.style.color=''
-}}"""
-
-        # Clear head and add only the necessary style
-        soup.head.clear()
-        soup.head.append(style)
-
-        # Append script to body
-        soup.body.append(script)
-
-        with open(output_path, 'w', encoding='utf-8') as output_file:
-            output_file.write(str(soup))
+            tx = s.new_tag('div')
+            tx['class'] = 'x'
+            tx.string = qt
+            
+            bt = s.new_tag('button')
+            bt['class'] = 'b'
+            bt.string = '+'
+            
+            ans = s.new_tag('div')
+            ans['class'] = 'a'
+            ans['id'] = f'a{i}'
+            
+            pre = s.new_tag('pre')
+            pre.string = ac or "Not found"
+            
+            qh.extend([n,tx,bt])
+            ans.append(pre)
+            qd.extend([qh,ans])
+            c.append(qd)
+        
+        s.body.clear()
+        s.body.extend([h,note,c])
+        
+        style = s.new_tag('style')
+        style.string = """*{margin:0;padding:0;box-sizing:border-box}body{font:15px/1.5 system-ui;background:#121212;color:#fff;padding:8px;min-height:100vh}.c{display:flex;flex-direction:column;gap:1px;background:#1a1a1a;border:1px solid #333;border-radius:6px;overflow:hidden}.q{background:#1a1a1a;border-bottom:1px solid #333}.h{display:flex;padding:12px;cursor:pointer;gap:8px;align-items:center}.h:hover{background:#252525}.n{color:#2196f3;font-weight:600;min-width:30px}.x{flex:1;color:#fff}.b{border:1px solid #2196f3;background:0;color:#2196f3;width:24px;height:24px;border-radius:4px;cursor:pointer}.b:hover{background:#2196f3;color:#fff}.a{height:0;overflow:hidden;transition:.2s}.a pre{padding:12px;background:#252525;font-family:monospace;white-space:pre-wrap;word-wrap:break-word;font-size:14px;line-height:1.5;color:#e0e0e0}.o{height:auto}@media(min-width:800px){body{padding:15px 10%}}@media(min-width:1200px){body{padding:20px 15%}}"""
+        
+        script = s.new_tag('script')
+        script.string = """function t(i){let a=document.getElementById('a'+i),b=a.parentElement.querySelector('.b'),p=a.querySelector('pre');a.classList.contains('o')?(a.style.height=0,a.classList.remove('o'),b.style.background='',b.style.color=''):(a.style.height=p.offsetHeight+'px',a.classList.add('o'),b.style.background='#2196f3',b.style.color='#fff')}"""
+        
+        s.head.clear()
+        s.head.extend([m1,m2,style])
+        s.body.append(script)
+        
+        with open(output_path,'w',encoding='utf-8') as o:
+            o.write(str(s))
         return True
-
+    
     except Exception as e:
-        print(f"Error processing {html_path}: {str(e)}")
+        print(f"Error: {str(e)}")
         return False
 
 def main():
-    subjects_dir = os.path.join('templates', 'subjects')
-    output_dir = os.path.join('templates', 'offline')
-    os.makedirs(output_dir, exist_ok=True)
-
-    if not os.path.exists(subjects_dir):
-        print(f"Error: Directory {subjects_dir} not found")
+    sd = os.path.join('templates','subjects')
+    od = os.path.join('templates','offline')
+    os.makedirs(od,exist_ok=True)
+    
+    if not os.path.exists(sd):
+        print(f"Error: {sd} not found")
         return
-
-    for filename in os.listdir(subjects_dir):
-        if filename.endswith('.html'):
-            subject_code = os.path.splitext(filename)[0]
-            input_html = os.path.join(subjects_dir, filename)
-            answer_directory = os.path.join('answers', subject_code)
-            output_html = os.path.join(output_dir, f'offline_{subject_code}.html')
+    
+    for f in os.listdir(sd):
+        if f.endswith('.html'):
+            sc = os.path.splitext(f)[0]
+            ih = os.path.join(sd,f)
+            ad = os.path.join('answers',sc)
+            oh = os.path.join(od,f'offline_{sc}.html')
             
-            if os.path.exists(input_html):
-                success = combine_qa(input_html, answer_directory, output_html)
-                if success:
-                    print(f"Successfully processed {filename} -> offline_{subject_code}.html")
+            if os.path.exists(ih):
+                if combine_qa(ih,ad,oh):
+                    print(f"Processed: {f}")
                 else:
-                    print(f"Failed to process {filename}")
+                    print(f"Failed: {f}")
             else:
-                print(f"Warning: {input_html} not found")
+                print(f"Missing: {ih}")
 
 if __name__ == "__main__":
     main()

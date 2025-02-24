@@ -24,23 +24,17 @@
             ]
         }
     </script>
-</head>
-<body>
-    <!-- For offline redirection -->
+
     <script>
-        // Redirect to the offline version if the user is offline
-        if (!navigator.onLine) {
-            let currentPage = window.location.pathname.replace(/^\/|\/$/g, '') || 'index';
-            window.location.href = `/offline/offline_${currentPage}`;
+        if ('serviceWorker' in navigator) {
+            navigator.serviceWorker.register('/sw.js')
+                .then(reg => console.log('Service Worker Registered!', reg))
+                .catch(err => console.log('Service Worker Registration Failed:', err));
         }
-    
-        // Listen for offline status change and redirect if necessary
-        window.addEventListener('offline', function () {
-            let currentPage = window.location.pathname.replace(/^\/|\/$/g, '') || 'index';
-            window.location.href = `/offline/offline_${currentPage}`;
-        });
     </script>
     
+</head>
+<body>
     <header>
         <h3>
             <a href="/iotl" class="a">Internet of Things Laboratory (IoTL) Codes</a>

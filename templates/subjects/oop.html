@@ -41,24 +41,31 @@
             }]
         }
     </script>
-</head>
 
-<body>
-    <!-- For offline redirection -->
     <script>
-        // Redirect to the offline version if the user is offline
         if (!navigator.onLine) {
-            let currentPage = window.location.pathname.replace(/^\/|\/$/g, '') || 'index';
+            let currentPage = window.location.pathname.replace(/^\//, '') || 'index';
             window.location.href = `/offline/offline_${currentPage}`;
         }
-    
-        // Listen for offline status change and redirect if necessary
+
         window.addEventListener('offline', function () {
-            let currentPage = window.location.pathname.replace(/^\/|\/$/g, '') || 'index';
+            let currentPage = window.location.pathname.replace(/^\//, '') || 'index';
             window.location.href = `/offline/offline_${currentPage}`;
         });
     </script>
-    
+
+
+    <script>
+        if ('serviceWorker' in navigator) {
+            navigator.serviceWorker.register('/sw.js')
+                .then(reg => console.log('Service Worker Registered!', reg))
+                .catch(err => console.log('Service Worker Registration Failed:', err));
+        }
+    </script>
+
+</head>
+
+<body>
     <header>
         <h3><a href="/oop" class="a">Object Oriented Programming (OOP) Codes</a></h3><button onclick="location.href='/'" class="home-btn">Home</button></header>
     <div class="info-box">

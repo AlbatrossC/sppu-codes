@@ -81,7 +81,7 @@
             }
         </script>
 
-            <!-- Offline Redirection -->
+        <!-- Offline Redirection -->
         <script>
             if (!navigator.onLine) {
                 let currentPage = window.location.pathname.replace(/^\//, '') || 'index';
@@ -97,11 +97,11 @@
         <!-- Register Service Worker -->
         <script>
             if ('serviceWorker' in navigator) {
-                navigator.serviceWorker.register('/static/js/sw.js')
+                navigator.serviceWorker.register('/sw.js')
                     .then(reg => console.log('Service Worker Registered!', reg))
                     .catch(err => console.log('Service Worker Registration Failed:', err));
             }
-    </script>
+        </script>
 
         <style>
             /* Critical CSS inlined for faster render */

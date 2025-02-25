@@ -54,10 +54,10 @@ public:
 int main() {
     Graph g;
     
-    g.addEdge("MCOE", "COEP", 15);
-    g.addEdge("MCOE", "JM Road", 10);
-    g.addEdge("COEP", "FC Road", 5);
-    g.addEdge("JM Road", "FC Road", 8);
+    g.addEdge("Pune", "Mumbai", 180);
+    g.addEdge("Pune", "Nashik", 210);
+    g.addEdge("Mumbai", "Nagpur", 480);
+    g.addEdge("Nashik", "Nagpur", 450);
     
     g.display();
     

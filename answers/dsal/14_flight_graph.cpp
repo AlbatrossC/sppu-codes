@@ -1,108 +1,71 @@
 #include <iostream>
+#include <unordered_map>
 #include <vector>
+#include <queue>
+
 using namespace std;
 
 class Graph {
 private:
-    vector<vector<int>> adjMatrix;
-    int numVertices;
+    unordered_map<string, vector<pair<string, int>>> adjList;
 
 public:
-    Graph(int vertices) {
-        numVertices = vertices;
-        adjMatrix.resize(vertices, vector<int>(vertices, 0));
+    void addEdge(string u, string v, int weight) {
+        adjList[u].push_back({v, weight});
+        adjList[v].push_back({u, weight}); // Since it's an undirected graph
     }
 
-    void addEdge(int u, int v) {
-        if (u >= 0 && u < numVertices && v >= 0 && v < numVertices) {
-            adjMatrix[u][v] = 1;
-            adjMatrix[v][u] = 1;
-            cout << "Edge added between " << u << " and " << v << ".\n";
-        } else {
-            cout << "Invalid vertices.\n";
-        }
-    }
-
-    void removeEdge(int u, int v) {
-        if (u >= 0 && u < numVertices && v >= 0 && v < numVertices) {
-            adjMatrix[u][v] = 0;
-            adjMatrix[v][u] = 0;
-            cout << "Edge removed between " << u << " and " << v << ".\n";
-        } else {
-            cout << "Invalid vertices.\n";
-        }
-    }
-
-    void display() const {
-        cout << "Adjacency Matrix:\n";
-        for (int i = 0; i < numVertices; ++i) {
-            for (int j = 0; j < numVertices; ++j) {
-                cout << adjMatrix[i][j] << " ";
+    void display() {
+        cout << "Adjacency List Representation of Graph:\n";
+        for (auto &pair : adjList) {
+            cout << pair.first << " -> ";
+            for (auto &neighbor : pair.second) {
+                cout << "(" << neighbor.first << ", " << neighbor.second << " min) ";
             }
             cout << endl;
         }
     }
 
-    void DFS(int start) {
-        vector<bool> visited(numVertices, false);
-        cout << "DFS Traversal: ";
-        dfsHelper(start, visited);
-        cout << endl;
-    }
-
-    void BFS(int start) {
-        vector<bool> visited(numVertices, false);
-        vector<int> queue;
-
-        visited[start] = true;
-        queue.push_back(start);
-
-        cout << "BFS Traversal: ";
-        while (!queue.empty()) {
-            int current = queue.front();
-            queue.erase(queue.begin());
-            cout << current << " ";
-
-            for (int i = 0; i < numVertices; ++i) {
-                if (adjMatrix[current][i] == 1 && !visited[i]) {
-                    visited[i] = true;
-                    queue.push_back(i);
-                }
+    void DFSHelper(string node, unordered_map<string, bool> &visited) {
+        visited[node] = true;
+        for (auto &neighbor : adjList[node]) {
+            if (!visited[neighbor.first]) {
+                DFSHelper(neighbor.first, visited);
             }
         }
-        cout << endl;
     }
 
-private:
-    void dfsHelper(int vertex, vector<bool>& visited) {
-        visited[vertex] = true;
-        cout << vertex << " ";
+    bool isConnected() {
+        if (adjList.empty()) return false;
 
-        for (int i = 0; i < numVertices; ++i) {
-            if (adjMatrix[vertex][i] == 1 && !visited[i]) {
-                dfsHelper(i, visited);
-            }
+        unordered_map<string, bool> visited;
+        for (auto &pair : adjList) visited[pair.first] = false;
+
+        auto startNode = adjList.begin()->first;
+        DFSHelper(startNode, visited);
+
+        for (auto &pair : visited) {
+            if (!pair.second) return false;
         }
+        return true;
     }
 };
 
 int main() {
-    int vertices = 5;
-    Graph g(vertices);
-
-    g.addEdge(0, 1);
-    g.addEdge(0, 2);
-    g.addEdge(1, 3);
-    g.addEdge(1, 4);
-    g.addEdge(3, 4);
-
+    Graph g;
+    
+    g.addEdge("MCOE", "COEP", 15);
+    g.addEdge("MCOE", "JM Road", 10);
+    g.addEdge("COEP", "FC Road", 5);
+    g.addEdge("JM Road", "FC Road", 8);
+    
     g.display();
-
-    g.DFS(0);
-    g.BFS(0);
-
-    g.removeEdge(1, 4);
-    g.display();
+    
+    if (g.isConnected()) {
+        cout << "The graph is connected.\n";
+    } else {
+        cout << "The graph is not connected.\n";
+    }
 
     return 0;
 }

@@ -3,73 +3,75 @@
 <html lang="en">
 <head><meta charset="utf-8"/><meta content="width=device-width,initial-scale=1" name="viewport"/><style>
             body {
-                font-family: system-ui;
+                font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
                 margin: 0;
                 padding: 0;
-                background: #000000;
+                background: #000;
                 color: #fff;
-                font-size: 18px;
+                font-size: 16px;
                 line-height: 1.6;
             }
             
             .c {
-                max-width: 1000px;
+                max-width: 1200px; /* Wider container */
                 margin: 0 auto;
-                padding: 0 20px;
+                padding: 0 10px; /* Reduced side padding */
             }
             
             .q {
-                border-bottom: 1px solid #1a1a1a;
-                margin-bottom: 15px;
+                background: #111;
+                border-radius: 8px;
+                margin-bottom: 10px; /* Reduced margin */
+                overflow: hidden;
             }
             
             .h {
                 display: flex;
-                gap: 20px;
+                gap: 15px;
                 align-items: center;
                 cursor: pointer;
-                padding: 20px;
+                padding: 15px;
+                background: #222;
             }
             
             .h:hover {
-                background: #111111;
+                background: #333;
             }
             
             .n {
-                color: #3b82f6;
-                font-size: 20px;
+                color: #fff;
+                font-size: 18px;
                 font-weight: bold;
                 min-width: 40px;
             }
             
             .x {
                 flex: 1;
-                font-size: 18px;
+                font-size: 16px;
+                color: #fff;
             }
             
             .b {
-                border: 2px solid #3b82f6;
+                border: none;
                 background: none;
-                color: #3b82f6;
-                width: 30px;
-                height: 30px;
-                border-radius: 4px;
+                color: #fff;
+                font-size: 18px;
                 cursor: pointer;
-                font-size: 20px;
+                padding: 0;
             }
             
             .a {
                 display: none;
+                padding: 15px;
+                background: #000;
+                border-top: 1px solid #333;
             }
             
             .a pre {
-                background: #111111;
-                padding: 25px;
-                margin: 0 20px 20px 80px;
+                margin: 0;
                 overflow-x: auto;
-                font-size: 16px;
-                border-radius: 4px;
-                color: #e2e8f0;
+                font-size: 14px;
+                color: #fff;
             }
             
             .o {
@@ -78,26 +80,25 @@
             
             @media(max-width: 768px) {
                 body {
-                    font-size: 16px;
+                    font-size: 14px;
                 }
                 
                 .c {
-                    padding: 0 15px;
+                    padding: 0 10px; /* Reduced side padding for mobile */
                 }
                 
                 .h {
-                    padding: 15px;
-                    gap: 15px;
+                    padding: 10px;
+                    gap: 10px;
                 }
                 
                 .a pre {
-                    margin: 0 15px 15px 60px;
-                    padding: 20px;
-                    font-size: 14px;
+                    padding: 10px;
+                    font-size: 13px;
                 }
             }
         </style></head>
-<body><header style="padding: 25px 40px; background: #000000; margin-bottom: 30px; display: flex; justify-content: space-between; align-items: center;"><h3 style="color: #fff; margin: 0; font-size: 24px;">Data Structures and Algorithms Laboratory (DSAL) Codes</h3><a href="/" style="color: #3b82f6; text-decoration: none; font-size: 18px;">← Home</a></header><div style="background: #111111; padding: 15px 40px; margin-bottom: 30px;"><span style="background: #ffeb3b; color: #000; padding: 5px 10px; font-size: 16px; border-radius: 4px;">🌐 Offline Mode</span></div><div class="c"><div class="q" id="q1"><div class="h" onclick="t(1)"><span class="n">Q1</span><div class="x">Consider telephone book database of N clients. Make use of a hash table implementation to quickly look up client’s telephone number. Make use of two collision handling techniques and compare them using number of comparisons required to find a set of telephone numbers.</div><button class="b">+</button></div><div class="a" id="a1"><pre>class PhoneEntry:
+<body><header style="padding: 20px; background: #000; margin-bottom: 20px; display: flex; justify-content: space-between; align-items: center;"><h3 style="color: #fff; margin: 0; font-size: 24px; font-weight: 600;">Data Structures and Algorithms Laboratory (DSAL) Codes</h3><a href="/" style="color: #fff; text-decoration: none; font-size: 16px;">← Home</a></header><div style="background: #333; padding: 15px; margin-bottom: 20px; border-radius: 4px;"><span style="color: #fff; font-size: 16px;">🌐 Offline Mode. You can still view the content without being connected to the internet. ENJOY!</span></div><div class="c"><div class="q" id="q1"><div class="h" onclick="t(1)"><span class="n">Q1</span><div class="x">Consider telephone book database of N clients. Make use of a hash table implementation to quickly look up client’s telephone number. Make use of two collision handling techniques and compare them using number of comparisons required to find a set of telephone numbers.</div><button class="b">▼</button></div><div class="a" id="a1"><pre>class PhoneEntry:
     def __init__(self, name, number):
         self.name = name
         self.number = number
@@ -179,13 +180,12 @@ else:
 if linear_result:
     print("Linear Probing:", linear_result, "(Comparisons:", linear_table.comparisons, ")")
 else:
-    print("Linear Probing: Not Found")</pre></div></div><div class="q" id="q2"><div class="h" onclick="t(2)"><span class="n">Q2</span><div class="x">To create ADT that implements the "set" concept. a. Add (new Element) - Place a value into the set b. Remove (element) - Remove the value c. Contains (element) - Return true if element is in collection d. Size() - Return number of values in collection e. Iterator() - Return an iterator used to loop over collection f. Intersection of two sets g. Union of two sets h. Difference between two sets i. Subset</div><button class="b">+</button></div><div class="a" id="a2"><pre># Input elements for Set A
-total = int(input("Please enter the number of elements in set A: "))
+    print("Linear Probing: Not Found")</pre></div></div><div class="q" id="q2"><div class="h" onclick="t(2)"><span class="n">Q2</span><div class="x">To create ADT that implements the "set" concept. a. Add (new Element) - Place a value into the set b. Remove (element) - Remove the value c. Contains (element) - Return true if element is in collection d. Size() - Return number of values in collection e. Iterator() - Return an iterator used to loop over collection f. Intersection of two sets g. Union of two sets h. Difference between two sets i. Subset</div><button class="b">▼</button></div><div class="a" id="a2"><pre># Input elements for Set A
+total_a = int(input("Please enter the number of elements in set A: "))
 A = []
-while total &gt; 0:
+for _ in range(total_a):
     element = int(input("-&gt; "))
     A.append(element)
-    total -= 1
 print("Set A:", A)
 
 # Remove duplicates from Set A
@@ -196,12 +196,11 @@ for i in A:
 print("Set A without duplication:", new_A)
 
 # Input elements for Set B
-total = int(input("Please enter the number of elements in set B: "))
+total_b = int(input("Please enter the number of elements in set B: "))
 B = []
-while total &gt; 0:
+for _ in range(total_b):
     element = int(input("-&gt; "))
     B.append(element)
-    total -= 1
 print("Set B:", B)
 
 # Remove duplicates from Set B
@@ -283,7 +282,7 @@ if all(i in new_A2 for i in new_B2):
     print("B is a subset of A")
 else:
     print("B is NOT a subset of A")
-</pre></div></div><div class="q" id="q3"><div class="h" onclick="t(3)"><span class="n">Q3</span><div class="x">A book consists of chapters, chapters consist of sections, and sections consist of subsections. Construct a tree and print the nodes. Find the time and space requirements of your method.</div><button class="b">+</button></div><div class="a" id="a3"><pre>#include &lt;iostream&gt;
+    </pre></div></div><div class="q" id="q3"><div class="h" onclick="t(3)"><span class="n">Q3</span><div class="x">A book consists of chapters, chapters consist of sections, and sections consist of subsections. Construct a tree and print the nodes. Find the time and space requirements of your method.</div><button class="b">▼</button></div><div class="a" id="a3"><pre>#include &lt;iostream&gt;
 #include &lt;vector&gt;
 #include &lt;string&gt;
 using namespace std;
@@ -351,7 +350,7 @@ int main() {
     delete bookTree;
     return 0;
 }
-</pre></div></div><div class="q" id="q4"><div class="h" onclick="t(4)"><span class="n">Q4</span><div class="x">Beginning with an empty binary search tree, construct a binary search tree by inserting the values in the order given. After constructing the binary tree: i. Insert a new node ii. Find the number of nodes in the longest path from root iii. Find the minimum data value in the tree iv. Change the tree so that the roles of the left and right pointers are swapped at every node v. Search for a value</div><button class="b">+</button></div><div class="a" id="a4"><pre>#include &lt;iostream&gt;
+</pre></div></div><div class="q" id="q4"><div class="h" onclick="t(4)"><span class="n">Q4</span><div class="x">Beginning with an empty binary search tree, construct a binary search tree by inserting the values in the order given. After constructing the binary tree: i. Insert a new node ii. Find the number of nodes in the longest path from root iii. Find the minimum data value in the tree iv. Change the tree so that the roles of the left and right pointers are swapped at every node v. Search for a value</div><button class="b">▼</button></div><div class="a" id="a4"><pre>#include &lt;iostream&gt;
 #include &lt;algorithm&gt;
 
 using namespace std;
@@ -492,7 +491,7 @@ int main() {
 
     return 0;
 }
-</pre></div></div><div class="q" id="q5"><div class="h" onclick="t(5)"><span class="n">Q5</span><div class="x">Convert given binary tree into threaded binary tree. Analyze time and space complexity of the algorithm.</div><button class="b">+</button></div><div class="a" id="a5"><pre>#include &lt;iostream&gt;
+</pre></div></div><div class="q" id="q5"><div class="h" onclick="t(5)"><span class="n">Q5</span><div class="x">Convert given binary tree into threaded binary tree. Analyze time and space complexity of the algorithm.</div><button class="b">▼</button></div><div class="a" id="a5"><pre>#include &lt;iostream&gt;
 using namespace std;
 
 // Node definition for threaded binary tree
@@ -587,7 +586,7 @@ int main() {
 
     return 0;
 }
-</pre></div></div><div class="q" id="q6"><div class="h" onclick="t(6)"><span class="n">Q6</span><div class="x">Represent a given graph using adjacency matrix/list to perform DFS and using adjacency list to perform BFS. Use the map of the area around the college as the graph. Identify the prominent landmarks as nodes and perform DFS and BFS on that.</div><button class="b">+</button></div><div class="a" id="a6"><pre>#include &lt;iostream&gt;
+</pre></div></div><div class="q" id="q6"><div class="h" onclick="t(6)"><span class="n">Q6</span><div class="x">Represent a given graph using adjacency matrix/list to perform DFS and using adjacency list to perform BFS. Use the map of the area around the college as the graph. Identify the prominent landmarks as nodes and perform DFS and BFS on that.</div><button class="b">▼</button></div><div class="a" id="a6"><pre>#include &lt;iostream&gt;
 #include &lt;vector&gt;
 #include &lt;queue&gt;
 
@@ -676,7 +675,7 @@ int main() {
 
     return 0;
 }
-</pre></div></div><div class="q" id="q7"><div class="h" onclick="t(7)"><span class="n">Q7</span><div class="x">There are flight paths between cities. If there is a flight between city A and city B then there is an edge between the cities. The cost of the edge can be the time that flight takes to reach city B from A, or the amount of fuel used for the journey. Represent this as a graph. The node can be represented by the airport name or name of the city. Use adjacency list representation of the graph or use adjacency matrix representation of the graph. Check whether the graph is connected or not. Justify the storage representation used.</div><button class="b">+</button></div><div class="a" id="a7"><pre>#include &lt;iostream&gt;
+</pre></div></div><div class="q" id="q7"><div class="h" onclick="t(7)"><span class="n">Q7</span><div class="x">There are flight paths between cities. If there is a flight between city A and city B then there is an edge between the cities. The cost of the edge can be the time that flight takes to reach city B from A, or the amount of fuel used for the journey. Represent this as a graph. The node can be represented by the airport name or name of the city. Use adjacency list representation of the graph or use adjacency matrix representation of the graph. Check whether the graph is connected or not. Justify the storage representation used.</div><button class="b">▼</button></div><div class="a" id="a7"><pre>#include &lt;iostream&gt;
 #include &lt;vector&gt;
 using namespace std;
 
@@ -789,7 +788,7 @@ int main() {
                 let a = document.getElementById('a'+i);
                 let b = a.parentElement.querySelector('.b');
                 a.classList.toggle('o');
-                b.textContent = a.classList.contains('o') ? '-' : '+';
+                b.textContent = a.classList.contains('o') ? '▲' : '▼';
             }
         </script></body>
 </html>

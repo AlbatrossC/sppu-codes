@@ -21,28 +21,28 @@ def combine_qa(html_path, answer_dir, output_path):
         subj = s.find('a',class_='a')
         subj_name = subj.text if subj else "Subject"
         
-        # Darker header
+        # Header
         h = s.new_tag('header')
-        h['style'] = 'padding: 25px 40px; background: #000000; margin-bottom: 30px; display: flex; justify-content: space-between; align-items: center;'
+        h['style'] = 'padding: 20px; background: #000; margin-bottom: 20px; display: flex; justify-content: space-between; align-items: center;'
         
         h3 = s.new_tag('h3')
-        h3['style'] = 'color: #fff; margin: 0; font-size: 24px;'
+        h3['style'] = 'color: #fff; margin: 0; font-size: 24px; font-weight: 600;'
         h3.string = subj_name
         
         btn = s.new_tag('a')
         btn['href'] = '/'
-        btn['style'] = 'color: #3b82f6; text-decoration: none; font-size: 18px;'
+        btn['style'] = 'color: #fff; text-decoration: none; font-size: 16px;'
         btn.string = '← Home'
         
         h.extend([h3,btn])
         
-        # Smaller note with yellow background only for text
+        # Note
         note = s.new_tag('div')
-        note['style'] = 'background: #111111; padding: 15px 40px; margin-bottom: 30px;'
+        note['style'] = 'background: #333; padding: 15px; margin-bottom: 20px; border-radius: 4px;'
         
         note_text = s.new_tag('span')
-        note_text['style'] = 'background: #ffeb3b; color: #000; padding: 5px 10px; font-size: 16px; border-radius: 4px;'
-        note_text.string = "🌐 Offline Mode. You can still view the content without being even connected to internet. ENJOY!"
+        note_text['style'] = 'color: #fff; font-size: 16px;'
+        note_text.string = "🌐 Offline Mode. You can still view the content without being connected to the internet. ENJOY!"
         
         note.append(note_text)
         
@@ -86,7 +86,7 @@ def combine_qa(html_path, answer_dir, output_path):
             
             bt = s.new_tag('button')
             bt['class'] = 'b'
-            bt.string = '+'
+            bt.string = '▼'
             
             ans = s.new_tag('div')
             ans['class'] = 'a'
@@ -103,77 +103,79 @@ def combine_qa(html_path, answer_dir, output_path):
         s.body.clear()
         s.body.extend([h,note,c])
         
-        # Updated styling with darker theme
+        # Updated styling with reduced side space
         style = s.new_tag('style')
         style.string = """
             body {
-                font-family: system-ui;
+                font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
                 margin: 0;
                 padding: 0;
-                background: #000000;
+                background: #000;
                 color: #fff;
-                font-size: 18px;
+                font-size: 16px;
                 line-height: 1.6;
             }
             
             .c {
-                max-width: 1000px;
+                max-width: 1200px; /* Wider container */
                 margin: 0 auto;
-                padding: 0 20px;
+                padding: 0 10px; /* Reduced side padding */
             }
             
             .q {
-                border-bottom: 1px solid #1a1a1a;
-                margin-bottom: 15px;
+                background: #111;
+                border-radius: 8px;
+                margin-bottom: 10px; /* Reduced margin */
+                overflow: hidden;
             }
             
             .h {
                 display: flex;
-                gap: 20px;
+                gap: 15px;
                 align-items: center;
                 cursor: pointer;
-                padding: 20px;
+                padding: 15px;
+                background: #222;
             }
             
             .h:hover {
-                background: #111111;
+                background: #333;
             }
             
             .n {
-                color: #3b82f6;
-                font-size: 20px;
+                color: #fff;
+                font-size: 18px;
                 font-weight: bold;
                 min-width: 40px;
             }
             
             .x {
                 flex: 1;
-                font-size: 18px;
+                font-size: 16px;
+                color: #fff;
             }
             
             .b {
-                border: 2px solid #3b82f6;
+                border: none;
                 background: none;
-                color: #3b82f6;
-                width: 30px;
-                height: 30px;
-                border-radius: 4px;
+                color: #fff;
+                font-size: 18px;
                 cursor: pointer;
-                font-size: 20px;
+                padding: 0;
             }
             
             .a {
                 display: none;
+                padding: 15px;
+                background: #000;
+                border-top: 1px solid #333;
             }
             
             .a pre {
-                background: #111111;
-                padding: 25px;
-                margin: 0 20px 20px 80px;
+                margin: 0;
                 overflow-x: auto;
-                font-size: 16px;
-                border-radius: 4px;
-                color: #e2e8f0;
+                font-size: 14px;
+                color: #fff;
             }
             
             .o {
@@ -182,22 +184,21 @@ def combine_qa(html_path, answer_dir, output_path):
             
             @media(max-width: 768px) {
                 body {
-                    font-size: 16px;
+                    font-size: 14px;
                 }
                 
                 .c {
-                    padding: 0 15px;
+                    padding: 0 10px; /* Reduced side padding for mobile */
                 }
                 
                 .h {
-                    padding: 15px;
-                    gap: 15px;
+                    padding: 10px;
+                    gap: 10px;
                 }
                 
                 .a pre {
-                    margin: 0 15px 15px 60px;
-                    padding: 20px;
-                    font-size: 14px;
+                    padding: 10px;
+                    font-size: 13px;
                 }
             }
         """
@@ -208,7 +209,7 @@ def combine_qa(html_path, answer_dir, output_path):
                 let a = document.getElementById('a'+i);
                 let b = a.parentElement.querySelector('.b');
                 a.classList.toggle('o');
-                b.textContent = a.classList.contains('o') ? '-' : '+';
+                b.textContent = a.classList.contains('o') ? '▲' : '▼';
             }
         """
         

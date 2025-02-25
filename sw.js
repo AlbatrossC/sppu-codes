@@ -1,4 +1,4 @@
-const CACHE_NAME = 'offline-pages-v2';
+const CACHE_NAME = 'offline-pages-v3';
 const OFFLINE_PAGES = [
     '/offline/offline_index',
     '/offline/offline_cgl',

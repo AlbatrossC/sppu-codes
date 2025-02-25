@@ -3,73 +3,75 @@
 <html lang="en">
 <head><meta charset="utf-8"/><meta content="width=device-width,initial-scale=1" name="viewport"/><style>
             body {
-                font-family: system-ui;
+                font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
                 margin: 0;
                 padding: 0;
-                background: #000000;
+                background: #000;
                 color: #fff;
-                font-size: 18px;
+                font-size: 16px;
                 line-height: 1.6;
             }
             
             .c {
-                max-width: 1000px;
+                max-width: 1200px; /* Wider container */
                 margin: 0 auto;
-                padding: 0 20px;
+                padding: 0 10px; /* Reduced side padding */
             }
             
             .q {
-                border-bottom: 1px solid #1a1a1a;
-                margin-bottom: 15px;
+                background: #111;
+                border-radius: 8px;
+                margin-bottom: 10px; /* Reduced margin */
+                overflow: hidden;
             }
             
             .h {
                 display: flex;
-                gap: 20px;
+                gap: 15px;
                 align-items: center;
                 cursor: pointer;
-                padding: 20px;
+                padding: 15px;
+                background: #222;
             }
             
             .h:hover {
-                background: #111111;
+                background: #333;
             }
             
             .n {
-                color: #3b82f6;
-                font-size: 20px;
+                color: #fff;
+                font-size: 18px;
                 font-weight: bold;
                 min-width: 40px;
             }
             
             .x {
                 flex: 1;
-                font-size: 18px;
+                font-size: 16px;
+                color: #fff;
             }
             
             .b {
-                border: 2px solid #3b82f6;
+                border: none;
                 background: none;
-                color: #3b82f6;
-                width: 30px;
-                height: 30px;
-                border-radius: 4px;
+                color: #fff;
+                font-size: 18px;
                 cursor: pointer;
-                font-size: 20px;
+                padding: 0;
             }
             
             .a {
                 display: none;
+                padding: 15px;
+                background: #000;
+                border-top: 1px solid #333;
             }
             
             .a pre {
-                background: #111111;
-                padding: 25px;
-                margin: 0 20px 20px 80px;
+                margin: 0;
                 overflow-x: auto;
-                font-size: 16px;
-                border-radius: 4px;
-                color: #e2e8f0;
+                font-size: 14px;
+                color: #fff;
             }
             
             .o {
@@ -78,26 +80,25 @@
             
             @media(max-width: 768px) {
                 body {
-                    font-size: 16px;
+                    font-size: 14px;
                 }
                 
                 .c {
-                    padding: 0 15px;
+                    padding: 0 10px; /* Reduced side padding for mobile */
                 }
                 
                 .h {
-                    padding: 15px;
-                    gap: 15px;
+                    padding: 10px;
+                    gap: 10px;
                 }
                 
                 .a pre {
-                    margin: 0 15px 15px 60px;
-                    padding: 20px;
-                    font-size: 14px;
+                    padding: 10px;
+                    font-size: 13px;
                 }
             }
         </style></head>
-<body><header style="padding: 25px 40px; background: #000000; margin-bottom: 30px; display: flex; justify-content: space-between; align-items: center;"><h3 style="color: #fff; margin: 0; font-size: 24px;">Object Oriented Programming (OOP) Codes</h3><a href="/" style="color: #3b82f6; text-decoration: none; font-size: 18px;">← Home</a></header><div style="background: #111111; padding: 15px 40px; margin-bottom: 30px;"><span style="background: #ffeb3b; color: #000; padding: 5px 10px; font-size: 16px; border-radius: 4px;">🌐 Offline Mode</span></div><div class="c"><div class="q" id="q1"><div class="h" onclick="t(1)"><span class="n">Q1</span><div class="x">Implement a class Complex which represents the Complex Number data type: 1) Constructor (including a default constructor which creates the complex number 0 + 0i). 2) Overload operator + to add two complex numbers. 3) Overload operator * to multiply two complex numbers. 4) Overload operators &lt;&lt; and&gt;&gt; to print and read Complex Numbers.</div><button class="b">+</button></div><div class="a" id="a1"><pre>#include &lt;iostream&gt;
+<body><header style="padding: 20px; background: #000; margin-bottom: 20px; display: flex; justify-content: space-between; align-items: center;"><h3 style="color: #fff; margin: 0; font-size: 24px; font-weight: 600;">Object Oriented Programming (OOP) Codes</h3><a href="/" style="color: #fff; text-decoration: none; font-size: 16px;">← Home</a></header><div style="background: #333; padding: 15px; margin-bottom: 20px; border-radius: 4px;"><span style="color: #fff; font-size: 16px;">🌐 Offline Mode. You can still view the content without being connected to the internet. ENJOY!</span></div><div class="c"><div class="q" id="q1"><div class="h" onclick="t(1)"><span class="n">Q1</span><div class="x">Implement a class Complex which represents the Complex Number data type: 1) Constructor (including a default constructor which creates the complex number 0 + 0i). 2) Overload operator + to add two complex numbers. 3) Overload operator * to multiply two complex numbers. 4) Overload operators &lt;&lt; and&gt;&gt; to print and read Complex Numbers.</div><button class="b">▼</button></div><div class="a" id="a1"><pre>#include &lt;iostream&gt;
 using namespace std;
 
 class Complex {
@@ -160,7 +161,7 @@ int main() {
 
     return 0;
 }
-</pre></div></div><div class="q" id="q2"><div class="h" onclick="t(2)"><span class="n">Q2</span><div class="x">Develop a program in C++ to create a database of student’s information system containing the following information: Name, Roll number, Class, Division, Date of Birth, Blood group, Contact address, Telephone number, Driving license no. and others. Construct the database with suitable member functions. Make use of constructor, default constructor, copy constructor, destructor, static member functions, friend class, this pointer, inline code, and dynamic memory allocation operators (new and delete) as well as exception handling.</div><button class="b">+</button></div><div class="a" id="a2"><pre>#include &lt;iostream&gt;
+</pre></div></div><div class="q" id="q2"><div class="h" onclick="t(2)"><span class="n">Q2</span><div class="x">Develop a program in C++ to create a database of student’s information system containing the following information: Name, Roll number, Class, Division, Date of Birth, Blood group, Contact address, Telephone number, Driving license no. and others. Construct the database with suitable member functions. Make use of constructor, default constructor, copy constructor, destructor, static member functions, friend class, this pointer, inline code, and dynamic memory allocation operators (new and delete) as well as exception handling.</div><button class="b">▼</button></div><div class="a" id="a2"><pre>#include &lt;iostream&gt;
 #include &lt;cstring&gt;
 #include &lt;exception&gt;
 
@@ -337,7 +338,7 @@ int main() {
 
     return 0;
 }
-</pre></div></div><div class="q" id="q3"><div class="h" onclick="t(3)"><span class="n">Q3</span><div class="x">Imagine a publishing company that markets both book and audio cassette versions. Create a class called Publication that stores the title (a string) and price (a float) of the publications. From this class, derive two classes: Book, which adds a page_count attribute (an integer), and Tape, which adds a playing_time attribute in minutes (a float). Write a program that instantiates the Book and Tape classes, allows the user to enter data for each class, and then displays the data members. If an exception occurs, set all data member values to zero.</div><button class="b">+</button></div><div class="a" id="a3"><pre>#include &lt;iostream&gt;
+</pre></div></div><div class="q" id="q3"><div class="h" onclick="t(3)"><span class="n">Q3</span><div class="x">Imagine a publishing company that markets both book and audio cassette versions. Create a class called Publication that stores the title (a string) and price (a float) of the publications. From this class, derive two classes: Book, which adds a page_count attribute (an integer), and Tape, which adds a playing_time attribute in minutes (a float). Write a program that instantiates the Book and Tape classes, allows the user to enter data for each class, and then displays the data members. If an exception occurs, set all data member values to zero.</div><button class="b">▼</button></div><div class="a" id="a3"><pre>#include &lt;iostream&gt;
 #include &lt;stdio.h&gt;
 using namespace std;
 
@@ -457,7 +458,7 @@ int main() {
 
     return 0;
 }
-</pre></div></div><div class="q" id="q4"><div class="h" onclick="t(4)"><span class="n">Q4</span><div class="x">Write a C++ program that creates an output file, writes information to it, closes the file, opens it again as an input file, and reads the information from the file.</div><button class="b">+</button></div><div class="a" id="a4"><pre>#include &lt;iostream&gt;
+</pre></div></div><div class="q" id="q4"><div class="h" onclick="t(4)"><span class="n">Q4</span><div class="x">Write a C++ program that creates an output file, writes information to it, closes the file, opens it again as an input file, and reads the information from the file.</div><button class="b">▼</button></div><div class="a" id="a4"><pre>#include &lt;iostream&gt;
 #include &lt;fstream&gt;
 #include &lt;string&gt;
 
@@ -479,7 +480,7 @@ int main() {
 
     return 0;
 }
-</pre></div></div><div class="q" id="q5"><div class="h" onclick="t(5)"><span class="n">Q5</span><div class="x">Write a function template for selection sort that inputs, sorts and outputs an integer array and a float array.</div><button class="b">+</button></div><div class="a" id="a5"><pre>#include &lt;iostream&gt;
+</pre></div></div><div class="q" id="q5"><div class="h" onclick="t(5)"><span class="n">Q5</span><div class="x">Write a function template for selection sort that inputs, sorts and outputs an integer array and a float array.</div><button class="b">▼</button></div><div class="a" id="a5"><pre>#include &lt;iostream&gt;
 using namespace std;
 
 template &lt;typename T&gt;
@@ -535,7 +536,7 @@ int main() {
 
     return 0;
 }
-</pre></div></div><div class="q" id="q6"><div class="h" onclick="t(6)"><span class="n">Q6</span><div class="x">Write a C++ program using STL for sorting and searching user-defined records such as personal records (Name, DOB, Telephone number, etc.) using the vector container.</div><button class="b">+</button></div><div class="a" id="a6"><pre>#include &lt;iostream&gt;
+</pre></div></div><div class="q" id="q6"><div class="h" onclick="t(6)"><span class="n">Q6</span><div class="x">Write a C++ program using STL for sorting and searching user-defined records such as personal records (Name, DOB, Telephone number, etc.) using the vector container.</div><button class="b">▼</button></div><div class="a" id="a6"><pre>#include &lt;iostream&gt;
 #include &lt;algorithm&gt;
 #include &lt;vector&gt;
 using namespace std;
@@ -610,7 +611,7 @@ int main() {
 
     return 0;
 }
-</pre></div></div><div class="q" id="q7"><div class="h" onclick="t(7)"><span class="n">Q7</span><div class="x">Write a C++ program to use the map associative container. The keys will be the names of states, and the values will be the populations of the states. When the program runs, the user is prompted to type the name of a state. The program then looks in the map, using the state name as an index, and returns the population of the state. Include error handling for cases where the state name does not exist in the map.</div><button class="b">+</button></div><div class="a" id="a7"><pre>#include &lt;iostream&gt;
+</pre></div></div><div class="q" id="q7"><div class="h" onclick="t(7)"><span class="n">Q7</span><div class="x">Write a C++ program to use the map associative container. The keys will be the names of states, and the values will be the populations of the states. When the program runs, the user is prompted to type the name of a state. The program then looks in the map, using the state name as an index, and returns the population of the state. Include error handling for cases where the state name does not exist in the map.</div><button class="b">▼</button></div><div class="a" id="a7"><pre>#include &lt;iostream&gt;
 #include &lt;map&gt;
 using namespace std;
 
@@ -640,7 +641,7 @@ int main() {
                 let a = document.getElementById('a'+i);
                 let b = a.parentElement.querySelector('.b');
                 a.classList.toggle('o');
-                b.textContent = a.classList.contains('o') ? '-' : '+';
+                b.textContent = a.classList.contains('o') ? '▲' : '▼';
             }
         </script></body>
 </html>

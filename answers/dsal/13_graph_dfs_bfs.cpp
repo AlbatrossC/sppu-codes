@@ -7,24 +7,25 @@ using namespace std;
 class Graph {
 private:
     int V;
-    vector<vector<int>> adjMatrix;
+    vector<vector<int>> adjList;
 
 public:
     Graph(int vertices) {
         V = vertices;
-        adjMatrix.resize(V, vector<int>(V, 0));
+        adjList.resize(V);
     }
 
     void addEdge(int u, int v) {
-        adjMatrix[u][v] = 1;
-        adjMatrix[v][u] = 1;
+        adjList[u].push_back(v);
+        adjList[v].push_back(u);
     }
 
     void display() const {
-        cout << "Adjacency Matrix:\n";
+        cout << "Adjacency List:\n";
         for (int i = 0; i < V; i++) {
-            for (int j = 0; j < V; j++) {
-                cout << adjMatrix[i][j] << " ";
+            cout << i << " -> ";
+            for (int neighbor : adjList[i]) {
+                cout << neighbor << " ";
             }
             cout << endl;
         }
@@ -43,10 +44,10 @@ public:
             q.pop();
             cout << node << " ";
 
-            for (int i = 0; i < V; i++) {
-                if (adjMatrix[node][i] == 1 && !visited[i]) {
-                    visited[i] = true;
-                    q.push(i);
+            for (int neighbor : adjList[node]) {
+                if (!visited[neighbor]) {
+                    visited[neighbor] = true;
+                    q.push(neighbor);
                 }
             }
         }
@@ -57,9 +58,9 @@ public:
         visited[node] = true;
         cout << node << " ";
 
-        for (int i = 0; i < V; i++) {
-            if (adjMatrix[node][i] == 1 && !visited[i]) {
-                DFSUtil(i, visited);
+        for (int neighbor : adjList[node]) {
+            if (!visited[neighbor]) {
+                DFSUtil(neighbor, visited);
             }
         }
     }

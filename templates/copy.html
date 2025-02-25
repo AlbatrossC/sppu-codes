@@ -41,9 +41,9 @@
             line-height: 1.6;
         }
 
-        /* Floating Home Button */
+        /* Home Button */
         .home-button {
-            position: fixed;
+            position: absolute;
             top: 20px;
             left: 20px;
             background-color: #4CAF50;
@@ -198,7 +198,7 @@
             margin: 0.75rem 0;
             color: #64B5F6;
             text-align: left;
-            font-size: 0.95rem;
+            font-size: 1rem;
             display: flex;
             align-items: center;
             justify-content: space-between;
@@ -217,13 +217,27 @@
             border-radius: 4px;
             padding: 0.25rem 0.5rem;
             cursor: pointer;
-            font-size: 0.8rem;
+            font-size: 1rem;
             margin-left: 1rem;
             transition: background-color 0.3s ease;
         }
 
         .copy-button:hover {
             background-color: #CC0000;
+        }
+
+        /* Clipboard Message */
+        .clipboard-message {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background-color:  #4CAF50;
+            color: white;
+            padding: 10px 20px;
+            border-radius: 5px;
+            font-size: 0.9rem;
+            z-index: 1000;
+            display: none;
         }
 
         /* Modal */
@@ -357,7 +371,7 @@
     </style>
 </head>
 <body>
-    <!-- Floating Home Button -->
+    <!-- Home Button -->
     <button class="home-button" onclick="window.location.href='/'">Home</button>
 
     <h1 class="page-title">😈 How to Copy in the Exam 😈</h1>
@@ -409,11 +423,18 @@
         <p>curl -L sppucodes.vercel.app/cgl/grpC_3.cpp <button class="copy-button" onclick="copyToClipboard('curl -L sppucodes.vercel.app/cgl/grpC_3.cpp')">Copy</button></p>
     </div>
 
+    <!-- Clipboard Message -->
+    <div class="clipboard-message" id="clipboardMessage">Copied to clipboard!</div>
+
     <script>
         // JavaScript Section
         function copyToClipboard(text) {
             navigator.clipboard.writeText(text).then(() => {
-                alert('Copied to clipboard: ' + text);
+                const clipboardMessage = document.getElementById('clipboardMessage');
+                clipboardMessage.style.display = 'block';
+                setTimeout(() => {
+                    clipboardMessage.style.display = 'none';
+                }, 2000); // Hide message after 2 seconds
             }).catch(err => {
                 console.error('Failed to copy: ', err);
             });

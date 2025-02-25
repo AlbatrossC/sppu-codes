@@ -46,10 +46,21 @@ function loadFile(subject, fileName, questionText, element) {
 function copyCode(elementId) {
     const codeElement = document.getElementById(elementId);
     const codeText = codeElement.innerText;
+    const copyButton = document.querySelector(`#${elementId}`).parentElement.querySelector('.copy-btn');
 
     navigator.clipboard.writeText(codeText)
         .then(() => {
-            showPopup();
+            // Add a class to the button for styling and animation
+            copyButton.classList.add('copied');
+
+            // Change button text to "Copied" and add a checkmark icon
+            copyButton.innerHTML = `Copied to Clipboard`;
+
+            // Reset button text and styling after 5 seconds
+            setTimeout(() => {
+                copyButton.classList.remove('copied');
+                copyButton.innerHTML = `Copy Code`;
+            }, 5000);
         })
         .catch(err => {
             console.error('Failed to copy code:', err);
@@ -57,71 +68,23 @@ function copyCode(elementId) {
         });
 }
 
-function showPopup() {
-    const gifs = [
-        "/static/gifs/DisappointedWorldCup.gif",
-        "/static/gifs/SuperBowlNoGIFbyNFL.gif",
-        "/static/gifs/TheOfficeDisappointed.gif",
-        "/static/gifs/WellDoneReactionGIF.gif",
-    ];
-    const messages = [
-        "You copied the code. Mast! Now, understand it before you start pretending to be a coder.",
-        "You copied the code. Now, how about actually using your brain and figuring it out?",
-        "Code copy karayla kay? Mast! Aata samjun ghe, tyachya aadi code copy karun apna 'coder' banu nako.",
-        "Copying without understanding? You’re just making your learning harder.",
-        "You’re not learning if you don’t understand the code. Stop copying like a robot."
-    ];
-
-    // Randomize GIF and message
-    const randomGif = gifs[Math.floor(Math.random() * gifs.length)];
-    const randomMessage = messages[Math.floor(Math.random() * messages.length)];
-
-    let popup = document.getElementById('dynamicCopyPopup');
-    if (!popup) {
-        popup = document.createElement('div');
-        popup.id = 'dynamicCopyPopup';
-        popup.className = 'popup-container';
-        popup.innerHTML = `
-            <div class="popup">
-                <img src="${randomGif}" alt="Success" class="popup-gif">
-                <h2>Code Copied !!</h2>
-                <p class="popup-message">${randomMessage}</p>
-                <div class="progress-bar"></div>
-            </div>
-        `;
-        document.body.appendChild(popup);
-    } else {
-        popup.querySelector('.popup-gif').src = randomGif;
-        popup.querySelector('.popup-message').innerText = randomMessage;
-    }
-
-    popup.style.display = 'flex';
-
-    // Reset and start progress bar animation
-    const progressBar = popup.querySelector('.progress-bar');
-    progressBar.style.width = '100%';
-    progressBar.style.transition = 'none';
-    setTimeout(() => {
-        progressBar.style.transition = 'width 5s linear';
-        progressBar.style.width = '0%';
-    }, 50);
-
-    setTimeout(() => {
-        popup.style.display = 'none';
-    }, 5000);
-}
-
+// Function to close the answer box
 function closeBox(boxId) {
     const answerBox = document.getElementById(boxId);
-    answerBox.style.display = 'none';
-    backdrop.style.display = 'none';
-    document.body.style.overflow = '';
+    if (answerBox) {
+        answerBox.style.display = 'none';
+        backdrop.style.display = 'none';
+        document.body.style.overflow = 'auto'; // Restore scrolling
+    }
 }
 
+// Function to close the popup
 function closePopup() {
     const popup = document.getElementById('dynamicCopyPopup');
     if (popup) {
         popup.style.display = 'none';
+        backdrop.style.display = 'none';
+        document.body.style.overflow = 'auto'; // Restore scrolling
     }
 }
 

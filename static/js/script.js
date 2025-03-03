@@ -110,29 +110,38 @@ backdrop.addEventListener('click', function() {
         closeBox(visibleModal.id);
     }
 });
-document.addEventListener('DOMContentLoaded', () => {
-    // Function to smoothly scroll to an element
-    function scrollToElement(id) {
-        const element = document.getElementById(id);
-        if (element) {
-            element.scrollIntoView({ behavior: 'smooth' });
+
+document.addEventListener("DOMContentLoaded", function () {
+    // Get the question parameter from URL
+    const params = new URLSearchParams(window.location.search);
+    const question = params.get("q");
+    
+    if (!question) return; // Exit if no question parameter
+    
+    // Find the matching question by URL parameter
+    const links = document.querySelectorAll(".question-link");
+    
+    for (const link of links) {
+        if (link.href.includes(`?q=${question}`)) {
+            const targetElement = link.closest(".question-item");
+            
+            if (targetElement) {
+                // Highlight with blue border
+                targetElement.style.borderColor = "#58a6ff";
+                targetElement.style.boxShadow = "0 0 0 3px rgba(88, 166, 255, 0.3)";
+                
+                // Scroll to the element
+                targetElement.scrollIntoView({ behavior: "smooth" });
+                
+                // Reset highlighting after 3 seconds
+                setTimeout(function() {
+                    targetElement.style.borderColor = "#333"; // Reset to original border color
+                    targetElement.style.boxShadow = "0 2px 4px rgba(0, 0, 0, 0.4)"; // Reset to original shadow
+                }, 3000);
+                
+                break; // Exit once found
+            }
         }
     }
-
-    // Handle click events on question links
-    document.querySelectorAll('.question-link').forEach(link => {
-        link.addEventListener('click', function(event) {
-            event.preventDefault();
-            const targetId = this.id;
-            scrollToElement(targetId);
-            history.pushState(null, null, `#${targetId}`);
-        });
-    });
-
-    // Handle initial page load with hash
-    if (window.location.hash) {
-        setTimeout(() => {
-            scrollToElement(window.location.hash.substring(1));
-        }, 100);
-    }
 });
+

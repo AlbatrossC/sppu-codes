@@ -3,36 +3,55 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>IoTL Codes</title>
+    <title>SPPU Codes - IoTL</title>
     <link rel="stylesheet" href="../static/css/answerbox.css?v=1.4">
     <link rel="stylesheet" href="../static/css/subjectlayout.css?v=1.4">
     <link href="https://fonts.googleapis.com/css2?family=Fira+Code&display=swap" rel="stylesheet">
     <link rel="icon" href="{{ url_for('get_image', filename='favicon.ico') }}" type="image/x-icon">
     <script src="../static/js/script.js" defer></script>
-    <link rel="canonical" href="https://vercel.app/subject-code">
-    <meta name="keywords" content="IoT, Arduino, LED control, blinking LED">
-    <meta name="description" content="IoT programming exercises: Control LED using Arduino, create counters, and illuminate LEDs based on conditions.">
+    <link rel="canonical" href="https://vercel.app/iotl">
+    <meta name="keywords" content="IoT, Arduino, LED control, blinking LED, temperature sensor, serial monitor">
+    <meta name="description" content="IoT programming exercises: Control LED using Arduino, create counters, illuminate LEDs based on conditions, and read temperature sensors.">
     <script type="application/ld+json">
         {
             "@context": "https://schema.org",
             "@type": "FAQPage",
             "mainEntity": [
-                { "@type": "Question", "name": "Q5: Write a program using Arduino to control LED (One or more ON/OFF) or Blinking." },
-                { "@type": "Question", "name": "Q6: Create a program that illuminates the green LED if the counter is less than 100, illuminates the yellow LED otherwise." },
-                { "@type": "Question", "name": "Q7: Create a program so that when the user enters ‘b’ the green light blinks, ‘g’ the green light is illuminated, ‘y’ the yellow light is illuminated and ‘r’ the red light is illuminated." },
-                { "@type": "Question", "name": "Q8: Write a program that asks the user for a number and outputs the number squared." }
+                {
+                    "@type": "Question",
+                    "name": "Q5: Write a program using Arduino to control LED (One or more ON/OFF) or Blinking.",
+                    "acceptedAnswer": {
+                        "@type": "Answer",
+                        "text": "View Code at <a href='https://vercel.app/iotl?q=blinking-led'>https://vercel.app/iotl?q=blinking-led</a>"
+                    }
+                },
+                {
+                    "@type": "Question",
+                    "name": "Q6: Create a program that illuminates the green LED if the counter is less than 100, illuminates the yellow LED otherwise.",
+                    "acceptedAnswer": {
+                        "@type": "Answer",
+                        "text": "View Code at <a href='https://vercel.app/iotl?q=led-counter'>https://vercel.app/iotl?q=led-counter</a>"
+                    }
+                },
+                {
+                    "@type": "Question",
+                    "name": "Q7: Create a program so that when the user enters 'b', the green light blinks, 'g' the green light is illuminated, 'y' the yellow light is illuminated, and 'r' the red light is illuminated.",
+                    "acceptedAnswer": {
+                        "@type": "Answer",
+                        "text": "View Code at <a href='https://vercel.app/iotl?q=led-control'>https://vercel.app/iotl?q=led-control</a>"
+                    }
+                },
+                {
+                    "@type": "Question",
+                    "name": "Q8: Write a program that asks the user for a number and outputs the number squared.",
+                    "acceptedAnswer": {
+                        "@type": "Answer",
+                        "text": "View Code at <a href='https://vercel.app/iotl?q=square-number'>https://vercel.app/iotl?q=square-number</a>"
+                    }
+                }
             ]
         }
     </script>
-
-    <script>
-        if ('serviceWorker' in navigator) {
-            navigator.serviceWorker.register('/sw.js')
-                .then(reg => console.log('Service Worker Registered!', reg))
-                .catch(err => console.log('Service Worker Registration Failed:', err));
-        }
-    </script>
-    
 </head>
 <body>
     <header>
@@ -44,14 +63,22 @@
     <div class="info-box">
         <p>
             If the code doesn't load, you can check it out on 
-            <a href="https://github.com/AlbatrossC/codes/tree/main/answers/iotl" target="_blank" rel="noopener noreferrer" >GitHub</a>
+            <a href="https://github.com/AlbatrossC/codes/tree/main/answers/iotl" target="_blank" rel="noopener noreferrer">GitHub</a>
         </p>
     </div>
+
+    <!-- Group B -->
     <div class="group">
         <h3>Group B</h3>
+
+        <!-- Question 5 -->
         <div class="question-item">
-            <p><strong>Q5: </strong>Write a program using Arduino to control LED (One or more ON/OFF) or Blinking.</p>
-            <button class="view-code-btn" onclick="loadFile('iotl', 'blinking.c++', 'Blinking', this)">View Code</button>
+            <h1>
+                <a href="?q=blinking-led" class="question-link">
+                    <strong>Q5: </strong>Write a program using Arduino to control LED (One or more ON/OFF) or Blinking.
+                </a>
+            </h1>
+            <button class="view-code-btn" onclick="loadFile('iotl', 'blinking.c++', 'Blinking LED', this)">View Code</button>
             <div class="answer-box" id="answerBox5">
                 <h3 id="questionText5"></h3>
                 <pre id="codeContent5"></pre>
@@ -61,8 +88,14 @@
                 </div>
             </div>
         </div>
+
+        <!-- Question 6 -->
         <div class="question-item">
-            <p><strong>Q6: </strong>Create a program that illuminates the green LED if the counter is less than 100, illuminates the yellow LED otherwise.</p>
+            <h1>
+                <a href="?q=led-counter" class="question-link">
+                    <strong>Q6: </strong>Create a program that illuminates the green LED if the counter is less than 100, illuminates the yellow LED otherwise.
+                </a>
+            </h1>
             <button class="view-code-btn" onclick="loadFile('iotl', 'counter.c++', 'LED Counter', this)">View Code</button>
             <div class="answer-box" id="answerBox6">
                 <h3 id="questionText6"></h3>
@@ -74,9 +107,13 @@
             </div>
         </div>
 
-
+        <!-- Question 7 -->
         <div class="question-item">
-            <p><strong>Q7: </strong>Create a program so that when the user enters 'b', the green light blinks, 'g' the green light is illuminated, 'y' the yellow light is illuminated, and 'r' the red light is illuminated.</p>
+            <h1>
+                <a href="?q=led-control" class="question-link">
+                    <strong>Q7: </strong>Create a program so that when the user enters 'b', the green light blinks, 'g' the green light is illuminated, 'y' the yellow light is illuminated, and 'r' the red light is illuminated.
+                </a>
+            </h1>
             <button class="view-code-btn" onclick="loadFile('iotl', 'led_control.c++', 'LED Control', this)">View Code</button>
             <div class="answer-box" id="answerBox7">
                 <h3 id="questionText7"></h3>
@@ -88,8 +125,13 @@
             </div>
         </div>
 
+        <!-- Question 8 -->
         <div class="question-item">
-            <p><strong>Q8: </strong>Write a program that asks the user for a number and outputs the number squared.</p>
+            <h1>
+                <a href="?q=square-number" class="question-link">
+                    <strong>Q8: </strong>Write a program that asks the user for a number and outputs the number squared.
+                </a>
+            </h1>
             <button class="view-code-btn" onclick="loadFile('iotl', 'square_number.cpp', 'Square Number', this)">View Code</button>
             <div class="answer-box" id="answerBox8">
                 <h3 id="questionText8"></h3>
@@ -100,9 +142,14 @@
                 </div>
             </div>
         </div>
-        
+
+        <!-- Question 10 -->
         <div class="question-item">
-            <p><strong>Q10: </strong>Write a program to read the temperature sensor and send the values to the serial monitor on the computer.</p>
+            <h1>
+                <a href="?q=temperature-sensor" class="question-link">
+                    <strong>Q10: </strong>Write a program to read the temperature sensor and send the values to the serial monitor on the computer.
+                </a>
+            </h1>
             <button class="view-code-btn" onclick="loadFile('iotl', 'temperature.cpp', 'Temperature Sensor', this)">View Code</button>
             <div class="answer-box" id="answerBox10">
                 <h3 id="questionText10"></h3>
@@ -114,8 +161,13 @@
             </div>
         </div>
 
+        <!-- Question 12 -->
         <div class="question-item">
-            <p><strong>Q12: </strong>Write a program to show the temperature and display a graph of the recent measurements.</p>
+            <h1>
+                <a href="?q=temperature-graph" class="question-link">
+                    <strong>Q12: </strong>Write a program to show the temperature and display a graph of the recent measurements.
+                </a>
+            </h1>
             <button class="view-code-btn" onclick="loadFile('iotl', 'temperature.cpp', 'Temperature Graph', this)">View Code</button>
             <div class="answer-box" id="answerBox12">
                 <h3 id="questionText12"></h3>

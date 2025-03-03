@@ -89,7 +89,7 @@ a:hover {
 }
 
 .question-item h1 {
-    font-size: 1rem;
+    font-size: 1.1rem;
     color: #e6edf3;
     margin-bottom: 0.9375rem; /* 15px */
     font-weight: normal; /* Removes bold effect */
@@ -105,25 +105,6 @@ a:hover {
     text-decoration: none; /* Removes underline */
     color: inherit; /* Keeps default text color */
 }
-
-.question-item p {
-    font-size: 1rem;
-    color: #e6edf3;
-    margin-bottom: 0.9375rem; /* 15px */
-    font-weight: normal; /* Removes bold effect */
-    display: block; /* Makes it behave like a <p> */
-    line-height: 1.5; /* Adjusts readability */
-    cursor: pointer; /* Makes it interactive */
-}
-
-.question-item p:hover {
-    color: #539fea; /* Blue on hover */
-}
-.question-link {
-    text-decoration: none; /* Removes underline */
-    color: inherit; /* Keeps default text color */
-}
-
 .question-item ol,
 .question-item ul {
     margin-left: 1.25rem;

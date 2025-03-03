@@ -105,12 +105,6 @@ def subject(subject_name):
     except Exception:
         return render_template("error.html")
 
-@app.route('/offline/<offline_page>')
-def offline(offline_page):
-    try:
-        return render_template(f'offline/{offline_page}.html')
-    except Exception:
-        return render_template("error.html")
 
 @app.route('/sw.js')
 def serve_sw():

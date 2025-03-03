@@ -29,9 +29,9 @@
         <meta name="language" content="English">
             
         <!-- CSS -->
-        <link rel="stylesheet" href="static/css/index.css?v=2.3" media="all">
-        <link rel="stylesheet" href="static/css/header.css?v=2.3" media="all">
-        <link rel="stylesheet" href="static/css/footer.css?v=2.3" media="all">
+        <link rel="stylesheet" href="static/css/index.css?v=2.4" media="all">
+        <link rel="stylesheet" href="static/css/header.css?v=2.4" media="all">
+        <link rel="stylesheet" href="static/css/footer.css?v=2.4" media="all">
         
         <!-- Favicon -->
         <link rel="icon" href="{{ url_for('get_image', filename='favicon.ico') }}" type="image/x-icon">
@@ -79,19 +79,6 @@
                     }
                 }
             }
-        </script>
-
-        <!-- Offline Redirection -->
-        <script>
-            if (!navigator.onLine) {
-                let currentPage = window.location.pathname.replace(/^\//, '') || 'index';
-                window.location.href = `/offline/offline_${currentPage}`;
-            }
-
-            window.addEventListener('offline', function () {
-                let currentPage = window.location.pathname.replace(/^\//, '') || 'index';
-                window.location.href = `/offline/offline_${currentPage}`;
-            });
         </script>
 
         <!-- Register Service Worker -->

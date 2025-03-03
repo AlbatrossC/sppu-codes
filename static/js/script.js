@@ -110,3 +110,29 @@ backdrop.addEventListener('click', function() {
         closeBox(visibleModal.id);
     }
 });
+document.addEventListener('DOMContentLoaded', () => {
+    // Function to smoothly scroll to an element
+    function scrollToElement(id) {
+        const element = document.getElementById(id);
+        if (element) {
+            element.scrollIntoView({ behavior: 'smooth' });
+        }
+    }
+
+    // Handle click events on question links
+    document.querySelectorAll('.question-link').forEach(link => {
+        link.addEventListener('click', function(event) {
+            event.preventDefault();
+            const targetId = this.id;
+            scrollToElement(targetId);
+            history.pushState(null, null, `#${targetId}`);
+        });
+    });
+
+    // Handle initial page load with hash
+    if (window.location.hash) {
+        setTimeout(() => {
+            scrollToElement(window.location.hash.substring(1));
+        }, 100);
+    }
+});

@@ -35,31 +35,25 @@ def generate_sw_js():
                 relative_path = os.path.relpath(os.path.join(root, file), answers_dir)
                 files_to_cache.append(f'/{relative_path.replace(os.sep, "/")}')
 
-    # Define core assets
-    core_assets = ['/', '/static/css/index.css', '/static/js/index.js']
-
-    # Generate the sw.js content
+    # Generate the sw.js content with optimized logic
     sw_js_content = f"""
 const CACHE_NAME = 'my-site-cache-v1';
 const urlsToCache = {files_to_cache};
 
-// Core assets to cache immediately (critical for offline use)
-const CORE_ASSETS = {core_assets};
-
-// Install event: Cache only core assets initially
+// Install event: Cache all files upfront
 self.addEventListener('install', (event) => {{
   event.waitUntil(
     caches.open(CACHE_NAME)
       .then((cache) => {{
-        console.log('Opened cache');
-        return cache.addAll(CORE_ASSETS); // Cache only critical files
+        console.log('Opened cache and caching all files');
+        return cache.addAll(urlsToCache); // Cache everything
       }})
-      .then(() => self.skipWaiting()) // Activate SW immediately
+      .then(() => self.skipWaiting())
       .catch((err) => console.error('Install failed:', err))
   );
 }});
 
-// Activate event: Clean old caches and pre-cache remaining files in the background
+// Activate event: Clean up old caches
 self.addEventListener('activate', (event) => {{
   const cacheWhitelist = [CACHE_NAME];
   event.waitUntil(
@@ -67,44 +61,45 @@ self.addEventListener('activate', (event) => {{
       return Promise.all(
         cacheNames.map((cacheName) => {{
           if (!cacheWhitelist.includes(cacheName)) {{
+            console.log('Deleting old cache:', cacheName);
             return caches.delete(cacheName);
           }}
         }})
       );
-    }}).then(() => {{
-      // Pre-cache remaining files in the background
-      return caches.open(CACHE_NAME).then((cache) => {{
-        const filesToCache = urlsToCache.filter((url) => !CORE_ASSETS.includes(url));
-        return Promise.allSettled(
-          filesToCache.map((url) => {{
-            return cache.add(url).catch((err) => {{
-              console.warn(`Failed to cache ${{url}}: ${{err}}`);
-            }});
-          }})
-        );
-      }});
-    }}).then(() => self.clients.claim()) // Take control of pages immediately
+    }}).then(() => self.clients.claim())
   );
 }});
 
-// Fetch event: Cache dynamically and serve from cache
+// Fetch event: Stale-while-revalidate strategy
 self.addEventListener('fetch', (event) => {{
   let requestUrl = new URL(event.request.url);
 
-  // Normalize requests by removing query parameters for CSS, JS, and other static files
+  // Normalize requests for static files by removing query params
   if (requestUrl.pathname.startsWith('/static/')) {{
-    requestUrl.search = ''; // Strip query params
+    requestUrl.search = '';
   }}
 
   event.respondWith(
     caches.match(requestUrl.pathname).then((cachedResponse) => {{
+      // Return cached response if available
       if (cachedResponse) {{
+        // Update cache in the background
+        event.waitUntil(
+          fetch(event.request).then((networkResponse) => {{
+            if (networkResponse && networkResponse.status === 200 && networkResponse.type === 'basic') {{
+              return caches.open(CACHE_NAME).then((cache) => {{
+                cache.put(requestUrl.pathname, networkResponse.clone());
+              }});
+            }}
+          }}).catch((err) => console.warn('Background update failed:', err))
+        );
         return cachedResponse;
       }}
 
+      // If not in cache, fetch from network and cache it
       return fetch(event.request).then((networkResponse) => {{
         if (!networkResponse || networkResponse.status !== 200 || networkResponse.type !== 'basic') {{
-          return networkResponse; // Don't cache errors or cross-origin responses
+          return networkResponse;
         }}
 
         const responseToCache = networkResponse.clone();
@@ -113,7 +108,7 @@ self.addEventListener('fetch', (event) => {{
         }});
 
         return networkResponse;
-      }}).catch(() => caches.match('/')); // Fallback
+      }}).catch(() => caches.match('/')); // Fallback to root
     }})
   );
 }});

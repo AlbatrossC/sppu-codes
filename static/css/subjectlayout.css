@@ -118,21 +118,47 @@ a:hover {
 
 .view-code-btn {
     display: inline-block;
-    padding: 0.625rem 0.875rem; /* 10px 14px */
-    border: 1px solid #58a6ff;
-    border-radius: 6px;
+    padding: 0.625rem 1rem;
+    border: 2px solid #58a6ff;
+    border-radius: 4px;
     background-color: transparent;
     color: #58a6ff;
     font-size: 0.875rem;
     font-weight: 500;
     text-decoration: none;
     transition: all 0.2s ease;
+    outline: none;
+    position: relative;
+    overflow: hidden;
 }
 
 .view-code-btn:hover {
-    background-color: #58a6ff;
     color: #fff;
+    background-color: #58a6ff;
 }
+
+.download-code-btn {
+    display: inline-block;
+    padding: 0.625rem 1rem;
+    border: 2px solid #238636;
+    border-radius: 4px;
+    background-color: transparent;
+    color: #238636;
+    font-size: 0.875rem;
+    font-weight: 500;
+    text-decoration: none;
+    transition: all 0.2s ease;
+    outline: none;
+    position: relative;
+    overflow: hidden;
+    margin-left: 0.5rem;
+    
+}
+
+.download-code-btn:hover {
+    color: #fff;
+    background-color: #238636;
+}   
 
 .info-box {
     background-color: rgba(0, 0, 0, 0.2);

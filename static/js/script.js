@@ -4,10 +4,33 @@ document.body.appendChild(backdrop);
 
 function loadFile(subject, fileName, questionText, element) {
     console.log(`Attempting to load file: ${subject}/${fileName}`);
-    const answerBox = document.getElementById(element.nextElementSibling.id);
-    const questionId = answerBox.id.match(/\d+[a-z]?/)[0];
-    const questionTitle = document.getElementById('questionText' + questionId);
-    const codeContent = document.getElementById('codeContent' + questionId);
+
+    // Find the closest .question-item and locate the answer-box inside it
+    const questionItem = element.closest('.question-item');
+    if (!questionItem) {
+        console.error('Error: Could not find parent .question-item');
+        return;
+    }
+
+    const answerBox = questionItem.querySelector('.answer-box');
+    if (!answerBox) {
+        console.error('Error: Could not find .answer-box inside question-item');
+        return;
+    }
+
+    const questionId = answerBox.id.match(/\d+[a-z]?/);
+    if (!questionId) {
+        console.error('Error: Could not extract question ID from answer-box ID');
+        return;
+    }
+
+    const questionTitle = document.getElementById('questionText' + questionId[0]);
+    const codeContent = document.getElementById('codeContent' + questionId[0]);
+
+    if (!questionTitle || !codeContent) {
+        console.error('Error: Missing question title or code content elements');
+        return;
+    }
 
     codeContent.innerText = 'Loading...';
     answerBox.style.display = 'block';
@@ -42,6 +65,7 @@ function loadFile(subject, fileName, questionText, element) {
             alert(`Failed to load ${fileName}. Error: ${err.message}`);
         });
 }
+
 
 function copyCode(elementId) {
     const codeElement = document.getElementById(elementId);
@@ -145,3 +169,28 @@ document.addEventListener("DOMContentLoaded", function () {
     }
 });
 
+function downloadCode(subject, fileName) {
+    const filePath = `/${subject}/${fileName}`;
+    fetch(filePath)
+        .then(response => {
+            if (!response.ok) {
+                throw new Error(`HTTP error! Status: ${response.status}`);
+            }
+            return response.text();
+        })
+        .then(data => {
+            const blob = new Blob([data], { type: 'text/plain' });
+            const url = URL.createObjectURL(blob);
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = fileName;
+            document.body.appendChild(a);
+            a.click();
+            document.body.removeChild(a);
+            URL.revokeObjectURL(url);
+        })
+        .catch(err => {
+            console.error('Error downloading file:', err);
+            alert(`Failed to download ${fileName}. Error: ${err.message}`);
+        });
+}

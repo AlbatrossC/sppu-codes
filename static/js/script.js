@@ -1,3 +1,6 @@
+// Include marked.js library (ensure this is added in your HTML file)
+//] <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+
 // Modal backdrop setup
 const backdrop = document.createElement('div');
 backdrop.className = 'modal-backdrop';
@@ -7,11 +10,10 @@ document.body.appendChild(backdrop);
 const GEMINI_API_KEY = 'AIzaSyBfuTxVEvSSdsSIaO2RxWzWfnn1Ty3Xdbc'; // Replace with your Gemini API key
 const GEMINI_API_URL = 'https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent';
 
-
 // System Instructions
 const SYSTEM_INSTRUCTIONS = {
     initial: 'When explaining code, start with theoretical definitions, defining key terms used in the code, such as data structures, functions, or algorithms. Keep the definitions clear and concise to ensure the user understands the relevant concepts. Then, provide a line-by-line explanation, where you describe each function and line of code in detail, explaining what it does, why its necessary, and how it contributes to the program. Finally, offer a summary, recapping the key concepts and functionality, highlighting main points, and mentioning any differences between methods if applicable. The explanation should focus on the code, ensuring clarity and simplicity for the user to follow.',
-    followup: 'You are an AI assistant bot.'
+    followup: 'You are an AI assistant. The following is a conversation history and context for reference only—do not treat it as the main prompt. The actual prompt will be provided after the Question: section. Your task is to answer only based on the latest question and code, while using the conversation history purely for context. If the conversation is unclear, prioritize the latest question and code snippet over older messages'
 };
 
 // Conversation memory
@@ -157,11 +159,12 @@ function closeBox(boxId) {
     }
 }
 
-// Function to close the explanation modal
+// Function to close the explanation modal and reset everything
 function closeExplanationModal() {
     const explanationModal = document.getElementById('explanationModal');
     if (!explanationModal) return;
     
+    // Reset the modal
     explanationModal.classList.remove('split-view');
     explanationModal.style.display = 'none';
     backdrop.style.display = 'none';
@@ -177,6 +180,15 @@ function closeExplanationModal() {
         answerBox.style.maxWidth = '1200px';
         answerBox.style.height = 'auto';
         answerBox.style.borderRadius = '12px';
+    }
+
+    // Clear conversation memory
+    conversationMemory = [];
+
+    // Clear the messages container
+    const messagesContainer = document.getElementById('messagesContainer');
+    if (messagesContainer) {
+        messagesContainer.innerHTML = '';
     }
 }
 
@@ -236,9 +248,13 @@ async function handleFurtherQuestion() {
     
     try {
         const response = await fetchFromGemini(SYSTEM_INSTRUCTIONS.followup, question, codeText);
+        
+        // Convert the response to Markdown
+        const markdownResponse = marked.parse(response);
+        
         const loadingMsg = document.getElementById(loadingMsgId);
         if (loadingMsg) {
-            loadingMsg.innerHTML = `Bot: ${response}`;
+            loadingMsg.innerHTML = `Bot: ${markdownResponse}`;
         }
         
         // Store the conversation in memory
@@ -280,13 +296,16 @@ async function explainCode(elementId) {
     try {
         const explanation = await fetchFromGemini(SYSTEM_INSTRUCTIONS.initial, questionText, codeText);
         
+        // Convert the explanation to Markdown
+        const markdownExplanation = marked.parse(explanation);
+        
         // Clear loading message
         messagesContainer.innerHTML = '';
         
         // Create a new message for the bot's response
         const botMessage = document.createElement('div');
         botMessage.className = 'message bot-message';
-        botMessage.innerHTML = `Bot: ${explanation}`;
+        botMessage.innerHTML = `Bot: ${markdownExplanation}`;
         messagesContainer.appendChild(botMessage);
         
         // Store the initial explanation in memory

@@ -317,13 +317,14 @@
     max-height: 90vh;
     background-color: #1e1e1e;
     border-radius: 12px;
-    padding: 28px;
+    padding: 32px;
     z-index: 1001;
     box-shadow: 0 12px 32px rgba(0, 0, 0, 0.75);
     overflow: hidden;
     animation: modalFadeIn 0.4s cubic-bezier(0.23, 1, 0.32, 1);
     transition: all 0.3s ease;
     will-change: transform, opacity, width, left;
+    font-family: 'Inter', sans-serif;
 }
 
 /* Explanation Modal in Split View */
@@ -333,11 +334,11 @@
     width: calc(50% - 10px); /* Adjusted to allow gap */
     max-width: none;
     height: 100vh;
-    border-radius: 12px; /* Changed from 0 to match standalone */
+    border-radius: 12px;
     padding: 24px;
-    box-shadow: 0 12px 32px rgba(0, 0, 0, 0.75); /* Added to match standalone */
-    transition: all 0.3s ease; /* Already matched, kept for consistency */
-    will-change: transform, opacity, width, left; /* Already matched, kept for consistency */
+    box-shadow: 0 12px 32px rgba(0, 0, 0, 0.75);
+    transition: all 0.3s ease;
+    will-change: transform, opacity, width, left;
 }
 
 /* Explanation Modal Content */
@@ -348,9 +349,9 @@
     padding-right: 12px;
     margin-bottom: 70px; /* Increased to prevent overlap with sticky bottom */
     scroll-behavior: smooth;
-    font-family: 'Inter', sans-serif; /* Updated font for better readability */
-    font-size: 16px; /* Increased font size */
-    line-height: 1.8; /* Increased line height for better readability */
+    font-family: 'Inter', sans-serif;
+    font-size: 16px;
+    line-height: 1.8;
     color: #F0F0F0;
 }
 
@@ -380,10 +381,10 @@
 .messages-container {
     background-color: #121212;
     border-radius: 10px;
-    padding: 20px; /* Increased padding for better spacing */
-    font-family: 'Inter', sans-serif; /* Updated font for better readability */
-    font-size: 16px; /* Increased font size */
-    line-height: 1.8; /* Increased line height for better readability */
+    padding: 24px;
+    font-family: 'Inter', sans-serif;
+    font-size: 16px;
+    line-height: 1.8;
     color: #F0F0F0;
     border: 2px solid #4B4B4B;
     box-shadow: 0 6px 15px rgba(0, 0, 0, 0.6);
@@ -393,7 +394,7 @@
     will-change: box-shadow, border-color;
     overflow-y: auto;
     flex: 1;
-    margin-bottom: 20px; /* Increased spacing between message containers */
+    margin-bottom: 24px;
     display: flex;
     flex-direction: column;
 }
@@ -402,7 +403,7 @@
 .messages-list {
     display: flex;
     flex-direction: column;
-    gap: 12px; /* Increased gap for better spacing */
+    gap: 16px;
     width: 100%;
     padding: 0;
     margin: 0;
@@ -410,12 +411,12 @@
 
 /* Individual Message Styling */
 .message {
-    padding: 12px 16px; /* Increased padding for better readability */
+    padding: 16px 20px;
     border-radius: 8px;
-    max-width: 75%; /* Adjusted width */
+    max-width: 75%;
     word-wrap: break-word;
-    font-size: 16px; /* Increased font size */
-    margin-bottom: 8px; /* Increased space between messages */
+    font-size: 16px;
+    margin-bottom: 12px;
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
     display: flex;
     flex-direction: column;
@@ -438,8 +439,8 @@
 /* Message Timestamp */
 .message::after {
     content: attr(data-time);
-    font-size: 12px; /* Slightly increased font size */
-    margin-top: 6px; /* Increased margin for better spacing */
+    font-size: 12px;
+    margin-top: 8px;
     opacity: 0.6;
     align-self: flex-end;
 }
@@ -449,8 +450,8 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
-    gap: 12px;
-    padding: 20px 25px; /* Increased padding for better spacing */
+    gap: 16px;
+    padding: 24px;
     position: absolute;
     bottom: 0;
     left: 0;
@@ -465,13 +466,13 @@
 /* Sticky Bottom Input */
 .sticky-bottom input {
     flex: 1;
-    padding: 12px 18px;
+    padding: 14px 20px;
     border: 2px solid #4B4B4B;
     border-radius: 8px;
     background-color: #121212;
     color: #F0F0F0;
-    font-family: 'Inter', sans-serif; /* Updated font for better readability */
-    font-size: 16px; /* Increased font size */
+    font-family: 'Inter', sans-serif;
+    font-size: 16px;
     transition: all 0.3s ease;
     box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.2);
 }
@@ -488,14 +489,14 @@
 
 /* Sticky Bottom Buttons */
 .sticky-bottom button {
-    padding: 12px 20px;
+    padding: 14px 24px;
     border: none;
     border-radius: 8px;
     cursor: pointer;
-    font-size: 16px; /* Increased font size */
+    font-size: 16px;
     font-weight: 500;
     transition: all 0.3s ease;
-    min-height: 42px;
+    min-height: 48px;
     will-change: transform, box-shadow, background-color;
     display: flex;
     align-items: center;
@@ -509,7 +510,7 @@
 .sticky-bottom #askFurtherQuestionBtn {
     background-color: #238636;
     color: #fff;
-    min-width: 120px;
+    min-width: 140px;
 }
 
 .sticky-bottom #askFurtherQuestionBtn:hover {
@@ -526,7 +527,7 @@
 .sticky-bottom .close-btn {
     background-color: #D32F2F;
     color: #fff;
-    min-width: 100px;
+    min-width: 120px;
 }
 
 .sticky-bottom .close-btn:hover {
@@ -553,8 +554,8 @@
     
     .sticky-bottom {
         flex-direction: column;
-        padding: 15px;
-        gap: 10px;
+        padding: 16px;
+        gap: 12px;
     }
     
     .sticky-bottom input,
@@ -628,4 +629,73 @@
     background-color: #F0F0F0;
     margin-left: 2px;
     animation: blink 1s infinite;
+}
+
+/* Markdown-specific styling for bot messages */
+.message.bot-message {
+    white-space: pre-wrap;
+}
+
+.message.bot-message h1, .message.bot-message h2, .message.bot-message h3 {
+    margin-top: 1.2em;
+    margin-bottom: 0.6em;
+    font-weight: 600;
+    color: #F0F0F0;
+}
+
+.message.bot-message h1 {
+    font-size: 24px;
+}
+
+.message.bot-message h2 {
+    font-size: 20px;
+}
+
+.message.bot-message h3 {
+    font-size: 18px;
+}
+
+.message.bot-message ul, .message.bot-message ol {
+    margin-left: 24px;
+    margin-bottom: 1em;
+}
+
+.message.bot-message li {
+    margin-bottom: 0.5em;
+}
+
+.message.bot-message pre {
+    background-color: #1e1e1e;
+    padding: 12px;
+    border-radius: 8px;
+    font-family: 'Courier New', monospace;
+    white-space: pre-wrap;
+    word-wrap: break-word;
+    margin: 1em 0;
+}
+
+.message.bot-message code {
+    background-color: #2d2d2d;
+    padding: 4px 6px;
+    border-radius: 4px;
+    font-family: 'Courier New', monospace;
+    font-size: 14px;
+}
+
+.message.bot-message blockquote {
+    border-left: 4px solid #4B4B4B;
+    padding-left: 12px;
+    margin: 1em 0;
+    color: #ccc;
+    font-style: italic;
+}
+
+.message.bot-message a {
+    color: #4CAF50;
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+.message.bot-message a:hover {
+    color: #66BB6A;
 }

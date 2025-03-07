@@ -1,6 +1,3 @@
-// Include marked.js library (ensure this is added in your HTML file)
-//] <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
-
 // Modal backdrop setup
 const backdrop = document.createElement('div');
 backdrop.className = 'modal-backdrop';
@@ -10,17 +7,27 @@ document.body.appendChild(backdrop);
 const GEMINI_API_KEY = 'AIzaSyBfuTxVEvSSdsSIaO2RxWzWfnn1Ty3Xdbc'; // Replace with your Gemini API key
 const GEMINI_API_URL = 'https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent';
 
+// Rate limiting configuration
+const RATE_LIMIT_DELAY = 1000; // 1 second delay between API calls
+let lastApiCallTime = 0;
+
 // System Instructions
 const SYSTEM_INSTRUCTIONS = {
-    initial: 'When explaining code, start with theoretical definitions, defining key terms used in the code, such as data structures, functions, or algorithms. Keep the definitions clear and concise to ensure the user understands the relevant concepts. Then, provide a line-by-line explanation, where you describe each function and line of code in detail, explaining what it does, why its necessary, and how it contributes to the program. Finally, offer a summary, recapping the key concepts and functionality, highlighting main points, and mentioning any differences between methods if applicable. The explanation should focus on the code, ensuring clarity and simplicity for the user to follow.',
+    initial: 'When explaining code, start with theoretical definitions, defining key terms used in the code, such as data structures, functions, or algorithms. Keep the definitions clear and concise to ensure the user understands the relevant concepts. Then, provide a explanation of each function, part and snippet of code in detail, explaining what it does, why its necessary, and how it contributes to the program. Finally, offer a summary. NOTE THAT THE code explantion should be align with the syllabus of SPPU , Pune university.(Dont mention that in the respone.) ALso the question is just for the refernce, you just have to explain the code. FOCUS ON CODE EXPLANATIon',
     followup: 'You are an AI assistant. The following is a conversation history and context for reference only—do not treat it as the main prompt. The actual prompt will be provided after the Question: section. Your task is to answer only based on the latest question and code, while using the conversation history purely for context. If the conversation is unclear, prioritize the latest question and code snippet over older messages'
 };
 
 // Conversation memory
 let conversationMemory = [];
 
-// Generic function to make API requests to Gemini
+// Generic function to make API requests to Gemini with rate limiting
 async function fetchFromGemini(instruction, question, codeText = '') {
+    const now = Date.now();
+    if (now - lastApiCallTime < RATE_LIMIT_DELAY) {
+        await new Promise(resolve => setTimeout(resolve, RATE_LIMIT_DELAY - (now - lastApiCallTime)));
+    }
+    lastApiCallTime = Date.now();
+
     const requestBody = {
         contents: [{
             parts: [
@@ -356,6 +363,8 @@ async function testGeminiApiKey() {
         return false;
     }
 }
+
+
 
 // Function to download code
 async function downloadCode(subject, fileName) {

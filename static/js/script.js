@@ -364,8 +364,6 @@ async function testGeminiApiKey() {
     }
 }
 
-
-
 // Function to download code
 async function downloadCode(subject, fileName) {
     try {

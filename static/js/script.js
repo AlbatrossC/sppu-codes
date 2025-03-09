@@ -4,7 +4,7 @@ backdrop.className = 'modal-backdrop';
 document.body.appendChild(backdrop);
 
 // Gemini API Configuration
-const GEMINI_API_KEY = 'AIzaSyBfuTxVEvSSdsSIaO2RxWzWfnn1Ty3Xdbc'; // Replace with your Gemini API key
+const GEMINI_API_KEY = 'AIzaSyDMW2PmEg9Uj4ry81HRRr4WmpoZ3l4--_A'; // Replace with your Gemini API key
 const GEMINI_API_URL = 'https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-pro:generateContent';
 
 // Rate limiting configuration
@@ -184,11 +184,19 @@ function closeExplanationModal() {
     // Reset the modal
     explanationModal.classList.remove('split-view');
     explanationModal.style.display = 'none';
-    backdrop.style.display = 'none';
-    document.body.style.overflow = 'auto';
+    
+    // Check if the answer box is still visible
+    const answerBox = document.querySelector('.answer-box[style*="display: block"]');
+    if (answerBox) {
+        // If the answer box is still visible, show the backdrop
+        backdrop.style.display = 'block';
+    } else {
+        // If no answer box is visible, hide the backdrop
+        backdrop.style.display = 'none';
+        document.body.style.overflow = 'auto';
+    }
 
     // Reset the original answer box
-    const answerBox = document.querySelector('.answer-box[style*="display: block"]');
     if (answerBox) {
         answerBox.classList.remove('split-view');
         answerBox.style.left = '50%';
@@ -302,11 +310,27 @@ async function explainCode(elementId) {
     const messagesContainer = document.getElementById('messagesContainer');
     messagesContainer.innerHTML = `<div class="message bot-message">Bot: Analyzing code and preparing explanation...</div>`;
     
-    // Setup UI for split view
+    // Reset styles for split view
     const answerBox = codeElement.closest('.answer-box');
-    answerBox.classList.add('split-view');
-    explanationModal.classList.add('split-view');
-    explanationModal.style.display = 'block';
+    if (answerBox) {
+        answerBox.classList.add('split-view');
+        answerBox.style.left = '0';
+        answerBox.style.transform = 'translateY(-50%)';
+        answerBox.style.width = 'calc(50% - 10px)';
+        answerBox.style.maxWidth = 'none';
+        answerBox.style.height = '100vh';
+        answerBox.style.borderRadius = '12px';
+        answerBox.style.marginRight = '10px';
+    }
+
+    if (explanationModal) {
+        explanationModal.classList.add('split-view');
+        explanationModal.style.display = 'block';
+        explanationModal.style.width = 'calc(50% - 10px)';
+        explanationModal.style.left = 'calc(50% + 10px)';
+        explanationModal.style.transform = 'translateY(-50%)';
+    }
+
     backdrop.style.display = 'block';
     document.body.style.overflow = 'hidden';
 

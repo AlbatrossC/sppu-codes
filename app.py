@@ -1,4 +1,4 @@
-from flask import Flask, render_template, send_from_directory, abort, request, redirect, url_for, flash
+from flask import Flask, render_template, send_from_directory, abort, request, redirect, url_for, flash, jsonify
 import os
 import psycopg2
 from hosting.quecount import quecount_bp
@@ -10,7 +10,10 @@ app.secret_key = 'karlos'
 app.register_blueprint(quecount_bp)
 
 DATABASE_URL = os.getenv("DATABASE_URL")
-GEMINI_API_KEY = os.getenv("GEMINI_API_KEY")  # Access the API key from environment variables
+GEMINI_API_KEY = os.getenv("GEMINI_API_KEY")
+@app.route('/get-api-key')
+def get_api_key():
+    return jsonify({'api_key': GEMINI_API_KEY})  
 
 def connect_db():
     try:

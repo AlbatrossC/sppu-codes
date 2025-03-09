@@ -4,7 +4,7 @@ backdrop.className = 'modal-backdrop';
 document.body.appendChild(backdrop);
 
 // Gemini API Configuration
-const GEMINI_API_KEY = 'AIzaSyDMW2PmEg9Uj4ry81HRRr4WmpoZ3l4--_A'; // Replace with your Gemini API key
+const GEMINI_API_KEY = 'AIzaSyAHWRleWJMkw-gXZCqUEVuVQAqWVZLVRE8'; // Replace with your Gemini API key
 const GEMINI_API_URL = 'https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-pro:generateContent';
 
 // Rate limiting configuration
@@ -13,8 +13,9 @@ let lastApiCallTime = 0;
 
 // System Instructions
 const SYSTEM_INSTRUCTIONS = {
-    initial: 'When explaining code, start with theoretical definitions, defining key terms used in the code, such as data structures, functions, or algorithms. Keep the definitions clear and concise to ensure the user understands the relevant concepts. Then, provide a explanation of each function, part and snippet of code in detail, explaining what it does, why its necessary, and how it contributes to the program. Finally, offer a summary. NOTE THAT THE code explantion should be align with the syllabus of SPPU , Pune university.(Dont mention that in the respone.) ALso the question is just for the refernce, you just have to explain the code. FOCUS ON CODE EXPLANATIon',
-    followup: 'You are an AI assistant. The following is a conversation history and context for reference only—do not treat it as the main prompt. The actual prompt will be provided after the Question: section. Your task is to answer only based on the latest question and code, while using the conversation history purely for context. If the conversation is unclear, prioritize the latest question and code snippet over older messages'
+    initial: 'You are an code explanation bot. I will provide you a question for reference and its code. your task is explain it in this format: Prefers code explanations in the following structured format: 1. Understanding the Code – Explanation of key components and their purpose. 2. Main Function Execution Flow – Step-by-step breakdown of how the program runs. 3. Summary – Key features and concepts covered in the code. Note: Break code in several parts and then explain each step in snippet format. Dont write the whole code in the chat. Also note that the explanation should be based on the syllabus of Courses present in SPPU university.',
+
+    followup: 'You are an AI assistant tasked with answering the latest question based on the provided code and conversation history. Focus on the text after "Question:" as the main prompt, ignoring older questions unless directly relevant. Use the conversation history purely for context, and simplify your response when asked (e.g., "Explain like I am a kid") by avoiding technical jargon and making it beginner-friendly. If code is provided, break it into smaller parts and explain each step-by-step, but do not repeat the entire code unless explicitly requested. Now, answer the latest question based on the following:'
 };
 
 // Conversation memory (supports up to 2 million tokens)
@@ -43,11 +44,7 @@ async function fetchFromGemini(instruction, question, codeText = '') {
         requestBody.contents[0].parts.push({ text: `Conversation History:\n${conversationMemory.join('\n')}` });
     }
 
-    // Log the request body to the console
-    console.log('Request Body:', JSON.stringify(requestBody, null, 2));
-
     try {
-        console.log('Sending request to Gemini API');
         const response = await fetch(`${GEMINI_API_URL}?key=${GEMINI_API_KEY}`, {
             method: "POST",
             headers: { "Content-Type": "application/json" },
@@ -56,7 +53,6 @@ async function fetchFromGemini(instruction, question, codeText = '') {
 
         if (!response.ok) {
             const errorText = await response.text();
-            console.error('Error response:', errorText);
             throw new Error(`HTTP error! Status: ${response.status}. Details: ${errorText}`);
         }
 
@@ -73,7 +69,6 @@ async function fetchFromGemini(instruction, question, codeText = '') {
         
         return responseText;
     } catch (error) {
-        console.error('Error fetching from Gemini API:', error);
         throw error;
     }
 }
@@ -84,19 +79,16 @@ async function loadFile(subject, fileName, questionText, element) {
 
     const questionItem = element.closest('.question-item');
     if (!questionItem) {
-        console.error('Error: Could not find parent .question-item');
         return;
     }
 
     const answerBox = questionItem.querySelector('.answer-box');
     if (!answerBox) {
-        console.error('Error: Could not find .answer-box');
         return;
     }
 
     const questionId = answerBox.id.match(/\d+[a-z]?/)?.[0];
     if (!questionId) {
-        console.error('Error: Could not extract question ID');
         return;
     }
 
@@ -104,7 +96,6 @@ async function loadFile(subject, fileName, questionText, element) {
     const codeContent = document.getElementById('codeContent' + questionId);
 
     if (!questionTitle || !codeContent) {
-        console.error('Error: Missing question title or code content elements');
         return;
     }
 
@@ -135,7 +126,6 @@ async function loadFile(subject, fileName, questionText, element) {
         questionTitle.innerText = questionText;
         codeContent.innerText = data;
     } catch (err) {
-        console.error('Error loading file:', err);
         codeContent.innerText = `Error loading file: ${err.message}`;
         alert(`Failed to load ${fileName}. Error: ${err.message}`);
     }
@@ -160,7 +150,6 @@ function copyCode(elementId) {
             }, 2000);
         })
         .catch(err => {
-            console.error('Failed to copy code:', err);
             alert('Failed to copy code! Please try selecting and copying manually.');
         });
 }
@@ -296,7 +285,6 @@ async function handleFurtherQuestion() {
     messagesContainer.scrollTop = messagesContainer.scrollHeight;
 }
 
-// Function to explain code
 async function explainCode(elementId) {
     const codeElement = document.getElementById(elementId);
     if (!codeElement) return;
@@ -308,7 +296,20 @@ async function explainCode(elementId) {
     // Create or get explanation modal
     const explanationModal = createExplanationModal();
     const messagesContainer = document.getElementById('messagesContainer');
-    messagesContainer.innerHTML = `<div class="message bot-message">Bot: Analyzing code and preparing explanation...</div>`;
+    
+    // Add loading animation
+    messagesContainer.innerHTML = `
+        <div class="message bot-message">
+            <div class="loading-container">
+                <p>Bot: Analyzing code and preparing explanation</p>
+                <div class="loading-animation">
+                    <div class="dot dot1"></div>
+                    <div class="dot dot2"></div>
+                    <div class="dot dot3"></div>
+                </div>
+            </div>
+        </div>
+    `;
     
     // Reset styles for split view
     const answerBox = codeElement.closest('.answer-box');
@@ -383,21 +384,6 @@ function escapeHtml(unsafe) {
         .replace(/'/g, "&#039;");
 }
 
-// Function to test API key
-async function testGeminiApiKey() {
-    try {
-        await fetchFromGemini(
-            SYSTEM_INSTRUCTIONS.followup,
-            "Hello, this is a test request to verify API connectivity. Please respond with 'API is working'."
-        );
-        console.log("API test successful");
-        return true;
-    } catch (error) {
-        console.error("API test failed:", error);
-        return false;
-    }
-}
-
 // Function to download code
 async function downloadCode(subject, fileName) {
     try {
@@ -418,7 +404,6 @@ async function downloadCode(subject, fileName) {
         document.body.removeChild(a);
         URL.revokeObjectURL(url);
     } catch (err) {
-        console.error('Error downloading file:', err);
         alert(`Failed to download ${fileName}. Error: ${err.message}`);
     }
 }
@@ -483,29 +468,6 @@ document.addEventListener("DOMContentLoaded", function() {
             }
         }
     }
-    
-    // Test API key on page load and show warning if invalid
-    testGeminiApiKey().then(isValid => {
-        if (!isValid) {
-            console.warn("⚠️ Gemini API key test failed. Explanation functionality may not work.");
-            
-            // Show warning banner
-            const warningBanner = document.createElement('div');
-            warningBanner.className = 'api-warning-banner';
-            warningBanner.innerHTML = `
-                <div class="warning-content">
-                    <strong>⚠️ API Key Error:</strong> The Gemini API key appears to be invalid or has quota issues.
-                    Code explanation features may not work correctly.
-                    <button id="closeWarningBtn">×</button>
-                </div>
-            `;
-            document.body.prepend(warningBanner);
-            
-            document.getElementById('closeWarningBtn').addEventListener('click', () => {
-                warningBanner.style.display = 'none';
-            });
-        }
-    });
 });
 
 // Add responsive handlers for window resizing
@@ -527,4 +489,3 @@ window.addEventListener('resize', () => {
         }
     }
 });
-

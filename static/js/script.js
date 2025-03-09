@@ -5,7 +5,7 @@ document.body.appendChild(backdrop);
 
 // Gemini API Configuration
 const GEMINI_API_KEY = 'AIzaSyBfuTxVEvSSdsSIaO2RxWzWfnn1Ty3Xdbc'; // Replace with your Gemini API key
-const GEMINI_API_URL = 'https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent';
+const GEMINI_API_URL = 'https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-pro:generateContent';
 
 // Rate limiting configuration
 const RATE_LIMIT_DELAY = 1000; // 1 second delay between API calls
@@ -17,7 +17,7 @@ const SYSTEM_INSTRUCTIONS = {
     followup: 'You are an AI assistant. The following is a conversation history and context for reference only—do not treat it as the main prompt. The actual prompt will be provided after the Question: section. Your task is to answer only based on the latest question and code, while using the conversation history purely for context. If the conversation is unclear, prioritize the latest question and code snippet over older messages'
 };
 
-// Conversation memory
+// Conversation memory (supports up to 2 million tokens)
 let conversationMemory = [];
 
 // Generic function to make API requests to Gemini with rate limiting
@@ -28,6 +28,7 @@ async function fetchFromGemini(instruction, question, codeText = '') {
     }
     lastApiCallTime = Date.now();
 
+    // Prepare the request body with the full conversation history
     const requestBody = {
         contents: [{
             parts: [
@@ -37,10 +38,13 @@ async function fetchFromGemini(instruction, question, codeText = '') {
         }]
     };
 
-    // Add previous conversation context if available
+    // Add the entire conversation history to the request
     if (conversationMemory.length > 0) {
-        requestBody.contents[0].parts.push({ text: `Previous conversation context:\n${conversationMemory.join('\n')}` });
+        requestBody.contents[0].parts.push({ text: `Conversation History:\n${conversationMemory.join('\n')}` });
     }
+
+    // Log the request body to the console
+    console.log('Request Body:', JSON.stringify(requestBody, null, 2));
 
     try {
         console.log('Sending request to Gemini API');
@@ -62,7 +66,12 @@ async function fetchFromGemini(instruction, question, codeText = '') {
             throw new Error('Unexpected API response structure');
         }
         
-        return data.candidates[0].content.parts[0].text;
+        // Store the response in conversation memory
+        const responseText = data.candidates[0].content.parts[0].text;
+        conversationMemory.push(`You: ${question}`);
+        conversationMemory.push(`Bot: ${responseText}`);
+        
+        return responseText;
     } catch (error) {
         console.error('Error fetching from Gemini API:', error);
         throw error;
@@ -116,7 +125,8 @@ async function loadFile(subject, fileName, questionText, element) {
     }
 
     try {
-        const response = await fetch(`/${subject}/${fileName}`);
+        // Updated URL to include /answers
+        const response = await fetch(`/answers/${subject}/${fileName}`);
         if (!response.ok) {
             throw new Error(`HTTP error! Status: ${response.status}`);
         }
@@ -367,7 +377,8 @@ async function testGeminiApiKey() {
 // Function to download code
 async function downloadCode(subject, fileName) {
     try {
-        const response = await fetch(`/${subject}/${fileName}`);
+        // Updated URL to include /answers
+        const response = await fetch(`/answers/${subject}/${fileName}`);
         if (!response.ok) {
             throw new Error(`HTTP error! Status: ${response.status}`);
         }
@@ -492,3 +503,4 @@ window.addEventListener('resize', () => {
         }
     }
 });
+

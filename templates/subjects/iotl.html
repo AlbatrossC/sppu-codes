@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>SPPU Codes - IoTL</title>
+    <title id="pageTitle">SPPU Codes - IoTL</title>
     <link rel="stylesheet" href="../static/css/answerbox.css?v=1.5">
     <link rel="stylesheet" href="../static/css/subjectlayout.css?v=1.5">
     <link href="https://fonts.googleapis.com/css2?family=Fira+Code&display=swap" rel="stylesheet">
@@ -12,7 +12,7 @@
     <script src="../static/js/script.js" defer></script>
     <link rel="canonical" href="https://sppucodes.vercel.app/iotl">
     <meta name="keywords" content="IoT, Arduino, LED control, blinking LED, temperature sensor, serial monitor">
-    <meta name="description" content="IoT programming exercises: Control LED using Arduino, create counters, illuminate LEDs based on conditions, and read temperature sensors.">
+    <meta name="description" id="pageDescription" content="SPPU Codes: IoT programming exercises for SPPU students. Control LED using Arduino, create counters, illuminate LEDs based on conditions, and read temperature sensors.">
     <script type="application/ld+json">
         {
             "@context": "https://schema.org",
@@ -23,15 +23,15 @@
                     "name": "Q5: Write a program using Arduino to control LED (One or more ON/OFF) or Blinking.",
                     "acceptedAnswer": {
                         "@type": "Answer",
-                        "text": "View Code at <a href='https://vercel.app/iotl?q=blinking-led'>https://vercel.app/iotl?q=blinking-led</a>"
+                        "text": "View Code at <a href='https://sppucodes.vercel.app/iotl/blinking-led'>https://sppucodes.vercel.app/iotl/blinking-led</a>"
                     }
                 },
                 {
                     "@type": "Question",
                     "name": "Q6: Create a program that illuminates the green LED if the counter is less than 100, illuminates the yellow LED otherwise.",
                     "acceptedAnswer": {
-                        "@type": "Answer",
-                        "text": "View Code at <a href='https://vercel.app/iotl?q=led-counter'>https://vercel.app/iotl?q=led-counter</a>"
+                        "@type": "Answer",2
+                        "text": "View Code at <a href='https://sppucodes.vercel.app/iotl/led-counter'>https://sppucodes.vercel.app/iotl/led-counter</a>"
                     }
                 },
                 {
@@ -39,7 +39,7 @@
                     "name": "Q7: Create a program so that when the user enters 'b', the green light blinks, 'g' the green light is illuminated, 'y' the yellow light is illuminated, and 'r' the red light is illuminated.",
                     "acceptedAnswer": {
                         "@type": "Answer",
-                        "text": "View Code at <a href='https://vercel.app/iotl?q=led-control'>https://vercel.app/iotl?q=led-control</a>"
+                        "text": "View Code at <a href='https://sppucodes.vercel.app/iotl/led-control'>https://sppucodes.vercel.app/iotl/led-control</a>"
                     }
                 },
                 {
@@ -47,7 +47,7 @@
                     "name": "Q8: Write a program that asks the user for a number and outputs the number squared.",
                     "acceptedAnswer": {
                         "@type": "Answer",
-                        "text": "View Code at <a href='https://vercel.app/iotl?q=square-number'>https://vercel.app/iotl?q=square-number</a>"
+                        "text": "View Code at <a href='https://sppucodes.vercel.app/iotl/square-number'>https://sppucodes.vercel.app/iotl/square-number</a>"
                     }
                 }
             ]
@@ -73,21 +73,20 @@
         <h3>Group B</h3>
 
         <!-- Question 5 -->
-        <div class="question-item">
+        <div class="question-item" id="blinking-led">
             <h1>
-                <a href="?q=blinking-led" class="question-link">
+                <a href="/iotl/blinking-led" class="question-link">
                     <strong>Q5: </strong>Write a program using Arduino to control LED (One or more ON/OFF) or Blinking.
                 </a>
             </h1>
             <button class="view-code-btn" onclick="loadFile('iotl', 'blinking.c++', 'Blinking LED', this)">View Code</button>
-
             <button class="download-code-btn" onclick="downloadCode('iotl', 'blinking.c++')">Download Code</button>
             <div class="answer-box" id="answerBox5">
                 <h3 id="questionText5"></h3>
                 <pre id="codeContent5"></pre>
                 <div class="copy-close-container">
                     <button class="explain-btn" onclick="explainCode('codeContent5')">
-                      <img src="static/svg/gemini.svg" alt="Gemini Logo" class="gemini-logo">
+                      <img src="{{ url_for('static', filename='svg/gemini.svg') }}" alt="Gemini Logo" class="gemini-logo">
                       Explain with AI
                     </button>
                     <button class="copy-btn" onclick="copyCode('codeContent5')">Copy Code</button>
@@ -97,21 +96,20 @@
         </div>
 
         <!-- Question 6 -->
-        <div class="question-item">
+        <div class="question-item" id="led-counter">
             <h1>
-                <a href="?q=led-counter" class="question-link">
+                <a href="/iotl/led-counter" class="question-link">
                     <strong>Q6: </strong>Create a program that illuminates the green LED if the counter is less than 100, illuminates the yellow LED otherwise.
                 </a>
             </h1>
             <button class="view-code-btn" onclick="loadFile('iotl', 'counter.c++', 'LED Counter', this)">View Code</button>
-
             <button class="download-code-btn" onclick="downloadCode('iotl', 'counter.c++')">Download Code</button>
             <div class="answer-box" id="answerBox6">
                 <h3 id="questionText6"></h3>
                 <pre id="codeContent6"></pre>
                 <div class="copy-close-container">
                     <button class="explain-btn" onclick="explainCode('codeContent6')">
-                      <img src="static/svg/gemini.svg" alt="Gemini Logo" class="gemini-logo">
+                      <img src="{{ url_for('static', filename='svg/gemini.svg') }}" alt="Gemini Logo" class="gemini-logo">
                       Explain with AI
                     </button>
                     <button class="copy-btn" onclick="copyCode('codeContent6')">Copy Code</button>
@@ -121,21 +119,20 @@
         </div>
 
         <!-- Question 7 -->
-        <div class="question-item">
+        <div class="question-item" id="led-control">
             <h1>
-                <a href="?q=led-control" class="question-link">
+                <a href="/iotl/led-control" class="question-link">
                     <strong>Q7: </strong>Create a program so that when the user enters 'b', the green light blinks, 'g' the green light is illuminated, 'y' the yellow light is illuminated, and 'r' the red light is illuminated.
                 </a>
             </h1>
             <button class="view-code-btn" onclick="loadFile('iotl', 'led_control.c++', 'LED Control', this)">View Code</button>
-
             <button class="download-code-btn" onclick="downloadCode('iotl', 'led_control.c++')">Download Code</button>
             <div class="answer-box" id="answerBox7">
                 <h3 id="questionText7"></h3>
                 <pre id="codeContent7"></pre>
                 <div class="copy-close-container">
                     <button class="explain-btn" onclick="explainCode('codeContent7')">
-                      <img src="static/svg/gemini.svg" alt="Gemini Logo" class="gemini-logo">
+                      <img src="{{ url_for('static', filename='svg/gemini.svg') }}" alt="Gemini Logo" class="gemini-logo">
                       Explain with AI
                     </button>
                     <button class="copy-btn" onclick="copyCode('codeContent7')">Copy Code</button>
@@ -145,21 +142,20 @@
         </div>
 
         <!-- Question 8 -->
-        <div class="question-item">
+        <div class="question-item" id="square-number">
             <h1>
-                <a href="?q=square-number" class="question-link">
+                <a href="/iotl/square-number" class="question-link">
                     <strong>Q8: </strong>Write a program that asks the user for a number and outputs the number squared.
                 </a>
             </h1>
             <button class="view-code-btn" onclick="loadFile('iotl', 'square_number.cpp', 'Square Number', this)">View Code</button>
-
             <button class="download-code-btn" onclick="downloadCode('iotl', 'square_number.cpp')">Download Code</button>
             <div class="answer-box" id="answerBox8">
                 <h3 id="questionText8"></h3>
                 <pre id="codeContent8"></pre>
                 <div class="copy-close-container">
                     <button class="explain-btn" onclick="explainCode('codeContent8')">
-                      <img src="static/svg/gemini.svg" alt="Gemini Logo" class="gemini-logo">
+                      <img src="{{ url_for('static', filename='svg/gemini.svg') }}" alt="Gemini Logo" class="gemini-logo">
                       Explain with AI
                     </button>
                     <button class="copy-btn" onclick="copyCode('codeContent8')">Copy Code</button>
@@ -169,21 +165,20 @@
         </div>
 
         <!-- Question 10 -->
-        <div class="question-item">
+        <div class="question-item" id="temperature-sensor">
             <h1>
-                <a href="?q=temperature-sensor" class="question-link">
+                <a href="/iotl/temperature-sensor" class="question-link">
                     <strong>Q10: </strong>Write a program to read the temperature sensor and send the values to the serial monitor on the computer.
                 </a>
             </h1>
             <button class="view-code-btn" onclick="loadFile('iotl', 'temperature.cpp', 'Temperature Sensor', this)">View Code</button>
-
             <button class="download-code-btn" onclick="downloadCode('iotl', 'temperature.cpp')">Download Code</button>
             <div class="answer-box" id="answerBox10">
                 <h3 id="questionText10"></h3>
                 <pre id="codeContent10"></pre>
                 <div class="copy-close-container">
                     <button class="explain-btn" onclick="explainCode('codeContent10')">
-                      <img src="static/svg/gemini.svg" alt="Gemini Logo" class="gemini-logo">
+                      <img src="{{ url_for('static', filename='svg/gemini.svg') }}" alt="Gemini Logo" class="gemini-logo">
                       Explain with AI
                     </button>
                     <button class="copy-btn" onclick="copyCode('codeContent10')">Copy Code</button>
@@ -193,21 +188,20 @@
         </div>
 
         <!-- Question 12 -->
-        <div class="question-item">
+        <div class="question-item" id="temperature-graph">
             <h1>
-                <a href="?q=temperature-graph" class="question-link">
+                <a href="/iotl/temperature-graph" class="question-link">
                     <strong>Q12: </strong>Write a program to show the temperature and display a graph of the recent measurements.
                 </a>
             </h1>
             <button class="view-code-btn" onclick="loadFile('iotl', 'temperature.cpp', 'Temperature Graph', this)">View Code</button>
-
             <button class="download-code-btn" onclick="downloadCode('iotl', 'temperature.cpp')">Download Code</button>
             <div class="answer-box" id="answerBox12">
                 <h3 id="questionText12"></h3>
                 <pre id="codeContent12"></pre>
                 <div class="copy-close-container">
                     <button class="explain-btn" onclick="explainCode('codeContent12')">
-                      <img src="static/svg/gemini.svg" alt="Gemini Logo" class="gemini-logo">
+                      <img src="{{ url_for('static', filename='svg/gemini.svg') }}" alt="Gemini Logo" class="gemini-logo">
                       Explain with AI
                     </button>
                     <button class="copy-btn" onclick="copyCode('codeContent12')">Copy Code</button>
@@ -216,5 +210,67 @@
             </div>
         </div>
     </div>
+
+    <script>
+        // Highlight the question based on the URL
+        const highlightQuestion = () => {
+            const path = window.location.pathname; // e.g., "/iotl/blinking-led"
+            const questionId = path.split('/').pop(); // e.g., "blinking-led"
+            const questionElement = document.getElementById(questionId);
+
+            if (questionElement) {
+                // Scroll to the question and highlight it
+                questionElement.scrollIntoView({ behavior: "smooth" });
+                questionElement.style.border = "2px solid #58a6ff";
+                questionElement.style.padding = "10px";
+                questionElement.style.borderRadius = "5px";
+            }
+        };
+
+        // Call the function to highlight the question on page load
+        highlightQuestion();
+
+        // Update the title and description dynamically based on the URL
+        const updatePageMetadata = () => {
+            const path = window.location.pathname;
+            const questionMap = {
+                "/iotl/blinking-led": {
+                    title: "Q5: Write a program using Arduino to control LED (One or more ON/OFF) or Blinking - SPPU Codes",
+                    description: "SPPU Codes: Write a program using Arduino to control LED (One or more ON/OFF) or Blinking. Learn IoT programming for SPPU students."
+                },
+                "/iotl/led-counter": {
+                    title: "Q6: Create a program that illuminates the green LED if the counter is less than 100, illuminates the yellow LED otherwise - SPPU Codes",
+                    description: "SPPU Codes: Create a program that illuminates the green LED if the counter is less than 100, illuminates the yellow LED otherwise. Learn IoT programming for SPPU students."
+                },
+                "/iotl/led-control": {
+                    title: "Q7: Create a program so that when the user enters 'b', the green light blinks, 'g' the green light is illuminated, 'y' the yellow light is illuminated, and 'r' the red light is illuminated - SPPU Codes",
+                    description: "SPPU Codes: Create a program so that when the user enters 'b', the green light blinks, 'g' the green light is illuminated, 'y' the yellow light is illuminated, and 'r' the red light is illuminated. Learn IoT programming for SPPU students."
+                },
+                "/iotl/square-number": {
+                    title: "Q8: Write a program that asks the user for a number and outputs the number squared - SPPU Codes",
+                    description: "SPPU Codes: Write a program that asks the user for a number and outputs the number squared. Learn IoT programming for SPPU students."
+                },
+                "/iotl/temperature-sensor": {
+                    title: "Q10: Write a program to read the temperature sensor and send the values to the serial monitor on the computer - SPPU Codes",
+                    description: "SPPU Codes: Write a program to read the temperature sensor and send the values to the serial monitor on the computer. Learn IoT programming for SPPU students."
+                },
+                "/iotl/temperature-graph": {
+                    title: "Q12: Write a program to show the temperature and display a graph of the recent measurements - SPPU Codes",
+                    description: "SPPU Codes: Write a program to show the temperature and display a graph of the recent measurements. Learn IoT programming for SPPU students."
+                }
+            };
+
+            const metadata = questionMap[path] || {
+                title: "SPPU Codes - IoTL",
+                description: "SPPU Codes: IoT programming exercises for SPPU students. Control LED using Arduino, create counters, illuminate LEDs based on conditions, and read temperature sensors."
+            };
+
+            document.getElementById("pageTitle").innerText = metadata.title;
+            document.getElementById("pageDescription").setAttribute("content", metadata.description);
+        };
+
+        // Call the function to update metadata on page load
+        updatePageMetadata();
+    </script>
 </body>
 </html>

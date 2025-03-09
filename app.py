@@ -98,19 +98,29 @@ def download():
 def download_file(filename):
     return send_from_directory(downloads_folder, filename)
 
-@app.route('/<subject_name>')
-def subject(subject_name):
+# Route for /subject/question
+@app.route('/<subject>/<question>')
+def subject_question(subject, question):
     try:
-        return render_template(f'subjects/{subject_name}.html')
+        # Pass the question parameter to the template
+        return render_template(f'subjects/{subject}.html', question=question)
     except Exception:
         return render_template("error.html")
 
+# Route for /subject
+@app.route('/<subject>')
+def subject(subject):
+    try:
+        # Render the subject page without highlighting any question
+        return render_template(f'subjects/{subject}.html', question=None)
+    except Exception:
+        return render_template("error.html")
 
 @app.route('/sw.js')
 def serve_sw():
     return send_from_directory('.', 'sw.js', mimetype='application/javascript')
 
-@app.route('/<subject>/<filename>')
+@app.route('/answers/<subject>/<filename>')
 def get_answer(subject, filename):
     try:      
         base_dir = os.path.abspath(os.path.dirname(__file__))

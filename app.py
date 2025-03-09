@@ -19,6 +19,15 @@ def connect_db():
         print(f"Database connection error: {e}")
         return None
 
+# Custom Error Handlers
+@app.errorhandler(404)
+def page_not_found(e):
+    return render_template('error.html'), 404
+
+@app.errorhandler(500)
+def internal_server_error(e):
+    return render_template('error.html'), 500
+
 @app.route('/submit', methods=["GET", "POST"])
 def submit():
     conn = connect_db()
@@ -105,7 +114,7 @@ def subject_question(subject, question):
         # Pass the question parameter to the template
         return render_template(f'subjects/{subject}.html', question=question)
     except Exception:
-        return render_template("error.html")
+        abort(404)
 
 # Route for /subject
 @app.route('/<subject>')
@@ -114,7 +123,7 @@ def subject(subject):
         # Render the subject page without highlighting any question
         return render_template(f'subjects/{subject}.html', question=None)
     except Exception:
-        return render_template("error.html")
+        abort(404)
 
 @app.route('/sw.js')
 def serve_sw():

@@ -3,8 +3,18 @@ const backdrop = document.createElement('div');
 backdrop.className = 'modal-backdrop';
 document.body.appendChild(backdrop);
 
-// Gemini API Configuration
-const GEMINI_API_KEY = 'AIzaSyAHWRleWJMkw-gXZCqUEVuVQAqWVZLVRE8'; // Replace with your Gemini API key
+let GEMINI_API_KEY = ''; // Will be fetched from the server
+
+// Fetch the API key from the server
+fetch('/get-api-key')
+    .then(response => response.json())
+    .then(data => {
+        GEMINI_API_KEY = data.api_key;
+    })
+    .catch(error => {
+        console.error('Error fetching API key:', error);
+    });
+
 const GEMINI_API_URL = 'https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-pro:generateContent';
 
 // Rate limiting configuration

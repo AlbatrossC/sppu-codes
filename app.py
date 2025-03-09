@@ -10,6 +10,7 @@ app.secret_key = 'karlos'
 app.register_blueprint(quecount_bp)
 
 DATABASE_URL = os.getenv("DATABASE_URL")
+GEMINI_API_KEY = os.getenv("GEMINI_API_KEY")  # Access the API key from environment variables
 
 def connect_db():
     try:

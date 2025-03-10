@@ -263,3 +263,9 @@ a:hover {
         padding: 1rem;
     }
 }
+.highlighted-question {
+    border: 2px solid #58a6ff;
+    padding: 10px;
+    border-radius: 5px;
+    transition: all 0.3s ease; /* Smooth transition for visual effects */
+}

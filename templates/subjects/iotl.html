@@ -4,12 +4,12 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title id="pageTitle">SPPU Codes - IoTL</title>
-    <link rel="stylesheet" href="../static/css/answerbox.css?v=1.5">
-    <link rel="stylesheet" href="../static/css/subjectlayout.css?v=1.5">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/answerbox.css') }}?v=1.5">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/subjectlayout.css') }}?v=1.5">
+    <script src="{{ url_for('static', filename='js/script.js') }}" defer></script>   
     <link href="https://fonts.googleapis.com/css2?family=Fira+Code&display=swap" rel="stylesheet">
     <link rel="icon" href="{{ url_for('get_image', filename='favicon.ico') }}" type="image/x-icon">
     <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
-    <script src="../static/js/script.js" defer></script>
     <meta name="keywords" content="IoT, Arduino, LED control, blinking LED, temperature sensor, serial monitor">
     <meta name="description" id="pageDescription" content="SPPU Codes: IoT programming exercises for SPPU students. Control LED using Arduino, create counters, illuminate LEDs based on conditions, and read temperature sensors.">
     <script type="application/ld+json">
@@ -213,18 +213,36 @@
     <script>
         // Highlight the question based on the URL
         const highlightQuestion = () => {
-            const path = window.location.pathname; // e.g., "/iotl/blinking-led"
-            const questionId = path.split('/').pop(); // e.g., "blinking-led"
-            const questionElement = document.getElementById(questionId);
+        const path = window.location.pathname; // e.g., "/iotl/blinking-led"
+        const questionId = path.split('/').pop(); // e.g., "blinking-led"
+        const questionElement = document.getElementById(questionId);
 
-            if (questionElement) {
-                // Scroll to the question and highlight it
-                questionElement.scrollIntoView({ behavior: "smooth" });
-                questionElement.style.border = "2px solid #58a6ff";
-                questionElement.style.padding = "10px";
-                questionElement.style.borderRadius = "5px";
-            }
-        };
+        if (questionElement) {
+            // Add a CSS class to highlight the question
+            questionElement.classList.add('highlighted-question');
+
+            // Use Intersection Observer to scroll into view only when the element is in the viewport
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        // Smooth scroll to the question
+                        entry.target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+
+                        // Stop observing after scrolling
+                        observer.unobserve(entry.target);
+                    }
+                });
+            }, { threshold: 0.5 }); // Trigger when 50% of the element is visible
+
+            observer.observe(questionElement);
+        }
+    };
+
+    // Call the function after the page has loaded
+    document.addEventListener('DOMContentLoaded', () => {
+        // Use setTimeout to defer the execution and avoid blocking the main thread
+        setTimeout(highlightQuestion, 0);
+    });
 
         // Call the function to highlight the question on page load
         highlightQuestion();

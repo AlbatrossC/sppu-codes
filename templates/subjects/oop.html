@@ -274,24 +274,6 @@
     </div>
 
     <script>
-        // Highlight the question based on the URL
-        const highlightQuestion = () => {
-            const path = window.location.pathname; // e.g., "/oop/complex-number"
-            const questionId = path.split('/').pop(); // e.g., "complex-number"
-            const questionElement = document.getElementById(questionId);
-
-            if (questionElement) {
-                // Scroll to the question and highlight it
-                questionElement.scrollIntoView({ behavior: "smooth" });
-                questionElement.style.border = "2px solid #58a6ff";
-                questionElement.style.padding = "10px";
-                questionElement.style.borderRadius = "5px";
-            }
-        };
-
-        // Call the function to highlight the question on page load
-        highlightQuestion();
-
         // Update the title and description dynamically based on the URL
         const updatePageMetadata = () => {
             const path = window.location.pathname;

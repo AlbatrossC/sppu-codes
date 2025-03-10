@@ -499,3 +499,35 @@ window.addEventListener('resize', () => {
         }
     }
 });
+
+// highlightQuestion function to highlight the question based on the URL path
+const highlightQuestion = () => {
+    const path = window.location.pathname; // e.g., "/iotl/blinking-led"
+    const questionId = path.split('/').pop(); // e.g., "blinking-led"
+    const questionElement = document.getElementById(questionId);
+
+    if (questionElement) {
+        // Add a CSS class to highlight the question
+        questionElement.classList.add('highlighted-question');
+
+        // Use Intersection Observer to scroll into view only when the element is in the viewport
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    // Smooth scroll to the question
+                    entry.target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+
+                    // Stop observing after scrolling
+                    observer.unobserve(entry.target);
+                }
+            });
+        }, { threshold: 0.5 }); // Trigger when 50% of the element is visible
+
+        observer.observe(questionElement);
+    }
+};
+
+// Call the function to highlight the question on page load
+document.addEventListener('DOMContentLoaded', () => {
+    setTimeout(highlightQuestion, 0);
+});

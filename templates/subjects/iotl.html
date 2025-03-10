@@ -6,10 +6,8 @@
     <title id="pageTitle">SPPU Codes - IoTL</title>
     <link rel="stylesheet" href="{{ url_for('static', filename='css/answerbox.css') }}?v=1.5">
     <link rel="stylesheet" href="{{ url_for('static', filename='css/subjectlayout.css') }}?v=1.5">
-    <script src="{{ url_for('static', filename='js/script.js') }}" defer></script>   
-    <link href="https://fonts.googleapis.com/css2?family=Fira+Code&display=swap" rel="stylesheet">
+    <script src="{{ url_for('static', filename='js/script.js') }}" defer></script>   >
     <link rel="icon" href="{{ url_for('get_image', filename='favicon.ico') }}" type="image/x-icon">
-    <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
     <meta name="keywords" content="IoT, Arduino, LED control, blinking LED, temperature sensor, serial monitor">
     <meta name="description" id="pageDescription" content="SPPU Codes: IoT programming exercises for SPPU students. Control LED using Arduino, create counters, illuminate LEDs based on conditions, and read temperature sensors.">
     <script type="application/ld+json">
@@ -253,5 +251,7 @@
         // Call the function to update metadata on page load
         updatePageMetadata();
     </script>
+
+    <script src="{{ url_for('static', filename='js/script.js') }}" async></script>
 </body>
 </html>

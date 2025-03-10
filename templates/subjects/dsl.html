@@ -6,10 +6,7 @@
     <title id="pageTitle">SPPU Codes: DSL</title>
     <link rel="stylesheet" href="../static/css/answerbox.css?v=1.5">
     <link rel="stylesheet" href="../static/css/subjectlayout.css?v=1.5">
-    <link href="https://fonts.googleapis.com/css2?family=Fira+Code&display=swap" rel="stylesheet">
     <link rel="icon" href="{{ url_for('get_image', filename='favicon.ico') }}" type="image/x-icon">
-    <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
-    <script src="../static/js/script.js" defer></script>
     <meta name="robots" content="index, follow">
     <meta name="keywords" content="Python program, C++ program, data structure, student database, complex numbers, file handling, binary numbers, palindrome check, linked list, sorting algorithms, priority queue, deque, expression conversion, infix to postfix, selection sort, bubble sort, insertion sort, shell sort, radix sort, binary search, linear search, Fibonacci search, exception handling, member functions, constructors, operator overloading, file I/O, stack, queue, doubly linked list, singly linked list, dynamic memory allocation, function templates, STL, student club, computer engineering, data structures, sorting algorithms, student marks, linked list operations, job queue, algorithm implementation">
     <meta name="description" id="pageDescription" content="Python program, C++ program, data structure, student database, complex numbers, file handling, binary numbers, palindrome check, linked list, sorting algorithms, priority queue, deque, expression conversion, infix to postfix, selection sort, bubble sort, insertion sort, shell sort, radix sort, binary search, linear search, Fibonacci search, exception handling, member functions, constructors, operator overloading, file I/O, stack, queue, doubly linked list, singly linked list, dynamic memory allocation, function templates, STL, student club, computer engineering, data structures, sorting algorithms, student marks, linked list operations, job queue, algorithm implementation">
@@ -604,5 +601,7 @@
         // Call the function to update metadata on page load
         updatePageMetadata();
     </script>
+
+    <script src="{{ url_for('static', filename='js/script.js') }}" async></script>
 </body>
 </html>

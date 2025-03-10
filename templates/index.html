@@ -82,16 +82,6 @@
                 }
             }
         </script>
-
-        <!-- Register Service Worker -->
-        <script>
-            if ('serviceWorker' in navigator) {
-                navigator.serviceWorker.register('/sw.js')
-                    .then(reg => console.log('Service Worker Registered!', reg))
-                    .catch(err => console.log('Service Worker Registration Failed:', err));
-            }
-        </script>
-
         <style>
             /* Critical CSS inlined for faster render */
             * {
@@ -172,25 +162,6 @@
                 border: 0;
             }
         </style>
-        
-        <!-- Lazy load Google Tag Manager -->
-        <script>
-            window.addEventListener('load', function() {
-                setTimeout(function() {
-                    const script = document.createElement('script');
-                    script.src = 'https://www.googletagmanager.com/gtag/js?id=G-1R5FFVKTF8';
-                    script.async = true;
-                    document.head.appendChild(script);
-                    
-                    script.onload = function() {
-                        window.dataLayer = window.dataLayer || [];
-                        function gtag() { dataLayer.push(arguments); }
-                        gtag('js', new Date());
-                        gtag('config', 'G-1R5FFVKTF8');
-                    };
-                }, 3000);
-            });
-        </script>
     </head>
     
     <body>
@@ -314,9 +285,8 @@
                 </div>
             </div>
         </footer>
-
-        <!-- Defer non-critical JavaScript -->
-        <script src="/static/js/index.js" defer></script>
+        
+        <script src="{{ url_for('static', filename='js/index.js') }}" async></script>
         
         <!-- Popup JavaScript -->
         <script>

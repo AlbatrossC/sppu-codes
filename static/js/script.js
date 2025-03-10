@@ -1,3 +1,41 @@
+(function () {
+    // Create the script tag dynamically
+    var script = document.createElement('script');
+    script.src = 'https://www.googletagmanager.com/gtag/js?id=G-1R5FFVKTF8';
+    script.async = true; // Make sure the script loads asynchronously
+
+    // Append the script to the document head
+    document.head.appendChild(script);
+
+    // Once the script is loaded, initialize Google Analytics
+    script.onload = function () {
+        window.dataLayer = window.dataLayer || [];
+        function gtag() {
+            window.dataLayer.push(arguments);
+        }
+        gtag('js', new Date());
+        gtag('config', 'G-1R5FFVKTF8');
+    };
+})();
+
+function loadResources() {
+    // Load the Google Fonts stylesheet asynchronously
+    var link = document.createElement('link');
+    link.rel = 'stylesheet';
+    link.href = 'https://fonts.googleapis.com/css2?family=Fira+Code&display=swap';
+    link.type = 'text/css';
+    document.head.appendChild(link);
+
+    // Load the marked.js library asynchronously
+    var script = document.createElement('script');
+    script.src = 'https://cdn.jsdelivr.net/npm/marked/marked.min.js';
+    script.async = true;
+    document.head.appendChild(script);
+}
+
+// Call the function to load the resources
+loadResources();
+
 // Modal backdrop setup
 const backdrop = document.createElement('div');
 backdrop.className = 'modal-backdrop';

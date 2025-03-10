@@ -1,3 +1,20 @@
+(function () {
+    // Load Google Analytics script asynchronously
+    var script = document.createElement('script');
+    script.src = 'https://www.googletagmanager.com/gtag/js?id=G-1R5FFVKTF8';
+    script.async = true;
+    document.head.appendChild(script);
+
+    script.onload = function () {
+        window.dataLayer = window.dataLayer || [];
+        function gtag() {
+            window.dataLayer.push(arguments);
+        }
+        gtag('js', new Date());
+        gtag('config', 'G-1R5FFVKTF8');
+    };
+})();
+
 document.addEventListener('DOMContentLoaded', function() {
     // Header elements
     const header = document.querySelector('header');

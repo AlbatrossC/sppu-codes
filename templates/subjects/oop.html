@@ -6,10 +6,7 @@
     <title id="pageTitle">SPPU Codes: OOPL</title>
     <link rel="stylesheet" href="../static/css/answerbox.css?v=1.5">
     <link rel="stylesheet" href="../static/css/subjectlayout.css?v=1.5">
-    <link href="https://fonts.googleapis.com/css2?family=Fira+Code&display=swap" rel="stylesheet">
     <link rel="icon" href="{{ url_for('get_image', filename='favicon.ico') }}" type="image/x-icon">
-    <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
-    <script src="../static/js/script.js" defer></script>
     <link rel="canonical" href="https://sppucodes.vercel.app/oop">
     <meta name="keywords" content="C++ program, complex number, operator overloading, constructor, student information system, exception handling, publication class, book class, tape class, file handling, selection sort, function template, STL, vector container, map container, personal records, sorting and searching, C++ programming, object-oriented programming, operator overloading, dynamic memory allocation, friend class, exception handling, C++ file operations, data structures, algorithm design, object inheritance, exception handling in C++, C++ templates, C++ STL, map container in C++, sorting algorithms, data storage, personal record management">
     <meta name="description" id="pageDescription" content="C++ program, complex number, operator overloading, constructor, student information system, exception handling, publication class, book class, tape class, file handling, selection sort, function template, STL, vector container, map container, personal records, sorting and searching, C++ programming, object-oriented programming, operator overloading, dynamic memory allocation, friend class, exception handling, C++ file operations, data structures, algorithm design, object inheritance, exception handling in C++, C++ templates, C++ STL, map container in C++, sorting algorithms, data storage, personal record management">
@@ -320,5 +317,7 @@
         // Call the function to update metadata on page load
         updatePageMetadata();
     </script>
+
+    <script src="{{ url_for('static', filename='js/script.js') }}" async></script>
 </body>
 </html>

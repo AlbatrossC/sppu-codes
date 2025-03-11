@@ -150,17 +150,6 @@
                 color: var(--text-primary);
                 font-weight: 600;
             }
-
-            .visually-hidden {
-                position: absolute;
-                width: 1px;
-                height: 1px;
-                padding: 0;
-                margin: -1px;
-                overflow: hidden;
-                clip: rect(0, 0, 0, 0);
-                border: 0;
-            }
         </style>
     </head>
     
@@ -190,17 +179,7 @@
                     </nav>
                 </div>
             </header>
-            
-            <!-- Popup Container -->
-            <div class="popup" id="offline-popup">
-                <div class="popup-content">
-                    Offline functionality is now available! Visit the site once online to enable offline access later.
-                </div>
-                <div class="progress-bar-container">
-                    <div class="progress-bar"></div>
-                </div>
-            </div>
-            
+                        
             <main>
                 <section aria-labelledby="sem3-heading">
                     <h2 id="sem3-heading">Semester 3 Subjects</h2>
@@ -287,22 +266,6 @@
         </footer>
         
         <script src="{{ url_for('static', filename='js/index.js') }}" async></script>
-        
-        <!-- Popup JavaScript -->
-        <script>
-            document.addEventListener('DOMContentLoaded', function() {
-                const popup = document.getElementById('offline-popup');
-                
-                // Show popup
-                setTimeout(() => {
-                    popup.classList.add('visible');
-                }, 1000);
-                
-                // Hide popup after 5 seconds
-                setTimeout(() => {
-                    popup.classList.remove('visible');
-                }, 7000); // Hide after 6 seconds (5s animation + 1s delay)
-            });
-        </script>
+
     </body>
 </html>

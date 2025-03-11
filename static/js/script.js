@@ -26,10 +26,10 @@
         document.head.appendChild(link);
     }
 
-    // Function to load marked.js asynchronously
+    // Function to load marked.js asynchronously with a specific version
     function loadMarkedJS() {
         var script = document.createElement('script');
-        script.src = 'https://cdn.jsdelivr.net/npm/marked/marked.min.js';
+        script.src = 'https://cdn.jsdelivr.net/npm/marked@4.0.0/marked.min.js';
         script.async = true;
         document.head.appendChild(script);
     }

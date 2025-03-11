@@ -129,9 +129,6 @@ def subject(subject):
     except Exception:
         abort(404)
 
-@app.route('/sw.js')
-def serve_sw():
-    return send_from_directory('.', 'sw.js', mimetype='application/javascript')
 
 @app.route('/answers/<subject>/<filename>')
 def get_answer(subject, filename):

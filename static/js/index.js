@@ -1,18 +1,30 @@
 (function () {
-    // Load Google Analytics script asynchronously
-    var script = document.createElement('script');
-    script.src = 'https://www.googletagmanager.com/gtag/js?id=G-1R5FFVKTF8';
-    script.async = true;
-    document.head.appendChild(script);
+    // Function to load Google Tag Manager asynchronously
+    function loadGTM() {
+        var script = document.createElement('script');
+        script.src = 'https://www.googletagmanager.com/gtag/js?id=G-1R5FFVKTF8';
+        script.async = true;
 
-    script.onload = function () {
-        window.dataLayer = window.dataLayer || [];
-        function gtag() {
-            window.dataLayer.push(arguments);
-        }
-        gtag('js', new Date());
-        gtag('config', 'G-1R5FFVKTF8');
-    };
+        script.onload = function () {
+            window.dataLayer = window.dataLayer || [];
+            function gtag() {
+                window.dataLayer.push(arguments);
+            }
+            gtag('js', new Date());
+            gtag('config', 'G-1R5FFVKTF8');
+        };
+
+        document.head.appendChild(script);
+    }
+
+    // Defer loading of GTM until after the page has loaded
+    if (document.readyState === 'complete') {
+        loadGTM(); // If the page is already loaded, load GTM immediately
+    } else {
+        window.addEventListener('load', function () {
+            loadGTM(); // Load GTM after the page has fully loaded
+        });
+    }
 })();
 
 document.addEventListener('DOMContentLoaded', function() {

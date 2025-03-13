@@ -4,63 +4,276 @@
       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
       xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9
             http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd">
-<!-- created with Free Online Sitemap Generator www.xml-sitemaps.com -->
-
 
 <url>
   <loc>https://sppucodes.vercel.app/</loc>
-  <lastmod>2025-01-23T07:13:42+00:00</lastmod>
+  <lastmod>2025-03-13T19:49:27+00:00</lastmod>
   <priority>1.00</priority>
 </url>
 <url>
   <loc>https://sppucodes.vercel.app/submit</loc>
-  <lastmod>2025-01-23T07:13:42+00:00</lastmod>
-  <priority>0.80</priority>
+  <lastmod>2025-03-13T19:49:27+00:00</lastmod>
+  <priority>0.60</priority>
 </url>
 <url>
   <loc>https://sppucodes.vercel.app/download</loc>
-  <lastmod>2025-01-23T07:13:42+00:00</lastmod>
-  <priority>0.80</priority>
+  <lastmod>2025-03-13T19:49:27+00:00</lastmod>
+  <priority>0.60</priority>
+</url>
+<url>
+  <loc>https://sppucodes.vercel.app/copy</loc>
+  <lastmod>2025-03-13T19:49:27+00:00</lastmod>
+  <priority>0.60</priority>
 </url>
 <url>
   <loc>https://sppucodes.vercel.app/oop</loc>
-  <lastmod>2025-01-23T07:13:42+00:00</lastmod>
+  <lastmod>2025-03-13T19:49:27+00:00</lastmod>
   <priority>0.80</priority>
 </url>
 <url>
   <loc>https://sppucodes.vercel.app/cgl</loc>
-  <lastmod>2025-01-23T07:13:42+00:00</lastmod>
+  <lastmod>2025-03-13T19:49:27+00:00</lastmod>
   <priority>0.80</priority>
 </url>
 <url>
   <loc>https://sppucodes.vercel.app/dsl</loc>
-  <lastmod>2025-01-23T07:13:42+00:00</lastmod>
+  <lastmod>2025-03-13T19:49:27+00:00</lastmod>
   <priority>0.80</priority>
 </url>
 <url>
   <loc>https://sppucodes.vercel.app/osl</loc>
-  <lastmod>2025-01-23T07:13:42+00:00</lastmod>
+  <lastmod>2025-03-13T19:49:27+00:00</lastmod>
   <priority>0.80</priority>
 </url>
 <url>
   <loc>https://sppucodes.vercel.app/iotl</loc>
-  <lastmod>2025-01-23T07:13:42+00:00</lastmod>
+  <lastmod>2025-03-13T19:49:27+00:00</lastmod>
   <priority>0.80</priority>
 </url>
 <url>
   <loc>https://sppucodes.vercel.app/dsal</loc>
-  <lastmod>2025-01-23T07:13:42+00:00</lastmod>
+  <lastmod>2025-03-13T19:49:27+00:00</lastmod>
   <priority>0.80</priority>
 </url>
 <url>
   <loc>https://sppucodes.vercel.app/disclaimer</loc>
-  <lastmod>2025-01-23T07:13:42+00:00</lastmod>
-  <priority>0.80</priority>
+  <lastmod>2025-03-13T19:49:27+00:00</lastmod>
+  <priority>0.60</priority>
 </url>
 <url>
   <loc>https://sppucodes.vercel.app/contact</loc>
-  <lastmod>2025-01-23T07:13:42+00:00</lastmod>
-  <priority>0.80</priority>
+  <lastmod>2025-03-13T19:49:27+00:00</lastmod>
+  <priority>0.60</priority>
+</url>
+<url>
+  <loc>https://sppucodes.vercel.app/stats</loc>
+  <lastmod>2025-03-13T19:49:27+00:00</lastmod>
+  <priority>0.60</priority>
+</url>
+<url>
+  <loc>https://sppucodes.vercel.app/oop/complex-number</loc>
+  <lastmod>2025-03-13T19:49:27+00:00</lastmod>
+  <priority>0.90</priority>
+</url>
+<url>
+  <loc>https://sppucodes.vercel.app/oop/student-db</loc>
+  <lastmod>2025-03-13T19:49:27+00:00</lastmod>
+  <priority>0.90</priority>
+</url>
+<url>
+  <loc>https://sppucodes.vercel.app/oop/publication-class</loc>
+  <lastmod>2025-03-13T19:49:27+00:00</lastmod>
+  <priority>0.90</priority>
+</url>
+<url>
+  <loc>https://sppucodes.vercel.app/oop/file-handling</loc>
+  <lastmod>2025-03-13T19:49:27+00:00</lastmod>
+  <priority>0.90</priority>
+</url>
+<url>
+  <loc>https://sppucodes.vercel.app/oop/selection-sort</loc>
+  <lastmod>2025-03-13T19:49:27+00:00</lastmod>
+  <priority>0.90</priority>
+</url>
+<url>
+  <loc>https://sppucodes.vercel.app/oop/stl-sorting</loc>
+  <lastmod>2025-03-13T19:49:27+00:00</lastmod>
+  <priority>0.90</priority>
+</url>
+<url>
+  <loc>https://sppucodes.vercel.app/oop/map-container</loc>
+  <lastmod>2025-03-13T19:49:27+00:00</lastmod>
+  <priority>0.90</priority>
+</url>
+<url>
+  <loc>https://sppucodes.vercel.app/cgl/scan-fill</loc>
+  <lastmod>2025-03-13T19:49:27+00:00</lastmod>
+  <priority>0.90</priority>
+</url>
+<url>
+  <loc>https://sppucodes.vercel.app/cgl/cohen-sutherland</loc>
+  <lastmod>2025-03-13T19:49:27+00:00</lastmod>
+  <priority>0.90</priority>
+</url>
+<url>
+  <loc>https://sppucodes.vercel.app/cgl/dda-bresenham</loc>
+  <lastmod>2025-03-13T19:49:27+00:00</lastmod>
+  <priority>0.90</priority>
+</url>
+<url>
+  <loc>https://sppucodes.vercel.app/cgl/2d-transformations</loc>
+  <lastmod>2025-03-13T19:49:27+00:00</lastmod>
+  <priority>0.90</priority>
+</url>
+<url>
+  <loc>https://sppucodes.vercel.app/cgl/hilbert-curve</loc>
+  <lastmod>2025-03-13T19:49:27+00:00</lastmod>
+  <priority>0.90</priority>
+</url>
+<url>
+  <loc>https://sppucodes.vercel.app/cgl/3d-transformations</loc>
+  <lastmod>2025-03-13T19:49:27+00:00</lastmod>
+  <priority>0.90</priority>
+</url>
+<url>
+  <loc>https://sppucodes.vercel.app/dsl/student-sports</loc>
+  <lastmod>2025-03-13T19:49:27+00:00</lastmod>
+  <priority>0.90</priority>
+</url>
+<url>
+  <loc>https://sppucodes.vercel.app/dsl/marks-computation</loc>
+  <lastmod>2025-03-13T19:49:27+00:00</lastmod>
+  <priority>0.90</priority>
+</url>
+<url>
+  <loc>https://sppucodes.vercel.app/dsl/bank-transactions</loc>
+  <lastmod>2025-03-13T19:49:27+00:00</lastmod>
+  <priority>0.90</priority>
+</url>
+<url>
+  <loc>https://sppucodes.vercel.app/dsl/linear-sentinel-search</loc>
+  <lastmod>2025-03-13T19:49:27+00:00</lastmod>
+  <priority>0.90</priority>
+</url>
+<url>
+  <loc>https://sppucodes.vercel.app/dsl/binary-fibonacci-search</loc>
+  <lastmod>2025-03-13T19:49:27+00:00</lastmod>
+  <priority>0.90</priority>
+</url>
+<url>
+  <loc>https://sppucodes.vercel.app/dsl/selection-bubble-sort</loc>
+  <lastmod>2025-03-13T19:49:27+00:00</lastmod>
+  <priority>0.90</priority>
+</url>
+<url>
+  <loc>https://sppucodes.vercel.app/dsl/insertion-shell-sort</loc>
+  <lastmod>2025-03-13T19:49:27+00:00</lastmod>
+  <priority>0.90</priority>
+</url>
+<url>
+  <loc>https://sppucodes.vercel.app/dsl/radix-sort</loc>
+  <lastmod>2025-03-13T19:49:27+00:00</lastmod>
+  <priority>0.90</priority>
+</url>
+<url>
+  <loc>https://sppucodes.vercel.app/dsl/pinnacle-club</loc>
+  <lastmod>2025-03-13T19:49:27+00:00</lastmod>
+  <priority>0.90</priority>
+</url>
+<url>
+  <loc>https://sppucodes.vercel.app/dsl/binary-operations</loc>
+  <lastmod>2025-03-13T19:49:27+00:00</lastmod>
+  <priority>0.90</priority>
+</url>
+<url>
+  <loc>https://sppucodes.vercel.app/dsl/palindrome-check</loc>
+  <lastmod>2025-03-13T19:49:27+00:00</lastmod>
+  <priority>0.90</priority>
+</url>
+<url>
+  <loc>https://sppucodes.vercel.app/dsl/expression-conversion</loc>
+  <lastmod>2025-03-13T19:49:27+00:00</lastmod>
+  <priority>0.90</priority>
+</url>
+<url>
+  <loc>https://sppucodes.vercel.app/dsl/job-queue</loc>
+  <lastmod>2025-03-13T19:49:27+00:00</lastmod>
+  <priority>0.90</priority>
+</url>
+<url>
+  <loc>https://sppucodes.vercel.app/dsl/priority-queue</loc>
+  <lastmod>2025-03-13T19:49:27+00:00</lastmod>
+  <priority>0.90</priority>
+</url>
+<url>
+  <loc>https://sppucodes.vercel.app/dsl/deque</loc>
+  <lastmod>2025-03-13T19:49:27+00:00</lastmod>
+  <priority>0.90</priority>
+</url>
+<url>
+  <loc>https://sppucodes.vercel.app/iotl/blinking-led</loc>
+  <lastmod>2025-03-13T19:49:27+00:00</lastmod>
+  <priority>0.90</priority>
+</url>
+<url>
+  <loc>https://sppucodes.vercel.app/iotl/led-counter</loc>
+  <lastmod>2025-03-13T19:49:27+00:00</lastmod>
+  <priority>0.90</priority>
+</url>
+<url>
+  <loc>https://sppucodes.vercel.app/iotl/led-control</loc>
+  <lastmod>2025-03-13T19:49:27+00:00</lastmod>
+  <priority>0.90</priority>
+</url>
+<url>
+  <loc>https://sppucodes.vercel.app/iotl/square-number</loc>
+  <lastmod>2025-03-13T19:49:27+00:00</lastmod>
+  <priority>0.90</priority>
+</url>
+<url>
+  <loc>https://sppucodes.vercel.app/iotl/temperature-sensor</loc>
+  <lastmod>2025-03-13T19:49:27+00:00</lastmod>
+  <priority>0.90</priority>
+</url>
+<url>
+  <loc>https://sppucodes.vercel.app/iotl/temperature-graph</loc>
+  <lastmod>2025-03-13T19:49:27+00:00</lastmod>
+  <priority>0.90</priority>
+</url>
+<url>
+  <loc>https://sppucodes.vercel.app/dsal/telephone-book</loc>
+  <lastmod>2025-03-13T19:49:27+00:00</lastmod>
+  <priority>0.90</priority>
+</url>
+<url>
+  <loc>https://sppucodes.vercel.app/dsal/set-adt</loc>
+  <lastmod>2025-03-13T19:49:27+00:00</lastmod>
+  <priority>0.90</priority>
+</url>
+<url>
+  <loc>https://sppucodes.vercel.app/dsal/book-tree</loc>
+  <lastmod>2025-03-13T19:49:27+00:00</lastmod>
+  <priority>0.90</priority>
+</url>
+<url>
+  <loc>https://sppucodes.vercel.app/dsal/binary-search-tree</loc>
+  <lastmod>2025-03-13T19:49:27+00:00</lastmod>
+  <priority>0.90</priority>
+</url>
+<url>
+  <loc>https://sppucodes.vercel.app/dsal/threaded-binary-tree</loc>
+  <lastmod>2025-03-13T19:49:27+00:00</lastmod>
+  <priority>0.90</priority>
+</url>
+<url>
+  <loc>https://sppucodes.vercel.app/dsal/graph-dfs-bfs</loc>
+  <lastmod>2025-03-13T19:49:27+00:00</lastmod>
+  <priority>0.90</priority>
+</url>
+<url>
+  <loc>https://sppucodes.vercel.app/dsal/flight-graph</loc>
+  <lastmod>2025-03-13T19:49:27+00:00</lastmod>
+  <priority>0.90</priority>
 </url>
 
 

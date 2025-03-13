@@ -3,53 +3,21 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title id="pageTitle">SPPU Codes - IoTL</title>
+    <title>{{ seo.title }}</title>
+    <meta name="description" content="{{ seo.description }}">
+    <meta name="keywords" content="{{ seo.keywords }}">
+    <meta property="og:url" content="{{ seo.ogurl }}">
+    <link rel="canonical" href="{{ seo.ogurl }}">
     <link rel="stylesheet" href="{{ url_for('static', filename='css/answerbox.css') }}?v=1.5">
     <link rel="stylesheet" href="{{ url_for('static', filename='css/subjectlayout.css') }}?v=1.5">
-    <script src="{{ url_for('static', filename='js/script.js') }}" defer></script>   >
+    <script src="{{ url_for('static', filename='js/script.js') }}" defer></script>
     <link rel="icon" href="{{ url_for('get_image', filename='favicon.ico') }}" type="image/x-icon">
-    <meta name="keywords" content="IoT, Arduino, LED control, blinking LED, temperature sensor, serial monitor">
-    <meta name="description" id="pageDescription" content="SPPU Codes: IoT programming exercises for SPPU students. Control LED using Arduino, create counters, illuminate LEDs based on conditions, and read temperature sensors.">
+    <!-- Dynamic Schema -->
+    {% if schema %}
     <script type="application/ld+json">
-        {
-            "@context": "https://schema.org",
-            "@type": "FAQPage",
-            "mainEntity": [
-                {
-                    "@type": "Question",
-                    "name": "Q5: Write a program using Arduino to control LED (One or more ON/OFF) or Blinking.",
-                    "acceptedAnswer": {
-                        "@type": "Answer",
-                        "text": "View Code at <a href='https://sppucodes.vercel.app/iotl/blinking-led'>https://sppucodes.vercel.app/iotl/blinking-led</a>"
-                    }
-                },
-                {
-                    "@type": "Question",
-                    "name": "Q6: Create a program that illuminates the green LED if the counter is less than 100, illuminates the yellow LED otherwise.",
-                    "acceptedAnswer": {
-                        "@type": "Answer",2
-                        "text": "View Code at <a href='https://sppucodes.vercel.app/iotl/led-counter'>https://sppucodes.vercel.app/iotl/led-counter</a>"
-                    }
-                },
-                {
-                    "@type": "Question",
-                    "name": "Q7: Create a program so that when the user enters 'b', the green light blinks, 'g' the green light is illuminated, 'y' the yellow light is illuminated, and 'r' the red light is illuminated.",
-                    "acceptedAnswer": {
-                        "@type": "Answer",
-                        "text": "View Code at <a href='https://sppucodes.vercel.app/iotl/led-control'>https://sppucodes.vercel.app/iotl/led-control</a>"
-                    }
-                },
-                {
-                    "@type": "Question",
-                    "name": "Q8: Write a program that asks the user for a number and outputs the number squared.",
-                    "acceptedAnswer": {
-                        "@type": "Answer",
-                        "text": "View Code at <a href='https://sppucodes.vercel.app/iotl/square-number'>https://sppucodes.vercel.app/iotl/square-number</a>"
-                    }
-                }
-            ]
-        }
+        {{ schema | tojson | safe }}
     </script>
+    {% endif %}
 </head>
 <body>
     <header>
@@ -70,7 +38,7 @@
         <h3>Group B</h3>
 
         <!-- Question 5 -->
-        <div class="question-item" id="blinking-led">
+        <article class="question-item" id="blinking-led">
             <h1>
                 <a href="/iotl/blinking-led" class="question-link">
                     <strong>Q5: </strong>Write a program using Arduino to control LED (One or more ON/OFF) or Blinking.
@@ -90,10 +58,10 @@
                     <button class="close-btn" onclick="closeBox('answerBox5')">Close</button>
                 </div>
             </div>
-        </div>
+        </article>
 
         <!-- Question 6 -->
-        <div class="question-item" id="led-counter">
+        <article class="question-item" id="led-counter">
             <h1>
                 <a href="/iotl/led-counter" class="question-link">
                     <strong>Q6: </strong>Create a program that illuminates the green LED if the counter is less than 100, illuminates the yellow LED otherwise.
@@ -113,10 +81,10 @@
                     <button class="close-btn" onclick="closeBox('answerBox6')">Close</button>
                 </div>
             </div>
-        </div>
+        </article>
 
         <!-- Question 7 -->
-        <div class="question-item" id="led-control">
+        <article class="question-item" id="led-control">
             <h1>
                 <a href="/iotl/led-control" class="question-link">
                     <strong>Q7: </strong>Create a program so that when the user enters 'b', the green light blinks, 'g' the green light is illuminated, 'y' the yellow light is illuminated, and 'r' the red light is illuminated.
@@ -136,10 +104,10 @@
                     <button class="close-btn" onclick="closeBox('answerBox7')">Close</button>
                 </div>
             </div>
-        </div>
+        </article>
 
         <!-- Question 8 -->
-        <div class="question-item" id="square-number">
+        <article class="question-item" id="square-number">
             <h1>
                 <a href="/iotl/square-number" class="question-link">
                     <strong>Q8: </strong>Write a program that asks the user for a number and outputs the number squared.
@@ -159,10 +127,10 @@
                     <button class="close-btn" onclick="closeBox('answerBox8')">Close</button>
                 </div>
             </div>
-        </div>
+        </article>
 
         <!-- Question 10 -->
-        <div class="question-item" id="temperature-sensor">
+        <article class="question-item" id="temperature-sensor">
             <h1>
                 <a href="/iotl/temperature-sensor" class="question-link">
                     <strong>Q10: </strong>Write a program to read the temperature sensor and send the values to the serial monitor on the computer.
@@ -182,10 +150,10 @@
                     <button class="close-btn" onclick="closeBox('answerBox10')">Close</button>
                 </div>
             </div>
-        </div>
+        </article>
 
         <!-- Question 12 -->
-        <div class="question-item" id="temperature-graph">
+        <article class="question-item" id="temperature-graph">
             <h1>
                 <a href="/iotl/temperature-graph" class="question-link">
                     <strong>Q12: </strong>Write a program to show the temperature and display a graph of the recent measurements.
@@ -205,53 +173,7 @@
                     <button class="close-btn" onclick="closeBox('answerBox12')">Close</button>
                 </div>
             </div>
-        </div>
+        </article>
     </div>
-
-    <script>
-        // Update the title and description dynamically based on the URL
-        const updatePageMetadata = () => {
-            const path = window.location.pathname;
-            const questionMap = {
-                "/iotl/blinking-led": {
-                    title: "Q5: Write a program using Arduino to control LED (One or more ON/OFF) or Blinking - SPPU Codes",
-                    description: "SPPU Codes: Write a program using Arduino to control LED (One or more ON/OFF) or Blinking. Learn IoT programming for SPPU students."
-                },
-                "/iotl/led-counter": {
-                    title: "Q6: Create a program that illuminates the green LED if the counter is less than 100, illuminates the yellow LED otherwise - SPPU Codes",
-                    description: "SPPU Codes: Create a program that illuminates the green LED if the counter is less than 100, illuminates the yellow LED otherwise. Learn IoT programming for SPPU students."
-                },
-                "/iotl/led-control": {
-                    title: "Q7: Create a program so that when the user enters 'b', the green light blinks, 'g' the green light is illuminated, 'y' the yellow light is illuminated, and 'r' the red light is illuminated - SPPU Codes",
-                    description: "SPPU Codes: Create a program so that when the user enters 'b', the green light blinks, 'g' the green light is illuminated, 'y' the yellow light is illuminated, and 'r' the red light is illuminated. Learn IoT programming for SPPU students."
-                },
-                "/iotl/square-number": {
-                    title: "Q8: Write a program that asks the user for a number and outputs the number squared - SPPU Codes",
-                    description: "SPPU Codes: Write a program that asks the user for a number and outputs the number squared. Learn IoT programming for SPPU students."
-                },
-                "/iotl/temperature-sensor": {
-                    title: "Q10: Write a program to read the temperature sensor and send the values to the serial monitor on the computer - SPPU Codes",
-                    description: "SPPU Codes: Write a program to read the temperature sensor and send the values to the serial monitor on the computer. Learn IoT programming for SPPU students."
-                },
-                "/iotl/temperature-graph": {
-                    title: "Q12: Write a program to show the temperature and display a graph of the recent measurements - SPPU Codes",
-                    description: "SPPU Codes: Write a program to show the temperature and display a graph of the recent measurements. Learn IoT programming for SPPU students."
-                }
-            };
-
-            const metadata = questionMap[path] || {
-                title: "SPPU Codes - IoTL",
-                description: "SPPU Codes: IoT programming exercises for SPPU students. Control LED using Arduino, create counters, illuminate LEDs based on conditions, and read temperature sensors."
-            };
-
-            document.getElementById("pageTitle").innerText = metadata.title;
-            document.getElementById("pageDescription").setAttribute("content", metadata.description);
-        };
-
-        // Call the function to update metadata on page load
-        updatePageMetadata();
-    </script>
-
-    <script src="{{ url_for('static', filename='js/script.js') }}" async></script>
 </body>
 </html>

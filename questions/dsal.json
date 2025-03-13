@@ -1,0 +1,59 @@
+{
+  "default": {
+    "title": "SPPU Codes - DSAL",
+    "description": "SPPU Codes: Data Structures and Algorithms Laboratory (DSAL) exercises for SPPU students. Learn programming concepts like hash tables, binary trees, graphs, DFS, BFS, and more.",
+    "keywords": "C++, DSAL, SPPU Codes, programming exercises, hash tables, binary trees, graphs, DFS, BFS, algorithms",
+    "ogurl": "https://sppucodes.vercel.app/dsal"
+  },
+  "questions": [
+    {
+      "url": "/dsal/telephone-book",
+      "title": "Q1: Consider telephone book database of N clients. Make use of a hash table implementation to quickly look up clients telephone number. Make use of two collision handling techniques and compare them using number of comparisons required to find a set of telephone numbers.",
+      "description": "SPPU Codes: Implement a hash table for a telephone book database with collision handling techniques. Learn data structures and algorithms for SPPU students.",
+      "keywords": "C++, DSAL, hash table, collision handling, telephone book, SPPU Codes",
+      "ogurl": "https://sppucodes.vercel.app/dsal/telephone-book"
+    },
+    {
+      "url": "/dsal/set-adt",
+      "title": "Q4: To create ADT that implements the 'set' concept. a. Add (new Element) - Place a value into the set b. Remove (element) - Remove the value c. Contains (element) - Return true if element is in collection d. Size() - Return number of values in collection e. Iterator() - Return an iterator used to loop over collection f. Intersection of two sets g. Union of two sets h. Difference between two sets i. Subset",
+      "description": "SPPU Codes: Implement an Abstract Data Type (ADT) for the 'set' concept with operations like add, remove, contains, size, iterator, intersection, union, difference, and subset. Learn data structures and algorithms for SPPU students.",
+      "keywords": "C++, DSAL, set ADT, abstract data type, intersection, union, difference, subset, SPPU Codes",
+      "ogurl": "https://sppucodes.vercel.app/dsal/set-adt"
+    },
+    {
+      "url": "/dsal/book-tree",
+      "title": "Q5: A book consists of chapters, chapters consist of sections, and sections consist of subsections. Construct a tree and print the nodes. Find the time and space requirements of your method.",
+      "description": "SPPU Codes: Construct a tree to represent a book's structure (chapters, sections, subsections) and analyze its time and space complexity. Learn data structures and algorithms for SPPU students.",
+      "keywords": "C++, DSAL, tree data structure, book structure, time complexity, space complexity, SPPU Codes",
+      "ogurl": "https://sppucodes.vercel.app/dsal/book-tree"
+    },
+    {
+      "url": "/dsal/binary-search-tree",
+      "title": "Q6: Beginning with an empty binary search tree, construct a binary search tree by inserting the values in the order given. After constructing the binary tree: i. Insert a new node ii. Find the number of nodes in the longest path from root iii. Find the minimum data value in the tree iv. Change the tree so that the roles of the left and right pointers are swapped at every node v. Search for a value",
+      "description": "SPPU Codes: Implement a binary search tree with operations like insertion, finding the longest path, minimum value, swapping pointers, and searching. Learn data structures and algorithms for SPPU students.",
+      "keywords": "C++, DSAL, binary search tree, BST, tree operations, SPPU Codes",
+      "ogurl": "https://sppucodes.vercel.app/dsal/binary-search-tree"
+    },
+    {
+      "url": "/dsal/threaded-binary-tree",
+      "title": "Q9: Convert given binary tree into threaded binary tree. Analyze time and space complexity of the algorithm.",
+      "description": "SPPU Codes: Convert a binary tree into a threaded binary tree and analyze its time and space complexity. Learn data structures and algorithms for SPPU students.",
+      "keywords": "C++, DSAL, threaded binary tree, tree conversion, time complexity, space complexity, SPPU Codes",
+      "ogurl": "https://sppucodes.vercel.app/dsal/threaded-binary-tree"
+    },
+    {
+      "url": "/dsal/graph-dfs-bfs",
+      "title": "Q13: Represent a given graph using adjacency matrix/list to perform DFS and using adjacency list to perform BFS. Use the map of the area around the college as the graph. Identify the prominent landmarks as nodes and perform DFS and BFS on that.",
+      "description": "SPPU Codes: Represent a graph using adjacency matrix/list and perform DFS and BFS. Use a real-world map as the graph. Learn data structures and algorithms for SPPU students.",
+      "keywords": "C++, DSAL, graph, adjacency matrix, adjacency list, DFS, BFS, SPPU Codes",
+      "ogurl": "https://sppucodes.vercel.app/dsal/graph-dfs-bfs"
+    },
+    {
+      "url": "/dsal/flight-graph",
+      "title": "Q14: There are flight paths between cities. If there is a flight between city A and city B then there is an edge between the cities. The cost of the edge can be the time that flight takes to reach city B from A, or the amount of fuel used for the journey. Represent this as a graph. The node can be represented by the airport name or name of the city. Use adjacency list representation of the graph or use adjacency matrix representation of the graph. Check whether the graph is connected or not. Justify the storage representation used.",
+      "description": "SPPU Codes: Represent flight paths between cities as a graph using adjacency list/matrix. Check if the graph is connected and justify the storage representation. Learn data structures and algorithms for SPPU students.",
+      "keywords": "C++, DSAL, graph, adjacency list, adjacency matrix, flight paths, connected graph, SPPU Codes",
+      "ogurl": "https://sppucodes.vercel.app/dsal/flight-graph"
+    }
+  ]
+}

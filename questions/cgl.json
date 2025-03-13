@@ -1,0 +1,52 @@
+{
+    "default": {
+      "title": "SPPU Codes - CGL",
+      "description": "SPPU Codes: Computer Graphics Laboratory (CGL) exercises for SPPU students. Learn C++ programming concepts like scan fill, line clipping, 2D/3D transformations, fractals, and OpenGL.",
+      "keywords": "C++, CGL, SPPU Codes, programming exercises, scan fill, line clipping, 2D transformations, 3D transformations, fractals, OpenGL",
+      "ogurl": "https://sppucodes.vercel.app/cgl"
+    },
+    "questions": [
+      {
+        "url": "/cgl/scan-fill",
+        "title": "Q1: Write C++ program to draw a concave polygon and fill it with desired color using scan fill algorithm.",
+        "description": "SPPU Codes: Write C++ program to draw a concave polygon and fill it with desired color using scan fill algorithm. Learn computer graphics programming for SPPU students.",
+        "keywords": "C++, CGL, scan fill algorithm, concave polygon, SPPU Codes",
+        "ogurl": "https://sppucodes.vercel.app/cgl/scan-fill"
+      },
+      {
+        "url": "/cgl/cohen-sutherland",
+        "title": "Q2: Write a C++ program to implement the Cohen-Sutherland line clipping algorithm.",
+        "description": "SPPU Codes: Write a C++ program to implement the Cohen-Sutherland line clipping algorithm. Learn computer graphics programming for SPPU students.",
+        "keywords": "C++, CGL, Cohen-Sutherland, line clipping, SPPU Codes",
+        "ogurl": "https://sppucodes.vercel.app/cgl/cohen-sutherland"
+      },
+      {
+        "url": "/cgl/dda-bresenham",
+        "title": "Q3a: Write a C++ program to draw the following pattern. Use DDA line and Bresenham's circle drawing algorithm. Apply the concept of encapsulation.",
+        "description": "SPPU Codes: Write a C++ program to draw the following pattern. Use DDA line and Bresenham's circle drawing algorithm. Apply the concept of encapsulation. Learn computer graphics programming for SPPU students.",
+        "keywords": "C++, CGL, DDA line, Bresenham's circle, encapsulation, SPPU Codes",
+        "ogurl": "https://sppucodes.vercel.app/cgl/dda-bresenham"
+      },
+      {
+        "url": "/cgl/2d-transformations",
+        "title": "Q4a: Write a C++ program to draw a 2-D object and perform the following basic transformations: Scaling, Translation, Rotation. Apply the concept of operator overloading.",
+        "description": "SPPU Codes: Write a C++ program to draw a 2-D object and perform the following basic transformations: Scaling, Translation, Rotation. Apply the concept of operator overloading. Learn computer graphics programming for SPPU students.",
+        "keywords": "C++, CGL, 2D transformations, scaling, translation, rotation, operator overloading, SPPU Codes",
+        "ogurl": "https://sppucodes.vercel.app/cgl/2d-transformations"
+      },
+      {
+        "url": "/cgl/hilbert-curve",
+        "title": "Q5b: Write a C++ program to generate a Hilbert curve using the concept of fractals.",
+        "description": "SPPU Codes: Write a C++ program to generate a Hilbert curve using the concept of fractals. Learn computer graphics programming for SPPU students.",
+        "keywords": "C++, CGL, Hilbert curve, fractals, SPPU Codes",
+        "ogurl": "https://sppucodes.vercel.app/cgl/hilbert-curve"
+      },
+      {
+        "url": "/cgl/3d-transformations",
+        "title": "Q6b: Write C++ program to draw 3-D cube and perform following transformations on it using OpenGL: Scaling, Translation, Rotation about an axis (X/Y/Z).",
+        "description": "SPPU Codes: Write C++ program to draw 3-D cube and perform following transformations on it using OpenGL: Scaling, Translation, Rotation about an axis (X/Y/Z). Learn computer graphics programming for SPPU students.",
+        "keywords": "C++, CGL, 3D transformations, OpenGL, scaling, translation, rotation, SPPU Codes",
+        "ogurl": "https://sppucodes.vercel.app/cgl/3d-transformations"
+      }
+    ]
+  }

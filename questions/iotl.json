@@ -1,0 +1,52 @@
+{
+    "default": {
+      "title": "SPPU Codes - IoTL",
+      "description": "SPPU Codes: IoT programming exercises for SPPU students. Control LED using Arduino, create counters, illuminate LEDs based on conditions, and read temperature sensors.",
+      "keywords": "IoT, Arduino, SPPU Codes, programming exercises",
+      "ogurl": "https://sppucodes.vercel.app/iotl"
+    },
+    "questions": [
+      {
+        "url": "/iotl/blinking-led",
+        "title": "Q5: Write a program using Arduino to control LED (One or more ON/OFF) or Blinking.",
+        "description": "SPPU Codes: Write a program using Arduino to control LED (One or more ON/OFF) or Blinking. Learn IoT programming for SPPU students.",
+        "keywords": "IoT, Arduino, LED control, blinking LED, SPPU Codes",
+        "ogurl": "https://sppucodes.vercel.app/iotl/blinking-led"
+      },
+      {
+        "url": "/iotl/led-counter",
+        "title": "Q6: Create a program that illuminates the green LED if the counter is less than 100, illuminates the yellow LED otherwise.",
+        "description": "SPPU Codes: Create a program that illuminates the green LED if the counter is less than 100, illuminates the yellow LED otherwise. Learn IoT programming for SPPU students.",
+        "keywords": "IoT, Arduino, LED counter, green LED, yellow LED, SPPU Codes",
+        "ogurl": "https://sppucodes.vercel.app/iotl/led-counter"
+      },
+      {
+        "url": "/iotl/led-control",
+        "title": "Q7: Create a program so that when the user enters 'b', the green light blinks, 'g' the green light is illuminated, 'y' the yellow light is illuminated, and 'r' the red light is illuminated.",
+        "description": "SPPU Codes: Create a program so that when the user enters 'b', the green light blinks, 'g' the green light is illuminated, 'y' the yellow light is illuminated, and 'r' the red light is illuminated. Learn IoT programming for SPPU students.",
+        "keywords": "IoT, Arduino, LED control, green light, yellow light, red light, SPPU Codes",
+        "ogurl": "https://sppucodes.vercel.app/iotl/led-control"
+      },
+      {
+        "url": "/iotl/square-number",
+        "title": "Q8: Write a program that asks the user for a number and outputs the number squared.",
+        "description": "SPPU Codes: Write a program that asks the user for a number and outputs the number squared. Learn IoT programming for SPPU students.",
+        "keywords": "IoT, Arduino, number squared, SPPU Codes",
+        "ogurl": "https://sppucodes.vercel.app/iotl/square-number"
+      },
+      {
+        "url": "/iotl/temperature-sensor",
+        "title": "Q10: Write a program to read the temperature sensor and send the values to the serial monitor on the computer.",
+        "description": "SPPU Codes: Write a program to read the temperature sensor and send the values to the serial monitor on the computer. Learn IoT programming for SPPU students.",
+        "keywords": "IoT, Arduino, temperature sensor, serial monitor, SPPU Codes",
+        "ogurl": "https://sppucodes.vercel.app/iotl/temperature-sensor"
+      },
+      {
+        "url": "/iotl/temperature-graph",
+        "title": "Q12: Write a program to show the temperature and display a graph of the recent measurements.",
+        "description": "SPPU Codes: Write a program to show the temperature and display a graph of the recent measurements. Learn IoT programming for SPPU students.",
+        "keywords": "IoT, Arduino, temperature graph, recent measurements, SPPU Codes",
+        "ogurl": "https://sppucodes.vercel.app/iotl/temperature-graph"
+      }
+    ]
+  }

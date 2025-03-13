@@ -1,0 +1,59 @@
+{
+    "default": {
+      "title": "SPPU Codes - OOP",
+      "description": "SPPU Codes: Object-Oriented Programming (OOP) exercises for SPPU students. Learn C++ programming concepts like operator overloading, inheritance, file handling, STL, and more.",
+      "keywords": "C++, OOP, SPPU Codes, programming exercises, operator overloading, inheritance, STL, file handling",
+      "ogurl": "https://sppucodes.vercel.app/oop"
+    },
+    "questions": [
+      {
+        "url": "/oop/complex-number",
+        "title": "Q1: Implement a class Complex which represents the Complex Number data type.",
+        "description": "SPPU Codes: Implement a class Complex which represents the Complex Number data type. Learn operator overloading, constructors, and more in C++.",
+        "keywords": "C++, OOP, complex number, operator overloading, constructors, SPPU Codes",
+        "ogurl": "https://sppucodes.vercel.app/oop/complex-number"
+      },
+      {
+        "url": "/oop/student-db",
+        "title": "Q2: Develop a program in C++ to create a database of students information system.",
+        "description": "SPPU Codes: Develop a program in C++ to create a database of students information system. Learn constructors, destructors, dynamic memory allocation, and exception handling.",
+        "keywords": "C++, OOP, student database, constructors, destructors, dynamic memory allocation, exception handling, SPPU Codes",
+        "ogurl": "https://sppucodes.vercel.app/oop/student-db"
+      },
+      {
+        "url": "/oop/publication-class",
+        "title": "Q3: Create a class called Publication and derive Book and Tape classes from it.",
+        "description": "SPPU Codes: Create a class called Publication and derive Book and Tape classes from it. Learn inheritance and exception handling in C++.",
+        "keywords": "C++, OOP, inheritance, publication class, book class, tape class, exception handling, SPPU Codes",
+        "ogurl": "https://sppucodes.vercel.app/oop/publication-class"
+      },
+      {
+        "url": "/oop/file-handling",
+        "title": "Q4: Write a C++ program that creates an output file, writes information to it, and reads from it.",
+        "description": "SPPU Codes: Write a C++ program that creates an output file, writes information to it, and reads from it. Learn file handling in C++.",
+        "keywords": "C++, OOP, file handling, input file, output file, SPPU Codes",
+        "ogurl": "https://sppucodes.vercel.app/oop/file-handling"
+      },
+      {
+        "url": "/oop/selection-sort",
+        "title": "Q5: Write a function template for selection sort that inputs, sorts, and outputs an integer array and a float array.",
+        "description": "SPPU Codes: Write a function template for selection sort that inputs, sorts, and outputs an integer array and a float array. Learn templates in C++.",
+        "keywords": "C++, OOP, selection sort, function template, integer array, float array, SPPU Codes",
+        "ogurl": "https://sppucodes.vercel.app/oop/selection-sort"
+      },
+      {
+        "url": "/oop/stl-sorting",
+        "title": "Q6: Write a C++ program using STL for sorting and searching user-defined records.",
+        "description": "SPPU Codes: Write a C++ program using STL for sorting and searching user-defined records. Learn STL and vector containers in C++.",
+        "keywords": "C++, OOP, STL, sorting, searching, vector container, user-defined records, SPPU Codes",
+        "ogurl": "https://sppucodes.vercel.app/oop/stl-sorting"
+      },
+      {
+        "url": "/oop/map-container",
+        "title": "Q7: Write a C++ program to use the map associative container for state populations.",
+        "description": "SPPU Codes: Write a C++ program to use the map associative container for state populations. Learn map containers and error handling in C++.",
+        "keywords": "C++, OOP, map container, associative container, state populations, error handling, SPPU Codes",
+        "ogurl": "https://sppucodes.vercel.app/oop/map-container"
+      }
+    ]
+  }

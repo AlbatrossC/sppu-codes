@@ -3,68 +3,21 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title id="pageTitle">SPPU Codes: CGL</title>
-    <link rel="stylesheet" href="../static/css/answerbox.css?v=1.5">
-    <link rel="stylesheet" href="../static/css/subjectlayout.css?v=1.5">
+    <title>{{ seo.title }}</title>
+    <meta name="description" content="{{ seo.description }}">
+    <meta name="keywords" content="{{ seo.keywords }}">
+    <meta property="og:url" content="{{ seo.ogurl }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/answerbox.css') }}?v=1.5">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/subjectlayout.css') }}?v=1.5">
+    <script src="{{ url_for('static', filename='js/script.js') }}" defer></script>
     <link rel="icon" href="{{ url_for('get_image', filename='favicon.ico') }}" type="image/x-icon">
-    <meta name="keywords" content="Computer Graphics, CGL, C++ programs, scan fill algorithm, Cohen-Sutherland line clipping, DDA line, Bresenham's circle drawing, OpenGL, 2D transformations, Hilbert curve, fractals, operator overloading, 3D transformations">
-    <meta name="description" id="pageDescription" content="Explore detailed tutorials and programs on Computer Graphics including algorithms like scan fill, Cohen-Sutherland line clipping, and more. Dive into OpenGL examples, 2D/3D transformations, fractals, and advanced C++ concepts.">
+    <link rel="canonical" href="{{ seo.ogurl }}">
+    <!-- Dynamic Schema -->
+    {% if schema %}
     <script type="application/ld+json">
-        {
-            "@context": "https://schema.org",
-            "@type": "FAQPage",
-            "mainEntity": [
-                {
-                    "@type": "Question",
-                    "name": "Write C++ program to draw a concave polygon and fill it with desired color using scan fill algorithm",
-                    "acceptedAnswer": {
-                        "@type": "Answer",
-                        "text": "View Code at <a href='https://sppucodes.vercel.app/cgl/scan-fill'>https://sppucodes.vercel.app/cgl/scan-fill</a>"
-                    }
-                },
-                {
-                    "@type": "Question",
-                    "name": "Write a C++ program to implement the Cohen-Sutherland line clipping algorithm",
-                    "acceptedAnswer": {
-                        "@type": "Answer",
-                        "text": "View Code at <a href='https://sppucodes.vercel.app/cgl/Cohen-Sutherland'>https://sppucodes.vercel.app/cgl/Cohen-Sutherland</a>"
-                    }
-                },
-                {
-                    "@type": "Question",
-                    "name": "Write a C++ program to draw the following pattern. Use DDA line and Bresenham's circle drawing algorithm. Apply the concept of encapsulation",
-                    "acceptedAnswer": {
-                        "@type": "Answer",
-                        "text": "View Code at <a href='https://sppucodes.vercel.app/cgl/DDA-Bresenham'>https://sppucodes.vercel.app/cgl/DDA-Bresenham</a>"
-                    }
-                },
-                {
-                    "@type": "Question",
-                    "name": "Write a C++ program to draw a 2-D object and perform the following basic transformations: Scaling, Translation, Rotation. Apply the concept of operator overloading",
-                    "acceptedAnswer": {
-                        "@type": "Answer",
-                        "text": "View Code at <a href='https://sppucodes.vercel.app/cgl/2D-transformations'>https://sppucodes.vercel.app/cgl/2D-transformations</a>"
-                    }
-                },
-                {
-                    "@type": "Question",
-                    "name": "Write a C++ program to generate a Hilbert curve using the concept of fractals",
-                    "acceptedAnswer": {
-                        "@type": "Answer",
-                        "text": "View Code at <a href='https://sppucodes.vercel.app/cgl/Hilbert-curve'>https://sppucodes.vercel.app/cgl/Hilbert-curve</a>"
-                    }
-                },
-                {
-                    "@type": "Question",
-                    "name": "Write C++ program to draw 3-D cube and perform following transformations on it using OpenGL: Scaling, Translation, Rotation about an axis (X/Y/Z)",
-                    "acceptedAnswer": {
-                        "@type": "Answer",
-                        "text": "View Code at <a href='https://sppucodes.vercel.app/cgl/3D-transformations'>https://sppucodes.vercel.app/cgl/3D-transformations</a>"
-                    }
-                }
-            ]
-        }
+        {{ schema | tojson | safe }}
     </script>
+    {% endif %}
 </head>
 <body>
     <header>
@@ -84,11 +37,11 @@
     <div class="group">
         <h3>Group A</h3>
 
-        <!-- Q1 -->
-        <div class="question-item" id="scan-fill">
+        <!-- Question 1 -->
+        <article class="question-item" id="scan-fill">
             <h1>
                 <a href="/cgl/scan-fill" class="question-link">
-                    <strong>Q1: </strong>Write C++ program to draw a concave polygon and fill it with desired color using scan fill algorithm
+                    <strong>Q1: </strong>Write C++ program to draw a concave polygon and fill it with desired color using scan fill algorithm.
                 </a>
             </h1>
             <button class="view-code-btn" onclick="loadFile('cgl', 'grpA_1.cpp', 'Scan Fill Algorithm', this)">View Code</button>
@@ -105,13 +58,13 @@
                     <button class="close-btn" onclick="closeBox('answerBox1')">Close</button>
                 </div>
             </div>
-        </div>
+        </article>
 
-        <!-- Q2 -->
-        <div class="question-item" id="Cohen-Sutherland">
+        <!-- Question 2 -->
+        <article class="question-item" id="cohen-sutherland">
             <h1>
-                <a href="/cgl/Cohen-Sutherland" class="question-link">
-                    <strong>Q2: </strong>Write a C++ program to implement the Cohen-Sutherland line clipping algorithm
+                <a href="/cgl/cohen-sutherland" class="question-link">
+                    <strong>Q2: </strong>Write a C++ program to implement the Cohen-Sutherland line clipping algorithm.
                 </a>
             </h1>
             <button class="view-code-btn" onclick="loadFile('cgl', 'grpA_2.cpp', 'Cohen-Sutherland Line Clipping', this)">View Code</button>
@@ -128,13 +81,13 @@
                     <button class="close-btn" onclick="closeBox('answerBox2')">Close</button>
                 </div>
             </div>
-        </div>
+        </article>
 
-        <!-- Q3a -->
-        <div class="question-item" id="DDA-Bresenham">
+        <!-- Question 3a -->
+        <article class="question-item" id="dda-bresenham">
             <h1>
-                <a href="/cgl/DDA-Bresenham" class="question-link">
-                    <strong>Q3a: </strong>Write a C++ program to draw the following pattern. Use DDA line and Bresenham's circle drawing algorithm. Apply the concept of encapsulation
+                <a href="/cgl/dda-bresenham" class="question-link">
+                    <strong>Q3a: </strong>Write a C++ program to draw the following pattern. Use DDA line and Bresenham's circle drawing algorithm. Apply the concept of encapsulation.
                 </a>
             </h1>
             <div class="image-section">
@@ -154,18 +107,18 @@
                     <button class="close-btn" onclick="closeBox('answerBox3a')">Close</button>
                 </div>
             </div>
-        </div>
+        </article>
     </div>
 
     <!-- Group B -->
     <div class="group">
         <h3>Group B</h3>
 
-        <!-- Q4a -->
-        <div class="question-item" id="2D-transformations">
+        <!-- Question 4a -->
+        <article class="question-item" id="2d-transformations">
             <h1>
-                <a href="/cgl/2D-transformations" class="question-link">
-                    <strong>Q4a: </strong>Write a C++ program to draw a 2-D object and perform the following basic transformations: Scaling, Translation, Rotation. Apply the concept of operator overloading
+                <a href="/cgl/2d-transformations" class="question-link">
+                    <strong>Q4a: </strong>Write a C++ program to draw a 2-D object and perform the following basic transformations: Scaling, Translation, Rotation. Apply the concept of operator overloading.
                 </a>
             </h1>
             <button class="view-code-btn" onclick="loadFile('cgl', 'grpB_4a.cpp', '2D Transformations', this)">View Code</button>
@@ -182,13 +135,13 @@
                     <button class="close-btn" onclick="closeBox('answerBox4a')">Close</button>
                 </div>
             </div>
-        </div>
+        </article>
 
-        <!-- Q5b -->
-        <div class="question-item" id="Hilbert-curve">
+        <!-- Question 5b -->
+        <article class="question-item" id="hilbert-curve">
             <h1>
-                <a href="/cgl/Hilbert-curve" class="question-link">
-                    <strong>Q5b: </strong>Write a C++ program to generate a Hilbert curve using the concept of fractals
+                <a href="/cgl/hilbert-curve" class="question-link">
+                    <strong>Q5b: </strong>Write a C++ program to generate a Hilbert curve using the concept of fractals.
                 </a>
             </h1>
             <button class="view-code-btn" onclick="loadFile('cgl', 'grpB_5b.cpp', 'Hilbert Curve', this)">View Code</button>
@@ -205,18 +158,18 @@
                     <button class="close-btn" onclick="closeBox('answerBox5b')">Close</button>
                 </div>
             </div>
-        </div>
+        </article>
     </div>
 
     <!-- Group C -->
     <div class="group">
         <h3>Group C</h3>
 
-        <!-- Q6b -->
-        <div class="question-item" id="3D-transformations">
+        <!-- Question 6b -->
+        <article class="question-item" id="3d-transformations">
             <h1>
-                <a href="/cgl/3D-transformations" class="question-link">
-                    <strong>Q6b: </strong>Write C++ program to draw 3-D cube and perform following transformations on it using OpenGL: Scaling, Translation, Rotation about an axis (X/Y/Z)
+                <a href="/cgl/3d-transformations" class="question-link">
+                    <strong>Q6b: </strong>Write C++ program to draw 3-D cube and perform following transformations on it using OpenGL: Scaling, Translation, Rotation about an axis (X/Y/Z).
                 </a>
             </h1>
             <button class="view-code-btn" onclick="loadFile('cgl', 'grpC_6b.cpp', '3D Transformations', this)">View Code</button>
@@ -233,53 +186,7 @@
                     <button class="close-btn" onclick="closeBox('answerBox6b')">Close</button>
                 </div>
             </div>
-        </div>
-    </div>
-
-    <script>
-        // Update the title and description dynamically based on the URL
-        const updatePageMetadata = () => {
-            const path = window.location.pathname;
-            const questionMap = {
-                "/cgl/scan-fill": {
-                    title: "Q1: Write C++ program to draw a concave polygon and fill it with desired color using scan fill algorithm - SPPU Codes",
-                    description: "SPPU Codes: Write C++ program to draw a concave polygon and fill it with desired color using scan fill algorithm."
-                },
-                "/cgl/Cohen-Sutherland": {
-                    title: "Q2: Write a C++ program to implement the Cohen-Sutherland line clipping algorithm - SPPU Codes",
-                    description: "SPPU Codes: Write a C++ program to implement the Cohen-Sutherland line clipping algorithm."
-                },
-                "/cgl/DDA-Bresenham": {
-                    title: "Q3a: Write a C++ program to draw the following pattern. Use DDA line and Bresenham's circle drawing algorithm. Apply the concept of encapsulation - SPPU Codes",
-                    description: "SPPU Codes: Write a C++ program to draw the following pattern. Use DDA line and Bresenham's circle drawing algorithm. Apply the concept of encapsulation."
-                },
-                "/cgl/2D-transformations": {
-                    title: "Q4a: Write a C++ program to draw a 2-D object and perform the following basic transformations: Scaling, Translation, Rotation. Apply the concept of operator overloading - SPPU Codes",
-                    description: "SPPU Codes: Write a C++ program to draw a 2-D object and perform the following basic transformations: Scaling, Translation, Rotation. Apply the concept of operator overloading."
-                },
-                "/cgl/Hilbert-curve": {
-                    title: "Q5b: Write a C++ program to generate a Hilbert curve using the concept of fractals - SPPU Codes",
-                    description: "SPPU Codes: Write a C++ program to generate a Hilbert curve using the concept of fractals."
-                },
-                "/cgl/3D-transformations": {
-                    title: "Q6b: Write C++ program to draw 3-D cube and perform following transformations on it using OpenGL: Scaling, Translation, Rotation about an axis (X/Y/Z) - SPPU Codes",
-                    description: "SPPU Codes: Write C++ program to draw 3-D cube and perform following transformations on it using OpenGL: Scaling, Translation, Rotation about an axis (X/Y/Z)."
-                }
-            };
-
-            const metadata = questionMap[path] || {
-                title: "SPPU Codes: CGL",
-                description: "Explore detailed tutorials and programs on Computer Graphics including algorithms like scan fill, Cohen-Sutherland line clipping, and more. Dive into OpenGL examples, 2D/3D transformations, fractals, and advanced C++ concepts."
-            };
-
-            document.getElementById("pageTitle").innerText = metadata.title;
-            document.getElementById("pageDescription").setAttribute("content", metadata.description);
-        };
-
-        // Call the function to update metadata on page load
-        updatePageMetadata();
-    </script>
-
-    <script src="{{ url_for('static', filename='js/script.js') }}" async></script>
+        </article>
+    </div>  
 </body>
 </html>

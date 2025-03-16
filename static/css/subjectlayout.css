@@ -101,10 +101,12 @@ a:hover {
 .question-item h1:hover {
     color: #539fea; /* Blue on hover */
 }
+
 .question-link {
     text-decoration: none; /* Removes underline */
     color: inherit; /* Keeps default text color */
 }
+
 .question-item ol,
 .question-item ul {
     margin-left: 1.25rem;
@@ -130,6 +132,7 @@ a:hover {
     outline: none;
     position: relative;
     overflow: hidden;
+    cursor: pointer;
 }
 
 .view-code-btn:hover {
@@ -152,7 +155,7 @@ a:hover {
     position: relative;
     overflow: hidden;
     margin-left: 0.5rem;
-    
+    cursor: pointer;
 }
 
 .download-code-btn:hover {
@@ -205,6 +208,86 @@ a:hover {
     box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
 }
 
+/* Other Questions Section - Updated */
+.other-questions {
+    margin-top: 2rem;
+    padding: 1.5rem;
+    background-color: #1e1e1e;
+    border: 1px solid #333;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.4);
+}
+
+.other-questions-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1.25rem;
+    flex-wrap: wrap;
+    gap: 1rem;
+}
+
+.other-questions h3 {
+    font-size: 1.25rem;
+    color: #e6edf3;
+    font-weight: 600;
+    margin: 0;
+}
+
+.questions-list {
+    list-style-type: none;
+    padding: 0;
+    margin-top: 1rem;
+    border-top: 1px solid #333;
+    padding-top: 0.75rem;
+}
+
+.questions-list li {
+    padding: 0.75rem 1rem;
+    margin: 0.5rem 0;
+    border-radius: 4px;
+    background-color: #252525;
+    transition: all 0.2s ease;
+}
+
+.questions-list li:hover {
+    background-color: #2c2c2c;
+    transform: translateX(5px);
+}
+
+.questions-list li a {
+    text-decoration: none;
+    color: #e6edf3;
+    font-weight: 500;
+    transition: color 0.2s ease;
+    display: block;
+}
+
+.questions-list li a:hover {
+    color: #58a6ff;
+}
+
+.see-all-btn {
+    display: inline-block;
+    padding: 0.625rem 1.25rem;
+    background-color: transparent;
+    color: #58a6ff;
+    text-decoration: none;
+    border: 2px solid #58a6ff;
+    border-radius: 4px;
+    font-weight: 500;
+    font-size: 0.875rem;
+    transition: all 0.2s ease;
+    white-space: nowrap;
+}
+
+.see-all-btn:hover {
+    background-color: #58a6ff;
+    color: #fff;
+}
+
+
+/* Responsive adjustments */
 @media (max-width: 768px) {
     header {
         padding: 1rem;
@@ -241,6 +324,29 @@ a:hover {
     .question-item {
         padding: 1.25rem;
     }
+    
+    .other-questions {
+        padding: 1.25rem;
+    }
+    
+    .other-questions-header {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 0.75rem;
+    }
+    
+    .other-questions h3 {
+        font-size: 1.1rem;
+    }
+    
+    .see-all-btn {
+        width: 100%;
+        text-align: center;
+    }
+    
+    .questions-list li {
+        padding: 0.625rem 0.875rem;
+    }
 }
 
 @media (max-width: 480px) {
@@ -262,10 +368,8 @@ a:hover {
     .question-item {
         padding: 1rem;
     }
-}
-.highlighted-question {
-    border: 2px solid #58a6ff;
-    padding: 10px;
-    border-radius: 5px;
-    transition: all 0.3s ease; /* Smooth transition for visual effects */
+    
+    .other-questions {
+        padding: 1rem;
+    }
 }

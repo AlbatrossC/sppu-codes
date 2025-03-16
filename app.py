@@ -120,128 +120,64 @@ def download():
 def download_file(filename):
     return send_from_directory(downloads_folder, filename)
 
-# Function to load SEO data for a specific subject
-def load_seo_data(subject):
-    file_path = os.path.join(app.root_path, 'questions', f'{subject}.json')
-    try:
-        with open(file_path, 'r') as file:
-            return json.load(file)
-    except FileNotFoundError:
-        return None
+# Route for serving questions
+# Path to the questions directory
+QUESTIONS_DIR = os.path.join(os.path.dirname(__file__), 'questions')
 
-# Function to generate FAQ schema for all questions
-def generate_faq_schema(questions):
-    faq_schema = {
-        "@context": "https://schema.org",
-        "@type": "FAQPage",
-        "mainEntity": []
-    }
-    for question in questions:
-        faq_schema["mainEntity"].append({
-            "@type": "Question",
-            "name": question["title"],
-            "acceptedAnswer": {
-                "@type": "Answer",
-                "text": question["description"]
-            }
-        })
-    return faq_schema
-
-# Function to generate WebPage schema for a specific question
-def generate_webpage_schema(question):
-    webpage_schema = {
-        "@context": "https://schema.org",
-        "@type": "WebPage",
-        "name": question["title"],
-        "description": question["description"],
-        "keywords": question["keywords"],
-        "url": question["ogurl"]
-    }
-    return webpage_schema
-
-# Function to generate QAPage schema for a specific question
-def generate_qa_page_schema(question):
-    qa_page_schema = {
-        "@context": "https://schema.org",
-        "@type": "QAPage",
-        "mainEntity": {
-            "@type": "Question",
-            "name": question["title"],
-            "text": question["title"],
-            "answerCount": 1,
-            "datePublished": datetime.now().isoformat(),  # Add datePublished
-            "author": {
-                "@type": "Organization",
-                "name": "Sppu Codes",
-                "url": "https://sppucodes.vercel.app"  # Add author URL
-            },
-            "url": question["ogurl"],  # Add URL for the question
-            "acceptedAnswer": {
-                "@type": "Answer",
-                "text": question["description"],
-                "datePublished": datetime.now().isoformat(),  # Add datePublished
-                "upvoteCount": 0,  # Add upvoteCount (optional)
-                "url": question["ogurl"],  # Add URL for the answer
-                "author": {
-                    "@type": "Organization",
-                    "name": "Sppu Codes",
-                    "url": "https://sppucodes.vercel.app"  # Add author URL
-                }
-            }
-        }
-    }
-    return qa_page_schema
-
-# Route for /subject/question
-@app.route('/<subject>/<question>')
-def subject_question(subject, question):
-    seo_data = load_seo_data(subject)
-    if not seo_data:
-        # If no JSON file is found, render the page with default SEO data
-        default_seo = {
-            "title": f"{subject.capitalize()} - {question.capitalize()}",
-            "description": f"Learn about {question} in {subject}.",
-            "keywords": f"{subject}, {question}, education, learning",
-            "ogurl": request.url
-        }
-        return render_template(f'subjects/{subject}.html', seo=default_seo, schema=None, question=question)
-
-    # Find the question in the JSON data
-    question_data = next((q for q in seo_data["questions"] if q["url"] == f"/{subject}/{question}"), None)
+@app.route("/<subject_code>")
+@app.route("/<subject_code>/<question_id>")
+def question(subject_code, question_id=None):
+    # Construct the path to the JSON file
+    json_file_path = os.path.join(QUESTIONS_DIR, f"{subject_code}.json")
     
-    if question_data:
-        # Generate WebPage and QAPage schema for the question
-        webpage_schema = generate_webpage_schema(question_data)
-        qa_page_schema = generate_qa_page_schema(question_data)
-        # Dynamically set ogurl
-        question_data["ogurl"] = request.url
-        # Pass the question-specific SEO data and schema to the template
-        return render_template(f'subjects/{subject}.html', seo=question_data, schema=[webpage_schema, qa_page_schema], question=question)
-    else:
-        # If question not found, use default SEO data
-        seo_data["default"]["ogurl"] = request.url
-        return render_template(f'subjects/{subject}.html', seo=seo_data["default"], schema=None, question=None)
+    # Check if the JSON file exists
+    if not os.path.exists(json_file_path):
+        abort(404, description="Subject not found")
 
-# Route for /subject
-@app.route('/<subject>')
-def subject(subject):
-    seo_data = load_seo_data(subject)
-    if not seo_data:
-        # If no JSON file is found, render the page with default SEO data
-        default_seo = {
-            "title": f"{subject.capitalize()} - Learn {subject}",
-            "description": f"Learn about {subject} with detailed questions and answers.",
-            "keywords": f"{subject}, education, learning",
-            "ogurl": request.url
-        }
-        return render_template(f'subjects/{subject}.html', seo=default_seo, schema=None, question=None)
-    
-    # Generate FAQ schema for all questions
-    faq_schema = generate_faq_schema(seo_data["questions"])
-    # Dynamically set ogurl
-    seo_data["default"]["ogurl"] = request.url
-    # Use default SEO data for the subject page
-    return render_template(f'subjects/{subject}.html', seo=seo_data["default"], schema=faq_schema, question=None)
+    # Load the JSON data
+    with open(json_file_path, 'r') as f:
+        data = json.load(f)
+
+    subject = data.get("default", {})
+    questions = data.get("questions", [])
+
+    # Default values for subject page
+    title = f"SPPU Codes - {subject.get('subject_name', '')}"
+    description = subject.get("description", "")
+    keywords = subject.get("keywords", [])
+    url = subject.get("url", f"https://sppucodes.vercel.app/{subject_code}")
+
+    selected_question = None
+    if question_id:
+        for q in questions:
+            if q["id"] == question_id:
+                selected_question = q
+                break
+
+        if selected_question:
+            title = selected_question["question"]
+            description = f"SPPU Codes: {selected_question['question']}"
+            keywords = [selected_question["question"], selected_question["title"]] + subject.get("keywords", [])
+            url = f"https://sppucodes.vercel.app/{subject_code}/{question_id}"
+
+    # Organize questions by group for FAQ display
+    groups = {}
+    for q in questions:
+        groups.setdefault(q["group"], []).append(q)
+    sorted_groups = sorted(groups.keys())
+
+    return render_template(
+        "subject.html",
+        title=title,
+        description=description,
+        keywords=keywords,
+        url=url,
+        subject_code=subject_code,
+        subject_name=subject.get("subject_name", ""),
+        groups=groups,
+        sorted_groups=sorted_groups,
+        question=selected_question
+    )
 
 # Route for serving answers
 @app.route('/answers/<subject>/<filename>')

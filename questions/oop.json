@@ -1,59 +1,74 @@
 {
-    "default": {
-      "title": "SPPU Codes - OOP",
-      "description": "SPPU Codes: Object-Oriented Programming (OOP) exercises for SPPU students. Learn C++ programming concepts like operator overloading, inheritance, file handling, STL, and more.",
-      "keywords": "C++, OOP, SPPU Codes, programming exercises, operator overloading, inheritance, STL, file handling",
-      "ogurl": "https://sppucodes.vercel.app/oop"
+  "default": {
+    "subject_code": "OOP",
+    "subject_name": "Object-Oriented Programming",
+    "description": "SPPU Codes: Object-Oriented Programming (OOP) exercises for SPPU students. Learn C++ programming concepts like operator overloading, inheritance, file handling, STL, and more.",
+    "keywords": ["C++", "OOP", "SPPU Codes", "programming exercises", "operator overloading", "inheritance", "STL", "file handling"],
+    "url": "https://sppucodes.vercel.app/oop"
+  },
+  "questions": [
+    {
+      "group": "A",
+      "question_no": "1",
+      "id": "complex-number",
+      "question": "Implement a class Complex which represents the Complex Number data type: 1) Constructor (including a default constructor which creates the complex number 0 + 0i). 2) Overload operator + to add two complex numbers. 3) Overload operator * to multiply two complex numbers. 4) Overload operators << and >> to print and read Complex Numbers.",
+      "subject_code": "oop",
+      "file_name": "grpA_1.c++",
+      "title": "Complex Number Class"
     },
-    "questions": [
-      {
-        "url": "/oop/complex-number",
-        "title": "Q1: Implement a class Complex which represents the Complex Number data type.",
-        "description": "SPPU Codes: Implement a class Complex which represents the Complex Number data type. Learn operator overloading, constructors, and more in C++.",
-        "keywords": "C++, OOP, complex number, operator overloading, constructors, SPPU Codes",
-        "ogurl": "https://sppucodes.vercel.app/oop/complex-number"
-      },
-      {
-        "url": "/oop/student-db",
-        "title": "Q2: Develop a program in C++ to create a database of students information system.",
-        "description": "SPPU Codes: Develop a program in C++ to create a database of students information system. Learn constructors, destructors, dynamic memory allocation, and exception handling.",
-        "keywords": "C++, OOP, student database, constructors, destructors, dynamic memory allocation, exception handling, SPPU Codes",
-        "ogurl": "https://sppucodes.vercel.app/oop/student-db"
-      },
-      {
-        "url": "/oop/publication-class",
-        "title": "Q3: Create a class called Publication and derive Book and Tape classes from it.",
-        "description": "SPPU Codes: Create a class called Publication and derive Book and Tape classes from it. Learn inheritance and exception handling in C++.",
-        "keywords": "C++, OOP, inheritance, publication class, book class, tape class, exception handling, SPPU Codes",
-        "ogurl": "https://sppucodes.vercel.app/oop/publication-class"
-      },
-      {
-        "url": "/oop/file-handling",
-        "title": "Q4: Write a C++ program that creates an output file, writes information to it, and reads from it.",
-        "description": "SPPU Codes: Write a C++ program that creates an output file, writes information to it, and reads from it. Learn file handling in C++.",
-        "keywords": "C++, OOP, file handling, input file, output file, SPPU Codes",
-        "ogurl": "https://sppucodes.vercel.app/oop/file-handling"
-      },
-      {
-        "url": "/oop/selection-sort",
-        "title": "Q5: Write a function template for selection sort that inputs, sorts, and outputs an integer array and a float array.",
-        "description": "SPPU Codes: Write a function template for selection sort that inputs, sorts, and outputs an integer array and a float array. Learn templates in C++.",
-        "keywords": "C++, OOP, selection sort, function template, integer array, float array, SPPU Codes",
-        "ogurl": "https://sppucodes.vercel.app/oop/selection-sort"
-      },
-      {
-        "url": "/oop/stl-sorting",
-        "title": "Q6: Write a C++ program using STL for sorting and searching user-defined records.",
-        "description": "SPPU Codes: Write a C++ program using STL for sorting and searching user-defined records. Learn STL and vector containers in C++.",
-        "keywords": "C++, OOP, STL, sorting, searching, vector container, user-defined records, SPPU Codes",
-        "ogurl": "https://sppucodes.vercel.app/oop/stl-sorting"
-      },
-      {
-        "url": "/oop/map-container",
-        "title": "Q7: Write a C++ program to use the map associative container for state populations.",
-        "description": "SPPU Codes: Write a C++ program to use the map associative container for state populations. Learn map containers and error handling in C++.",
-        "keywords": "C++, OOP, map container, associative container, state populations, error handling, SPPU Codes",
-        "ogurl": "https://sppucodes.vercel.app/oop/map-container"
-      }
-    ]
-  }
+    {
+      "group": "A",
+      "question_no": "2",
+      "id": "student-db",
+      "question": "Develop a program in C++ to create a database of students information system containing the following information: Name, Roll number, Class, Division, Date of Birth, Blood group, Contact address, Telephone number, Driving license no. and others. Construct the database with suitable member functions. Make use of constructor, default constructor, copy constructor, destructor, static member functions, friend class, this pointer, inline code, and dynamic memory allocation operators (new and delete) as well as exception handling.",
+      "subject_code": "oop",
+      "file_name": "grpA_2.c++",
+      "title": "Student Information System"
+    },
+    {
+      "group": "A",
+      "question_no": "3",
+      "id": "publication-class",
+      "question": "Imagine a publishing company that markets both book and audio cassette versions. Create a class called Publication that stores the title (a string) and price (a float) of the publications. From this class, derive two classes: Book, which adds a page_count attribute (an integer), and Tape, which adds a playing_time attribute in minutes (a float). Write a program that instantiates the Book and Tape classes, allows the user to enter data for each class, and then displays the data members. If an exception occurs, set all data member values to zero.",
+      "subject_code": "oop",
+      "file_name": "grpA_3.c++",
+      "title": "Publication Class"
+    },
+    {
+      "group": "B",
+      "question_no": "4",
+      "id": "file-handling",
+      "question": "Write a C++ program that creates an output file, writes information to it, closes the file, opens it again as an input file, and reads the information from the file.",
+      "subject_code": "oop",
+      "file_name": "grpB_4.c++",
+      "title": "File Handling"
+    },
+    {
+      "group": "B",
+      "question_no": "5",
+      "id": "selection-sort",
+      "question": "Write a function template for selection sort that inputs, sorts and outputs an integer array and a float array.",
+      "subject_code": "oop",
+      "file_name": "grpB_5.c++",
+      "title": "Selection Sort"
+    },
+    {
+      "group": "C",
+      "question_no": "6",
+      "id": "stl-sorting",
+      "question": "Write a C++ program using STL for sorting and searching user-defined records such as personal records (Name, DOB, Telephone number, etc.) using the vector container.",
+      "subject_code": "oop",
+      "file_name": "grpC_6.c++",
+      "title": "STL Sorting and Searching"
+    },
+    {
+      "group": "D",
+      "question_no": "7",
+      "id": "map-container",
+      "question": "Write a C++ program to use the map associative container. The keys will be the names of states, and the values will be the populations of the states. When the program runs, the user is prompted to type the name of a state. The program then looks in the map, using the state name as an index, and returns the population of the state. Include error handling for cases where the state name does not exist in the map.",
+      "subject_code": "oop",
+      "file_name": "grpD_7.c++",
+      "title": "Map Container"
+    }
+  ]
+}

@@ -1,115 +1,146 @@
 {
-    "default": {
-      "title": "SPPU Codes - DSL",
-      "description": "SPPU Codes: Data Structures Laboratory (DSL) exercises for SPPU students. Learn Python and C++ programming concepts like sets, searching, sorting, linked lists, stacks, queues, and more.",
-      "keywords": "Python, C++, DSL, SPPU Codes, programming exercises, data structures, searching, sorting, linked lists, stacks, queues",
-      "ogurl": "https://sppucodes.vercel.app/dsl"
+  "default": {
+    "subject_code": "DSL",
+    "subject_name": "Data Structures Laboratory",
+    "description": "Explore Data Structures Laboratory programs and solutions with detailed explanations and code examples.",
+    "keywords": ["Data Structures", "Python", "C++", "Algorithms", "Sorting", "Searching", "Linked Lists", "Stacks", "Queues"],
+    "url": "https://sppucodes.vercel.app/dsl"
+  },
+  "questions": [
+    {
+      "group": "A",
+      "question_no": "1",
+      "id": "student-sports",
+      "question": "In second year computer engineering class, group A student’s play cricket, group B students play badminton and group C students play football. Write a Python program using functions to compute the following: a) List of students who play both cricket and badminton b) List of students who play either cricket or badminton but not both c) Number of students who play neither cricket nor badminton d) Number of students who play cricket and football but not badminton.",
+      "subject_code": "dsl",
+      "file_name": "grpA_1.py",
+      "title": "Student Sports"
     },
-    "questions": [
-      {
-        "url": "/dsl/student-sports",
-        "title": "Q1: In second year computer engineering class, group A student’s play cricket, group B students play badminton and group C students play football. Write a Python program using functions to compute the following: a) List of students who play both cricket and badminton b) List of students who play either cricket or badminton but not both c) Number of students who play neither cricket nor badminton d) Number of students who play cricket and football but not badminton.",
-        "description": "SPPU Codes: Write a Python program using functions to compute student sports participation based on set operations. Learn data structures programming for SPPU students.",
-        "keywords": "Python, DSL, set operations, student sports, SPPU Codes",
-        "ogurl": "https://sppucodes.vercel.app/dsl/student-sports"
-      },
-      {
-        "url": "/dsl/marks-computation",
-        "title": "Q2: Write a Python program to store marks scored in the subject 'Fundamental of Data Structure' by N students in the class. Write functions to compute the following: a) The average score of class b) Highest score and lowest score of class c) Count of students who were absent for the test d) Display mark with highest frequency.",
-        "description": "SPPU Codes: Write a Python program to compute statistics on student marks in 'Fundamental of Data Structure'. Learn data structures programming for SPPU students.",
-        "keywords": "Python, DSL, marks computation, statistics, SPPU Codes",
-        "ogurl": "https://sppucodes.vercel.app/dsl/marks-computation"
-      },
-      {
-        "url": "/dsl/bank-transactions",
-        "title": "Q4: Write a Python program that computes the net amount of a bank account based on a transaction log from console input. The transaction log format is shown as following: D 100 W 200 (Withdrawal is not allowed if balance is going negative. Write functions for withdraw and deposit) D means deposit while W means withdrawal.",
-        "description": "SPPU Codes: Write a Python program to manage bank account transactions with deposit and withdrawal functions. Learn data structures programming for SPPU students.",
-        "keywords": "Python, DSL, bank transactions, console input, SPPU Codes",
-        "ogurl": "https://sppucodes.vercel.app/dsl/bank-transactions"
-      },
-      {
-        "url": "/dsl/linear-sentinel-search",
-        "title": "Q11a: Write a Python program to store roll numbers of students in an array who attended a training program in random order. Write a function to search for whether a particular student attended the training program or not using Linear search and Sentinel search.",
-        "description": "SPPU Codes: Write a Python program to search student roll numbers using Linear and Sentinel search algorithms. Learn data structures programming for SPPU students.",
-        "keywords": "Python, DSL, linear search, sentinel search, SPPU Codes",
-        "ogurl": "https://sppucodes.vercel.app/dsl/linear-sentinel-search"
-      },
-      {
-        "url": "/dsl/binary-fibonacci-search",
-        "title": "Q11b: Write a Python program to store roll numbers of students in an array who attended the training program in sorted order. Write a function to search for whether a particular student attended the training program or not using Binary search and Fibonacci search.",
-        "description": "SPPU Codes: Write a Python program to search student roll numbers using Binary and Fibonacci search algorithms. Learn data structures programming for SPPU students.",
-        "keywords": "Python, DSL, binary search, fibonacci search, SPPU Codes",
-        "ogurl": "https://sppucodes.vercel.app/dsl/binary-fibonacci-search"
-      },
-      {
-        "url": "/dsl/selection-bubble-sort",
-        "title": "Q14: Write a Python program to store first year percentage of students in an array. Write functions for sorting the array of floating-point numbers in ascending order using: a) Selection Sort b) Bubble Sort Additionally, display the top five scores.",
-        "description": "SPPU Codes: Write a Python program to sort student percentages using Selection and Bubble sort algorithms. Learn data structures programming for SPPU students.",
-        "keywords": "Python, DSL, selection sort, bubble sort, SPPU Codes",
-        "ogurl": "https://sppucodes.vercel.app/dsl/selection-bubble-sort"
-      },
-      {
-        "url": "/dsl/insertion-shell-sort",
-        "title": "Q15: Write a Python program to store second year percentage of students in an array. Write functions for sorting the array of floating-point numbers in ascending order using: a) Insertion Sort b) Shell Sort Additionally, display the top five scores.",
-        "description": "SPPU Codes: Write a Python program to sort student percentages using Insertion and Shell sort algorithms. Learn data structures programming for SPPU students.",
-        "keywords": "Python, DSL, insertion sort, shell sort, SPPU Codes",
-        "ogurl": "https://sppucodes.vercel.app/dsl/insertion-shell-sort"
-      },
-      {
-        "url": "/dsl/radix-sort",
-        "title": "Q18: Write a Python program to store 10th class percentage of students in an array. Write a function for sorting array of floating point numbers in ascending order using radix sort and display top five scores.",
-        "description": "SPPU Codes: Write a Python program to sort 10th class percentages using Radix sort algorithm. Learn data structures programming for SPPU students.",
-        "keywords": "Python, DSL, radix sort, SPPU Codes",
-        "ogurl": "https://sppucodes.vercel.app/dsl/radix-sort"
-      },
-      {
-        "url": "/dsl/pinnacle-club",
-        "title": "Q19: Department of Computer Engineering has a student club named 'Pinnacle Club'. Students of second, third, and final year of the department can be granted membership on request. Similarly, one may cancel the membership of the club. The first node is reserved for the president of the club, and the last node is reserved for the secretary. Write a C++ program to maintain the club members' information using a singly linked list. Store student PRN and Name. Write functions to: a) Add and delete the members as well as the president or secretary. b) Compute the total number of club members. c) Display members. d) Concatenate two linked lists for two divisions.",
-        "description": "SPPU Codes: Write a C++ program to manage Pinnacle Club membership using a singly linked list. Learn data structures programming for SPPU students.",
-        "keywords": "C++, DSL, singly linked list, club management, SPPU Codes",
-        "ogurl": "https://sppucodes.vercel.app/dsl/pinnacle-club"
-      },
-      {
-        "url": "/dsl/binary-operations",
-        "title": "Q23: Write a C++ program for storing binary numbers using doubly linked lists. Write functions: a) To compute 1's and 2's complement. b) To add two binary numbers.",
-        "description": "SPPU Codes: Write a C++ program for binary number operations using doubly linked lists. Learn data structures programming for SPPU students.",
-        "keywords": "C++, DSL, doubly linked list, binary operations, SPPU Codes",
-        "ogurl": "https://sppucodes.vercel.app/dsl/binary-operations"
-      },
-      {
-        "url": "/dsl/palindrome-check",
-        "title": "Q25: A palindrome is a string of characters that‘s the same forward and backward. Write a C++ program with functions: a) To print original string followed by reversed string using stack b) To check whether given string is palindrome or not.",
-        "description": "SPPU Codes: Write a C++ program to check palindromes using a stack. Learn data structures programming for SPPU students.",
-        "keywords": "C++, DSL, stack, palindrome, SPPU Codes",
-        "ogurl": "https://sppucodes.vercel.app/dsl/palindrome-check"
-      },
-      {
-        "url": "/dsl/expression-conversion",
-        "title": "Q27: Implement a C++ program for expression conversion from infix to postfix and its evaluation using stack based on the following conditions: 1) Operands and operators must be single characters. 2) Input postfix expression must be in a desired format.",
-        "description": "SPPU Codes: Write a C++ program for infix to postfix conversion and evaluation using a stack. Learn data structures programming for SPPU students.",
-        "keywords": "C++, DSL, stack, infix to postfix, SPPU Codes",
-        "ogurl": "https://sppucodes.vercel.app/dsl/expression-conversion"
-      },
-      {
-        "url": "/dsl/job-queue",
-        "title": "Q29: Queues are frequently used in computer programming, and a typical example is the creation of a job queue by an operating system. If the operating system does not use priorities, then the jobs are processed in the order they enter the system. Write a C++ program for simulating a job queue. Write functions to add a job and delete a job from the queue.",
-        "description": "SPPU Codes: Write a C++ program to simulate a job queue using a queue data structure. Learn data structures programming for SPPU students.",
-        "keywords": "C++, DSL, queue, job queue, SPPU Codes",
-        "ogurl": "https://sppucodes.vercel.app/dsl/job-queue"
-      },
-      {
-        "url": "/dsl/priority-queue",
-        "title": "Q adipisicing30: Write a program to implement a priority queue in C++ using an inorder list to store the items in the queue. Create a class that includes the data items (which should be template) and the priority (which should be int). The inorder list should contain these objects, with operator <= overloaded so that the items with highest priority appear at the start of the list (which will make it relatively easy to retrieve the highest item).",
-        "description": "SPPU Codes: Write a C++ program to implement a priority queue using an inorder list with templates. Learn data structures programming for SPPU students.",
-        "keywords": "C++, DSL, priority queue, templates, SPPU Codes",
-        "ogurl": "https://sppucodes.vercel.app/dsl/priority-queue"
-      },
-      {
-        "url": "/dsl/deque",
-        "title": "Q31: A double-ended queue (deque) is a linear list in which additions and deletions may be made at either end. Obtain a data representation mapping a deque into a one-dimensional array. Write a C++ program to simulate a deque with functions to add and delete elements from either end of the deque.",
-        "description": "SPPU Codes: Write a C++ program to simulate a double-ended queue (deque) using an array. Learn data structures programming for SPPU students.",
-        "keywords": "C++, DSL, deque, double-ended queue, SPPU Codes",
-        "ogurl": "https://sppucodes.vercel.app/dsl/deque"
-      }
-    ]
-  }
+    {
+      "group": "A",
+      "question_no": "2",
+      "id": "marks-computation",
+      "question": "Write a Python program to store marks scored in the subject 'Fundamental of Data Structure' by N students in the class. Write functions to compute the following: a) The average score of class b) Highest score and lowest score of class c) Count of students who were absent for the test d) Display mark with highest frequency.",
+      "subject_code": "dsl",
+      "file_name": "grpA_2.py",
+      "title": "Marks Computation"
+    },
+    {
+      "group": "A",
+      "question_no": "4",
+      "id": "bank-transactions",
+      "question": "Write a Python program that computes the net amount of a bank account based on a transaction log from console input. The transaction log format is shown as following: D 100 W 200 (Withdrawal is not allowed if balance is going negative. Write functions for withdraw and deposit) D means deposit while W means withdrawal.",
+      "subject_code": "dsl",
+      "file_name": "grpA_4.py",
+      "title": "Bank Transactions"
+    },
+    {
+      "group": "B",
+      "question_no": "11a",
+      "id": "linear-sentinel-search",
+      "question": "Write a Python program to store roll numbers of students in an array who attended a training program in random order. Write a function to search for whether a particular student attended the training program or not using Linear search and Sentinel search.",
+      "subject_code": "dsl",
+      "file_name": "grpB_11a.py",
+      "title": "Linear and Sentinel Search"
+    },
+    {
+      "group": "B",
+      "question_no": "11b",
+      "id": "binary-fibonacci-search",
+      "question": "Write a Python program to store roll numbers of students in an array who attended the training program in sorted order. Write a function to search for whether a particular student attended the training program or not using Binary search and Fibonacci search.",
+      "subject_code": "dsl",
+      "file_name": "grpB_11b.py",
+      "title": "Binary and Fibonacci Search"
+    },
+    {
+      "group": "B",
+      "question_no": "14",
+      "id": "selection-bubble-sort",
+      "question": "Write a Python program to store first year percentage of students in an array. Write functions for sorting the array of floating-point numbers in ascending order using: a) Selection Sort b) Bubble Sort Additionally, display the top five scores.",
+      "subject_code": "dsl",
+      "file_name": "grpB_14.py",
+      "title": "Selection and Bubble Sort"
+    },
+    {
+      "group": "B",
+      "question_no": "15",
+      "id": "insertion-shell-sort",
+      "question": "Write a Python program to store second year percentage of students in an array. Write functions for sorting the array of floating-point numbers in ascending order using: a) Insertion Sort b) Shell Sort Additionally, display the top five scores.",
+      "subject_code": "dsl",
+      "file_name": "grpB_15.py",
+      "title": "Insertion and Shell Sort"
+    },
+    {
+      "group": "B",
+      "question_no": "18",
+      "id": "radix-sort",
+      "question": "Write a Python program to store 10th class percentage of students in an array. Write a function for sorting array of floating point numbers in ascending order using radix sort and display top five scores.",
+      "subject_code": "dsl",
+      "file_name": "grpB_18.py",
+      "title": "Radix Sort"
+    },
+    {
+      "group": "C",
+      "question_no": "19",
+      "id": "pinnacle-club",
+      "question": "Department of Computer Engineering has a student club named 'Pinnacle Club'. Students of second, third, and final year of the department can be granted membership on request. Similarly, one may cancel the membership of the club. The first node is reserved for the president of the club, and the last node is reserved for the secretary. Write a C++ program to maintain the club members' information using a singly linked list. Store student PRN and Name. Write functions to: a) Add and delete the members as well as the president or secretary. b) Compute the total number of club members. c) Display members. d) Concatenate two linked lists for two divisions.",
+      "subject_code": "dsl",
+      "file_name": "grpC_19.cpp",
+      "title": "Pinnacle Club"
+    },
+    {
+      "group": "C",
+      "question_no": "23",
+      "id": "binary-operations",
+      "question": "Write a C++ program for storing binary numbers using doubly linked lists. Write functions: a) To compute 1's and 2's complement. b) To add two binary numbers.",
+      "subject_code": "dsl",
+      "file_name": "grpC_23.cpp",
+      "title": "Binary Operations"
+    },
+    {
+      "group": "D",
+      "question_no": "25",
+      "id": "palindrome-check",
+      "question": "A palindrome is a string of characters that‘s the same forward and backward. Write a C++ program with functions: a) To print original string followed by reversed string using stack b) To check whether given string is palindrome or not.",
+      "subject_code": "dsl",
+      "file_name": "grpD_25.cpp",
+      "title": "Palindrome Check"
+    },
+    {
+      "group": "D",
+      "question_no": "27",
+      "id": "expression-conversion",
+      "question": "Implement a C++ program for expression conversion from infix to postfix and its evaluation using stack based on the following conditions: 1) Operands and operators must be single characters. 2) Input postfix expression must be in a desired format.",
+      "subject_code": "dsl",
+      "file_name": "grpD_27.cpp",
+      "title": "Expression Conversion"
+    },
+    {
+      "group": "E",
+      "question_no": "29",
+      "id": "job-queue",
+      "question": "Queues are frequently used in computer programming, and a typical example is the creation of a job queue by an operating system. If the operating system does not use priorities, then the jobs are processed in the order they enter the system. Write a C++ program for simulating a job queue. Write functions to add a job and delete a job from the queue.",
+      "subject_code": "dsl",
+      "file_name": "grpE_29.cpp",
+      "title": "Job Queue"
+    },
+    {
+      "group": "E",
+      "question_no": "30",
+      "id": "priority-queue",
+      "question": "Write a program to implement a priority queue in C++ using an inorder list to store the items in the queue. Create a class that includes the data items (which should be template) and the priority (which should be int). The inorder list should contain these objects, with operator <= overloaded so that the items with highest priority appear at the start of the list (which will make it relatively easy to retrieve the highest item).",
+      "subject_code": "dsl",
+      "file_name": "grpE_30.cpp",
+      "title": "Priority Queue"
+    },
+    {
+      "group": "E",
+      "question_no": "31",
+      "id": "deque",
+      "question": "A double-ended queue (deque) is a linear list in which additions and deletions may be made at either end. Obtain a data representation mapping a deque into a one-dimensional array. Write a C++ program to simulate a deque with functions to add and delete elements from either end of the deque.",
+      "subject_code": "dsl",
+      "file_name": "grpE_31.cpp",
+      "title": "Double-Ended Queue (Deque)"
+    }
+  ]
+}

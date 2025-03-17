@@ -14,38 +14,61 @@
     <link rel="icon" href="/images/favicon.ico" type="image/x-icon">
     
     <!-- Dynamic Schema -->
+    {% if question %}
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@graph": [
+            {
+                "@type": "QAPage",
+                "mainEntity": {
+                    "@type": "Question",
+                    "name": "Q{{ question.question_no }}: {{ question.question | escape }}",
+                    "text": "Q{{ question.question_no }}: {{ question.question | escape }}",
+                    "answerCount": 1,
+                    "acceptedAnswer": {
+                        "@type": "Answer",
+                        "text": "SPPU Codes: {{ question.question | escape }}",
+                        "author": "Sppu Codes",
+                        "url": "sppucodes.vercel.app/{{ subject_code }}/{{ question.id }}"
+                    }
+                }
+            },
+            {
+                "@type": "WebPage",
+                "name": "{{ title }}",
+                "description": "{{ description }}",
+                "url": "{{ url }}",
+                "keywords": "{{ keywords | join(', ') }}"
+            }
+        ]
+    }
+    </script>
+    {% else %}
     <script type="application/ld+json">
     {
         "@context": "https://schema.org",
         "@type": "FAQPage",
         "mainEntity": [
-            {% if question %}
-            {
-                "@type": "Question",
-                "name": "Q{{ question.question_no }}: {{ question.question | escape }}",
-                "acceptedAnswer": {
-                    "@type": "Answer",
-                    "text": "SPPU Codes: {{ question.question | escape }} "
-                }
-            }
-            {% else %}
-                {% for group in sorted_groups %}
-                    {% for question in groups[group] %}
-                    {
-                        "@type": "Question",
-                        "name": "Q{{ question.question_no }}: {{ question.question | escape }}",
-                        "acceptedAnswer": {
-                            "@type": "Answer",
-                            "text": "SPPU Codes: {{ question.question | escape }}"
-                        }
-                    }{% if not loop.last %},{% endif %}
-                    {% endfor %}
-                    {% if not loop.last %},{% endif %}
+            {% for group in sorted_groups %}
+                {% for question in groups[group] %}
+                {
+                    "@type": "Question",
+                    "name": "Q{{ question.question_no }}: {{ question.question | escape }}",
+                    "acceptedAnswer": {
+                        "@type": "Answer",
+                        "text": "SPPU Codes: {{ question.question | escape }}",
+                        "author": "Sppu Codes",
+                        "url": "sppucodes.vercel.app/{{ subject_code }}/{{ question.id }}"
+                    }
+                }{% if not loop.last %},{% endif %}
                 {% endfor %}
-            {% endif %}
+                {% if not loop.last %},{% endif %}
+            {% endfor %}
         ]
     }
     </script>
+    {% endif %}
 </head>
 <body>
     <header>

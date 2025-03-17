@@ -141,30 +141,27 @@ def question(subject_code, question_id=None):
     subject = data.get("default", {})
     questions = data.get("questions", [])
 
-    # Default values for subject page
+    # Convert questions list to a dictionary for O(1) access
+    question_dict = {q["id"]: q for q in questions}
+
+    # Default metadata for subject page
     title = f"SPPU Codes - {subject.get('subject_name', '')}"
     description = subject.get("description", "")
     keywords = subject.get("keywords", [])
     url = subject.get("url", f"https://sppucodes.vercel.app/{subject_code}")
 
-    selected_question = None
-    if question_id:
-        for q in questions:
-            if q["id"] == question_id:
-                selected_question = q
-                break
+    selected_question = question_dict.get(question_id) if question_id else None
 
-        if selected_question:
-            title = selected_question["question"]
-            description = f"SPPU Codes: {selected_question['question']}"
-            keywords = [selected_question["question"], selected_question["title"]] + subject.get("keywords", [])
-            url = f"https://sppucodes.vercel.app/{subject_code}/{question_id}"
+    if selected_question:
+        title = selected_question["question"]
+        description = f"SPPU Codes: {selected_question['question']}"
+        keywords = [selected_question["question"], selected_question["title"]] + subject.get("keywords", [])
+        url = f"https://sppucodes.vercel.app/{subject_code}/{question_id}"
 
     # Organize questions by group for FAQ display
     groups = {}
     for q in questions:
         groups.setdefault(q["group"], []).append(q)
-    sorted_groups = sorted(groups.keys())
 
     return render_template(
         "subject.html",
@@ -175,7 +172,7 @@ def question(subject_code, question_id=None):
         subject_code=subject_code,
         subject_name=subject.get("subject_name", ""),
         groups=groups,
-        sorted_groups=sorted_groups,
+        sorted_groups=sorted(groups.keys()),
         question=selected_question
     )
 

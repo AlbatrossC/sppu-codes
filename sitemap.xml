@@ -21,6 +21,11 @@
   <priority>0.60</priority>
 </url>
 <url>
+  <loc>https://sppucodes.vercel.app/copy</loc>
+  <lastmod>2025-03-13T19:49:27+00:00</lastmod>
+  <priority>0.60</priority>
+</url>
+<url>
   <loc>https://sppucodes.vercel.app/oop</loc>
   <lastmod>2025-03-13T19:49:27+00:00</lastmod>
   <priority>0.80</priority>

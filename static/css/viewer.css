@@ -1,0 +1,339 @@
+:root {
+    --primary-color: #007bff;
+    --secondary-color: #40a9ff;
+    --background-dark: #1e1e1e;
+    --background-light: #282828;
+    --text-light: #ffffff;
+    --text-dark: #888;
+    --border-radius: 8px;
+    --transition-speed: 0.3s;
+    --shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    --green-color: #28a745; /* Added green color for back button */
+}
+
+body {
+    margin: 0;
+    padding: 0;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    background-color: var(--background-dark);
+    color: var(--text-light);
+    transition: background var(--transition-speed) ease-in-out;
+}
+
+header {
+    background-color: #222;
+    color: var(--text-light);
+    padding: 8px 16px; /* Reduced padding to give more space to PDF viewer */
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    box-shadow: var(--shadow);
+    flex-wrap: wrap;
+    gap: 8px; /* Slightly reduced gap */
+    min-height: 50px; /* Set a minimal height to keep it compact */
+}
+
+.header-info, .header-controls {
+    display: flex;
+    align-items: center;
+    gap: 12px; /* Slightly reduced gap */
+    flex-wrap: wrap;
+}
+
+.header-center {
+    display: flex;
+    align-items: center;
+    gap: 12px; /* Slightly reduced gap */
+    margin: 0 auto;
+}
+
+.subject-badge {
+    background-color: #333;
+    padding: 6px 12px; /* Slightly reduced padding */
+    border-radius: var(--border-radius);
+    font-size: 15px; /* Slightly smaller font */
+    font-weight: 600;
+    box-shadow: var(--shadow);
+    color: var(--secondary-color);
+    border-left: 3px solid var(--secondary-color);
+}
+
+.control-group {
+    display: flex;
+    align-items: center;
+    gap: 6px; /* Reduced gap */
+}
+
+select, button {
+    padding: 6px 12px; /* Reduced padding */
+    font-size: 14px;
+    border-radius: var(--border-radius);
+    border: none;
+    cursor: pointer;
+    background-color: #444;
+    color: var(--text-light);
+    transition: all var(--transition-speed) ease-in-out;
+    box-shadow: var(--shadow);
+}
+
+select {
+    appearance: none;
+    background-image: url("data:image/svg+xml;charset=US-ASCII,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%22292.4%22%20height%3D%22292.4%22%3E%3Cpath%20fill%3D%22%23ffffff%22%20d%3D%22M287%2069.4a17.6%2017.6%200%200%200-13-5.4H18.4c-5%200-9.3%201.8-12.9%205.4A17.6%2017.6%200%200%200%200%2082.2c0%205%201.8%209.3%205.4%2012.9l128%20127.9c3.6%203.6%207.8%205.4%2012.8%205.4s9.2-1.8%2012.8-5.4L287%2095c3.5-3.5%205.4-7.8%205.4-12.8%200-5-1.9-9.2-5.5-12.8z%22%2F%3E%3C%2Fsvg%3E");
+    background-repeat: no-repeat;
+    background-position: right 8px center;
+    background-size: 10px;
+    padding-right: 28px; /* Slightly reduced */
+    border: 1px solid #555;
+    background-color: #333;
+}
+
+select:hover {
+    border-color: var(--primary-color);
+}
+
+select:focus {
+    outline: none;
+    border-color: var(--primary-color);
+    box-shadow: 0 0 0 2px rgba(0, 123, 255, 0.25);
+}
+
+/* Make PDF layout and Exam type options catchy */
+.control-group select {
+    background-color: #3a3a3a; /* Slightly darker for contrast */
+    border: 1px solid var(--secondary-color); /* Use secondary color for subtle highlight */
+    font-weight: 500; /* Slightly bolder text */
+    transition: all var(--transition-speed) ease-in-out, transform 0.1s ease;
+}
+
+.control-group select:hover {
+    border-color: var(--primary-color);
+    transform: scale(1.02); /* Subtle scale effect */
+}
+
+.control-group select:focus {
+    border-color: var(--primary-color);
+    box-shadow: 0 0 0 2px rgba(0, 123, 255, 0.25);
+    transform: scale(1.02); /* Maintain scale on focus */
+}
+
+.control-group label {
+    color: var(--secondary-color); /* Match with subject badge */
+    font-weight: 500; /* Slightly bolder */
+}
+
+/* Fullscreen button */
+button.primary {
+    background-color: var(--primary-color);
+    display: flex;
+    align-items: center;
+    gap: 6px;
+}
+
+button.primary:hover {
+    background-color: #0056b3;
+}
+
+/* Back button - green color */
+button.back {
+    background-color: var(--green-color);
+    display: flex;
+    align-items: center;
+    gap: 6px;
+}
+
+button.back:hover {
+    background-color: #218838; /* Darker green on hover */
+}
+
+/* Ensure PDF container takes more space */
+#pdf-container {
+    flex: 1 1 auto; /* Enhanced flex growth */
+    display: grid;
+    gap: 0;
+    padding: 0;
+    background-color: var(--background-light);
+    overflow: auto;
+    touch-action: pinch-zoom;
+    transition: all var(--transition-speed) ease-in-out;
+    min-height: 0; /* Prevents overflow issues */
+}
+
+/* Rest of the CSS remains unchanged */
+.pdf-viewer {
+    width: 100%;
+    height: 100%;
+    border: none;
+    background: #333;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    position: relative;
+    transition: all var(--transition-speed) ease-in-out;
+    overflow: hidden;
+}
+
+.date-selector {
+    position: absolute;
+    top: 10px;
+    left: 20px;
+    z-index: 10;
+    background-color: rgba(0, 0, 0, 0.7);
+    padding: 8px 12px;
+    border-radius: var(--border-radius);
+    border: 1px solid var(--primary-color);
+    box-shadow: var(--shadow);
+    transition: opacity var(--transition-speed) ease;
+}
+
+.date-selector select {
+    background-color: transparent;
+    border: none;
+    color: var(--text-light);
+    font-family: inherit;
+    font-size: 14px;
+    font-weight: 500;
+    padding: 4px 8px;
+    outline: none;
+    cursor: pointer;
+    border-radius: 4px;
+    min-width: 120px;
+    appearance: none;
+    background-image: url("data:image/svg+xml;charset=US-ASCII,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%22292.4%22%20height%3D%22292.4%22%3E%3Cpath%20fill%3D%22%231e90ff%22%20d%3D%22M287%2069.4a17.6%2017.6%200%200%200-13-5.4H18.4c-5%200-9.3%201.8-12.9%205.4A17.6%2017.6%200%200%200%200%2082.2c0%205%201.8%209.3%205.4%2012.9l128%20127.9c3.6%203.6%207.8%205.4%2012.8%205.4s9.2-1.8%2012.8-5.4L287%2095c3.5-3.5%205.4-7.8%205.4-12.8%200-5-1.9-9.2-5.5-12.8z%22%2F%3E%3C%2Fsvg%3E");
+    background-repeat: no-repeat;
+    background-position: right 8px center;
+    background-size: 10px;
+    padding-right: 24px;
+}
+
+.date-selector select option {
+    background-color: #121212;
+    color: var(--text-light);
+}
+
+.date-selector:hover {
+    background-color: rgba(0, 0, 0, 0.8);
+    border-color: var(--secondary-color);
+}
+
+.date-selector select:focus {
+    box-shadow: 0 0 0 2px rgba(30, 144, 255, 0.2);
+}
+
+.pdf-viewer:not(:hover) .date-selector {
+    opacity: 0.6;
+}
+
+.pdf-viewer:hover .date-selector {
+    opacity: 1;
+}
+
+embed {
+    width: 100%;
+    height: 100%;
+    border: none;
+}
+
+/* Loader container styles */
+.loader-container {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: rgba(0, 0, 0, 0.5);
+    z-index: 5;
+}
+
+.loader {
+    width: 40px;
+    height: 40px;
+    border: 4px solid #f3f3f3;
+    border-top: 4px solid var(--primary-color);
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+.grid-1 { grid-template-columns: 1fr; }
+.grid-2 { grid-template-columns: repeat(2, 1fr); }
+.grid-3 { grid-template-columns: repeat(3, 1fr); }
+.grid-4 { grid-template-columns: repeat(2, 1fr); grid-template-rows: repeat(2, 1fr); }
+
+.icon {
+    display: inline-block;
+    width: 18px;
+    height: 18px;
+}
+
+@media (max-width: 768px) {
+    header {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 8px;
+        padding: 8px;
+    }
+
+    .header-info, .header-controls {
+        flex-direction: column;
+        align-items: flex-start;
+        width: 100%;
+        gap: 8px;
+    }
+
+    .header-center {
+        margin: 0;
+        width: 100%;
+        justify-content: space-between;
+    }
+
+    .control-group {
+        width: 100%;
+        justify-content: space-between;
+    }
+
+    select, button {
+        width: 100%;
+    }
+
+    .grid-2, .grid-3, .grid-4 {
+        grid-template-columns: 1fr;
+    }
+    
+    .date-selector {
+        top: 5px;
+        left: 5px;
+        right: auto;
+    }
+}
+
+.no-pdf-message {
+    text-align: center;
+    padding: 50px;
+    font-size: 18px;
+    color: var(--text-dark);
+    font-weight: 500;
+}
+
+.no-more-papers {
+    text-align: center;
+    padding: 20px;
+    font-size: 16px;
+    color: var(--text-dark);
+    font-weight: 500;
+    background-color: rgba(255, 255, 255, 0.05);
+    border-radius: var(--border-radius);
+    margin: 10px;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    box-shadow: var(--shadow);
+}

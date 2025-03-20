@@ -141,7 +141,7 @@ header h1 {
 
 .submit-button,
 .download-button,
-.copy-button {
+.questionpapers-button {
     padding: 8px 16px;
     border-radius: var(--border-radius-round);
     font-weight: 600;
@@ -164,14 +164,14 @@ header h1 {
     color: white;
 }
 
-.copy-button {
+.questionpapers-button {
     background-color:#d43b3b;
     color: white;
 }
 
 .submit-button:hover,
 .download-button:hover,
-.copy-button:hover {
+.questionpapers-button:hover {
     transform: translateY(-2px);
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
 }
@@ -196,7 +196,7 @@ header h1 {
 
     .submit-button,
     .download-button,
-    .copy-button {
+    .questionpapers-button {
         padding: 6px 12px;
         font-size: 0.8rem;
     }
@@ -249,7 +249,7 @@ header h1 {
 
     .submit-button,
     .download-button,
-    .copy-button {
+    .questionpapers-button {
         width: 100%;
         text-align: center;
         padding: 12px;

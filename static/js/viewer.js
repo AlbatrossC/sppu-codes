@@ -24,7 +24,6 @@ const debounce = (func, wait) => {
     };
 };
 
-// Fetch PDF files
 async function fetchPDFFiles() {
     try {
         DOM.pdfContainer.innerHTML = '<div class="no-pdf-message">Loading PDFs... <div class="loader"></div></div>';

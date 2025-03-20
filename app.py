@@ -194,7 +194,8 @@ def get_answer(subject, filename):
     except Exception:
         abort(404)
 
-BASE_DIR = os.path.join(os.path.dirname(__file__), 'pyqs')
+# Updated BASE_DIR to point to the public/pyqs directory
+BASE_DIR = os.path.join(os.path.dirname(__file__), 'public', 'pyqs')
 
 @app.route('/questionpapers')
 def select():
@@ -232,12 +233,10 @@ def viewer():
 def serve_pdf(filename):
     return send_from_directory(BASE_DIR, filename)
 
-
 # Route for disclaimer page
 @app.route('/disclaimer')
 def disclaimer():
     return render_template('disclaimer.html')
-
 
 # Route for serving images
 @app.route('/images/<filename>')

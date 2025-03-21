@@ -161,7 +161,6 @@ button.back:hover {
     min-height: 0; /* Prevents overflow issues */
 }
 
-/* Rest of the CSS remains unchanged */
 .pdf-viewer {
     width: 100%;
     height: 100%;
@@ -174,6 +173,12 @@ button.back:hover {
     position: relative;
     transition: all var(--transition-speed) ease-in-out;
     overflow: hidden;
+}
+
+.pdf-viewer iframe {
+    width: 100%;
+    height: 100%;
+    border: none;
 }
 
 .date-selector {

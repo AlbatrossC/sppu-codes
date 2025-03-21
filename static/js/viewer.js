@@ -8,11 +8,12 @@ const DOM = {
     backBtn: document.getElementById('back-btn')
 };
 
-// Global state
+// Global state with cache
 const state = {
     pdfPath: new URLSearchParams(window.location.search).get('pdf'),
     pdfFiles: [],
-    isRendering: false
+    isRendering: false,
+    cache: new Map() // Added cache for rendered PDFs
 };
 
 // Utility functions
@@ -24,9 +25,28 @@ const debounce = (func, wait) => {
     };
 };
 
-// Fetch PDF files
+// Lazy load observer
+const lazyLoadObserver = new IntersectionObserver((entries, observer) => {
+    entries.forEach(entry => {
+        if (entry.isIntersecting) {
+            const iframe = entry.target.querySelector('iframe[data-src]');
+            if (iframe && !iframe.src) {
+                iframe.src = iframe.dataset.src;
+                observer.unobserve(entry.target);
+            }
+        }
+    });
+}, { rootMargin: '200px' });
+
+// Fetch PDF files with caching
 async function fetchPDFFiles() {
     try {
+        if (state.cache.has(state.pdfPath)) {
+            state.pdfFiles = state.cache.get(state.pdfPath);
+            renderPDFs();
+            return;
+        }
+
         DOM.pdfContainer.innerHTML = '<div class="no-pdf-message">Loading PDFs... <div class="loader"></div></div>';
         
         const response = await fetch(`/api/directories?path=${encodeURIComponent(state.pdfPath)}`);
@@ -39,6 +59,8 @@ async function fetchPDFFiles() {
                 date: file.replace('.pdf', ''),
                 link: `/static/pyqs/${state.pdfPath}/${file}`
             }));
+        
+        state.cache.set(state.pdfPath, state.pdfFiles);
         
         if (!state.pdfFiles.length) {
             DOM.pdfContainer.innerHTML = '<div class="no-pdf-message">No PDFs found in this directory.</div>';
@@ -68,7 +90,7 @@ const filterPDFs = ((cache = new Map()) => {
     };
 })();
 
-// Render PDFs
+// Optimized render PDFs
 function renderPDFs() {
     if (state.isRendering) return;
     state.isRendering = true;
@@ -94,7 +116,6 @@ function renderPDFs() {
             div.className = 'pdf-viewer';
 
             if (i < maxRender) {
-                // Create a loader container
                 const loaderContainer = document.createElement('div');
                 loaderContainer.className = 'loader-container';
                 loaderContainer.innerHTML = '<div class="loader"></div>';
@@ -102,16 +123,15 @@ function renderPDFs() {
                 
                 div.appendChild(createDateSelector(filteredData, i));
                 
-                // Create embed element
-                const embed = document.createElement('embed');
-                embed.type = 'application/pdf';
-                embed.src = filteredData[i].link;
-                // Add load event listener to remove loader
-                embed.addEventListener('load', () => {
-                    const loaderContainer = div.querySelector('.loader-container');
-                    if (loaderContainer) loaderContainer.remove();
-                }, { once: true });
-                div.appendChild(embed);
+                const iframe = document.createElement('iframe');
+                iframe.dataset.src = `/static/pdfjs/web/viewer.html?file=${encodeURIComponent(filteredData[i].link)}`;
+                iframe.style.width = '100%';
+                iframe.style.height = '100%';
+                iframe.style.border = 'none';
+                iframe.onload = () => loaderContainer.remove();
+                div.appendChild(iframe);
+                
+                lazyLoadObserver.observe(div);
             } else {
                 div.innerHTML = '<div class="no-more-papers">No more Question Papers available</div>';
             }
@@ -124,7 +144,7 @@ function renderPDFs() {
     });
 }
 
-// Create date selector
+// Create date selector with caching
 function createDateSelector(data, initialIndex) {
     const div = document.createElement('div');
     div.className = 'date-selector';
@@ -136,42 +156,22 @@ function createDateSelector(data, initialIndex) {
 
     select.value = initialIndex;
     
-    // Updated event listener to replace the existing PDF
-    select.addEventListener('change', (event) => {
+    select.addEventListener('change', debounce((event) => {
         const selectedIndex = parseInt(event.target.value);
         const pdfUrl = data[selectedIndex].link;
         const pdfViewer = div.closest('.pdf-viewer');
         
-        // Add loader while loading the new PDF
-        // First, remove any existing loader container
-        const existingLoaderContainer = pdfViewer.querySelector('.loader-container');
-        if (existingLoaderContainer) {
-            existingLoaderContainer.remove();
-        }
-        
-        // Create a new loader container
         const loaderContainer = document.createElement('div');
         loaderContainer.className = 'loader-container';
         loaderContainer.innerHTML = '<div class="loader"></div>';
         pdfViewer.appendChild(loaderContainer);
         
-        // Find existing embed element
-        const embed = pdfViewer.querySelector('embed');
-        if (embed) {
-            // Create a new load event listener
-            const loadHandler = () => {
-                const loaderContainer = pdfViewer.querySelector('.loader-container');
-                if (loaderContainer) loaderContainer.remove();
-                embed.removeEventListener('load', loadHandler);
-            };
-            
-            // Add the load event listener before changing the src
-            embed.addEventListener('load', loadHandler);
-            
-            // Update the src
-            embed.src = pdfUrl;
+        const iframe = pdfViewer.querySelector('iframe');
+        if (iframe) {
+            iframe.onload = () => loaderContainer.remove();
+            iframe.src = `/static/pdfjs/web/viewer.html?file=${encodeURIComponent(pdfUrl)}`;
         }
-    });
+    }, 100));
     
     div.appendChild(select);
     return div;
@@ -197,7 +197,7 @@ function updateFullscreenButton() {
 
 // Event listeners
 function setupEventListeners() {
-    const debouncedRender = debounce(renderPDFs, 200);
+    const debouncedRender = debounce(renderPDFs, 100); // Reduced debounce time
     
     DOM.pdfCount.addEventListener('change', debouncedRender);
     DOM.examType.addEventListener('change', debouncedRender);
@@ -220,3 +220,8 @@ function init() {
 }
 
 document.addEventListener('DOMContentLoaded', init);
+
+// Cleanup on unload
+window.addEventListener('unload', () => {
+    lazyLoadObserver.disconnect();
+});

@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PDF Question Paper Viewer</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/viewer.css') }}">
+</head>
+
+<body>
+    <!-- Header Section -->
+    <header>
+        <div class="header-info">
+            <button id="back-btn" class="back" href = "/select">
+                <svg class="icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M19 12H5M12 19l-7-7 7-7"/>
+                </svg> 
+                Back
+            </button>
+            <div class="subject-badge" id="subject-display"></div>
+        </div>
+        <div class="header-center">
+            <div class="control-group">
+                <label for="pdf-count">PDF Layout:</label>
+                <select id="pdf-count">
+                    <option value="1">Single</option>
+                    <option value="2">Split 2</option>
+                    <option value="3">Split 3</option>
+                    <option value="4">Grid 4</option>
+                </select>
+            </div>
+            <div class="control-group">
+                <label for="exam-type">Exam Type:</label>
+                <select id="exam-type">
+                    <option value="insem">INSEM</option>
+                    <option value="endsem">ENDSEM</option>
+                </select>
+            </div>
+        </div>
+        <div class="header-controls">
+            <button id="fullscreen-btn" class="primary">
+                <svg class="icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M8 3H5a2 2 0 0 0-2 2v3m18 0V5a2 2 0 0 0-2-2h-3m0 18h3a2 2 0 0 0 2-2v-3M3 16v3a2 2 0 0 0 2 2h3"/>
+                </svg>
+                Fullscreen
+            </button>
+        </div>
+    </header>
+
+    <!-- PDF Container -->
+    <div id="pdf-container">
+        <div class="no-pdf-message">Loading PDFs... <div class="loader"></div></div>
+    </div>
+
+    <script src="{{ url_for('static', filename='js/viewer.js') }}"></script>
+</body>
+</html> 

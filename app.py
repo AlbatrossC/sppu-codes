@@ -8,6 +8,47 @@ from hosting.quecount import quecount_bp
 app = Flask(__name__)
 app.secret_key = 'karlos'
 
+# Root directory containing the pyqs
+BASE_DIR = os.path.join(os.path.dirname(__file__), 'static', 'pyqs')
+
+@app.route('/questionpapers')
+def select():
+    # Render the select page at the sub-URL
+    return render_template('select.html')
+
+@app.route('/api/directories')
+def get_directories():
+    path = request.args.get('path', '')
+    # Remove 'pyqs/' prefix if present
+    if path.startswith('pyqs/'):
+        path = path[len('pyqs/'):]
+    full_path = os.path.join(BASE_DIR, path)
+    
+    if not os.path.exists(full_path):
+        print(f"Path does not exist: {full_path}")  # Debug
+        return jsonify([])
+    
+    if os.path.isdir(full_path):
+        items = os.listdir(full_path)
+        print(f"Items in {full_path}: {items}")  # Debug
+        if any(item.lower().endswith('.pdf') for item in items):
+            files = [f for f in items if f.lower().endswith('.pdf')]
+            return jsonify(files)
+        else:
+            directories = [d for d in items if os.path.isdir(os.path.join(full_path, d))]
+            return jsonify(directories)
+    return jsonify([])
+
+@app.route('/viewer')
+def viewer():
+    pdf_path = request.args.get('pdf')
+    return render_template('viewer.html', pdf_path=pdf_path)
+
+
+@app.route('/static/pyqs/<path:filename>')
+def serve_pdf(filename):
+    return send_from_directory(BASE_DIR, filename)
+
 # Register the quecount blueprint
 app.register_blueprint(quecount_bp)
 

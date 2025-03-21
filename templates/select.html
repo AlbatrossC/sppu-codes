@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="SPPU Codes: Question Papers for academic subjects">
+    <title>SPPU Codes: Question Papers</title>
+</head>
+<body>
+    <h1>SPPU Codes: Question Papers</h1>
+    <label for="branch">Branch:</label>
+    <select id="branch" aria-required="true">
+        <option value="">Select Branch</option>
+    </select>
+    
+    <label for="semester">Semester:</label>
+    <select id="semester" aria-required="true" disabled>
+        <option value="">Select Semester</option>
+    </select>
+    
+    <label for="subject">Subject:</label>
+    <select id="subject" aria-required="true" disabled>
+        <option value="">Select Subject</option>
+    </select>
+    <div id="subject-error" style="display: none; color: red;">No subjects available for this selection</div>
+    
+    <button id="continue-btn" disabled aria-disabled="true">Continue</button>
+    
+    <div id="loading" style="display: none;">Loading...</div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            fetchBranches();
+            
+            document.getElementById('branch').addEventListener('change', function() {
+                const selectedBranch = this.value;
+                resetSelect('semester', 'Select Semester');
+                resetSelect('subject', 'Select Subject');
+                document.getElementById('semester').disabled = !selectedBranch;
+                document.getElementById('subject').disabled = true;
+                document.getElementById('subject-error').style.display = 'none';
+                
+                if (selectedBranch) {
+                    fetchSemesters(selectedBranch);
+                }
+                updateContinueButton();
+            });
+            
+            document.getElementById('semester').addEventListener('change', function() {
+                const selectedBranch = document.getElementById('branch').value;
+                const selectedSemester = this.value;
+                resetSelect('subject', 'Select Subject');
+                document.getElementById('subject').disabled = !selectedSemester;
+                document.getElementById('subject-error').style.display = 'none';
+                
+                if (selectedBranch && selectedSemester) {
+                    fetchSubjects(selectedBranch, selectedSemester);
+                }
+                updateContinueButton();
+            });
+            
+            document.getElementById('subject').addEventListener('change', updateContinueButton);
+            
+            document.getElementById('continue-btn').addEventListener('click', onContinueClick);
+        });
+
+        async function fetchBranches() {
+            const branchSelect = document.getElementById('branch');
+            showLoading(true);
+            try {
+                const response = await fetch('/api/directories?path=');
+                if (!response.ok) throw new Error('Failed to fetch branches');
+                const branches = await response.json();
+                populateSelect(branchSelect, branches, 'Select Branch');
+            } catch (error) {
+                console.error(error.message);
+                alert('Error loading branches. Please try again later.');
+            } finally {
+                showLoading(false);
+            }
+        }
+
+        async function fetchSemesters(branch) {
+            const semesterSelect = document.getElementById('semester');
+            showLoading(true);
+            try {
+                const response = await fetch(`/api/directories?path=${branch}`);
+                if (!response.ok) throw new Error('Failed to fetch semesters');
+                const semesters = await response.json();
+                semesterSelect.innerHTML = '<option value="">Select Semester</option>';
+                semesters.forEach(semesterDir => {
+                    const option = document.createElement('option');
+                    option.value = semesterDir; // Preserve original directory name (e.g., 'Sem_1')
+                    option.textContent = semesterDir.replace('Sem_', 'Semester '); // Display as 'Semester 1'
+                    semesterSelect.appendChild(option);
+                });
+            } catch (error) {
+                console.error(error.message);
+                alert('Error loading semesters. Please try again later.');
+            } finally {
+                showLoading(false);
+            }
+        }
+
+        async function fetchSubjects(branch, semester) {
+            const subjectSelect = document.getElementById('subject');
+            const subjectError = document.getElementById('subject-error');
+            showLoading(true);
+            try {
+                const response = await fetch(`/api/directories?path=${branch}/${semester}`);
+                if (!response.ok) throw new Error('Failed to fetch subjects');
+                const subjects = await response.json();
+                if (subjects.length > 0) {
+                    populateSelect(subjectSelect, subjects, 'Select Subject');
+                } else {
+                    subjectError.style.display = 'block';
+                }
+            } catch (error) {
+                console.error(error.message);
+                alert('Error loading subjects. Please try again later.');
+            } finally {
+                showLoading(false);
+            }
+        }
+
+        function resetSelect(id, defaultText) {
+            const select = document.getElementById(id);
+            select.innerHTML = `<option value="">${defaultText}</option>`;
+        }
+
+        function populateSelect(selectElement, items, defaultText) {
+            selectElement.innerHTML = `<option value="">${defaultText}</option>`;
+            items.forEach(item => {
+                const option = document.createElement('option');
+                option.value = item;
+                option.textContent = item;
+                selectElement.appendChild(option);
+            });
+        }
+
+        function updateContinueButton() {
+            const branch = document.getElementById('branch').value;
+            const semester = document.getElementById('semester').value;
+            const subject = document.getElementById('subject').value;
+            const continueBtn = document.getElementById('continue-btn');
+            continueBtn.disabled = !(branch && semester && subject);
+            continueBtn.setAttribute('aria-disabled', continueBtn.disabled);
+        }
+
+        function showLoading(show) {
+            document.getElementById('loading').style.display = show ? 'block' : 'none';
+        }
+
+        function onContinueClick() {
+            const branch = document.getElementById('branch').value;
+            const semester = document.getElementById('semester').value;
+            const subject = document.getElementById('subject').value;
+            
+            if (!branch || !semester || !subject) {
+                alert('Please select all required fields');
+                return;
+            }
+            
+            const pdfPath = `${branch}/${semester}/${subject}`;
+            window.location.href = `/viewer?pdf=${encodeURIComponent(pdfPath)}`;
+        }
+    </script> 
+</body>
+</html>

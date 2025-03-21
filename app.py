@@ -44,7 +44,6 @@ def viewer():
     pdf_path = request.args.get('pdf')
     return render_template('viewer.html', pdf_path=pdf_path)
 
-
 @app.route('/static/pyqs/<path:filename>')
 def serve_pdf(filename):
     return send_from_directory(BASE_DIR, filename)

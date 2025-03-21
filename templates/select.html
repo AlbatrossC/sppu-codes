@@ -5,165 +5,608 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="SPPU Codes: Question Papers for academic subjects">
     <title>SPPU Codes: Question Papers</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #3b82f6;           /* Brighter blue */
+            --primary-dark: #2563eb;      /* Darker blue for hover states */
+            --secondary: #4338ca;         /* Indigo for secondary color */
+            --accent: #1d4ed8;            /* Dark blue accent */
+            --bg-dark: #0f0f0f;           /* Near black background */
+            --bg-card: #1a1a1a;           /* Slightly lighter than background */
+            --bg-input: #222222;          /* Dark input background */
+            --text-light: #f8fafc;        /* Light text */
+            --text-muted: #94a3b8;        /* Muted text */
+            --border-color: #333333;      /* Darker border color */
+            --shadow-md: 0 4px 8px rgba(0, 0, 0, 0.25);  /* Deeper shadow */
+            --radius-md: 8px;
+            --radius-lg: 12px;
+            --transition-normal: 250ms ease;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Inter', system-ui, sans-serif;
+        }
+        
+        body {
+            background-color: var(--bg-dark);
+            color: var(--text-light);
+            line-height: 1.6;
+            height: 100vh;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            font-size: 16px;
+            background-image: 
+                radial-gradient(circle at 15% 50%, rgba(67, 56, 202, 0.05) 0%, transparent 25%),
+                radial-gradient(circle at 85% 30%, rgba(59, 130, 246, 0.05) 0%, transparent 25%);
+            background-attachment: fixed;
+        }
+        
+        header {
+            background-color: rgba(10, 10, 10, 0.9);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            border-bottom: 1px solid rgba(51, 51, 51, 0.8);
+            padding: 0.75rem 0;
+        }
+        
+        .navbar {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 1.5rem;
+        }
+        
+        .app-title {
+            font-size: 1.25rem;
+            font-weight: 600;
+            color: var(--text-light);
+            text-decoration: none;
+        }
+        
+        .app-title span {
+            color: var(--primary);
+            font-weight: 700;
+        }
+        
+        .nav-actions {
+            display: flex;
+            gap: 1rem;
+            align-items: center;
+        }
+        
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 500;
+            border-radius: var(--radius-md);
+            transition: all var(--transition-normal);
+            cursor: pointer;
+            border: none;
+            outline: none;
+            text-decoration: none;
+            padding: 0.625rem 1.25rem;
+            font-size: 0.875rem;
+            line-height: 1.5;
+        }
+        
+        .btn-ghost {
+            background-color: transparent;
+            color: var(--text-light);
+        }
+        
+        .btn-ghost:hover {
+            background-color: rgba(248, 250, 252, 0.1);
+        }
+        
+        main {
+            flex: 1;
+            display: flex;
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 2rem 1.5rem;
+            width: 100%;
+            height: calc(100vh - 57px); /* Subtract header height */
+            overflow: hidden;
+        }
+        
+        .left-column {
+            flex: 1;
+            padding-right: 2rem;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+        
+        .right-column {
+            flex: 1;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .page-title {
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 1.5rem;
+            background: linear-gradient(90deg, var(--primary) 0%, var(--secondary) 100%);
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+            display: inline-block;
+        }
+        
+        .page-description {
+            color: var(--text-muted);
+            font-size: 1.125rem;
+            max-width: 600px;
+            margin-bottom: 2rem;
+        }
+        
+        .paper-finder {
+            width: 100%;
+            max-width: 550px;
+            background-color: var(--bg-card);
+            border-radius: var(--radius-lg);
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.4);
+            overflow: hidden;
+            border: 1px solid var(--border-color);
+        }
+        
+        .paper-finder-header {
+            background: linear-gradient(to right, var(--primary), var(--secondary));
+            padding: 1.25rem 1.5rem;
+            color: white;
+        }
+        
+        .paper-finder-title {
+            font-size: 1.25rem;
+            font-weight: 600;
+        }
+        
+        .paper-finder-body {
+            padding: 1.5rem;
+        }
+        
+        .form-group {
+            margin-bottom: 1.25rem;
+        }
+        
+        .form-group:last-child {
+            margin-bottom: 0;
+        }
+        
+        .form-label {
+            display: block;
+            margin-bottom: 0.4rem;
+            font-weight: 500;
+            color: var(--text-light);
+            font-size: 0.875rem;
+        }
+        
+        .select-wrapper {
+            position: relative;
+        }
+        
+        .select-wrapper::after {
+            content: '';
+            position: absolute;
+            right: 1rem;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 0.75rem;
+            height: 0.75rem;
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%2394a3b8' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='6 9 12 15 18 9'%3E%3C/polyline%3E%3C/svg%3E");
+            background-repeat: no-repeat;
+            background-position: center;
+            pointer-events: none;
+        }
+        
+        select {
+            width: 100%;
+            padding: 0.75rem 1rem;
+            font-size: 1rem;
+            background-color: var(--bg-input);
+            color: var(--text-light);
+            border: 1px solid var(--border-color);
+            border-radius: var(--radius-md);
+            appearance: none;
+            transition: border-color 150ms ease, box-shadow 150ms ease;
+            cursor: pointer;
+        }
+        
+        select:focus {
+            outline: none;
+            border-color: var(--primary);
+            box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.2);
+        }
+        
+        select:hover:not(:disabled) {
+            border-color: var(--primary);
+        }
+        
+        select:disabled {
+            opacity: 0.6;
+            cursor: not-allowed;
+        }
+        
+        .card-action {
+            background-color: rgba(59, 130, 246, 0.03);
+            border-top: 1px solid var(--border-color);
+            padding: 1.25rem 1.5rem;
+        }
+        
+        .btn-success {
+            background-color: var(--primary);
+            color: var(--text-light);
+            font-weight: 600;
+            width: 100%;
+            padding: 0.75rem 1.5rem;
+            font-size: 1rem;
+        }
+        
+        .btn-success:hover {
+            background-color: var(--primary-dark);
+            transform: translateY(-1px);
+        }
+        
+        .error-message {
+            margin-top: 0.5rem;
+            padding: 0.75rem 1rem;
+            border-radius: var(--radius-md);
+            font-size: 0.875rem;
+            background-color: rgba(239, 71, 111, 0.1);
+            color: #ef476f;
+            border-left: 3px solid #ef476f;
+        }
+        
+        .loading-container {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-color: rgba(10, 10, 10, 0.9);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 1000;
+        }
+        
+        .spinner {
+            width: 2.5rem;
+            height: 2.5rem;
+            border: 3px solid rgba(59, 130, 246, 0.2);
+            border-radius: 50%;
+            border-top-color: var(--primary);
+            animation: spin 0.8s linear infinite;
+        }
+        
+        .spinner-text {
+            margin-left: 1rem;
+            font-size: 0.875rem;
+            color: var(--text-muted);
+        }
+        
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+        
+        @media (max-width: 768px) {
+            main {
+                flex-direction: column;
+                overflow-y: auto;
+                height: auto;
+                padding: 1.5rem;
+            }
+            
+            .left-column {
+                padding-right: 0;
+                padding-bottom: 2rem;
+                text-align: center;
+            }
+            
+            .page-title {
+                font-size: 2rem;
+            }
+        }
+        </style>
 </head>
 <body>
-    <h1>SPPU Codes: Question Papers</h1>
-    <label for="branch">Branch:</label>
-    <select id="branch" aria-required="true">
-        <option value="">Select Branch</option>
-    </select>
+    <header>
+        <nav class="navbar">
+            <a href="/" class="app-title">SPPU <span>Question Papers</span></a>
+            <div class="nav-actions">
+                <a href="/" class="btn btn-ghost">Home</a>
+            </div>
+        </nav>
+    </header>
     
-    <label for="semester">Semester:</label>
-    <select id="semester" aria-required="true" disabled>
-        <option value="">Select Semester</option>
-    </select>
+    <main>
+        <div class="left-column">
+            <h1 class="page-title">Find Question Papers</h1>
+            <p class="page-description">Access previous years' question papers for SPPU courses to prepare for your exams. Select your branch, semester, and subject from the form to find the papers you need.</p>
+        </div>
+        
+        <div class="right-column">
+            <div class="paper-finder">
+                <div class="paper-finder-header">
+                    <h2 class="paper-finder-title">Select your branch, semester, and subject</h2>
+                </div>
+                
+                <div class="paper-finder-body">
+                    <div class="form-group">
+                        <label for="branch" class="form-label">Select Branch</label>
+                        <div class="select-wrapper">
+                            <select id="branch" aria-required="true">
+                                <option value="">Select Branch</option>
+                            </select>
+                        </div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="semester" class="form-label">Select Semester</label>
+                        <div class="select-wrapper">
+                            <select id="semester" aria-required="true" disabled>
+                                <option value="">Select Semester</option>
+                            </select>
+                        </div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="subject" class="form-label">Select Subject</label>
+                        <div class="select-wrapper">
+                            <select id="subject" aria-required="true" disabled>
+                                <option value="">Select Subject</option>
+                            </select>
+                        </div>
+                        <div id="subject-error" class="error-message" style="display: none;">
+                            No subjects available for this selection
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="card-action">
+                    <button id="continue-btn" class="btn btn-success" disabled>
+                        View Question Papers
+                    </button>
+                </div>
+            </div>
+        </div>
+    </main>
     
-    <label for="subject">Subject:</label>
-    <select id="subject" aria-required="true" disabled>
-        <option value="">Select Subject</option>
-    </select>
-    <div id="subject-error" style="display: none; color: red;">No subjects available for this selection</div>
-    
-    <button id="continue-btn" disabled aria-disabled="true">Continue</button>
-    
-    <div id="loading" style="display: none;">Loading...</div>
+    <div id="loading" class="loading-container" style="display: none;">
+        <div class="spinner"></div>
+        <span class="spinner-text">Loading...</span>
+    </div>
 
     <script>
         document.addEventListener('DOMContentLoaded', function() {
-            fetchBranches();
-            
+            initApp();
+        });
+        
+        function initApp() {
+            // Initialize the app
+            loadBranches();
+            bindEventListeners();
+        }
+        
+        function bindEventListeners() {
+            // Setup event listeners
             document.getElementById('branch').addEventListener('change', function() {
-                const selectedBranch = this.value;
-                resetSelect('semester', 'Select Semester');
-                resetSelect('subject', 'Select Subject');
-                document.getElementById('semester').disabled = !selectedBranch;
-                document.getElementById('subject').disabled = true;
-                document.getElementById('subject-error').style.display = 'none';
-                
-                if (selectedBranch) {
-                    fetchSemesters(selectedBranch);
-                }
-                updateContinueButton();
+                handleBranchChange(this.value);
             });
             
             document.getElementById('semester').addEventListener('change', function() {
-                const selectedBranch = document.getElementById('branch').value;
-                const selectedSemester = this.value;
-                resetSelect('subject', 'Select Subject');
-                document.getElementById('subject').disabled = !selectedSemester;
-                document.getElementById('subject-error').style.display = 'none';
-                
-                if (selectedBranch && selectedSemester) {
-                    fetchSubjects(selectedBranch, selectedSemester);
-                }
-                updateContinueButton();
+                handleSemesterChange(this.value);
             });
             
-            document.getElementById('subject').addEventListener('change', updateContinueButton);
+            document.getElementById('subject').addEventListener('change', function() {
+                updateButtonState();
+            });
             
-            document.getElementById('continue-btn').addEventListener('click', onContinueClick);
-        });
-
-        async function fetchBranches() {
-            const branchSelect = document.getElementById('branch');
-            showLoading(true);
-            try {
-                const response = await fetch('/api/directories?path=');
-                if (!response.ok) throw new Error('Failed to fetch branches');
-                const branches = await response.json();
-                populateSelect(branchSelect, branches, 'Select Branch');
-            } catch (error) {
-                console.error(error.message);
-                alert('Error loading branches. Please try again later.');
-            } finally {
-                showLoading(false);
-            }
+            document.getElementById('continue-btn').addEventListener('click', handleContinueClick);
         }
-
-        async function fetchSemesters(branch) {
+        
+        function handleBranchChange(branchValue) {
+            resetSelect('semester', 'Select Semester');
+            resetSelect('subject', 'Select Subject');
+            
             const semesterSelect = document.getElementById('semester');
+            const subjectSelect = document.getElementById('subject');
+            
+            semesterSelect.disabled = !branchValue;
+            subjectSelect.disabled = true;
+            hideElement('subject-error');
+            
+            if (branchValue) {
+                loadSemesters(branchValue);
+            }
+            
+            updateButtonState();
+        }
+        
+        function handleSemesterChange(semesterValue) {
+            const branchValue = document.getElementById('branch').value;
+            resetSelect('subject', 'Select Subject');
+            
+            const subjectSelect = document.getElementById('subject');
+            subjectSelect.disabled = !semesterValue;
+            hideElement('subject-error');
+            
+            if (branchValue && semesterValue) {
+                loadSubjects(branchValue, semesterValue);
+            }
+            
+            updateButtonState();
+        }
+        
+        async function loadBranches() {
             showLoading(true);
             try {
-                const response = await fetch(`/api/directories?path=${branch}`);
-                if (!response.ok) throw new Error('Failed to fetch semesters');
-                const semesters = await response.json();
-                semesterSelect.innerHTML = '<option value="">Select Semester</option>';
-                semesters.forEach(semesterDir => {
-                    const option = document.createElement('option');
-                    option.value = semesterDir; // Preserve original directory name (e.g., 'Sem_1')
-                    option.textContent = semesterDir.replace('Sem_', 'Semester '); // Display as 'Semester 1'
-                    semesterSelect.appendChild(option);
-                });
+                const response = await fetchWithTimeout('/api/directories?path=');
+                if (!response.ok) throw new Error('Failed to fetch branches');
+                
+                const branches = await response.json();
+                populateSelect('branch', branches, 'Select Branch');
             } catch (error) {
-                console.error(error.message);
-                alert('Error loading semesters. Please try again later.');
+                console.error('Error loading branches:', error);
+                showError('Failed to load branches. Please refresh the page and try again.');
             } finally {
                 showLoading(false);
             }
         }
-
-        async function fetchSubjects(branch, semester) {
-            const subjectSelect = document.getElementById('subject');
-            const subjectError = document.getElementById('subject-error');
+        
+        async function loadSemesters(branch) {
             showLoading(true);
             try {
-                const response = await fetch(`/api/directories?path=${branch}/${semester}`);
+                const response = await fetchWithTimeout(`/api/directories?path=${encodeURIComponent(branch)}`);
+                if (!response.ok) throw new Error('Failed to fetch semesters');
+                
+                const semesters = await response.json();
+                populateSelect('semester', semesters, 'Select Semester', formatSemester);
+            } catch (error) {
+                console.error('Error loading semesters:', error);
+                showError('Failed to load semesters. Please try again.');
+            } finally {
+                showLoading(false);
+            }
+        }
+        
+        async function loadSubjects(branch, semester) {
+            showLoading(true);
+            try {
+                const response = await fetchWithTimeout(`/api/directories?path=${encodeURIComponent(branch)}/${encodeURIComponent(semester)}`);
                 if (!response.ok) throw new Error('Failed to fetch subjects');
+                
                 const subjects = await response.json();
-                if (subjects.length > 0) {
-                    populateSelect(subjectSelect, subjects, 'Select Subject');
+                if (subjects.length === 0) {
+                    resetSelect('subject', 'No subjects available');
+                    showElement('subject-error');
                 } else {
-                    subjectError.style.display = 'block';
+                    populateSelect('subject', subjects, 'Select Subject');
+                    hideElement('subject-error');
                 }
             } catch (error) {
-                console.error(error.message);
-                alert('Error loading subjects. Please try again later.');
+                console.error('Error loading subjects:', error);
+                showError('Failed to load subjects. Please try again.');
             } finally {
                 showLoading(false);
             }
         }
-
-        function resetSelect(id, defaultText) {
-            const select = document.getElementById(id);
-            select.innerHTML = `<option value="">${defaultText}</option>`;
+        
+        function formatSemester(semester) {
+            return semester.replace('Sem_', 'Semester ');
         }
-
-        function populateSelect(selectElement, items, defaultText) {
-            selectElement.innerHTML = `<option value="">${defaultText}</option>`;
-            items.forEach(item => {
-                const option = document.createElement('option');
-                option.value = item;
-                option.textContent = item;
-                selectElement.appendChild(option);
+        
+        function populateSelect(elementId, options, defaultText, formatFn = null) {
+            const selectElement = document.getElementById(elementId);
+            if (!selectElement) return;
+            
+            // Clear existing options
+            selectElement.innerHTML = '';
+            
+            // Add default option
+            const defaultOption = document.createElement('option');
+            defaultOption.value = '';
+            defaultOption.textContent = defaultText;
+            selectElement.appendChild(defaultOption);
+            
+            // Sort options alphabetically with numeric awareness
+            options.sort((a, b) => {
+                // Extract numbers if they exist
+                const numA = a.match(/\d+/);
+                const numB = b.match(/\d+/);
+                
+                if (numA && numB) {
+                    return parseInt(numA[0]) - parseInt(numB[0]);
+                }
+                return a.localeCompare(b);
+            });
+            
+            // Add sorted options
+            options.forEach(option => {
+                const optionElement = document.createElement('option');
+                optionElement.value = option;
+                optionElement.textContent = formatFn ? formatFn(option) : option;
+                selectElement.appendChild(optionElement);
             });
         }
-
-        function updateContinueButton() {
+        
+        function resetSelect(elementId, defaultText) {
+            const selectElement = document.getElementById(elementId);
+            if (!selectElement) return;
+            
+            selectElement.innerHTML = `<option value="">${defaultText}</option>`;
+        }
+        
+        function updateButtonState() {
             const branch = document.getElementById('branch').value;
             const semester = document.getElementById('semester').value;
             const subject = document.getElementById('subject').value;
-            const continueBtn = document.getElementById('continue-btn');
-            continueBtn.disabled = !(branch && semester && subject);
-            continueBtn.setAttribute('aria-disabled', continueBtn.disabled);
+            const button = document.getElementById('continue-btn');
+            
+            const isEnabled = branch && semester && subject;
+            button.disabled = !isEnabled;
         }
-
-        function showLoading(show) {
-            document.getElementById('loading').style.display = show ? 'block' : 'none';
-        }
-
-        function onContinueClick() {
+        
+        function handleContinueClick() {
             const branch = document.getElementById('branch').value;
             const semester = document.getElementById('semester').value;
             const subject = document.getElementById('subject').value;
             
             if (!branch || !semester || !subject) {
-                alert('Please select all required fields');
+                showError('Please select all fields to continue');
                 return;
             }
             
-            const pdfPath = `${branch}/${semester}/${subject}`;
-            window.location.href = `/viewer?pdf=${encodeURIComponent(pdfPath)}`;
+            const path = `${branch}/${semester}/${subject}`;
+            window.location.href = `/viewer?pdf=${encodeURIComponent(path)}`;
         }
-    </script> 
+        
+        function showLoading(visible) {
+            const loader = document.getElementById('loading');
+            if (!loader) return;
+            
+            loader.style.display = visible ? 'flex' : 'none';
+        }
+        
+        function showError(message) {
+            alert(message);
+        }
+        
+        function showElement(elementId) {
+            const element = document.getElementById(elementId);
+            if (element) element.style.display = 'block';
+        }
+        
+        function hideElement(elementId) {
+            const element = document.getElementById(elementId);
+            if (element) element.style.display = 'none';
+        }
+        
+        // Helper function to add timeout to fetch
+        async function fetchWithTimeout(url, options = {}, timeout = 8000) {
+            const controller = new AbortController();
+            const id = setTimeout(() => controller.abort(), timeout);
+            
+            const response = await fetch(url, {
+                ...options,
+                signal: controller.signal
+            });
+            
+            clearTimeout(id);
+            return response;
+        }
+    </script>
 </body>
 </html>

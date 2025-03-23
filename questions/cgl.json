@@ -29,10 +29,10 @@
       "group": "A",
       "question_no": "3a",
       "id": "dda-bresenham",
-      "question": "Write a C++ program to draw the following pattern. Use DDA line and Bresenham's circle drawing algorithm. Apply the concept of encapsulation.",
+      "question": "Write a C++ program to draw the following pattern. Use DDA line and Bresenhams circle drawing algorithm. Apply the concept of encapsulation.",
       "subject_code": "cgl",
       "file_name": "grpA_3a.cpp",
-      "title": "DDA Line and Bresenham's Circle"
+      "title": "DDA Line and Bresenhams Circle"
     },
     {
       "group": "B",

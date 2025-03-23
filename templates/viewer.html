@@ -3,7 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="icon" href="{{ url_for('get_image', filename='favicon.ico') }}" type="image/x-icon">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="description" content="SPPU Codes Question Viewer - Fast and efficient PDF viewer for exam papers">
+    <link rel="icon" href="{{ url_for('get_image', filename='favicon.ico') }}" type="image/x-icon" fetchpriority="high">
     <title>SPPU Codes: Question Viewer</title>
     <style>
         :root {
@@ -14,86 +16,94 @@
             --text-light: #ffffff;
             --text-dark: #888;
             --border-radius: 8px;
-            --transition-speed: 0.3s;
-            --shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-            --green-color: #28a745; /* Added green color for back button */
+            --transition-speed: 0.2s; /* Faster transitions */
+            --shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Lighter shadow for performance */
+            --green-color: #28a745;
+        }
+
+        /* Optimized base styles */
+        *, *:before, *:after {
+            box-sizing: border-box;
         }
 
         body {
             margin: 0;
             padding: 0;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            height: 100vh;
+            font-family: 'Segoe UI', system-ui, -apple-system, sans-serif; /* Optimized font stack */
+            min-height: 100vh;
             display: flex;
             flex-direction: column;
             background-color: var(--background-dark);
             color: var(--text-light);
-            transition: background var(--transition-speed) ease-in-out;
+            -webkit-font-smoothing: antialiased;
+            overscroll-behavior: none; /* Prevent overscroll for better UX */
         }
 
         header {
             background-color: #222;
             color: var(--text-light);
-            padding: 8px 16px; /* Reduced padding to give more space to PDF viewer */
+            padding: 6px 12px; /* Further reduced padding */
             display: flex;
             align-items: center;
             justify-content: space-between;
             box-shadow: var(--shadow);
             flex-wrap: wrap;
-            gap: 8px; /* Slightly reduced gap */
-            min-height: 50px; /* Set a minimal height to keep it compact */
+            gap: 6px;
+            min-height: 48px;
+            will-change: transform; /* Optimize for animations */
         }
 
         .header-info, .header-controls {
             display: flex;
             align-items: center;
-            gap: 12px; /* Slightly reduced gap */
+            gap: 8px;
             flex-wrap: wrap;
         }
 
         .header-center {
             display: flex;
             align-items: center;
-            gap: 12px; /* Slightly reduced gap */
+            gap: 8px;
             margin: 0 auto;
         }
 
         .subject-badge {
             background-color: #333;
-            padding: 6px 12px; /* Slightly reduced padding */
+            padding: 4px 10px;
             border-radius: var(--border-radius);
-            font-size: 15px; /* Slightly smaller font */
+            font-size: 14px;
             font-weight: 600;
             box-shadow: var(--shadow);
             color: var(--secondary-color);
             border-left: 3px solid var(--secondary-color);
+            white-space: nowrap;
         }
 
         .control-group {
             display: flex;
             align-items: center;
-            gap: 6px; /* Reduced gap */
+            gap: 4px;
         }
 
         select, button {
-            padding: 6px 12px; /* Reduced padding */
-            font-size: 14px;
+            padding: 5px 10px;
+            font-size: 13px;
             border-radius: var(--border-radius);
             border: none;
             cursor: pointer;
             background-color: #444;
             color: var(--text-light);
-            transition: all var(--transition-speed) ease-in-out;
+            transition: background-color var(--transition-speed) ease-out, transform 0.1s ease-out;
             box-shadow: var(--shadow);
         }
 
         select {
             appearance: none;
-            background-image: url("data:image/svg+xml;charset=US-ASCII,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%22292.4%22%20height%3D%22292.4%22%3E%3Cpath%20fill%3D%22%23ffffff%22%20d%3D%22M287%2069.4a17.6%2017.6%200%200%200-13-5.4H18.4c-5%200-9.3%201.8-12.9%205.4A17.6%2017.6%200%200%200%200%2082.2c0%205%201.8%209.3%205.4%2012.9l128%20127.9c3.6%203.6%207.8%205.4%2012.8%205.4s9.2-1.8%2012.8-5.4L287%2095c3.5-3.5%205.4-7.8%205.4-12.8%200-5-1.9-9.2-5.5-12.8z%22%2F%3E%3C%2Fsvg%3E");
+            background-image: url("data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIyOTIuNCIgaGVpZ2h0PSIyOTIuNCI+PHBhdGggZmlsbD0iI2ZmZmZmZiIgZD0iTTI4NyA2OS40YTE3LjYgMTcuNiAwIDAgMC0xMy01LjRIMTguNGMtNSAwLTkuMyAxLjgtMTIuOSA1LjRBNy42IDE3LjYgMCAwIDAgMCA4Mi4yYzAgNSAxLjggOS4zIDUuNCAxMi45bDEyOCAxMjcuOWMzLjYgMy42IDcuOCA1LjQgMTIuOCA1LjRzOS4yLTEuOCAxMi44LTUuNEwyODcgOTVjMy41LTMuNSA1LjQtNy44IDUuNC0xMi44IDAtNS0xLjktOS4yLTUuNS0xMi44eiIvPjwvc3ZnPg==");
             background-repeat: no-repeat;
-            background-position: right 8px center;
-            background-size: 10px;
-            padding-right: 28px; /* Slightly reduced */
+            background-position: right 6px center;
+            background-size: 9px;
+            padding-right: 24px;
             border: 1px solid #555;
             background-color: #333;
         }
@@ -105,68 +115,64 @@
         select:focus {
             outline: none;
             border-color: var(--primary-color);
-            box-shadow: 0 0 0 2px rgba(0, 123, 255, 0.25);
+            box-shadow: 0 0 0 1px rgba(0, 123, 255, 0.3);
         }
 
-        /* Make PDF layout and Exam type options catchy */
         .control-group select {
-            background-color: #3a3a3a; /* Slightly darker for contrast */
-            border: 1px solid var(--secondary-color); /* Use secondary color for subtle highlight */
-            font-weight: 500; /* Slightly bolder text */
-            transition: all var(--transition-speed) ease-in-out, transform 0.1s ease;
+            background-color: #3a3a3a;
+            border: 1px solid var(--secondary-color);
+            font-weight: 500;
         }
 
         .control-group select:hover {
             border-color: var(--primary-color);
-            transform: scale(1.02); /* Subtle scale effect */
+            transform: scale(1.03);
         }
 
         .control-group select:focus {
-            border-color: var(--primary-color);
-            box-shadow: 0 0 0 2px rgba(0, 123, 255, 0.25);
-            transform: scale(1.02); /* Maintain scale on focus */
+            transform: scale(1.03);
         }
 
         .control-group label {
-            color: var(--secondary-color); /* Match with subject badge */
-            font-weight: 500; /* Slightly bolder */
+            color: var(--secondary-color);
+            font-weight: 500;
+            font-size: 13px;
         }
 
-        /* Fullscreen button */
         button.primary {
             background-color: var(--primary-color);
             display: flex;
             align-items: center;
-            gap: 6px;
+            gap: 5px;
         }
 
         button.primary:hover {
             background-color: #0056b3;
+            transform: scale(1.05);
         }
 
-        /* Back button - green color */
         button.back {
             background-color: var(--green-color);
             display: flex;
             align-items: center;
-            gap: 6px;
+            gap: 5px;
         }
 
         button.back:hover {
-            background-color: #218838; /* Darker green on hover */
+            background-color: #218838;
+            transform: scale(1.05);
         }
 
-        /* Ensure PDF container takes more space */
         #pdf-container {
-            flex: 1 1 auto; /* Enhanced flex growth */
+            flex: 1;
             display: grid;
             gap: 0;
             padding: 0;
             background-color: var(--background-light);
             overflow: auto;
             touch-action: pinch-zoom;
-            transition: all var(--transition-speed) ease-in-out;
-            min-height: 0; /* Prevents overflow issues */
+            will-change: contents; /* Optimize rendering */
+            contain: layout; /* Improve repaint performance */
         }
 
         .pdf-viewer {
@@ -174,62 +180,53 @@
             height: 100%;
             border: none;
             background: #333;
+            position: relative;
+            overflow: hidden;
             display: flex;
             flex-direction: column;
-            align-items: center;
-            justify-content: flex-start;
-            position: relative;
-            transition: all var(--transition-speed) ease-in-out;
-            overflow: hidden;
         }
 
         .pdf-viewer iframe {
             width: 100%;
             height: 100%;
             border: none;
+            display: block;
         }
 
         .date-selector {
             position: absolute;
-            top: 10px;
-            left: 55px;
+            top: 8px;
+            left: 8px;
             z-index: 10;
             background-color: rgba(0, 0, 0, 0.7);
-            padding: 4px 8px; /* Reduced padding */
+            padding: 3px 6px;
             border-radius: var(--border-radius);
             border: 1px solid var(--primary-color);
             box-shadow: var(--shadow);
-            pointer-events: none; /* Allow interaction with elements behind it */
-            /* Make it less obtrusive */
+            opacity: 0.9;
+            transition: opacity var(--transition-speed) ease-out;
         }
-
 
         .date-selector:hover,
         .date-selector:focus-within {
             opacity: 1;
-            pointer-events: auto; /* Allow interaction only on hover */
-            z-index: 100; /* Bring it to the front */
+            pointer-events: auto;
+            z-index: 100;
         }
 
-        /* Adjust the dropdown styling */
         .date-selector select {
             background-color: transparent;
             border: none;
             color: var(--text-light);
-            font-family: inherit;
-            font-size: 14px;
+            font-size: 13px;
             font-weight: 500;
-            padding: 2px 6px; /* Reduced padding */
-            outline: none;
+            padding: 2px 6px;
             cursor: pointer;
-            border-radius: 4px;
-            min-width: 100px; /* Adjusted size */
-            appearance: none;
-            background-image: url("data:image/svg+xml;charset=US-ASCII,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%22292.4%22%20height%3D%22292.4%22%3E%3Cpath%20fill%3D%22%231e90ff%22%20d%3D%22M287%2069.4a17.6%2017.6%200%200%200-13-5.4H18.4c-5%200-9.3%201.8-12.9%205.4A17.6%2017.6%200%200%200%200%2082.2c0%205%201.8%209.3%205.4%2012.9l128%20127.9c3.6%203.6%207.8%205.4%2012.8%205.4s9.2-1.8%2012.8-5.4L287%2095c3.5-3.5%205.4-7.8%205.4-12.8%200-5-1.9-9.2-5.5-12.8z%22%2F%3E%3C%2Fsvg%3E");
+            background-image: url("data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIyOTIuNCIgaGVpZ2h0PSIyOTIuNCI+PHBhdGggZmlsbD0iIzFlOTBmZiIgZD0iTTI4NyA2OS40YTE3LjYgMTcuNiAwIDAgMC0xMy01LjRIMTguNGMtNSAwLTkuMyAxLjgtMTIuOSA1LjRBNy42IDE3LjYgMCAwIDAgMCA4Mi4yYzAgNSAxLjggOS4zIDUuNCAxMi45bDEyOCAxMjcuOWMzLjYgMy42IDcuOCA1LjQgMTIuOCA1LjRzOS4yLTEuOCAxMi44LTUuNEwyODcgOTVjMy41LTMuNSA1LjQtNy44IDUuNC0xMi44IDAtNS0xLjktOS4yLTUuNS0xMi44eiIvPjwvc3ZnPg==");
             background-repeat: no-repeat;
-            background-position: right 6px center;
+            background-position: right 5px center;
             background-size: 8px;
-            padding-right: 20px;
+            padding-right: 18px;
         }
 
         .date-selector select option {
@@ -237,53 +234,24 @@
             color: var(--text-light);
         }
 
-        .date-selector:hover {
-            background-color: rgba(0, 0, 0, 0.8);
-            border-color: var(--secondary-color);
-        }
-
-        .date-selector select:focus {
-            box-shadow: 0 0 0 2px rgba(30, 144, 255, 0.2);
-        }
-
-        .pdf-viewer:not(:hover) .date-selector {
-            opacity: 1; /* Slightly visible but not intrusive */
-            pointer-events: none;
-        }
-
-        .pdf-viewer:hover .date-selector {
-            opacity: 1;
-            pointer-events: auto;
-        }
-
-
-        embed {
-            width: 100%;
-            height: 100%;
-            border: none;
-        }
-
-        /* Loader container styles */
         .loader-container {
             position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
+            inset: 0;
             display: flex;
             justify-content: center;
             align-items: center;
-            background-color: rgba(0, 0, 0, 0.5);
+            background-color: rgba(0, 0, 0, 0.4);
             z-index: 5;
         }
 
         .loader {
-            width: 40px;
-            height: 40px;
-            border: 4px solid #f3f3f3;
-            border-top: 4px solid var(--primary-color);
+            width: 32px;
+            height: 32px;
+            border: 3px solid #f3f3f3;
+            border-top: 3px solid var(--primary-color);
             border-radius: 50%;
-            animation: spin 1s linear infinite;
+            animation: spin 0.8s linear infinite;
+            will-change: transform;
         }
 
         @keyframes spin {
@@ -297,35 +265,37 @@
         .grid-4 { grid-template-columns: repeat(2, 1fr); grid-template-rows: repeat(2, 1fr); }
 
         .icon {
-            display: inline-block;
-            width: 18px;
-            height: 18px;
+            width: 16px;
+            height: 16px;
+            flex-shrink: 0;
         }
 
         @media (max-width: 768px) {
             header {
                 flex-direction: column;
                 align-items: flex-start;
-                gap: 8px;
-                padding: 8px;
+                padding: 6px;
+                gap: 6px;
             }
 
             .header-info, .header-controls {
                 flex-direction: column;
                 align-items: flex-start;
                 width: 100%;
-                gap: 8px;
+                gap: 6px;
             }
 
             .header-center {
                 margin: 0;
                 width: 100%;
-                justify-content: space-between;
+                flex-direction: column;
+                gap: 6px;
             }
 
             .control-group {
                 width: 100%;
-                justify-content: space-between;
+                flex-direction: column;
+                align-items: flex-start;
             }
 
             select, button {
@@ -335,43 +305,41 @@
             .grid-2, .grid-3, .grid-4 {
                 grid-template-columns: 1fr;
             }
-            
+
             .date-selector {
-                top: 5px;
-                left: 5px;
-                right: auto;
+                top: 4px;
+                left: 4px;
             }
         }
 
         .no-pdf-message {
             text-align: center;
-            padding: 50px;
-            font-size: 18px;
+            padding: 40px;
+            font-size: 16px;
             color: var(--text-dark);
             font-weight: 500;
         }
 
         .no-more-papers {
             text-align: center;
-            padding: 20px;
-            font-size: 16px;
+            padding: 15px;
+            font-size: 14px;
             color: var(--text-dark);
             font-weight: 500;
             background-color: rgba(255, 255, 255, 0.05);
             border-radius: var(--border-radius);
-            margin: 10px;
+            margin: 8px;
             border: 1px solid rgba(255, 255, 255, 0.1);
-            box-shadow: var(--shadow);
         }
     </style>
 </head>
 <body>
     <header>
         <div class="header-info">
-            <button id="back-btn" class="back" href="/select">
-                <svg class="icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <button id="back-btn" class="back">
+                <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                     <path d="M19 12H5M12 19l-7-7 7-7"/>
-                </svg> 
+                </svg>
                 Back
             </button>
             <div class="subject-badge" id="subject-display"></div>
@@ -396,7 +364,7 @@
         </div>
         <div class="header-controls">
             <button id="fullscreen-btn" class="primary">
-                <svg class="icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                     <path d="M8 3H5a2 2 0 0 0-2 2v3m18 0V5a2 2 0 0 0-2-2h-3m0 18h3a2 2 0 0 0 2-2v-3M3 16v3a2 2 0 0 0 2 2h3"/>
                 </svg>
                 Fullscreen
@@ -404,10 +372,243 @@
         </div>
     </header>
 
-    <div id="pdf-container">
+    <div id="pdf-container" class="grid-1">
         <div class="no-pdf-message">Loading PDFs... <div class="loader"></div></div>
     </div>
 
-    <script src="{{ url_for('static', filename='js/viewer.js') }}"></script>
+    <script>
+        'use strict';
+
+        // Cached DOM elements
+        const DOM = {
+            pdfContainer: document.getElementById('pdf-container'),
+            subjectDisplay: document.getElementById('subject-display'),
+            pdfCount: document.getElementById('pdf-count'),
+            examType: document.getElementById('exam-type'),
+            fullscreenBtn: document.getElementById('fullscreen-btn'),
+            backBtn: document.getElementById('back-btn')
+        };
+
+        // Global state with cache
+        const state = {
+            pdfPath: new URLSearchParams(window.location.search).get('pdf'),
+            pdfFiles: [],
+            isRendering: false,
+            cache: new Map(),
+            pdfViewerCache: new Map(),
+            renderQueue: Promise.resolve() // Sequential rendering
+        };
+
+        // Utility functions
+        const debounce = (func, wait) => {
+            let timeout;
+            return (...args) => {
+                clearTimeout(timeout);
+                timeout = setTimeout(() => func(...args), wait);
+            };
+        };
+
+        // Lazy load observer with IntersectionObserver
+        const lazyLoadObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    const iframe = entry.target.querySelector('iframe[data-src]');
+                    if (iframe && !iframe.src) {
+                        iframe.src = iframe.dataset.src;
+                        lazyLoadObserver.unobserve(entry.target);
+                    }
+                }
+            });
+        }, { rootMargin: '100px' });
+
+        // Fetch PDF files with caching and error handling
+        async function fetchPDFFiles() {
+            if (state.cache.has(state.pdfPath)) {
+                state.pdfFiles = state.cache.get(state.pdfPath);
+                return renderPDFs();
+            }
+
+            try {
+                const response = await fetch(`/api/directories?path=${encodeURIComponent(state.pdfPath)}`, {
+                    cache: 'force-cache' // Leverage browser cache
+                });
+                if (!response.ok) throw new Error(`HTTP error: ${response.status}`);
+
+                const files = await response.json();
+                state.pdfFiles = files
+                    .filter(file => file.toLowerCase().endsWith('.pdf'))
+                    .map(file => ({
+                        date: file.replace('.pdf', ''),
+                        link: `/static/pyqs/${state.pdfPath}/${file}`
+                    }));
+
+                state.cache.set(state.pdfPath, state.pdfFiles);
+
+                if (!state.pdfFiles.length) {
+                    DOM.pdfContainer.innerHTML = '<div class="no-pdf-message">No PDFs found.</div>';
+                    return;
+                }
+
+                renderPDFs();
+            } catch (error) {
+                DOM.pdfContainer.innerHTML = `<div class="no-pdf-message">Error: ${error.message}</div>`;
+            }
+        }
+
+        // Set subject display
+        function setSubjectDisplay() {
+            DOM.subjectDisplay.textContent = state.pdfPath ? state.pdfPath.split('/').pop() : 'No Subject';
+        }
+
+        // Memoized PDF filter
+        const filterPDFs = ((cache = new Map()) => {
+            return (examType) => {
+                const key = examType.toLowerCase();
+                if (cache.has(key)) return cache.get(key);
+                const result = state.pdfFiles.filter(file => file.date.toLowerCase().includes(key));
+                cache.set(key, result);
+                return result;
+            };
+        })();
+
+        // Optimized PDF rendering with queue
+        async function renderPDFs() {
+            if (state.isRendering) return;
+            state.isRendering = true;
+
+            await state.renderQueue;
+            state.renderQueue = new Promise(async (resolve) => {
+                const count = parseInt(DOM.pdfCount.value, 10);
+                const examType = DOM.examType.value;
+                const filteredData = filterPDFs(examType);
+
+                DOM.pdfContainer.className = `grid-${count}`;
+                DOM.pdfContainer.innerHTML = filteredData.length ? '' : '<div class="no-pdf-message">No papers available.</div>';
+
+                if (!filteredData.length) {
+                    state.isRendering = false;
+                    resolve();
+                    return;
+                }
+
+                const fragment = document.createDocumentFragment();
+                const maxRender = Math.min(count, filteredData.length);
+
+                for (let i = 0; i < count; i++) {
+                    const div = document.createElement('div');
+                    div.className = 'pdf-viewer';
+
+                    if (i < maxRender) {
+                        const loader = document.createElement('div');
+                        loader.className = 'loader-container';
+                        loader.innerHTML = '<div class="loader"></div>';
+                        div.appendChild(loader);
+
+                        div.appendChild(createDateSelector(filteredData, i));
+
+                        const iframe = document.createElement('iframe');
+                        const pdfUrl = filteredData[i].link;
+                        iframe.dataset.src = `/static/pdfjs/web/viewer.html?file=${encodeURIComponent(pdfUrl)}`;
+                        iframe.loading = 'lazy'; // Native lazy loading
+                        iframe.onload = () => loader.remove();
+                        div.appendChild(iframe);
+
+                        lazyLoadObserver.observe(div);
+                    } else {
+                        div.innerHTML = '<div class="no-more-papers">No more papers</div>';
+                    }
+
+                    fragment.appendChild(div);
+                }
+
+                DOM.pdfContainer.appendChild(fragment);
+                state.isRendering = false;
+                resolve();
+            });
+        }
+
+        // Create date selector with event delegation
+        function createDateSelector(data, initialIndex) {
+            const div = document.createElement('div');
+            div.className = 'date-selector';
+            const select = document.createElement('select');
+
+            data.forEach((item, idx) => {
+                const option = document.createElement('option');
+                option.value = idx;
+                option.textContent = item.date;
+                select.appendChild(option);
+            });
+
+            select.value = initialIndex;
+
+            select.addEventListener('change', debounce((e) => {
+                const idx = parseInt(e.target.value, 10);
+                const pdfUrl = data[idx].link;
+                const viewer = div.closest('.pdf-viewer');
+                const iframe = viewer.querySelector('iframe');
+                const loader = document.createElement('div');
+                loader.className = 'loader-container';
+                loader.innerHTML = '<div class="loader"></div>';
+                viewer.appendChild(loader);
+
+                iframe.onload = () => loader.remove();
+                iframe.src = `/static/pdfjs/web/viewer.html?file=${encodeURIComponent(pdfUrl)}`;
+            }, 50));
+
+            div.appendChild(select);
+            return div;
+        }
+
+        // Toggle fullscreen
+        function toggleFullscreen() {
+            if (document.fullscreenElement) {
+                document.exitFullscreen();
+            } else {
+                document.documentElement.requestFullscreen({ navigationUI: 'hide' });
+            }
+        }
+
+        // Update fullscreen button
+        function updateFullscreenButton() {
+            DOM.fullscreenBtn.innerHTML = document.fullscreenElement ?
+                `<svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M4 14h6m0 0v6m0-6l-7 7m17-11h-6m0 0V4m0 6l7-7"/>
+                </svg> Exit` :
+                `<svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M8 3H5a2 2 0 0 0-2 2v3m18 0V5a2 2 0 0 0-2-2h-3m0 18h3a2 2 0 0 0 2-2v-3M3 16v3a2 2 0 0 0 2 2h3"/>
+                </svg> Fullscreen`;
+        }
+
+        // Event listeners setup
+        function setupEventListeners() {
+            const debouncedRender = debounce(renderPDFs, 50);
+            DOM.pdfCount.addEventListener('change', debouncedRender);
+            DOM.examType.addEventListener('change', debouncedRender);
+            DOM.fullscreenBtn.addEventListener('click', toggleFullscreen);
+            DOM.backBtn.addEventListener('click', () => window.location.href = '/questionpapers');
+            document.addEventListener('fullscreenchange', updateFullscreenButton);
+            document.addEventListener('keydown', (e) => {
+                if (e.key === 'Escape' && document.fullscreenElement) document.exitFullscreen();
+            });
+        }
+
+        // Initialize
+        function init() {
+            setSubjectDisplay();
+            setupEventListeners();
+            state.pdfPath ? fetchPDFFiles() : DOM.pdfContainer.innerHTML = '<div class="no-pdf-message">Select a subject.</div>';
+        }
+
+        // Preload critical resources
+        const preloadLink = document.createElement('link');
+        preloadLink.rel = 'preload';
+        preloadLink.href = '/static/pdfjs/web/viewer.html';
+        preloadLink.as = 'document';
+        document.head.appendChild(preloadLink);
+
+        document.addEventListener('DOMContentLoaded', init);
+        window.addEventListener('unload', () => lazyLoadObserver.disconnect());
+    </script>
 </body>
 </html>

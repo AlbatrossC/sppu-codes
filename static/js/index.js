@@ -27,7 +27,7 @@
     }
 })();
 
-document.addEventListener('DOMContentLoaded', function() {
+document.addEventListener('DOMContentLoaded', function () {
     // Header elements
     const header = document.querySelector('header');
     const mobileMenuToggle = document.querySelector('.mobile-menu-toggle');
@@ -55,7 +55,7 @@ document.addEventListener('DOMContentLoaded', function() {
         headerActions.classList.toggle('active');
         searchContainer.classList.toggle('active');
         mobileMenuToggle.setAttribute('aria-expanded', isMenuOpen);
-        
+
         // Change icon based on menu state
         const icon = mobileMenuToggle.querySelector('i');
         if (isMenuOpen) {
@@ -70,7 +70,7 @@ document.addEventListener('DOMContentLoaded', function() {
     // Close mobile menu when clicking outside
     document.addEventListener('click', (event) => {
         const isClickInsideHeader = header.contains(event.target);
-        
+
         if (!isClickInsideHeader && isMenuOpen) {
             isMenuOpen = false;
             headerActions.classList.remove('active');
@@ -126,29 +126,36 @@ document.addEventListener('DOMContentLoaded', function() {
         function performSearch() {
             const searchTerm = searchInput.value.toLowerCase().trim();
 
+            let hasVisibleItems = false;
+
             subjectItems.forEach(item => {
                 const shortForm = item.querySelector('.short-form').textContent.toLowerCase();
                 const fullName = item.querySelector('.full-name').textContent.toLowerCase();
-                
+
                 if (shortForm.includes(searchTerm) || fullName.includes(searchTerm)) {
-                    item.classList.remove('hidden');
+                    item.style.display = 'block'; // Show the item
                     highlightMatch(item, searchTerm);
+                    hasVisibleItems = true;
                 } else {
-                    item.classList.add('hidden');
+                    item.style.display = 'none'; // Hide the item
                 }
             });
 
             // Add "no results" message if all items are hidden
-            const allHidden = Array.from(subjectItems).every(item => item.classList.contains('hidden'));
-            let noResultsMsg = document.querySelector('.no-results-message');
-            
-            if (allHidden && searchTerm !== '') {
+            const noResultsMsg = document.querySelector('.no-results-message');
+
+            if (!hasVisibleItems && searchTerm !== '') {
                 if (!noResultsMsg) {
-                    noResultsMsg = document.createElement('div');
+                    const noResultsMsg = document.createElement('div');
                     noResultsMsg.className = 'no-results-message';
                     noResultsMsg.style.textAlign = 'center';
                     noResultsMsg.style.padding = '2rem';
                     noResultsMsg.style.color = 'var(--text-muted)';
+                    noResultsMsg.style.backgroundColor = 'var(--secondary-bg)';
+                    noResultsMsg.style.borderRadius = 'var(--border-radius-soft)';
+                    noResultsMsg.style.border = '1px solid var(--border-color)';
+                    noResultsMsg.style.margin = '2rem auto';
+                    noResultsMsg.style.maxWidth = '500px';
                     subjectItems[0].parentNode.appendChild(noResultsMsg);
                 }
                 noResultsMsg.textContent = `No subjects found matching "${searchInput.value}"`;
@@ -159,7 +166,7 @@ document.addEventListener('DOMContentLoaded', function() {
         }
 
         // Add search input event listener with debouncing
-        searchInput.addEventListener('input', function() {
+        searchInput.addEventListener('input', function () {
             clearTimeout(searchTimeout);
             searchTimeout = setTimeout(performSearch, 300); // Debounce for 300ms
         });

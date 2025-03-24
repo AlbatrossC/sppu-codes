@@ -9,16 +9,23 @@
     <title>SPPU Codes: Question Viewer</title>
     <style>
         :root {
-            --primary-color: #007bff;
+            --primary-color: #3b82f6;
+            --primary-hover: #3b82f6;
             --secondary-color: #40a9ff;
             --background-dark: #1e1e1e;
             --background-light: #282828;
             --text-light: #ffffff;
             --text-dark: #888;
             --border-radius: 8px;
-            --transition-speed: 0.2s; /* Faster transitions */
-            --shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Lighter shadow for performance */
+            --transition-speed: 0.2s;
+            --shadow: 0 2px 10px rgba(0, 0, 0, 0.15);
+            --shadow-hover: 0 4px 12px rgba(0, 0, 0, 0.2);
             --green-color: #28a745;
+            --green-hover: #218838;
+            --dropdown-bg: #333;
+            --dropdown-hover: #3a3a3a;
+            --dropdown-border: #444;
+            --dropdown-text: #f0f0f0;
         }
 
         /* Optimized base styles */
@@ -29,20 +36,20 @@
         body {
             margin: 0;
             padding: 0;
-            font-family: 'Segoe UI', system-ui, -apple-system, sans-serif; /* Optimized font stack */
+            font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
             min-height: 100vh;
             display: flex;
             flex-direction: column;
             background-color: var(--background-dark);
             color: var(--text-light);
             -webkit-font-smoothing: antialiased;
-            overscroll-behavior: none; /* Prevent overscroll for better UX */
+            overscroll-behavior: none;
         }
 
         header {
             background-color: #222;
             color: var(--text-light);
-            padding: 6px 12px; /* Further reduced padding */
+            padding: 6px 12px;
             display: flex;
             align-items: center;
             justify-content: space-between;
@@ -50,7 +57,7 @@
             flex-wrap: wrap;
             gap: 6px;
             min-height: 48px;
-            will-change: transform; /* Optimize for animations */
+            will-change: transform;
         }
 
         .header-info, .header-controls {
@@ -83,84 +90,105 @@
             display: flex;
             align-items: center;
             gap: 4px;
+            position: relative;
         }
 
-        select, button {
-            padding: 5px 10px;
+        /* Enhanced Dropdown Styling */
+        select {
+            -webkit-appearance: none;
+            -moz-appearance: none;
+            appearance: none;
+            padding: 8px 32px 8px 12px;
             font-size: 13px;
             border-radius: var(--border-radius);
-            border: none;
+            border: 1px solid var(--dropdown-border);
             cursor: pointer;
-            background-color: #444;
-            color: var(--text-light);
-            transition: background-color var(--transition-speed) ease-out, transform 0.1s ease-out;
+            background-color: var(--dropdown-bg);
+            color: var(--dropdown-text);
+            transition: all var(--transition-speed) ease-out;
             box-shadow: var(--shadow);
-        }
-
-        select {
-            appearance: none;
-            background-image: url("data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIyOTIuNCIgaGVpZ2h0PSIyOTIuNCI+PHBhdGggZmlsbD0iI2ZmZmZmZiIgZD0iTTI4NyA2OS40YTE3LjYgMTcuNiAwIDAgMC0xMy01LjRIMTguNGMtNSAwLTkuMyAxLjgtMTIuOSA1LjRBNy42IDE3LjYgMCAwIDAgMCA4Mi4yYzAgNSAxLjggOS4zIDUuNCAxMi45bDEyOCAxMjcuOWMzLjYgMy42IDcuOCA1LjQgMTIuOCA1LjRzOS4yLTEuOCAxMi44LTUuNEwyODcgOTVjMy41LTMuNSA1LjQtNy44IDUuNC0xMi44IDAtNS0xLjktOS4yLTUuNS0xMi44eiIvPjwvc3ZnPg==");
+            font-weight: 500;
+            min-width: 120px;
+            outline: none;
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 24 24' fill='none' stroke='%23f0f0f0' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='6 9 12 15 18 9'%3E%3C/polyline%3E%3C/svg%3E");
             background-repeat: no-repeat;
-            background-position: right 6px center;
-            background-size: 9px;
-            padding-right: 24px;
-            border: 1px solid #555;
-            background-color: #333;
+            background-position: right 10px center;
+            background-size: 12px;
         }
 
         select:hover {
             border-color: var(--primary-color);
+            box-shadow: var(--shadow-hover);
         }
 
         select:focus {
-            outline: none;
             border-color: var(--primary-color);
-            box-shadow: 0 0 0 1px rgba(0, 123, 255, 0.3);
+            box-shadow: 0 0 0 2px rgba(0, 123, 255, 0.25);
         }
 
-        .control-group select {
-            background-color: #3a3a3a;
-            border: 1px solid var(--secondary-color);
-            font-weight: 500;
+        /* Custom dropdown options styling */
+        select option {
+            background-color: var(--dropdown-bg);
+            color: var(--dropdown-text);
+            padding: 8px 12px;
         }
 
-        .control-group select:hover {
-            border-color: var(--primary-color);
-            transform: scale(1.03);
+        select option:hover {
+            background-color: var(--primary-color) !important;
         }
 
-        .control-group select:focus {
-            transform: scale(1.03);
+        select option:checked {
+            background-color: var(--primary-color);
+            color: white;
         }
 
         .control-group label {
             color: var(--secondary-color);
             font-weight: 500;
             font-size: 13px;
+            white-space: nowrap;
+        }
+
+        /* Button Styles */
+        button {
+            padding: 8px 12px;
+            font-size: 13px;
+            border-radius: var(--border-radius);
+            border: none;
+            cursor: pointer;
+            background-color: #444;
+            color: var(--text-light);
+            transition: all var(--transition-speed) ease-out;
+            box-shadow: var(--shadow);
+            font-weight: 500;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        button:hover {
+            transform: translateY(-1px);
+            box-shadow: var(--shadow-hover);
+        }
+
+        button:active {
+            transform: translateY(0);
         }
 
         button.primary {
             background-color: var(--primary-color);
-            display: flex;
-            align-items: center;
-            gap: 5px;
         }
 
         button.primary:hover {
-            background-color: #0056b3;
-            transform: scale(1.05);
+            background-color: var(--primary-hover);
         }
 
         button.back {
             background-color: var(--green-color);
-            display: flex;
-            align-items: center;
-            gap: 5px;
         }
 
         button.back:hover {
-            background-color: #218838;
-            transform: scale(1.05);
+            background-color: var(--green-hover);
         }
 
         #pdf-container {
@@ -171,8 +199,8 @@
             background-color: var(--background-light);
             overflow: auto;
             touch-action: pinch-zoom;
-            will-change: contents; /* Optimize rendering */
-            contain: layout; /* Improve repaint performance */
+            will-change: contents;
+            contain: layout;
         }
 
         .pdf-viewer {
@@ -193,25 +221,19 @@
             display: block;
         }
 
+        /* Enhanced Date Selector */
         .date-selector {
             position: absolute;
             top: 8px;
             left: 8px;
             z-index: 10;
-            background-color: rgba(0, 0, 0, 0.7);
-            padding: 3px 6px;
+            background-color: rgba(0, 0, 0, 0.8);
+            padding: 4px 8px;
             border-radius: var(--border-radius);
             border: 1px solid var(--primary-color);
             box-shadow: var(--shadow);
             opacity: 0.9;
-            transition: opacity var(--transition-speed) ease-out;
-        }
-
-        .date-selector:hover,
-        .date-selector:focus-within {
-            opacity: 1;
-            pointer-events: auto;
-            z-index: 100;
+            transition: all var(--transition-speed) ease-out;
         }
 
         .date-selector select {
@@ -220,18 +242,15 @@
             color: var(--text-light);
             font-size: 13px;
             font-weight: 500;
-            padding: 2px 6px;
+            padding: 4px 20px 4px 8px;
             cursor: pointer;
-            background-image: url("data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIyOTIuNCIgaGVpZ2h0PSIyOTIuNCI+PHBhdGggZmlsbD0iIzFlOTBmZiIgZD0iTTI4NyA2OS40YTE3LjYgMTcuNiAwIDAgMC0xMy01LjRIMTguNGMtNSAwLTkuMyAxLjgtMTIuOSA1LjRBNy42IDE3LjYgMCAwIDAgMCA4Mi4yYzAgNSAxLjggOS4zIDUuNCAxMi45bDEyOCAxMjcuOWMzLjYgMy42IDcuOCA1LjQgMTIuOCA1LjRzOS4yLTEuOCAxMi44LTUuNEwyODcgOTVjMy41LTMuNSA1LjQtNy44IDUuNC0xMi44IDAtNS0xLjktOS4yLTUuNS0xMi44eiIvPjwvc3ZnPg==");
-            background-repeat: no-repeat;
-            background-position: right 5px center;
-            background-size: 8px;
-            padding-right: 18px;
+            min-width: 140px;
         }
 
-        .date-selector select option {
-            background-color: #121212;
-            color: var(--text-light);
+        .date-selector:hover,
+        .date-selector:focus-within {
+            opacity: 1;
+            transform: scale(1.02);
         }
 
         .loader-container {
@@ -270,6 +289,28 @@
             flex-shrink: 0;
         }
 
+        /* Status Messages */
+        .no-pdf-message {
+            text-align: center;
+            padding: 40px;
+            font-size: 16px;
+            color: var(--text-dark);
+            font-weight: 500;
+        }
+
+        .no-more-papers {
+            text-align: center;
+            padding: 15px;
+            font-size: 14px;
+            color: var(--text-dark);
+            font-weight: 500;
+            background-color: rgba(255, 255, 255, 0.05);
+            border-radius: var(--border-radius);
+            margin: 8px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        /* Responsive Design */
         @media (max-width: 768px) {
             header {
                 flex-direction: column;
@@ -312,24 +353,29 @@
             }
         }
 
-        .no-pdf-message {
-            text-align: center;
-            padding: 40px;
-            font-size: 16px;
-            color: var(--text-dark);
-            font-weight: 500;
+        /* Dropdown Animation */
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(-5px); }
+            to { opacity: 1; transform: translateY(0); }
         }
 
-        .no-more-papers {
-            text-align: center;
-            padding: 15px;
-            font-size: 14px;
-            color: var(--text-dark);
-            font-weight: 500;
-            background-color: rgba(255, 255, 255, 0.05);
-            border-radius: var(--border-radius);
-            margin: 8px;
-            border: 1px solid rgba(255, 255, 255, 0.1);
+        /* Modern scrollbar styling */
+        ::-webkit-scrollbar {
+            width: 8px;
+            height: 8px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: var(--background-dark);
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: #444;
+            border-radius: 4px;
+        }
+
+        ::-webkit-scrollbar-thumb:hover {
+            background: #555;
         }
     </style>
 </head>
@@ -348,10 +394,10 @@
             <div class="control-group">
                 <label for="pdf-count">PDF Layout:</label>
                 <select id="pdf-count">
-                    <option value="1">Single</option>
-                    <option value="2">Split 2</option>
-                    <option value="3">Split 3</option>
-                    <option value="4">Grid 4</option>
+                    <option value="1">Single View</option>
+                    <option value="2">Split View (2)</option>
+                    <option value="3">Split View (3)</option>
+                    <option value="4">Grid View (4)</option>
                 </select>
             </div>
             <div class="control-group">
@@ -445,19 +491,26 @@
                 state.cache.set(state.pdfPath, state.pdfFiles);
 
                 if (!state.pdfFiles.length) {
-                    DOM.pdfContainer.innerHTML = '<div class="no-pdf-message">No PDFs found.</div>';
+                    DOM.pdfContainer.innerHTML = '<div class="no-pdf-message">No PDFs found for this subject.</div>';
                     return;
                 }
 
                 renderPDFs();
             } catch (error) {
-                DOM.pdfContainer.innerHTML = `<div class="no-pdf-message">Error: ${error.message}</div>`;
+                console.error('Error fetching PDF files:', error);
+                DOM.pdfContainer.innerHTML = `<div class="no-pdf-message">Error loading PDFs: ${error.message}</div>`;
             }
         }
 
         // Set subject display
         function setSubjectDisplay() {
-            DOM.subjectDisplay.textContent = state.pdfPath ? state.pdfPath.split('/').pop() : 'No Subject';
+            if (state.pdfPath) {
+                const subjectName = state.pdfPath.split('/').pop();
+                DOM.subjectDisplay.textContent = subjectName;
+                document.title = `SPPU Codes: ${subjectName} Papers`;
+            } else {
+                DOM.subjectDisplay.textContent = 'No Subject Selected';
+            }
         }
 
         // Memoized PDF filter
@@ -483,7 +536,7 @@
                 const filteredData = filterPDFs(examType);
 
                 DOM.pdfContainer.className = `grid-${count}`;
-                DOM.pdfContainer.innerHTML = filteredData.length ? '' : '<div class="no-pdf-message">No papers available.</div>';
+                DOM.pdfContainer.innerHTML = filteredData.length ? '' : '<div class="no-pdf-message">No papers available for this exam type.</div>';
 
                 if (!filteredData.length) {
                     state.isRendering = false;
@@ -515,7 +568,7 @@
 
                         lazyLoadObserver.observe(div);
                     } else {
-                        div.innerHTML = '<div class="no-more-papers">No more papers</div>';
+                        div.innerHTML = '<div class="no-more-papers">No additional papers to display</div>';
                     }
 
                     fragment.appendChild(div);
@@ -527,7 +580,7 @@
             });
         }
 
-        // Create date selector with event delegation
+        // Create enhanced date selector
         function createDateSelector(data, initialIndex) {
             const div = document.createElement('div');
             div.className = 'date-selector';
@@ -537,10 +590,11 @@
                 const option = document.createElement('option');
                 option.value = idx;
                 option.textContent = item.date;
+                if (idx === initialIndex) {
+                    option.selected = true;
+                }
                 select.appendChild(option);
             });
-
-            select.value = initialIndex;
 
             select.addEventListener('change', debounce((e) => {
                 const idx = parseInt(e.target.value, 10);
@@ -574,7 +628,7 @@
             DOM.fullscreenBtn.innerHTML = document.fullscreenElement ?
                 `<svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                     <path d="M4 14h6m0 0v6m0-6l-7 7m17-11h-6m0 0V4m0 6l7-7"/>
-                </svg> Exit` :
+                </svg> Exit Fullscreen` :
                 `<svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                     <path d="M8 3H5a2 2 0 0 0-2 2v3m18 0V5a2 2 0 0 0-2-2h-3m0 18h3a2 2 0 0 0 2-2v-3M3 16v3a2 2 0 0 0 2 2h3"/>
                 </svg> Fullscreen`;
@@ -597,7 +651,7 @@
         function init() {
             setSubjectDisplay();
             setupEventListeners();
-            state.pdfPath ? fetchPDFFiles() : DOM.pdfContainer.innerHTML = '<div class="no-pdf-message">Select a subject.</div>';
+            state.pdfPath ? fetchPDFFiles() : DOM.pdfContainer.innerHTML = '<div class="no-pdf-message">Please select a subject from the previous page.</div>';
         }
 
         // Preload critical resources

@@ -16,8 +16,15 @@
       "dest": "/static/$1"
     },
     {
+      "src": "/get-api-key",
+      "status": 404
+    },
+    {
       "src": "/(.*)",
       "dest": "app.py"
     }
-  ]
+  ],
+  "env": {
+    "GEMINI_API_KEY": "@gemini-api-key"
+  }
 }

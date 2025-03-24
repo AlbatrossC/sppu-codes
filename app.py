@@ -55,11 +55,6 @@ app.register_blueprint(quecount_bp)
 DATABASE_URL = os.getenv("DATABASE_URL")
 GEMINI_API_KEY = os.getenv("GEMINI_API_KEY")
 
-# Route to get the Gemini API key
-@app.route('/get-api-key')
-def get_api_key():
-    return jsonify({'api_key': GEMINI_API_KEY})
-
 # Database connection function
 def connect_db():
     try:

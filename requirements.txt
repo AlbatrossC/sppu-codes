@@ -2,4 +2,5 @@ Flask==3.1.0
 gunicorn
 psycopg2-binary
 beautifulsoup4==4.12.3
+requests
     

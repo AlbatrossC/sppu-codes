@@ -7,6 +7,14 @@
     <meta name="description" content="SPPU Codes Question Viewer - Fast and efficient PDF viewer for exam papers">
     <link rel="icon" href="{{ url_for('get_image', filename='favicon.ico') }}" type="image/x-icon" fetchpriority="high">
     <title>SPPU Codes: Question Viewer</title>
+    
+    <!-- Preload critical resources -->
+    <link rel="preload" href="/static/pdfjs/web/viewer.html" as="document">
+    <link rel="preload" href="/static/pdfjs/web/viewer.css" as="style">
+    <link rel="preload" href="/static/pdfjs/web/viewer.js" as="script">
+    <link rel="preload" href="/static/pdfjs/web/pdf.js" as="script">
+    <link rel="preload" href="/static/pdfjs/web/pdf.worker.js" as="worker">
+    
     <style>
         :root {
             --primary-color: #3b82f6;
@@ -425,6 +433,17 @@
     <script>
         'use strict';
 
+        // Service Worker Registration for caching
+        if ('serviceWorker' in navigator) {
+            window.addEventListener('load', () => {
+                navigator.serviceWorker.register('/sw.js').then(registration => {
+                    console.log('ServiceWorker registration successful');
+                }).catch(err => {
+                    console.log('ServiceWorker registration failed: ', err);
+                });
+            });
+        }
+
         // Cached DOM elements
         const DOM = {
             pdfContainer: document.getElementById('pdf-container'),
@@ -442,8 +461,37 @@
             isRendering: false,
             cache: new Map(),
             pdfViewerCache: new Map(),
-            renderQueue: Promise.resolve() // Sequential rendering
+            renderQueue: Promise.resolve(), // Sequential rendering
+            pdfViewerBase: '/static/pdfjs/web/viewer.html'
         };
+
+        // Preload PDF.js viewer resources
+        function preloadViewerResources() {
+            const resources = [
+                '/static/pdfjs/web/viewer.css',
+                '/static/pdfjs/web/viewer.js',
+                '/static/pdfjs/web/pdf.js',
+                '/static/pdfjs/web/pdf.worker.js',
+                '/static/pdfjs/web/images/toolbarButton-bookmark.png',
+                '/static/pdfjs/web/images/toolbarButton-search.png'
+            ];
+
+            resources.forEach(resource => {
+                const link = document.createElement('link');
+                if (resource.endsWith('.js')) {
+                    link.rel = 'preload';
+                    link.as = 'script';
+                } else if (resource.endsWith('.css')) {
+                    link.rel = 'preload';
+                    link.as = 'style';
+                } else if (resource.endsWith('.png')) {
+                    link.rel = 'preload';
+                    link.as = 'image';
+                }
+                link.href = resource;
+                document.head.appendChild(link);
+            });
+        }
 
         // Utility functions
         const debounce = (func, wait) => {
@@ -454,19 +502,6 @@
             };
         };
 
-        // Lazy load observer with IntersectionObserver
-        const lazyLoadObserver = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    const iframe = entry.target.querySelector('iframe[data-src]');
-                    if (iframe && !iframe.src) {
-                        iframe.src = iframe.dataset.src;
-                        lazyLoadObserver.unobserve(entry.target);
-                    }
-                }
-            });
-        }, { rootMargin: '100px' });
-
         // Fetch PDF files with caching and error handling
         async function fetchPDFFiles() {
             if (state.cache.has(state.pdfPath)) {
@@ -476,8 +511,10 @@
 
             try {
                 const response = await fetch(`/api/directories?path=${encodeURIComponent(state.pdfPath)}`, {
-                    cache: 'force-cache' // Leverage browser cache
+                    cache: 'force-cache', // Leverage browser cache
+                    priority: 'high'
                 });
+                
                 if (!response.ok) throw new Error(`HTTP error: ${response.status}`);
 
                 const files = await response.json();
@@ -486,7 +523,8 @@
                     .map(file => ({
                         date: file.replace('.pdf', ''),
                         link: `/static/pyqs/${state.pdfPath}/${file}`
-                    }));
+                    }))
+                    .sort((a, b) => b.date.localeCompare(a.date)); // Sort newest first
 
                 state.cache.set(state.pdfPath, state.pdfFiles);
 
@@ -496,9 +534,34 @@
                 }
 
                 renderPDFs();
+                
+                // Preload the first few PDFs in the background
+                preloadNextPDFs(3);
             } catch (error) {
                 console.error('Error fetching PDF files:', error);
                 DOM.pdfContainer.innerHTML = `<div class="no-pdf-message">Error loading PDFs: ${error.message}</div>`;
+            }
+        }
+
+        // Preload next PDFs in the background
+        function preloadNextPDFs(count) {
+            const examType = DOM.examType.value;
+            const filteredData = filterPDFs(examType);
+            
+            for (let i = 0; i < Math.min(count, filteredData.length); i++) {
+                const pdfUrl = filteredData[i].link;
+                const viewerUrl = `${state.pdfViewerBase}?file=${encodeURIComponent(pdfUrl)}`;
+                
+                // Create hidden iframe to preload
+                const iframe = document.createElement('iframe');
+                iframe.style.display = 'none';
+                iframe.src = viewerUrl;
+                document.body.appendChild(iframe);
+                
+                // Remove after a short delay
+                setTimeout(() => {
+                    iframe.remove();
+                }, 5000);
             }
         }
 
@@ -561,12 +624,22 @@
 
                         const iframe = document.createElement('iframe');
                         const pdfUrl = filteredData[i].link;
-                        iframe.dataset.src = `/static/pdfjs/web/viewer.html?file=${encodeURIComponent(pdfUrl)}`;
-                        iframe.loading = 'lazy'; // Native lazy loading
-                        iframe.onload = () => loader.remove();
+                        const viewerUrl = `${state.pdfViewerBase}?file=${encodeURIComponent(pdfUrl)}`;
+                        
+                        // Check if we have a cached version
+                        if (state.pdfViewerCache.has(pdfUrl)) {
+                            iframe.srcdoc = state.pdfViewerCache.get(pdfUrl);
+                            setTimeout(() => loader.remove(), 100);
+                        } else {
+                            iframe.src = viewerUrl;
+                            iframe.onload = () => {
+                                loader.remove();
+                                // Cache the viewer HTML for this PDF
+                                iframe.contentWindow.postMessage({type: 'getViewerHTML'}, '*');
+                            };
+                        }
+                        
                         div.appendChild(iframe);
-
-                        lazyLoadObserver.observe(div);
                     } else {
                         div.innerHTML = '<div class="no-more-papers">No additional papers to display</div>';
                     }
@@ -606,8 +679,19 @@
                 loader.innerHTML = '<div class="loader"></div>';
                 viewer.appendChild(loader);
 
-                iframe.onload = () => loader.remove();
-                iframe.src = `/static/pdfjs/web/viewer.html?file=${encodeURIComponent(pdfUrl)}`;
+                const viewerUrl = `${state.pdfViewerBase}?file=${encodeURIComponent(pdfUrl)}`;
+                
+                if (state.pdfViewerCache.has(pdfUrl)) {
+                    iframe.srcdoc = state.pdfViewerCache.get(pdfUrl);
+                    setTimeout(() => loader.remove(), 100);
+                } else {
+                    iframe.onload = () => {
+                        loader.remove();
+                        // Cache the viewer HTML for this PDF
+                        iframe.contentWindow.postMessage({type: 'getViewerHTML'}, '*');
+                    };
+                    iframe.src = viewerUrl;
+                }
             }, 50));
 
             div.appendChild(select);
@@ -645,24 +729,37 @@
             document.addEventListener('keydown', (e) => {
                 if (e.key === 'Escape' && document.fullscreenElement) document.exitFullscreen();
             });
+            
+            // Listen for messages from PDF viewer iframes
+            window.addEventListener('message', (event) => {
+                if (event.data && event.data.type === 'viewerHTML') {
+                    const { pdfUrl, html } = event.data;
+                    state.pdfViewerCache.set(pdfUrl, html);
+                }
+            });
         }
 
         // Initialize
         function init() {
+            preloadViewerResources();
             setSubjectDisplay();
             setupEventListeners();
-            state.pdfPath ? fetchPDFFiles() : DOM.pdfContainer.innerHTML = '<div class="no-pdf-message">Please select a subject from the previous page.</div>';
+            
+            if (state.pdfPath) {
+                fetchPDFFiles();
+                
+                // Immediately start loading the viewer.html in the background
+                const preloadIframe = document.createElement('iframe');
+                preloadIframe.style.display = 'none';
+                preloadIframe.src = state.pdfViewerBase;
+                document.body.appendChild(preloadIframe);
+                setTimeout(() => preloadIframe.remove(), 3000);
+            } else {
+                DOM.pdfContainer.innerHTML = '<div class="no-pdf-message">Please select a subject from the previous page.</div>';
+            }
         }
 
-        // Preload critical resources
-        const preloadLink = document.createElement('link');
-        preloadLink.rel = 'preload';
-        preloadLink.href = '/static/pdfjs/web/viewer.html';
-        preloadLink.as = 'document';
-        document.head.appendChild(preloadLink);
-
         document.addEventListener('DOMContentLoaded', init);
-        window.addEventListener('unload', () => lazyLoadObserver.disconnect());
     </script>
 </body>
 </html>

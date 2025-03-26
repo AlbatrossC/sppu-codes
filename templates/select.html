@@ -5,10 +5,22 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="SPPU Codes: Question Papers for academic subjects">
     <title>SPPU Codes: Question Papers</title>
+    
+    <!-- Preconnect to external domains -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link rel="icon" href="{{ url_for('get_image', filename='favicon.ico') }}" type="image/x-icon">
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="icon" href="{{ url_for('get_image', filename='favicon.ico') }}" type="image/x-icon" fetchpriority="high">
+    
+    <!-- Preload critical resources -->
+    <link rel="preload" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" as="style">
+    <link rel="preload" href="/api/directories?path=" as="fetch" crossorigin="anonymous">
+    
+    <!-- Load fonts with fallback -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" media="print" onload="this.media='all'">
+    <noscript>
+        <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    </noscript>
+    
     <style>
         :root {
             --primary: #3b82f6;
@@ -396,18 +408,33 @@
     </main>
 
     <script>
+        // Cache for API responses
+        const apiCache = new Map();
+        
         document.addEventListener('DOMContentLoaded', function() {
+            // Start loading branches immediately
+            loadBranches();
+            
+            // Initialize the rest of the app
             initApp();
         });
         
         function initApp() {
-            // Initialize the app
-            loadBranches();
             bindEventListeners();
+            
+            // Prefetch the first branch's semesters if possible
+            setTimeout(() => {
+                const branchSelect = document.getElementById('branch');
+                if (branchSelect && branchSelect.options.length > 1) {
+                    // Prefetch semesters for the first branch
+                    const firstBranch = branchSelect.options[1].value;
+                    fetchSemesters(firstBranch, true); // Silent prefetch
+                }
+            }, 1000);
         }
         
         function bindEventListeners() {
-            // Setup event listeners
+            // Setup event listeners with debouncing
             document.getElementById('branch').addEventListener('change', function() {
                 handleBranchChange(this.value);
             });
@@ -421,6 +448,10 @@
             });
             
             document.getElementById('continue-btn').addEventListener('click', handleContinueClick);
+            
+            // Prefetch on hover
+            document.getElementById('branch').addEventListener('mouseover', prefetchSemestersOnHover);
+            document.getElementById('semester').addEventListener('mouseover', prefetchSubjectsOnHover);
         }
         
         function handleBranchChange(branchValue) {
@@ -436,6 +467,14 @@
             
             if (branchValue) {
                 loadSemesters(branchValue);
+                
+                // Prefetch subjects for the first semester
+                setTimeout(() => {
+                    if (semesterSelect.options.length > 1) {
+                        const firstSemester = semesterSelect.options[1].value;
+                        fetchSubjects(branchValue, firstSemester, true); // Silent prefetch
+                    }
+                }, 500);
             }
             
             updateButtonState();
@@ -457,13 +496,36 @@
         }
         
         async function loadBranches() {
+            const cacheKey = 'branches';
+            
+            // Check cache first
+            if (apiCache.has(cacheKey)) {
+                const branches = apiCache.get(cacheKey);
+                populateSelect('branch', branches, 'Select Branch');
+                return;
+            }
+            
             showElementLoading('branch', true);
             try {
-                const response = await fetchWithTimeout('/api/directories?path=');
+                const response = await fetchWithTimeout('/api/directories?path=', {
+                    priority: 'high'
+                }, 5000);
+                
                 if (!response.ok) throw new Error('Failed to fetch branches');
                 
                 const branches = await response.json();
+                
+                // Cache the response
+                apiCache.set(cacheKey, branches);
+                
                 populateSelect('branch', branches, 'Select Branch');
+                
+                // Prefetch semesters for the first branch if available
+                if (branches.length > 0) {
+                    setTimeout(() => {
+                        fetchSemesters(branches[0], true); // Silent prefetch
+                    }, 500);
+                }
             } catch (error) {
                 console.error('Error loading branches:', error);
                 showError('Failed to load branches. Please refresh the page and try again.');
@@ -473,12 +535,18 @@
         }
         
         async function loadSemesters(branch) {
+            const cacheKey = `semesters-${branch}`;
+            
+            // Check cache first
+            if (apiCache.has(cacheKey)) {
+                const semesters = apiCache.get(cacheKey);
+                populateSelect('semester', semesters, 'Select Semester', formatSemester);
+                return;
+            }
+            
             showElementLoading('semester', true);
             try {
-                const response = await fetchWithTimeout(`/api/directories?path=${encodeURIComponent(branch)}`);
-                if (!response.ok) throw new Error('Failed to fetch semesters');
-                
-                const semesters = await response.json();
+                const semesters = await fetchSemesters(branch);
                 populateSelect('semester', semesters, 'Select Semester', formatSemester);
             } catch (error) {
                 console.error('Error loading semesters:', error);
@@ -488,13 +556,54 @@
             }
         }
         
+        async function fetchSemesters(branch, silent = false) {
+            const cacheKey = `semesters-${branch}`;
+            
+            if (!silent) showElementLoading('semester', true);
+            
+            try {
+                const response = await fetchWithTimeout(`/api/directories?path=${encodeURIComponent(branch)}`, {
+                    priority: silent ? 'low' : 'high'
+                }, 5000);
+                
+                if (!response.ok) throw new Error('Failed to fetch semesters');
+                
+                const semesters = await response.json();
+                
+                // Cache the response
+                apiCache.set(cacheKey, semesters);
+                
+                return semesters;
+            } catch (error) {
+                if (!silent) {
+                    console.error('Error loading semesters:', error);
+                    showError('Failed to load semesters. Please try again.');
+                }
+                throw error;
+            } finally {
+                if (!silent) showElementLoading('semester', false);
+            }
+        }
+        
         async function loadSubjects(branch, semester) {
+            const cacheKey = `subjects-${branch}-${semester}`;
+            
+            // Check cache first
+            if (apiCache.has(cacheKey)) {
+                const subjects = apiCache.get(cacheKey);
+                if (subjects.length === 0) {
+                    resetSelect('subject', 'No subjects available');
+                    showElement('subject-error');
+                } else {
+                    populateSelect('subject', subjects, 'Select Subject');
+                    hideElement('subject-error');
+                }
+                return;
+            }
+            
             showElementLoading('subject', true);
             try {
-                const response = await fetchWithTimeout(`/api/directories?path=${encodeURIComponent(branch)}/${encodeURIComponent(semester)}`);
-                if (!response.ok) throw new Error('Failed to fetch subjects');
-                
-                const subjects = await response.json();
+                const subjects = await fetchSubjects(branch, semester);
                 if (subjects.length === 0) {
                     resetSelect('subject', 'No subjects available');
                     showElement('subject-error');
@@ -507,6 +616,70 @@
                 showError('Failed to load subjects. Please try again.');
             } finally {
                 showElementLoading('subject', false);
+            }
+        }
+        
+        async function fetchSubjects(branch, semester, silent = false) {
+            const cacheKey = `subjects-${branch}-${semester}`;
+            
+            if (!silent) showElementLoading('subject', true);
+            
+            try {
+                const response = await fetchWithTimeout(
+                    `/api/directories?path=${encodeURIComponent(branch)}/${encodeURIComponent(semester)}`, 
+                    { priority: silent ? 'low' : 'high' },
+                    5000
+                );
+                
+                if (!response.ok) throw new Error('Failed to fetch subjects');
+                
+                const subjects = await response.json();
+                
+                // Cache the response
+                apiCache.set(cacheKey, subjects);
+                
+                return subjects;
+            } catch (error) {
+                if (!silent) {
+                    console.error('Error loading subjects:', error);
+                    showError('Failed to load subjects. Please try again.');
+                }
+                throw error;
+            } finally {
+                if (!silent) showElementLoading('subject', false);
+            }
+        }
+        
+        // Prefetch functions
+        function prefetchSemestersOnHover() {
+            const branchSelect = document.getElementById('branch');
+            if (branchSelect.selectedIndex > 0) return; // Already selected
+            
+            // Prefetch semesters for the first 3 branches
+            for (let i = 1; i <= Math.min(3, branchSelect.options.length - 1); i++) {
+                const branch = branchSelect.options[i].value;
+                if (!apiCache.has(`semesters-${branch}`)) {
+                    fetchSemesters(branch, true);
+                }
+            }
+        }
+        
+        function prefetchSubjectsOnHover() {
+            const branchSelect = document.getElementById('branch');
+            const semesterSelect = document.getElementById('semester');
+            
+            if (semesterSelect.selectedIndex > 0) return; // Already selected
+            if (branchSelect.selectedIndex <= 0) return; // No branch selected
+            
+            const branch = branchSelect.value;
+            
+            // Prefetch subjects for the first 2 semesters
+            for (let i = 1; i <= Math.min(2, semesterSelect.options.length - 1); i++) {
+                const semester = semesterSelect.options[i].value;
+                const cacheKey = `subjects-${branch}-${semester}`;
+                if (!apiCache.has(cacheKey)) {
+                    fetchSubjects(branch, semester, true);
+                }
             }
         }
         
@@ -527,8 +700,8 @@
             defaultOption.textContent = defaultText;
             selectElement.appendChild(defaultOption);
             
-            // Sort options alphabetically with numeric awareness
-            options.sort((a, b) => {
+            // Sort options with numeric awareness
+            const sortedOptions = [...options].sort((a, b) => {
                 // Extract numbers if they exist
                 const numA = a.match(/\d+/);
                 const numB = b.match(/\d+/);
@@ -540,7 +713,7 @@
             });
             
             // Add sorted options
-            options.forEach(option => {
+            sortedOptions.forEach(option => {
                 const optionElement = document.createElement('option');
                 optionElement.value = option;
                 optionElement.textContent = formatFn ? formatFn(option) : option;
@@ -575,8 +748,45 @@
                 return;
             }
             
+            // Add loading state to button
+            const button = document.getElementById('continue-btn');
+            button.disabled = true;
+            button.innerHTML = '<div class="spinner" style="width: 1rem; height: 1rem; margin-right: 0.5rem;"></div> Loading...';
+            
             const path = `${branch}/${semester}/${subject}`;
+            
+            // Prefetch the first PDF while transitioning
+            prefetchFirstPdf(path);
+            
+            // Navigate to viewer
             window.location.href = `/viewer?pdf=${encodeURIComponent(path)}`;
+        }
+        
+        async function prefetchFirstPdf(path) {
+            try {
+                // Get list of PDFs for this path
+                const response = await fetchWithTimeout(
+                    `/api/directories?path=${encodeURIComponent(path)}`,
+                    { priority: 'low' },
+                    3000
+                );
+                
+                if (response.ok) {
+                    const pdfs = await response.json();
+                    if (pdfs.length > 0) {
+                        // Prefetch the first PDF
+                        const pdfUrl = `/static/pyqs/${path}/${pdfs[0]}`;
+                        const link = document.createElement('link');
+                        link.rel = 'prefetch';
+                        link.href = pdfUrl;
+                        link.as = 'document';
+                        document.head.appendChild(link);
+                    }
+                }
+            } catch (error) {
+                // Silent fail - prefetch is just an optimization
+                console.debug('Prefetch failed:', error);
+            }
         }
         
         function showElementLoading(elementId, visible) {
@@ -600,18 +810,29 @@
             if (element) element.style.display = 'none';
         }
         
-        // Helper function to add timeout to fetch
+        // Enhanced fetch with timeout and priority support
         async function fetchWithTimeout(url, options = {}, timeout = 8000) {
             const controller = new AbortController();
             const id = setTimeout(() => controller.abort(), timeout);
             
-            const response = await fetch(url, {
-                ...options,
-                signal: controller.signal
-            });
+            // Add priority if supported (Chrome only)
+            if (options.priority && 'fetchPriority' in document.createElement('link')) {
+                options.fetchPriority = options.priority;
+            }
             
-            clearTimeout(id);
-            return response;
+            try {
+                const response = await fetch(url, {
+                    ...options,
+                    signal: controller.signal,
+                    cache: 'default'
+                });
+                
+                clearTimeout(id);
+                return response;
+            } catch (error) {
+                clearTimeout(id);
+                throw error;
+            }
         }
     </script>
 </body>

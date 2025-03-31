@@ -3,7 +3,10 @@
   "builds": [
     {
       "src": "app.py",
-      "use": "@vercel/python"
+      "use": "@vercel/python",
+      "config": {
+        "runtime": "python3.9"
+      }
     },
     {
       "src": "static/**",
@@ -16,12 +19,9 @@
       "dest": "/static/$1"
     },
     {
-      "src": "/get-api-key",
-      "status": 404
-    },
-    {
       "src": "/(.*)",
-      "dest": "app.py"
+      "dest": "app.py",
+      "methods": ["GET", "POST", "OPTIONS"]
     }
   ]
 }

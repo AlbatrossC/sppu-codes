@@ -5,36 +5,88 @@ import json
 import requests
 from datetime import datetime
 from hosting.quecount import quecount_bp
+from contextlib import contextmanager
+from psycopg2 import pool
 
 app = Flask(__name__)
 app.secret_key = 'karlos'
+app.register_blueprint(quecount_bp)
 
 # Root directory containing the pyqs
 BASE_DIR = os.path.join(os.path.dirname(__file__), 'static', 'pyqs')
 
-# Environment variables
+# Database configuration
 DATABASE_URL = os.getenv("DATABASE_URL")
+
+# Create a connection pool
+try:
+    connection_pool = psycopg2.pool.SimpleConnectionPool(
+        minconn=1,
+        maxconn=10,
+        dsn=DATABASE_URL
+    )
+except Exception as e:
+    print(f"Error creating connection pool: {e}")
+    connection_pool = None
+
+@contextmanager
+def get_db_connection():
+    """Context manager for handling database connections"""
+    if connection_pool is None:
+        flash("Database connection error. Please try again later.", "error")
+        yield None
+        return
+        
+    conn = None
+    try:
+        conn = connection_pool.getconn()
+        yield conn
+    except Exception as e:
+        flash(f"Database connection error: {e}", "error")
+        yield None
+    finally:
+        if conn:
+            connection_pool.putconn(conn)
+
+@contextmanager
+def get_db_cursor():
+    """Context manager for handling database cursors"""
+    with get_db_connection() as conn:
+        if conn is None:
+            yield None
+            return
+            
+        cur = None
+        try:
+            cur = conn.cursor()
+            yield cur
+            conn.commit()
+        except Exception as e:
+            conn.rollback()
+            flash(f"Database error: {e}", "error")
+            yield None
+        finally:
+            if cur:
+                cur.close()
 
 @app.route('/questionpapers')
 def select():
-    # Render the select page at the sub-URL
     return render_template('select.html')
 
 @app.route('/api/directories')
 def get_directories():
     path = request.args.get('path', '')
-    # Remove 'pyqs/' prefix if present
     if path.startswith('pyqs/'):
         path = path[len('pyqs/'):]
     full_path = os.path.join(BASE_DIR, path)
     
     if not os.path.exists(full_path):
-        print(f"Path does not exist: {full_path}")  # Debug
+        print(f"Path does not exist: {full_path}")
         return jsonify([])
     
     if os.path.isdir(full_path):
         items = os.listdir(full_path)
-        print(f"Items in {full_path}: {items}")  # Debug
+        print(f"Items in {full_path}: {items}")
         if any(item.lower().endswith('.pdf') for item in items):
             files = [f for f in items if f.lower().endswith('.pdf')]
             return jsonify(files)
@@ -52,19 +104,6 @@ def viewer():
 def serve_pdf(filename):
     return send_from_directory(BASE_DIR, filename)
 
-# Register the quecount blueprint
-app.register_blueprint(quecount_bp)
-DATABASE_URL = os.getenv("DATABASE_URL")
-
-# Database connection function
-def connect_db():
-    try:
-        conn = psycopg2.connect(DATABASE_URL)
-        return conn
-    except Exception as e:
-        print(f"Database connection error: {e}")
-        return None
-
 # Custom Error Handlers
 @app.errorhandler(404)
 def page_not_found(e):
@@ -73,72 +112,6 @@ def page_not_found(e):
 @app.errorhandler(500)
 def internal_server_error(e):
     return render_template('error.html'), 500
-
-# Route for submitting codes
-@app.route('/submit', methods=["GET", "POST"])
-def submit():
-    conn = connect_db()
-    if conn is None:
-        return "Database Connection error. Please try again later"
-
-    if request.method == "POST":
-        try:
-            cur = conn.cursor()
-
-            name = request.form.get("name")
-            year = request.form.get("year")
-            branch = request.form.get("branch")
-            subject = request.form.get("subject")
-            question = request.form.get("question")
-            answer = request.form.get("answer")
-
-            if name and year and branch and subject and question and answer:
-                cur.execute("INSERT INTO codes (name, year, branch, subject, question, answer) VALUES (%s,%s,%s,%s,%s,%s)",
-                            (name, year, branch, subject, question, answer))
-                conn.commit()
-                flash("Code Sent Successfully! Thank you", "success")
-                return redirect(url_for('submit'))
-            else:
-                flash("PLEASE FILL ALL NECESSARY FIELDS", "error")
-
-            cur.close()
-        except Exception as e:
-            flash(f"Error inserting data: {e}", "error")
-        finally:
-            conn.close()
-
-    return render_template("submit.html")
-
-# Route for contact form
-@app.route("/contact", methods=["GET", "POST"])
-def contact():
-    if request.method == "POST":
-        name = request.form.get("name")
-        email = request.form.get("email")
-        message = request.form.get("message")  # Changed from "msg" to "message"
-
-        if name and email and message:
-            try:
-                conn = connect_db()
-                if conn is None:
-                    flash("Database connection error. Please try again later.", "error")
-                    return redirect(url_for('contact'))
-
-                cur = conn.cursor()
-                cur.execute("INSERT INTO contacts (name, email, message) VALUES (%s, %s, %s)", 
-                          (name, email, message))
-                conn.commit()
-                cur.close()
-                conn.close()
-                
-                flash("Message sent successfully! Thank you", "success")
-            except Exception as e:
-                flash(f"Error inserting data: {e}", "error")
-            return redirect(url_for('contact'))
-        else:
-            flash("PLEASE FILL ALL NECESSARY FIELDS", "error")
-            
-    return render_template("contact.html")
 
 # Home route
 @app.route('/')
@@ -162,24 +135,18 @@ QUESTIONS_DIR = os.path.join(os.path.dirname(__file__), 'questions')
 @app.route("/<subject_code>")
 @app.route("/<subject_code>/<question_id>")
 def question(subject_code, question_id=None):
-    # Construct the path to the JSON file
     json_file_path = os.path.join(QUESTIONS_DIR, f"{subject_code}.json")
     
-    # Check if the JSON file exists
     if not os.path.exists(json_file_path):
         abort(404, description="Subject not found")
 
-    # Load the JSON data
     with open(json_file_path, 'r') as f:
         data = json.load(f)
 
     subject = data.get("default", {})
     questions = data.get("questions", [])
-
-    # Convert questions list to a dictionary for O(1) access
     question_dict = {q["id"]: q for q in questions}
 
-    # Default metadata for subject page
     title = f"SPPU Codes - {subject.get('subject_name', '')}"
     description = subject.get("description", "")
     keywords = subject.get("keywords", [])
@@ -193,7 +160,6 @@ def question(subject_code, question_id=None):
         keywords = [selected_question["question"], selected_question["title"]] + subject.get("keywords", [])
         url = f"https://sppucodes.vercel.app/{subject_code}/{question_id}"
 
-    # Organize questions by group for FAQ display
     groups = {}
     for q in questions:
         groups.setdefault(q["group"], []).append(q)
@@ -229,12 +195,6 @@ def get_answer(subject, filename):
     except Exception:
         abort(404)
 
-
-# Route for copy page
-@app.route('/copy')
-def copy():
-    return render_template('copy.html')
-
 # Route for serving images
 @app.route('/images/<filename>')
 def get_image(filename):
@@ -252,10 +212,74 @@ def sitemap():
 def robots():
     return send_from_directory('.', 'robots.txt')
 
-@app.route('/79107a527a7f49eca3699d19f4f83224.txt')
-def verify():
-    return send_from_directory('.', '79107a527a7f49eca3699d19f4f83224.txt')
+# Route for submitting codes
+@app.route('/submit', methods=["GET", "POST"])
+def submit():
+    if request.method == "POST":
+        name = request.form.get("name")
+        year = request.form.get("year")
+        branch = request.form.get("branch")
+        subject = request.form.get("subject")
+        question = request.form.get("question")
+        answer = request.form.get("answer")
 
-# Run the app
+        if not all([name, year, branch, subject, question, answer]):
+            flash("PLEASE FILL ALL NECESSARY FIELDS", "error")
+            return render_template("submit.html")
+
+        try:
+            with get_db_cursor() as cur:
+                if cur is None:
+                    return redirect(url_for('submit'))
+                    
+                cur.execute(
+                    """INSERT INTO codes 
+                    (name, year, branch, subject, question, answer) 
+                    VALUES (%s, %s, %s, %s, %s, %s)""",
+                    (name, year, branch, subject, question, answer)
+                )
+                flash("Code Sent Successfully! Thank you", "success")
+                return redirect(url_for('submit'))
+        except Exception as e:
+            flash(f"Error inserting data: {e}", "error")
+
+    return render_template("submit.html")
+
+# Route for contact form
+@app.route("/contact", methods=["GET", "POST"])
+def contact():
+    if request.method == "POST":
+        name = request.form.get("name")
+        email = request.form.get("email")
+        message = request.form.get("message")
+
+        if not all([name, email, message]):
+            flash("PLEASE FILL ALL NECESSARY FIELDS", "error")
+            return redirect(url_for('contact'))
+
+        try:
+            with get_db_cursor() as cur:
+                if cur is None:
+                    return redirect(url_for('contact'))
+                    
+                cur.execute(
+                    """INSERT INTO contacts 
+                    (name, email, message) 
+                    VALUES (%s, %s, %s)""", 
+                    (name, email, message)
+                )
+                flash("Message sent successfully! Thank you", "success")
+                return redirect(url_for('contact'))
+        except Exception as e:
+            flash(f"Error inserting data: {e}", "error")
+
+    return render_template("contact.html")
+
+# Close all connections when app shuts down
+@app.teardown_appcontext
+def close_connection_pool(exception):
+    if connection_pool:
+        connection_pool.closeall()
+
 if __name__ == '__main__':
     app.run(host='0.0.0.0', port=int("3000"), debug=True)

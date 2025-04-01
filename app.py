@@ -5,7 +5,7 @@ import json
 import requests
 from datetime import datetime
 from hosting.quecount import quecount_bp
-from contextlib import contextmanager
+
 
 app = Flask(__name__)
 app.secret_key = 'karlos'
@@ -14,82 +14,78 @@ app.register_blueprint(quecount_bp)
 # Root directory containing the pyqs
 BASE_DIR = os.path.join(os.path.dirname(__file__), 'static', 'pyqs')
 
-# Database configuration - modified for Vercel compatibility
-DATABASE_URL = os.getenv("DATABASE_URL")
-
-# Connection pool variable
-connection_pool = None
-
-def init_connection_pool():
-    """Initialize the connection pool if not already created"""
-    global connection_pool
-    if connection_pool is None:
-        try:
-            connection_pool = psycopg2.pool.ThreadedConnectionPool(
-                minconn=1,
-                maxconn=5,  # Reduced for serverless environment
-                dsn=DATABASE_URL
-            )
-        except Exception as e:
-            print(f"Error creating connection pool: {e}")
-            connection_pool = None
-
-@contextmanager
-def get_db_connection():
-    """Context manager for handling database connections"""
-    init_connection_pool()
-    
-    if connection_pool is None:
-        flash("Database connection error. Please try again later.", "error")
-        yield None
-        return
-        
-    conn = None
+DATABASE_URL = os.getenv("DATABASE_URL") 
+# Database connection function
+def connect_db():
     try:
-        conn = connection_pool.getconn()
-        yield conn
-    except psycopg2.InterfaceError as e:
-        # Handle cases where connection is bad (common in serverless)
-        print(f"Connection error: {e}")
-        flash("Database connection error. Please try again.", "error")
-        yield None
+        conn = psycopg2.connect(DATABASE_URL)
+        return conn
     except Exception as e:
-        print(f"Database error: {e}")
-        flash("Database error occurred. Please try again.", "error")
-        yield None
-    finally:
-        if conn:
-            try:
-                connection_pool.putconn(conn)
-            except psycopg2.pool.PoolError:
-                # Pool is closed, connection will be discarded
-                conn.close()
+        print(f"Database connection error: {e}")
+        return None# Route for submitting codes
+@app.route('/submit', methods=["GET", "POST"])
+def submit():
+    conn = connect_db()
+    if conn is None:
+        return "Database Connection error. Please try again later"
 
-@contextmanager
-def get_db_cursor():
-    """Context manager for handling database cursors"""
-    with get_db_connection() as conn:
-        if conn is None:
-            yield None
-            return
-            
-        cur = None
+    if request.method == "POST":
         try:
             cur = conn.cursor()
-            yield cur
-            conn.commit()
+
+            name = request.form.get("name")
+            year = request.form.get("year")
+            branch = request.form.get("branch")
+            subject = request.form.get("subject")
+            question = request.form.get("question")
+            answer = request.form.get("answer")
+
+            if name and year and branch and subject and question and answer:
+                cur.execute("INSERT INTO codes (name, year, branch, subject, question, answer) VALUES (%s,%s,%s,%s,%s,%s)",
+                            (name, year, branch, subject, question, answer))
+                conn.commit()
+                flash("Code Sent Successfully! Thank you", "success")
+                return redirect(url_for('submit'))
+            else:
+                flash("PLEASE FILL ALL NECESSARY FIELDS", "error")
+
+            cur.close()
         except Exception as e:
-            conn.rollback()
-            flash(f"Database error: {e}", "error")
-            yield None
+            flash(f"Error inserting data: {e}", "error")
         finally:
-            if cur:
+            conn.close()
+
+    return render_template("submit.html")
+# Route for contact form
+@app.route("/contact", methods=["GET", "POST"])
+def contact():
+    if request.method == "POST":
+        name = request.form.get("name")
+        email = request.form.get("email")
+        message = request.form.get("message")
+
+        if name and email and message:
+            try:
+                conn = connect_db()
+                if conn is None:
+                    flash("Database connection error. Please try again later.", "error")
+                    return redirect(url_for('contact'))
+
+                cur = conn.cursor()
+                cur.execute("INSERT INTO contacts (name, email, message) VALUES (%s, %s, %s)", 
+                          (name, email, message))
+                conn.commit()
                 cur.close()
-
-# Initialize pool when app starts
-init_connection_pool()
-
-# ... [keep all your existing routes exactly the same] ...
+                conn.close()
+                
+                flash("Message sent successfully! Thank you", "success")
+            except Exception as e:
+                flash(f"Error inserting data: {e}", "error")
+            return redirect(url_for('contact'))
+        else:
+            flash("PLEASE FILL ALL NECESSARY FIELDS", "error")
+            
+    return render_template("contact.html")
 
 @app.route('/questionpapers')
 def select():
@@ -233,80 +229,6 @@ def sitemap():
 @app.route('/robots.txt')
 def robots():
     return send_from_directory('.', 'robots.txt')
-
-# Route for submitting codes
-@app.route('/submit', methods=["GET", "POST"])
-def submit():
-    if request.method == "POST":
-        name = request.form.get("name")
-        year = request.form.get("year")
-        branch = request.form.get("branch")
-        subject = request.form.get("subject")
-        question = request.form.get("question")
-        answer = request.form.get("answer")
-
-        if not all([name, year, branch, subject, question, answer]):
-            flash("PLEASE FILL ALL NECESSARY FIELDS", "error")
-            return render_template("submit.html")
-
-        try:
-            with get_db_cursor() as cur:
-                if cur is None:
-                    return redirect(url_for('submit'))
-                    
-                cur.execute(
-                    """INSERT INTO codes 
-                    (name, year, branch, subject, question, answer) 
-                    VALUES (%s, %s, %s, %s, %s, %s)""",
-                    (name, year, branch, subject, question, answer)
-                )
-                flash("Code Sent Successfully! Thank you", "success")
-                return redirect(url_for('submit'))
-        except Exception as e:
-            flash(f"Error inserting data: {e}", "error")
-
-    return render_template("submit.html")
-
-# Route for contact form
-@app.route("/contact", methods=["GET", "POST"])
-def contact():
-    if request.method == "POST":
-        name = request.form.get("name")
-        email = request.form.get("email")
-        message = request.form.get("message")
-
-        if not all([name, email, message]):
-            flash("PLEASE FILL ALL NECESSARY FIELDS", "error")
-            return redirect(url_for('contact'))
-
-        try:
-            with get_db_cursor() as cur:
-                if cur is None:
-                    return redirect(url_for('contact'))
-                    
-                cur.execute(
-                    """INSERT INTO contacts 
-                    (name, email, message) 
-                    VALUES (%s, %s, %s)""", 
-                    (name, email, message)
-                )
-                flash("Message sent successfully! Thank you", "success")
-                return redirect(url_for('contact'))
-        except Exception as e:
-            flash(f"Error inserting data: {e}", "error")
-
-    return render_template("contact.html")
-@app.teardown_appcontext
-def close_connection_pool(exception):
-    """Modified teardown handler for Vercel compatibility"""
-    global connection_pool
-    if connection_pool:
-        try:
-            connection_pool.closeall()
-        except psycopg2.pool.PoolError as e:
-            print(f"Error closing pool: {e}")
-        finally:
-            connection_pool = None
 
 if __name__ == '__main__':
     app.run(host='0.0.0.0', port=int("3000"), debug=True)

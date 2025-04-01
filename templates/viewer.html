@@ -6,14 +6,30 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="description" content="SPPU Codes Question Viewer - Fast and efficient PDF viewer for exam papers">
     <link rel="icon" href="{{ url_for('get_image', filename='favicon.ico') }}" type="image/x-icon" fetchpriority="high">
-    <title>SPPU Codes: Question Viewer</title>
+    <title>SPPU ${subjectName} Question Papers - INSEM/ENDSEM PDFs | SPPU Codes</title>
+    
+    <!-- SEO -->
+    <meta name="description" content="SPPU ${subjectName} question papers - Download and view previous year INSEM and ENDSEM exam papers for ${subjectName} at Savitribai Phule Pune University">
+    <link rel="canonical" href="https://sppu-codes-testing.vercel.app/viewer?pdf=${cleanPath}" />
+    <script type="application/ld+json">
+        {
+          "@context": "https://schema.org",
+          "@type": "CollectionPage",
+          "name": "SPPU ${subjectName} Question Papers",
+          "description": "Previous year question papers for ${subjectName} at Savitribai Phule Pune University",
+          "publisher": {
+            "@type": "Organization",
+            "name": "SPPU Codes"
+          }
+        }
+    </script>
     
     <!-- Preload critical resources -->
-    <link rel="preload" href="/static/pdfjs/web/viewer.html" as="document">
-    <link rel="preload" href="/static/pdfjs/web/viewer.css" as="style">
-    <link rel="preload" href="/static/pdfjs/web/viewer.js" as="script">
-    <link rel="preload" href="/static/pdfjs/web/pdf.js" as="script">
-    <link rel="preload" href="/static/pdfjs/web/pdf.worker.js" as="worker">
+    <link rel="preload" href="/static/pdfjs/web/viewer.html" as="document" fetchpriority="high">
+    <link rel="preload" href="/static/pdfjs/web/viewer.css" as="style" fetchpriority="high">
+    <link rel="preload" href="/static/pdfjs/web/viewer.js" as="script" fetchpriority="high">
+    <link rel="preload" href="/static/pdfjs/web/pdf.js" as="script" fetchpriority="high">
+    <link rel="preload" href="/static/pdfjs/web/pdf.worker.js" as="worker" fetchpriority="high">
     
     <style>
         :root {
@@ -36,7 +52,7 @@
             --dropdown-text: #f0f0f0;
         }
 
-        /* Optimized base styles */
+        /* Optimized base styles with will-change for performance */
         *, *:before, *:after {
             box-sizing: border-box;
         }
@@ -52,6 +68,7 @@
             color: var(--text-light);
             -webkit-font-smoothing: antialiased;
             overscroll-behavior: none;
+            contain: strict;
         }
 
         header {
@@ -66,6 +83,7 @@
             gap: 6px;
             min-height: 48px;
             will-change: transform;
+            contain: content;
         }
 
         .header-info, .header-controls {
@@ -92,6 +110,7 @@
             color: var(--secondary-color);
             border-left: 3px solid var(--secondary-color);
             white-space: nowrap;
+            will-change: transform;
         }
 
         .control-group {
@@ -122,6 +141,7 @@
             background-repeat: no-repeat;
             background-position: right 10px center;
             background-size: 12px;
+            will-change: transform;
         }
 
         select:hover {
@@ -172,6 +192,7 @@
             display: flex;
             align-items: center;
             gap: 6px;
+            will-change: transform;
         }
 
         button:hover {
@@ -220,6 +241,7 @@
             overflow: hidden;
             display: flex;
             flex-direction: column;
+            contain: strict;
         }
 
         .pdf-viewer iframe {
@@ -227,6 +249,7 @@
             height: 100%;
             border: none;
             display: block;
+            contain: strict;
         }
 
         /* Enhanced Date Selector */
@@ -242,6 +265,7 @@
             box-shadow: var(--shadow);
             opacity: 0.9;
             transition: all var(--transition-speed) ease-out;
+            will-change: transform;
         }
 
         .date-selector select {
@@ -269,6 +293,7 @@
             align-items: center;
             background-color: rgba(0, 0, 0, 0.4);
             z-index: 5;
+            contain: strict;
         }
 
         .loader {
@@ -295,6 +320,7 @@
             width: 16px;
             height: 16px;
             flex-shrink: 0;
+            contain: strict;
         }
 
         /* Status Messages */
@@ -359,12 +385,6 @@
                 top: 4px;
                 left: 4px;
             }
-        }
-
-        /* Dropdown Animation */
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(-5px); }
-            to { opacity: 1; transform: translateY(0); }
         }
 
         /* Modern scrollbar styling */
@@ -433,17 +453,6 @@
     <script>
         'use strict';
 
-        // Service Worker Registration for caching
-        if ('serviceWorker' in navigator) {
-            window.addEventListener('load', () => {
-                navigator.serviceWorker.register('/sw.js').then(registration => {
-                    console.log('ServiceWorker registration successful');
-                }).catch(err => {
-                    console.log('ServiceWorker registration failed: ', err);
-                });
-            });
-        }
-
         // Cached DOM elements
         const DOM = {
             pdfContainer: document.getElementById('pdf-container'),
@@ -506,12 +515,13 @@
         async function fetchPDFFiles() {
             if (state.cache.has(state.pdfPath)) {
                 state.pdfFiles = state.cache.get(state.pdfPath);
-                return renderPDFs();
+                renderPDFs();
+                return;
             }
 
             try {
                 const response = await fetch(`/api/directories?path=${encodeURIComponent(state.pdfPath)}`, {
-                    cache: 'force-cache', // Leverage browser cache
+                    cache: 'force-cache',
                     priority: 'high'
                 });
                 
@@ -524,7 +534,7 @@
                         date: file.replace('.pdf', ''),
                         link: `/static/pyqs/${state.pdfPath}/${file}`
                     }))
-                    .sort((a, b) => b.date.localeCompare(a.date)); // Sort newest first
+                    .sort((a, b) => b.date.localeCompare(a.date));
 
                 state.cache.set(state.pdfPath, state.pdfFiles);
 
@@ -634,8 +644,6 @@
                             iframe.src = viewerUrl;
                             iframe.onload = () => {
                                 loader.remove();
-                                // Cache the viewer HTML for this PDF
-                                iframe.contentWindow.postMessage({type: 'getViewerHTML'}, '*');
                             };
                         }
                         
@@ -687,8 +695,6 @@
                 } else {
                     iframe.onload = () => {
                         loader.remove();
-                        // Cache the viewer HTML for this PDF
-                        iframe.contentWindow.postMessage({type: 'getViewerHTML'}, '*');
                     };
                     iframe.src = viewerUrl;
                 }
@@ -729,14 +735,6 @@
             document.addEventListener('keydown', (e) => {
                 if (e.key === 'Escape' && document.fullscreenElement) document.exitFullscreen();
             });
-            
-            // Listen for messages from PDF viewer iframes
-            window.addEventListener('message', (event) => {
-                if (event.data && event.data.type === 'viewerHTML') {
-                    const { pdfUrl, html } = event.data;
-                    state.pdfViewerCache.set(pdfUrl, html);
-                }
-            });
         }
 
         // Initialize
@@ -746,19 +744,21 @@
             setupEventListeners();
             
             if (state.pdfPath) {
-                fetchPDFFiles();
-                
                 // Immediately start loading the viewer.html in the background
                 const preloadIframe = document.createElement('iframe');
                 preloadIframe.style.display = 'none';
                 preloadIframe.src = state.pdfViewerBase;
                 document.body.appendChild(preloadIframe);
                 setTimeout(() => preloadIframe.remove(), 3000);
+                
+                // Start loading PDF files
+                fetchPDFFiles();
             } else {
                 DOM.pdfContainer.innerHTML = '<div class="no-pdf-message">Please select a subject from the previous page.</div>';
             }
         }
 
+        // Start the application
         document.addEventListener('DOMContentLoaded', init);
     </script>
 </body>

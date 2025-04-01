@@ -5,7 +5,7 @@ import json
 import requests
 from datetime import datetime
 from hosting.quecount import quecount_bp
-
+from functools import lru_cache
 
 app = Flask(__name__)
 app.secret_key = 'karlos'
@@ -22,7 +22,8 @@ def connect_db():
         return conn
     except Exception as e:
         print(f"Database connection error: {e}")
-        return None# Route for submitting codes
+        return None
+    
 @app.route('/submit', methods=["GET", "POST"])
 def submit():
     conn = connect_db()
@@ -56,6 +57,7 @@ def submit():
             conn.close()
 
     return render_template("submit.html")
+
 # Route for contact form
 @app.route("/contact", methods=["GET", "POST"])
 def contact():
@@ -96,31 +98,46 @@ def get_directories():
     path = request.args.get('path', '')
     if path.startswith('pyqs/'):
         path = path[len('pyqs/'):]
+    
     full_path = os.path.join(BASE_DIR, path)
     
     if not os.path.exists(full_path):
-        print(f"Path does not exist: {full_path}")
         return jsonify([])
     
     if os.path.isdir(full_path):
-        items = os.listdir(full_path)
-        print(f"Items in {full_path}: {items}")
-        if any(item.lower().endswith('.pdf') for item in items):
-            files = [f for f in items if f.lower().endswith('.pdf')]
-            return jsonify(files)
-        else:
-            directories = [d for d in items if os.path.isdir(os.path.join(full_path, d))]
-            return jsonify(directories)
+        return jsonify(_get_directory_contents(full_path))
     return jsonify([])
+
+CACHE_TIMEOUT = 3600 
+@lru_cache(maxsize=1024)
+def _get_directory_contents(full_path):
+    """Cached helper function to get directory contents"""
+    try:
+        items = os.listdir(full_path)
+        if any(item.lower().endswith('.pdf') for item in items):
+            return [f for f in items if f.lower().endswith('.pdf')]
+        return [d for d in items if os.path.isdir(os.path.join(full_path, d))]
+    except Exception as e:
+        print(f"Error reading directory {full_path}: {e}")
+        return []
+
+@app.route('/static/pyqs/<path:filename>')
+def serve_pdf(filename):
+    # Add caching headers for the PDF files
+    response = send_from_directory(
+        BASE_DIR,
+        filename,
+        max_age=CACHE_TIMEOUT
+    )
+    # Enable browser caching
+    response.headers['Cache-Control'] = f'public, max-age={CACHE_TIMEOUT}'
+    return response
+
 
 @app.route('/viewer')
 def viewer():
     pdf_path = request.args.get('pdf')
     return render_template('viewer.html', pdf_path=pdf_path)
-
-@app.route('/static/pyqs/<path:filename>')
-def serve_pdf(filename):
-    return send_from_directory(BASE_DIR, filename)
 
 # Custom Error Handlers
 @app.errorhandler(404)

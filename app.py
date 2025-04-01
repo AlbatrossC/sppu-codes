@@ -6,7 +6,6 @@ import requests
 from datetime import datetime
 from hosting.quecount import quecount_bp
 from contextlib import contextmanager
-from psycopg2 import pool
 
 app = Flask(__name__)
 app.secret_key = 'karlos'
@@ -15,23 +14,31 @@ app.register_blueprint(quecount_bp)
 # Root directory containing the pyqs
 BASE_DIR = os.path.join(os.path.dirname(__file__), 'static', 'pyqs')
 
-# Database configuration
+# Database configuration - modified for Vercel compatibility
 DATABASE_URL = os.getenv("DATABASE_URL")
 
-# Create a connection pool
-try:
-    connection_pool = psycopg2.pool.SimpleConnectionPool(
-        minconn=1,
-        maxconn=10,
-        dsn=DATABASE_URL
-    )
-except Exception as e:
-    print(f"Error creating connection pool: {e}")
-    connection_pool = None
+# Connection pool variable
+connection_pool = None
+
+def init_connection_pool():
+    """Initialize the connection pool if not already created"""
+    global connection_pool
+    if connection_pool is None:
+        try:
+            connection_pool = psycopg2.pool.ThreadedConnectionPool(
+                minconn=1,
+                maxconn=5,  # Reduced for serverless environment
+                dsn=DATABASE_URL
+            )
+        except Exception as e:
+            print(f"Error creating connection pool: {e}")
+            connection_pool = None
 
 @contextmanager
 def get_db_connection():
     """Context manager for handling database connections"""
+    init_connection_pool()
+    
     if connection_pool is None:
         flash("Database connection error. Please try again later.", "error")
         yield None
@@ -41,12 +48,22 @@ def get_db_connection():
     try:
         conn = connection_pool.getconn()
         yield conn
+    except psycopg2.InterfaceError as e:
+        # Handle cases where connection is bad (common in serverless)
+        print(f"Connection error: {e}")
+        flash("Database connection error. Please try again.", "error")
+        yield None
     except Exception as e:
-        flash(f"Database connection error: {e}", "error")
+        print(f"Database error: {e}")
+        flash("Database error occurred. Please try again.", "error")
         yield None
     finally:
         if conn:
-            connection_pool.putconn(conn)
+            try:
+                connection_pool.putconn(conn)
+            except psycopg2.pool.PoolError:
+                # Pool is closed, connection will be discarded
+                conn.close()
 
 @contextmanager
 def get_db_cursor():
@@ -68,6 +85,11 @@ def get_db_cursor():
         finally:
             if cur:
                 cur.close()
+
+# Initialize pool when app starts
+init_connection_pool()
+
+# ... [keep all your existing routes exactly the same] ...
 
 @app.route('/questionpapers')
 def select():
@@ -274,12 +296,17 @@ def contact():
             flash(f"Error inserting data: {e}", "error")
 
     return render_template("contact.html")
-
-# Close all connections when app shuts down
 @app.teardown_appcontext
 def close_connection_pool(exception):
+    """Modified teardown handler for Vercel compatibility"""
+    global connection_pool
     if connection_pool:
-        connection_pool.closeall()
+        try:
+            connection_pool.closeall()
+        except psycopg2.pool.PoolError as e:
+            print(f"Error closing pool: {e}")
+        finally:
+            connection_pool = None
 
 if __name__ == '__main__':
     app.run(host='0.0.0.0', port=int("3000"), debug=True)

@@ -268,10 +268,6 @@ def explain_code():
     except Exception as e:
         return jsonify({"error": str(e)}), 500
 
-# Route for disclaimer page
-@app.route('/disclaimer')
-def disclaimer():
-    return render_template('disclaimer.html')
 
 # Route for copy page
 @app.route('/copy')

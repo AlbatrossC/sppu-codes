@@ -85,36 +85,27 @@ document.addEventListener('DOMContentLoaded', function () {
         }
     });
 
-    // Mobile menu toggle
-    mobileMenuToggle.addEventListener('click', () => {
+    // Mobile menu toggle functionality
+    mobileMenuToggle.addEventListener('click', (e) => {
+        e.stopPropagation(); // Prevent event from bubbling up
         isMenuOpen = !isMenuOpen;
         headerActions.classList.toggle('active');
         searchContainer.classList.toggle('active');
+        mobileMenuToggle.classList.toggle('active');
         mobileMenuToggle.setAttribute('aria-expanded', isMenuOpen);
-
-        // Change icon based on menu state
-        const icon = mobileMenuToggle.querySelector('i');
-        if (isMenuOpen) {
-            icon.classList.remove('fa-bars');
-            icon.classList.add('fa-times');
-        } else {
-            icon.classList.remove('fa-times');
-            icon.classList.add('fa-bars');
-        }
     });
 
     // Close mobile menu when clicking outside
     document.addEventListener('click', (event) => {
         const isClickInsideHeader = header.contains(event.target);
+        const isClickOnToggle = mobileMenuToggle.contains(event.target);
 
-        if (!isClickInsideHeader && isMenuOpen) {
+        if (!isClickInsideHeader && !isClickOnToggle && isMenuOpen) {
             isMenuOpen = false;
             headerActions.classList.remove('active');
             searchContainer.classList.remove('active');
+            mobileMenuToggle.classList.remove('active');
             mobileMenuToggle.setAttribute('aria-expanded', false);
-            const icon = mobileMenuToggle.querySelector('i');
-            icon.classList.remove('fa-times');
-            icon.classList.add('fa-bars');
         }
     });
 
@@ -127,10 +118,8 @@ document.addEventListener('DOMContentLoaded', function () {
                 isMenuOpen = false;
                 headerActions.classList.remove('active');
                 searchContainer.classList.remove('active');
+                mobileMenuToggle.classList.remove('active');
                 mobileMenuToggle.setAttribute('aria-expanded', false);
-                const icon = mobileMenuToggle.querySelector('i');
-                icon.classList.remove('fa-times');
-                icon.classList.add('fa-bars');
             }
         }, 250);
     });

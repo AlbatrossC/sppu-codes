@@ -255,14 +255,44 @@ header h1 {
         padding: 12px;
     }
 }
-.visually-hidden {
-    position: absolute;
-    width: 1px;
-    height: 1px;
-    padding: 0;
-    margin: -1px;
-    overflow: hidden;
-    clip: rect(0, 0, 0, 0);
-    border: 0;
-    white-space: nowrap;
+.menu-icon {
+    position: relative;
+    width: 24px;
+    height: 2px;
+    background-color: var(--text-primary);
+    display: block;
 }
+
+.menu-icon::before,
+.menu-icon::after {
+    content: '';
+    position: absolute;
+    width: 24px;
+    height: 2px;
+    background-color: var(--text-primary);
+    left: 0;
+    transition: all 0.3s ease;
+}
+
+.menu-icon::before {
+    top: -8px;
+}
+
+.menu-icon::after {
+    top: 8px;
+}
+
+.mobile-menu-toggle.active .menu-icon {
+    background-color: transparent;
+}
+
+.mobile-menu-toggle.active .menu-icon::before {
+    transform: rotate(45deg);
+    top: 0;
+}
+
+.mobile-menu-toggle.active .menu-icon::after {
+    transform: rotate(-45deg);
+    top: 0;
+}
+

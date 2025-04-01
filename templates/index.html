@@ -8,14 +8,12 @@
         <meta name="google-site-verification" content="s0ezZ-kg4bjZR6Jbt_-6H1Im5EDs61Rg5yWJr6BHXFY" />
         <meta name="google-site-verification" content="EZ0Ro0zG4Hc7axgonIr9RZJdN0xW3cVTMueirY8hveA" />
         
-        <!-- Basic Meta Tags -->
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>SPPU Codes</title>
-        <meta name="description" content="SPPU Codes – Find SPPU programming codes, assignments, and practical solutions. Get structured and easy-to-understand code for various subjects.">
+        <meta name="description" content="SPPU Codes Find SPPU programming codes, assignments, and practical solutions. Get structured and easy-to-understand code for various subjects.">
         <meta name="keywords" content="SPPU codes, Pune University lab codes, SPPU practical solutions, engineering lab programs, OOPL practical codes, CGL programs, DSL solutions, IoT lab codes, OS practical codes, DSAL programs, computer engineering practicals">
         
-        <!-- OpenGraph and Twitter Meta Tags -->
         <meta property="og:title" content="SPPU Codes - Lab Programs & Study Materials">
         <meta property="og:description" content="Complete collection of verified SPPU lab codes and practical solutions for Computer Engineering students.">
         <meta property="og:image" content="https://sppucodes.vercel.app/images/logo.png">
@@ -32,11 +30,11 @@
         <meta name="language" content="English">
             
         <!-- CSS -->
-        <link rel="stylesheet" href="static/css/index.css?v=2.4" media="all">
-        <link rel="stylesheet" href="static/css/header.css?v=2.4" media="all">
-        <link rel="stylesheet" href="static/css/footer.css?v=2.4" media="all">
+        <link rel="stylesheet" href="{{ url_for('static', filename='css/index.css', v='2.4') }}" media="all">
+        <link rel="stylesheet" href="{{ url_for('static', filename='css/header.css', v='2.4') }}" media="all">
+        <link rel="stylesheet" href="{{ url_for('static', filename='css/footer.css', v='2.4') }}" media="all">
+
         
-        <!-- Favicon -->
         <link rel="icon" href="{{ url_for('get_image', filename='favicon.ico') }}" type="image/x-icon">
 
         <!-- Structured Data -->
@@ -83,8 +81,8 @@
                 }
             }
         </script>
+
         <style>
-            /* Critical CSS inlined for faster render */
             * {
                 margin: 0;
                 padding: 0;
@@ -144,12 +142,14 @@
                 border: 1px solid var(--border-color);
             }
 
-            /* High-priority styles for LCP element */
-            #sem3-heading {
-                font-size: 1.5rem;
-                margin: 1rem 0;
-                color: var(--text-primary);
-                font-weight: 600;
+            #semester-heading {
+                font-size: 1.4rem; 
+                margin: 1rem 0; 
+                color: #e0e0e0; 
+                font-weight: 500; 
+                text-align: left; 
+                border-left: 4px solid #2d76cc; 
+                padding-left: 10px; 
             }
         </style>
     </head>
@@ -183,7 +183,7 @@
                         
             <main>
                 <section aria-labelledby="sem3-heading">
-                    <h2 id="sem3-heading">Semester 3 Subjects</h2>
+                    <h2 id="semester-heading">Semester 3 Subjects</h2>
                     <div class="group">
                         <ul class="subject-list">
                             <li>
@@ -222,8 +222,8 @@
                     </div>
                 </section>
 
-                <section aria-labelledby="sem4-heading" loading="lazy">
-                    <h2 id="sem4-heading">Semester 4 Subjects</h2>
+                <section aria-labelledby="semester-heading" loading="lazy">
+                    <h2 id="semester-heading">Semester 4 Subjects</h2>
                     <div class="group">
                         <ul class="subject-list">
                             <li>
@@ -256,9 +256,7 @@
                 </div>
                 <div class="footer__links">
                     <a href="https://github.com/AlbatrossC/sppu-codes" target="_blank" rel="noopener noreferrer">View Source</a>
-                    <span class="footer__separator">|</span>
-                    <a href="/disclaimer">Disclaimer</a>
-                    <span class="footer__separator">|</span>
+                    <span class="footer__separator">|</span>        
                     <a href="/contact">Contact</a>
                     <span class="footer__separator">|</span>
                     <a href="/stats">Stats</a>

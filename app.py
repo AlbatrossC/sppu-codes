@@ -14,8 +14,6 @@ BASE_DIR = os.path.join(os.path.dirname(__file__), 'static', 'pyqs')
 
 # Environment variables
 DATABASE_URL = os.getenv("DATABASE_URL")
-GEMINI_API_KEY = os.getenv("GEMINI_API_KEY")
-GEMINI_API_URL = 'https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-pro:generateContent'
 
 @app.route('/questionpapers')
 def select():
@@ -230,43 +228,6 @@ def get_answer(subject, filename):
         return send_from_directory(answers_dir, filename)
     except Exception:
         abort(404)
-
-# New endpoint to proxy Gemini API requests
-@app.route('/api/explain-code', methods=['POST'])
-def explain_code():
-    if not GEMINI_API_KEY:
-        return jsonify({"error": "API key not configured"}), 500
-
-    data = request.get_json()
-    instruction = data.get('instruction')
-    question = data.get('question')
-    code_text = data.get('codeText', '')
-
-    if not instruction or not question:
-        return jsonify({"error": "Missing instruction or question"}), 400
-
-    # Prepare the request body for Gemini API
-    request_body = {
-        "contents": [{
-            "parts": [
-                {"text": instruction},
-                {"text": f"Question: {question}\n\nCode:\n{code_text}" if code_text else f"Question: {question}"}
-            ]
-        }]
-    }
-
-    try:
-        response = requests.post(
-            f"{GEMINI_API_URL}?key={GEMINI_API_KEY}",
-            headers={"Content-Type": "application/json"},
-            json=request_body
-        )
-        response.raise_for_status()
-        response_data = response.json()
-        explanation = response_data['candidates'][0]['content']['parts'][0]['text']
-        return jsonify({"explanation": explanation})
-    except Exception as e:
-        return jsonify({"error": str(e)}), 500
 
 
 # Route for copy page

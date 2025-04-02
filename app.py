@@ -13,7 +13,10 @@ app.secret_key = 'karlos'
 # Root directory containing the pyqs
 BASE_DIR = os.path.join(os.path.dirname(__file__), 'static', 'pyqs')
 
+# For Local Testing
+# DATABASE_URL = "postgresql://username:password@localhost:5432/database_name"
 DATABASE_URL = os.getenv("DATABASE_URL") 
+
 # Database connection function
 def connect_db():
     try:
@@ -241,7 +244,6 @@ def get_image(filename):
 def sitemap():
     return send_from_directory('.', 'sitemap.xml')
 
-# Route for robots.txt
 @app.route('/robots.txt')
 def robots():
     return send_from_directory('.', 'robots.txt')

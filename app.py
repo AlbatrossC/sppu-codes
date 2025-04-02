@@ -4,12 +4,11 @@ import psycopg2
 import json
 import requests
 from datetime import datetime
-from hosting.quecount import quecount_bp
 from functools import lru_cache
 
 app = Flask(__name__)
 app.secret_key = 'karlos'
-app.register_blueprint(quecount_bp)
+
 
 # Root directory containing the pyqs
 BASE_DIR = os.path.join(os.path.dirname(__file__), 'static', 'pyqs')

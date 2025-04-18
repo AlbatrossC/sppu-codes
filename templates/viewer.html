@@ -25,12 +25,27 @@
         }
     </script>
     
-    <!-- Preload critical resources -->
+    <!-- Preload critical resources with cache headers -->
     <link rel="preload" href="/static/pdfjs/web/viewer.html" as="document" fetchpriority="high">
     <link rel="preload" href="/static/pdfjs/web/viewer.css" as="style" fetchpriority="high">
     <link rel="preload" href="/static/pdfjs/web/viewer.js" as="script" fetchpriority="high">
     <link rel="preload" href="/static/pdfjs/web/pdf.js" as="script" fetchpriority="high">
     <link rel="preload" href="/static/pdfjs/web/pdf.worker.js" as="worker" fetchpriority="high">
+    
+    <!-- Service Worker Registration -->
+    <script>
+        if ('serviceWorker' in navigator) {
+            window.addEventListener('load', () => {
+                navigator.serviceWorker.register('/sw.js', { scope: '/' })
+                    .then(registration => {
+                        console.log('ServiceWorker registration successful with scope: ', registration.scope);
+                    })
+                    .catch(err => {
+                        console.log('ServiceWorker registration failed: ', err);
+                    });
+            });
+        }
+    </script>
     
     <style>
         :root {
@@ -464,18 +479,144 @@
             backBtn: document.getElementById('back-btn')
         };
 
-        // Global state with cache
+        // Global state with comprehensive caching
         const state = {
             pdfPath: new URLSearchParams(window.location.search).get('pdf'),
             pdfFiles: [],
             isRendering: false,
             cache: new Map(),
             pdfViewerCache: new Map(),
+            pdfContentCache: new Map(), // Cache for PDF binary content
             renderQueue: Promise.resolve(), // Sequential rendering
-            pdfViewerBase: '/static/pdfjs/web/viewer.html'
+            pdfViewerBase: '/static/pdfjs/web/viewer.html',
+            cacheVersion: 'v1.0', // Cache version for invalidation
+            prefetchQueue: [], // Queue for prefetching PDFs
+            isOnline: navigator.onLine,
+            maxCacheSize: 50, // Maximum number of PDFs to cache
+            cacheExpiry: 7 * 24 * 60 * 60 * 1000 // 7 days cache expiry
         };
 
-        // Preload PDF.js viewer resources
+        // Initialize IndexedDB for persistent caching
+        const initDB = () => {
+            return new Promise((resolve, reject) => {
+                if (!('indexedDB' in window)) {
+                    console.warn('IndexedDB not supported, falling back to memory cache');
+                    resolve(null);
+                    return;
+                }
+
+                const request = indexedDB.open('SPPUPDFCache', 1);
+                
+                request.onerror = (event) => {
+                    console.error('IndexedDB error:', event.target.error);
+                    resolve(null);
+                };
+                
+                request.onsuccess = (event) => {
+                    state.db = event.target.result;
+                    // Start cleanup of expired items
+                    cleanupExpiredCache();
+                    resolve(state.db);
+                };
+                
+                request.onupgradeneeded = (event) => {
+                    const db = event.target.result;
+                    if (!db.objectStoreNames.contains('pdfs')) {
+                        const store = db.createObjectStore('pdfs', { keyPath: 'url' });
+                        store.createIndex('timestamp', 'timestamp', { unique: false });
+                    }
+                };
+            });
+        };
+
+        // Cleanup expired cache entries
+        const cleanupExpiredCache = async () => {
+            if (!state.db) return;
+            
+            const transaction = state.db.transaction(['pdfs'], 'readwrite');
+            const store = transaction.objectStore('pdfs');
+            const index = store.index('timestamp');
+            const cutoff = Date.now() - state.cacheExpiry;
+            
+            const request = index.openCursor(IDBKeyRange.upperBound(cutoff));
+            
+            request.onsuccess = (event) => {
+                const cursor = event.target.result;
+                if (cursor) {
+                    console.log(`Deleting expired cache entry: ${cursor.key}`);
+                    cursor.delete();
+                    cursor.continue();
+                }
+            };
+        };
+
+        // Get PDF from cache (IndexedDB or memory)
+        const getCachedPDF = async (url) => {
+            // First check memory cache
+            if (state.pdfContentCache.has(url)) {
+                return state.pdfContentCache.get(url);
+            }
+            
+            // Then check IndexedDB if available
+            if (state.db) {
+                return new Promise((resolve) => {
+                    const transaction = state.db.transaction(['pdfs'], 'readonly');
+                    const store = transaction.objectStore('pdfs');
+                    const request = store.get(url);
+                    
+                    request.onsuccess = (event) => {
+                        const result = event.target.result;
+                        if (result && result.data) {
+                            // Update memory cache
+                            state.pdfContentCache.set(url, result.data);
+                            // Keep cache size in check
+                            if (state.pdfContentCache.size > state.maxCacheSize) {
+                                const firstKey = state.pdfContentCache.keys().next().value;
+                                state.pdfContentCache.delete(firstKey);
+                            }
+                            resolve(result.data);
+                        } else {
+                            resolve(null);
+                        }
+                    };
+                    
+                    request.onerror = () => resolve(null);
+                });
+            }
+            
+            return null;
+        };
+
+        // Store PDF in cache (IndexedDB and memory)
+        const storePDFInCache = async (url, data) => {
+            // Store in memory cache
+            state.pdfContentCache.set(url, data);
+            
+            // Store in IndexedDB if available
+            if (state.db) {
+                return new Promise((resolve) => {
+                    const transaction = state.db.transaction(['pdfs'], 'readwrite');
+                    const store = transaction.objectStore('pdfs');
+                    
+                    const entry = {
+                        url: url,
+                        data: data,
+                        timestamp: Date.now(),
+                        version: state.cacheVersion
+                    };
+                    
+                    const request = store.put(entry);
+                    
+                    request.onsuccess = () => resolve();
+                    request.onerror = (event) => {
+                        console.error('Error storing PDF in IndexedDB:', event.target.error);
+                        resolve();
+                    };
+                });
+            }
+        };
+
+        // Preload critical resources
         function preloadViewerResources() {
             const resources = [
                 '/static/pdfjs/web/viewer.css',
@@ -512,7 +653,29 @@
             };
         };
 
-        // Fetch PDF files with caching and error handling
+        // Throttle function to limit execution rate
+        const throttle = (func, limit) => {
+            let lastFunc;
+            let lastRan;
+            return function() {
+                const context = this;
+                const args = arguments;
+                if (!lastRan) {
+                    func.apply(context, args);
+                    lastRan = Date.now();
+                } else {
+                    clearTimeout(lastFunc);
+                    lastFunc = setTimeout(function() {
+                        if ((Date.now() - lastRan) >= limit) {
+                            func.apply(context, args);
+                            lastRan = Date.now();
+                        }
+                    }, limit - (Date.now() - lastRan));
+                }
+            };
+        };
+
+        // Fetch PDF files with advanced caching and error handling
         async function fetchPDFFiles() {
             if (state.cache.has(state.pdfPath)) {
                 state.pdfFiles = state.cache.get(state.pdfPath);
@@ -521,9 +684,24 @@
             }
 
             try {
+                // Try to get from cache first
+                const cacheKey = `pdf-list:${state.pdfPath}`;
+                const cachedResponse = await getCachedPDF(cacheKey);
+                
+                if (cachedResponse) {
+                    state.pdfFiles = cachedResponse;
+                    state.cache.set(state.pdfPath, state.pdfFiles);
+                    renderPDFs();
+                    return;
+                }
+
+                // Fetch fresh data
                 const response = await fetch(`/api/directories?path=${encodeURIComponent(state.pdfPath)}`, {
                     cache: 'force-cache',
-                    priority: 'high'
+                    priority: 'high',
+                    headers: {
+                        'Cache-Control': 'max-age=3600' // 1 hour cache
+                    }
                 });
                 
                 if (!response.ok) throw new Error(`HTTP error: ${response.status}`);
@@ -537,7 +715,9 @@
                     }))
                     .sort((a, b) => b.date.localeCompare(a.date));
 
+                // Store in cache
                 state.cache.set(state.pdfPath, state.pdfFiles);
+                await storePDFInCache(cacheKey, state.pdfFiles);
 
                 if (!state.pdfFiles.length) {
                     DOM.pdfContainer.innerHTML = '<div class="no-pdf-message">No PDFs found for this subject.</div>';
@@ -554,25 +734,56 @@
             }
         }
 
-        // Preload next PDFs in the background
+        // Preload next PDFs in the background with intelligent prioritization
         function preloadNextPDFs(count) {
             const examType = DOM.examType.value;
             const filteredData = filterPDFs(examType);
             
+            // Clear any existing prefetch queue
+            state.prefetchQueue = [];
+            
+            // Add PDFs to prefetch queue
             for (let i = 0; i < Math.min(count, filteredData.length); i++) {
-                const pdfUrl = filteredData[i].link;
-                const viewerUrl = `${state.pdfViewerBase}?file=${encodeURIComponent(pdfUrl)}`;
+                state.prefetchQueue.push(filteredData[i].link);
+            }
+            
+            // Process prefetch queue
+            processPrefetchQueue();
+        }
+
+        // Process the prefetch queue with controlled concurrency
+        async function processPrefetchQueue() {
+            const CONCURRENCY_LIMIT = 2;
+            const promises = [];
+            
+            while (state.prefetchQueue.length > 0 && promises.length < CONCURRENCY_LIMIT) {
+                const pdfUrl = state.prefetchQueue.shift();
                 
-                // Create hidden iframe to preload
-                const iframe = document.createElement('iframe');
-                iframe.style.display = 'none';
-                iframe.src = viewerUrl;
-                document.body.appendChild(iframe);
+                // Skip if already cached
+                if (await getCachedPDF(pdfUrl)) continue;
                 
-                // Remove after a short delay
-                setTimeout(() => {
-                    iframe.remove();
-                }, 5000);
+                promises.push(
+                    fetch(pdfUrl, {
+                        priority: 'low',
+                        cache: 'force-cache',
+                        headers: {
+                            'Cache-Control': 'max-age=604800' // 1 week cache
+                        }
+                    })
+                    .then(response => {
+                        if (!response.ok) throw new Error(`Failed to fetch ${pdfUrl}`);
+                        return response.blob();
+                    })
+                    .then(blob => storePDFInCache(pdfUrl, blob))
+                    .catch(error => console.error(`Prefetch failed for ${pdfUrl}:`, error))
+                );
+            }
+            
+            await Promise.all(promises);
+            
+            // Continue processing if queue not empty
+            if (state.prefetchQueue.length > 0) {
+                setTimeout(processPrefetchQueue, 1000); // Throttle next batch
             }
         }
 
@@ -587,18 +798,35 @@
             }
         }
 
-        // Memoized PDF filter
-        const filterPDFs = ((cache = new Map()) => {
+        // Memoized PDF filter with LRU cache
+        const filterPDFs = ((cache = new Map(), maxSize = 20) => {
             return (examType) => {
                 const key = examType.toLowerCase();
-                if (cache.has(key)) return cache.get(key);
+                
+                // Check cache
+                if (cache.has(key)) {
+                    const value = cache.get(key);
+                    // Move to end to mark as recently used
+                    cache.delete(key);
+                    cache.set(key, value);
+                    return value;
+                }
+                
+                // Compute and cache result
                 const result = state.pdfFiles.filter(file => file.date.toLowerCase().includes(key));
+                
+                // Enforce cache size limit
+                if (cache.size >= maxSize) {
+                    const firstKey = cache.keys().next().value;
+                    cache.delete(firstKey);
+                }
+                
                 cache.set(key, result);
                 return result;
             };
         })();
 
-        // Optimized PDF rendering with queue
+        // Optimized PDF rendering with queue and caching
         async function renderPDFs() {
             if (state.isRendering) return;
             state.isRendering = true;
@@ -635,17 +863,27 @@
 
                         const iframe = document.createElement('iframe');
                         const pdfUrl = filteredData[i].link;
-                        const viewerUrl = `${state.pdfViewerBase}?file=${encodeURIComponent(pdfUrl)}`;
                         
-                        // Check if we have a cached version
-                        if (state.pdfViewerCache.has(pdfUrl)) {
-                            iframe.srcdoc = state.pdfViewerCache.get(pdfUrl);
-                            setTimeout(() => loader.remove(), 100);
-                        } else {
+                        // Check if we have the PDF content cached
+                        const cachedPDF = await getCachedPDF(pdfUrl);
+                        
+                        if (cachedPDF) {
+                            // Create object URL from cached blob
+                            const objectUrl = URL.createObjectURL(cachedPDF);
+                            const viewerUrl = `${state.pdfViewerBase}?file=${encodeURIComponent(objectUrl)}`;
                             iframe.src = viewerUrl;
+                            
+                            // Clean up object URL when iframe loads
                             iframe.onload = () => {
                                 loader.remove();
+                                // Revoke object URL after a delay to ensure it's loaded
+                                setTimeout(() => URL.revokeObjectURL(objectUrl), 5000);
                             };
+                        } else {
+                            // Fallback to regular loading
+                            const viewerUrl = `${state.pdfViewerBase}?file=${encodeURIComponent(pdfUrl)}`;
+                            iframe.src = viewerUrl;
+                            iframe.onload = () => loader.remove();
                         }
                         
                         div.appendChild(iframe);
@@ -678,7 +916,7 @@
                 select.appendChild(option);
             });
 
-            select.addEventListener('change', debounce((e) => {
+            select.addEventListener('change', debounce(async (e) => {
                 const idx = parseInt(e.target.value, 10);
                 const pdfUrl = data[idx].link;
                 const viewer = div.closest('.pdf-viewer');
@@ -688,15 +926,23 @@
                 loader.innerHTML = '<div class="loader"></div>';
                 viewer.appendChild(loader);
 
-                const viewerUrl = `${state.pdfViewerBase}?file=${encodeURIComponent(pdfUrl)}`;
+                // Check cache first
+                const cachedPDF = await getCachedPDF(pdfUrl);
                 
-                if (state.pdfViewerCache.has(pdfUrl)) {
-                    iframe.srcdoc = state.pdfViewerCache.get(pdfUrl);
-                    setTimeout(() => loader.remove(), 100);
-                } else {
+                if (cachedPDF) {
+                    // Use cached version
+                    const objectUrl = URL.createObjectURL(cachedPDF);
+                    const viewerUrl = `${state.pdfViewerBase}?file=${encodeURIComponent(objectUrl)}`;
+                    iframe.src = viewerUrl;
+                    
                     iframe.onload = () => {
                         loader.remove();
+                        setTimeout(() => URL.revokeObjectURL(objectUrl), 5000);
                     };
+                } else {
+                    // Regular loading
+                    const viewerUrl = `${state.pdfViewerBase}?file=${encodeURIComponent(pdfUrl)}`;
+                    iframe.onload = () => loader.remove();
                     iframe.src = viewerUrl;
                 }
             }, 50));
@@ -725,6 +971,25 @@
                 </svg> Fullscreen`;
         }
 
+        // Network status detection
+        function setupNetworkDetection() {
+            window.addEventListener('online', () => {
+                state.isOnline = true;
+                // When coming back online, refresh any cached data
+                if (state.pdfFiles.length === 0) {
+                    fetchPDFFiles();
+                }
+            });
+            
+            window.addEventListener('offline', () => {
+                state.isOnline = false;
+                // Show offline message if no content is cached
+                if (state.pdfFiles.length === 0) {
+                    DOM.pdfContainer.innerHTML = '<div class="no-pdf-message">You are offline. Some content may not be available.</div>';
+                }
+            });
+        }
+
         // Event listeners setup
         function setupEventListeners() {
             const debouncedRender = debounce(renderPDFs, 50);
@@ -739,10 +1004,14 @@
         }
 
         // Initialize
-        function init() {
+        async function init() {
             preloadViewerResources();
             setSubjectDisplay();
             setupEventListeners();
+            setupNetworkDetection();
+            
+            // Initialize IndexedDB cache
+            await initDB();
             
             if (state.pdfPath) {
                 // Immediately start loading the viewer.html in the background

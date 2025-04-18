@@ -69,6 +69,15 @@
       "subject_code": "dsal",
       "file_name": "14_flight_graph.cpp",
       "title": "Flight Graph"
-    }
+    },
+    {
+      "group": "D",
+      "question_no": "18",
+      "id": "Optimal-bst",
+      "question": "Given sequence k = k1 < k2 < ... < kn of n sorted keys, with a search probability pi for each key ki. Build the Binary search tree that has the least search cost given the access probability for each key?",
+      "subject_code": "dsal",
+      "file_name": "18_optimal_bst.cpp",
+      "title": "Optimal BST"
+    }    
   ]
 }

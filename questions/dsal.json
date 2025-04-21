@@ -87,6 +87,23 @@
       "subject_code": "dsal",
       "file_name": "19_dictionary_avl.cpp",
       "title": "Dictionary using AVL Tree"
+    },{
+      "group": "F",
+      "question_no": "23",
+      "id": "Student-SequentialFile",
+      "question": "Department maintains a student information. The file contains roll number, name, division and address. Allow user to add, delete information of student. Display information of particular student. If record of student does not exist an appropriate message is displayed. If it is, then the system displays the student details. Use sequential file to maintain the data.",
+      "subject_code": "dsal",
+      "file_name": "23_student_sequential_file.cpp",
+      "title": "Student Information using Sequential File"
+    },
+    {
+      "group": "F",
+      "question_no": "24",
+      "id": "Employee-IndexSequentialFile",
+      "question": "Company maintains employee information as employee ID, name, designation and salary. Allow user to add, delete information of employee. Display information of particular employee. If employee does not exist an appropriate message is displayed. If it is, then the system displays the employee details. Use index sequential file to maintain the data.",
+      "subject_code": "dsal",
+      "file_name": "24_employee_index_sequential_file.cpp",
+      "title": "Employee Information using Index Sequential File"
     }        
   ]
 }

@@ -45,6 +45,15 @@
     },
     {
       "group": "B",
+      "question_no": "9",
+      "id": "led-color-control",
+      "question": "Write a program to control the color of the LED by turning 3 different potentiometers. One will be read for the value of Red, one for the value of Green, and one for the value of Blue.",
+      "subject_code": "iotl",
+      "file_name": "led_color_control.cpp",
+      "title": "LED Color Control"
+    },
+    {
+      "group": "B",
       "question_no": "10",
       "id": "temperature-sensor",
       "question": "Write a program to read the temperature sensor and send the values to the serial monitor on the computer.",
@@ -54,12 +63,39 @@
     },
     {
       "group": "B",
+      "question_no": "11",
+      "id": "temperature-display",
+      "question": "Write a program so it displays the temperature in Fahrenheit as well as the maximum and minimum temperatures it has seen.",
+      "subject_code": "iotl",
+      "file_name": "temperature_display.cpp",
+      "title": "Temperature Display"
+    },    
+    {
+      "group": "B",
       "question_no": "12",
       "id": "temperature-graph",
       "question": "Write a program to show the temperature and display a graph of the recent measurements.",
       "subject_code": "iotl",
       "file_name": "temperature.cpp",
       "title": "Temperature Graph"
-    }
+    },
+    {
+      "group": "B",
+      "question_no": "13",
+      "id": "piezo-knock",
+      "question": "Write a program using a piezo element and use it to play a tune after someone knocks.",
+      "subject_code": "iotl",
+      "file_name": "piezo_tune_on_knock.cpp",
+      "title": "Piezo Tune on Knock"
+    },
+    {
+      "group": "B",
+      "question_no": "14",
+      "id": "obstacle-ir-sensor",
+      "question": "Understanding the connectivity of Raspberry-Pi /Beagle board circuit / Arduino with IR sensor. Write an application to detect an obstacle and notify the user using LEDs.",
+      "subject_code": "iotl",
+      "file_name": "obstacle_detection_ir_sensor.cpp",
+      "title": "Obstacle Detection with IR Sensor"
+    }    
   ]
 }

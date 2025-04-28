@@ -1,3 +1,6 @@
+// For question 10 --> open the serial monitor for output
+// For question 12 --> open the serial plotter for output
+
 #include <dht.h>
 
 dht DHT;

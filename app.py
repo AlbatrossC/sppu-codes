@@ -248,5 +248,29 @@ def sitemap():
 def robots():
     return send_from_directory('.', 'robots.txt')
 
+# For clarity.js injecting script to every page
+
+@app.after_request
+def inject_clarity(response):
+    if response.content_type.startswith('text/html'):
+        clarity_script = """
+        <script>
+        (function(c,l,a,r,i,t,y){
+            c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
+            t=l.createElement(r);
+            t.async=1;
+            t.src="https://www.clarity.ms/tag/"+i;
+            y=l.getElementsByTagName("head")[0] || l.getElementsByTagName(r)[0];
+            y.parentNode.insertBefore(t,y);
+        })(window, document, "clarity", "script", "qnqi8o9y94");
+        </script>
+        """
+        response.direct_passthrough = False
+        response.set_data(response.get_data().replace(
+            b'</body>',
+            clarity_script.encode('utf-8') + b'</body>'
+        ))
+    return response
+
 if __name__ == '__main__':
     app.run(host='0.0.0.0', port=int("3000"), debug=True)

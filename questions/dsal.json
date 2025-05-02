@@ -87,7 +87,17 @@
       "subject_code": "dsal",
       "file_name": "19_dictionary_avl.cpp",
       "title": "Dictionary using AVL Tree"
-    },{
+    },
+    {
+      "group": "E",
+      "question_no": "22",
+      "id": "MaxMinMarks-Heap",
+      "question": "Read the marks obtained by students of second year in an online examination of a particular subject. Find out maximum and minimum marks obtained in that subject. Use heap data structure. Analyze the algorithm.",
+      "subject_code": "dsal",
+      "file_name": "22_max_min_marks_heap.cpp",
+      "title": "Maximum and Minimum Marks using Heap"
+    },    
+    {
       "group": "F",
       "question_no": "23",
       "id": "Student-SequentialFile",

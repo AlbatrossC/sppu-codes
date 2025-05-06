@@ -1,3 +1,4 @@
+/* Reset and Base Styles */
 *,
 *:before,
 *:after {
@@ -6,8 +7,8 @@
     box-sizing: border-box;
 }
 
+/* Color Variables */
 :root {
-    /* Colors */
     --color-bg-primary: #121212;
     --color-bg-secondary: #1e1e1e;
     --color-bg-tertiary: #252525;
@@ -20,7 +21,7 @@
     --color-accent-green-hover: #2ea043;
     --color-accent-yellow: #ffeb3b;
     
-    /* Spacing */
+    /* Spacing Variables */
     --space-xs: 0.5rem;
     --space-sm: 0.75rem;
     --space-md: 1rem;
@@ -28,15 +29,16 @@
     --space-xl: 1.5rem;
     --space-xxl: 2rem;
     
-    /* Shadows */
+    /* Shadow Variables */
     --shadow-sm: 0 2px 4px rgba(0, 0, 0, 0.4);
     --shadow-md: 0 2px 8px rgba(0, 0, 0, 0.2);
     
-    /* Border radius */
+    /* Border Radius Variables */
     --radius-sm: 4px;
     --radius-md: 8px;
 }
 
+/* Body and Layout */
 html,
 body {
     height: 100%;
@@ -54,7 +56,6 @@ body {
     overflow-x: hidden;
 }
 
-/* Layout */
 .content {
     flex: 1;
     padding: var(--space-xl);
@@ -63,6 +64,7 @@ body {
     margin: 0 auto;
 }
 
+/* Header Styles */
 header {
     display: flex;
     align-items: center;
@@ -73,6 +75,36 @@ header {
     position: relative;
     min-height: 70px;
     width: 100%;
+}
+
+.home-btn {
+    background-color: var(--color-accent-green);
+    color: #fff;
+    padding: 0.625rem 1.25rem;
+    border: none;
+    border-radius: var(--radius-sm);
+    cursor: pointer;
+    font-size: 1rem;
+    transition: background-color 0.2s ease;
+    z-index: 1;
+    position: absolute;
+    left: var(--space-xl);
+    top: 50%;
+    transform: translateY(-50%);
+}
+
+.home-btn:hover {
+    background-color: var(--color-accent-green-hover);
+}
+
+header h3 {
+    font-size: 1.75rem;
+    color: var(--color-text-primary);
+    margin: 0 auto;
+    text-align: center;
+    padding: 0 4rem;
+    max-width: 100%;
+    overflow-wrap: break-word;
 }
 
 /* Typography */
@@ -96,7 +128,20 @@ a:hover {
     color: var(--color-accent-blue);
 }
 
-/* Buttons */
+.answer-box h3[id^="questionText"] {
+    font-size: 1.1rem;
+    font-weight: 600;
+    line-height: 1.3;
+    color: var(--color-text-primary);
+    margin-top: 0;
+    margin-bottom: var(--space-sm);
+    padding: 0 var(--space-sm);
+    text-align: left;
+    overflow-wrap: break-word;
+    word-wrap: break-word;
+}
+
+/* Button Styles */
 .btn {
     display: inline-block;
     padding: var(--space-xs) var(--space-md);
@@ -144,38 +189,74 @@ a:hover {
     background-color: var(--color-accent-green);
 }
 
-/* Home Button */
-.home-btn {
-    background-color: var(--color-accent-green);
-    color: #fff;
-    padding: 0.625rem 1.25rem;
-    border: none;
+.view-code-btn {
+    display: inline-block;
+    padding: 0.625rem 1rem;
+    border: 2px solid var(--color-accent-blue);
     border-radius: var(--radius-sm);
+    background-color: transparent;
+    color: var(--color-accent-blue);
+    font-size: 0.875rem;
+    font-weight: 500;
+    text-decoration: none;
+    transition: all 0.2s ease;
+    outline: none;
+    position: relative;
+    overflow: hidden;
     cursor: pointer;
-    font-size: 1rem;
-    transition: background-color 0.2s ease;
-    z-index: 1;
-    position: absolute;
-    left: var(--space-xl);
-    top: 50%;
-    transform: translateY(-50%);
+    margin-right: var(--space-xs);
+    margin-bottom: var(--space-xs);
 }
 
-.home-btn:hover {
-    background-color: var(--color-accent-green-hover);
+.view-code-btn:hover {
+    color: #fff;
+    background-color: var(--color-accent-blue);
 }
 
-header h3 {
-    font-size: 1.75rem;
-    color: var(--color-text-primary);
-    margin: 0 auto;
-    text-align: center;
-    padding: 0 4rem;
-    max-width: 100%;
-    overflow-wrap: break-word;
+.download-code-btn {
+    display: inline-block;
+    padding: 0.625rem 1rem;
+    border: 2px solid var(--color-accent-green);
+    border-radius: var(--radius-sm);
+    background-color: transparent;
+    color: var(--color-accent-green);
+    font-size: 0.875rem;
+    font-weight: 500;
+    text-decoration: none;
+    transition: all 0.2s ease;
+    outline: none;
+    position: relative;
+    overflow: hidden;
+    cursor: pointer;
+    margin-right: var(--space-xs);
+    margin-bottom: var(--space-xs);
 }
 
-/* Question Items */
+.download-code-btn:hover {
+    color: #fff;
+    background-color: var(--color-accent-green);
+}
+
+.see-all-btn {
+    display: inline-block;
+    padding: 0.625rem 1.25rem;
+    background-color: transparent;
+    color: var(--color-accent-blue);
+    text-decoration: none;
+    border: 2px solid var(--color-accent-blue);
+    border-radius: var(--radius-sm);
+    font-weight: 500;
+    font-size: 0.875rem;
+    transition: all 0.2s ease;
+    white-space: nowrap;
+}
+
+.see-all-btn:hover {
+    background-color: var(--color-accent-blue);
+    color: #fff;
+}
+
+/* Question and Content Styles */
 .question-item {
     background-color: var(--color-bg-secondary);
     border: 1px solid var(--color-border);
@@ -215,53 +296,7 @@ header h3 {
     color: var(--color-text-secondary);
 }
 
-/* Action Buttons */
-.view-code-btn {
-    display: inline-block;
-    padding: 0.625rem 1rem;
-    border: 2px solid var(--color-accent-blue);
-    border-radius: var(--radius-sm);
-    background-color: transparent;
-    color: var(--color-accent-blue);
-    font-size: 0.875rem;
-    font-weight: 500;
-    text-decoration: none;
-    transition: all 0.2s ease;
-    outline: none;
-    position: relative;
-    overflow: hidden;
-    cursor: pointer;
-}
-
-.view-code-btn:hover {
-    color: #fff;
-    background-color: var(--color-accent-blue);
-}
-
-.download-code-btn {
-    display: inline-block;
-    padding: 0.625rem 1rem;
-    border: 2px solid var(--color-accent-green);
-    border-radius: var(--radius-sm);
-    background-color: transparent;
-    color: var(--color-accent-green);
-    font-size: 0.875rem;
-    font-weight: 500;
-    text-decoration: none;
-    transition: all 0.2s ease;
-    outline: none;
-    position: relative;
-    overflow: hidden;
-    margin-left: var(--space-xs);
-    cursor: pointer;
-}
-
-.download-code-btn:hover {
-    color: #fff;
-    background-color: var(--color-accent-green);
-}
-
-/* Info Box */
+/* Info and Note Styles */
 .info-box {
     background-color: rgba(0, 0, 0, 0.2);
     border-radius: var(--radius-sm);
@@ -295,7 +330,17 @@ header h3 {
     cursor: pointer;
 }
 
-/* Image Section */
+.multiple-solutions-note {
+    font-size: 0.8rem;
+    color: var(--color-text-secondary);
+    margin-top: var(--space-sm);
+    margin-bottom: var(--space-sm);
+    font-style: italic;
+    line-height: 1.4;
+    clear: both;
+}
+
+/* Image Styles */
 .image-section {
     margin: var(--space-lg) 0;
     text-align: start;
@@ -308,7 +353,17 @@ header h3 {
     box-shadow: var(--shadow-md);
 }
 
-/* Other Questions Section */
+/* Group and Section Styles */
+.group h3 {
+    font-size: 1.4rem;
+    margin: var(--space-md) 0;
+    color: #e0e0e0;
+    font-weight: 500;
+    text-align: left;
+    border-left: 4px solid #2d76cc;
+    padding-left: 10px;
+}
+
 .other-questions {
     margin-top: var(--space-xxl);
     padding: var(--space-xl);
@@ -367,37 +422,7 @@ header h3 {
     color: var(--color-accent-blue);
 }
 
-.see-all-btn {
-    display: inline-block;
-    padding: 0.625rem 1.25rem;
-    background-color: transparent;
-    color: var(--color-accent-blue);
-    text-decoration: none;
-    border: 2px solid var(--color-accent-blue);
-    border-radius: var(--radius-sm);
-    font-weight: 500;
-    font-size: 0.875rem;
-    transition: all 0.2s ease;
-    white-space: nowrap;
-}
-
-.see-all-btn:hover {
-    background-color: var(--color-accent-blue);
-    color: #fff;
-}
-
-/* Group Section */
-.group h3 {
-    font-size: 1.4rem;
-    margin: var(--space-md) 0;
-    color: #e0e0e0;
-    font-weight: 500;
-    text-align: left;
-    border-left: 4px solid #2d76cc;
-    padding-left: 10px;
-}
-
-/* Responsive Adjustments */
+/* Responsive Styles */
 @media (max-width: 992px) {
     .content {
         padding: var(--space-md);
@@ -406,7 +431,6 @@ header h3 {
 
 @media (max-width: 768px) {
     :root {
-        /* Adjust spacing for smaller screens */
         --space-xl: 1.25rem;
         --space-xxl: 1.5rem;
     }
@@ -497,7 +521,10 @@ header h3 {
         margin-bottom: var(--space-xs);
     }
     
+    .view-code-btn,
     .download-code-btn {
-        margin-left: 0;
+        display: block;
+        width: 100%;
+        margin-right: 0;
     }
 }

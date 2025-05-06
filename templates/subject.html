@@ -9,11 +9,10 @@
     <meta property="og:url" content="{{ url }}">
     <link rel="canonical" href="{{ url }}">
     <link rel="stylesheet" href="/static/css/answerbox.css?v=1.5">
-    <link rel="stylesheet" href="/static/css/subjectlayout.css?v=1.5">
+    <link rel="stylesheet" href="/static/css/subjectlayout.css?v=1.7">
     <script src="/static/js/script.js" defer></script>
     <link rel="icon" href="/images/favicon.ico" type="image/x-icon">
     
-    <!-- Dynamic Schema -->
     {% if question %}
     <script type="application/ld+json">
     {
@@ -25,13 +24,17 @@
                     "@type": "Question",
                     "name": "Q{{ question.question_no }}: {{ question.question | escape }}",
                     "text": "Q{{ question.question_no }}: {{ question.question | escape }}",
-                    "answerCount": 1,
-                    "acceptedAnswer": {
-                        "@type": "Answer",
-                        "text": "SPPU Codes: {{ question.question | escape }}",
-                        "author": "Sppu Codes",
-                        "url": "sppucodes.vercel.app/{{ subject_code }}/{{ question.id }}"
-                    }
+                    "answerCount": {{ question.file_name | length if question.file_name is iterable else 1 }},
+                    "acceptedAnswer": [
+                        {% for f_name in question.file_name %}
+                        {
+                            "@type": "Answer",
+                            "text": "Code file: {{ f_name }} for question: {{ question.question | escape }}",
+                            "author": "Sppu Codes",
+                            "url": "sppucodes.vercel.app/{{ subject_code }}/{{ question.id }}#file={{ f_name | urlencode }}"
+                        }{% if not loop.last %},{% endif %}
+                        {% endfor %}
+                    ]
                 }
             },
             {
@@ -51,16 +54,20 @@
         "@type": "FAQPage",
         "mainEntity": [
             {% for group in sorted_groups %}
-                {% for question in groups[group] %}
+                {% for question_item in groups[group] %}
                 {
                     "@type": "Question",
-                    "name": "Q{{ question.question_no }}: {{ question.question | escape }}",
-                    "acceptedAnswer": {
-                        "@type": "Answer",
-                        "text": "SPPU Codes: {{ question.question | escape }}",
-                        "author": "Sppu Codes",
-                        "url": "sppucodes.vercel.app/{{ subject_code }}/{{ question.id }}"
-                    }
+                    "name": "Q{{ question_item.question_no }}: {{ question_item.question | escape }}",
+                    "acceptedAnswer": [
+                        {% for f_name in question_item.file_name %}
+                        {
+                            "@type": "Answer",
+                            "text": "Code file: {{ f_name }} for question: {{ question_item.question | escape }}",
+                            "author": "Sppu Codes",
+                            "url": "sppucodes.vercel.app/{{ subject_code }}/{{ question_item.id }}#file={{ f_name | urlencode }}"
+                        }{% if not loop.last %},{% endif %}
+                        {% endfor %}
+                    ]
                 }{% if not loop.last %},{% endif %}
                 {% endfor %}
                 {% if not loop.last %},{% endif %}
@@ -77,6 +84,7 @@
         </h3>
         <button onclick="location.href='/'" class="home-btn" aria-label="Go to home page">Home</button>
     </header>
+
     <div class="info-box">
         <p>
             If the code doesn't load, you can check it out on 
@@ -84,7 +92,6 @@
         </p>
     </div>
 
-    <!-- Render groups dynamically -->
     {% if question %}
     <div class="group">
         <h3>Group {{ question.group }}</h3>
@@ -92,8 +99,17 @@
             <h1>
                 <strong>Q{{ question.question_no }}: </strong>{{ question.question }}
             </h1>
-            <button class="view-code-btn" onclick="loadFile('{{ subject_code }}', '{{ question.file_name }}', '{{ question.title }}', this)">View Code</button>
-            <button class="download-code-btn" onclick="downloadCode('{{ subject_code }}', '{{ question.file_name }}')">Download Code</button>
+            {% for individual_file_name in question.file_name %}
+            <button class="view-code-btn"  
+                    onclick="loadFile('{{ subject_code }}', '{{ individual_file_name }}', '{{ question.title }} ({{ individual_file_name }})', this)">
+                {% if question.file_name | length == 1 %}View Code{% else %}View Code {{ loop.index }}{% endif %}
+            </button>
+            {% endfor %}
+            {% if question.file_name | length > 1 %}
+            <p class="multiple-solutions-note">
+                <em>Note: Multiple "View Code" buttons may indicate different solutions to the same question or sub-parts of the question.</em>
+            </p>
+            {% endif %}
             <div class="answer-box" id="answerBox{{ question.question_no }}">
                 <h3 id="questionText{{ question.question_no }}"></h3>
                 <pre id="codeContent{{ question.question_no }}"></pre>
@@ -104,15 +120,14 @@
             </div>
         </article>
 
-        <!-- Other Questions Section -->
         <div class="other-questions">
             <div class="other-questions-header">
                 <h3>Other Questions in {{ subject_name }}</h3>
                 <a href="/{{ subject_code }}" class="see-all-btn">See All Available Questions</a>
             </div>
             <ul class="questions-list">
-                {% for group in sorted_groups %}
-                    {% for q in groups[group] %}
+                {% for group_key in sorted_groups %}
+                    {% for q in groups[group_key] %}
                         {% if q.id != question.id %}
                         <li>
                             <a href="/{{ subject_code }}/{{ q.id }}" class="question-link">
@@ -126,26 +141,34 @@
         </div>
     </div>
     {% else %}
-    {% for group in sorted_groups %}
+    {% for group_key in sorted_groups %}
     <div class="group">
-        <h3>Group {{ group }}</h3>
+        <h3>Group {{ group_key }}</h3>
 
-        {% for question in groups[group] %}
-        <!-- Question {{ question.question_no }} -->
-        <article class="question-item" id="{{ question.id }}">
+        {% for question_item in groups[group_key] %}
+        <article class="question-item" id="{{ question_item.id }}">
             <h1>
-                <a href="/{{ subject_code }}/{{ question.id }}" class="question-link">
-                    <strong>Q{{ question.question_no }}: </strong>{{ question.question }}
+                <a href="/{{ subject_code }}/{{ question_item.id }}" class="question-link">
+                    <strong>Q{{ question_item.question_no }}: </strong>{{ question_item.question }}
                 </a>
             </h1>
-            <button class="view-code-btn" onclick="loadFile('{{ subject_code }}', '{{ question.file_name }}', '{{ question.title }}', this)">View Code</button>
-            <button class="download-code-btn" onclick="downloadCode('{{ subject_code }}', '{{ question.file_name }}')">Download Code</button>
-            <div class="answer-box" id="answerBox{{ question.question_no }}">
-                <h3 id="questionText{{ question.question_no }}"></h3>
-                <pre id="codeContent{{ question.question_no }}"></pre>
+            {% for individual_file_name in question_item.file_name %}
+            <button class="view-code-btn" 
+                    onclick="loadFile('{{ subject_code }}', '{{ individual_file_name }}', '{{ question_item.title }} ({{ individual_file_name }})', this)">
+                {% if question_item.file_name | length == 1 %}View Code{% else %}View Code {{ loop.index }}{% endif %}
+            </button>
+            {% endfor %}
+            {% if question_item.file_name | length > 1 %}
+            <p class="multiple-solutions-note">
+                <em>Note: Multiple "View Code" buttons may indicate different solutions to the same question or sub-parts of the question.</em>
+            </p>
+            {% endif %}
+            <div class="answer-box" id="answerBox{{ question_item.question_no }}">
+                <h3 id="questionText{{ question_item.question_no }}"></h3>
+                <pre id="codeContent{{ question_item.question_no }}"></pre>
                 <div class="copy-close-container">
-                    <button class="copy-btn" onclick="copyCode('codeContent{{ question.question_no }}')">Copy Code</button>
-                    <button class="close-btn" onclick="closeBox('answerBox{{ question.question_no }}')">Close</button>
+                    <button class="copy-btn" onclick="copyCode('codeContent{{ question_item.question_no }}')">Copy Code</button>
+                    <button class="close-btn" onclick="closeBox('answerBox{{ question_item.question_no }}')">Close</button>
                 </div>
             </div>
         </article>

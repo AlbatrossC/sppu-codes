@@ -13,7 +13,7 @@
       "id": "telephone-book",
       "question": "Consider telephone book database of N clients. Make use of a hash table implementation to quickly look up client’s telephone number. Make use of two collision handling techniques and compare them using number of comparisons required to find a set of telephone numbers.",
       "subject_code": "dsal",
-      "file_name": "1_telephonebook.py",
+      "file_name": ["1_telephonebook.py"],
       "title": "Telephone Book Hash Table"
     },
     {
@@ -22,7 +22,7 @@
       "id": "set-adt",
       "question": "To create ADT that implements the 'set' concept.\na. Add (new Element) - Place a value into the set\nb. Remove (element) - Remove the value\nc. Contains (element) - Return true if element is in collection\nd. Size() - Return number of values in collection\ne. Iterator() - Return an iterator used to loop over collection\nf. Intersection of two sets\ng. Union of two sets\nh. Difference between two sets\ni. Subset",
       "subject_code": "dsal",
-      "file_name": "4_set_adt.py",
+      "file_name": ["4_set_adt.py"],
       "title": "Set ADT"
     },
     {
@@ -31,7 +31,7 @@
       "id": "book-tree",
       "question": "A book consists of chapters, chapters consist of sections, and sections consist of subsections. Construct a tree and print the nodes. Find the time and space requirements of your method.",
       "subject_code": "dsal",
-      "file_name": "5_book_tree.cpp",
+      "file_name": ["5_book_tree.cpp"],
       "title": "Book Tree"
     },
     {
@@ -40,7 +40,7 @@
       "id": "binary-search-tree",
       "question": "Beginning with an empty binary search tree, construct a binary search tree by inserting the values in the order given. After constructing the binary tree:\ni. Insert a new node\nii. Find the number of nodes in the longest path from root\niii. Find the minimum data value in the tree\niv. Change the tree so that the roles of the left and right pointers are swapped at every node\nv. Search for a value",
       "subject_code": "dsal",
-      "file_name": "6_binary_search_tree.cpp",
+      "file_name": ["6_binary_search_tree.cpp"],
       "title": "Binary Search Tree"
     },
     {
@@ -49,7 +49,7 @@
       "id": "threaded-binary-tree",
       "question": "Convert given binary tree into threaded binary tree. Analyze time and space complexity of the algorithm.",
       "subject_code": "dsal",
-      "file_name": "9_threaded_binary_tree.cpp",
+      "file_name": ["9_threaded_binary_tree.cpp"],
       "title": "Threaded Binary Tree"
     },
     {
@@ -58,7 +58,7 @@
       "id": "graph-dfs-bfs",
       "question": "Represent a given graph using adjacency matrix/list to perform DFS and using adjacency list to perform BFS. Use the map of the area around the college as the graph. Identify the prominent landmarks as nodes and perform DFS and BFS on that.",
       "subject_code": "dsal",
-      "file_name": "13_graph_dfs_bfs.cpp",
+      "file_name": ["13_graph_dfs_bfs.cpp"],
       "title": "Graph DFS and BFS"
     },
     {
@@ -67,7 +67,7 @@
       "id": "flight-graph",
       "question": "There are flight paths between cities. If there is a flight between city A and city B then there is an edge between the cities. The cost of the edge can be the time that flight takes to reach city B from A, or the amount of fuel used for the journey. Represent this as a graph. The node can be represented by the airport name or name of the city. Use adjacency list representation of the graph or use adjacency matrix representation of the graph. Check whether the graph is connected or not. Justify the storage representation used.",
       "subject_code": "dsal",
-      "file_name": "14_flight_graph.cpp",
+      "file_name": ["14_flight_graph.cpp"],
       "title": "Flight Graph"
     },
     {
@@ -76,7 +76,7 @@
       "id": "Optimal-bst",
       "question": "Given sequence k = k1 < k2 < ... < kn of n sorted keys, with a search probability pi for each key ki. Build the Binary search tree that has the least search cost given the access probability for each key?",
       "subject_code": "dsal",
-      "file_name": "18_optimal_bst.cpp",
+      "file_name": ["18_optimal_bst.cpp"],
       "title": "Optimal BST"
     },
     {
@@ -85,7 +85,7 @@
       "id": "Dictionary-avl",
       "question": "A Dictionary stores keywords and its meanings. Provide facility for adding new keywords, deleting keywords, updating values of any entry. Provide facility to display whole data sorted in ascending/ Descending order. Also find how many maximum comparisons may require for finding any keyword. Use Height balance tree and find the complexity for finding a keyword.",
       "subject_code": "dsal",
-      "file_name": "19_dictionary_avl.cpp",
+      "file_name": ["19_dictionary_avl.cpp"],
       "title": "Dictionary using AVL Tree"
     },
     {
@@ -94,7 +94,7 @@
       "id": "MaxMinMarks-Heap",
       "question": "Read the marks obtained by students of second year in an online examination of a particular subject. Find out maximum and minimum marks obtained in that subject. Use heap data structure. Analyze the algorithm.",
       "subject_code": "dsal",
-      "file_name": "22_max_min_marks_heap.cpp",
+      "file_name": ["22_max_min_marks_heap.cpp"],
       "title": "Maximum and Minimum Marks using Heap"
     },    
     {
@@ -103,7 +103,7 @@
       "id": "Student-SequentialFile",
       "question": "Department maintains a student information. The file contains roll number, name, division and address. Allow user to add, delete information of student. Display information of particular student. If record of student does not exist an appropriate message is displayed. If it is, then the system displays the student details. Use sequential file to maintain the data.",
       "subject_code": "dsal",
-      "file_name": "23_student_sequential_file.cpp",
+      "file_name": ["23_student_sequential_file.cpp"],
       "title": "Student Information using Sequential File"
     },
     {
@@ -112,7 +112,7 @@
       "id": "Employee-IndexSequentialFile",
       "question": "Company maintains employee information as employee ID, name, designation and salary. Allow user to add, delete information of employee. Display information of particular employee. If employee does not exist an appropriate message is displayed. If it is, then the system displays the employee details. Use index sequential file to maintain the data.",
       "subject_code": "dsal",
-      "file_name": "24_employee_index_sequential_file.cpp",
+      "file_name": ["24_employee_index_sequential_file.cpp"],
       "title": "Employee Information using Index Sequential File"
     }        
   ]

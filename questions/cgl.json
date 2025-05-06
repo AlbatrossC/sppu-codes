@@ -13,7 +13,7 @@
       "id": "scan-fill",
       "question": "Write C++ program to draw a concave polygon and fill it with desired color using scan fill algorithm.",
       "subject_code": "cgl",
-      "file_name": "grpA_1.cpp",
+      "file_name": ["grpA_1.cpp"], 
       "title": "Scan Fill Algorithm"
     },
     {
@@ -22,7 +22,7 @@
       "id": "cohen-sutherland",
       "question": "Write a C++ program to implement the Cohen-Sutherland line clipping algorithm.",
       "subject_code": "cgl",
-      "file_name": "grpA_2.cpp",
+      "file_name": ["grpA_2.cpp"],
       "title": "Cohen-Sutherland Line Clipping"
     },
     {
@@ -31,7 +31,7 @@
       "id": "dda-bresenham",
       "question": "Write a C++ program to draw the following pattern. Use DDA line and Bresenhams circle drawing algorithm. Apply the concept of encapsulation.",
       "subject_code": "cgl",
-      "file_name": "grpA_3a.cpp",
+      "file_name": ["grpA_3a.cpp"],
       "title": "DDA Line and Bresenhams Circle"
     },
     {
@@ -40,7 +40,7 @@
       "id": "2d-transformations",
       "question": "Write a C++ program to draw a 2-D object and perform the following basic transformations: Scaling, Translation, Rotation. Apply the concept of operator overloading.",
       "subject_code": "cgl",
-      "file_name": "grpB_4a.cpp",
+      "file_name": ["grpB_4a.cpp"],
       "title": "2D Transformations"
     },
     {
@@ -49,7 +49,7 @@
       "id": "hilbert-curve",
       "question": "Write a C++ program to generate a Hilbert curve using the concept of fractals.",
       "subject_code": "cgl",
-      "file_name": "grpB_5b.cpp",
+      "file_name": ["grpB_5b.cpp"],
       "title": "Hilbert Curve"
     },
     {
@@ -58,7 +58,7 @@
       "id": "3d-transformations",
       "question": "Write C++ program to draw 3-D cube and perform following transformations on it using OpenGL: Scaling, Translation, Rotation about an axis (X/Y/Z).",
       "subject_code": "cgl",
-      "file_name": "grpC_6b.cpp",
+      "file_name": ["grpC_6b.cpp"],
       "title": "3D Transformations"
     }
   ]

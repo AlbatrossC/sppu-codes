@@ -13,8 +13,8 @@
       "id": "blinking-led",
       "question": "Write a program using Arduino to control LED (One or more ON/OFF) or Blinking.",
       "subject_code": "iotl",
-      "file_name": ["blinking.c++"],
-      "title": "Blinking LED"
+      "file_name": ["on_off.c++", "blinking.c++" ], 
+      "title": "On off LED Control & Blinking LED"
     },
     {
       "group": "B",

@@ -67,7 +67,7 @@
       "id": "temperature-display",
       "question": "Write a program so it displays the temperature in Fahrenheit as well as the maximum and minimum temperatures it has seen.",
       "subject_code": "iotl",
-      "file_name": ["temperature_display.cpp"],
+      "file_name": ["temperature_display.cpp" , "temperature_display_2.cpp"],
       "title": "Temperature Display"
     },    
     {

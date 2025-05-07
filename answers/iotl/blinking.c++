@@ -1,4 +1,4 @@
-// a) Blinking Led
+// b) Blinking Led
 
 int ledPin = 13;
 

@@ -1,9 +1,13 @@
+// Note: This code was provided by our teacher. 
+// However, it does not include functionality to print the minimum and maximum temperatures.
+// Please refer to Code 2 for the complete version with min and max temperature printing.
+
 #include <dht.h>
 
 dht DHT;
-
 #define DHT11_PIN A1
 float min_t,max_t;
+
 void setup()
 {
   Serial.begin(9600);

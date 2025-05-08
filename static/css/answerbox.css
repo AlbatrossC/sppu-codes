@@ -218,6 +218,21 @@
     overflow: hidden;
 }
 
+/* SVG Icon Styling for Buttons */
+.btn-icon {
+    display: inline-flex;
+    width: 16px;
+    height: 16px;
+    stroke-width: 2;
+    stroke: currentColor;
+    fill: none;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+    margin-right: 6px;
+    transition: transform 0.2s ease;
+}
+
+/* Copy Button */
 .copy-btn {
     background-color: #238636;
     color: #fff;
@@ -229,11 +244,16 @@
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
 }
 
+.copy-btn:hover .btn-icon {
+    transform: scale(1.1);
+}
+
 .copy-btn:active {
     transform: translateY(0);
     box-shadow: 0 2px 6px rgba(0, 0, 0, 0.3);
 }
 
+/* Close Button */
 .close-btn {
     background-color: #D32F2F;
     color: #fff;
@@ -243,6 +263,10 @@
     background-color: #b71c1c;
     transform: translateY(-2px);
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+}
+
+.close-btn:hover .btn-icon {
+    transform: scale(1.1);
 }
 
 .close-btn:active {
@@ -257,26 +281,33 @@
     box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
 }
 
-.copy-btn.copied::before {
-    content: '✓';
-    margin-right: 8px;
-    font-size: 16px;
-    animation: fadeIn 0.3s ease;
+/* Custom copied animation with SVG */
+.copy-btn.copied .btn-icon {
+    animation: checkmark 0.5s ease forwards;
 }
 
-@keyframes fadeIn {
+@keyframes checkmark {
     0% {
         opacity: 0;
-        transform: translateY(-5px);
+        transform: scale(0.5);
+    }
+    50% {
+        opacity: 1;
+        transform: scale(1.2);
     }
     100% {
         opacity: 1;
-        transform: translateY(0);
+        transform: scale(1);
     }
 }
 
+/* Remove the previous copied indicator */
+.copy-btn.copied::before {
+    content: none;
+}
+
 /* Ripple Effect */
-.copy-btn::after {
+.copy-btn::after, .close-btn::after {
     content: '';
     position: absolute;
     width: 100%;
@@ -289,7 +320,56 @@
     pointer-events: none;
 }
 
-.copy-btn:active::after {
+.copy-btn:active::after, .close-btn:active::after {
     transform: scale(2);
     opacity: 0;
+}
+
+/* SVG Icons as CSS Variables for easier implementation */
+:root {
+    --copy-icon: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24' fill='none' stroke='white' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Crect x='9' y='9' width='13' height='13' rx='2' ry='2'%3E%3C/rect%3E%3Cpath d='M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1'%3E%3C/path%3E%3C/svg%3E");
+    --check-icon: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24' fill='none' stroke='white' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='20 6 9 17 4 12'%3E%3C/polyline%3E%3C/svg%3E");
+    --close-icon: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24' fill='none' stroke='white' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cline x1='18' y1='6' x2='6' y2='18'%3E%3C/line%3E%3Cline x1='6' y1='6' x2='18' y2='18'%3E%3C/line%3E%3C/svg%3E");
+}
+
+/* Apply SVG icons as background images */
+.copy-btn::before {
+    content: "";
+    display: inline-block;
+    width: 18px;
+    height: 18px;
+    background-image: var(--copy-icon);
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+    margin-right: 6px;
+}
+
+.copy-btn.copied::before {
+    content: "";
+    background-image: var(--check-icon);
+    animation: fadeIn 0.3s ease;
+}
+
+.close-btn::before {
+    content: "";
+    display: inline-block;
+    width: 18px;
+    height: 18px;
+    background-image: var(--close-icon);
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+    margin-right: 6px;
+}
+
+@keyframes fadeIn {
+    0% {
+        opacity: 0;
+        transform: translateY(-5px);
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0);
+    }
 }

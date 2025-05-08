@@ -144,7 +144,7 @@ function copyCode(elementId) {
             setTimeout(() => {
                 copyButton.classList.remove('copied');
                 copyButton.innerHTML = 'Copy Code';
-            }, 2000);
+            }, 5000);
         })
         .catch(err => {
             alert('Failed to copy code! Please try selecting and copying manually.');

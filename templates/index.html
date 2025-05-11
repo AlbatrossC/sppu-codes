@@ -151,6 +151,85 @@
                 border-left: 4px solid #2d76cc; 
                 padding-left: 10px; 
             }
+
+        /* Pop-up Notification Styling */
+        .popup-notification {
+            position: fixed;
+            bottom: 24px;
+            left: 50%;
+            transform: translateX(-50%) translateY(100px);
+            background-color: rgba(45, 118, 204, 0.95);
+            color: #fff;
+            padding: 16px 24px;
+            border-radius: 10px;
+            box-shadow: 0 6px 16px rgba(0, 0, 0, 0.25);
+            z-index: 1000;
+            transition: transform 0.4s ease-out, opacity 0.4s ease-out;
+            max-width: 92%;
+            width: fit-content;
+            min-width: 260px;
+            text-align: center;
+            font-size: 15.5px;
+            line-height: 1.5;
+            animation: slideIn 0.5s forwards, fadeOut 0.5s forwards 5.5s;
+        }
+
+        /* Link Styling */
+        .popup-notification a {
+            color: #e0f3ff;
+            text-decoration: underline;
+            font-weight: 600;
+        }
+        .popup-notification a:hover {
+            text-decoration: none;
+        }
+
+        /* Entrance Animation */
+        @keyframes slideIn {
+            0% {
+                transform: translateX(-50%) translateY(100px);
+                opacity: 0;
+            }
+            100% {
+                transform: translateX(-50%) translateY(0);
+                opacity: 1;
+            }
+        }
+
+        /* Exit Animation */
+        @keyframes fadeOut {
+            0% {
+                opacity: 1;
+                transform: translateX(-50%) translateY(0);
+            }
+            100% {
+                opacity: 0;
+                transform: translateX(-50%) translateY(20px);
+            }
+        }
+
+        /* Close Button Styling */
+        .close-notification {
+            position: absolute;
+            top: 6px;
+            right: 10px;
+            font-size: 18px;
+            cursor: pointer;
+            opacity: 0.75;
+            font-weight: bold;
+            background: none;
+            border: none;
+            color: #fff;
+            padding: 4px;
+            transition: opacity 0.2s, transform 0.2s;
+        }
+        .close-notification:hover,
+        .close-notification:focus {
+            opacity: 1;
+            transform: scale(1.1);
+            outline: none;
+        }
+
         </style>
     </head>
     
@@ -248,6 +327,12 @@
             </main>
         </div>
 
+        <!-- Pop-up Notification -->
+        <div id="popup-notification" class="popup-notification">
+            Our website is also hosted on Azure for faster performance. Check it out at <a href="https://sppucodes-bchngkewgqf4cyem.centralindia-01.azurewebsites.net" target="_blank">sppucodes-bchngkewgqf4cyem.centralindia-01.azurewebsites.net</a>.
+            <span class="close-notification" onclick="closeNotification()">×</span>
+        </div>
+
         <footer class="footer">
             <div class="footer__content">
                 <div class="footer__love">Made with ❤️ for SPPU students</div>
@@ -262,7 +347,37 @@
             </div>
         </footer>
         
-        <script src="{{ url_for('static', filename='js/index.js') }}" ></script>
+        <script src="{{ url_for('static', filename='js/index.js') }}"></script>
+
+        <script>
+            // Pop-up notification script
+            document.addEventListener('DOMContentLoaded', function() {
+                // Show notification after a short delay
+                setTimeout(function() {
+                    document.getElementById('popup-notification').style.display = 'block';
+                }, 1500);
+                
+                // Auto-hide notification after 6 seconds
+                setTimeout(function() {
+                    hideNotification();
+                }, 6000);
+            });
+
+            function closeNotification() {
+                hideNotification();
+            }
+
+            function hideNotification() {
+                const notification = document.getElementById('popup-notification');
+                notification.style.opacity = '0';
+                notification.style.transform = 'translateX(-50%) translateY(20px)';
+                
+                // Remove from DOM after animation completes
+                setTimeout(function() {
+                    notification.style.display = 'none';
+                }, 500);
+            }
+        </script>
 
     </body>
 </html>

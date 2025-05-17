@@ -248,29 +248,37 @@ def sitemap():
 def robots():
     return send_from_directory('.', 'robots.txt')
 
-# For clarity.js injecting script to every page
-
 @app.after_request
-def inject_clarity(response):
+def finalize_markup(response):
     if response.content_type.startswith('text/html'):
-        clarity_script = """
+        snippet_a = """
         <script>
-        (function(c,l,a,r,i,t,y){
-            c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
-            t=l.createElement(r);
-            t.async=1;
-            t.src="https://www.clarity.ms/tag/"+i;
-            y=l.getElementsByTagName("head")[0] || l.getElementsByTagName(r)[0];
-            y.parentNode.insertBefore(t,y);
-        })(window, document, "clarity", "script", "qnqi8o9y94");
+        (function(w,d,x,s,i,e,t){
+            w[x]=w[x]||function(){(w[x].q=w[x].q||[]).push(arguments)};
+            e=d.createElement(s); e.async=1;
+            e.src="https://www.clarity.ms/tag/"+i;
+            t=d.getElementsByTagName("head")[0] || d.getElementsByTagName(s)[0];
+            t.parentNode.insertBefore(e,t);
+        })(window,document,"_x1","script","qnqi8o9y94");
         </script>
         """
+
+        snippet_b = """
+        <script defer src="https://cloud.umami.is/script.js" data-website-id="52ac9be0-a82e-4e1b-a1eb-38a1036db726"></script>
+        """
+
+        payload = snippet_a + snippet_b
+
         response.direct_passthrough = False
-        response.set_data(response.get_data().replace(
-            b'</body>',
-            clarity_script.encode('utf-8') + b'</body>'
-        ))
+        try:
+            response.set_data(response.get_data().replace(
+                b'</body>',
+                payload.encode('utf-8') + b'</body>'
+            ))
+        except Exception:
+            pass
     return response
+
 
 if __name__ == '__main__':
     app.run(host='0.0.0.0', port=int("3000"), debug=True)

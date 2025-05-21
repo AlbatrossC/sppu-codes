@@ -7,7 +7,7 @@ from datetime import datetime
 from functools import lru_cache
 
 app = Flask(__name__)
-app.secret_key = 'karlos'
+app.secret_key = 'karltos'
 
 
 # Root directory containing the pyqs

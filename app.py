@@ -192,7 +192,7 @@ def question(subject_code, question_id=None):
     selected_question = question_dict.get(question_id) if question_id else None
 
     if selected_question:
-        title = selected_question["question"]
+        title = selected_question["title"]
         description = f"SPPU Codes: {selected_question['question']}"
         keywords = [selected_question["question"], selected_question["title"]] + subject.get("keywords", [])
         url = f"https://sppucodes.vercel.app/{subject_code}/{question_id}"

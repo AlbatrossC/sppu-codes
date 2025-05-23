@@ -1,1044 +1,429 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="description" content="SPPU Codes Question Viewer - Fast and efficient PDF viewer for exam papers">
-    <link rel="icon" href="{{ url_for('get_image', filename='favicon.ico') }}" type="image/x-icon" fetchpriority="high">
-    <title>SPPU ${subjectName} Question Papers</title>
-    <script src="/static/js/tutorial.js" defer></script>
-    
-    <!-- SEO -->
-    <meta name="description" content="SPPU ${subjectName} question papers - Download and view previous year INSEM and ENDSEM exam papers for ${subjectName} at Savitribai Phule Pune University">
-    <link rel="canonical" href="https://sppu-codes-testing.vercel.app/viewer?pdf=${cleanPath}" />
-    <script type="application/ld+json">
-        {
-          "@context": "https://schema.org",
-          "@type": "CollectionPage",
-          "name": "SPPU ${subjectName} Question Papers",
-          "description": "Previous year question papers for ${subjectName} at Savitribai Phule Pune University",
-          "publisher": {
-            "@type": "Organization",
-            "name": "SPPU Codes"
-          }
-        }
-    </script>
-    
-    <!-- Preload critical resources with cache headers -->
-    <link rel="preload" href="/static/pdfjs/web/viewer.html" as="document" fetchpriority="high">
-    <link rel="preload" href="/static/pdfjs/web/viewer.css" as="style" fetchpriority="high">
-    <link rel="preload" href="/static/pdfjs/web/viewer.js" as="script" fetchpriority="high">
-    <link rel="preload" href="/static/pdfjs/web/pdf.js" as="script" fetchpriority="high">
-    <link rel="preload" href="/static/pdfjs/web/pdf.worker.js" as="worker" fetchpriority="high">
-    
-    <!-- Service Worker Registration -->
-    <script>
-        if ('serviceWorker' in navigator) {
-            window.addEventListener('load', () => {
-                navigator.serviceWorker.register('/sw.js', { scope: '/' })
-                    .then(registration => {
-                        console.log('ServiceWorker registration successful with scope: ', registration.scope);
-                    })
-                    .catch(err => {
-                        console.log('ServiceWorker registration failed: ', err);
-                    });
-            });
-        }
-    </script>
-    
-    <style>
-        :root {
-            --primary-color: #3b82f6;
-            --primary-hover: #3b82f6;
-            --secondary-color: #40a9ff;
-            --background-dark: #1e1e1e;
-            --background-light: #282828;
-            --text-light: #ffffff;
-            --text-dark: #888;
-            --border-radius: 8px;
-            --transition-speed: 0.2s;
-            --shadow: 0 2px 10px rgba(0, 0, 0, 0.15);
-            --shadow-hover: 0 4px 12px rgba(0, 0, 0, 0.2);
-            --green-color: #28a745;
-            --green-hover: #218838;
-            --dropdown-bg: #333;
-            --dropdown-hover: #3a3a3a;
-            --dropdown-border: #444;
-            --dropdown-text: #f0f0f0;
-        }
+<!doctypehtml><html lang=en><meta charset=UTF-8><meta content="width=device-width,initial-scale=1"name=viewport><meta content="IE=edge"http-equiv=X-UA-Compatible><meta content="SPPU Codes Question Viewer - Fast and efficient PDF viewer for exam papers"name=description><link href="{{ url_for('get_image', filename='favicon.ico') }}"rel=icon fetchpriority=high type=image/x-icon><title>SPPU ${subjectName} Question Papers</title><script defer src=/static/js/tutorial.js></script><link href=/static/pdfjs/web/viewer.html rel=preload fetchpriority=high as=document><link href=/static/pdfjs/web/viewer.css rel=preload fetchpriority=high as=style><link href=static/css/viewer.css rel=stylesheet><link href=/static/pdfjs/web/viewer.js rel=preload fetchpriority=high as=script><link href=/static/pdfjs/web/pdf.js rel=preload fetchpriority=high as=script><link href=/static/pdfjs/web/pdf.worker.js rel=preload fetchpriority=high as=worker><header><div class=header-info><button class=back id=back-btn><svg class=icon fill=none stroke=currentColor stroke-linecap=round stroke-linejoin=round stroke-width=2 viewBox="0 0 24 24"><path d="M19 12H5M12 19l-7-7 7-7"/></svg> Back</button><div class=subject-badge id=subject-display>Loading Subject...</div></div><div class=header-center><div class=control-group><label for=pdf-count>PDF Layout:</label> <select id=pdf-count><option value=1>Single View<option value=2>Split View (2)<option value=3>Split View (3)<option value=4>Grid View (4)</select></div><div class=control-group><label for=exam-type>Exam Type:</label> <select id=exam-type><option value=insem>INSEM<option value=endsem>ENDSEM</select></div></div><div class=header-controls><button class=primary id=fullscreen-btn><svg class=icon fill=none stroke=currentColor stroke-linecap=round stroke-linejoin=round stroke-width=2 viewBox="0 0 24 24"><path d="M8 3H5a2 2 0 0 0-2 2v3m18 0V5a2 2 0 0 0-2-2h-3m0 18h3a2 2 0 0 0 2-2v-3M3 16v3a2 2 0 0 0 2 2h3"/></svg> Fullscreen</button></div></header><div class=grid-1 id=pdf-container><div class=no-pdf-message>Loading PDFs...<div class=loader></div></div></div><script>'use strict';
+    const DOM = {
+        pdfContainer: document.getElementById('pdf-container'),
+        subjectDisplay: document.getElementById('subject-display'),
+        pdfCount: document.getElementById('pdf-count'),
+        examType: document.getElementById('exam-type'),
+        fullscreenBtn: document.getElementById('fullscreen-btn'),
+        backBtn: document.getElementById('back-btn')
+    };
 
-        /* Optimized base styles with will-change for performance */
-        *, *:before, *:after {
-            box-sizing: border-box;
-        }
+    const state = {
+        pdfPath: new URLSearchParams(window.location.search).get('pdf'),
+        pdfFiles: [],
+        isRendering: false,
+        listCache: new Map(), 
+        pdfContentCache: new Map(),
+        activeObjectURLs: new Map(),
+        renderQueue: Promise.resolve(),
+        pdfViewerBase: '/static/pdfjs/web/viewer.html',
+        cacheVersion: 'v1.1', 
+        prefetchQueue: [],
+        maxCacheSize: 50, 
+        cacheExpiry: 7 * 24 * 60 * 60 * 1000,
+        db: null
+    };
 
-        body {
-            margin: 0;
-            padding: 0;
-            font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
-            min-height: 100vh;
-            display: flex;
-            flex-direction: column;
-            background-color: var(--background-dark);
-            color: var(--text-light);
-            -webkit-font-smoothing: antialiased;
-            overscroll-behavior: none;
-            contain: strict;
-        }
-
-        header {
-            background-color: #222;
-            color: var(--text-light);
-            padding: 6px 12px;
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            box-shadow: var(--shadow);
-            flex-wrap: wrap;
-            gap: 6px;
-            min-height: 48px;
-            will-change: transform;
-            contain: content;
-        }
-
-        .header-info, .header-controls {
-            display: flex;
-            align-items: center;
-            gap: 8px;
-            flex-wrap: wrap;
-        }
-
-        .header-center {
-            display: flex;
-            align-items: center;
-            gap: 8px;
-            margin: 0 auto;
-        }
-
-        .subject-badge {
-            background-color: #333;
-            padding: 4px 10px;
-            border-radius: var(--border-radius);
-            font-size: 14px;
-            font-weight: 600;
-            box-shadow: var(--shadow);
-            color: var(--secondary-color);
-            border-left: 3px solid var(--secondary-color);
-            white-space: nowrap;
-            will-change: transform;
-        }
-
-        .control-group {
-            display: flex;
-            align-items: center;
-            gap: 4px;
-            position: relative;
-        }
-
-        /* Enhanced Dropdown Styling */
-        select {
-            -webkit-appearance: none;
-            -moz-appearance: none;
-            appearance: none;
-            padding: 8px 32px 8px 12px;
-            font-size: 13px;
-            border-radius: var(--border-radius);
-            border: 1px solid var(--dropdown-border);
-            cursor: pointer;
-            background-color: var(--dropdown-bg);
-            color: var(--dropdown-text);
-            transition: all var(--transition-speed) ease-out;
-            box-shadow: var(--shadow);
-            font-weight: 500;
-            min-width: 120px;
-            outline: none;
-            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 24 24' fill='none' stroke='%23f0f0f0' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='6 9 12 15 18 9'%3E%3C/polyline%3E%3C/svg%3E");
-            background-repeat: no-repeat;
-            background-position: right 10px center;
-            background-size: 12px;
-            will-change: transform;
-        }
-
-        select:hover {
-            border-color: var(--primary-color);
-            box-shadow: var(--shadow-hover);
-        }
-
-        select:focus {
-            border-color: var(--primary-color);
-            box-shadow: 0 0 0 2px rgba(0, 123, 255, 0.25);
-        }
-
-        /* Custom dropdown options styling */
-        select option {
-            background-color: var(--dropdown-bg);
-            color: var(--dropdown-text);
-            padding: 8px 12px;
-        }
-
-        select option:hover {
-            background-color: var(--primary-color) !important;
-        }
-
-        select option:checked {
-            background-color: var(--primary-color);
-            color: white;
-        }
-
-        .control-group label {
-            color: var(--secondary-color);
-            font-weight: 500;
-            font-size: 13px;
-            white-space: nowrap;
-        }
-
-        /* Button Styles */
-        button {
-            padding: 8px 12px;
-            font-size: 13px;
-            border-radius: var(--border-radius);
-            border: none;
-            cursor: pointer;
-            background-color: #444;
-            color: var(--text-light);
-            transition: all var(--transition-speed) ease-out;
-            box-shadow: var(--shadow);
-            font-weight: 500;
-            display: flex;
-            align-items: center;
-            gap: 6px;
-            will-change: transform;
-        }
-
-        button:hover {
-            transform: translateY(-1px);
-            box-shadow: var(--shadow-hover);
-        }
-
-        button:active {
-            transform: translateY(0);
-        }
-
-        button.primary {
-            background-color: var(--primary-color);
-        }
-
-        button.primary:hover {
-            background-color: var(--primary-hover);
-        }
-
-        button.back {
-            background-color: var(--green-color);
-        }
-
-        button.back:hover {
-            background-color: var(--green-hover);
-        }
-
-        #pdf-container {
-            flex: 1;
-            display: grid;
-            gap: 0;
-            padding: 0;
-            background-color: var(--background-light);
-            overflow: auto;
-            touch-action: pinch-zoom;
-            will-change: contents;
-            contain: layout;
-        }
-
-        .pdf-viewer {
-            width: 100%;
-            height: 100%;
-            border: none;
-            background: #333;
-            position: relative;
-            overflow: hidden;
-            display: flex;
-            flex-direction: column;
-            contain: strict;
-        }
-
-        .pdf-viewer iframe {
-            width: 100%;
-            height: 100%;
-            border: none;
-            display: block;
-            contain: strict;
-        }
-
-        /* Enhanced Date Selector */
-        .date-selector {
-            position: absolute;
-            top: 8px;
-            left: 8px;
-            z-index: 10;
-            background-color: rgba(0, 0, 0, 0.8);
-            padding: 4px 8px;
-            border-radius: var(--border-radius);
-            border: 1px solid var(--primary-color);
-            box-shadow: var(--shadow);
-            opacity: 0.9;
-            transition: all var(--transition-speed) ease-out;
-            will-change: transform;
-        }
-
-        .date-selector select {
-            background-color: transparent;
-            border: none;
-            color: var(--text-light);
-            font-size: 13px;
-            font-weight: 500;
-            padding: 4px 20px 4px 8px;
-            cursor: pointer;
-            min-width: 140px;
-        }
-
-        .date-selector:hover,
-        .date-selector:focus-within {
-            opacity: 1;
-            transform: scale(1.02);
-        }
-
-        .loader-container {
-            position: absolute;
-            inset: 0;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            background-color: rgba(0, 0, 0, 0.4);
-            z-index: 5;
-            contain: strict;
-        }
-
-        .loader {
-            width: 32px;
-            height: 32px;
-            border: 3px solid #f3f3f3;
-            border-top: 3px solid var(--primary-color);
-            border-radius: 50%;
-            animation: spin 0.8s linear infinite;
-            will-change: transform;
-        }
-
-        @keyframes spin {
-            0% { transform: rotate(0deg); }
-            100% { transform: rotate(360deg); }
-        }
-
-        .grid-1 { grid-template-columns: 1fr; }
-        .grid-2 { grid-template-columns: repeat(2, 1fr); }
-        .grid-3 { grid-template-columns: repeat(3, 1fr); }
-        .grid-4 { grid-template-columns: repeat(2, 1fr); grid-template-rows: repeat(2, 1fr); }
-
-        .icon {
-            width: 16px;
-            height: 16px;
-            flex-shrink: 0;
-            contain: strict;
-        }
-
-        /* Status Messages */
-        .no-pdf-message {
-            text-align: center;
-            padding: 40px;
-            font-size: 16px;
-            color: var(--text-dark);
-            font-weight: 500;
-        }
-
-        .no-more-papers {
-            text-align: center;
-            padding: 15px;
-            font-size: 14px;
-            color: var(--text-dark);
-            font-weight: 500;
-            background-color: rgba(255, 255, 255, 0.05);
-            border-radius: var(--border-radius);
-            margin: 8px;
-            border: 1px solid rgba(255, 255, 255, 0.1);
-        }
-
-        /* Responsive Design */
-        @media (max-width: 768px) {
-            header {
-                flex-direction: column;
-                align-items: flex-start;
-                padding: 6px;
-                gap: 6px;
+    const initDB = () => {
+        return new Promise((resolve) => {
+            if (!('indexedDB' in window)) {
+                console.warn('IndexedDB not supported, falling back to memory cache.');
+                resolve(null); return;
             }
-
-            .header-info, .header-controls {
-                flex-direction: column;
-                align-items: flex-start;
-                width: 100%;
-                gap: 6px;
-            }
-
-            .header-center {
-                margin: 0;
-                width: 100%;
-                flex-direction: column;
-                gap: 6px;
-            }
-
-            .control-group {
-                width: 100%;
-                flex-direction: column;
-                align-items: flex-start;
-            }
-
-            select, button {
-                width: 100%;
-            }
-
-            .grid-2, .grid-3, .grid-4 {
-                grid-template-columns: 1fr;
-            }
-
-            .date-selector {
-                top: 4px;
-                left: 4px;
-            }
-        }
-
-        /* Modern scrollbar styling */
-        ::-webkit-scrollbar {
-            width: 8px;
-            height: 8px;
-        }
-
-        ::-webkit-scrollbar-track {
-            background: var(--background-dark);
-        }
-
-        ::-webkit-scrollbar-thumb {
-            background: #444;
-            border-radius: 4px;
-        }
-
-        ::-webkit-scrollbar-thumb:hover {
-            background: #555;
-        }
-    </style>
-</head>
-<body>
-    <header>
-        <div class="header-info">
-            <button id="back-btn" class="back">
-                <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                    <path d="M19 12H5M12 19l-7-7 7-7"/>
-                </svg>
-                Back
-            </button>
-            <div class="subject-badge" id="subject-display"></div>
-        </div>
-        <div class="header-center">
-            <div class="control-group">
-                <label for="pdf-count">PDF Layout:</label>
-                <select id="pdf-count">
-                    <option value="1">Single View</option>
-                    <option value="2">Split View (2)</option>
-                    <option value="3">Split View (3)</option>
-                    <option value="4">Grid View (4)</option>
-                </select>
-            </div>
-            <div class="control-group">
-                <label for="exam-type">Exam Type:</label>
-                <select id="exam-type">
-                    <option value="insem">INSEM</option>
-                    <option value="endsem">ENDSEM</option>
-                </select>
-            </div>
-        </div>
-        <div class="header-controls">
-            <button id="fullscreen-btn" class="primary">
-                <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                    <path d="M8 3H5a2 2 0 0 0-2 2v3m18 0V5a2 2 0 0 0-2-2h-3m0 18h3a2 2 0 0 0 2-2v-3M3 16v3a2 2 0 0 0 2 2h3"/>
-                </svg>
-                Fullscreen
-            </button>
-        </div>
-    </header>
-
-    <div id="pdf-container" class="grid-1">
-        <div class="no-pdf-message">Loading PDFs... <div class="loader"></div></div>
-    </div>
-
-    <script>
-        'use strict';
-
-        // Cached DOM elements
-        const DOM = {
-            pdfContainer: document.getElementById('pdf-container'),
-            subjectDisplay: document.getElementById('subject-display'),
-            pdfCount: document.getElementById('pdf-count'),
-            examType: document.getElementById('exam-type'),
-            fullscreenBtn: document.getElementById('fullscreen-btn'),
-            backBtn: document.getElementById('back-btn')
-        };
-
-        // Global state with comprehensive caching
-        const state = {
-            pdfPath: new URLSearchParams(window.location.search).get('pdf'),
-            pdfFiles: [],
-            isRendering: false,
-            cache: new Map(),
-            pdfViewerCache: new Map(),
-            pdfContentCache: new Map(), // Cache for PDF binary content
-            renderQueue: Promise.resolve(), // Sequential rendering
-            pdfViewerBase: '/static/pdfjs/web/viewer.html',
-            cacheVersion: 'v1.0', // Cache version for invalidation
-            prefetchQueue: [], // Queue for prefetching PDFs
-            isOnline: navigator.onLine,
-            maxCacheSize: 50, // Maximum number of PDFs to cache
-            cacheExpiry: 7 * 24 * 60 * 60 * 1000 // 7 days cache expiry
-        };
-
-        // Initialize IndexedDB for persistent caching
-        const initDB = () => {
-            return new Promise((resolve, reject) => {
-                if (!('indexedDB' in window)) {
-                    console.warn('IndexedDB not supported, falling back to memory cache');
-                    resolve(null);
-                    return;
-                }
-
-                const request = indexedDB.open('SPPUPDFCache', 1);
-                
-                request.onerror = (event) => {
-                    console.error('IndexedDB error:', event.target.error);
-                    resolve(null);
-                };
-                
-                request.onsuccess = (event) => {
-                    state.db = event.target.result;
-                    // Start cleanup of expired items
-                    cleanupExpiredCache();
-                    resolve(state.db);
-                };
-                
-                request.onupgradeneeded = (event) => {
-                    const db = event.target.result;
-                    if (!db.objectStoreNames.contains('pdfs')) {
-                        const store = db.createObjectStore('pdfs', { keyPath: 'url' });
-                        store.createIndex('timestamp', 'timestamp', { unique: false });
-                    }
-                };
-            });
-        };
-
-        // Cleanup expired cache entries
-        const cleanupExpiredCache = async () => {
-            if (!state.db) return;
-            
-            const transaction = state.db.transaction(['pdfs'], 'readwrite');
-            const store = transaction.objectStore('pdfs');
-            const index = store.index('timestamp');
-            const cutoff = Date.now() - state.cacheExpiry;
-            
-            const request = index.openCursor(IDBKeyRange.upperBound(cutoff));
-            
+            const request = indexedDB.open('SPPUPDFCache', 2);
+            request.onerror = (event) => { console.error('IndexedDB error:', event.target.error); resolve(null); };
             request.onsuccess = (event) => {
-                const cursor = event.target.result;
-                if (cursor) {
-                    console.log(`Deleting expired cache entry: ${cursor.key}`);
-                    cursor.delete();
-                    cursor.continue();
+                state.db = event.target.result;
+                cleanupExpiredCache();
+                resolve(state.db);
+            };
+            request.onupgradeneeded = (event) => {
+                const db = event.target.result;
+                if (!db.objectStoreNames.contains('pdfFiles')) {
+                    const store = db.createObjectStore('pdfFiles', { keyPath: 'url' });
+                    store.createIndex('timestamp', 'timestamp', { unique: false });
+                }
+                if (!db.objectStoreNames.contains('pdfLists')) {
+                    const store = db.createObjectStore('pdfLists', { keyPath: 'path' });
+                    store.createIndex('timestamp', 'timestamp', { unique: false });
                 }
             };
-        };
+        });
+    };
 
-        // Get PDF from cache (IndexedDB or memory)
-        const getCachedPDF = async (url) => {
-            // First check memory cache
-            if (state.pdfContentCache.has(url)) {
-                return state.pdfContentCache.get(url);
+    const cleanupExpiredCache = async () => {
+        if (!state.db) return;
+        const storesToClean = ['pdfFiles', 'pdfLists'];
+        const cutoff = Date.now() - state.cacheExpiry;
+
+        for (const storeName of storesToClean) {
+            try {
+                const transaction = state.db.transaction([storeName], 'readwrite');
+                const store = transaction.objectStore(storeName);
+                const index = store.index('timestamp');
+                const request = index.openCursor(IDBKeyRange.upperBound(cutoff));
+                request.onsuccess = (event) => {
+                    const cursor = event.target.result;
+                    if (cursor) {
+                        store.delete(cursor.primaryKey);
+                        cursor.continue();
+                    }
+                };
+            } catch (error) {
+                console.error(`Error cleaning up ${storeName}:`, error);
             }
-            
-            // Then check IndexedDB if available
-            if (state.db) {
-                return new Promise((resolve) => {
-                    const transaction = state.db.transaction(['pdfs'], 'readonly');
-                    const store = transaction.objectStore('pdfs');
-                    const request = store.get(url);
-                    
+        }
+    };
+    
+    const getCachedData = async (storeName, key) => {
+        const memoryCache = storeName === 'pdfFiles' ? state.pdfContentCache : state.listCache;
+        if (memoryCache.has(key)) return memoryCache.get(key);
+        
+        if (state.db) {
+            return new Promise((resolve) => {
+                try {
+                    const transaction = state.db.transaction([storeName], 'readonly');
+                    const store = transaction.objectStore(storeName);
+                    const request = store.get(key);
                     request.onsuccess = (event) => {
                         const result = event.target.result;
                         if (result && result.data) {
-                            // Update memory cache
-                            state.pdfContentCache.set(url, result.data);
-                            // Keep cache size in check
-                            if (state.pdfContentCache.size > state.maxCacheSize) {
-                                const firstKey = state.pdfContentCache.keys().next().value;
-                                state.pdfContentCache.delete(firstKey);
+                            memoryCache.set(key, result.data);
+                            if (memoryCache.size > state.maxCacheSize) {
+                                memoryCache.delete(memoryCache.keys().next().value);
                             }
                             resolve(result.data);
-                        } else {
-                            resolve(null);
-                        }
+                        } else resolve(null);
                     };
-                    
                     request.onerror = () => resolve(null);
-                });
-            }
-            
-            return null;
-        };
+                } catch (error) { console.error(`Error getting ${key} from ${storeName}:`, error); resolve(null); }
+            });
+        }
+        return null;
+    };
 
-        // Store PDF in cache (IndexedDB and memory)
-        const storePDFInCache = async (url, data) => {
-            // Store in memory cache
-            state.pdfContentCache.set(url, data);
-            
-            // Store in IndexedDB if available
-            if (state.db) {
-                return new Promise((resolve) => {
-                    const transaction = state.db.transaction(['pdfs'], 'readwrite');
-                    const store = transaction.objectStore('pdfs');
-                    
-                    const entry = {
-                        url: url,
-                        data: data,
-                        timestamp: Date.now(),
-                        version: state.cacheVersion
-                    };
+    const storeDataInCache = async (storeName, key, data) => {
+        const memoryCache = storeName === 'pdfFiles' ? state.pdfContentCache : state.listCache;
+        memoryCache.set(key, data);
+         if (memoryCache.size > state.maxCacheSize) {
+            memoryCache.delete(memoryCache.keys().next().value);
+        }
+
+        if (state.db) {
+            return new Promise((resolve) => {
+                try {
+                    const transaction = state.db.transaction([storeName], 'readwrite');
+                    const store = transaction.objectStore(storeName);
+                    const entry = { data: data, timestamp: Date.now(), version: state.cacheVersion };
+                    entry[storeName === 'pdfFiles' ? 'url' : 'path'] = key;
                     
                     const request = store.put(entry);
-                    
                     request.onsuccess = () => resolve();
-                    request.onerror = (event) => {
-                        console.error('Error storing PDF in IndexedDB:', event.target.error);
-                        resolve();
-                    };
-                });
-            }
-        };
-
-        // Preload critical resources
-        function preloadViewerResources() {
-            const resources = [
-                '/static/pdfjs/web/viewer.css',
-                '/static/pdfjs/web/viewer.js',
-                '/static/pdfjs/web/pdf.js',
-                '/static/pdfjs/web/pdf.worker.js',
-                '/static/pdfjs/web/images/toolbarButton-bookmark.png',
-                '/static/pdfjs/web/images/toolbarButton-search.png'
-            ];
-
-            resources.forEach(resource => {
-                const link = document.createElement('link');
-                if (resource.endsWith('.js')) {
-                    link.rel = 'preload';
-                    link.as = 'script';
-                } else if (resource.endsWith('.css')) {
-                    link.rel = 'preload';
-                    link.as = 'style';
-                } else if (resource.endsWith('.png')) {
-                    link.rel = 'preload';
-                    link.as = 'image';
-                }
-                link.href = resource;
-                document.head.appendChild(link);
+                    request.onerror = (event) => { console.error(`Error storing ${key} in ${storeName}:`, event.target.error); resolve(); };
+                } catch (error) { console.error(`Error storing ${key} in ${storeName} tx:`, error); resolve(); }
             });
         }
+    };
 
-        // Utility functions
-        const debounce = (func, wait) => {
-            let timeout;
-            return (...args) => {
-                clearTimeout(timeout);
-                timeout = setTimeout(() => func(...args), wait);
-            };
-        };
+    function preloadViewerResources() {} // This function is empty, intended for future or other preload logic
 
-        // Throttle function to limit execution rate
-        const throttle = (func, limit) => {
-            let lastFunc;
-            let lastRan;
-            return function() {
-                const context = this;
-                const args = arguments;
-                if (!lastRan) {
-                    func.apply(context, args);
-                    lastRan = Date.now();
-                } else {
-                    clearTimeout(lastFunc);
-                    lastFunc = setTimeout(function() {
-                        if ((Date.now() - lastRan) >= limit) {
-                            func.apply(context, args);
-                            lastRan = Date.now();
-                        }
-                    }, limit - (Date.now() - lastRan));
-                }
-            };
-        };
+    const debounce = (func, wait) => {
+        let timeout;
+        return (...args) => { clearTimeout(timeout); timeout = setTimeout(() => func(...args), wait); };
+    };
 
-        // Fetch PDF files with advanced caching and error handling
-        async function fetchPDFFiles() {
-            if (state.cache.has(state.pdfPath)) {
-                state.pdfFiles = state.cache.get(state.pdfPath);
-                renderPDFs();
+    async function fetchPDFFiles() {
+        const cacheKey = state.pdfPath;
+        let files = await getCachedData('pdfLists', cacheKey);
+
+        if (files) {
+            state.pdfFiles = files;
+            renderPDFs();
+            preloadNextPDFs(3);
+            return;
+        }
+
+        try {
+            const response = await fetch(`/api/directories?path=${encodeURIComponent(state.pdfPath)}`, { headers: { 'Cache-Control': 'max-age=3600' }});
+            if (!response.ok) throw new Error(`HTTP error: ${response.status}`);
+            files = await response.json();
+            
+            state.pdfFiles = files
+                .filter(file => file.toLowerCase().endsWith('.pdf'))
+                .map(file => ({ date: file.replace('.pdf', ''), link: `/static/pyqs/${state.pdfPath}/${file}` }))
+                .sort((a, b) => b.date.localeCompare(a.date));
+
+            await storeDataInCache('pdfLists', cacheKey, state.pdfFiles);
+            if (!state.pdfFiles.length) {
+                DOM.pdfContainer.innerHTML = '<div class="no-pdf-message">No PDFs found for this subject.</div>';
                 return;
             }
-
-            try {
-                // Try to get from cache first
-                const cacheKey = `pdf-list:${state.pdfPath}`;
-                const cachedResponse = await getCachedPDF(cacheKey);
-                
-                if (cachedResponse) {
-                    state.pdfFiles = cachedResponse;
-                    state.cache.set(state.pdfPath, state.pdfFiles);
-                    renderPDFs();
-                    return;
-                }
-
-                // Fetch fresh data
-                const response = await fetch(`/api/directories?path=${encodeURIComponent(state.pdfPath)}`, {
-                    cache: 'force-cache',
-                    priority: 'high',
-                    headers: {
-                        'Cache-Control': 'max-age=3600' // 1 hour cache
-                    }
-                });
-                
-                if (!response.ok) throw new Error(`HTTP error: ${response.status}`);
-
-                const files = await response.json();
-                state.pdfFiles = files
-                    .filter(file => file.toLowerCase().endsWith('.pdf'))
-                    .map(file => ({
-                        date: file.replace('.pdf', ''),
-                        link: `/static/pyqs/${state.pdfPath}/${file}`
-                    }))
-                    .sort((a, b) => b.date.localeCompare(a.date));
-
-                // Store in cache
-                state.cache.set(state.pdfPath, state.pdfFiles);
-                await storePDFInCache(cacheKey, state.pdfFiles);
-
-                if (!state.pdfFiles.length) {
-                    DOM.pdfContainer.innerHTML = '<div class="no-pdf-message">No PDFs found for this subject.</div>';
-                    return;
-                }
-
-                renderPDFs();
-                
-                // Preload the first few PDFs in the background
-                preloadNextPDFs(3);
-            } catch (error) {
-                console.error('Error fetching PDF files:', error);
-                DOM.pdfContainer.innerHTML = `<div class="no-pdf-message">Error loading PDFs: ${error.message}</div>`;
-            }
+            renderPDFs();
+            preloadNextPDFs(3);
+        } catch (error) {
+            console.error('Error fetching PDF files:', error);
+            DOM.pdfContainer.innerHTML = `<div class="no-pdf-message">Error loading PDFs: ${error.message}</div>`;
         }
+    }
 
-        // Preload next PDFs in the background with intelligent prioritization
-        function preloadNextPDFs(count) {
-            const examType = DOM.examType.value;
-            const filteredData = filterPDFs(examType);
-            
-            // Clear any existing prefetch queue
-            state.prefetchQueue = [];
-            
-            // Add PDFs to prefetch queue
-            for (let i = 0; i < Math.min(count, filteredData.length); i++) {
+    async function preloadNextPDFs(count) {
+        const examType = DOM.examType.value;
+        const filteredData = filterPDFs(examType);
+        state.prefetchQueue = [];
+        for (let i = 0; i < Math.min(count, filteredData.length); i++) {
+            if (!await getCachedData('pdfFiles', filteredData[i].link)) {
                 state.prefetchQueue.push(filteredData[i].link);
             }
-            
-            // Process prefetch queue
-            processPrefetchQueue();
+        }
+        processPrefetchQueue();
+    }
+
+    async function processPrefetchQueue() {
+        const CONCURRENCY_LIMIT = 2;
+        let activeFetches = 0;
+        
+        while (state.prefetchQueue.length > 0 && activeFetches < CONCURRENCY_LIMIT) {
+            const pdfUrl = state.prefetchQueue.shift();
+            if (!pdfUrl) continue;
+
+            activeFetches++;
+            fetch(pdfUrl, { priority: 'low', cache: 'force-cache', headers: { 'Cache-Control': 'max-age=604800' }})
+                .then(response => {
+                    if (!response.ok) throw new Error(`Failed to prefetch ${pdfUrl}`);
+                    return response.blob();
+                })
+                .then(blob => storeDataInCache('pdfFiles', pdfUrl, blob))
+                .catch(error => console.error(`Prefetch failed for ${pdfUrl}:`, error))
+                .finally(() => {
+                    activeFetches--;
+                    if (state.prefetchQueue.length > 0) processPrefetchQueue();
+                });
+        }
+    }
+
+    function updateSubjectDisplay() {
+        if (state.pdfPath) {
+            const decodedPath = decodeURIComponent(state.pdfPath);
+            const pathParts = decodedPath.split('/');
+            const subjectName = pathParts.pop() || "Subject";
+            DOM.subjectDisplay.textContent = subjectName;
+            document.title = `SPPU ${subjectName} Question Papers`;
+        } else {
+            DOM.subjectDisplay.textContent = 'No Subject Selected';
+            document.title = 'SPPU Question Paper Viewer';
+        }
+    }
+
+    const filterPDFs = ((cache = new Map(), maxSize = 5) => {
+        return (examType) => {
+            const key = examType.toLowerCase();
+            if (cache.has(key)) { const val = cache.get(key); cache.delete(key); cache.set(key, val); return val; }
+            const result = state.pdfFiles.filter(file => file.date.toLowerCase().includes(key));
+            if (cache.size >= maxSize) cache.delete(cache.keys().next().value);
+            cache.set(key, result);
+            return result;
+        };
+    })();
+
+    async function loadPdfIntoIframe(iframe, pdfUrl, loader) {
+        const oldObjectURL = state.activeObjectURLs.get(iframe);
+        if (oldObjectURL) {
+            URL.revokeObjectURL(oldObjectURL);
+            state.activeObjectURLs.delete(iframe);
         }
 
-        // Process the prefetch queue with controlled concurrency
-        async function processPrefetchQueue() {
-            const CONCURRENCY_LIMIT = 2;
-            const promises = [];
-            
-            while (state.prefetchQueue.length > 0 && promises.length < CONCURRENCY_LIMIT) {
-                const pdfUrl = state.prefetchQueue.shift();
-                
-                // Skip if already cached
-                if (await getCachedPDF(pdfUrl)) continue;
-                
-                promises.push(
-                    fetch(pdfUrl, {
-                        priority: 'low',
-                        cache: 'force-cache',
-                        headers: {
-                            'Cache-Control': 'max-age=604800' // 1 week cache
-                        }
-                    })
-                    .then(response => {
-                        if (!response.ok) throw new Error(`Failed to fetch ${pdfUrl}`);
-                        return response.blob();
-                    })
-                    .then(blob => storePDFInCache(pdfUrl, blob))
-                    .catch(error => console.error(`Prefetch failed for ${pdfUrl}:`, error))
-                );
+        let fileUrlToLoad;
+        const cachedPDFBlob = await getCachedData('pdfFiles', pdfUrl);
+
+        if (cachedPDFBlob) {
+            fileUrlToLoad = URL.createObjectURL(cachedPDFBlob);
+        } else {
+            try {
+                const response = await fetch(pdfUrl);
+                if (!response.ok) throw new Error(`Failed to fetch ${pdfUrl}`);
+                const blob = await response.blob();
+                await storeDataInCache('pdfFiles', pdfUrl, blob);
+                fileUrlToLoad = URL.createObjectURL(blob);
+            } catch (error) {
+                console.error(`Error fetching/caching ${pdfUrl}:`, error);
+                fileUrlToLoad = pdfUrl; // Fallback to direct URL if blob creation fails
             }
-            
-            await Promise.all(promises);
-            
-            // Continue processing if queue not empty
-            if (state.prefetchQueue.length > 0) {
-                setTimeout(processPrefetchQueue, 1000); // Throttle next batch
-            }
         }
-
-        // Set subject display
-        function setSubjectDisplay() {
-            if (state.pdfPath) {
-                const subjectName = state.pdfPath.split('/').pop();
-                DOM.subjectDisplay.textContent = subjectName;
-                document.title = `SPPU Codes: ${subjectName} Papers`;
-            } else {
-                DOM.subjectDisplay.textContent = 'No Subject Selected';
-            }
+        
+        if (fileUrlToLoad.startsWith('blob:')) {
+            state.activeObjectURLs.set(iframe, fileUrlToLoad);
         }
+        
+        iframe.src = `${state.pdfViewerBase}?file=${encodeURIComponent(fileUrlToLoad)}`;
+        iframe.onload = () => { if(loader && loader.parentNode) loader.remove(); };
+        iframe.onerror = () => {
+            if(loader && loader.parentNode) loader.remove();
+            iframe.parentElement.innerHTML = '<div class="no-pdf-message">Error loading PDF.</div>';
+        };
+    }
 
-        // Memoized PDF filter with LRU cache
-        const filterPDFs = ((cache = new Map(), maxSize = 20) => {
-            return (examType) => {
-                const key = examType.toLowerCase();
-                
-                // Check cache
-                if (cache.has(key)) {
-                    const value = cache.get(key);
-                    // Move to end to mark as recently used
-                    cache.delete(key);
-                    cache.set(key, value);
-                    return value;
+    async function renderPDFs() {
+        if (state.isRendering) return;
+        state.isRendering = true;
+
+        await state.renderQueue;
+        state.renderQueue = new Promise(async (resolve) => {
+            const count = parseInt(DOM.pdfCount.value, 10);
+            const examType = DOM.examType.value;
+            const filteredData = filterPDFs(examType);
+
+            DOM.pdfContainer.querySelectorAll('iframe').forEach(iframe => {
+                const oldObjectURL = state.activeObjectURLs.get(iframe);
+                if (oldObjectURL) {
+                    URL.revokeObjectURL(oldObjectURL);
+                    state.activeObjectURLs.delete(iframe);
                 }
-                
-                // Compute and cache result
-                const result = state.pdfFiles.filter(file => file.date.toLowerCase().includes(key));
-                
-                // Enforce cache size limit
-                if (cache.size >= maxSize) {
-                    const firstKey = cache.keys().next().value;
-                    cache.delete(firstKey);
-                }
-                
-                cache.set(key, result);
-                return result;
-            };
-        })();
-
-        // Optimized PDF rendering with queue and caching
-        async function renderPDFs() {
-            if (state.isRendering) return;
-            state.isRendering = true;
-
-            await state.renderQueue;
-            state.renderQueue = new Promise(async (resolve) => {
-                const count = parseInt(DOM.pdfCount.value, 10);
-                const examType = DOM.examType.value;
-                const filteredData = filterPDFs(examType);
-
-                DOM.pdfContainer.className = `grid-${count}`;
-                DOM.pdfContainer.innerHTML = filteredData.length ? '' : '<div class="no-pdf-message">No papers available for this exam type.</div>';
-
-                if (!filteredData.length) {
-                    state.isRendering = false;
-                    resolve();
-                    return;
-                }
-
-                const fragment = document.createDocumentFragment();
-                const maxRender = Math.min(count, filteredData.length);
-
-                for (let i = 0; i < count; i++) {
-                    const div = document.createElement('div');
-                    div.className = 'pdf-viewer';
-
-                    if (i < maxRender) {
-                        const loader = document.createElement('div');
-                        loader.className = 'loader-container';
-                        loader.innerHTML = '<div class="loader"></div>';
-                        div.appendChild(loader);
-
-                        div.appendChild(createDateSelector(filteredData, i));
-
-                        const iframe = document.createElement('iframe');
-                        const pdfUrl = filteredData[i].link;
-                        
-                        // Check if we have the PDF content cached
-                        const cachedPDF = await getCachedPDF(pdfUrl);
-                        
-                        if (cachedPDF) {
-                            // Create object URL from cached blob
-                            const objectUrl = URL.createObjectURL(cachedPDF);
-                            const viewerUrl = `${state.pdfViewerBase}?file=${encodeURIComponent(objectUrl)}`;
-                            iframe.src = viewerUrl;
-                            
-                            // Clean up object URL when iframe loads
-                            iframe.onload = () => {
-                                loader.remove();
-                                // Revoke object URL after a delay to ensure it's loaded
-                                setTimeout(() => URL.revokeObjectURL(objectUrl), 5000);
-                            };
-                        } else {
-                            // Fallback to regular loading
-                            const viewerUrl = `${state.pdfViewerBase}?file=${encodeURIComponent(pdfUrl)}`;
-                            iframe.src = viewerUrl;
-                            iframe.onload = () => loader.remove();
-                        }
-                        
-                        div.appendChild(iframe);
-                    } else {
-                        div.innerHTML = '<div class="no-more-papers">No additional papers to display</div>';
-                    }
-
-                    fragment.appendChild(div);
-                }
-
-                DOM.pdfContainer.appendChild(fragment);
-                state.isRendering = false;
-                resolve();
-            });
-        }
-
-        // Create enhanced date selector
-        function createDateSelector(data, initialIndex) {
-            const div = document.createElement('div');
-            div.className = 'date-selector';
-            const select = document.createElement('select');
-
-            data.forEach((item, idx) => {
-                const option = document.createElement('option');
-                option.value = idx;
-                option.textContent = item.date;
-                if (idx === initialIndex) {
-                    option.selected = true;
-                }
-                select.appendChild(option);
             });
 
-            select.addEventListener('change', debounce(async (e) => {
-                const idx = parseInt(e.target.value, 10);
-                const pdfUrl = data[idx].link;
-                const viewer = div.closest('.pdf-viewer');
-                const iframe = viewer.querySelector('iframe');
-                const loader = document.createElement('div');
-                loader.className = 'loader-container';
-                loader.innerHTML = '<div class="loader"></div>';
-                viewer.appendChild(loader);
+            DOM.pdfContainer.className = `grid-${count}`;
+            DOM.pdfContainer.innerHTML = filteredData.length ? '' : '<div class="no-pdf-message">No papers available for this exam type.</div>';
 
-                // Check cache first
-                const cachedPDF = await getCachedPDF(pdfUrl);
-                
-                if (cachedPDF) {
-                    // Use cached version
-                    const objectUrl = URL.createObjectURL(cachedPDF);
-                    const viewerUrl = `${state.pdfViewerBase}?file=${encodeURIComponent(objectUrl)}`;
-                    iframe.src = viewerUrl;
+            if (!filteredData.length) { state.isRendering = false; resolve(); return; }
+
+            const fragment = document.createDocumentFragment();
+            const maxRender = Math.min(count, filteredData.length);
+
+            for (let i = 0; i < count; i++) {
+                const div = document.createElement('div');
+                div.className = 'pdf-viewer';
+                if (i < maxRender) {
+                    const loader = document.createElement('div');
+                    loader.className = 'loader-container';
+                    loader.innerHTML = '<div class="loader"></div>';
+                    div.appendChild(loader);
                     
-                    iframe.onload = () => {
-                        loader.remove();
-                        setTimeout(() => URL.revokeObjectURL(objectUrl), 5000);
-                    };
+                    const selector = createPaperSelector(filteredData, i, `viewer-${i}`);
+                    div.appendChild(selector); // Appended to pdf-viewer div
+                    
+                    const iframe = document.createElement('iframe');
+                    // Insert iframe before selector so selector is on top, or rely on z-index
+                    div.appendChild(iframe); 
+                    // To ensure selector is on top, it's better to append iframe first, then selector,
+                    // or adjust DOM structure if selector must be before iframe for some reason.
+                    // Given current absolute positioning and z-index of selector, order here mainly affects tab order.
+                    // Let's append selector after iframe to ensure it renders on top of iframe content if any overlap occurs without z-index.
+                    // However, with z-index:10 for selector, this should be fine.
+                    // Original order: loader, selector, iframe.
+                    // Let's maintain: loader, selector, iframe. If selector covers part of iframe, it's intended.
+
+                    loadPdfIntoIframe(iframe, filteredData[i].link, loader);
                 } else {
-                    // Regular loading
-                    const viewerUrl = `${state.pdfViewerBase}?file=${encodeURIComponent(pdfUrl)}`;
-                    iframe.onload = () => loader.remove();
-                    iframe.src = viewerUrl;
+                    div.innerHTML = '<div class="no-more-papers">No additional papers to display</div>';
                 }
-            }, 50));
-
-            div.appendChild(select);
-            return div;
-        }
-
-        // Toggle fullscreen
-        function toggleFullscreen() {
-            if (document.fullscreenElement) {
-                document.exitFullscreen();
-            } else {
-                document.documentElement.requestFullscreen({ navigationUI: 'hide' });
+                fragment.appendChild(div);
             }
-        }
+            DOM.pdfContainer.appendChild(fragment);
+            state.isRendering = false;
+            resolve();
+        });
+    }
 
-        // Update fullscreen button
-        function updateFullscreenButton() {
-            DOM.fullscreenBtn.innerHTML = document.fullscreenElement ?
-                `<svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                    <path d="M4 14h6m0 0v6m0-6l-7 7m17-11h-6m0 0V4m0 6l7-7"/>
-                </svg> Exit Fullscreen` :
-                `<svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                    <path d="M8 3H5a2 2 0 0 0-2 2v3m18 0V5a2 2 0 0 0-2-2h-3m0 18h3a2 2 0 0 0 2-2v-3M3 16v3a2 2 0 0 0 2 2h3"/>
-                </svg> Fullscreen`;
-        }
+    function createPaperSelector(data, initialIndex, viewerId) {
+        const selectorContainer = document.createElement('div');
+        selectorContainer.className = 'paper-selector';
+        
+        const label = document.createElement('label');
+        label.className = 'paper-selector-label';
+        label.textContent = 'Paper:';
+        const selectId = `paper-select-${viewerId}`;
+        label.htmlFor = selectId;
+        
+        const select = document.createElement('select');
+        select.id = selectId;
+        select.size = 1; 
+        select.addEventListener('focus', () => { select.size = Math.min(5, data.length || 1); }); // Ensure size is at least 1
+        select.addEventListener('blur', () => { select.size = 1; });
+        select.addEventListener('change', () => { select.size = 1; }); // Collapse on change
 
-        // Network status detection
-        function setupNetworkDetection() {
-            window.addEventListener('online', () => {
-                state.isOnline = true;
-                // When coming back online, refresh any cached data
-                if (state.pdfFiles.length === 0) {
-                    fetchPDFFiles();
-                }
-            });
+        data.forEach((item, idx) => {
+            const option = document.createElement('option');
+            option.value = idx; 
+            option.textContent = item.date;
+            if (idx === initialIndex) option.selected = true;
+            select.appendChild(option);
+        });
+
+        select.addEventListener('change', debounce(async (e) => {
+            const idx = parseInt(e.target.value, 10);
+            const pdfUrl = data[idx].link;
+            const viewerDiv = selectorContainer.closest('.pdf-viewer');
+            const iframe = viewerDiv.querySelector('iframe');
+            if (!iframe) return;
+
+            const loader = document.createElement('div');
+            loader.className = 'loader-container';
+            loader.innerHTML = '<div class="loader"></div>';
             
-            window.addEventListener('offline', () => {
-                state.isOnline = false;
-                // Show offline message if no content is cached
-                if (state.pdfFiles.length === 0) {
-                    DOM.pdfContainer.innerHTML = '<div class="no-pdf-message">You are offline. Some content may not be available.</div>';
-                }
-            });
-        }
-
-        // Event listeners setup
-        function setupEventListeners() {
-            const debouncedRender = debounce(renderPDFs, 50);
-            DOM.pdfCount.addEventListener('change', debouncedRender);
-            DOM.examType.addEventListener('change', debouncedRender);
-            DOM.fullscreenBtn.addEventListener('click', toggleFullscreen);
-            DOM.backBtn.addEventListener('click', () => window.location.href = '/questionpapers');
-            document.addEventListener('fullscreenchange', updateFullscreenButton);
-            document.addEventListener('keydown', (e) => {
-                if (e.key === 'Escape' && document.fullscreenElement) document.exitFullscreen();
-            });
-        }
-
-        // Initialize
-        async function init() {
-            preloadViewerResources();
-            setSubjectDisplay();
-            setupEventListeners();
-            setupNetworkDetection();
-            
-            // Initialize IndexedDB cache
-            await initDB();
-            
-            if (state.pdfPath) {
-                // Immediately start loading the viewer.html in the background
-                const preloadIframe = document.createElement('iframe');
-                preloadIframe.style.display = 'none';
-                preloadIframe.src = state.pdfViewerBase;
-                document.body.appendChild(preloadIframe);
-                setTimeout(() => preloadIframe.remove(), 3000);
-                
-                // Start loading PDF files
-                fetchPDFFiles();
+            // Insert loader before the iframe, if iframe is not the first child.
+            // If selector is before iframe, this is fine.
+            if (iframe.previousSibling && iframe.previousSibling !== selectorContainer) {
+                 viewerDiv.insertBefore(loader, iframe);
             } else {
-                DOM.pdfContainer.innerHTML = '<div class="no-pdf-message">Please select a subject from the previous page.</div>';
+                 viewerDiv.appendChild(loader); // Fallback or if iframe is first.
             }
+            // A safer way:
+            // viewerDiv.appendChild(loader); // Add it, loadPdfIntoIframe will remove it.
+            // This might cause momentary flicker if loader is appended at the end.
+            // The original logic of appending loader as first child of viewer in renderPDFs seems fine.
+            // For changes, it should be added relative to the iframe.
+            viewerDiv.insertBefore(loader, iframe);
+
+
+            await loadPdfIntoIframe(iframe, pdfUrl, loader);
+        }, 150));
+
+        selectorContainer.appendChild(label);
+        selectorContainer.appendChild(select);
+        return selectorContainer;
+    }
+
+    function toggleFullscreen() {
+        if (document.fullscreenElement) document.exitFullscreen();
+        else document.documentElement.requestFullscreen({ navigationUI: 'hide' });
+    }
+
+    function updateFullscreenButton() {
+        DOM.fullscreenBtn.innerHTML = document.fullscreenElement ?
+            `<svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 14h6m0 0v6m0-6l-7 7m17-11h-6m0 0V4m0 6l7-7"/></svg> Exit Fullscreen` :
+            `<svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M8 3H5a2 2 0 0 0-2 2v3m18 0V5a2 2 0 0 0-2-2h-3m0 18h3a2 2 0 0 0 2-2v-3M3 16v3a2 2 0 0 0 2 2h3"/></svg> Fullscreen`;
+    }
+
+    function setupEventListeners() {
+        const debouncedRender = debounce(renderPDFs, 250);
+        DOM.pdfCount.addEventListener('change', debouncedRender);
+        DOM.examType.addEventListener('change', () => {
+            debouncedRender();
+            preloadNextPDFs(3);
+        });
+        DOM.fullscreenBtn.addEventListener('click', toggleFullscreen);
+        DOM.backBtn.addEventListener('click', () => window.location.href = '/questionpapers');
+        document.addEventListener('fullscreenchange', updateFullscreenButton);
+        document.addEventListener('keydown', (e) => { if (e.key === 'Escape' && document.fullscreenElement) document.exitFullscreen(); });
+    }
+
+    async function init() {
+        preloadViewerResources();
+        updateSubjectDisplay();
+        setupEventListeners();
+        await initDB();
+        
+        if (state.pdfPath) {
+            const preloadIframe = document.createElement('iframe');
+            preloadIframe.style.display = 'none';
+            preloadIframe.src = state.pdfViewerBase; // Preload viewer.html
+            document.body.appendChild(preloadIframe);
+            // Remove after a delay to ensure it loads but doesn't linger
+            setTimeout(() => preloadIframe.remove(), 5000); 
+            
+            fetchPDFFiles();
+        } else {
+            DOM.pdfContainer.innerHTML = '<div class="no-pdf-message">No PDF path specified. Please select a subject.</div>';
+            DOM.subjectDisplay.textContent = 'No Subject Selected';
         }
-
-        // Start the application
-        document.addEventListener('DOMContentLoaded', init);
-
-        (function(c, l, a, r, i, t, y) {
-            c[a] = c[a] || function() { (c[a].q = c[a].q || []).push(arguments) };
-            t = l.createElement(r);
-            t.async = 1;
-            t.src = "https://www.clarity.ms/tag/" + i;
-            y = l.getElementsByTagName(r)[0];
-            y.parentNode.insertBefore(t, y);
-        })(window, document, "clarity", "script", "qnqi8o9y94"); 
-    </script>
-</body>
-</html>
+    }
+    document.addEventListener('DOMContentLoaded', init);</script>

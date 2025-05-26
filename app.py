@@ -215,6 +215,8 @@ def viewer_page(subject_name):
                          pdf_data_for_js=pdf_data_list,
                          seo_data=seo_data)
 
+    print("hey",pdf_data_list)
+
 # =============================================================================
 # SUBJECT AND QUESTION ROUTES
 # =============================================================================

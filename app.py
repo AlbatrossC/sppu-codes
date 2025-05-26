@@ -9,33 +9,67 @@ from functools import lru_cache
 app = Flask(__name__)
 app.secret_key = 'karltos'
 
+# =============================================================================
+# CONFIGURATION AND INITIALIZATION
+# =============================================================================
 
-# Root directory containing the pyqs
-BASE_DIR = os.path.join(os.path.dirname(__file__), 'static', 'pyqs')
+# Directory paths
+BASE_DIR = os.path.join(os.path.dirname(__file__), 'static')
+QUESTIONS_DIR = os.path.join(os.path.dirname(__file__), 'questions')
+downloads_folder = os.path.join(app.root_path, 'downloads')
 
+# Database configuration
 # For Local Testing
 # DATABASE_URL = "postgresql://username:password@localhost:5432/database_name"
-DATABASE_URL = os.getenv("DATABASE_URL") 
+DATABASE_URL = os.getenv("DATABASE_URL")
 
-# Database connection function
+# =============================================================================
+# DATABASE UTILITIES
+# =============================================================================
+
 def connect_db():
+    """Establish database connection with error handling"""
     try:
         conn = psycopg2.connect(DATABASE_URL)
         return conn
     except Exception as e:
         print(f"Database connection error: {e}")
         return None
-    
+
+# =============================================================================
+# MAIN ROUTES
+# =============================================================================
+
+@app.route('/')
+def index():
+    """Render the home page"""
+    return render_template('index.html')
+
+@app.route('/download')
+def download():
+    """Render the downloads page"""
+    return render_template('download.html')
+
+@app.route('/downloads/<filename>')
+def download_file(filename):
+    """Serve downloadable files from the downloads directory"""
+    return send_from_directory(downloads_folder, filename)
+
+# =============================================================================
+# FORM HANDLING ROUTES
+# =============================================================================
+
 @app.route('/submit', methods=["GET", "POST"])
 def submit():
+    """Handle code submission form - both display and processing"""
     conn = connect_db()
     if conn is None:
-        return "Database Connection error. Please try again later"
+        flash("Database Connection error. Please try again later", "error")
+        return render_template("submit.html")
 
     if request.method == "POST":
         try:
             cur = conn.cursor()
-
             name = request.form.get("name")
             year = request.form.get("year")
             branch = request.form.get("branch")
@@ -51,24 +85,26 @@ def submit():
                 return redirect(url_for('submit'))
             else:
                 flash("PLEASE FILL ALL NECESSARY FIELDS", "error")
-
-            cur.close()
         except Exception as e:
+            conn.rollback()
             flash(f"Error inserting data: {e}", "error")
         finally:
-            conn.close()
-
+            if 'cur' in locals() and cur:
+                cur.close()
+            if conn:
+                conn.close()
     return render_template("submit.html")
 
-# Route for contact form
 @app.route("/contact", methods=["GET", "POST"])
 def contact():
+    """Handle contact form - both display and processing"""
     if request.method == "POST":
         name = request.form.get("name")
         email = request.form.get("email")
         message = request.form.get("message")
 
         if name and email and message:
+            conn = None
             try:
                 conn = connect_db()
                 if conn is None:
@@ -76,102 +112,117 @@ def contact():
                     return redirect(url_for('contact'))
 
                 cur = conn.cursor()
-                cur.execute("INSERT INTO contacts (name, email, message) VALUES (%s, %s, %s)", 
+                cur.execute("INSERT INTO contacts (name, email, message) VALUES (%s, %s, %s)",
                           (name, email, message))
                 conn.commit()
-                cur.close()
-                conn.close()
-                
                 flash("Message sent successfully! Thank you", "success")
             except Exception as e:
+                if conn: 
+                    conn.rollback()
                 flash(f"Error inserting data: {e}", "error")
+            finally:
+                if 'cur' in locals() and cur: 
+                    cur.close()
+                if conn: 
+                    conn.close()
             return redirect(url_for('contact'))
         else:
             flash("PLEASE FILL ALL NECESSARY FIELDS", "error")
-            
     return render_template("contact.html")
 
+# =============================================================================
+# QUESTION PAPER ROUTES
+# =============================================================================
+
+# Question paper data initialization
+
+# Question paper data initialization
+QUESTION_PAPER_DATA = {}
+SEO_DATA = {}
+data_json_path = os.path.join(os.path.dirname(__file__), 'static', 'pyqs', 'questionpapers.json')
+seo_json_path = os.path.join(os.path.dirname(__file__), 'static', 'pyqs', 'viewerseo.json')
+
+def load_question_paper_data():
+    """Load question paper data from JSON file on application startup"""
+    global QUESTION_PAPER_DATA
+    try:
+        with open(data_json_path, 'r') as f:
+            QUESTION_PAPER_DATA = json.load(f)
+        print("SUCCESS: questionpapers.json loaded successfully.")
+    except FileNotFoundError:
+        print(f"ERROR: questionpapers.json not found at {data_json_path}")
+    except json.JSONDecodeError as e:
+        print(f"ERROR: questionpapers.json is not valid JSON! Details: {e}")
+
+def load_seo_data():
+    """Load SEO data from JSON file on application startup"""
+    global SEO_DATA
+    try:
+        with open(seo_json_path, 'r') as f:
+            seo_list = json.load(f)
+            # Convert list to dictionary for faster lookup by link
+            SEO_DATA = {item['link']: item for item in seo_list}
+        print("SUCCESS: viewerseo.json loaded successfully.")
+    except FileNotFoundError:
+        print(f"ERROR: viewerseo.json not found at {seo_json_path}")
+        SEO_DATA = {}
+    except json.JSONDecodeError as e:
+        print(f"ERROR: viewerseo.json is not valid JSON! Details: {e}")
+        SEO_DATA = {}
+
+# Initialize data on startup
+load_question_paper_data()
+load_seo_data()
+
 @app.route('/questionpapers')
-def select():
+def select_page():
     return render_template('select.html')
 
-@app.route('/api/directories')
-def get_directories():
-    path = request.args.get('path', '')
-    if path.startswith('pyqs/'):
-        path = path[len('pyqs/'):]
+@app.route('/questionpapers/<subject_name>')
+def viewer_page(subject_name):
+    """Display PDF viewer page for selected subject with all available question papers"""
+    raw_pdf_urls = [
+        url 
+        for branch in QUESTION_PAPER_DATA.values()
+        for semester in branch.values()
+        for subject, urls in semester.items()
+        if subject == subject_name
+        for url in urls
+    ]
     
-    full_path = os.path.join(BASE_DIR, path)
+    if not raw_pdf_urls:
+        abort(404, description=f"No question papers found for subject: {subject_name}")
     
-    if not os.path.exists(full_path):
-        return jsonify([])
+    pdf_data_list = [
+        {'filename': url.split('/')[-1].split('?')[0], 'url': url}
+        for url in raw_pdf_urls
+    ]
+
+    # Get SEO data for current route
+    current_route = f"/questionpapers/{subject_name}"
+    seo_info = SEO_DATA.get(current_route, {})
     
-    if os.path.isdir(full_path):
-        return jsonify(_get_directory_contents(full_path))
-    return jsonify([])
+    # Prepare SEO metadata
+    seo_data = {
+        'title': f"Sppu {seo_info.get('subjectName', subject_name.replace('_', ' ').title())} Question Papers: Sppu Codes",
+        'description': seo_info.get('description', f"SPPU {subject_name.replace('_', ' ').title()} Question Papers - View PDFs for selected subjects"),
+        'keywords': ', '.join(seo_info.get('keywords', [])) if seo_info.get('keywords') else f"sppu, {subject_name.replace('_', ' ')}, question papers",
+        'subject_name': seo_info.get('subjectName', subject_name.replace('_', ' ').title())
+    }
 
-CACHE_TIMEOUT = 3600 
-@lru_cache(maxsize=1024)
-def _get_directory_contents(full_path):
-    """Cached helper function to get directory contents"""
-    try:
-        items = os.listdir(full_path)
-        if any(item.lower().endswith('.pdf') for item in items):
-            return [f for f in items if f.lower().endswith('.pdf')]
-        return [d for d in items if os.path.isdir(os.path.join(full_path, d))]
-    except Exception as e:
-        print(f"Error reading directory {full_path}: {e}")
-        return []
+    return render_template('viewer.html', 
+                         subject_name=subject_name, 
+                         pdf_data_for_js=pdf_data_list,
+                         seo_data=seo_data)
 
-@app.route('/static/pyqs/<path:filename>')
-def serve_pdf(filename):
-    # Add caching headers for the PDF files
-    response = send_from_directory(
-        BASE_DIR,
-        filename,
-        max_age=CACHE_TIMEOUT
-    )
-    # Enable browser caching
-    response.headers['Cache-Control'] = f'public, max-age={CACHE_TIMEOUT}'
-    return response
-
-
-@app.route('/viewer')
-def viewer():
-    pdf_path = request.args.get('pdf')
-    return render_template('viewer.html', pdf_path=pdf_path)
-
-# Custom Error Handlers
-@app.errorhandler(404)
-def page_not_found(e):
-    return render_template('error.html'), 404
-
-@app.errorhandler(500)
-def internal_server_error(e):
-    return render_template('error.html'), 500
-
-# Home route
-@app.route('/')
-def index():
-    return render_template('index.html')
-
-# Route for downloading codes
-downloads_folder = os.path.join(app.root_path, 'downloads')
-
-@app.route('/download')
-def download():
-    return render_template('download.html')
-
-@app.route('/downloads/<filename>')
-def download_file(filename):
-    return send_from_directory(downloads_folder, filename)
-
-# Route for serving questions
-QUESTIONS_DIR = os.path.join(os.path.dirname(__file__), 'questions')
+# =============================================================================
+# SUBJECT AND QUESTION ROUTES
+# =============================================================================
 
 @app.route("/<subject_code>")
 @app.route("/<subject_code>/<question_id>")
 def question(subject_code, question_id=None):
+    """Display subject page with questions, optionally highlighting a specific question"""
     json_file_path = os.path.join(QUESTIONS_DIR, f"{subject_code}.json")
     
     if not os.path.exists(json_file_path):
@@ -184,19 +235,21 @@ def question(subject_code, question_id=None):
     questions = data.get("questions", [])
     question_dict = {q["id"]: q for q in questions}
 
+    # Default metadata
     title = f"SPPU Codes - {subject.get('subject_name', '')}"
     description = subject.get("description", "")
     keywords = subject.get("keywords", [])
     url = subject.get("url", f"https://sppucodes.vercel.app/{subject_code}")
 
+    # Override metadata if specific question selected
     selected_question = question_dict.get(question_id) if question_id else None
-
     if selected_question:
         title = selected_question["title"]
         description = f"SPPU Codes: {selected_question['question']}"
         keywords = [selected_question["question"], selected_question["title"]] + subject.get("keywords", [])
         url = f"https://sppucodes.vercel.app/{subject_code}/{question_id}"
 
+    # Group questions by category
     groups = {}
     for q in questions:
         groups.setdefault(q["group"], []).append(q)
@@ -214,42 +267,65 @@ def question(subject_code, question_id=None):
         question=selected_question
     )
 
-# Route for serving answers
+# =============================================================================
+# FILE SERVING ROUTES
+# =============================================================================
+
 @app.route('/answers/<subject>/<filename>')
 def get_answer(subject, filename):
-    try:      
+    """Serve answer files for specific subjects"""
+    try:
         base_dir = os.path.abspath(os.path.dirname(__file__))
         answers_dir = os.path.join(base_dir, 'answers', subject)
-
-        if not os.path.exists(answers_dir):
+        if not os.path.exists(answers_dir): 
             abort(404)
-
         full_path = os.path.join(answers_dir, filename)
-        if not os.path.exists(full_path):
+        if not os.path.exists(full_path): 
             abort(404)
-            
         return send_from_directory(answers_dir, filename)
-    except Exception:
+    except Exception: 
         abort(404)
 
-# Route for serving images
 @app.route('/images/<filename>')
 def get_image(filename):
+    """Serve static image files"""
     base_dir = os.path.abspath(os.path.dirname(__file__))
     images_dir = os.path.join(base_dir, 'images')
     return send_from_directory(images_dir, filename)
 
-# Route for sitemap
 @app.route('/sitemap.xml')
 def sitemap():
+    """Serve sitemap for SEO"""
     return send_from_directory('.', 'sitemap.xml')
 
 @app.route('/robots.txt')
 def robots():
+    """Serve robots.txt for web crawlers"""
     return send_from_directory('.', 'robots.txt')
+
+# =============================================================================
+# ERROR HANDLERS
+# =============================================================================
+
+@app.errorhandler(404)
+def page_not_found(e):
+    """Handle 404 errors with custom error page"""
+    description = e.description if hasattr(e, 'description') else "Page not found."
+    return render_template('error.html', error_code=404, error_message=description), 404
+
+@app.errorhandler(500)
+def internal_server_error(e):
+    """Handle 500 errors with custom error page"""
+    description = e.description if hasattr(e, 'description') else "An internal server error occurred."
+    return render_template('error.html', error_code=500, error_message=description), 500
+
+# =============================================================================
+# REQUEST PROCESSING
+# =============================================================================
 
 @app.after_request
 def finalize_markup(response):
+    """Inject analytics scripts into HTML responses before sending to client"""
     if response.content_type.startswith('text/html'):
         snippet_a = """
         <script>
@@ -268,7 +344,6 @@ def finalize_markup(response):
         """
 
         payload = snippet_a + snippet_b
-
         response.direct_passthrough = False
         try:
             response.set_data(response.get_data().replace(
@@ -279,6 +354,9 @@ def finalize_markup(response):
             pass
     return response
 
+# =============================================================================
+# APPLICATION ENTRY POINT
+# =============================================================================
 
 if __name__ == '__main__':
     app.run(host='0.0.0.0', port=int("3000"), debug=True)

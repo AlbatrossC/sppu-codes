@@ -2,112 +2,207 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta content="width=device-width,initial-scale=1" name="viewport">
-    <meta content="IE=edge" http-equiv="X-UA-Compatible">
-    <meta content="{{ seo_data.description }}" name="description">
-    <meta content="{{ seo_data.keywords }}" name="keywords">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>{{ seo_data.title }}</title>
+    <meta name="description" content="{{ seo_data.description }}">
+    <meta name="keywords" content="{{ seo_data.keywords }}">
     <meta name="author" content="SPPU Codes Team">
     <meta name="language" content="English">
-    
-    <!-- Canonical URL -->
+    <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1">
+    <meta name="googlebot" content="index, follow">
+    <meta name="bingbot" content="index, follow">
+    <meta name="subject" content="{{ seo_data.subject_name }} Question Papers">
+    <meta name="topic" content="Academic Question Papers, SPPU University Papers">
+    <meta name="summary" content="Download and view {{ seo_data.subject_name }} question papers online. Access INSEM and ENDSEM papers with our PDF viewer.">
+
     <link rel="canonical" href="https://sppucodes.vercel.app/questionpapers/{{ subject_name }}">
-    
-    <!-- OpenGraph Tags -->
+
     <meta property="og:title" content="{{ seo_data.title }}">
     <meta property="og:description" content="{{ seo_data.description }}">
     <meta property="og:url" content="https://sppucodes.vercel.app/questionpapers/{{ subject_name }}">
     <meta property="og:image" content="https://sppucodes.vercel.app/images/logo.png">
     <meta property="og:type" content="website">
     <meta property="og:site_name" content="SPPU Codes">
-    
-    <!-- Twitter Card Tags -->
+    <meta property="og:locale" content="en_US">
+
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:title" content="{{ seo_data.title }}">
     <meta name="twitter:description" content="{{ seo_data.description }}">
     <meta name="twitter:image" content="https://sppucodes.vercel.app/images/logo.png">
-    
+    <meta name="twitter:site" content="@sppucodes">
+
     <link href="{{ url_for('get_image', filename='favicon.ico') }}" rel="icon" fetchpriority="high" type="image/x-icon">
-    <title>{{ seo_data.title }}</title>
-    
-    <!-- Preload critical resources -->
+
     <link href="/static/pdfjs/web/viewer.html" rel="preload" fetchpriority="high" as="document">
     <link href="/static/pdfjs/web/viewer.css" rel="preload" fetchpriority="high" as="style">
     <link href="/static/css/viewer.css" rel="stylesheet">
     <link href="/static/pdfjs/web/viewer.js" rel="preload" fetchpriority="high" as="script">
     <link href="/static/pdfjs/web/pdf.js" rel="preload" fetchpriority="high" as="script">
     <link href="/static/pdfjs/web/pdf.worker.js" rel="preload" fetchpriority="high" as="worker">
-    
-    <!-- Schema.org Structured Data -->
+
     <script type="application/ld+json">
     {
         "@context": "https://schema.org",
-        "@type": "ItemList",
-        "name": "{{ seo_data.subject_name }} Question Papers",
+        "@type": "WebPage",
+        "name": "{{ seo_data.title }}",
         "description": "{{ seo_data.description }}",
         "url": "https://sppucodes.vercel.app/questionpapers/{{ subject_name }}",
-        "numberOfItems": {{ pdf_data_for_js | length }},
-        "itemListElement": [
-            {% for pdf in pdf_data_for_js %}
-            {
-                "@type": "DigitalDocument",
-                "name": "{{ pdf.filename }}",
-                "contentUrl": "{{ pdf.url }}",
-                "encodingFormat": "application/pdf",
-                "position": {{ loop.index }},
-                "publisher": {
-                    "@type": "Organization",
-                    "name": "SPPU Codes"
-                }
-            }{% if not loop.last %},{% endif %}
-            {% endfor %}
-        ],
-        "publisher": {
-            "@type": "Organization",
+        "inLanguage": "en-US",
+        "isPartOf": {
+            "@type": "WebSite",
             "name": "SPPU Codes",
-            "url": "https://sppucodes.vercel.app"
+            "url": "https://sppucodes.vercel.app",
+            "publisher": {
+                "@type": "Organization",
+                "name": "SPPU Codes",
+                "url": "https://sppucodes.vercel.app",
+                "logo": {
+                    "@type": "ImageObject",
+                    "url": "https://sppucodes.vercel.app/images/logo.png"
+                }
+            }
+        },
+        "mainEntity": {
+            "@type": "CollectionPage",
+            "name": "{{ seo_data.subject_name }} Question Papers Collection",
+            "description": "Complete collection of {{ seo_data.subject_name }} question papers including INSEM and ENDSEM papers from SPPU University.",
+            "mainContentOfPage": {
+                "@type": "ItemList",
+                "numberOfItems": {{ pdf_data_for_js | length }},
+                "itemListElement": [
+                    {% for pdf in pdf_data_for_js %}
+                    {
+                        "@type": "DigitalDocument",
+                        "name": "{{ pdf.filename }}",
+                        "description": "{{ seo_data.subject_name }} question paper - {{ pdf.filename }}",
+                        "contentUrl": "{{ pdf.url }}",
+                        "encodingFormat": "application/pdf",
+                        "position": {{ loop.index }},
+                        "datePublished": "2024-01-01",
+                        "inLanguage": "en-US",
+                        "about": {
+                            "@type": "Thing",
+                            "name": "{{ seo_data.subject_name }}",
+                            "description": "Academic subject at Savitribai Phule Pune University"
+                        },
+                        "publisher": {
+                            "@type": "Organization",
+                            "name": "SPPU Codes",
+                            "url": "https://sppucodes.vercel.app"
+                        }
+                    }{% if not loop.last %},{% endif %}
+                    {% endfor %}
+                ]
+            }
+        },
+        "breadcrumb": {
+            "@type": "BreadcrumbList",
+            "itemListElement": [
+                {"@type": "ListItem", "position": 1, "name": "Home", "item": "https://sppucodes.vercel.app"},
+                {"@type": "ListItem", "position": 2, "name": "Question Papers", "item": "https://sppucodes.vercel.app/questionpapers"},
+                {"@type": "ListItem", "position": 3, "name": "{{ seo_data.subject_name }}", "item": "https://sppucodes.vercel.app/questionpapers/{{ subject_name }}"}
+            ]
         }
     }
     </script>
-    
-    <!-- SEO: Hidden PDF links for search engine indexing -->
-    <div style="display:none;" aria-hidden="true">
-        {% for pdf in pdf_data_for_js %}
-            <a href="{{ pdf.url }}" download="{{ pdf.filename }}">{{ pdf.filename }}</a>
-        {% endfor %}
-    </div>
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "Course",
+        "name": "{{ seo_data.subject_name }}",
+        "description": "Comprehensive {{ seo_data.subject_name }} course at Savitribai Phule Pune University. Access question papers, study materials, and examination resources for academic success.",
+        "provider": {"@type": "Organization", "name": "Savitribai Phule Pune University", "alternateName": "SPPU", "url": "https://www.unipune.ac.in/"},
+        "offers": {"@type": "Offer", "category": "Educational Resource", "price": "0", "priceCurrency": "INR", "availability": "https://schema.org/InStock", "validFrom": "2024-01-01"},
+        "hasCourseInstance": {"@type": "CourseInstance", "courseMode": "Online", "courseWorkload": "P4Y", "instructor": {"@type": "Organization", "name": "Savitribai Phule Pune University Faculty"}},
+        "educationalCredentialAwarded": "University Degree",
+        "numberOfCredits": 4,
+        "coursePrerequisites": "High School Diploma or equivalent",
+        "hasPart": [
+            {% for pdf in pdf_data_for_js %}
+            {
+                "@type": "LearningResource",
+                "name": "{{ pdf.filename }}",
+                "description": "{{ seo_data.subject_name }} examination paper - {{ pdf.filename }}",
+                "learningResourceType": "Question Paper",
+                "educationalUse": "Examination Preparation",
+                "url": "{{ pdf.url }}",
+                "encodingFormat": "application/pdf",
+                "inLanguage": "en"
+            }{% if not loop.last %},{% endif %}
+            {% endfor %}
+        ]
+    }
+    </script>
 </head>
 <body>
+    <div class="seo-content">
+        <h1>{{ seo_data.subject_name }} Question Papers - SPPU University</h1>
+        <p>Access and download {{ seo_data.subject_name }} question papers from Savitribai Phule Pune University (SPPU). Our collection includes INSEM (Internal Semester) and ENDSEM (End Semester) exam papers.</p>
+
+        <h2>Available {{ seo_data.subject_name }} Papers</h2>
+        <p>We offer {{ pdf_data_for_js | length }} question papers for {{ seo_data.subject_name }}, covering various exam patterns and years. All papers are in PDF format for easy viewing and download.</p>
+
+        <h3>INSEM Papers for {{ seo_data.subject_name }}</h3>
+        <p>Prepare for mid-term evaluations with {{ seo_data.subject_name }} INSEM papers, aligned with the SPPU exam pattern and syllabus.</p>
+
+        <h3>ENDSEM Papers for {{ seo_data.subject_name }}</h3>
+        <p>Access {{ seo_data.subject_name }} ENDSEM papers covering the entire syllabus, essential for final exam preparation.</p>
+
+        <h2>Online PDF Viewer Features</h2>
+        <p>Our PDF viewer enables you to:</p>
+        <ul>
+            <li>View papers in single or split-screen mode.</li>
+            <li>Compare multiple papers simultaneously.</li>
+            <li>Use fullscreen mode for better readability.</li>
+            <li>Filter by exam type (INSEM/ENDSEM).</li>
+            <li>Download papers for offline study.</li>
+        </ul>
+
+        <h2>About SPPU Codes</h2>
+        <p>SPPU Codes is your resource for SPPU academic materials. We provide easy access to question papers to help students excel.</p>
+
+        <h3>Study Materials for {{ seo_data.subject_name }}</h3>
+        <p>{{ seo_data.subject_name }} is a key subject in the SPPU curriculum. Our question paper collection helps students understand exam patterns, practice effectively, and improve academic performance.</p>
+        <div>
+            <h3>Direct Links to Question Papers:</h3>
+            {% for pdf in pdf_data_for_js %}
+                <a href="{{ pdf.url }}" download="{{ pdf.filename }}">Download {{ pdf.filename }} ({{ seo_data.subject_name }})</a>
+            {% endfor %}
+        </div>
+
+        <h2>Relevant Keywords & Topics</h2>
+        <p>Explore {{ seo_data.subject_name }} resources including SPPU question papers from Savitribai Phule Pune University. Find INSEM and ENDSEM papers for effective examination preparation. Our platform offers academic resources, a PDF viewer for online study, university question papers, and materials for semester examinations.</p>
+    </div>
+
     <header>
         <div class="header-info">
-            <button class="back" id="back-btn">
+            <button class="back" id="back-btn" aria-label="Go back to question papers list">
                 <svg class="icon" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>
                 Back
             </button>
-            <h1>
-                <div class="subject-badge" id="subject-display">{{ seo_data.subject_name }}</div>
-            </h1>
-            
+            <h1><div class="subject-badge" id="subject-display">{{ seo_data.subject_name }}</div></h1>
         </div>
         <div class="header-center">
             <div class="control-group">
-                <label for="pdf-count">PDF Layout:</label>
-                <select id="pdf-count">
-                    <option value="1" selected>Single View</option>
-                    <option value="2">Split View (2)</option>
-                    <option value="3">Split View (3)</option>
-                    <option value="4">Grid View (4)</option>
+                <label for="pdf-count">Layout:</label>
+                <select id="pdf-count" aria-label="Select PDF layout">
+                    <option value="1" selected>Single</option>
+                    <option value="2">Split (2)</option>
+                    <option value="3">Split (3)</option>
+                    <option value="4">Grid (4)</option>
                 </select>
             </div>
             <div class="control-group">
-                <label for="exam-type">Exam Type:</label>
-                <select id="exam-type">
+                <label for="exam-type">Exam:</label>
+                <select id="exam-type" aria-label="Select exam type">
                     <option value="insem">INSEM</option>
                     <option value="endsem">ENDSEM</option>
                 </select>
             </div>
         </div>
         <div class="header-controls">
-            <button class="primary" id="fullscreen-btn">
+            <button class="primary" id="fullscreen-btn" aria-label="Toggle fullscreen mode">
                 <svg class="icon" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24"><path d="M8 3H5a2 2 0 0 0-2 2v3m18 0V5a2 2 0 0 0-2-2h-3m0 18h3a2 2 0 0 0 2-2v-3M3 16v3a2 2 0 0 0 2 2h3"/></svg>
                 Fullscreen
             </button>
@@ -121,7 +216,6 @@
 <script>
     'use strict';
 
-    // Data passed from Flask template
     const initialPdfDataFromServer = {{ pdf_data_for_js | tojson | safe }};
     const subjectNameFromServer = {{ seo_data.subject_name | tojson | safe }};
 
@@ -140,11 +234,9 @@
         activeObjectURLs: new Map(),
         renderQueue: Promise.resolve(),
         pdfViewerBase: '/static/pdfjs/web/viewer.html',
-        pdfCache: new Map() // New cache for storing PDF blobs
+        pdfCache: new Map()
     };
-    console.log('[Viewer Script] Initializing with data from server.');
 
-    // Utility to debounce function calls
     const debounce = (func, wait) => {
         let timeout;
         return (...args) => {
@@ -153,89 +245,50 @@
         };
     };
 
-    // Updates the subject name display and page title
     function updateSubjectDisplay() {
-        const displaySubjectName = subjectNameFromServer || "Subject";
-        DOM.subjectDisplay.textContent = displaySubjectName;
-        // Title is already set from server-side SEO data, no need to change it
-        console.log('[updateSubjectDisplay] Subject display updated to:', displaySubjectName);
+        DOM.subjectDisplay.textContent = subjectNameFromServer || "Subject";
     }
 
-    // Filters PDFs based on exam type
     const filterPDFs = (() => {
         const cache = new Map();
         const maxSize = 5;
         return (examType) => {
             const key = examType.toLowerCase();
-            console.log('[filterPDFs] Filtering for exam type:', key);
-
             if (cache.has(key)) {
                  const val = cache.get(key);
                  cache.delete(key);
                  cache.set(key, val);
-                 console.log('[filterPDFs] Cache hit for filter. Result count:', val.length);
                  return val;
             }
-
-            const result = state.pdfFiles.filter(file =>
-                file.date.toLowerCase().includes(key)
-            );
-
+            const result = state.pdfFiles.filter(file => file.date.toLowerCase().includes(key));
             if (cache.size >= maxSize) cache.delete(cache.keys().next().value);
             cache.set(key, result);
-            console.log('[filterPDFs] Filtered. Result count:', result.length);
             return result;
         };
     })();
 
-    // Prefetch and cache PDFs in the background
-    function prefetchAndCachePDFs() {
-        if (!state.pdfFiles.length) return;
-        
-        console.log('[prefetchAndCachePDFs] Starting background PDF caching');
-        
-        // First load the first PDF immediately
-        if (state.pdfFiles[0]) {
-            fetchAndCachePDF(state.pdfFiles[0].link);
-        }
-        
-        // Then prefetch all others in the background
-        state.pdfFiles.slice(1).forEach(pdf => {
-            setTimeout(() => {
-                fetchAndCachePDF(pdf.link);
-            }, 100); // Small delay to prioritize first PDF
-        });
-    }
-
-    // Fetch and cache a single PDF
     async function fetchAndCachePDF(pdfUrl) {
-        if (state.pdfCache.has(pdfUrl)) {
-            console.log(`[fetchAndCachePDF] PDF already in cache: ${pdfUrl}`);
-            return;
-        }
-
+        if (state.pdfCache.has(pdfUrl)) return;
         try {
-            console.log(`[fetchAndCachePDF] Prefetching PDF: ${pdfUrl}`);
-            const response = await fetch(pdfUrl, {
-                cache: 'force-cache' // Utilize browser cache
-            });
-            
+            const response = await fetch(pdfUrl, { cache: 'default' }); // Use browser's default cache behavior
             if (!response.ok) {
-                console.error(`[fetchAndCachePDF] Failed to fetch PDF: ${pdfUrl}`);
+                console.error(`Failed to fetch PDF for caching: ${pdfUrl}, Status: ${response.status}`);
                 return;
             }
-            
             const blob = await response.blob();
             state.pdfCache.set(pdfUrl, blob);
-            console.log(`[fetchAndCachePDF] Cached PDF: ${pdfUrl}, Size: ${blob.size}`);
         } catch (error) {
-            console.error(`[fetchAndCachePDF] Error caching PDF ${pdfUrl}:`, error);
+            console.error(`Error caching PDF ${pdfUrl}:`, error);
         }
     }
 
-    // Loads a PDF into an iframe, using cache if available
+    function prefetchAndCachePDFs() {
+        if (!state.pdfFiles.length) return;
+        if (state.pdfFiles[0]) fetchAndCachePDF(state.pdfFiles[0].link); // Prioritize first PDF
+        state.pdfFiles.slice(1).forEach(pdf => setTimeout(() => fetchAndCachePDF(pdf.link), 200)); // Stagger others
+    }
+
     async function loadPdfIntoIframe(iframe, pdfUrl, loader) {
-        console.log(`[loadPdfIntoIframe] Loading PDF: ${pdfUrl}`);
         const oldObjectURL = state.activeObjectURLs.get(iframe);
         if (oldObjectURL) {
             URL.revokeObjectURL(oldObjectURL);
@@ -243,68 +296,50 @@
         }
 
         let fileUrlToLoad;
-        
-        // Check cache first
         if (state.pdfCache.has(pdfUrl)) {
-            console.log(`[loadPdfIntoIframe] Using cached PDF for: ${pdfUrl}`);
             const blob = state.pdfCache.get(pdfUrl);
             fileUrlToLoad = URL.createObjectURL(blob);
             state.activeObjectURLs.set(iframe, fileUrlToLoad);
         } else {
-            // Fallback to direct fetch if not in cache
-            console.log(`[loadPdfIntoIframe] PDF not in cache, fetching directly: ${pdfUrl}`);
             try {
-                const response = await fetch(pdfUrl, {
-                    cache: 'force-cache' // Try to use browser cache
-                });
-                
-                if (!response.ok) throw new Error(`HTTP error ${response.status}`);
-                
+                const response = await fetch(pdfUrl, { cache: 'default' }); // Use browser's default cache
+                if (!response.ok) throw new Error(`HTTP error ${response.status} for ${pdfUrl}`);
                 const blob = await response.blob();
                 fileUrlToLoad = URL.createObjectURL(blob);
                 state.activeObjectURLs.set(iframe, fileUrlToLoad);
-                state.pdfCache.set(pdfUrl, blob); // Add to cache
+                state.pdfCache.set(pdfUrl, blob); // Add to our blob cache
             } catch (error) {
-                console.error(`[loadPdfIntoIframe] Error fetching PDF: ${pdfUrl}`, error);
-                // Fallback to direct URL if fetch fails
+                console.error(`Error fetching PDF ${pdfUrl}:`, error);
+                // Fallback to direct URL if blob creation fails; PDF.js viewer might handle it.
                 fileUrlToLoad = pdfUrl;
             }
         }
 
         const iframeSrc = `${state.pdfViewerBase}?file=${encodeURIComponent(fileUrlToLoad)}`;
-        console.log(`[loadPdfIntoIframe] Setting iframe src to: ${iframeSrc}`);
         iframe.src = iframeSrc;
 
         iframe.onload = () => {
-            console.log(`[loadPdfIntoIframe] Iframe loaded for src: ${iframe.src}`);
             if (loader && loader.parentNode) loader.remove();
         };
         iframe.onerror = () => {
-            console.error(`[loadPdfIntoIframe] Iframe failed to load for src: ${iframe.src}`);
+            console.error(`Iframe failed to load src: ${iframe.src}`);
             if (loader && loader.parentNode) loader.remove();
             if (iframe.parentElement) {
-                iframe.parentElement.innerHTML = '<div class="no-pdf-message">Error loading PDF in viewer. Ensure PDF.js is correctly configured and the PDF URL is accessible.</div>';
+                iframe.parentElement.innerHTML = '<div class="no-pdf-message">Error loading PDF. Please check the URL and network.</div>';
             }
         };
     }
 
-    // Renders the PDF viewers based on selected layout and filters
     async function renderPDFs() {
-        if (state.isRendering) {
-            console.log('[renderPDFs] Already rendering, skipping.');
-            return;
-        }
+        if (state.isRendering) return;
         state.isRendering = true;
-        console.log('[renderPDFs] Starting PDF rendering process...');
 
         await state.renderQueue;
         state.renderQueue = new Promise(async (resolve) => {
             const count = parseInt(DOM.pdfCount.value, 10);
             const examType = DOM.examType.value;
-            console.log(`[renderPDFs] PDF count: ${count}, Exam Type: ${examType}`);
             const filteredData = filterPDFs(examType);
 
-            // Clean up old object URLs before creating new iframes
             DOM.pdfContainer.querySelectorAll('iframe').forEach(iframe => {
                 const oldObjectURL = state.activeObjectURLs.get(iframe);
                 if (oldObjectURL) {
@@ -314,10 +349,9 @@
             });
 
             DOM.pdfContainer.className = `grid-${count}`;
-            DOM.pdfContainer.innerHTML = filteredData.length ? '' : '<div class="no-pdf-message">No papers available for this exam type. Please try different filter.</div>';
+            DOM.pdfContainer.innerHTML = filteredData.length ? '' : '<div class="no-pdf-message">No papers for this filter.</div>';
 
             if (!filteredData.length) {
-                console.warn('[renderPDFs] No filtered data to render.');
                 state.isRendering = false;
                 resolve();
                 return;
@@ -325,13 +359,11 @@
 
             const fragment = document.createDocumentFragment();
             const maxRender = Math.min(count, filteredData.length);
-            console.log(`[renderPDFs] Will render up to ${maxRender} PDFs.`);
 
             for (let i = 0; i < count; i++) {
                 const div = document.createElement('div');
                 div.className = 'pdf-viewer';
                 if (i < maxRender) {
-                    console.log(`[renderPDFs] Preparing viewer ${i+1} for PDF: ${filteredData[i].originalFilename}`);
                     const loader = document.createElement('div');
                     loader.className = 'loader-container';
                     loader.innerHTML = '<div class="loader"></div>';
@@ -341,22 +373,20 @@
                     div.appendChild(selector);
 
                     const iframe = document.createElement('iframe');
+                    iframe.title = `PDF Viewer ${i + 1} - ${filteredData[i].originalFilename}`;
                     div.appendChild(iframe);
                     loadPdfIntoIframe(iframe, filteredData[i].link, loader);
                 } else {
-                    console.log(`[renderPDFs] Viewer ${i+1} is empty (no more papers for this slot).`);
-                    div.innerHTML = '<div class="no-more-papers">No additional papers to display in this slot</div>';
+                    div.innerHTML = '<div class="no-more-papers">No additional paper for this slot.</div>';
                 }
                 fragment.appendChild(div);
             }
             DOM.pdfContainer.appendChild(fragment);
-            console.log('[renderPDFs] Finished appending PDF viewers to container.');
             state.isRendering = false;
             resolve();
         });
     }
 
-    // Creates a dropdown selector for choosing a specific paper within a viewer slot
     function createPaperSelector(data, initialIndex, viewerId) {
         const selectorContainer = document.createElement('div');
         selectorContainer.className = 'paper-selector';
@@ -369,10 +399,12 @@
 
         const select = document.createElement('select');
         select.id = selectId;
+        select.setAttribute('aria-label', `Select paper for viewer ${viewerId.split('-')[1] + 1}`);
         select.size = 1;
         select.addEventListener('focus', () => { select.size = Math.min(5, data.length || 1); });
         select.addEventListener('blur', () => { select.size = 1; });
         select.addEventListener('change', () => { select.size = 1; });
+
 
         data.forEach((item, idx) => {
             const option = document.createElement('option');
@@ -385,10 +417,10 @@
         select.addEventListener('change', debounce(async (e) => {
             const idx = parseInt(e.target.value, 10);
             const pdfUrl = data[idx].link;
-            console.log(`[PaperSelector ${viewerId}] Changed to index ${idx}, PDF URL: ${pdfUrl}`);
             const viewerDiv = selectorContainer.closest('.pdf-viewer');
             const iframe = viewerDiv.querySelector('iframe');
-            if (!iframe) { console.error(`[PaperSelector ${viewerId}] Iframe not found!`); return; }
+            if (!iframe) { console.error(`Iframe not found for ${viewerId}`); return; }
+            iframe.title = `PDF Viewer ${viewerId.split('-')[1] + 1} - ${data[idx].originalFilename}`;
 
             const loader = document.createElement('div');
             loader.className = 'loader-container';
@@ -402,50 +434,43 @@
         return selectorContainer;
     }
 
-    // Toggles fullscreen mode
     function toggleFullscreen() {
         if (document.fullscreenElement) {
-            document.exitFullscreen();
+            document.exitFullscreen().catch(err => console.error("Error exiting fullscreen:", err));
         } else {
-            document.documentElement.requestFullscreen({ navigationUI: 'hide' });
+            document.documentElement.requestFullscreen({ navigationUI: 'hide' }).catch(err => console.error("Error entering fullscreen:", err));
         }
     }
 
-    // Updates the fullscreen button's text/icon
     function updateFullscreenButton() {
         DOM.fullscreenBtn.innerHTML = document.fullscreenElement ?
-            `<svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 14h6m0 0v6m0-6l-7 7m17-11h-6m0 0V4m0 6l7-7"/></svg> Exit Fullscreen` :
-            `<svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M8 3H5a2 2 0 0 0-2 2v3m18 0V5a2 2 0 0 0-2-2h-3m0 18h3a2 2 0 0 0 2-2v-3M3 16v3a2 2 0 0 0 2 2h3"/></svg> Fullscreen`;
+            `<svg class="icon" viewBox="0 0 24 24"><path d="M4 14h6m0 0v6m0-6l-7 7m17-11h-6m0 0V4m0 6l7-7"/></svg> Exit Fullscreen` :
+            `<svg class="icon" viewBox="0 0 24 24"><path d="M8 3H5a2 2 0 0 0-2 2v3m18 0V5a2 2 0 0 0-2-2h-3m0 18h3a2 2 0 0 0 2-2v-3M3 16v3a2 2 0 0 0 2 2h3"/></svg> Fullscreen`;
     }
 
-    // Sets up event listeners for UI controls
     function setupEventListeners() {
-        console.log('[setupEventListeners] Setting up event listeners.');
         const debouncedRender = debounce(renderPDFs, 250);
         DOM.pdfCount.addEventListener('change', debouncedRender);
         DOM.examType.addEventListener('change', debouncedRender);
         DOM.fullscreenBtn.addEventListener('click', toggleFullscreen);
-        DOM.backBtn.addEventListener('click', () => window.location.href = '/questionpapers');
+        DOM.backBtn.addEventListener('click', () => window.location.href = '/questionpapers'); // Assuming this is the correct back URL
         document.addEventListener('fullscreenchange', updateFullscreenButton);
         document.addEventListener('keydown', (e) => {
             if (e.key === 'Escape' && document.fullscreenElement) {
-                document.exitFullscreen();
+                document.exitFullscreen().catch(err => console.error("Error exiting fullscreen on escape:", err));
             }
         });
     }
 
-    // Initializes the viewer page
     async function init() {
-        console.log('[init] Initializing viewer page.');
         updateSubjectDisplay();
         setupEventListeners();
 
         if (initialPdfDataFromServer && initialPdfDataFromServer.length > 0) {
-            console.log('[init] PDF data received from server, processing...');
             state.pdfFiles = initialPdfDataFromServer
                 .map(pdfObject => {
                     if (!pdfObject || typeof pdfObject.filename !== 'string' || typeof pdfObject.url !== 'string') {
-                        console.warn('[init] Skipping invalid PDF object in initial data:', pdfObject);
+                        console.warn('Skipping invalid PDF object:', pdfObject);
                         return null;
                     }
                     return {
@@ -455,45 +480,37 @@
                     };
                 })
                 .filter(item => item !== null)
-                .sort((a, b) => b.date.localeCompare(a.date));
+                .sort((a, b) => b.date.localeCompare(a.date)); // Newest first
 
-            // Initialize exam type selector based on available papers
             const hasInsem = state.pdfFiles.some(file => file.date.toLowerCase().includes('insem'));
             const hasEndsem = state.pdfFiles.some(file => file.date.toLowerCase().includes('endsem'));
-            
-            if (hasInsem && hasEndsem) {
-                // Change insem or endsem for default option 
-                DOM.examType.value = 'insem';
-            } else if (hasInsem) {
-                DOM.examType.value = 'insem';
-                DOM.examType.querySelector('option[value="endsem"]').disabled = true;
-            } else if (hasEndsem) {
-                DOM.examType.value = 'endsem';
-                DOM.examType.querySelector('option[value="insem"]').disabled = true;
-            }
 
-            // Start prefetching and caching PDFs in the background
+            DOM.examType.querySelector('option[value="insem"]').disabled = !hasInsem;
+            DOM.examType.querySelector('option[value="endsem"]').disabled = !hasEndsem;
+
+            if (hasInsem) DOM.examType.value = 'insem';
+            else if (hasEndsem) DOM.examType.value = 'endsem';
+            // If neither, it will default to the first available or INSEM if both disabled (which shouldn't happen if list is not empty)
+
             prefetchAndCachePDFs();
 
-            // Preload the PDF.js viewer iframe
+            // Preload PDF.js viewer to warm it up
             const preloadIframe = document.createElement('iframe');
-            preloadIframe.style.display = 'none';
+            preloadIframe.style.cssText = 'display:none !important; width:1px; height:1px; opacity:0; pointer-events:none;';
+            preloadIframe.setAttribute('aria-hidden', 'true');
             preloadIframe.src = state.pdfViewerBase;
             document.body.appendChild(preloadIframe);
             setTimeout(() => {
                 if (preloadIframe.parentNode) preloadIframe.remove();
-            }, 5000);
+            }, 5000); // Remove after 5 seconds
 
             renderPDFs();
         } else {
-            console.warn('[init] No PDF data provided from server or data is empty.');
-            DOM.pdfContainer.innerHTML = '<div class="no-pdf-message">No question papers found for this subject. Try selecting another.</div>';
-            DOM.subjectDisplay.textContent = subjectNameFromServer || 'No Subject Selected';
-            // Don't override the SEO title that was set server-side
+            DOM.pdfContainer.innerHTML = '<div class="no-pdf-message">No question papers found for this subject.</div>';
+            DOM.subjectDisplay.textContent = subjectNameFromServer || 'No Subject';
         }
     }
 
-    // Start the initialization process when the DOM is ready
     document.addEventListener('DOMContentLoaded', init);
 </script>
 

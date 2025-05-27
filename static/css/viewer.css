@@ -349,3 +349,17 @@ button.back:hover {
     background: #555;
 }
 
+.seo-content {
+    position: absolute !important;
+    left: -10000px !important;
+    width: 1px !important;
+    height: 1px !important;
+    overflow: hidden !important;
+    clip: rect(1px, 1px, 1px, 1px) !important;
+    white-space: nowrap !important;
+}
+
+.seo-content h1, .seo-content h2, .seo-content h3, .seo-content p {
+    margin: 0 !important;
+    padding: 0 !important;
+}

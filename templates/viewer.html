@@ -37,8 +37,6 @@
     <link href="/static/pdfjs/web/viewer.html" rel="preload" fetchpriority="high" as="document">
     <link href="/static/pdfjs/web/viewer.css" rel="preload" fetchpriority="high" as="style">
     <link href="/static/css/viewer.css" rel="stylesheet">
-    <link href="/static/pdfjs/web/viewer.js" rel="preload" fetchpriority="high" as="script">
-    <link href="/static/pdfjs/web/pdf.js" rel="preload" fetchpriority="high" as="script">
     <link href="/static/pdfjs/web/pdf.worker.js" rel="preload" fetchpriority="high" as="worker">
 
     <script type="application/ld+json">
@@ -219,6 +217,212 @@
     const initialPdfDataFromServer = {{ pdf_data_for_js | tojson | safe }};
     const subjectNameFromServer = {{ seo_data.subject_name | tojson | safe }};
 
+    // IndexedDB Configuration
+    const DB_NAME = 'SPPUCodesCache';
+    const DB_VERSION = 2;
+    const STORE_NAME = 'pdfCache';
+    const CACHE_EXPIRY_DAYS = 30; // Cache expiry in days
+
+    // IndexedDB Manager Class
+    class IndexedDBCache {
+        constructor() {
+            this.db = null;
+            this.isInitialized = false;
+        }
+
+        async init() {
+            if (this.isInitialized) return this.db;
+            
+            return new Promise((resolve, reject) => {
+                const request = indexedDB.open(DB_NAME, DB_VERSION);
+                
+                request.onerror = () => {
+                    console.error('IndexedDB initialization failed:', request.error);
+                    reject(request.error);
+                };
+                
+                request.onsuccess = () => {
+                    this.db = request.result;
+                    this.isInitialized = true;
+                    console.log('IndexedDB initialized successfully');
+                    resolve(this.db);
+                };
+                
+                request.onupgradeneeded = (event) => {
+                    const db = event.target.result;
+                    
+                    if (!db.objectStoreNames.contains(STORE_NAME)) {
+                        const store = db.createObjectStore(STORE_NAME, { keyPath: 'url' });
+                        store.createIndex('timestamp', 'timestamp', { unique: false });
+                        store.createIndex('subject', 'subject', { unique: false });
+                        console.log('IndexedDB object store created');
+                    }
+                };
+            });
+        }
+
+        async storePDF(url, blob, filename, subject) {
+            try {
+                await this.init();
+                const transaction = this.db.transaction([STORE_NAME], 'readwrite');
+                const store = transaction.objectStore(STORE_NAME);
+                
+                const data = {
+                    url: url,
+                    blob: blob,
+                    filename: filename,
+                    subject: subject || 'unknown',
+                    timestamp: Date.now(),
+                    size: blob.size
+                };
+                
+                await new Promise((resolve, reject) => {
+                    const request = store.put(data);
+                    request.onsuccess = () => resolve();
+                    request.onerror = () => reject(request.error);
+                });
+                
+                console.log(`Cached: ${filename} (${this.formatBytes(blob.size)})`);
+                return true;
+            } catch (error) {
+                console.error('Error storing PDF in IndexedDB:', error);
+                return false;
+            }
+        }
+
+        async getPDF(url) {
+            try {
+                await this.init();
+                const transaction = this.db.transaction([STORE_NAME], 'readonly');
+                const store = transaction.objectStore(STORE_NAME);
+                
+                return new Promise((resolve, reject) => {
+                    const request = store.get(url);
+                    request.onsuccess = () => {
+                        const result = request.result;
+                        if (result && this.isNotExpired(result.timestamp)) {
+                            resolve(result);
+                        } else {
+                            if (result) {
+                                // Remove expired entry
+                                this.removePDF(url);
+                            }
+                            resolve(null);
+                        }
+                    };
+                    request.onerror = () => reject(request.error);
+                });
+            } catch (error) {
+                console.error('Error retrieving PDF from IndexedDB:', error);
+                return null;
+            }
+        }
+
+        async removePDF(url) {
+            try {
+                await this.init();
+                const transaction = this.db.transaction([STORE_NAME], 'readwrite');
+                const store = transaction.objectStore(STORE_NAME);
+                
+                return new Promise((resolve, reject) => {
+                    const request = store.delete(url);
+                    request.onsuccess = () => resolve();
+                    request.onerror = () => reject(request.error);
+                });
+            } catch (error) {
+                console.error('Error removing PDF from IndexedDB:', error);
+            }
+        }
+
+        async getAllPDFs() {
+            try {
+                await this.init();
+                const transaction = this.db.transaction([STORE_NAME], 'readonly');
+                const store = transaction.objectStore(STORE_NAME);
+                
+                return new Promise((resolve, reject) => {
+                    const request = store.getAll();
+                    request.onsuccess = () => resolve(request.result || []);
+                    request.onerror = () => reject(request.error);
+                });
+            } catch (error) {
+                console.error('Error getting all PDFs from IndexedDB:', error);
+                return [];
+            }
+        }
+
+        async clearExpiredCache() {
+            try {
+                const allPDFs = await this.getAllPDFs();
+                const expiredPDFs = allPDFs.filter(pdf => !this.isNotExpired(pdf.timestamp));
+                
+                for (const pdf of expiredPDFs) {
+                    await this.removePDF(pdf.url);
+                }
+                
+                console.log(`Cleaned up ${expiredPDFs.length} expired cache entries`);
+                return expiredPDFs.length;
+            } catch (error) {
+                console.error('Error clearing expired cache:', error);
+                return 0;
+            }
+        }
+
+        async clearAllCache() {
+            try {
+                await this.init();
+                const transaction = this.db.transaction([STORE_NAME], 'readwrite');
+                const store = transaction.objectStore(STORE_NAME);
+                
+                return new Promise((resolve, reject) => {
+                    const request = store.clear();
+                    request.onsuccess = () => {
+                        console.log('All cache cleared');
+                        resolve();
+                    };
+                    request.onerror = () => reject(request.error);
+                });
+            } catch (error) {
+                console.error('Error clearing all cache:', error);
+            }
+        }
+
+        async getCacheStats() {
+            try {
+                const allPDFs = await this.getAllPDFs();
+                const totalSize = allPDFs.reduce((sum, pdf) => sum + (pdf.size || 0), 0);
+                const validPDFs = allPDFs.filter(pdf => this.isNotExpired(pdf.timestamp));
+                
+                return {
+                    totalCount: allPDFs.length,
+                    validCount: validPDFs.length,
+                    expiredCount: allPDFs.length - validPDFs.length,
+                    totalSize: totalSize,
+                    formattedSize: this.formatBytes(totalSize)
+                };
+            } catch (error) {
+                console.error('Error getting cache stats:', error);
+                return { totalCount: 0, validCount: 0, expiredCount: 0, totalSize: 0, formattedSize: '0 B' };
+            }
+        }
+
+        isNotExpired(timestamp) {
+            const expiryTime = CACHE_EXPIRY_DAYS * 24 * 60 * 60 * 1000; 
+            return (Date.now() - timestamp) < expiryTime;
+        }
+
+        formatBytes(bytes) {
+            if (bytes === 0) return '0 B';
+            const k = 1024;
+            const sizes = ['B', 'KB', 'MB', 'GB'];
+            const i = Math.floor(Math.log(bytes) / Math.log(k));
+            return parseFloat((bytes / Math.pow(k, i)).toFixed(2)) + ' ' + sizes[i];
+        }
+    }
+
+    // Initialize IndexedDB Cache
+    const dbCache = new IndexedDBCache();
+
     const DOM = {
         pdfContainer: document.getElementById('pdf-container'),
         subjectDisplay: document.getElementById('subject-display'),
@@ -234,7 +438,8 @@
         activeObjectURLs: new Map(),
         renderQueue: Promise.resolve(),
         pdfViewerBase: '/static/pdfjs/web/viewer.html',
-        pdfCache: new Map()
+        downloadProgress: { current: 0, total: 0 },
+        cacheInitialized: false
     };
 
     const debounce = (func, wait) => {
@@ -244,6 +449,121 @@
             timeout = setTimeout(() => func(...args), wait);
         };
     };
+
+    // Enhanced PDF Management with IndexedDB
+    async function downloadAndCachePDF(pdfUrl, filename, subject) {
+        try {
+            const cachedPDF = await dbCache.getPDF(pdfUrl);
+            if (cachedPDF) {
+                console.log(`Using cached: ${filename}`);
+                return cachedPDF.blob;
+            }
+
+            console.log(`Downloading: ${filename}`);
+            const response = await fetch(pdfUrl, { cache: 'default' });
+            
+            if (!response.ok) {
+                throw new Error(`HTTP ${response.status} for ${pdfUrl}`);
+            }
+            
+            const blob = await response.blob();
+            
+            await dbCache.storePDF(pdfUrl, blob, filename, subject);
+            
+            return blob;
+        } catch (error) {
+            console.error(`Error downloading/caching ${filename}:`, error);
+            throw error;
+        }
+    }
+
+    async function batchDownloadPDFs() {
+        if (!state.pdfFiles.length) return;
+        
+        const subject = subjectNameFromServer || 'unknown';
+        state.downloadProgress = { current: 0, total: state.pdfFiles.length };
+        
+        console.log('Initializing download...');
+        
+        // Download PDFs in batches to avoid overwhelming the browser
+        const batchSize = 3;
+        const batches = [];
+        
+        for (let i = 0; i < state.pdfFiles.length; i += batchSize) {
+            batches.push(state.pdfFiles.slice(i, i + batchSize));
+        }
+        
+        for (const batch of batches) {
+            const promises = batch.map(async (pdf) => {
+                try {
+                    await downloadAndCachePDF(pdf.link, pdf.originalFilename, subject);
+                    state.downloadProgress.current++;
+                } catch (error) {
+                    console.error(`Failed to cache ${pdf.originalFilename}:`, error);
+                    state.downloadProgress.current++;
+                }
+            });
+            
+            await Promise.all(promises);
+            
+            // Small delay between batches
+            if (batches.indexOf(batch) < batches.length - 1) {
+                await new Promise(resolve => setTimeout(resolve, 100));
+            }
+        }
+        const { current, total } = state.downloadProgress;
+        if (current >= total && total > 0) {
+             console.log('All PDFs caching process completed.');
+        }
+    }
+
+    async function loadPdfIntoIframe(iframe, pdfUrl, loader) {
+        const oldObjectURL = state.activeObjectURLs.get(iframe);
+        if (oldObjectURL) {
+            URL.revokeObjectURL(oldObjectURL);
+            state.activeObjectURLs.delete(iframe);
+        }
+
+        try {
+            const cachedPDF = await dbCache.getPDF(pdfUrl);
+            let blob;
+            
+            if (cachedPDF) {
+                console.log(`Loading from cache: ${cachedPDF.filename}`);
+                blob = cachedPDF.blob;
+            } else {
+                console.log(`Loading from network: ${pdfUrl}`);
+                const response = await fetch(pdfUrl, { cache: 'default' });
+                if (!response.ok) throw new Error(`HTTP ${response.status}`);
+                blob = await response.blob();
+            }
+            
+            const fileUrlToLoad = URL.createObjectURL(blob);
+            state.activeObjectURLs.set(iframe, fileUrlToLoad);
+            
+            const iframeSrc = `${state.pdfViewerBase}?file=${encodeURIComponent(fileUrlToLoad)}`;
+            iframe.src = iframeSrc;
+
+            iframe.onload = () => {
+                if (loader && loader.parentNode) loader.remove();
+            };
+            
+            iframe.onerror = () => {
+                console.error(`Iframe failed to load: ${iframe.src}`);
+                if (loader && loader.parentNode) loader.remove();
+                if (iframe.parentElement) {
+                    iframe.parentElement.innerHTML = '<div class="no-pdf-message">Error loading PDF. Please check the URL and network.</div>';
+                }
+            };
+            
+        } catch (error) {
+            console.error(`Error loading PDF ${pdfUrl}:`, error);
+            if (loader && loader.parentNode) loader.remove();
+            if (iframe.parentElement) {
+                iframe.parentElement.innerHTML = '<div class="no-pdf-message">Error loading PDF. Please try again.</div>';
+            }
+        }
+    }
 
     function updateSubjectDisplay() {
         DOM.subjectDisplay.textContent = subjectNameFromServer || "Subject";
@@ -266,69 +586,6 @@
             return result;
         };
     })();
-
-    async function fetchAndCachePDF(pdfUrl) {
-        if (state.pdfCache.has(pdfUrl)) return;
-        try {
-            const response = await fetch(pdfUrl, { cache: 'default' }); // Use browser's default cache behavior
-            if (!response.ok) {
-                console.error(`Failed to fetch PDF for caching: ${pdfUrl}, Status: ${response.status}`);
-                return;
-            }
-            const blob = await response.blob();
-            state.pdfCache.set(pdfUrl, blob);
-        } catch (error) {
-            console.error(`Error caching PDF ${pdfUrl}:`, error);
-        }
-    }
-
-    function prefetchAndCachePDFs() {
-        if (!state.pdfFiles.length) return;
-        if (state.pdfFiles[0]) fetchAndCachePDF(state.pdfFiles[0].link); // Prioritize first PDF
-        state.pdfFiles.slice(1).forEach(pdf => setTimeout(() => fetchAndCachePDF(pdf.link), 200)); // Stagger others
-    }
-
-    async function loadPdfIntoIframe(iframe, pdfUrl, loader) {
-        const oldObjectURL = state.activeObjectURLs.get(iframe);
-        if (oldObjectURL) {
-            URL.revokeObjectURL(oldObjectURL);
-            state.activeObjectURLs.delete(iframe);
-        }
-
-        let fileUrlToLoad;
-        if (state.pdfCache.has(pdfUrl)) {
-            const blob = state.pdfCache.get(pdfUrl);
-            fileUrlToLoad = URL.createObjectURL(blob);
-            state.activeObjectURLs.set(iframe, fileUrlToLoad);
-        } else {
-            try {
-                const response = await fetch(pdfUrl, { cache: 'default' }); // Use browser's default cache
-                if (!response.ok) throw new Error(`HTTP error ${response.status} for ${pdfUrl}`);
-                const blob = await response.blob();
-                fileUrlToLoad = URL.createObjectURL(blob);
-                state.activeObjectURLs.set(iframe, fileUrlToLoad);
-                state.pdfCache.set(pdfUrl, blob); // Add to our blob cache
-            } catch (error) {
-                console.error(`Error fetching PDF ${pdfUrl}:`, error);
-                // Fallback to direct URL if blob creation fails; PDF.js viewer might handle it.
-                fileUrlToLoad = pdfUrl;
-            }
-        }
-
-        const iframeSrc = `${state.pdfViewerBase}?file=${encodeURIComponent(fileUrlToLoad)}`;
-        iframe.src = iframeSrc;
-
-        iframe.onload = () => {
-            if (loader && loader.parentNode) loader.remove();
-        };
-        iframe.onerror = () => {
-            console.error(`Iframe failed to load src: ${iframe.src}`);
-            if (loader && loader.parentNode) loader.remove();
-            if (iframe.parentElement) {
-                iframe.parentElement.innerHTML = '<div class="no-pdf-message">Error loading PDF. Please check the URL and network.</div>';
-            }
-        };
-    }
 
     async function renderPDFs() {
         if (state.isRendering) return;
@@ -405,7 +662,6 @@
         select.addEventListener('blur', () => { select.size = 1; });
         select.addEventListener('change', () => { select.size = 1; });
 
-
         data.forEach((item, idx) => {
             const option = document.createElement('option');
             option.value = idx;
@@ -453,7 +709,8 @@
         DOM.pdfCount.addEventListener('change', debouncedRender);
         DOM.examType.addEventListener('change', debouncedRender);
         DOM.fullscreenBtn.addEventListener('click', toggleFullscreen);
-        DOM.backBtn.addEventListener('click', () => window.location.href = '/questionpapers'); // Assuming this is the correct back URL
+        DOM.backBtn.addEventListener('click', () => window.location.href = '/questionpapers');
+        
         document.addEventListener('fullscreenchange', updateFullscreenButton);
         document.addEventListener('keydown', (e) => {
             if (e.key === 'Escape' && document.fullscreenElement) {
@@ -462,9 +719,35 @@
         });
     }
 
+    async function initializeCache() {
+        try {
+            console.log('Initializing cache system...');
+            await dbCache.init();
+            
+            const expiredCount = await dbCache.clearExpiredCache();
+            if (expiredCount > 0) {
+                console.log(`Cleaned up ${expiredCount} expired entries`);
+            }
+            
+            const stats = await dbCache.getCacheStats();
+            console.log(`Cache initialized: ${stats.validCount} PDFs (${stats.formattedSize})`);
+            
+            state.cacheInitialized = true;
+            console.log('Cache ready.');
+            
+            return true;
+        } catch (error) {
+            console.error('Failed to initialize cache:', error);
+            console.log('Cache unavailable, using network only');
+            return false;
+        }
+    }
+
     async function init() {
         updateSubjectDisplay();
         setupEventListeners();
+
+        await initializeCache();
 
         if (initialPdfDataFromServer && initialPdfDataFromServer.length > 0) {
             state.pdfFiles = initialPdfDataFromServer
@@ -480,7 +763,7 @@
                     };
                 })
                 .filter(item => item !== null)
-                .sort((a, b) => b.date.localeCompare(a.date)); // Newest first
+                .sort((a, b) => b.date.localeCompare(a.date)); 
 
             const hasInsem = state.pdfFiles.some(file => file.date.toLowerCase().includes('insem'));
             const hasEndsem = state.pdfFiles.some(file => file.date.toLowerCase().includes('endsem'));
@@ -490,11 +773,16 @@
 
             if (hasInsem) DOM.examType.value = 'insem';
             else if (hasEndsem) DOM.examType.value = 'endsem';
-            // If neither, it will default to the first available or INSEM if both disabled (which shouldn't happen if list is not empty)
 
-            prefetchAndCachePDFs();
+            if (state.cacheInitialized) {
+                // Don't await this - let it run in background
+                batchDownloadPDFs().catch(error => {
+                    console.error('Background PDF caching failed:', error);
+                    console.log('Some PDFs failed to cache');
+                });
+            }
 
-            // Preload PDF.js viewer to warm it up
+            // Preload PDF.js viewer
             const preloadIframe = document.createElement('iframe');
             preloadIframe.style.cssText = 'display:none !important; width:1px; height:1px; opacity:0; pointer-events:none;';
             preloadIframe.setAttribute('aria-hidden', 'true');
@@ -502,7 +790,7 @@
             document.body.appendChild(preloadIframe);
             setTimeout(() => {
                 if (preloadIframe.parentNode) preloadIframe.remove();
-            }, 5000); // Remove after 5 seconds
+            }, 5000);
 
             renderPDFs();
         } else {
@@ -510,6 +798,12 @@
             DOM.subjectDisplay.textContent = subjectNameFromServer || 'No Subject';
         }
     }
+
+    // Cleanup function
+    window.addEventListener('beforeunload', () => {
+        state.activeObjectURLs.forEach(url => URL.revokeObjectURL(url));
+        state.activeObjectURLs.clear();
+    });
 
     document.addEventListener('DOMContentLoaded', init);
 </script>

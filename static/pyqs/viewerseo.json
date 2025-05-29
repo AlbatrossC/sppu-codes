@@ -58,5 +58,11 @@
     "subjectName": "Statistics",
     "description": "Sppu Statistics (Stats) question papers: for Second Year (SE) AI&DS Sem 4 students. Browse easily with Sppu Codes.",
     "keywords": ["sppu", "statistics", "stats", "question papers", "pyq", "previous year papers", "sppu codes", "se", "second year", "ai&ds", "sem 4", "probability", "regression", "data analysis", "hypothesis testing"]
+    },
+  {
+    "link": "/questionpapers/principles_of_programming_languages",
+    "subjectName": "Principles of Programming Languages",
+    "description": "Sppu Principles of Programming Languages question papers: for Second Year (SE) CSE Sem 4 students. Powered by Sppu Codes.",
+    "keywords": ["sppu", "principles of programming languages", "ppl", "question papers", "pyq", "previous year papers", "sppu codes", "se", "second year", "cse", "sem 4", "syntax", "semantics", "grammars", "parsing", "language design", "programming paradigms"]
   }
 ]

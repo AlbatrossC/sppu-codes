@@ -677,7 +677,7 @@ const defaultOptions = {
     kind: OptionKind.VIEWER + OptionKind.PREFERENCE
   },
   defaultZoomValue: {
-    value: "",
+    value: "page-actual",
     kind: OptionKind.VIEWER + OptionKind.PREFERENCE
   },
   disableHistory: {

@@ -3,41 +3,80 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Academic Question Papers</title>
+    <title>SPPU Question Papers</title>
+    <link rel="stylesheet" href="../static/css/select.css?v=1.1">
+    <meta name="keywords" content="SPPU, question papers, SPPU question papers, SPPU previous year papers, SPPU exam papers, SPPU study materials, SPPU resources, SPPU academic resources,SPPU question papers, Pune University papers, DSA question papers, Statistics papers SPPU, MIS question papers 2019, Computer Graphics SPPU, Discrete Mathematics papers, OOP question papers, Operating Systems papers, IoT question papers, SE papers, Software Engineering question papers">
+    <meta name="robots" content="index, follow">
+    <meta name="description" content="SPPU Question Papers - View SPPU Previous Year Exam Papers.">
+    <link rel="canonical" href="https://sppucodes.vercel.app/questionpapers" />
+    <link rel="icon" href="/images/favicon.ico" type="image/x-icon">
+    <script type="application/ld+json">
+        {
+            "@context": "https://schema.org",
+            "@type": "WebPage",
+            "name": "SPPU Question Papers - Sppu Codes",
+            "description": "Download and View free SPPU (Savitribai Phule Pune University) question papers for Computer Science, Engineering, Management & more. Get previous year papers for DSA, Statistics, MIS, OOP, OS, IoT & other subjects.",
+            "url": "https://sppucodes.vercel.app/questionpapers",
+            "potentialAction": {
+            "@type": "SearchAction",
+            "target": {
+                "@type": "EntryPoint",
+                "urlTemplate": "https://sppucodes.vercel.app/questionpapers?q={search_term_string}"
+            },
+            "query-input": "required name=search_term_string"
+            }
+        }
+    </script>
 </head>
 <body>
-    <h1>Academic Question Papers</h1>
-    
-    <div>
-        <label for="branch">Select Branch:</label>
-        <select id="branch">
-            <option value="">-- Choose Branch --</option>
-        </select>
-    </div>
+    <!-- HEADER -->
+    <header>
+        <div class="header__container">
+            <button 
+                onclick="location.href='/'" class="home-button" aria-label="Go to home page">Home
+            </button>
+            <div class="header-content">
+                <h1 onclick="location.href='/questionpapers'" class="main-title">SPPU Question Papers</h1>
+            </div>
+            <div class="spacer"></div>
+        </div>
+    </header>
 
-    <div>
-        <label for="semester">Select Semester:</label>
-        <select id="semester" disabled>
-            <option value="">-- Choose Semester --</option>
-        </select>
-    </div>
+    <!-- MAIN CONTENT -->
+    <div class="container">
+        <div class="navigation">
+            <!-- Breadcrumb -->
+            <div class="breadcrumb" id="breadcrumb" style="display: none;">
+                <span class="breadcrumb-item" onclick="goToLevel('branches')">Home</span>
+            </div>
 
-    <div>
-        <label for="subject">Select Subject:</label>
-        <select id="subject" disabled>
-            <option value="">-- Choose Subject --</option>
-        </select>
-    </div>
+            <!-- Branch Selection -->
+            <div class="nav-level active" id="branches-level">
+                <div class="cards-grid" id="branches-grid">
+                    <!-- Branches will be populated here -->
+                </div>
+            </div>
 
-    <button id="goButton" disabled>Go to Question Papers</button>
+            <!-- Semester Selection -->
+            <div class="nav-level" id="semesters-level">
+                <button class="back-button" onclick="goToLevel('branches')">← Back to Branches</button>
+                <div class="cards-grid" id="semesters-grid">
+                    <!-- Semesters will be populated here -->
+                </div>
+            </div>
 
-    <div id="urlDisplay" style="display: none;">
-        <p><strong>Generated URL:</strong> <span id="generatedUrl"></span></p>
+            <!-- Subject Selection -->
+            <div class="nav-level" id="subjects-level">
+                <button class="back-button" onclick="goBack()">← Back to Semesters</button>
+                <div class="cards-grid" id="subjects-grid">
+                    <!-- Subjects will be populated here -->
+                </div>
+            </div>
+        </div>
     </div>
 
     <script>
         // ====== DATA CONFIGURATION ======
-        // Add your branches, semesters, subjects and their direct links here
         const academicData = {
             "AIDS - Artificial Intelligence and Data Science": {
                 "Semester 3": [
@@ -64,8 +103,16 @@
                 ],
                 "Semester 4": [
                     { 
+                        name: "Statistics", 
+                        link: "/questionpapers/statistics" 
+                    },
+                    { 
                         name: "Data Structure And Algorithm", 
                         link: "/questionpapers/data_structure_and_algorithm" 
+                    },
+                    { 
+                        name: "Software Engineering", 
+                        link: "/questionpapers/software_engineering" 
                     },
                     { 
                         name: "Internet Of Things", 
@@ -74,201 +121,170 @@
                     { 
                         name: "Management Information System", 
                         link: "/questionpapers/management_information_system" 
-                    },
-                    { 
-                        name: "Software Engineering", 
-                        link: "/questionpapers/software_engineering" 
-                    },
-                    { 
-                        name: "Statistics", 
-                        link: "/questionpapers/statistics" 
-                    }
+                    }                  
                 ]
             },
-            "Computer Engineering": {
+            "CS - Computer Engineering": {
                 "Semester 4": [
                     { 
-                        name: "Principles of Programining Languages", 
-                        link: "/questionpapers/principles_of_programining_languages" 
-                    },
-                    { 
-                        name: "Engineering Mathematics", 
-                        link: "https://example.com/eng-math-papers" 
-                    },
-                    { 
-                        name: "Digital Electronics", 
-                        link: "https://example.com/digital-electronics-papers" 
-                    }
-                ],
-                "Semester 2": [
-                    { 
-                        name: "Object Oriented Programming", 
-                        link: "https://example.com/oop-papers" 
-                    },
-                    { 
-                        name: "Computer Graphics", 
-                        link: "https://example.com/graphics-papers" 
-                    },
-                    { 
-                        name: "Microprocessors", 
-                        link: "https://example.com/microprocessor-papers" 
-                    }
-                ],
-                "Semester 3": [
-                    { 
-                        name: "Software Engineering", 
-                        link: "https://example.com/software-eng-papers" 
-                    },
-                    { 
-                        name: "Computer Networks", 
-                        link: "https://example.com/networks-papers" 
-                    },
-                    { 
-                        name: "Operating Systems", 
-                        link: "https://example.com/os-papers" 
-                    }
-                ]
-            },
-            "Information Technology": {
-                "Semester 1": [
-                    { 
-                        name: "Web Technologies", 
-                        link: "https://example.com/web-tech-papers" 
-                    },
-                    { 
-                        name: "IT Fundamentals", 
-                        link: "https://example.com/it-fundamentals-papers" 
-                    },
-                    { 
-                        name: "Mathematics for IT", 
-                        link: "https://example.com/it-math-papers" 
-                    }
-                ],
-                "Semester 2": [
-                    { 
-                        name: "Internet of Things", 
-                        link: "https://example.com/iot-papers" 
-                    },
-                    { 
-                        name: "Mobile Computing", 
-                        link: "https://example.com/mobile-computing-papers" 
-                    },
-                    { 
-                        name: "Cloud Computing", 
-                        link: "https://example.com/cloud-computing-papers" 
-                    }
-                ],
-                "Semester 3": [
-                    { 
-                        name: "Cyber Security", 
-                        link: "https://example.com/cybersecurity-papers" 
-                    },
-                    { 
-                        name: "Big Data Analytics", 
-                        link: "https://example.com/big-data-papers" 
-                    },
-                    { 
-                        name: "Artificial Intelligence", 
-                        link: "https://example.com/ai-papers" 
+                        name: "Principles of Programming Languages", 
+                        link: "/questionpapers/principles_of_programming_languages" 
                     }
                 ]
             }
         };
 
-        // ====== DOM ELEMENTS ======
-        const branchSelect = document.getElementById('branch');
-        const semesterSelect = document.getElementById('semester');
-        const subjectSelect = document.getElementById('subject');
-        const goButton = document.getElementById('goButton');
-        const urlDisplay = document.getElementById('urlDisplay');
-        const generatedUrl = document.getElementById('generatedUrl');
+        // ====== STATE MANAGEMENT ======
+        let currentBranch = '';
+        let currentSemester = '';
+        let navigationHistory = ['branches'];
 
-        // Store current subject link
-        let currentSubjectLink = '';
+        // ====== UTILITY FUNCTIONS ======
+        function goToLevel(level) {
+            document.querySelectorAll('.nav-level').forEach(el => el.classList.remove('active'));
+            document.getElementById(level + '-level').classList.add('active');
+            
+            if (level === 'branches') {
+                navigationHistory = ['branches'];
+                currentBranch = '';
+                currentSemester = '';
+                document.getElementById('breadcrumb').style.display = 'none';
+            } else if (level === 'semesters') {
+                navigationHistory = ['branches', 'semesters'];
+                currentSemester = '';
+                updateBreadcrumb();
+            }
+        }
 
-        // ====== INITIALIZATION ======
-        function initializeBranches() {
+        function goBack() {
+            if (navigationHistory.length > 1) {
+                navigationHistory.pop();
+                const previousLevel = navigationHistory[navigationHistory.length - 1];
+                
+                if (previousLevel === 'semesters') {
+                    currentSemester = '';
+                    goToLevel('semesters');
+                } else {
+                    goToLevel(previousLevel);
+                }
+                
+                updateBreadcrumb();
+            }
+        }
+
+        function updateBreadcrumb() {
+            const breadcrumb = document.getElementById('breadcrumb');
+            let breadcrumbHTML = '<span class="breadcrumb-item" onclick="goToLevel(\'branches\')">Home</span>';
+            
+            if (currentBranch && navigationHistory.includes('semesters')) {
+                breadcrumbHTML += '<span class="breadcrumb-separator">→</span>';
+                if (navigationHistory[navigationHistory.length - 1] === 'semesters') {
+                    breadcrumbHTML += `<span class="breadcrumb-item active">${currentBranch}</span>`;
+                } else {
+                    breadcrumbHTML += `<span class="breadcrumb-item" onclick="goToLevel('semesters')">${currentBranch}</span>`;
+                }
+            }
+            
+            if (currentSemester && navigationHistory.includes('subjects')) {
+                breadcrumbHTML += '<span class="breadcrumb-separator">→</span>';
+                breadcrumbHTML += `<span class="breadcrumb-item active">${currentSemester}</span>`;
+            }
+            
+            breadcrumb.innerHTML = breadcrumbHTML;
+            breadcrumb.style.display = navigationHistory.length > 1 ? 'flex' : 'none';
+        }
+
+        // ====== RENDER FUNCTIONS ======
+        function renderBranches() {
+            const grid = document.getElementById('branches-grid');
+            grid.innerHTML = '';
+            
             Object.keys(academicData).forEach(branch => {
-                const option = document.createElement('option');
-                option.value = branch;
-                option.textContent = branch;
-                branchSelect.appendChild(option);
+                const semesterCount = Object.keys(academicData[branch]).length;
+                const subjectCount = Object.values(academicData[branch]).reduce((total, subjects) => total + subjects.length, 0);
+                
+                const card = document.createElement('div');
+                card.className = 'card';
+                card.innerHTML = `
+                    <div class="card-title">${branch}</div>
+                    <div class="card-subtitle">Click to view semesters</div>
+                    <div class="card-meta">
+                        <span>${semesterCount} Semesters</span>
+                        <span>${subjectCount} Subjects</span>
+                    </div>
+                `;
+                card.onclick = () => selectBranch(branch);
+                grid.appendChild(card);
+            });
+        }
+
+        function renderSemesters(branch) {
+            const grid = document.getElementById('semesters-grid');
+            grid.innerHTML = '';
+            
+            Object.keys(academicData[branch]).forEach(semester => {
+                const subjectCount = academicData[branch][semester].length;
+                
+                const card = document.createElement('div');
+                card.className = 'card';
+                card.innerHTML = `
+                    <div class="card-title">${semester}</div>
+                    <div class="card-subtitle">Click to view subjects</div>
+                    <div class="card-meta">
+                        <span>${subjectCount} Subjects</span>
+                        <span>Question Papers</span>
+                    </div>
+                `;
+                card.onclick = () => selectSemester(semester);
+                grid.appendChild(card);
+            });
+        }
+
+        function renderSubjects(branch, semester) {
+            const grid = document.getElementById('subjects-grid');
+            grid.innerHTML = '';
+            
+            academicData[branch][semester].forEach(subject => {
+                const card = document.createElement('div');
+                card.className = 'card subject-card';
+                card.innerHTML = `
+                    <div class="subject-info">
+                        <h3>${subject.name}</h3>
+                    </div>
+                    <a href="${subject.link}" target="_blank" class="view-button">View Question Papers</a>
+                `;
+                grid.appendChild(card);
             });
         }
 
         // ====== EVENT HANDLERS ======
-        branchSelect.addEventListener('change', function() {
-            const selectedBranch = this.value;
-            
-            // Reset dependent dropdowns
-            semesterSelect.innerHTML = '<option value="">-- Choose Semester --</option>';
-            subjectSelect.innerHTML = '<option value="">-- Choose Subject --</option>';
-            semesterSelect.disabled = !selectedBranch;
-            subjectSelect.disabled = true;
-            goButton.disabled = true;
-            urlDisplay.style.display = 'none';
-            currentSubjectLink = '';
+        function selectBranch(branch) {
+            currentBranch = branch;
+            navigationHistory = ['branches', 'semesters'];
+            renderSemesters(branch);
+            goToLevel('semesters');
+            updateBreadcrumb();
+        }
 
-            if (selectedBranch) {
-                // Populate semesters
-                Object.keys(academicData[selectedBranch]).forEach(semester => {
-                    const option = document.createElement('option');
-                    option.value = semester;
-                    option.textContent = semester;
-                    semesterSelect.appendChild(option);
-                });
-            }
-        });
+        function selectSemester(semester) {
+            currentSemester = semester;
+            navigationHistory.push('subjects');
+            renderSubjects(currentBranch, semester);
+            goToLevel('subjects');
+            updateBreadcrumb();
+        }
 
-        semesterSelect.addEventListener('change', function() {
-            const selectedBranch = branchSelect.value;
-            const selectedSemester = this.value;
-            
-            // Reset subject dropdown
-            subjectSelect.innerHTML = '<option value="">-- Choose Subject --</option>';
-            subjectSelect.disabled = !selectedSemester;
-            goButton.disabled = true;
-            urlDisplay.style.display = 'none';
-            currentSubjectLink = '';
+        function openQuestionPapers(link) {
+            window.open(link, '_blank');
+        }
 
-            if (selectedBranch && selectedSemester) {
-                // Populate subjects
-                academicData[selectedBranch][selectedSemester].forEach((subject, index) => {
-                    const option = document.createElement('option');
-                    option.value = index; // Use index to find the subject later
-                    option.textContent = subject.name;
-                    subjectSelect.appendChild(option);
-                });
-            }
-        });
+        // ====== INITIALIZATION ======
+        function init() {
+            renderBranches();
+        }
 
-        subjectSelect.addEventListener('change', function() {
-            const selectedBranch = branchSelect.value;
-            const selectedSemester = semesterSelect.value;
-            const selectedSubjectIndex = this.value;
-            
-            goButton.disabled = selectedSubjectIndex === '';
-            
-            if (selectedSubjectIndex !== '' && selectedBranch && selectedSemester) {
-                const subject = academicData[selectedBranch][selectedSemester][selectedSubjectIndex];
-                currentSubjectLink = subject.link;
-                generatedUrl.textContent = currentSubjectLink;
-                urlDisplay.style.display = 'block';
-            } else {
-                urlDisplay.style.display = 'none';
-                currentSubjectLink = '';
-            }
-        });
-
-        goButton.addEventListener('click', function() {
-            if (currentSubjectLink) {
-                // Navigate to the link
-                window.open(currentSubjectLink, '_blank');
-            }
-        });
-
-        // ====== INITIALIZE APP ======
-        initializeBranches();
+        // Initialize the app
+        init();
     </script>
 </body>
 </html>

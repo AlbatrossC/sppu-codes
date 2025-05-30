@@ -2,12 +2,15 @@ import os
 import fitz  # PyMuPDF
 
 def normalize_name(name):
-    name = name.replace('-', '')            # Remove all hyphens
-    name = name.replace('@', 'and')         # Replace @ with 'and'
-    name = '_'.join(name.lower().split())   # Replace spaces with underscores and lowercase
+    # Replace underscores with hyphens, replace '@' with 'and',
+    # replace spaces with hyphens, lowercase everything.
+    name = name.replace('_', '-')
+    name = name.replace('@', 'and')
+    name = '-'.join(name.lower().split())
     return name
 
 def rename_recursively(root_dir):
+    # Walk with topdown=False so we rename inner folders first
     for dirpath, dirnames, filenames in os.walk(root_dir, topdown=False):
         # Rename files
         for filename in filenames:
@@ -15,17 +18,23 @@ def rename_recursively(root_dir):
             if new_name != filename:
                 src = os.path.join(dirpath, filename)
                 dst = os.path.join(dirpath, new_name)
-                os.rename(src, dst)
-                print(f"Renamed file: {src} -> {dst}")
-        
+                if not os.path.exists(dst):
+                    os.rename(src, dst)
+                    print(f"Renamed file: {src} -> {dst}")
+                else:
+                    print(f"Skipped renaming (exists): {dst}")
+
         # Rename folders
         for dirname in dirnames:
             new_name = normalize_name(dirname)
             if new_name != dirname:
                 src = os.path.join(dirpath, dirname)
                 dst = os.path.join(dirpath, new_name)
-                os.rename(src, dst)
-                print(f"Renamed folder: {src} -> {dst}")
+                if not os.path.exists(dst):
+                    os.rename(src, dst)
+                    print(f"Renamed folder: {src} -> {dst}")
+                else:
+                    print(f"Skipped renaming (exists): {dst}")
 
 def extract_text_from_pdf(file_path):
     try:
@@ -43,32 +52,46 @@ def classify_and_rename(file_path):
     base_dir = os.path.dirname(file_path)
     filename = os.path.basename(file_path)
 
-    if filename.startswith(("endsem_", "insem_", "other_")):
-        return "skipped", filename
+    # Normalize filename first (underscores to hyphens etc)
+    norm_filename = normalize_name(filename)
+
+    # Avoid double prefixing: check if already prefixed
+    if norm_filename.startswith(("endsem-", "insem-", "other-")):
+        return "skipped", norm_filename
 
     text_lower = text.lower()
 
     if "max. marks : 70" in text_lower:
-        prefix = "endsem_"
+        prefix = "endsem-"
     elif "max. marks : 30" in text_lower:
-        prefix = "insem_"
+        prefix = "insem-"
     else:
-        prefix = "other_"
+        prefix = "other-"
 
-    new_filename = prefix + filename
+    new_filename = prefix + norm_filename
     new_path = os.path.join(base_dir, new_filename)
+
+    if new_path == file_path:
+        # Already correct name, skip rename
+        return "skipped", norm_filename
+
+    # Make sure no overwrite
+    if os.path.exists(new_path):
+        print(f"File {new_path} already exists, skipping rename for {file_path}")
+        return "skipped", norm_filename
 
     try:
         os.rename(file_path, new_path)
+        print(f"Renamed PDF: {file_path} -> {new_path}")
     except Exception as e:
         print(f"Failed to rename {file_path}: {e}")
         return "error", filename
 
-    return prefix.rstrip("_"), new_filename
+    return prefix.rstrip("-"), new_filename
 
 def main():
     root_directory = "."
-    
+
     if not os.path.isdir(root_directory):
         print("❌ Invalid directory. Please try again.")
         return

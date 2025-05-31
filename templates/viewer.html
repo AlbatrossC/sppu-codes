@@ -31,6 +31,7 @@
     <meta name="twitter:description" content="{{ seo_data.description }}">
     <meta name="twitter:image" content="https://sppucodes.vercel.app/images/logo.png">
     <meta name="twitter:site" content="@sppucodes">
+    
 
     <link href="{{ url_for('get_image', filename='favicon.ico') }}" rel="icon" fetchpriority="high" type="image/x-icon">
 
@@ -211,217 +212,14 @@
         <div class="no-pdf-message">Loading PDFs...<div class="loader"></div></div>
     </div>
 
+
 <script>
+    
+
     'use strict';
 
     const initialPdfDataFromServer = {{ pdf_data_for_js | tojson | safe }};
     const subjectNameFromServer = {{ seo_data.subject_name | tojson | safe }};
-
-    // IndexedDB Configuration
-    const DB_NAME = 'SPPUCodesCache';
-    const DB_VERSION = 2;
-    const STORE_NAME = 'pdfCache';
-    const CACHE_EXPIRY_DAYS = 30; // Cache expiry in days
-
-    // IndexedDB Manager Class
-    class IndexedDBCache {
-        constructor() {
-            this.db = null;
-            this.isInitialized = false;
-        }
-
-        async init() {
-            if (this.isInitialized) return this.db;
-            
-            return new Promise((resolve, reject) => {
-                const request = indexedDB.open(DB_NAME, DB_VERSION);
-                
-                request.onerror = () => {
-                    console.error('IndexedDB initialization failed:', request.error);
-                    reject(request.error);
-                };
-                
-                request.onsuccess = () => {
-                    this.db = request.result;
-                    this.isInitialized = true;
-                    console.log('IndexedDB initialized successfully');
-                    resolve(this.db);
-                };
-                
-                request.onupgradeneeded = (event) => {
-                    const db = event.target.result;
-                    
-                    if (!db.objectStoreNames.contains(STORE_NAME)) {
-                        const store = db.createObjectStore(STORE_NAME, { keyPath: 'url' });
-                        store.createIndex('timestamp', 'timestamp', { unique: false });
-                        store.createIndex('subject', 'subject', { unique: false });
-                        console.log('IndexedDB object store created');
-                    }
-                };
-            });
-        }
-
-        async storePDF(url, blob, filename, subject) {
-            try {
-                await this.init();
-                const transaction = this.db.transaction([STORE_NAME], 'readwrite');
-                const store = transaction.objectStore(STORE_NAME);
-                
-                const data = {
-                    url: url,
-                    blob: blob,
-                    filename: filename,
-                    subject: subject || 'unknown',
-                    timestamp: Date.now(),
-                    size: blob.size
-                };
-                
-                await new Promise((resolve, reject) => {
-                    const request = store.put(data);
-                    request.onsuccess = () => resolve();
-                    request.onerror = () => reject(request.error);
-                });
-                
-                console.log(`Cached: ${filename} (${this.formatBytes(blob.size)})`);
-                return true;
-            } catch (error) {
-                console.error('Error storing PDF in IndexedDB:', error);
-                return false;
-            }
-        }
-
-        async getPDF(url) {
-            try {
-                await this.init();
-                const transaction = this.db.transaction([STORE_NAME], 'readonly');
-                const store = transaction.objectStore(STORE_NAME);
-                
-                return new Promise((resolve, reject) => {
-                    const request = store.get(url);
-                    request.onsuccess = () => {
-                        const result = request.result;
-                        if (result && this.isNotExpired(result.timestamp)) {
-                            resolve(result);
-                        } else {
-                            if (result) {
-                                // Remove expired entry
-                                this.removePDF(url);
-                            }
-                            resolve(null);
-                        }
-                    };
-                    request.onerror = () => reject(request.error);
-                });
-            } catch (error) {
-                console.error('Error retrieving PDF from IndexedDB:', error);
-                return null;
-            }
-        }
-
-        async removePDF(url) {
-            try {
-                await this.init();
-                const transaction = this.db.transaction([STORE_NAME], 'readwrite');
-                const store = transaction.objectStore(STORE_NAME);
-                
-                return new Promise((resolve, reject) => {
-                    const request = store.delete(url);
-                    request.onsuccess = () => resolve();
-                    request.onerror = () => reject(request.error);
-                });
-            } catch (error) {
-                console.error('Error removing PDF from IndexedDB:', error);
-            }
-        }
-
-        async getAllPDFs() {
-            try {
-                await this.init();
-                const transaction = this.db.transaction([STORE_NAME], 'readonly');
-                const store = transaction.objectStore(STORE_NAME);
-                
-                return new Promise((resolve, reject) => {
-                    const request = store.getAll();
-                    request.onsuccess = () => resolve(request.result || []);
-                    request.onerror = () => reject(request.error);
-                });
-            } catch (error) {
-                console.error('Error getting all PDFs from IndexedDB:', error);
-                return [];
-            }
-        }
-
-        async clearExpiredCache() {
-            try {
-                const allPDFs = await this.getAllPDFs();
-                const expiredPDFs = allPDFs.filter(pdf => !this.isNotExpired(pdf.timestamp));
-                
-                for (const pdf of expiredPDFs) {
-                    await this.removePDF(pdf.url);
-                }
-                
-                console.log(`Cleaned up ${expiredPDFs.length} expired cache entries`);
-                return expiredPDFs.length;
-            } catch (error) {
-                console.error('Error clearing expired cache:', error);
-                return 0;
-            }
-        }
-
-        async clearAllCache() {
-            try {
-                await this.init();
-                const transaction = this.db.transaction([STORE_NAME], 'readwrite');
-                const store = transaction.objectStore(STORE_NAME);
-                
-                return new Promise((resolve, reject) => {
-                    const request = store.clear();
-                    request.onsuccess = () => {
-                        console.log('All cache cleared');
-                        resolve();
-                    };
-                    request.onerror = () => reject(request.error);
-                });
-            } catch (error) {
-                console.error('Error clearing all cache:', error);
-            }
-        }
-
-        async getCacheStats() {
-            try {
-                const allPDFs = await this.getAllPDFs();
-                const totalSize = allPDFs.reduce((sum, pdf) => sum + (pdf.size || 0), 0);
-                const validPDFs = allPDFs.filter(pdf => this.isNotExpired(pdf.timestamp));
-                
-                return {
-                    totalCount: allPDFs.length,
-                    validCount: validPDFs.length,
-                    expiredCount: allPDFs.length - validPDFs.length,
-                    totalSize: totalSize,
-                    formattedSize: this.formatBytes(totalSize)
-                };
-            } catch (error) {
-                console.error('Error getting cache stats:', error);
-                return { totalCount: 0, validCount: 0, expiredCount: 0, totalSize: 0, formattedSize: '0 B' };
-            }
-        }
-
-        isNotExpired(timestamp) {
-            const expiryTime = CACHE_EXPIRY_DAYS * 24 * 60 * 60 * 1000; 
-            return (Date.now() - timestamp) < expiryTime;
-        }
-
-        formatBytes(bytes) {
-            if (bytes === 0) return '0 B';
-            const k = 1024;
-            const sizes = ['B', 'KB', 'MB', 'GB'];
-            const i = Math.floor(Math.log(bytes) / Math.log(k));
-            return parseFloat((bytes / Math.pow(k, i)).toFixed(2)) + ' ' + sizes[i];
-        }
-    }
-
-    // Initialize IndexedDB Cache
-    const dbCache = new IndexedDBCache();
 
     const DOM = {
         pdfContainer: document.getElementById('pdf-container'),
@@ -429,7 +227,8 @@
         pdfCount: document.getElementById('pdf-count'),
         examType: document.getElementById('exam-type'),
         fullscreenBtn: document.getElementById('fullscreen-btn'),
-        backBtn: document.getElementById('back-btn')
+        backBtn: document.getElementById('back-btn'),
+        cacheStatus: document.createElement('div') // For cache status display
     };
 
     const state = {
@@ -438,8 +237,117 @@
         activeObjectURLs: new Map(),
         renderQueue: Promise.resolve(),
         pdfViewerBase: '/static/pdfjs/web/viewer.html',
-        downloadProgress: { current: 0, total: 0 },
-        cacheInitialized: false
+        serviceWorkerReady: false,
+        cachedPdfs: new Set(),
+        cacheProgress: { total: 0, completed: 0 }
+    };
+
+    // Service Worker Registration and Management
+    const ServiceWorkerManager = {
+        async register() {
+            if ('serviceWorker' in navigator) {
+                try {
+                    const registration = await navigator.serviceWorker.register('/sw.js');
+                    console.log('Service Worker registered:', registration.scope);
+                    await navigator.serviceWorker.ready;
+                    state.serviceWorkerReady = true;
+                    console.log('Service Worker ready');
+                    navigator.serviceWorker.addEventListener('message', this.handleMessage);
+                    // Trigger cache cleanup on load
+                    this.cleanCache();
+                    return registration;
+                } catch (error) {
+                    console.error('Service Worker registration failed:', error);
+                    this.showCacheStatus('Service Worker not available. PDFs may load slower.');
+                    return null;
+                }
+            } else {
+                console.log('Service Worker not supported');
+                this.showCacheStatus('Service Worker not supported. PDFs may load slower.');
+                return null;
+            }
+        },
+
+        handleMessage(event) {
+            const { type, data } = event.data;
+            switch (type) {
+                case 'PDF_DOWNLOAD_START':
+                    console.log(`[Cache] Starting download: ${data.fileName} (${data.url})`);
+                    state.cacheProgress.total++;
+                    this.updateCacheProgress();
+                    break;
+                case 'PDF_DOWNLOAD_COMPLETE':
+                    console.log(`[Cache] Cached: ${data.fileName} (${data.url})`);
+                    state.cachedPdfs.add(data.url);
+                    state.cacheProgress.completed++;
+                    this.updateCacheProgress();
+                    break;
+                case 'PDF_DOWNLOAD_ERROR':
+                    console.error(`[Cache] Error caching ${data.fileName}: ${data.error}`);
+                    this.showCacheStatus(`Error caching ${data.fileName}`);
+                    break;
+                case 'PDF_CACHE_CHECK':
+                    data.cachedUrls.forEach(url => {
+                        state.cachedPdfs.add(url);
+                        console.log(`[Cache] Already cached: ${url.split('/').pop()}`);
+                    });
+                    break;
+                case 'CACHE_INFO':
+                    console.log('[Cache] Cache info:', data);
+                    break;
+            }
+        },
+
+        updateCacheProgress() {
+            const { total, completed } = state.cacheProgress;
+            const percentage = total > 0 ? Math.round((completed / total) * 100) : 0;
+            this.showCacheStatus(`Caching PDFs: ${completed}/${total} (${percentage}%)`);
+            if (completed === total && total > 0) {
+                this.showCacheStatus('All PDFs cached successfully!');
+                setTimeout(() => DOM.cacheStatus.remove(), 3000);
+            }
+        },
+
+        showCacheStatus(message) {
+            DOM.cacheStatus.textContent = message;
+            DOM.cacheStatus.className = 'cache-status';
+            DOM.cacheStatus.style.cssText = 'position: fixed; bottom: 10px; right: 10px; background: #333; color: #fff; padding: 10px; border-radius: 5px; z-index: 1000;';
+            document.body.appendChild(DOM.cacheStatus);
+        },
+
+        async initiatePdfCaching(pdfUrls) {
+            if (!state.serviceWorkerReady) {
+                console.log('[Cache] Service Worker not ready, skipping caching');
+                this.showCacheStatus('Service Worker not ready. PDFs may load slower.');
+                return;
+            }
+            state.cacheProgress = { total: 0, completed: 0 };
+            navigator.serviceWorker.controller?.postMessage({
+                type: 'CACHE_PDFS',
+                urls: pdfUrls
+            });
+        },
+
+        async checkCachedPdfs(pdfUrls) {
+            if (!state.serviceWorkerReady) return [];
+            return new Promise((resolve) => {
+                const messageChannel = new MessageChannel();
+                messageChannel.port1.onmessage = (event) => {
+                    resolve(event.data.cachedUrls || []);
+                };
+                navigator.serviceWorker.controller?.postMessage({
+                    type: 'CHECK_CACHED_PDFS',
+                    urls: pdfUrls
+                }, [messageChannel.port2]);
+                setTimeout(() => resolve([]), 1000);
+            });
+        },
+
+        cleanCache() {
+            if (state.serviceWorkerReady) {
+                navigator.serviceWorker.controller?.postMessage({ type: 'CLEAN_CACHE' });
+            }
+        }
     };
 
     const debounce = (func, wait) => {
@@ -450,74 +358,8 @@
         };
     };
 
-    // Enhanced PDF Management with IndexedDB
-    async function downloadAndCachePDF(pdfUrl, filename, subject) {
-        try {
-            const cachedPDF = await dbCache.getPDF(pdfUrl);
-            if (cachedPDF) {
-                console.log(`Using cached: ${filename}`);
-                return cachedPDF.blob;
-            }
-
-            console.log(`Downloading: ${filename}`);
-            const response = await fetch(pdfUrl, { cache: 'default' });
-            
-            if (!response.ok) {
-                throw new Error(`HTTP ${response.status} for ${pdfUrl}`);
-            }
-            
-            const blob = await response.blob();
-            
-            await dbCache.storePDF(pdfUrl, blob, filename, subject);
-            
-            return blob;
-        } catch (error) {
-            console.error(`Error downloading/caching ${filename}:`, error);
-            throw error;
-        }
-    }
-
-    async function batchDownloadPDFs() {
-        if (!state.pdfFiles.length) return;
-        
-        const subject = subjectNameFromServer || 'unknown';
-        state.downloadProgress = { current: 0, total: state.pdfFiles.length };
-        
-        console.log('Initializing download...');
-        
-        // Download PDFs in batches to avoid overwhelming the browser
-        const batchSize = 3;
-        const batches = [];
-        
-        for (let i = 0; i < state.pdfFiles.length; i += batchSize) {
-            batches.push(state.pdfFiles.slice(i, i + batchSize));
-        }
-        
-        for (const batch of batches) {
-            const promises = batch.map(async (pdf) => {
-                try {
-                    await downloadAndCachePDF(pdf.link, pdf.originalFilename, subject);
-                    state.downloadProgress.current++;
-                } catch (error) {
-                    console.error(`Failed to cache ${pdf.originalFilename}:`, error);
-                    state.downloadProgress.current++;
-                }
-            });
-            
-            await Promise.all(promises);
-            
-            // Small delay between batches
-            if (batches.indexOf(batch) < batches.length - 1) {
-                await new Promise(resolve => setTimeout(resolve, 100));
-            }
-        }
-        const { current, total } = state.downloadProgress;
-        if (current >= total && total > 0) {
-             console.log('All PDFs caching process completed.');
-        }
-    }
-
-    async function loadPdfIntoIframe(iframe, pdfUrl, loader) {
+    async function loadPdfIntoIframe(iframe, pdfUrl, loader, retryCount = 0) {
+        const startTime = performance.now();
         const oldObjectURL = state.activeObjectURLs.get(iframe);
         if (oldObjectURL) {
             URL.revokeObjectURL(oldObjectURL);
@@ -525,43 +367,55 @@
         }
 
         try {
-            const cachedPDF = await dbCache.getPDF(pdfUrl);
-            let blob;
+            if (!isValidUrl(pdfUrl)) throw new Error('Invalid PDF URL');
+            const isCached = state.cachedPdfs.has(pdfUrl);
+            console.log(`[PDF Load] Loading ${pdfUrl.split('/').pop()} ${isCached ? 'from cache' : 'from network'}`);
             
-            if (cachedPDF) {
-                console.log(`Loading from cache: ${cachedPDF.filename}`);
-                blob = cachedPDF.blob;
-            } else {
-                console.log(`Loading from network: ${pdfUrl}`);
-                const response = await fetch(pdfUrl, { cache: 'default' });
-                if (!response.ok) throw new Error(`HTTP ${response.status}`);
-                blob = await response.blob();
-            }
+            const response = await fetch(pdfUrl, { cache: isCached ? 'force-cache' : 'default' });
+            if (!response.ok) throw new Error(`HTTP ${response.status}`);
             
+            const blob = await response.blob();
             const fileUrlToLoad = URL.createObjectURL(blob);
             state.activeObjectURLs.set(iframe, fileUrlToLoad);
             
             const iframeSrc = `${state.pdfViewerBase}?file=${encodeURIComponent(fileUrlToLoad)}`;
             iframe.src = iframeSrc;
 
+            const loadTime = performance.now() - startTime;
+            console.log(`[PDF Load] Loaded ${pdfUrl.split('/').pop()} in ${loadTime.toFixed(2)}ms ${isCached ? '(cache hit)' : '(network)'}`);
+
             iframe.onload = () => {
                 if (loader && loader.parentNode) loader.remove();
             };
             
             iframe.onerror = () => {
-                console.error(`Iframe failed to load: ${iframe.src}`);
+                console.error(`[PDF Load] Iframe failed: ${iframe.src}`);
                 if (loader && loader.parentNode) loader.remove();
                 if (iframe.parentElement) {
                     iframe.parentElement.innerHTML = '<div class="no-pdf-message">Error loading PDF. Please check the URL and network.</div>';
                 }
             };
-            
         } catch (error) {
-            console.error(`Error loading PDF ${pdfUrl}:`, error);
+            console.error(`[PDF Load] Error loading ${pdfUrl}: ${error.message}`);
+            if (retryCount < 2) {
+                console.log(`[PDF Load] Retrying ${pdfUrl} (${retryCount + 1}/2)`);
+                setTimeout(() => loadPdfIntoIframe(iframe, pdfUrl, loader, retryCount + 1), 1000);
+                return;
+            }
             if (loader && loader.parentNode) loader.remove();
             if (iframe.parentElement) {
-                iframe.parentElement.innerHTML = '<div class="no-pdf-message">Error loading PDF. Please try again.</div>';
+                iframe.parentElement.innerHTML = '<div class="no-pdf-message">Error loading PDF. Please try again or check your network.</div>';
             }
+            ServiceWorkerManager.showCacheStatus(`Failed to load ${pdfUrl.split('/').pop()}`);
+        }
+    }
+
+    function isValidUrl(url) {
+        try {
+            new URL(url);
+            return url.toLowerCase().endsWith('.pdf');
+        } catch {
+            return false;
         }
     }
 
@@ -575,10 +429,10 @@
         return (examType) => {
             const key = examType.toLowerCase();
             if (cache.has(key)) {
-                 const val = cache.get(key);
-                 cache.delete(key);
-                 cache.set(key, val);
-                 return val;
+                const val = cache.get(key);
+                cache.delete(key);
+                cache.set(key, val);
+                return val;
             }
             const result = state.pdfFiles.filter(file => file.date.toLowerCase().includes(key));
             if (cache.size >= maxSize) cache.delete(cache.keys().next().value);
@@ -603,6 +457,7 @@
                     URL.revokeObjectURL(oldObjectURL);
                     state.activeObjectURLs.delete(iframe);
                 }
+                iframe.remove();
             });
 
             DOM.pdfContainer.className = `grid-${count}`;
@@ -675,7 +530,10 @@
             const pdfUrl = data[idx].link;
             const viewerDiv = selectorContainer.closest('.pdf-viewer');
             const iframe = viewerDiv.querySelector('iframe');
-            if (!iframe) { console.error(`Iframe not found for ${viewerId}`); return; }
+            if (!iframe) {
+                console.error(`[PDF Load] Iframe not found for ${viewerId}`);
+                return;
+            }
             iframe.title = `PDF Viewer ${viewerId.split('-')[1] + 1} - ${data[idx].originalFilename}`;
 
             const loader = document.createElement('div');
@@ -692,9 +550,9 @@
 
     function toggleFullscreen() {
         if (document.fullscreenElement) {
-            document.exitFullscreen().catch(err => console.error("Error exiting fullscreen:", err));
+            document.exitFullscreen().catch(err => console.error("[Fullscreen] Error exiting:", err));
         } else {
-            document.documentElement.requestFullscreen({ navigationUI: 'hide' }).catch(err => console.error("Error entering fullscreen:", err));
+            document.documentElement.requestFullscreen({ navigationUI: 'hide' }).catch(err => console.error("[Fullscreen] Error entering:", err));
         }
     }
 
@@ -710,50 +568,25 @@
         DOM.examType.addEventListener('change', debouncedRender);
         DOM.fullscreenBtn.addEventListener('click', toggleFullscreen);
         DOM.backBtn.addEventListener('click', () => window.location.href = '/questionpapers');
-        
         document.addEventListener('fullscreenchange', updateFullscreenButton);
         document.addEventListener('keydown', (e) => {
             if (e.key === 'Escape' && document.fullscreenElement) {
-                document.exitFullscreen().catch(err => console.error("Error exiting fullscreen on escape:", err));
+                document.exitFullscreen().catch(err => console.error("[Fullscreen] Error exiting on escape:", err));
             }
         });
-    }
-
-    async function initializeCache() {
-        try {
-            console.log('Initializing cache system...');
-            await dbCache.init();
-            
-            const expiredCount = await dbCache.clearExpiredCache();
-            if (expiredCount > 0) {
-                console.log(`Cleaned up ${expiredCount} expired entries`);
-            }
-            
-            const stats = await dbCache.getCacheStats();
-            console.log(`Cache initialized: ${stats.validCount} PDFs (${stats.formattedSize})`);
-            
-            state.cacheInitialized = true;
-            console.log('Cache ready.');
-            
-            return true;
-        } catch (error) {
-            console.error('Failed to initialize cache:', error);
-            console.log('Cache unavailable, using network only');
-            return false;
-        }
     }
 
     async function init() {
         updateSubjectDisplay();
         setupEventListeners();
 
-        await initializeCache();
+        await ServiceWorkerManager.register();
 
         if (initialPdfDataFromServer && initialPdfDataFromServer.length > 0) {
             state.pdfFiles = initialPdfDataFromServer
                 .map(pdfObject => {
-                    if (!pdfObject || typeof pdfObject.filename !== 'string' || typeof pdfObject.url !== 'string') {
-                        console.warn('Skipping invalid PDF object:', pdfObject);
+                    if (!pdfObject || typeof pdfObject.filename !== 'string' || typeof pdfObject.url !== 'string' || !isValidUrl(pdfObject.url)) {
+                        console.warn('[Init] Skipping invalid PDF object:', pdfObject);
                         return null;
                     }
                     return {
@@ -763,7 +596,7 @@
                     };
                 })
                 .filter(item => item !== null)
-                .sort((a, b) => b.date.localeCompare(a.date)); 
+                .sort((a, b) => b.date.localeCompare(a.date));
 
             const hasInsem = state.pdfFiles.some(file => file.date.toLowerCase().includes('insem'));
             const hasEndsem = state.pdfFiles.some(file => file.date.toLowerCase().includes('endsem'));
@@ -774,15 +607,19 @@
             if (hasInsem) DOM.examType.value = 'insem';
             else if (hasEndsem) DOM.examType.value = 'endsem';
 
-            if (state.cacheInitialized) {
-                // Don't await this - let it run in background
-                batchDownloadPDFs().catch(error => {
-                    console.error('Background PDF caching failed:', error);
-                    console.log('Some PDFs failed to cache');
-                });
+            const pdfUrls = state.pdfFiles.map(file => file.link);
+            const cachedUrls = await ServiceWorkerManager.checkCachedPdfs(pdfUrls);
+            cachedUrls.forEach(url => {
+                state.cachedPdfs.add(url);
+                console.log(`[Init] PDF already cached: ${url.split('/').pop()}`);
+            });
+
+            const uncachedUrls = pdfUrls.filter(url => !state.cachedPdfs.has(url));
+            if (uncachedUrls.length > 0) {
+                console.log(`[Init] Initiating caching for ${uncachedUrls.length} PDFs`);
+                ServiceWorkerManager.initiatePdfCaching(uncachedUrls);
             }
 
-            // Preload PDF.js viewer
             const preloadIframe = document.createElement('iframe');
             preloadIframe.style.cssText = 'display:none !important; width:1px; height:1px; opacity:0; pointer-events:none;';
             preloadIframe.setAttribute('aria-hidden', 'true');
@@ -799,14 +636,13 @@
         }
     }
 
-    // Cleanup function
     window.addEventListener('beforeunload', () => {
         state.activeObjectURLs.forEach(url => URL.revokeObjectURL(url));
         state.activeObjectURLs.clear();
     });
 
     document.addEventListener('DOMContentLoaded', init);
-</script>
 
+</script>
 </body>
 </html>

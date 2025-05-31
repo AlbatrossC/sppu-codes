@@ -305,6 +305,11 @@ def robots():
     """Serve robots.txt for web crawlers"""
     return send_from_directory('.', 'robots.txt')
 
+@app.route('/sw.js')
+def service_worker():
+    """Serve the service worker script"""
+    return send_from_directory('.', 'sw.js')
+
 # =============================================================================
 # ERROR HANDLERS
 # =============================================================================

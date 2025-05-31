@@ -1,67 +1,89 @@
 [
   {
-    "link": "/questionpapers/computer-graphics",
-    "subjectName": "Computer Graphics",
-    "description": "Sppu Computer Graphics (CG) question papers: for Second Year (SE) AI&DS Sem 3 students. Find previous year papers curated by Sppu Codes.",
-    "keywords": ["sppu", "computer graphics", "cg", "question papers", "pyq", "previous year papers", "sppu codes", "se", "second year", "ai&ds", "sem 3", "graphics", "rendering", "transformations", "cgl"]
-  },
-  {
-    "link": "/questionpapers/discrete-mathematics",
     "subjectName": "Discrete Mathematics",
+    "branch": "AIDS - Artificial Intelligence and Data Science",
+    "sem": 3,
+    "link": "/questionpapers/discrete-mathematics",
     "description": "Sppu Discrete Mathematics (DM) question papers: for Second Year (SE) AI&DS Sem 3 students. Find previous year papers compiled by Sppu Codes.",
     "keywords": ["sppu", "discrete mathematics", "dm", "question papers", "pyq", "previous year papers", "sppu codes", "se", "second year", "ai&ds", "sem 3", "logic", "graphs", "sets", "relations"]
   },
   {
-    "link": "/questionpapers/fundamentals-of-data-structures",
     "subjectName": "Fundamentals Of Data Structures",
+    "branch": "AIDS - Artificial Intelligence and Data Science",
+    "sem": 3,
+    "link": "/questionpapers/fundamentals-of-data-structures",
     "description": "Sppu Fundamentals of Data Structures (FDS) question papers: for Second Year (SE) AI&DS Sem 3 students. Available on Sppu Codes.",
     "keywords": ["sppu", "fundamentals of data structures", "fds", "data structures", "question papers", "pyq", "previous year papers", "sppu codes", "se", "second year", "ai&ds", "sem 3", "linked list", "stack", "queue", "arrays"]
   },
   {
-    "link": "/questionpapers/object-oriented-programming",
     "subjectName": "Object Oriented Programming",
+    "branch": "AIDS - Artificial Intelligence and Data Science",
+    "sem": 3,
+    "link": "/questionpapers/object-oriented-programming",
     "description": "Sppu Object Oriented Programming (OOP) question papers: for Second Year (SE) AI&DS Sem 3 students. Provided by Sppu Codes.",
     "keywords": ["sppu", "object oriented programming", "oop", "question papers", "pyq", "previous year papers", "sppu codes", "se", "second year", "ai&ds", "sem 3", "c++", "java", "inheritance", "polymorphism"]
   },
   {
-    "link": "/questionpapers/operating-systems",
+    "subjectName": "Computer Graphics",
+    "branch": "AIDS - Artificial Intelligence and Data Science",
+    "sem": 3,
+    "link": "/questionpapers/computer-graphics",
+    "description": "Sppu Computer Graphics (CG) question papers: for Second Year (SE) AI&DS Sem 3 students. Find previous year papers curated by Sppu Codes.",
+    "keywords": ["sppu", "computer graphics", "cg", "question papers", "pyq", "previous year papers", "sppu codes", "se", "second year", "ai&ds", "sem 3", "graphics ddl", "rendering", "transformations", "cgl"]
+  },
+  {
     "subjectName": "Operating Systems",
+    "branch": "AIDS - Artificial Intelligence and Data Science",
+    "sem": 3,
+    "link": "/questionpapers/operating-systems",
     "description": "Sppu Operating Systems (OS) question papers: for Second Year (SE) AI&DS Sem 3 students. Find all papers on Sppu Codes.",
     "keywords": ["sppu", "operating systems", "os", "question papers", "pyq", "previous year papers", "sppu codes", "se", "second year", "ai&ds", "sem 3", "scheduling", "memory management", "threads", "processes"]
   },
   {
-    "link": "/questionpapers/data-structure-and-algorithm",
+    "subjectName": "Statistics",
+    "branch": "AIDS - Artificial Intelligence and Data Science",
+    "sem": 4,
+    "link": "/questionpapers/statistics",
+    "description": "Sppu Statistics (Stats) question papers: for Second Year (SE) AI&DS Sem 4 students. Browse easily with Sppu Codes.",
+    "keywords": ["sppu", "statistics", "stats", "question papers", "pyq", "previous year papers", "sppu codes", "se", "second year", "ai&ds", "sem 4", "probability", "regression", "data analysis", "hypothesis testing"]
+  },
+  {
     "subjectName": "Data Structure And Algorithm",
+    "branch": "AIDS - Artificial Intelligence and Data Science",
+    "sem": 4,
+    "link": "/questionpapers/data-structure-and-algorithm",
     "description": "Sppu Data Structure and Algorithm (DSA) question papers: for Second Year (SE) AI&DS Sem 4 students. Hosted by Sppu Codes.",
     "keywords": ["sppu", "data structure and algorithm", "dsa", "dsal", "question papers", "pyq", "previous year papers", "sppu codes", "se", "second year", "ai&ds", "sem 4", "sorting", "trees", "graphs", "recursion"]
   },
   {
-    "link": "/questionpapers/internet-of-things",
-    "subjectName": "Internet Of Things",
-    "description": "Sppu Internet of Things (IoT) question papers: for Second Year (SE) AI&DS Sem 4 students. Explore all papers on Sppu Codes.",
-    "keywords": ["sppu", "internet of things", "iot", "iotl", "question papers", "pyq", "previous year papers", "sppu codes", "se", "second year", "ai&ds", "sem 4", "sensors", "cloud", "embedded systems", "iot protocols"]
-  },
-  {
-    "link": "/questionpapers/management-information-system",
-    "subjectName": "Management Information System",
-    "description": "Sppu Management Information System (MIS) question papers: for Second Year (SE) AI&DS Sem 4 students. Available at Sppu Codes.",
-    "keywords": ["sppu", "management information system", "mis", "question papers", "pyq", "previous year papers", "sppu codes", "se", "second year", "ai&ds", "sem 4", "erp", "information systems", "decision support"]
-  },
-  {
-    "link": "/questionpapers/software-engineering",
     "subjectName": "Software Engineering",
+    "branch": "AIDS - Artificial Intelligence and Data Science",
+    "sem": 4,
+    "link": "/questionpapers/software-engineering",
     "description": "Sppu Software Engineering question papers: for Second Year (SE) AI&DS Sem 4 students. Powered by Sppu Codes.",
     "keywords": ["sppu", "software engineering", "question papers", "pyq", "previous year papers", "sppu codes", "se", "second year", "ai&ds", "sem 4", "sdlc", "agile", "software testing", "project management"]
   },
   {
-    "link": "/questionpapers/statistics",
-    "subjectName": "Statistics",
-    "description": "Sppu Statistics (Stats) question papers: for Second Year (SE) AI&DS Sem 4 students. Browse easily with Sppu Codes.",
-    "keywords": ["sppu", "statistics", "stats", "question papers", "pyq", "previous year papers", "sppu codes", "se", "second year", "ai&ds", "sem 4", "probability", "regression", "data analysis", "hypothesis testing"]
-    },
+    "subjectName": "Internet Of Things",
+    "branch": "AIDS - Artificial Intelligence and Data Science",
+    "sem": 4,
+    "link": "/questionpapers/internet-of-things",
+    "description": "Sppu Internet of Things (IoT) question papers: for Second Year (SE) AI&DS Sem 4 students. Explore all papers on Sppu Codes.",
+    "keywords": ["sppu", "internet of things", "iot", "iotl", "question papers", "pyq", "previous year papers", "sppu codes", "se", "second year", "ai&ds", "sem 4", "sensors", "cloud", "embedded systems", "iot protocols"]
+  },
   {
-    "link": "/questionpapers/principles-of-programming-languages",
+    "subjectName": "Management Information System",
+    "branch": "AIDS - Artificial Intelligence and Data Science",
+    "sem": 4,
+    "link": "/questionpapers/management-information-system",
+    "description": "Sppu Management Information System (MIS) question papers: for Second Year (SE) AI&DS Sem 4 students. Available at Sppu Codes.",
+    "keywords": ["sppu", "management information system", "mis", "question papers", "pyq", "previous year papers", "sppu codes", "se", "second year", "ai&ds", "sem 4", "erp", "information systems", "decision support"]
+  },
+  {
     "subjectName": "Principles of Programming Languages",
+    "branch": "CS - Computer Science",
+    "sem": 4,
+    "link": "/questionpapers/principles-of-programming-languages",
     "description": "Sppu Principles of Programming Languages question papers: for Second Year (SE) CSE Sem 4 students. Powered by Sppu Codes.",
     "keywords": ["sppu", "principles of programming languages", "ppl", "question papers", "pyq", "previous year papers", "sppu codes", "se", "second year", "cse", "sem 4", "syntax", "semantics", "grammars", "parsing", "language design", "programming paradigms"]
   }

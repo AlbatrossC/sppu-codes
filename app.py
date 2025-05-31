@@ -5,6 +5,7 @@ import json
 import requests
 from datetime import datetime
 from functools import lru_cache
+from collections import defaultdict
 
 app = Flask(__name__)
 app.secret_key = 'karltos'
@@ -176,7 +177,15 @@ load_seo_data()
 
 @app.route('/questionpapers')
 def select_page():
-    return render_template('select.html')
+    # Group data from SEO_DATA
+    organized_data = defaultdict(lambda: defaultdict(list))
+
+    for item in SEO_DATA.values():
+        branch = item.get("branch", "Unknown Branch")
+        sem = f"Semester {item.get('sem', 'Unknown')}"
+        organized_data[branch][sem].append(item)
+
+    return render_template('select.html', organized_data=organized_data)
 
 @app.route('/questionpapers/<subject_name>')
 def viewer_page(subject_name):

@@ -351,7 +351,7 @@ def finalize_markup(response):
             e.src="https://www.clarity.ms/tag/"+i;
             t=d.getElementsByTagName("head")[0] || d.getElementsByTagName(s)[0];
             t.parentNode.insertBefore(e,t);
-        })(window,document,"_x1","script","qnqi8o9y94");
+        })(window,document,"clarity","script","qnqi8o9y94");
         </script>
         """
 

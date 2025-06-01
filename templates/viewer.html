@@ -211,7 +211,6 @@
     <div class="grid-1" id="pdf-container">
         <div class="no-pdf-message">Loading PDFs...<div class="loader"></div></div>
     </div>
-
 <script>
     'use strict';
     const initialPdfDataFromServer = {{ pdf_data_for_js | tojson | safe }};
@@ -223,8 +222,7 @@
         pdfCount: document.getElementById('pdf-count'),
         examType: document.getElementById('exam-type'),
         fullscreenBtn: document.getElementById('fullscreen-btn'),
-        backBtn: document.getElementById('back-btn'),
-        cacheStatus: document.createElement('div')
+        backBtn: document.getElementById('back-btn')
     };
 
     const state = {
@@ -235,7 +233,8 @@
         pdfViewerBase: '/static/pdfjs/web/viewer.html',
         serviceWorkerReady: false,
         cachedPdfs: new Set(),
-        cacheProgress: { total: 0, completed: 0, downloaded: [], errors: [] }
+        cacheProgress: { total: 0, completed: 0, failed: 0 },
+        preloadComplete: false
     };
 
     // Service Worker Registration and Management
@@ -248,13 +247,14 @@
                     state.serviceWorkerReady = true;
                     navigator.serviceWorker.addEventListener('message', (event) => this.handleMessage(event));
                     this.cleanCache();
+                    console.log('📄 PDF Viewer: Service Worker ready for offline caching');
                     return registration;
                 } catch (error) {
-                    this.showCacheStatus('Service Worker not available. PDFs may load slower.');
+                    console.warn('📄 PDF Viewer: Service Worker unavailable, PDFs will load from network');
                     return null;
                 }
             } else {
-                this.showCacheStatus('Service Worker not supported. PDFs may load slower.');
+                console.warn('📄 PDF Viewer: Service Worker not supported in this browser');
                 return null;
             }
         },
@@ -264,74 +264,35 @@
             switch (type) {
                 case 'PDF_DOWNLOAD_START':
                     state.cacheProgress.total++;
-                    this.updateCacheProgress();
                     break;
                 case 'PDF_DOWNLOAD_COMPLETE':
                     state.cachedPdfs.add(data.url);
                     state.cacheProgress.completed++;
-                    state.cacheProgress.downloaded.push(data.fileName);
-                    this.updateCacheProgress();
                     break;
                 case 'PDF_DOWNLOAD_ERROR':
-                    state.cacheProgress.errors.push(data.fileName);
-                    this.showCacheStatus(`Error caching ${data.fileName}`);
+                    state.cacheProgress.failed++;
+                    console.warn(`📄 PDF Viewer: Failed to cache ${data.fileName}`);
                     break;
                 case 'PDF_CACHE_CHECK':
                     data.cachedUrls.forEach(url => {
                         state.cachedPdfs.add(url);
                     });
                     break;
-                case 'CACHE_INFO':
-                    break;
             }
-        },
-
-        updateCacheProgress() {
-            const { total, completed } = state.cacheProgress;
-            const percentage = total > 0 ? Math.round((completed / total) * 100) : 0;
-            this.showCacheStatus(`Caching PDFs: ${completed}/${total} (${percentage}%)`);
             
-            if (completed === total && total > 0) {
-                this.logCacheCompletion();
-                this.showCacheStatus('All PDFs cached successfully!');
-                setTimeout(() => {
-                    if (DOM.cacheStatus.parentNode) {
-                        DOM.cacheStatus.remove();
-                    }
-                }, 3000);
-            }
-        },
-
-        logCacheCompletion() {
-            const { downloaded, errors } = state.cacheProgress;
-            const cached = Array.from(state.cachedPdfs).map(url => url.split('/').pop());
-            
-            console.group('📄 PDF Cache Status');
-            console.log(`✅ Cached PDFs (${cached.length}):`, cached);
-            if (downloaded.length > 0) {
-                console.log(`⬇️ Downloaded this session (${downloaded.length}):`, downloaded);
-            }
-            if (errors.length > 0) {
-                console.log(`❌ Failed downloads (${errors.length}):`, errors);
-            }
-            console.groupEnd();
-        },
-
-        showCacheStatus(message) {
-            DOM.cacheStatus.textContent = message;
-            DOM.cacheStatus.className = 'cache-status';
-            DOM.cacheStatus.style.cssText = 'position: fixed; bottom: 10px; right: 10px; background: #333; color: #fff; padding: 10px; border-radius: 5px; z-index: 1000;';
-            if (!DOM.cacheStatus.parentNode) {
-                document.body.appendChild(DOM.cacheStatus);
+            // Log cache completion summary
+            const { total, completed, failed } = state.cacheProgress;
+            if (completed + failed === total && total > 0) {
+                console.log(`📄 PDF Viewer: Cache complete - ${completed} cached, ${failed} failed out of ${total} PDFs`);
             }
         },
 
         async initiatePdfCaching(pdfUrls) {
-            if (!state.serviceWorkerReady) {
-                this.showCacheStatus('Service Worker not ready. PDFs may load slower.');
-                return;
-            }
-            state.cacheProgress = { total: 0, completed: 0, downloaded: [], errors: [] };
+            if (!state.serviceWorkerReady || pdfUrls.length === 0) return;
+            
+            state.cacheProgress = { total: 0, completed: 0, failed: 0 };
+            console.log(`📄 PDF Viewer: Starting background cache for ${pdfUrls.length} PDFs`);
+            
             navigator.serviceWorker.controller?.postMessage({
                 type: 'CACHE_PDFS',
                 urls: pdfUrls
@@ -356,6 +317,67 @@
         cleanCache() {
             if (state.serviceWorkerReady) {
                 navigator.serviceWorker.controller?.postMessage({ type: 'CLEAN_CACHE' });
+            }
+        }
+    };
+
+    // Efficient PDF preloading with priority queue
+    const PreloadManager = {
+        preloadQueue: [],
+        maxConcurrent: 2,
+        activePreloads: 0,
+
+        async preloadPdfViewer() {
+            if (state.preloadComplete) return;
+            
+            return new Promise((resolve) => {
+                const preloadIframe = document.createElement('iframe');
+                preloadIframe.style.cssText = 'position:absolute;left:-9999px;width:1px;height:1px;opacity:0;pointer-events:none;';
+                preloadIframe.setAttribute('aria-hidden', 'true');
+                preloadIframe.src = state.pdfViewerBase;
+                
+                preloadIframe.onload = () => {
+                    state.preloadComplete = true;
+                    console.log('📄 PDF Viewer: PDF.js viewer preloaded');
+                    if (preloadIframe.parentNode) preloadIframe.remove();
+                    resolve();
+                };
+                
+                preloadIframe.onerror = () => {
+                    console.warn('📄 PDF Viewer: PDF.js viewer preload failed');
+                    if (preloadIframe.parentNode) preloadIframe.remove();
+                    resolve();
+                };
+                
+                document.body.appendChild(preloadIframe);
+                
+                // Fallback cleanup
+                setTimeout(() => {
+                    if (preloadIframe.parentNode) preloadIframe.remove();
+                    resolve();
+                }, 3000);
+            });
+        },
+
+        addToPreloadQueue(pdfUrl, priority = 1) {
+            this.preloadQueue.push({ url: pdfUrl, priority });
+            this.preloadQueue.sort((a, b) => b.priority - a.priority);
+            this.processQueue();
+        },
+
+        async processQueue() {
+            if (this.activePreloads >= this.maxConcurrent || this.preloadQueue.length === 0) return;
+            
+            const { url } = this.preloadQueue.shift();
+            this.activePreloads++;
+            
+            try {
+                await fetch(url, { cache: 'default' });
+            } catch (error) {
+                // Silent fail for preloading
+            } finally {
+                this.activePreloads--;
+                this.processQueue();
             }
         }
     };
@@ -408,7 +430,7 @@
             if (iframe.parentElement) {
                 iframe.parentElement.innerHTML = '<div class="no-pdf-message">Error loading PDF. Please try again or check your network.</div>';
             }
-            ServiceWorkerManager.showCacheStatus(`Failed to load ${pdfUrl.split('/').pop()}`);
+            console.warn(`📄 PDF Viewer: Failed to load ${pdfUrl.split('/').pop()} after ${retryCount + 1} attempts`);
         }
     }
 
@@ -490,6 +512,11 @@
                     iframe.title = `PDF Viewer ${i + 1} - ${filteredData[i].originalFilename}`;
                     div.appendChild(iframe);
                     loadPdfIntoIframe(iframe, filteredData[i].link, loader);
+
+                    // Preload next PDFs with lower priority
+                    if (i + 1 < filteredData.length) {
+                        PreloadManager.addToPreloadQueue(filteredData[i + 1].link, 0.5);
+                    }
                 } else {
                     div.innerHTML = '<div class="no-more-papers">No additional paper for this slot.</div>';
                 }
@@ -550,9 +577,9 @@
 
     function toggleFullscreen() {
         if (document.fullscreenElement) {
-            document.exitFullscreen().catch(err => console.error("Error exiting fullscreen:", err));
+            document.exitFullscreen().catch(err => console.error("📄 PDF Viewer: Error exiting fullscreen:", err));
         } else {
-            document.documentElement.requestFullscreen({ navigationUI: 'hide' }).catch(err => console.error("Error entering fullscreen:", err));
+            document.documentElement.requestFullscreen({ navigationUI: 'hide' }).catch(err => console.error("📄 PDF Viewer: Error entering fullscreen:", err));
         }
     }
 
@@ -571,14 +598,18 @@
         document.addEventListener('fullscreenchange', updateFullscreenButton);
         document.addEventListener('keydown', (e) => {
             if (e.key === 'Escape' && document.fullscreenElement) {
-                document.exitFullscreen().catch(err => console.error("Error exiting fullscreen on escape:", err));
+                document.exitFullscreen().catch(err => console.error("📄 PDF Viewer: Error exiting fullscreen on escape:", err));
             }
         });
     }
 
     async function init() {
+        console.log('📄 PDF Viewer: Initializing...');
         updateSubjectDisplay();
         setupEventListeners();
+
+        // Start preloading PDF.js viewer immediately
+        PreloadManager.preloadPdfViewer();
 
         await ServiceWorkerManager.register();
 
@@ -606,6 +637,8 @@
             if (hasInsem) DOM.examType.value = 'insem';
             else if (hasEndsem) DOM.examType.value = 'endsem';
 
+            console.log(`📄 PDF Viewer: Loaded ${state.pdfFiles.length} papers for ${subjectNameFromServer || 'this subject'}`);
+
             const pdfUrls = state.pdfFiles.map(file => file.link);
             const cachedUrls = await ServiceWorkerManager.checkCachedPdfs(pdfUrls);
             cachedUrls.forEach(url => {
@@ -615,22 +648,15 @@
             const uncachedUrls = pdfUrls.filter(url => !state.cachedPdfs.has(url));
             if (uncachedUrls.length > 0) {
                 ServiceWorkerManager.initiatePdfCaching(uncachedUrls);
+            } else if (cachedUrls.length > 0) {
+                console.log(`📄 PDF Viewer: ${cachedUrls.length} PDFs already cached`);
             }
-
-            // Preload PDF.js viewer
-            const preloadIframe = document.createElement('iframe');
-            preloadIframe.style.cssText = 'display:none !important; width:1px; height:1px; opacity:0; pointer-events:none;';
-            preloadIframe.setAttribute('aria-hidden', 'true');
-            preloadIframe.src = state.pdfViewerBase;
-            document.body.appendChild(preloadIframe);
-            setTimeout(() => {
-                if (preloadIframe.parentNode) preloadIframe.remove();
-            }, 5000);
 
             renderPDFs();
         } else {
             DOM.pdfContainer.innerHTML = '<div class="no-pdf-message">No question papers found for this subject.</div>';
             DOM.subjectDisplay.textContent = subjectNameFromServer || 'No Subject';
+            console.warn('📄 PDF Viewer: No PDF data available');
         }
     }
 

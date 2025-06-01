@@ -212,12 +212,8 @@
         <div class="no-pdf-message">Loading PDFs...<div class="loader"></div></div>
     </div>
 
-
 <script>
-    
-
     'use strict';
-
     const initialPdfDataFromServer = {{ pdf_data_for_js | tojson | safe }};
     const subjectNameFromServer = {{ seo_data.subject_name | tojson | safe }};
 
@@ -228,7 +224,7 @@
         examType: document.getElementById('exam-type'),
         fullscreenBtn: document.getElementById('fullscreen-btn'),
         backBtn: document.getElementById('back-btn'),
-        cacheStatus: document.createElement('div') // For cache status display
+        cacheStatus: document.createElement('div')
     };
 
     const state = {
@@ -239,7 +235,7 @@
         pdfViewerBase: '/static/pdfjs/web/viewer.html',
         serviceWorkerReady: false,
         cachedPdfs: new Set(),
-        cacheProgress: { total: 0, completed: 0 }
+        cacheProgress: { total: 0, completed: 0, downloaded: [], errors: [] }
     };
 
     // Service Worker Registration and Management
@@ -248,21 +244,16 @@
             if ('serviceWorker' in navigator) {
                 try {
                     const registration = await navigator.serviceWorker.register('/sw.js');
-                    console.log('Service Worker registered:', registration.scope);
                     await navigator.serviceWorker.ready;
                     state.serviceWorkerReady = true;
-                    console.log('Service Worker ready');
-                    navigator.serviceWorker.addEventListener('message', this.handleMessage);
-                    // Trigger cache cleanup on load
+                    navigator.serviceWorker.addEventListener('message', (event) => this.handleMessage(event));
                     this.cleanCache();
                     return registration;
                 } catch (error) {
-                    console.error('Service Worker registration failed:', error);
                     this.showCacheStatus('Service Worker not available. PDFs may load slower.');
                     return null;
                 }
             } else {
-                console.log('Service Worker not supported');
                 this.showCacheStatus('Service Worker not supported. PDFs may load slower.');
                 return null;
             }
@@ -272,28 +263,25 @@
             const { type, data } = event.data;
             switch (type) {
                 case 'PDF_DOWNLOAD_START':
-                    console.log(`[Cache] Starting download: ${data.fileName} (${data.url})`);
                     state.cacheProgress.total++;
                     this.updateCacheProgress();
                     break;
                 case 'PDF_DOWNLOAD_COMPLETE':
-                    console.log(`[Cache] Cached: ${data.fileName} (${data.url})`);
                     state.cachedPdfs.add(data.url);
                     state.cacheProgress.completed++;
+                    state.cacheProgress.downloaded.push(data.fileName);
                     this.updateCacheProgress();
                     break;
                 case 'PDF_DOWNLOAD_ERROR':
-                    console.error(`[Cache] Error caching ${data.fileName}: ${data.error}`);
+                    state.cacheProgress.errors.push(data.fileName);
                     this.showCacheStatus(`Error caching ${data.fileName}`);
                     break;
                 case 'PDF_CACHE_CHECK':
                     data.cachedUrls.forEach(url => {
                         state.cachedPdfs.add(url);
-                        console.log(`[Cache] Already cached: ${url.split('/').pop()}`);
                     });
                     break;
                 case 'CACHE_INFO':
-                    console.log('[Cache] Cache info:', data);
                     break;
             }
         },
@@ -302,26 +290,48 @@
             const { total, completed } = state.cacheProgress;
             const percentage = total > 0 ? Math.round((completed / total) * 100) : 0;
             this.showCacheStatus(`Caching PDFs: ${completed}/${total} (${percentage}%)`);
+            
             if (completed === total && total > 0) {
+                this.logCacheCompletion();
                 this.showCacheStatus('All PDFs cached successfully!');
-                setTimeout(() => DOM.cacheStatus.remove(), 3000);
+                setTimeout(() => {
+                    if (DOM.cacheStatus.parentNode) {
+                        DOM.cacheStatus.remove();
+                    }
+                }, 3000);
             }
+        },
+
+        logCacheCompletion() {
+            const { downloaded, errors } = state.cacheProgress;
+            const cached = Array.from(state.cachedPdfs).map(url => url.split('/').pop());
+            
+            console.group('📄 PDF Cache Status');
+            console.log(`✅ Cached PDFs (${cached.length}):`, cached);
+            if (downloaded.length > 0) {
+                console.log(`⬇️ Downloaded this session (${downloaded.length}):`, downloaded);
+            }
+            if (errors.length > 0) {
+                console.log(`❌ Failed downloads (${errors.length}):`, errors);
+            }
+            console.groupEnd();
         },
 
         showCacheStatus(message) {
             DOM.cacheStatus.textContent = message;
             DOM.cacheStatus.className = 'cache-status';
             DOM.cacheStatus.style.cssText = 'position: fixed; bottom: 10px; right: 10px; background: #333; color: #fff; padding: 10px; border-radius: 5px; z-index: 1000;';
-            document.body.appendChild(DOM.cacheStatus);
+            if (!DOM.cacheStatus.parentNode) {
+                document.body.appendChild(DOM.cacheStatus);
+            }
         },
 
         async initiatePdfCaching(pdfUrls) {
             if (!state.serviceWorkerReady) {
-                console.log('[Cache] Service Worker not ready, skipping caching');
                 this.showCacheStatus('Service Worker not ready. PDFs may load slower.');
                 return;
             }
-            state.cacheProgress = { total: 0, completed: 0 };
+            state.cacheProgress = { total: 0, completed: 0, downloaded: [], errors: [] };
             navigator.serviceWorker.controller?.postMessage({
                 type: 'CACHE_PDFS',
                 urls: pdfUrls
@@ -359,7 +369,6 @@
     };
 
     async function loadPdfIntoIframe(iframe, pdfUrl, loader, retryCount = 0) {
-        const startTime = performance.now();
         const oldObjectURL = state.activeObjectURLs.get(iframe);
         if (oldObjectURL) {
             URL.revokeObjectURL(oldObjectURL);
@@ -369,7 +378,6 @@
         try {
             if (!isValidUrl(pdfUrl)) throw new Error('Invalid PDF URL');
             const isCached = state.cachedPdfs.has(pdfUrl);
-            console.log(`[PDF Load] Loading ${pdfUrl.split('/').pop()} ${isCached ? 'from cache' : 'from network'}`);
             
             const response = await fetch(pdfUrl, { cache: isCached ? 'force-cache' : 'default' });
             if (!response.ok) throw new Error(`HTTP ${response.status}`);
@@ -381,24 +389,18 @@
             const iframeSrc = `${state.pdfViewerBase}?file=${encodeURIComponent(fileUrlToLoad)}`;
             iframe.src = iframeSrc;
 
-            const loadTime = performance.now() - startTime;
-            console.log(`[PDF Load] Loaded ${pdfUrl.split('/').pop()} in ${loadTime.toFixed(2)}ms ${isCached ? '(cache hit)' : '(network)'}`);
-
             iframe.onload = () => {
                 if (loader && loader.parentNode) loader.remove();
             };
             
             iframe.onerror = () => {
-                console.error(`[PDF Load] Iframe failed: ${iframe.src}`);
                 if (loader && loader.parentNode) loader.remove();
                 if (iframe.parentElement) {
                     iframe.parentElement.innerHTML = '<div class="no-pdf-message">Error loading PDF. Please check the URL and network.</div>';
                 }
             };
         } catch (error) {
-            console.error(`[PDF Load] Error loading ${pdfUrl}: ${error.message}`);
             if (retryCount < 2) {
-                console.log(`[PDF Load] Retrying ${pdfUrl} (${retryCount + 1}/2)`);
                 setTimeout(() => loadPdfIntoIframe(iframe, pdfUrl, loader, retryCount + 1), 1000);
                 return;
             }
@@ -530,10 +532,8 @@
             const pdfUrl = data[idx].link;
             const viewerDiv = selectorContainer.closest('.pdf-viewer');
             const iframe = viewerDiv.querySelector('iframe');
-            if (!iframe) {
-                console.error(`[PDF Load] Iframe not found for ${viewerId}`);
-                return;
-            }
+            if (!iframe) return;
+            
             iframe.title = `PDF Viewer ${viewerId.split('-')[1] + 1} - ${data[idx].originalFilename}`;
 
             const loader = document.createElement('div');
@@ -550,9 +550,9 @@
 
     function toggleFullscreen() {
         if (document.fullscreenElement) {
-            document.exitFullscreen().catch(err => console.error("[Fullscreen] Error exiting:", err));
+            document.exitFullscreen().catch(err => console.error("Error exiting fullscreen:", err));
         } else {
-            document.documentElement.requestFullscreen({ navigationUI: 'hide' }).catch(err => console.error("[Fullscreen] Error entering:", err));
+            document.documentElement.requestFullscreen({ navigationUI: 'hide' }).catch(err => console.error("Error entering fullscreen:", err));
         }
     }
 
@@ -571,7 +571,7 @@
         document.addEventListener('fullscreenchange', updateFullscreenButton);
         document.addEventListener('keydown', (e) => {
             if (e.key === 'Escape' && document.fullscreenElement) {
-                document.exitFullscreen().catch(err => console.error("[Fullscreen] Error exiting on escape:", err));
+                document.exitFullscreen().catch(err => console.error("Error exiting fullscreen on escape:", err));
             }
         });
     }
@@ -586,7 +586,6 @@
             state.pdfFiles = initialPdfDataFromServer
                 .map(pdfObject => {
                     if (!pdfObject || typeof pdfObject.filename !== 'string' || typeof pdfObject.url !== 'string' || !isValidUrl(pdfObject.url)) {
-                        console.warn('[Init] Skipping invalid PDF object:', pdfObject);
                         return null;
                     }
                     return {
@@ -611,15 +610,14 @@
             const cachedUrls = await ServiceWorkerManager.checkCachedPdfs(pdfUrls);
             cachedUrls.forEach(url => {
                 state.cachedPdfs.add(url);
-                console.log(`[Init] PDF already cached: ${url.split('/').pop()}`);
             });
 
             const uncachedUrls = pdfUrls.filter(url => !state.cachedPdfs.has(url));
             if (uncachedUrls.length > 0) {
-                console.log(`[Init] Initiating caching for ${uncachedUrls.length} PDFs`);
                 ServiceWorkerManager.initiatePdfCaching(uncachedUrls);
             }
 
+            // Preload PDF.js viewer
             const preloadIframe = document.createElement('iframe');
             preloadIframe.style.cssText = 'display:none !important; width:1px; height:1px; opacity:0; pointer-events:none;';
             preloadIframe.setAttribute('aria-hidden', 'true');
@@ -642,7 +640,6 @@
     });
 
     document.addEventListener('DOMContentLoaded', init);
-
 </script>
 </body>
 </html>

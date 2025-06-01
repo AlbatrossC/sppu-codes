@@ -136,7 +136,7 @@ header {
 }
 
 @keyframes fadeIn {
-    from { opacity: 0; transform: translateY(10px); }
+    from { opacity: 0; transform: translateY(20px); }
     to { opacity: 1; transform: translateY(0); }
 }
 
@@ -184,6 +184,9 @@ header {
     gap: 16px;
     flex: 1;
     align-items: stretch;
+    padding: 0;
+    margin: 2rem 0;
+    list-style: none;
 }
 
 .card {
@@ -192,23 +195,47 @@ header {
     border-radius: var(--border-radius-soft);
     padding: 20px;
     cursor: pointer;
-    transition: all var(--transition-speed) ease;
+    transition: transform 0.3s ease, opacity 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
     position: relative;
     overflow: hidden;
     display: flex;
     flex-direction: column;
     min-height: 140px;
     max-height: 200px;
+    opacity: 1;
+    animation: fadeIn 0.5s ease forwards;
+}
+
+.card::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    width: 0;
+    height: 3px;
+    background-color: var(--accent-color);
+    transition: width 0.3s ease-out, left 0.3s ease-out;
 }
 
 .card:hover {
-    transform: translateY(-2px);
+    transform: translateY(-3px);
     border-color: var(--accent-color);
+    box-shadow: 0 8px 15px rgba(0, 0, 0, 0.15);
+}
+
+.card:hover::after {
+    width: 100%;
+    left: 0;
+}
+
+.card:focus {
+    outline: none;
+    box-shadow: 0 0 0 2px var(--accent-color);
 }
 
 .card-title {
-    font-size: 1.1rem;
-    font-weight: 500;
+    font-size: 1.5rem;
+    font-weight: bold;
     margin-bottom: 8px;
     color: var(--text-primary);
     text-align: center;
@@ -222,7 +249,7 @@ header {
 
 .card-subtitle {
     color: var(--text-secondary);
-    font-size: 0.85rem;
+    font-size: 1.0rem;
     margin-bottom: 12px;
     text-align: center;
 }
@@ -243,6 +270,35 @@ header {
     gap: 0;
     min-height: 160px;
     max-height: 220px;
+    transition: transform 0.3s ease, opacity 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
+    animation: fadeIn 0.5s ease forwards;
+}
+
+.subject-card::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    width: 0;
+    height: 3px;
+    background-color: var(--accent-color);
+    transition: width 0.3s ease-out, left 0.3s ease-out;
+}
+
+.subject-card:hover {
+    transform: translateY(-3px);
+    border-color: var(--accent-color);
+    box-shadow: 0 8px 15px rgba(0, 0, 0, 0.15);
+}
+
+.subject-card:hover::after {
+    width: 100%;
+    left: 0;
+}
+
+.subject-card:focus {
+    outline: none;
+    box-shadow: 0 0 0 2px var(--accent-color);
 }
 
 .subject-info {
@@ -256,8 +312,8 @@ header {
 .subject-info h3 {
     color: var(--text-primary);
     margin: 0 0 12px 0;
-    font-size: 1.1rem;
-    font-weight: 500;
+    font-size: 1.5rem;
+    font-weight: bold;
     line-height: 1.3;
     text-align: center;
     flex-grow: 1;
@@ -269,7 +325,7 @@ header {
 
 .subject-info p {
     color: var(--text-secondary);
-    font-size: 0.85rem;
+    font-size: 1.0rem;
     line-height: 1.4;
     margin: 0;
     text-align: center;
@@ -344,6 +400,31 @@ header {
     border-color: var(--accent-color);
 }
 
+/* NO RESULTS MESSAGE */
+.no-results-message {
+    text-align: center;
+    padding: 2rem;
+    color: var(--text-secondary);
+    background: var(--secondary-bg);
+    border-radius: var(--border-radius-soft);
+    margin: 2rem auto;
+    max-width: 500px;
+    display: none;
+    border: 1px solid var(--border-color);
+}
+
+.no-results-message.visible {
+    display: block;
+}
+
+/* SEARCH HIGHLIGHT STYLING */
+mark {
+    background-color: rgba(45, 118, 204, 0.15);
+    color: var(--text-primary);
+    padding: 0 2px;
+    border-radius: 2px;
+}
+
 /* MOBILE RESPONSIVENESS */
 @media (max-width: 768px) {
     :root {
@@ -368,17 +449,22 @@ header {
 
     .cards-grid {
         grid-template-columns: 1fr;
-        gap: 14px;
+        gap: 1rem;
     }
 
     .card {
         padding: 16px;
-        min-height: 120px;
-        max-height: 180px;
+        min-height: 140px;
+        max-height: 200px;
+    }
+
+    .subject-card {
+        min-height: 160px;
+        max-height: 220px;
     }
 
     .container {
-        padding: 16px;
+        padding: 1.5rem 3%;
     }
 
     .breadcrumb {
@@ -396,9 +482,12 @@ header {
         margin-bottom: 16px;
     }
 
-    .subject-card {
-        min-height: 140px;
-        max-height: 200px;
+    .card-title {
+        font-size: 1.7rem;
+    }
+
+    .subject-info h3 {
+        font-size: 1.7rem;
     }
 }
 
@@ -433,16 +522,29 @@ header {
 
     .card {
         padding: 14px;
-        min-height: 110px;
-        max-height: 160px;
+        min-height: 140px;
+        max-height: 200px;
+    }
+
+    .subject-card {
+        min-height: 160px;
+        max-height: 220px;
     }
 
     .card-title {
-        font-size: 1rem;
+        font-size: 1.5rem;
     }
 
     .subject-info h3 {
-        font-size: 1rem;
+        font-size: 1.5rem;
+    }
+
+    .card-subtitle {
+        font-size: 1.0rem;
+    }
+
+    .subject-info p {
+        font-size: 1.0rem;
     }
 
     .breadcrumb {

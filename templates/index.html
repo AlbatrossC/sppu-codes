@@ -343,35 +343,5 @@
         
         <script src="{{ url_for('static', filename='js/index.js') }}"></script>
 
-        <script>
-            // Pop-up notification script
-            document.addEventListener('DOMContentLoaded', function() {
-                // Show notification after a short delay
-                setTimeout(function() {
-                    document.getElementById('popup-notification').style.display = 'block';
-                }, 1500);
-                
-                // Auto-hide notification after 6 seconds
-                setTimeout(function() {
-                    hideNotification();
-                }, 6000);
-            });
-
-            function closeNotification() {
-                hideNotification();
-            }
-
-            function hideNotification() {
-                const notification = document.getElementById('popup-notification');
-                notification.style.opacity = '0';
-                notification.style.transform = 'translateX(-50%) translateY(20px)';
-                
-                // Remove from DOM after animation completes
-                setTimeout(function() {
-                    notification.style.display = 'none';
-                }, 500);
-            }
-        </script>
-
     </body>
 </html>

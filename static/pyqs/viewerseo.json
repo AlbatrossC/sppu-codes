@@ -80,6 +80,102 @@
     "keywords": ["sppu", "management information system", "mis", "question papers", "pyq", "previous year papers", "sppu codes", "se", "second year", "ai&ds", "sem 4", "erp", "information systems", "decision support"]
   },
   {
+    "subjectName": "Artificial Intelligence",
+    "branch": "AIDS - Artificial Intelligence and Data Science",
+    "sem": 5,
+    "link": "/questionpapers/artificial-intelligence",
+    "description": "Sppu Artificial Intelligence (AI) question papers: for Third Year (TE) AI&DS Sem 5 students. Find previous year papers compiled by Sppu Codes.",
+    "keywords": ["sppu", "artificial intelligence", "ai", "question papers", "pyq", "previous year papers", "sppu codes", "te", "third year", "ai&ds", "sem 5", "machine learning", "neural networks", "search algorithms", "expert systems", "knowledge representation"]
+  },
+  {
+    "subjectName": "Computer Networks",
+    "branch": "AIDS - Artificial Intelligence and Data Science",
+    "sem": 5,
+    "link": "/questionpapers/computer-networks",
+    "description": "Sppu Computer Networks question papers: for Third Year (TE) AI&DS Sem 5 students. Available on Sppu Codes.",
+    "keywords": ["sppu", "computer networks", "cn", "question papers", "pyq", "previous year papers", "sppu codes", "te", "third year", "ai&ds", "sem 5", "osi model", "tcp/ip", "routing", "protocols", "network security"]
+  },
+  {
+    "subjectName": "Database Management System",
+    "branch": "AIDS - Artificial Intelligence and Data Science",
+    "sem": 5,
+    "link": "/questionpapers/database-management-system",
+    "description": "Sppu Database Management System (DBMS) question papers: for Third Year (TE) AI&DS Sem 5 students. Provided by Sppu Codes.",
+    "keywords": ["sppu", "database management system", "dbms", "question papers", "pyq", "previous year papers", "sppu codes", "te", "third year", "ai&ds", "sem 5", "sql", "normalization", "transactions", "relational database", "er model"]
+  },
+  {
+    "subjectName": "Human Computer Interface",
+    "branch": "AIDS - Artificial Intelligence and Data Science",
+    "sem": 5,
+    "link": "/questionpapers/human-computer-interface-ele-i",
+    "description": "Sppu Human Computer Interface (HCI) Elective I question papers: for Third Year (TE) AI&DS Sem 5 students. Find previous year papers curated by Sppu Codes.",
+    "keywords": ["sppu", "human computer interface", "hci", "elective", "ele-i", "question papers", "pyq", "previous year papers", "sppu codes", "te", "third year", "ai&ds", "sem 5", "usability", "ui design", "ux design", "interaction design"]
+  },
+  {
+    "subjectName": "Pattern Recognition",
+    "branch": "AIDS - Artificial Intelligence and Data Science",
+    "sem": 5,
+    "link": "/questionpapers/pattern-recognition-ele-i",
+    "description": "Sppu Pattern Recognition Elective I question papers: for Third Year (TE) AI&DS Sem 5 students. Find all papers on Sppu Codes.",
+    "keywords": ["sppu", "pattern recognition", "pr", "elective", "ele-i", "question papers", "pyq", "previous year papers", "sppu codes", "te", "third year", "ai&ds", "sem 5", "feature extraction", "classification", "clustering", "image processing"]
+  },
+  {
+    "subjectName": "Web Technology",
+    "branch": "AIDS - Artificial Intelligence and Data Science",
+    "sem": 5,
+    "link": "/questionpapers/web-technology",
+    "description": "Sppu Web Technology question papers: for Third Year (TE) AI&DS Sem 5 students. Browse easily with Sppu Codes.",
+    "keywords": ["sppu", "web technology", "wt", "question papers", "pyq", "previous year papers", "sppu codes", "te", "third year", "ai&ds", "sem 5", "html", "css", "javascript", "php", "web development", "responsive design"]
+  },
+  {
+    "subjectName": "Artificial Neural Network",
+    "branch": "AIDS - Artificial Intelligence and Data Science",
+    "sem": 6,
+    "link": "/questionpapers/artificial-neural-network",
+    "description": "Sppu Artificial Neural Network (ANN) question papers: for Third Year (TE) AI&DS Sem 6 students. Hosted by Sppu Codes.",
+    "keywords": ["sppu", "artificial neural network", "ann", "neural networks", "question papers", "pyq", "previous year papers", "sppu codes", "te", "third year", "ai&ds", "sem 6", "backpropagation", "deep learning", "perceptron", "activation functions"]
+  },
+  {
+    "subjectName": "Cloud Computing",
+    "branch": "AIDS - Artificial Intelligence and Data Science",
+    "sem": 6,
+    "link": "/questionpapers/cloud-computing-ele-ii",
+    "description": "Sppu Cloud Computing Elective II question papers: for Third Year (TE) AI&DS Sem 6 students. Powered by Sppu Codes.",
+    "keywords": ["sppu", "cloud computing", "cc", "elective", "ele-ii", "question papers", "pyq", "previous year papers", "sppu codes", "te", "third year", "ai&ds", "sem 6", "aws", "virtualization", "saas", "paas", "iaas", "distributed computing"]
+  },
+  {
+    "subjectName": "Cyber Security",
+    "branch": "AIDS - Artificial Intelligence and Data Science",
+    "sem": 6,
+    "link": "/questionpapers/cyber-security",
+    "description": "Sppu Cyber Security question papers: for Third Year (TE) AI&DS Sem 6 students. Explore all papers on Sppu Codes.",
+    "keywords": ["sppu", "cyber security", "cybersecurity", "information security", "question papers", "pyq", "previous year papers", "sppu codes", "te", "third year", "ai&ds", "sem 6", "cryptography", "network security", "ethical hacking", "malware", "firewall"]
+  },
+  {
+    "subjectName": "Data Science",
+    "branch": "AIDS - Artificial Intelligence and Data Science",
+    "sem": 6,
+    "link": "/questionpapers/data-science",
+    "description": "Sppu Data Science question papers: for Third Year (TE) AI&DS Sem 6 students. Available at Sppu Codes.",
+    "keywords": ["sppu", "data science", "ds", "question papers", "pyq", "previous year papers", "sppu codes", "te", "third year", "ai&ds", "sem 6", "data analytics", "big data", "data mining", "machine learning", "python", "r programming"]
+  },
+  {
+    "subjectName": "Natural Language Processing",
+    "branch": "AIDS - Artificial Intelligence and Data Science",
+    "sem": 6,
+    "link": "/questionpapers/natural-language-processing-ele-ii",
+    "description": "Sppu Natural Language Processing (NLP) Elective II question papers: for Third Year (TE) AI&DS Sem 6 students. Find previous year papers compiled by Sppu Codes.",
+    "keywords": ["sppu", "natural language processing", "nlp", "elective", "ele-ii", "question papers", "pyq", "previous year papers", "sppu codes", "te", "third year", "ai&ds", "sem 6", "text processing", "sentiment analysis", "language models", "tokenization", "parsing"]
+  },
+  {
+    "subjectName": "Software Modeling And Architectures",
+    "branch": "AIDS - Artificial Intelligence and Data Science",
+    "sem": 6,
+    "link": "/questionpapers/software-modeling-and-architectures-ele-ii",
+    "description": "Sppu Software Modeling and Architectures Elective II question papers: for Third Year (TE) AI&DS Sem 6 students. Available on Sppu Codes.",
+    "keywords": ["sppu", "software modeling and architectures", "sma", "software architecture", "elective", "ele-ii", "question papers", "pyq", "previous year papers", "sppu codes", "te", "third year", "ai&ds", "sem 6", "uml", "design patterns", "microservices", "system design", "architectural patterns"]
+  },
+  {
     "subjectName": "Principles of Programming Languages",
     "branch": "CS - Computer Science",
     "sem": 4,

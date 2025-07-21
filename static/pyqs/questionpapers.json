@@ -87,6 +87,98 @@
                 "https://res.cloudinary.com/diiiuwl1p/raw/upload/v1748606983/aids/sem-4/statistics/insem-feb-2023.pdf",
                 "https://res.cloudinary.com/diiiuwl1p/raw/upload/v1748606985/aids/sem-4/statistics/insem-march-2024.pdf"
             ]
+        },
+        "sem-5": {
+            "artificial-intelligence": [
+                "https://res.cloudinary.com/diiiuwl1p/raw/upload/v1753126745/aids/sem-5/artificial-intelligence/endsem-may-jun-2023.pdf",
+                "https://res.cloudinary.com/diiiuwl1p/raw/upload/v1753126746/aids/sem-5/artificial-intelligence/endsem-may-jun-2024.pdf",
+                "https://res.cloudinary.com/diiiuwl1p/raw/upload/v1753126746/aids/sem-5/artificial-intelligence/endsem-nov-dec-2022.pdf",
+                "https://res.cloudinary.com/diiiuwl1p/raw/upload/v1753126747/aids/sem-5/artificial-intelligence/endsem-nov-dec-2023.pdf",
+                "https://res.cloudinary.com/diiiuwl1p/raw/upload/v1753126748/aids/sem-5/artificial-intelligence/insem-oct-2022.pdf",
+                "https://res.cloudinary.com/diiiuwl1p/raw/upload/v1753126748/aids/sem-5/artificial-intelligence/insem-sep-2023.pdf",
+                "https://res.cloudinary.com/diiiuwl1p/raw/upload/v1753126749/aids/sem-5/artificial-intelligence/insem-sep-2024.pdf"
+            ],
+            "computer-networks": [
+                "https://res.cloudinary.com/diiiuwl1p/raw/upload/v1753126750/aids/sem-5/computer-networks/endsem-may-jun-2023.pdf",
+                "https://res.cloudinary.com/diiiuwl1p/raw/upload/v1753126751/aids/sem-5/computer-networks/endsem-may-jun-2024.pdf",
+                "https://res.cloudinary.com/diiiuwl1p/raw/upload/v1753126752/aids/sem-5/computer-networks/endsem-nov-dec-2022.pdf",
+                "https://res.cloudinary.com/diiiuwl1p/raw/upload/v1753126752/aids/sem-5/computer-networks/endsem-nov-dec-2023.pdf",
+                "https://res.cloudinary.com/diiiuwl1p/raw/upload/v1753126753/aids/sem-5/computer-networks/insem-oct-2022.pdf",
+                "https://res.cloudinary.com/diiiuwl1p/raw/upload/v1753126753/aids/sem-5/computer-networks/insem-sep-2023.pdf",
+                "https://res.cloudinary.com/diiiuwl1p/raw/upload/v1753126754/aids/sem-5/computer-networks/insem-sep-2024.pdf"
+            ],
+            "database-management-system": [
+                "https://res.cloudinary.com/diiiuwl1p/raw/upload/v1753126755/aids/sem-5/database-management-system/endsem-may-jun-2023.pdf",
+                "https://res.cloudinary.com/diiiuwl1p/raw/upload/v1753126755/aids/sem-5/database-management-system/endsem-may-jun-2024.pdf",
+                "https://res.cloudinary.com/diiiuwl1p/raw/upload/v1753126756/aids/sem-5/database-management-system/endsem-nov-dec-2022.pdf",
+                "https://res.cloudinary.com/diiiuwl1p/raw/upload/v1753126757/aids/sem-5/database-management-system/endsem-nov-dec-2023.pdf",
+                "https://res.cloudinary.com/diiiuwl1p/raw/upload/v1753126757/aids/sem-5/database-management-system/insem-oct-2022.pdf",
+                "https://res.cloudinary.com/diiiuwl1p/raw/upload/v1753126758/aids/sem-5/database-management-system/insem-sep-2023.pdf",
+                "https://res.cloudinary.com/diiiuwl1p/raw/upload/v1753126759/aids/sem-5/database-management-system/insem-sep-2024.pdf"
+            ],
+            "human-computer-interface-ele-i": [
+                "https://res.cloudinary.com/diiiuwl1p/raw/upload/v1753126759/aids/sem-5/human-computer-interface-ele-i/endsem-may-jun-2023.pdf",
+                "https://res.cloudinary.com/diiiuwl1p/raw/upload/v1753126760/aids/sem-5/human-computer-interface-ele-i/endsem-may-jun-2024.pdf",
+                "https://res.cloudinary.com/diiiuwl1p/raw/upload/v1753126760/aids/sem-5/human-computer-interface-ele-i/endsem-nov-dec-2022.pdf",
+                "https://res.cloudinary.com/diiiuwl1p/raw/upload/v1753126761/aids/sem-5/human-computer-interface-ele-i/endsem-nov-dec-2023.pdf",
+                "https://res.cloudinary.com/diiiuwl1p/raw/upload/v1753126761/aids/sem-5/human-computer-interface-ele-i/insem-oct-2022.pdf",
+                "https://res.cloudinary.com/diiiuwl1p/raw/upload/v1753126762/aids/sem-5/human-computer-interface-ele-i/insem-sep-2023.pdf",
+                "https://res.cloudinary.com/diiiuwl1p/raw/upload/v1753126762/aids/sem-5/human-computer-interface-ele-i/insem-sep-2024.pdf"
+            ],
+            "pattern-recognition-ele-i": [
+                "https://res.cloudinary.com/diiiuwl1p/raw/upload/v1753126763/aids/sem-5/pattern-recognition-ele-i/insem-sep-2024.pdf"
+            ],
+            "web-technology": [
+                "https://res.cloudinary.com/diiiuwl1p/raw/upload/v1753126764/aids/sem-5/web-technology/endsem-may-jun-2023.pdf",
+                "https://res.cloudinary.com/diiiuwl1p/raw/upload/v1753126764/aids/sem-5/web-technology/endsem-may-jun-2024.pdf",
+                "https://res.cloudinary.com/diiiuwl1p/raw/upload/v1753126765/aids/sem-5/web-technology/endsem-nov-dec-2022.pdf",
+                "https://res.cloudinary.com/diiiuwl1p/raw/upload/v1753126766/aids/sem-5/web-technology/endsem-nov-dec-2023.pdf",
+                "https://res.cloudinary.com/diiiuwl1p/raw/upload/v1753126766/aids/sem-5/web-technology/insem-oct-2022.pdf",
+                "https://res.cloudinary.com/diiiuwl1p/raw/upload/v1753126767/aids/sem-5/web-technology/insem-sep-2023.pdf",
+                "https://res.cloudinary.com/diiiuwl1p/raw/upload/v1753126768/aids/sem-5/web-technology/insem-sep-2024.pdf"
+            ]
+        },
+        "sem-6": {
+            "artificial-nueral-network": [
+                "https://res.cloudinary.com/diiiuwl1p/raw/upload/v1753126768/aids/sem-6/artificial-nueral-network/endsem-may-jun-2023.pdf",
+                "https://res.cloudinary.com/diiiuwl1p/raw/upload/v1753126769/aids/sem-6/artificial-nueral-network/endsem-may-jun-2024.pdf",
+                "https://res.cloudinary.com/diiiuwl1p/raw/upload/v1753126770/aids/sem-6/artificial-nueral-network/endsem-nov-dec-2023.pdf",
+                "https://res.cloudinary.com/diiiuwl1p/raw/upload/v1753126771/aids/sem-6/artificial-nueral-network/insem-feb-2023.pdf",
+                "https://res.cloudinary.com/diiiuwl1p/raw/upload/v1753126772/aids/sem-6/artificial-nueral-network/insem-march-2024.pdf",
+                "https://res.cloudinary.com/diiiuwl1p/raw/upload/v1753126772/aids/sem-6/artificial-nueral-network/insem-march-2025.pdf"
+            ],
+            "cloud-computing-ele-ii": [
+                "https://res.cloudinary.com/diiiuwl1p/raw/upload/v1753126773/aids/sem-6/cloud-computing-ele-ii/endsem-may-jun-2023.pdf",
+                "https://res.cloudinary.com/diiiuwl1p/raw/upload/v1753126773/aids/sem-6/cloud-computing-ele-ii/endsem-may-jun-2024.pdf",
+                "https://res.cloudinary.com/diiiuwl1p/raw/upload/v1753126774/aids/sem-6/cloud-computing-ele-ii/insem-feb-2023.pdf",
+                "https://res.cloudinary.com/diiiuwl1p/raw/upload/v1753126775/aids/sem-6/cloud-computing-ele-ii/insem-march-2024.pdf",
+                "https://res.cloudinary.com/diiiuwl1p/raw/upload/v1753126775/aids/sem-6/cloud-computing-ele-ii/insem-march-2025.pdf"
+            ],
+            "cyber-security": [
+                "https://res.cloudinary.com/diiiuwl1p/raw/upload/v1753126776/aids/sem-6/cyber-security/endsem-may-jun-2023.pdf",
+                "https://res.cloudinary.com/diiiuwl1p/raw/upload/v1753126777/aids/sem-6/cyber-security/endsem-may-jun-2024.pdf",
+                "https://res.cloudinary.com/diiiuwl1p/raw/upload/v1753126778/aids/sem-6/cyber-security/insem-feb-2023.pdf",
+                "https://res.cloudinary.com/diiiuwl1p/raw/upload/v1753126778/aids/sem-6/cyber-security/insem-march-2024.pdf",
+                "https://res.cloudinary.com/diiiuwl1p/raw/upload/v1753126779/aids/sem-6/cyber-security/insem-march-2025.pdf",
+                "https://res.cloudinary.com/diiiuwl1p/raw/upload/v1753126780/aids/sem-6/cyber-security/insem-sep-2024.pdf"
+            ],
+            "data-science": [
+                "https://res.cloudinary.com/diiiuwl1p/raw/upload/v1753126781/aids/sem-6/data-science/endsem-may-jun-2023.pdf",
+                "https://res.cloudinary.com/diiiuwl1p/raw/upload/v1753126781/aids/sem-6/data-science/endsem-may-jun-2024.pdf",
+                "https://res.cloudinary.com/diiiuwl1p/raw/upload/v1753126782/aids/sem-6/data-science/insem-feb-2023.pdf",
+                "https://res.cloudinary.com/diiiuwl1p/raw/upload/v1753126782/aids/sem-6/data-science/insem-march-2024.pdf",
+                "https://res.cloudinary.com/diiiuwl1p/raw/upload/v1753126783/aids/sem-6/data-science/insem-march-2025.pdf"
+            ],
+            "natural-language-processing-ele-ii": [
+                "https://res.cloudinary.com/diiiuwl1p/raw/upload/v1753126783/aids/sem-6/natural-language-processing-ele-ii/endsem-may-jun-2023.pdf",
+                "https://res.cloudinary.com/diiiuwl1p/raw/upload/v1753126785/aids/sem-6/natural-language-processing-ele-ii/endsem-may-jun-2024.pdf",
+                "https://res.cloudinary.com/diiiuwl1p/raw/upload/v1753126785/aids/sem-6/natural-language-processing-ele-ii/insem-feb-2023.pdf",
+                "https://res.cloudinary.com/diiiuwl1p/raw/upload/v1753126786/aids/sem-6/natural-language-processing-ele-ii/insem-march-2024.pdf",
+                "https://res.cloudinary.com/diiiuwl1p/raw/upload/v1753126787/aids/sem-6/natural-language-processing-ele-ii/insem-march-2025.pdf"
+            ],
+            "software-modeling-and-architectures-ele-ii": [
+                "https://res.cloudinary.com/diiiuwl1p/raw/upload/v1753126787/aids/sem-6/software-modeling-and-architectures-ele-ii/endsem-may-jun-2023.pdf"
+            ]
         }
     },
     "cse": {

@@ -1,4 +1,6 @@
-# Codes  
+<img width="512" height="512" alt="image" src="https://github.com/user-attachments/assets/521b5097-58a9-4175-b2c7-761d64445ce5" /># Codes  
+
+![Image](https://sppucodes.vercel.app/images/logo.webp)
 
 **Visit the website for easy access to all codes: [SPPU Codes](https://sppucodes.vercel.app/)**  
 

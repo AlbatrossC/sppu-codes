@@ -1,0 +1,20 @@
+{
+  "default": {
+    "subject_code": "DBMS",
+    "subject_name": "Database Management System",
+    "description": "Explore Database Management System lab assignments with SQL queries, MongoDB operations, PL/SQL programming, data import/export, and database connectivity using front-end tools.",
+    "keywords": ["SQL", "DDL", "DML", "Joins", "Sub-queries", "Views", "MongoDB", "CRUD", "PL/SQL", "Cursors", "Exception Handling", "Import", "Export", "Map-Reduce", "Database Connectivity"],
+    "url": "https://sppucodes.vercel.app/dbms"
+  },
+   "questions": [
+    {
+    "group": "A",
+    "question_no": "1",
+    "id": "sql-queries-demo",
+    "question": "1. SQL Queries:  Design and Develop SQL DDL statements which demonstrate the use of SQL objects such as Table, View, Index, Sequence, Synonym, different constraints etc. Write at least 10 SQL queries on a suitable database application using SQL DML statements. Note: Instructor will design the queries which demonstrate the use of concepts like Insert, Select, Update, Delete with operators, functions, and set operator etc.",
+    "subject_code": "dbms",
+    "file_name": ["1_a_sql_queries.sql", "1_b_sql_queirues.sql" ], 
+    "title": "SQL DDL and DML Queries"
+    }
+   ]
+}

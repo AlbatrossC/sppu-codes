@@ -14,6 +14,9 @@
     <script src="/static/js/script.js" defer></script>
     <link rel="icon" href="/images/favicon.ico" type="image/x-icon">
     
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6918638598461716"
+         crossorigin="anonymous"></script>
+    
     {% if question %}
     <script type="application/ld+json">
     {
@@ -55,6 +58,7 @@
         "@type": "FAQPage",
         "mainEntity": [
             {% for group in sorted_groups %}
+                {% set outer_loop = loop %}
                 {% for question_item in groups[group] %}
                 {
                     "@type": "Question",
@@ -69,21 +73,213 @@
                         }{% if not loop.last %},{% endif %}
                         {% endfor %}
                     ]
-                }{% if not loop.last %},{% endif %}
+                }{% if not (loop.last and outer_loop.last) %},{% endif %}
                 {% endfor %}
-                {% if not loop.last %},{% endif %}
             {% endfor %}
         ]
     }
     </script>
     {% endif %}
+
+    <style>
+    /* Desktop Side Rail Ads CSS */
+    .ads-container {
+        position: fixed;
+        top: 0;
+        height: 100vh;
+        width: 170px;
+        z-index: 100;
+        pointer-events: none;
+    }
+
+    .ads-container.left-ads {
+        left: 0;
+    }
+
+    .ads-container.right-ads {
+        right: 0;
+    }
+
+    .ad-rail {
+        position: sticky;
+        top: 80px;
+        height: calc(100vh - 80px);
+        width: 100%;
+        pointer-events: auto;
+        padding: 5px;
+        display: flex;
+        justify-content: center;
+        align-items: flex-start;
+        padding-top: 20px;
+    }
+
+    .ad-slot {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        overflow: hidden;
+        position: relative;
+    }
+
+    /* Wide Skyscraper Ad for Desktop */
+    .ad-slot.wide-skyscraper {
+        height: 600px;
+        width: 160px;
+    }
+
+    /* Mobile Banner Ad */
+    .mobile-ad-container {
+        position: fixed;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        z-index: 1000;
+        background-color: var(--color-bg-secondary, #1e1e1e);
+        border-top: 1px solid var(--color-border, #333);
+        padding: 10px;
+        display: none;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .mobile-ad-container .ad-slot {
+        height: 50px;
+        width: 300px;
+        max-width: 90vw;
+    }
+
+    /* Main content adjustment for desktop */
+    @media (min-width: 1200px) {
+        body {
+            padding-left: 180px;
+            padding-right: 180px;
+        }
+        
+        .ads-container {
+            display: block;
+        }
+        
+        .mobile-ad-container {
+            display: none;
+        }
+    }
+
+    /* Mobile and tablet styles */
+    @media (max-width: 1199px) {
+        .ads-container {
+            display: none;
+        }
+        
+        body {
+            padding-left: 0;
+            padding-right: 0;
+            padding-bottom: 80px; /* Space for mobile ad */
+        }
+        
+        .mobile-ad-container {
+            display: flex;
+        }
+    }
+
+    /* Ensure content wrapper maintains its structure */
+    .content {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 1.5rem;
+    }
+
+    /* Header adjustments - Full width on desktop */
+    header {
+        width: 100%;
+        max-width: none;
+        margin: 0;
+        padding: 1rem;
+        box-sizing: border-box;
+    }
+
+    /* Ensure header content is centered but header spans full width */
+    @media (min-width: 1200px) {
+        header {
+            margin-left: -180px;
+            margin-right: -180px;
+            width: calc(100% + 360px);
+        }
+        
+        header > * {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 1rem;
+        }
+    }
+
+    /* AdSense styling - clean and policy compliant */
+    .adsbygoogle {
+        display: block !important;
+        background: transparent !important;
+        border: none !important;
+    }
+    </style>
 </head>
 <body>
+    <!-- Left Side Desktop Ad Rail -->
+    <div class="ads-container left-ads">
+        <div class="ad-rail">
+            <div class="ad-slot wide-skyscraper">
+                <!-- Left Side Google AdSense Wide Skyscraper Ad -->
+                <ins class="adsbygoogle"
+                     style="display:block"
+                     data-ad-client="ca-pub-6918638598461716"
+                     data-ad-slot="YOUR_LEFT_SLOT_ID"
+                     data-ad-format="rectangle"
+                     data-full-width-responsive="false"
+                     data-ad-width="160"
+                     data-ad-height="600"></ins>
+            </div>
+        </div>
+    </div>
+
+    <!-- Right Side Desktop Ad Rail -->
+    <div class="ads-container right-ads">
+        <div class="ad-rail">
+            <div class="ad-slot wide-skyscraper">
+                <!-- Right Side Google AdSense Wide Skyscraper Ad -->
+                <ins class="adsbygoogle"
+                     style="display:block"
+                     data-ad-client="ca-pub-6918638598461716"
+                     data-ad-slot="YOUR_RIGHT_SLOT_ID"
+                     data-ad-format="rectangle"
+                     data-full-width-responsive="false"
+                     data-ad-width="160"
+                     data-ad-height="600"></ins>
+            </div>
+        </div>
+    </div>
+
+    <!-- Mobile Ad Container (Fixed at bottom) -->
+    <div class="mobile-ad-container" id="mobileAdContainer">
+        <div class="ad-slot">
+            <!-- Mobile Banner Ad -->
+            <ins class="adsbygoogle"
+                 style="display:block"
+                 data-ad-client="ca-pub-6918638598461716"
+                 data-ad-slot="YOUR_MOBILE_SLOT_ID"
+                 data-ad-format="rectangle"
+                 data-full-width-responsive="false"
+                 data-ad-width="320"
+                 data-ad-height="50"></ins>
+        </div>
+    </div>
+
     <header>
-        <h3>
-            <a href="/{{ subject_code }}" class="a">{{ subject_name }} ({{ subject_code }}) Codes</a>
-        </h3>
-        <button onclick="location.href='/'" class="home-btn" aria-label="Go to home page">Home</button>
+        <div>
+            <h3>
+                <a href="/{{ subject_code }}" class="a">{{ subject_name }} ({{ subject_code }}) Codes</a>
+            </h3>
+            <button onclick="location.href='/'" class="home-btn" aria-label="Go to home page">Home</button>
+        </div>
     </header>
 
     <div class="info-box">
@@ -177,5 +373,19 @@
     </div>
     {% endfor %}
     {% endif %}
+
+    <script>
+    // Initialize AdSense ads after page load
+    window.addEventListener('DOMContentLoaded', function() {
+        try {
+            // Initialize all AdSense ads
+            (adsbygoogle = window.adsbygoogle || []).push({});
+            (adsbygoogle = window.adsbygoogle || []).push({});
+            (adsbygoogle = window.adsbygoogle || []).push({});
+        } catch (e) {
+            console.warn('AdSense initialization failed:', e);
+        }
+    });
+    </script>
 </body>
 </html>

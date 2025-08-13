@@ -319,6 +319,10 @@ def service_worker():
     """Serve the service worker script"""
     return send_from_directory('.', 'sw.js')
 
+@app.route('/ads.txt')
+def ads_verify():
+    return send_from_directory('.', 'ads.txt')
+
 # =============================================================================
 # ERROR HANDLERS
 # =============================================================================

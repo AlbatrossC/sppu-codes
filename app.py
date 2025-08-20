@@ -251,6 +251,7 @@ def question(subject_code, question_id=None):
     description = subject.get("description", "")
     keywords = subject.get("keywords", [])
     url = subject.get("url", f"https://sppucodes.vercel.app/{subject_code}")
+    question_paper_url = subject.get("question_paper_url")
 
     # Override metadata if specific question selected
     selected_question = question_dict.get(question_id) if question_id else None
@@ -275,7 +276,8 @@ def question(subject_code, question_id=None):
         subject_name=subject.get("subject_name", ""),
         groups=groups,
         sorted_groups=sorted(groups.keys()),
-        question=selected_question
+        question=selected_question,
+        question_paper_url=question_paper_url
     )
 
 # =============================================================================

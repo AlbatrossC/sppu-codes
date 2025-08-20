@@ -107,6 +107,47 @@ header h3 {
     overflow-wrap: break-word;
 }
 
+/* Header QUestion Papers */
+.qp-btn {
+    background-color: var(--color-accent-blue);
+    color: #fff;
+    padding: 0.625rem 1.25rem;
+    border: none;
+    border-radius: var(--radius-sm);
+    cursor: pointer;
+    font-size: 1rem;
+    transition: background-color 0.2s ease;
+    z-index: 1;
+    position: absolute;
+    right: var(--space-xl);
+    top: 50%;
+    transform: translateY(-50%);
+}
+
+.qp-btn:hover {
+    background-color: var(--color-accent-blue);
+}
+
+/* Mobile responsive fix */
+@media (max-width: 768px) {
+    .home-btn {
+        position: static;
+        transform: none;
+        margin-right: 0.5rem;
+    }
+    .qp-btn {
+        position: static;
+        transform: none;
+        margin-left: 0.5rem;
+    }
+    header div {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+}
+
+
 /* Typography */
 h1, h2, h3, h4, h5, h6 {
     line-height: 1.3;

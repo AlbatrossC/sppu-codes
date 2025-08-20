@@ -4,7 +4,8 @@
     "subject_name": "Computer Graphics Laboratory",
     "description": "Explore Computer Graphics Laboratory programs and solutions with detailed explanations and code examples.",
     "keywords": ["Computer Graphics", "C++", "OpenGL", "Algorithms", "Transformations", "Scan Fill", "Line Clipping", "Fractals"],
-    "url": "https://sppucodes.vercel.app/cgl"
+    "url": "https://sppucodes.vercel.app/cgl",
+    "question_paper_url": "https://sppucodes.vercel.app/questionpapers/computer-graphics"
   },
   "questions": [
     {

@@ -4,7 +4,8 @@
     "subject_name": "Data Structures Laboratory",
     "description": "Explore Data Structures Laboratory programs and solutions with detailed explanations and code examples.",
     "keywords": ["Data Structures", "Python", "C++", "Algorithms", "Sorting", "Searching", "Linked Lists", "Stacks", "Queues"],
-    "url": "https://sppucodes.vercel.app/dsl"
+    "url": "https://sppucodes.vercel.app/dsl",
+    "question_paper_url":"https://sppucodes.vercel.app/questionpapers/fundamentals-of-data-structures"
   },
   "questions": [
     {

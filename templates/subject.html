@@ -276,9 +276,20 @@
             <h3>
                 <a href="/{{ subject_code }}" class="a">{{ subject_name }} ({{ subject_code }}) Codes</a>
             </h3>
-            <button onclick="location.href='/'" class="home-btn" aria-label="Go to home page">Home</button>
+            <div style="display:flex;gap:0.5rem;">
+                <button onclick="location.href='/'" class="home-btn" aria-label="Go to home page">Home</button>
+                
+                {% if question_paper_url %}
+                <button onclick="location.href='{{ question_paper_url }}'" 
+                        class="qp-btn" 
+                        aria-label="View Question Papers">
+                    View Question Papers
+                </button>
+                {% endif %}
+            </div>
         </div>
     </header>
+
 
     <div class="info-box">
         <p>

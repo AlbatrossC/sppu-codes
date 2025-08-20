@@ -4,7 +4,8 @@
     "subject_name": "Database Management System",
     "description": "Explore Database Management System lab assignments with SQL queries, MongoDB operations, PL/SQL programming, data import/export, and database connectivity using front-end tools.",
     "keywords": ["SQL", "DDL", "DML", "Joins", "Sub-queries", "Views", "MongoDB", "CRUD", "PL/SQL", "Cursors", "Exception Handling", "Import", "Export", "Map-Reduce", "Database Connectivity"],
-    "url": "https://sppucodes.vercel.app/dbms"
+    "url": "https://sppucodes.vercel.app/dbms",
+    "question_paper_url":"https://sppucodes.vercel.app/questionpapers/database-management-system"
   },
    "questions": [
     {

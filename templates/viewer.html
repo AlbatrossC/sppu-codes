@@ -40,7 +40,7 @@
 
     <link href="/static/pdfjs/web/viewer.html" rel="preload" fetchpriority="high" as="document">
     <link href="/static/pdfjs/web/viewer.css" rel="preload" fetchpriority="high" as="style">
-    <link href="/static/css/viewer.css" rel="stylesheet">
+    <link href="{{ url_for('static', filename='css/viewer.css') }}?v=1.0" rel="stylesheet">
     <link href="/static/pdfjs/web/pdf.worker.js" rel="preload" fetchpriority="high" as="worker">
 
     <script type="application/ld+json">

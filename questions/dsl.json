@@ -137,7 +137,7 @@
     {
       "group": "E",
       "question_no": "31",
-      "id": "deque",
+      "id": "double-ended-queue",
       "question": "A double-ended queue (deque) is a linear list in which additions and deletions may be made at either end. Obtain a data representation mapping a deque into a one-dimensional array. Write a C++ program to simulate a deque with functions to add and delete elements from either end of the deque.",
       "subject_code": "dsl",
       "file_name": ["grpE_31.cpp"],

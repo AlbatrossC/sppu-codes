@@ -74,7 +74,7 @@
     {
       "group": "D",
       "question_no": "18",
-      "id": "Optimal-bst",
+      "id": "optimal-bst",
       "question": "Given sequence k = k1 < k2 < ... < kn of n sorted keys, with a search probability pi for each key ki. Build the Binary search tree that has the least search cost given the access probability for each key?",
       "subject_code": "dsal",
       "file_name": ["18_optimal_bst.cpp"],
@@ -83,7 +83,7 @@
     {
       "group": "D",
       "question_no": "19",
-      "id": "Dictionary-avl",
+      "id": "dictionary-avl",
       "question": "A Dictionary stores keywords and its meanings. Provide facility for adding new keywords, deleting keywords, updating values of any entry. Provide facility to display whole data sorted in ascending/ Descending order. Also find how many maximum comparisons may require for finding any keyword. Use Height balance tree and find the complexity for finding a keyword.",
       "subject_code": "dsal",
       "file_name": ["19_dictionary_avl.cpp"],
@@ -92,7 +92,7 @@
     {
       "group": "E",
       "question_no": "22",
-      "id": "MaxMinMarks-Heap",
+      "id": "max-min-marks-heap",
       "question": "Read the marks obtained by students of second year in an online examination of a particular subject. Find out maximum and minimum marks obtained in that subject. Use heap data structure. Analyze the algorithm.",
       "subject_code": "dsal",
       "file_name": ["22_max_min_marks_heap.cpp"],
@@ -101,7 +101,7 @@
     {
       "group": "F",
       "question_no": "23",
-      "id": "Student-SequentialFile",
+      "id": "student-sequential-file",
       "question": "Department maintains a student information. The file contains roll number, name, division and address. Allow user to add, delete information of student. Display information of particular student. If record of student does not exist an appropriate message is displayed. If it is, then the system displays the student details. Use sequential file to maintain the data.",
       "subject_code": "dsal",
       "file_name": ["23_student_sequential_file.cpp"],
@@ -110,7 +110,7 @@
     {
       "group": "F",
       "question_no": "24",
-      "id": "Employee-IndexSequentialFile",
+      "id": "employee-index-sequential-file",
       "question": "Company maintains employee information as employee ID, name, designation and salary. Allow user to add, delete information of employee. Display information of particular employee. If employee does not exist an appropriate message is displayed. If it is, then the system displays the employee details. Use index sequential file to maintain the data.",
       "subject_code": "dsal",
       "file_name": ["24_employee_index_sequential_file.cpp"],

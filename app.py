@@ -325,6 +325,10 @@ def service_worker():
 def ads_verify():
     return send_from_directory('.', 'ads.txt')
 
+@app.route('/6c012816727f4acc99f6b950165a04c0.txt')
+def index_verify():
+    return send_from_directory('.', '6c012816727f4acc99f6b950165a04c0.txt')
+
 # =============================================================================
 # ERROR HANDLERS
 # =============================================================================

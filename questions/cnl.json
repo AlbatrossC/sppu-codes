@@ -1,0 +1,39 @@
+{
+  "default": {
+    "subject_code": "CN",
+    "subject_name": "Computer Networks",
+    "description": "Explore Computer Networks lab assignments with LAN/WAN setup, subnetting, routing protocols, socket programming, and real-world simulations using Packet Tracer and Wireshark.",
+    "keywords": ["LAN", "WAN", "Packet Tracer", "Wired Network", "Wireless Network", "Subnetting", "Routing Protocols", "Distance Vector", "Link State", "TCP", "UDP", "File Transfer", "Sockets", "Wireshark"],
+    "url": "https://sppucodes.vercel.app/cnl",
+    "question_paper_url": "https://sppucodes.vercel.app/questionpapers/computer-networks"
+  },
+  "questions": [
+    {
+      "group": "A",
+      "question_no": "5",
+      "id": "subnetting-program",
+      "question": "Write a program to demonstrate Sub-netting and calculate subnet masks for different IP address classes.",
+      "subject_code": "cn",
+      "file_name": ["5_subnetting_program.c", "5_subnetting_program.py"],
+      "title": "Subnetting Program with Subnet Mask Calculation"
+    },
+    {
+      "group": "A",
+      "question_no": "6",
+      "id": "routing-protocols",
+      "question": "Write a program to implement Link State or Distance Vector routing protocol to determine the optimal path for data transmission.",
+      "subject_code": "cn",
+      "file_name": ["6_link_state_routing.c", "6_distance_vector_routing.cpp"],
+      "title": "Routing Protocols: Link State and Distance Vector Implementation"
+    },
+    {
+      "group": "B",
+      "question_no": "9",
+      "id": "udp-file-transfer",
+      "question": "Write a program using UDP Sockets to enable file transfer (Script, Text, Audio, and Video – one file each) between two machines.",
+      "subject_code": "cn",
+      "file_name": ["9_udp_file_transfer_different_host.py", "9_udp_file_transfer_same_host.py"],
+      "title": "UDP Socket Programming for File Transfer"
+    }
+  ]
+}

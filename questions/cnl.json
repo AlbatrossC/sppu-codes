@@ -23,7 +23,7 @@
       "id": "routing-protocols",
       "question": "Write a program to implement Link State or Distance Vector routing protocol to determine the optimal path for data transmission.",
       "subject_code": "cn",
-      "file_name": ["6_link_state_routing.c", "6_distance_vector_routing.cpp"],
+      "file_name": [ "6_distance_vector_routing.py"],
       "title": "Routing Protocols: Link State and Distance Vector Implementation"
     },
     {

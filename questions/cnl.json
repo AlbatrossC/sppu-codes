@@ -28,21 +28,30 @@
     },
     {
       "group": "B",
-      "question_no": "9",
-      "id": "udp-file-transfer",
-      "question": "Write a program using UDP Sockets to enable file transfer (Script, Text, Audio, and Video – one file each) between two machines.",
-      "subject_code": "cn",
-      "file_name": ["9_udp_file_transfer_different_host.py", "9_udp_file_transfer_same_host.py"],
-      "title": "UDP Socket Programming for File Transfer"
-    },
-    {
-      "group": "B",
       "question_no": "7",
       "id": "socket-programming-tcp-udp",
       "question": "Implement socket programming using C/C++/Java for the following: a) TCP Client and TCP Server. b) UDP Client and UDP Server",
       "subject_code": "cn",
       "file_name": ["7_tcp_client_server.txt", "7_udp_client_server.txt"],
       "title": "TCP and UDP Socket Programming"
+    },
+    {
+      "group": "B",
+      "question_no": "8",
+      "id": "tcp-socket-hello-file",
+      "question": "Write a program using TCP socket for a wired network to perform the following tasks: 1) Say Hello to each other. 2) Transfer a file.",
+      "subject_code": "cn",
+      "file_name": ["8_tcp_hello.txt"],
+      "title": "TCP Socket Programming - Hello and File Transfer"
+    },
+    {
+      "group": "B",
+      "question_no": "9",
+      "id": "udp-file-transfer",
+      "question": "Write a program using UDP Sockets to enable file transfer (Script, Text, Audio, and Video – one file each) between two machines.",
+      "subject_code": "cn",
+      "file_name": ["9_udp_file_transfer_different_host.py", "9_udp_file_transfer_same_host.py"],
+      "title": "UDP Socket Programming for File Transfer"
     }
   ]
 }

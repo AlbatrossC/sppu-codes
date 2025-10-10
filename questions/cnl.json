@@ -34,6 +34,15 @@
       "subject_code": "cn",
       "file_name": ["9_udp_file_transfer_different_host.py", "9_udp_file_transfer_same_host.py"],
       "title": "UDP Socket Programming for File Transfer"
+    },
+    {
+      "group": "B",
+      "question_no": "7",
+      "id": "socket-programming-tcp-udp",
+      "question": "Implement socket programming using C/C++/Java for the following: a) TCP Client and TCP Server. b) UDP Client and UDP Server",
+      "subject_code": "cn",
+      "file_name": ["7_tcp_client_server.txt", "7_udp_client_server.txt"],
+      "title": "TCP and UDP Socket Programming"
     }
   ]
 }

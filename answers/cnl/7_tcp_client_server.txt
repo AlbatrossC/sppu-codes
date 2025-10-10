@@ -1,0 +1,74 @@
+# 7a) TCP Client-Server Communication
+
+## Files:
+- server.cpp (TCP Server)
+- client.cpp (TCP Client)
+
+## SERVER (server.cpp):
+
+#include <iostream>
+#include <winsock2.h>
+
+#pragma comment(lib, "ws2_32.lib") // Winsock library
+
+int main() {
+    WSADATA wsa;
+    WSAStartup(MAKEWORD(2, 2), &wsa);
+
+    SOCKET serverSocket = socket(AF_INET, SOCK_STREAM, 0);
+
+    sockaddr_in serverAddr;
+    serverAddr.sin_family = AF_INET;
+    serverAddr.sin_addr.s_addr = INADDR_ANY;
+    serverAddr.sin_port = htons(8080);
+
+    bind(serverSocket, (sockaddr*)&serverAddr, sizeof(serverAddr));
+    listen(serverSocket, 5);
+
+    std::cout << "Waiting for client...\n";
+    SOCKET clientSocket = accept(serverSocket, nullptr, nullptr);
+
+    char buffer[1024] = {0};
+    recv(clientSocket, buffer, sizeof(buffer), 0);
+    std::cout << "Message from client: " << buffer << std::endl;
+
+    closesocket(clientSocket);
+    closesocket(serverSocket);
+    WSACleanup();
+    return 0;
+}
+
+Terminal Command:1) g++ server.cpp -o server -lws2_32
+                2) .\server.exe
+
+## CLIENT (client.cpp):
+
+#include <iostream>
+#include <winsock2.h>
+
+#pragma comment(lib, "ws2_32.lib") // Winsock library
+
+int main() {
+    WSADATA wsa;
+    WSAStartup(MAKEWORD(2, 2), &wsa);
+
+    SOCKET clientSocket = socket(AF_INET, SOCK_STREAM, 0);
+
+    sockaddr_in serverAddr;
+    serverAddr.sin_family = AF_INET;
+    serverAddr.sin_addr.s_addr = inet_addr("127.0.0.1");
+    serverAddr.sin_port = htons(8080);
+
+    connect(clientSocket, (sockaddr*)&serverAddr, sizeof(serverAddr));
+
+    const char* message = "Hello, server!";
+    send(clientSocket, message, strlen(message), 0);
+
+    closesocket(clientSocket);
+    WSACleanup();
+    return 0;
+}
+
+
+Terminal Command:1) g++ client.cpp -o client -lws2_32
+                2) .\client.exe

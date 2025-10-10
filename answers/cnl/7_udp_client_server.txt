@@ -1,0 +1,84 @@
+# 7b) UDP Client-Server Communication
+
+## Files:
+- server.cpp (UDP Server)
+- client.cpp (UDP Client)
+
+## SERVER (server.cpp):
+
+#include <iostream>
+#include <winsock2.h>
+
+#pragma comment(lib, "ws2_32.lib")
+
+int main() {
+    WSADATA wsa;
+    WSAStartup(MAKEWORD(2,2), &wsa);
+
+    SOCKET serverSocket = socket(AF_INET, SOCK_DGRAM, 0);
+
+    sockaddr_in serverAddr;
+    serverAddr.sin_family = AF_INET;
+    serverAddr.sin_addr.s_addr = INADDR_ANY;
+    serverAddr.sin_port = htons(5001);
+
+    bind(serverSocket, (sockaddr*)&serverAddr, sizeof(serverAddr));
+
+    char buffer[1024];
+    sockaddr_in clientAddr;
+    int clientAddrSize = sizeof(clientAddr);
+
+    std::cout << "[+] UDP Server listening on port 5001..." << std::endl;
+
+    while (true) {
+        int bytesReceived = recvfrom(serverSocket, buffer, sizeof(buffer) - 1, 0,
+                                     (sockaddr*)&clientAddr, &clientAddrSize);
+        if (bytesReceived > 0) {
+            buffer[bytesReceived] = '\0';
+            std::cout << "Message from client: " << buffer << std::endl;
+        }
+    }
+
+    closesocket(serverSocket);
+    WSACleanup();
+    return 0;
+}
+
+Terminal Command:1) g++ server.cpp -o server -lws2_32
+                2) .\server.exe
+
+
+## CLIENT (client.cpp):
+
+#include <iostream>
+#include <winsock2.h>
+
+#pragma comment(lib, "ws2_32.lib")
+
+int main() {
+    WSADATA wsa;
+    WSAStartup(MAKEWORD(2,2), &wsa);
+
+    SOCKET clientSocket = socket(AF_INET, SOCK_DGRAM, 0);
+
+    sockaddr_in serverAddr;
+    serverAddr.sin_family = AF_INET;
+    serverAddr.sin_port = htons(5001);
+    serverAddr.sin_addr.s_addr = inet_addr("127.0.0.1"); // same machine
+
+    std::string message;
+    std::cout << "Enter message to send: ";
+    std::getline(std::cin, message);
+
+    sendto(clientSocket, message.c_str(), message.length(), 0,
+           (sockaddr*)&serverAddr, sizeof(serverAddr));
+
+    std::cout << "Message sent!" << std::endl;
+
+    closesocket(clientSocket);
+    WSACleanup();
+    return 0;
+}
+
+Terminal Command:1) g++ client.cpp -o client -lws2_32
+                2) .\client.exe

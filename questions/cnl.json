@@ -14,7 +14,7 @@
       "id": "subnetting-program",
       "question": "Write a program to demonstrate Sub-netting and calculate subnet masks for different IP address classes.",
       "subject_code": "cn",
-      "file_name": ["5_subnetting_program.c", "5_subnetting_program.py"],
+      "file_name": ["5_subnetting_program.py"],
       "title": "Subnetting Program with Subnet Mask Calculation"
     },
     {

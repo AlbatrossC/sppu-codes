@@ -1,0 +1,57 @@
+{
+  "default": {
+    "subject_code": "AI",
+    "subject_name": "Artificial Intelligence Laboratory",
+    "description": "Explore Artificial Intelligence lab assignments focusing on graph traversal, heuristic search algorithms, game tree strategies, constraint satisfaction problems, and greedy algorithms for optimization.",
+    "keywords": ["Artificial Intelligence", "DFS", "BFS", "A*", "Alpha-Beta Pruning", "Constraint Satisfaction", "Backtracking", "Branch and Bound", "Greedy Algorithms", "Graph Search", "N-Queens", "Game Search", "Optimization"],
+    "url": "https://sppucodes.vercel.app/ai",
+    "question_paper_url": "https://sppucodes.vercel.app/questionpapers/artificial-intelligence"
+  },
+  "questions": [
+    {
+      "group": "A",
+      "question_no": "1",
+      "id": "dfs-bfs",
+      "question": "Implement depth first search algorithm and Breadth First Search algorithm using an undirected graph and develop a recursive algorithm for searching all the vertices of a graph or tree data structure.",
+      "subject_code": "ai",
+      "file_name": ["1_dfs_bfs.cpp"],
+      "title": "Depth First Search and Breadth First Search"
+    },
+    {
+      "group": "A",
+      "question_no": "2",
+      "id": "a-star-algorithm",
+      "question": "Implement A star (A*) Algorithm for any game search problem.",
+      "subject_code": "ai",
+      "file_name": ["2_a_star_algorithm.py"],
+      "title": "A* Algorithm Implementation for Game Search"
+    },
+    {
+      "group": "A",
+      "question_no": "3",
+      "id": "alpha-beta-search",
+      "question": "Implement Alpha-Beta Tree search for any game search problem.",
+      "subject_code": "ai",
+      "file_name": ["3_alpha_beta_search.py"],
+      "title": "Alpha-Beta Tree Search Algorithm"
+    },
+    {
+      "group": "B",
+      "question_no": "4",
+      "id": "csp-nqueens-graph-coloring",
+      "question": "Implement a solution for a Constraint Satisfaction Problem using Branch and Bound and Backtracking for n-queens problem or a graph coloring problem.",
+      "subject_code": "ai",
+      "file_name": ["4_csp_nqueens_graph_coloring.py"],
+      "title": "Constraint Satisfaction Problem using Branch and Bound and Backtracking"
+    },
+    {
+      "group": "B",
+      "question_no": "5",
+      "id": "greedy-search-algorithms",
+      "question": "Implement Greedy search algorithm for any of the following applications: Selection Sort, Minimum Spanning Tree, Single-Source Shortest Path Problem, Job Scheduling Problem, Prim's MST, Kruskal's MST, or Dijkstra's Algorithm.",
+      "subject_code": "ai",
+      "file_name": ["5_greedy_search_algorithms.py"],
+      "title": "Greedy Search Algorithm Implementations"
+    }
+  ]
+}

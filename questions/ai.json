@@ -50,7 +50,7 @@
       "id": "greedy-search-algorithms",
       "question": "Implement Greedy search algorithm for any of the following applications: Selection Sort, Minimum Spanning Tree, Single-Source Shortest Path Problem, Job Scheduling Problem, Prim's MST, Kruskal's MST, or Dijkstra's Algorithm.",
       "subject_code": "ai",
-      "file_name": ["5_greedy_search_algorithms.py"],
+      "file_name": ["5_selection_sort.py"],
       "title": "Greedy Search Algorithm Implementations"
     }
   ]

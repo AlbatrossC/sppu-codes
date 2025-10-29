@@ -1,0 +1,25 @@
+HOW TO CAPTURE TLS PACKETS - SIMPLE STEPS
+-----------------------------------------
+
+1) Open Wireshark on your computer.
+
+2) Choose your active connection  
+   (Wi-Fi or Ethernet) from the list.
+
+3) Type this filter in the green bar:  
+   tls  
+   Press Enter.
+
+4) Open your browser and visit:  
+   https://sha256.badssl.com/ or badssl.com
+
+5) Go back to Wireshark → Stop capture (red square).
+
+6) Look for these words in the "Info" column:  
+   - Client Hello  
+   - Server Hello  
+   - Certificate  
+   - Application Data  
+
+Done! You now have a full TLS handshake.
+

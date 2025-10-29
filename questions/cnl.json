@@ -70,6 +70,33 @@
       "subject_code": "cn",
       "file_name": ["9_udp_file_transfer_different_host.py", "9_udp_file_transfer_same_host.py"],
       "title": "UDP Socket Programming for File Transfer"
+    },
+    {
+      "group": "B",
+      "question_no": "11",
+      "id": "https-http-ftp-analysis",
+      "question": "Study and Analyze the performance of HTTP, HTTPS and FTP protocol using Packet tracer tool.",
+      "subject_code": "cn",
+      "file_name": ["11_https_http_fts.txt"],
+      "title": "HTTP, HTTPS and FTP Protocol Performance Analysis"
+    },
+    {
+      "group": "B",
+      "question_no": "12",
+      "id": "ssl-capture",
+      "question": "To study the SSL protocol by capturing the packets using Wireshark tool while visiting any SSL secured website (banking, e-commerce etc.).",
+      "subject_code": "cn",
+      "file_name": ["12_ssl_capture.txt"],
+      "title": "SSL Protocol Analysis using Wireshark"
+    },
+    {
+      "group": "C",
+      "question_no": "16",
+      "id": "dns-lookup",
+      "question": "Write a program for DNS lookup. Given an IP address input, it should return URL and vice versa.",
+      "subject_code": "cn",
+      "file_name": ["16_dns_lookup.py"],
+      "title": "DNS Lookup Program - IP to URL and URL to IP"
     }
   ]
 }

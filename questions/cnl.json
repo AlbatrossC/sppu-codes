@@ -19,6 +19,15 @@
     },
     {
       "group": "A",
+      "question_no": "4",
+      "id": "rip-routing",
+      "question": "Use packet Tracer tool for configuration of 3 router networks using one of the following protocols RIP.",
+      "subject_code": "cn",
+      "file_name": ["4_rip_routing.txt"],
+      "title": "RIP Routing Protocol Configuration with Packet Tracer"
+    },
+    {
+      "group": "A",
       "question_no": "5",
       "id": "subnetting-program",
       "question": "Write a program to demonstrate Sub-netting and calculate subnet masks for different IP address classes.",

@@ -1,0 +1,90 @@
+You can Download Ready made project here (RIP ROUTING):
+
+https://raw.githubusercontent.com/AlbatrossC/sppu-codes/main/answers/cnl/2_rip_routing.pkt
+
+JUST OPEN THIS FILE IN CISCO Packet TRACER AND FAST FORWARD THE TIME.
+
+Manually Doing this:
+1) Add devices
+3 × Router-PT → name them Router0, Router1, Router2
+3 × Switch-PT → Switch0, Switch1, Switch2
+6 × PC-PT → PC0..PC5
+
+----------------------------------------------------------
+
+2)Connect devices (Automatic)
+Click Lightning (Automatically Choose Connection) tool
+
+---------------------------------------------------------
+
+3) Configure routers via Config tab
+
+Router0 (click Router0 → Config)
+FastEthernet0/0
+IP Address: 10.10.10.0
+Subnet Mask: 255.255.255.0
+Status: On
+
+Serial2/0
+IP Address: 40.40.40.1
+Subnet Mask: 255.255.255.0
+Status: On
+
+RIP (Config → RIP)
+Networks (add):
+10.0.0.0
+40.0.0.0
+
+Router1 (click Router1 → Config)
+FastEthernet0/0
+IP Address: 20.20.20.0
+Subnet Mask: 255.255.255.0
+Status: On
+
+Serial2/0
+IP Address: 40.40.40.2
+Subnet Mask: 255.255.255.0
+Status: On
+
+Serial3/0
+IP Address: 50.50.50.1
+Subnet Mask: 255.255.255.0
+Status: On
+
+RIP
+Networks:
+20.0.0.0
+40.0.0.0
+50.0.0.0
+
+
+Router2 (click Router2 → Config)
+FastEthernet0/0
+IP Address: 30.30.30.0
+Subnet Mask: 255.255.255.0
+Status: On
+
+Serial2/0
+IP Address: 50.50.50.2
+Subnet Mask: 255.255.255.0
+Status: On
+
+RIP
+Networks:
+30.0.0.0
+50.0.0.0
+
+---------------------------------------------------------------
+4) Configure PCs via Desktop → IP Configuration 
+
+| PC  | IP Address   | Subnet Mask     | Default Gateway |
+| --- | ------------ | --------------- | --------------- |
+| PC0 | `10.10.10.1` | `255.255.255.0` | `10.10.10.0`    |
+| PC1 | `10.10.10.2` | `255.255.255.0` | `10.10.10.0`    |
+| PC2 | `20.20.20.1` | `255.255.255.0` | `20.20.20.0`    |
+| PC3 | `20.20.20.2` | `255.255.255.0` | `20.20.20.0`    |
+| PC4 | `30.30.30.1` | `255.255.255.0` | `30.30.30.0`    |
+| PC5 | `30.30.30.2` | `255.255.255.0` | `30.30.30.0`    |
+
+
+5) Test by sending messages.

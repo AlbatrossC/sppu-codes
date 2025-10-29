@@ -147,7 +147,7 @@ def load_question_paper_data():
     """Load question paper data from JSON file on application startup"""
     global QUESTION_PAPER_DATA
     try:
-        with open(data_json_path, 'r') as f:
+        with open(data_json_path, 'r', encoding='utf-8') as f:
             QUESTION_PAPER_DATA = json.load(f)
         print("SUCCESS: questionpapers.json loaded successfully.")
     except FileNotFoundError:
@@ -239,7 +239,7 @@ def question(subject_code, question_id=None):
     if not os.path.exists(json_file_path):
         abort(404, description="Subject not found")
 
-    with open(json_file_path, 'r') as f:
+    with open(json_file_path, 'r', encoding='utf-8') as f:
         data = json.load(f)
 
     subject = data.get("default", {})

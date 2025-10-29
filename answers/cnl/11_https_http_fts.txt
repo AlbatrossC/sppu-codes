@@ -1,0 +1,72 @@
+You can Download Ready made project here (https , http , Fts):
+
+https://raw.githubusercontent.com/AlbatrossC/sppu-codes/main/answers/cnl/11_https_http_fts.pkt
+
+
+Network Setup and Service Configuration (Cisco Packet Tracer)
+
+1️⃣ Create the Network Topology
+----------------------------------
+1. Open Cisco Packet Tracer.
+2. From the device menu:
+   - Add 3 PCs (User1, User2, User3)
+   - Add 1 Switch (2950-24)
+   - Add 1 Server (Server)
+3. Connect all using Copper Straight-Through Cables:
+   - PCs (Fa0) → Switch (Fa0/1, Fa0/2, Fa0/3)
+   - Server (Fa0) → Switch (Fa0/4)
+
+2️⃣ Assign IP Addresses
+-----------------------
+Device | Interface | IP Address | Subnet Mask
+---------------------------------------------
+User1  | Fa0 | 190.100.10.10 | 255.255.255.0 
+User2  | Fa0 | 190.100.10.20 | 255.255.255.0
+User3  | Fa0 | 190.100.10.30 | 255.255.255.0 
+Server | Fa0 | 190.100.10.40 | 255.255.255.0 
+
+3️⃣ Configure Server Services
+-----------------------------
+1. Click on Server → Services tab.
+2. Enable the following:
+   - HTTP: ON
+   - HTTPS: ON
+   - FTP: ON
+3. Under FTP:
+   - Add User → Username: test | Password: test | Read/Write Access
+
+4️⃣ Modify the Webpage (index.html)
+----------------------------------
+1. Go to Services → HTTP → HTML.
+2. Select index.html.
+3. Replace contents with:
+   <h1>Welcome to My Web Server!</h1>
+   <p>This is a test for HTTP, HTTPS, and FTP protocols.</p>
+4. Click Save.
+
+5️⃣ Verify HTTP and HTTPS from PC
+---------------------------------
+1. Click User1 PC → Desktop → Web Browser.
+2. Test using:
+   http://190.100.10.40
+3. Then test HTTPS:
+   https://190.100.10.40
+
+6️⃣ Test FTP Access
+-------------------
+1. Click User2 PC → Desktop → Command Prompt.
+2. Type:
+   ftp 190.100.10.40
+3. Enter credentials:
+   Username: ftpuser
+   Password: 1234
+4. Commands:
+   dir               → List files
+   get index.html    → Download file
+   bye               → Exit FTP
+
+✅ Final Verification
+---------------------
+- HTTP works → http://190.100.10.40
+- HTTPS works → https://190.100.10.40
+- FTP works → ftp 190.100.10.40 (with username & password)

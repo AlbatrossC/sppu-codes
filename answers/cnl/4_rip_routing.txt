@@ -1,6 +1,6 @@
 You can Download Ready made project here (RIP ROUTING):
 
-https://raw.githubusercontent.com/AlbatrossC/sppu-codes/main/answers/cnl/2_rip_routing.pkt
+https://raw.githubusercontent.com/AlbatrossC/sppu-codes/main/answers/cnl/4_rip_routing.pkt
 
 JUST OPEN THIS FILE IN CISCO Packet TRACER AND FAST FORWARD THE TIME.
 

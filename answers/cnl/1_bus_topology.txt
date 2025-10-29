@@ -1,0 +1,68 @@
+You can Download Ready made project here (BUS TOPOLOGY): 
+
+https://raw.githubusercontent.com/AlbatrossC/sppu-codes/main/answers/cnl/1_bus_topology.pkt
+
+
+JUST OPEN THIS FILE IN CISCO Packet TRACER AND FAST FORWARD THE TIME.
+
+
+Manually Doing this:
+
+Step 1: Bring Devices onto the Workspace:
+From the Device List (bottom section) of Packet Tracer, drag and drop:
+4 PCs → (End Devices → PC)
+2 Switches (2960) → (Switches → 2960)
+1 Router (1941) → (Routers → 1941)
+
+You should have:
+Left side: PC0, PC1 connected to Switch0
+Right side: PC2, PC3 connected to Switch1
+Router in the middle, connecting both switches
+
+
+Step 2: Connect All Devices
+Use Copper Straight-Through cables for all connections.
+
+| From    | To                          | Port Type       |
+| ------- | --------------------------- | --------------- |
+| PC0     | Switch0                     | FastEthernet    |
+| PC1     | Switch0                     | FastEthernet    |
+| PC2     | Switch1                     | FastEthernet    |
+| PC3     | Switch1                     | FastEthernet    |
+| Switch0 | Router (GigabitEthernet0/0) | GigabitEthernet |
+| Switch1 | Router (GigabitEthernet0/1) | GigabitEthernet |
+
+
+STEP3: Router Configuration
+1. Open Router (1941)
+   - Go to Config tab
+
+2. Configure Interface G0/0
+   - IP Address: 192.168.1.1
+   - Subnet Mask: 255.255.255.0
+   - Port Status: ON
+
+3. Configure Interface G0/1
+   - IP Address: 192.168.2.1
+   - Subnet Mask: 255.255.255.0
+   - Port Status: ON
+
+4. Save and Verify
+   - Close configuration window
+   - Both interface lights should be GREEN
+
+Green dots on both interfaces indicate active links 
+
+
+Step 4: Configure Each PC
+Click on each PC → Desktop tab → IP Configuration
+
+| PC  | IP Address   | Subnet Mask   | Default Gateway |
+| --- | ------------ | ------------- | --------------- |
+| PC0 | 192.168.1.10 | 255.255.255.0 | 192.168.1.1     |
+| PC1 | 192.168.1.11 | 255.255.255.0 | 192.168.1.1     |
+| PC2 | 192.168.2.10 | 255.255.255.0 | 192.168.2.1     |
+| PC3 | 192.168.2.11 | 255.255.255.0 | 192.168.2.1     |
+
+Step 5: Testing. Click the message icon (Add Simple PDU) P
+And click on PC to Router , PC to PC , etc

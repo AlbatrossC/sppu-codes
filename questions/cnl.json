@@ -59,7 +59,7 @@
       "id": "tcp-socket-hello-file",
       "question": "Write a program using TCP socket for a wired network to perform the following tasks: 1) Say Hello to each other. 2) Transfer a file.",
       "subject_code": "cn",
-      "file_name": ["8_tcp_hello.txt"],
+      "file_name": [ "8_tcp_py.txt" , "8_tcp_hello.txt"],
       "title": "TCP Socket Programming - Hello and File Transfer"
     },
     {

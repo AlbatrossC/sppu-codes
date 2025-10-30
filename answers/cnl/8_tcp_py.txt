@@ -1,0 +1,78 @@
+TCP Client-Server Communication (Message & File Transfer)
+This program demonstrates TCP socket communication between a client and server to:
+
+Files Required
+
+server.py - TCP Server (receives messages/files)
+client.py - TCP Client (sends messages/files)
+
+--------------------------------------------------------------
+server.py:
+
+pythonimport socket
+import os
+
+server = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+server.bind(("0.0.0.0", 8080))
+server.listen(1)
+print("[+] Server listening on port 8080")
+
+os.makedirs("received_files", exist_ok=True)
+
+while True:
+    client, addr = server.accept()
+    print(f"[+] Connected: {addr}")
+    
+    option = client.recv(10).decode().strip()
+    
+    if option == "MSG":
+        print(f"Message: {client.recv(1024).decode()}")
+    elif option == "FILE":
+        filename = client.recv(256).decode().strip()
+        print(f"Receiving: {filename}")
+        with open(f"received_files/{filename}", "wb") as f:
+            while (data := client.recv(4096)):
+                f.write(data)
+        print(f"Saved: {filename}\n")
+    
+    client.close()
+
+--------------------------------------------------------------
+client.py:
+
+pythonimport socket
+import os
+
+client = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+client.connect(("127.0.0.1", 8080))  # Change IP for network
+
+choice = input("(1) Message or (2) File? ")
+
+if choice == "1":
+    client.send(b"MSG")
+    client.send(input("Enter message: ").encode())
+    print("Sent!")
+    
+elif choice == "2":
+    client.send(b"FILE")
+    filepath = input("Enter file path: ")
+    client.send(os.path.basename(filepath).encode())
+    with open(filepath, "rb") as f:
+        while (chunk := f.read(4096)):
+            client.send(chunk)
+    print("File sent!")
+
+client.close()
+
+-------------------------------------------------------------
+How to Run
+Terminal 1 (Start Server):
+python server.py
+Terminal 2 (Run Client):
+python client.py
+Then:
+
+Enter 1 to send a message (Hello)
+Enter 2 to transfer a file
+
+Note: Change 127.0.0.1 to the actual server IP address in client.py for network communication.

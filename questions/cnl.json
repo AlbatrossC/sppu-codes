@@ -68,7 +68,7 @@
       "id": "udp-file-transfer",
       "question": "Write a program using UDP Sockets to enable file transfer (Script, Text, Audio, and Video – one file each) between two machines.",
       "subject_code": "cn",
-      "file_name": ["9_udp_file_transfer_different_host.py", "9_udp_file_transfer_same_host.py"],
+      "file_name": ["9_upd_file_transfer.txt"],
       "title": "UDP Socket Programming for File Transfer"
     },
     {

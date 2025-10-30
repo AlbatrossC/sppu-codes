@@ -9,7 +9,7 @@ client.py - TCP Client (sends messages/files)
 --------------------------------------------------------------
 server.py:
 
-pythonimport socket
+import socket
 import os
 
 server = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
@@ -40,7 +40,7 @@ while True:
 --------------------------------------------------------------
 client.py:
 
-pythonimport socket
+import socket
 import os
 
 client = socket.socket(socket.AF_INET, socket.SOCK_STREAM)

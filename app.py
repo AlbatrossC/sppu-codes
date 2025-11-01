@@ -63,72 +63,105 @@ def download_file(filename):
 @app.route('/submit', methods=["GET", "POST"])
 def submit():
     """Handle code submission form - both display and processing"""
-    conn = connect_db()
-    if conn is None:
-        flash("Database Connection error. Please try again later", "error")
-        return render_template("submit.html")
-
     if request.method == "POST":
-        try:
-            cur = conn.cursor()
-            name = request.form.get("name")
-            year = request.form.get("year")
-            branch = request.form.get("branch")
-            subject = request.form.get("subject")
-            question = request.form.get("question")
-            answer = request.form.get("answer")
+        # Get form data
+        name = request.form.get("name", "").strip()
+        year = request.form.get("year", "").strip()
+        branch = request.form.get("branch", "").strip()
+        subject = request.form.get("subject", "").strip()
+        question = request.form.get("question", "").strip()
+        answer = request.form.get("answer", "").strip()
 
-            if name and year and branch and subject and question and answer:
-                cur.execute("INSERT INTO codes (name, year, branch, subject, question, answer) VALUES (%s,%s,%s,%s,%s,%s)",
-                            (name, year, branch, subject, question, answer))
-                conn.commit()
-                flash("Code Sent Successfully! Thank you", "success")
-                return redirect(url_for('submit'))
-            else:
-                flash("PLEASE FILL ALL NECESSARY FIELDS", "error")
+        # Validate required fields
+        if not all([year, branch, subject, question, answer]):
+            flash("Please fill all required fields", "error")
+            return render_template("submit.html")
+
+        # Set default name if empty
+        if not name:
+            name = "Anonymous"
+
+        conn = None
+        cur = None
+        try:
+            conn = connect_db()
+            if conn is None:
+                flash("Database connection error. Please try again later.", "error")
+                return render_template("submit.html")
+
+            cur = conn.cursor()
+            cur.execute(
+                "INSERT INTO codes (name, year, branch, subject, question, answer) VALUES (%s, %s, %s, %s, %s, %s)",
+                (name, year, branch, subject, question, answer)
+            )
+            conn.commit()
+            flash("Code submitted successfully! Thank you for your contribution.", "success")
+            return redirect(url_for('submit'))
+
         except Exception as e:
-            conn.rollback()
-            flash(f"Error inserting data: {e}", "error")
+            if conn:
+                conn.rollback()
+            print(f"Database error: {e}")
+            flash("An error occurred while submitting. Please try again.", "error")
+            return render_template("submit.html")
+
         finally:
-            if 'cur' in locals() and cur:
+            if cur:
                 cur.close()
             if conn:
                 conn.close()
+
     return render_template("submit.html")
+
 
 @app.route("/contact", methods=["GET", "POST"])
 def contact():
     """Handle contact form - both display and processing"""
     if request.method == "POST":
-        name = request.form.get("name")
-        email = request.form.get("email")
-        message = request.form.get("message")
+        # Get and validate form data
+        name = request.form.get("name", "").strip()
+        email = request.form.get("email", "").strip()
+        message = request.form.get("message", "").strip()
 
-        if name and email and message:
-            conn = None
-            try:
-                conn = connect_db()
-                if conn is None:
-                    flash("Database connection error. Please try again later.", "error")
-                    return redirect(url_for('contact'))
+        if not all([name, email, message]):
+            flash("Please fill all required fields", "error")
+            return render_template("contact.html")
 
-                cur = conn.cursor()
-                cur.execute("INSERT INTO contacts (name, email, message) VALUES (%s, %s, %s)",
-                          (name, email, message))
-                conn.commit()
-                flash("Message sent successfully! Thank you", "success")
-            except Exception as e:
-                if conn: 
-                    conn.rollback()
-                flash(f"Error inserting data: {e}", "error")
-            finally:
-                if 'cur' in locals() and cur: 
-                    cur.close()
-                if conn: 
-                    conn.close()
+        # Basic email validation
+        if "@" not in email or "." not in email:
+            flash("Please enter a valid email address", "error")
+            return render_template("contact.html")
+
+        conn = None
+        cur = None
+        try:
+            conn = connect_db()
+            if conn is None:
+                flash("Database connection error. Please try again later.", "error")
+                return render_template("contact.html")
+
+            cur = conn.cursor()
+            cur.execute(
+                "INSERT INTO contacts (name, email, message) VALUES (%s, %s, %s)",
+                (name, email, message)
+            )
+            conn.commit()
+            flash("Message sent successfully! We'll get back to you soon.", "success")
             return redirect(url_for('contact'))
-        else:
-            flash("PLEASE FILL ALL NECESSARY FIELDS", "error")
+
+        except Exception as e:
+            if conn:
+                conn.rollback()
+            print(f"Database error: {e}")
+            flash("An error occurred while sending your message. Please try again.", "error")
+            return render_template("contact.html")
+
+        finally:
+            if cur:
+                cur.close()
+            if conn:
+                conn.close()
+
     return render_template("contact.html")
 
 # =============================================================================

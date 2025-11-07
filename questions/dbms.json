@@ -68,7 +68,7 @@
       "id": "database-connectivity",
       "question": "Database Connectivity:\n\nWrite a program to implement MySQL/Oracle database connectivity with any front-end language to implement Database navigation operations (add, delete, edit etc.)",
       "subject_code": "dbms",
-      "file_name": ["7_database_connectivity.py", "7_database_connectivity.java"],
+      "file_name": ["7_database_connectivity.py"],
       "title": "Database Connectivity with Front-End"
     }
   ]

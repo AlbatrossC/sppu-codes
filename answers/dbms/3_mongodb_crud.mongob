@@ -1,0 +1,56 @@
+// Create and switch to database
+use studentDB;
+
+// Create collection
+db.createCollection("students");
+
+// Insert one document
+db.students.insertOne({
+    name: "Alice",
+    age: 21,
+    course: "Computer Science"
+});
+
+// Insert multiple documents
+db.students.insertMany([
+    { name: "Bob", age: 22, course: "Mathematics" },
+    { name: "Charlie", age: 23, course: "Physics" },
+    { name: "David", age: 20, course: "Computer Science" },
+    { name: "Eva", age: 22, course: "Mathematics" }
+]);
+
+// Show all student records
+db.students.find();
+
+// Find all students aged 22
+db.students.find({ age: 22 });
+
+// Find students where age < 22 OR course = "Physics"
+db.students.find({ $or: [ { age: { $lt: 22 } }, { course: "Physics" } ] });
+
+// Find students in Computer Science AND age > 20
+db.students.find({ course: "Computer Science", age: { $gt: 20 } });
+
+// Update one student's age
+db.students.updateOne(
+    { name: "Alice" },
+    { $set: { age: 22 } }
+);
+
+// Update all Mathematics students to Applied Mathematics
+db.students.updateMany(
+    { course: "Mathematics" },
+    { $set: { course: "Applied Mathematics" } }
+);
+
+// Delete one student
+db.students.deleteOne({ name: "Bob" });
+
+// Delete all students older than 22
+db.students.deleteMany({ age: { $gt: 22 } });
+
+// Create an index on 'course' field
+db.students.createIndex({ course: 1 });
+
+// Use index in a query
+db.students.find({ course: "Computer Science" });

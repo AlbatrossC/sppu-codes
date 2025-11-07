@@ -32,7 +32,7 @@
       "id": "mongodb-crud",
       "question": "MongoDB Queries:\n\nDesign and Develop MongoDB Queries using CRUD operations. (Use CRUD operations, SAVE method, logical operators etc.)",
       "subject_code": "dbms",
-      "file_name": ["3_mongodb_crud.js"],
+      "file_name": ["3_mongodb_crud.mongob"],
       "title": "MongoDB CRUD Operations"
     },
     {

@@ -17,6 +17,12 @@ INSERT INTO students VALUES
 (3, 'Rohan Desai', 'Electronics', 90),
 (4, 'Neha Joshi', 'Mechanical', 72);
 
+-- Find path 
+SHOW VARIABLES LIKE 'secure_file_priv';
+
+-- Copy the path and replace back slash \ with front slash / 
+-- and then add /students.csv or .txt
+
 -- Export data to CSV file
 SELECT * 
 INTO OUTFILE 'C:/ProgramData/MySQL/MySQL Server 8.0/Uploads/students.csv'
@@ -39,7 +45,6 @@ LOAD DATA INFILE 'C:/ProgramData/MySQL/MySQL Server 8.0/Uploads/students.csv'
 INTO TABLE students
 FIELDS TERMINATED BY ',' 
 LINES TERMINATED BY '\n'
-IGNORE 1 ROWS;
 
 -- Delete all records again
 DELETE FROM students;

@@ -52,6 +52,15 @@
       "subject_code": "ai",
       "file_name": ["5_selection_sort.py"],
       "title": "Greedy Search Algorithm Implementations"
+    },
+    {
+      "group": "B",
+      "question_no": "6",
+      "id": "elementary-chatbot",
+      "question": "Develop an elementary chatbot for any suitable customer interaction application.",
+      "subject_code": "ai",
+      "file_name": ["6_elementary_chatbot.py"],
+      "title": "Elementary Chatbot Implementation"
     }
   ]
 }

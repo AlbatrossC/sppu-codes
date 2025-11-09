@@ -23,7 +23,7 @@
       "id": "a-star-algorithm",
       "question": "Implement A star (A*) Algorithm for any game search problem.",
       "subject_code": "ai",
-      "file_name": ["2_a_star_algorithm.py"],
+      "file_name": ["2_a_star_algorithm.py" ,"2_a_star_algorithm_2.py" ],
       "title": "A* Algorithm Implementation for Game Search"
     },
     {

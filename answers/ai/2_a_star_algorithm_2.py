@@ -1,12 +1,14 @@
+# EASY VERSION
+
 import heapq
 
 def astar(grid, start, goal):
-    # --- Heuristic (Manhattan Distance) ---
     def h(a, b):
         return abs(a[0] - b[0]) + abs(a[1] - b[1])
 
-    rows, cols = len(grid), len(grid[0])
-    open_list = [(h(start, goal), 0, start, [start])]  # (f, g, position, path)
+    rows = len(grid)
+    cols = len(grid[0])
+    open_list = [(h(start, goal), 0, start, [start])]
     visited = set()
 
     while open_list:
@@ -18,7 +20,7 @@ def astar(grid, start, goal):
         if cur == goal:
             return path
 
-        for dx, dy in [(-1,0), (1,0), (0,-1), (0,1)]:  # 4 directions
+        for dx, dy in [(-1, 0), (1, 0), (0, -1), (0, 1)]:
             x, y = cur[0] + dx, cur[1] + dy
             if 0 <= x < rows and 0 <= y < cols and grid[x][y] == 0:
                 new_g = g + 1
@@ -27,12 +29,28 @@ def astar(grid, start, goal):
     return None
 
 
-# --- Input Section ---
-r, c = map(int, input("Rows Cols: ").split())
-grid = [list(map(int, input().split())) for _ in range(r)]
-sx, sy = map(int, input("Start (r c): ").split())
-gx, gy = map(int, input("Goal (r c): ").split())
+rows = int(input("Rows: "))
+cols = int(input("Cols: "))
 
-# --- Run A* ---
+grid = []
+print("Enter grid:")
+for i in range(rows):
+    while True:
+        row = list(map(int, input(f"Row {i+1}: ").split()))
+        if len(row) == cols:
+            grid.append(row)
+            break
+        else:
+            print("Wrong count. Retry.")
+
+sx = int(input("Start row: "))
+sy = int(input("Start col: "))
+gx = int(input("Goal row: "))
+gy = int(input("Goal col: "))
+
 path = astar(grid, (sx, sy), (gx, gy))
-print("Path:" if path else "No path found", path)
+
+if path:
+    print("Path:", path)
+else:
+    print("No path.")

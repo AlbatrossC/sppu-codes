@@ -1,28 +1,33 @@
-# EASY Version
+# Easy version
 
 import heapq
 
 def astar(grid, start, goal):
     def h(a, b):
-        return abs(a[0]-b[0]) + abs(a[1]-b[1])  # heuristic (Manhattan)
+        return abs(a[0] - b[0]) + abs(a[1] - b[1])
 
     rows = len(grid)
     cols = len(grid[0])
-    open_list = [(h(start, goal), 0, start, [])]
+
+    start_g = 0
+    start_f = h(start, goal)
+    open_list = [(start_f, start_g, start, [])]  # (f, g, position, path)
     visited = set()
 
     while open_list:
-        f, g, cur, path = heapq.heappop(open_list)
-        if cur in visited:
-            continue
-        visited.add(cur)
-        path = path + [cur]
+        f, g, current, path = heapq.heappop(open_list)
 
-        if cur == goal:
+        if current in visited:
+            continue
+        visited.add(current)
+        path = path + [current]
+
+        if current == goal:
             return path
 
-        for dx, dy in [(-1,0),(1,0),(0,-1),(0,1)]:
-            x, y = cur[0]+dx, cur[1]+dy
+        for dx, dy in [(-1,0), (1,0), (0,-1), (0,1)]:
+            x, y = current[0] + dx, current[1] + dy
+
             if 0 <= x < rows and 0 <= y < cols and grid[x][y] == 0:
                 new_g = g + 1
                 new_f = new_g + h((x, y), goal)

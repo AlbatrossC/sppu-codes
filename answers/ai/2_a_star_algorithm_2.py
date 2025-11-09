@@ -35,15 +35,12 @@ rows = int(input("Rows: "))
 cols = int(input("Cols: "))
 
 grid = []
-print("Enter grid:")
 for i in range(rows):
-    while True:
-        row = list(map(int, input(f"Row {i+1}: ").split()))
-        if len(row) == cols:
-            grid.append(row)
-            break
-        else:
-            print("Wrong count. Retry.")
+    row = list(map(int, input(f"Row {i+1}: ").split()))
+    if len(row) == cols:
+        grid.append(row)
+    else:
+        print("Error: Row must have", cols, "numbers")
 
 sx = int(input("Start row: "))
 sy = int(input("Start col: "))

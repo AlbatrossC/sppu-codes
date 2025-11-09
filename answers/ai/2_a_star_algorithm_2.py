@@ -8,7 +8,7 @@ def astar(grid, start, goal):
 
     rows = len(grid)
     cols = len(grid[0])
-    open_list = [(h(start, goal), 0, start, [start])]
+    open_list = [(h(start, goal), 0, start, [start])] # f, g, pos, path
     visited = set()
 
     while open_list:
@@ -21,11 +21,13 @@ def astar(grid, start, goal):
             return path
 
         for dx, dy in [(-1, 0), (1, 0), (0, -1), (0, 1)]:
-            x, y = cur[0] + dx, cur[1] + dy
+            x = cur[0] + dx
+            y = cur[1] + dy
             if 0 <= x < rows and 0 <= y < cols and grid[x][y] == 0:
                 new_g = g + 1
                 new_f = new_g + h((x, y), goal)
-                heapq.heappush(open_list, (new_f, new_g, (x, y), path + [(x, y)]))
+                node = (new_f, new_g, (x, y), path + [(x, y)]) # f, g, pos, path
+                heapq.heappush(open_list, node)
     return None
 
 

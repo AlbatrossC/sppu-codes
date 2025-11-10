@@ -15,21 +15,21 @@ import os
 server = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
 server.bind(("0.0.0.0", 8080))
 server.listen(1)
-print("[+] Server listening on port 8080")
+print("Server Started")
 
 os.makedirs("received_files", exist_ok=True)
 
 while True:
     client, addr = server.accept()
-    print(f"[+] Connected: {addr}")
-    
     option = client.recv(10).decode().strip()
     
     if option == "MSG":
-        print(f"Message: {client.recv(1024).decode()}")
+        message=client.recv(1024).decode()
+        print(message)
+
     elif option == "FILE":
         filename = client.recv(256).decode().strip()
-        print(f"Receiving: {filename}")
+
         with open(f"received_files/{filename}", "wb") as f:
             while (data := client.recv(4096)):
                 f.write(data)
@@ -57,6 +57,7 @@ elif choice == "2":
     client.send(b"FILE")
     filepath = input("Enter file path: ")
     client.send(os.path.basename(filepath).encode())
+    
     with open(filepath, "rb") as f:
         while (chunk := f.read(4096)):
             client.send(chunk)

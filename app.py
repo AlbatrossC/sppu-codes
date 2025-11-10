@@ -413,6 +413,76 @@ def finalize_markup(response):
             pass
     return response
 
+# API url: sppucodes.vercel.app/api/{subject_code}/{question_no}
+
+@app.route('/api/<subject_code>/<question_no>')
+def get_answer_api(subject_code, question_no):
+    """
+    API endpoint to retrieve answer file content by subject code and question number.
+    Returns plain text content of the file(s). Multiple files are separated by dashes.
+    """
+    try:
+        # Load the JSON file for the subject
+        json_file_path = os.path.join(QUESTIONS_DIR, f"{subject_code}.json")
+        
+        if not os.path.exists(json_file_path):
+            return jsonify({"error": "Subject not found"}), 404
+
+        with open(json_file_path, 'r', encoding='utf-8') as f:
+            data = json.load(f)
+
+        questions = data.get("questions", [])
+        
+        # Find the question with matching question_no
+        target_question = None
+        for q in questions:
+            if q.get("question_no") == question_no:
+                target_question = q
+                break
+        
+        if not target_question:
+            return jsonify({"error": "Question not found"}), 404
+
+        file_names = target_question.get("file_name", [])
+        
+        if not file_names:
+            return jsonify({"error": "No files available for this question"}), 404
+
+        # Base directory for answers
+        base_dir = os.path.abspath(os.path.dirname(__file__))
+        answers_dir = os.path.join(base_dir, 'answers', subject_code)
+        
+        if not os.path.exists(answers_dir):
+            return jsonify({"error": "Answer directory not found"}), 404
+
+        # Read all files and combine content
+        combined_content = []
+        
+        for file_name in file_names:
+            file_path = os.path.join(answers_dir, file_name)
+            
+            if not os.path.exists(file_path):
+                return jsonify({"error": f"File not found: {file_name}"}), 404
+            
+            try:
+                with open(file_path, 'r', encoding='utf-8') as f:
+                    content = f.read()
+                    combined_content.append(content)
+            except Exception as e:
+                return jsonify({"error": f"Error reading file {file_name}: {str(e)}"}), 500
+
+        # Join content with separator if multiple files
+        if len(combined_content) == 1:
+            result = combined_content[0]
+        else:
+            separator = "\n" + "-" * 50 + "\n"
+            result = separator.join(combined_content)
+
+        # Return as plain text
+        return result, 200, {'Content-Type': 'text/plain; charset=utf-8'}
+
+    except Exception as e:
+        return jsonify({"error": f"Internal server error: {str(e)}"}), 500
 # =============================================================================
 # APPLICATION ENTRY POINT
 # =============================================================================

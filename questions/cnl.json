@@ -50,7 +50,7 @@
       "id": "socket-programming-tcp-udp",
       "question": "Implement socket programming using C/C++/Java for the following: a) TCP Client and TCP Server. b) UDP Client and UDP Server",
       "subject_code": "cn",
-      "file_name": ["7_tcp_client_server.txt", "7_udp_client_server.txt"],
+      "file_name": ["7_tcp_ubuntu.txt", "7_udp_ubuntu.txt" , "7_tcp_windows.txt" , "7_udp_windows.txt"],
       "title": "TCP and UDP Socket Programming"
     },
     {

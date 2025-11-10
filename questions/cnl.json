@@ -91,6 +91,15 @@
     },
     {
       "group": "C",
+      "question_no": "15",
+      "id": "dhcp-server",
+      "question": "Installing and configuring DHCP server and assign IP addresses to client machines using DHCP server.",
+      "subject_code": "cn",
+      "file_name": ["15_dhcp_server.txt"],
+      "title": "DHCP Server Configuration - Automatic IP Assignment"
+    },
+    {
+      "group": "C",
       "question_no": "16",
       "id": "dns-lookup",
       "question": "Write a program for DNS lookup. Given an IP address input, it should return URL and vice versa.",

@@ -118,6 +118,16 @@ To study the SSL protocol by capturing the packets using Wireshark tool while vi
 
 ---
 
+### ❓ Question 15:
+
+Installing and configuring DHCP server and assign IP addresses to client machines using DHCP server.
+
+**[💻 VIEW CODE SOLUTION →](https://sppucodes.vercel.app/cn/dhcp-server)**
+
+---
+
+
+
 ### ❓ Question 16:
 
 Write a program for DNS lookup. Given an IP address input, it should return URL and vice versa.

@@ -71,3 +71,13 @@ Implement Greedy search algorithm for any of the following applications: Selecti
 **[💻 VIEW CODE SOLUTION →](https://sppucodes.vercel.app/ai/greedy-search-algorithms)**
 
 ---
+
+
+
+### ❓ Question 6:
+
+Develop an elementary chatbot for any suitable customer interaction application.
+
+**[💻 VIEW CODE SOLUTION →](https://sppucodes.vercel.app/ai/elementary-chatbot)**
+
+---

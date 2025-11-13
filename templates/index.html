@@ -34,6 +34,7 @@
         <link rel="stylesheet" href="{{ url_for('static', filename='css/index.css', v='2.4') }}" media="all">
         <link rel="stylesheet" href="{{ url_for('static', filename='css/header.css', v='2.4') }}" media="all">
         <link rel="stylesheet" href="{{ url_for('static', filename='css/footer.css', v='2.4') }}" media="all">
+        <link rel="stylesheet" href="{{ url_for('static', filename='css/terminal.css', v='1.0') }}" media="all">
 
         
         <link rel="icon" href="{{ url_for('get_image', filename='favicon.ico') }}" type="image/x-icon">
@@ -367,8 +368,54 @@
                 </div>
             </div>
         </footer>
+
+        <div class="terminal-api-float" id="terminalApiFloat">
+            <span class="terminal-text">😏 Instantly Get Answers in Your Terminal</span>
+        </div>
+
+        <div class="terminal-modal-overlay" id="terminalModal">
+            <div class="terminal-modal-content">
+                <div class="terminal-modal-header">
+                    <h2>Terminal API - Get Code Directly</h2>
+                    <button class="terminal-modal-close" id="closeModal">&times;</button>
+                </div>
+                <div class="terminal-modal-body">
+                    <p class="terminal-intro">
+                        Want answers right inside your terminal? Just open your terminal and type the following command 👇
+                    </p>
+
+                    <div class="note-box">
+                        <strong>📝 Note:</strong> Replace <code class="highlight">{subject_code}</code> with your subject (e.g., cnl, dsl, oopl) and <code class="highlight">{question_no}</code> with the question number.
+                    </div>
+
+                    <div class="terminal-section">
+                        <h3>🔹 COMMAND API URL Format</h3>
+                        <p style="margin-bottom: 10px; color: #b0b0b0; font-size: 14px;">Open Terminal</p>
+                        <div class="api-format-box">curl.exe https://sppucodes.vercel.app/api/<span class="highlight">{subject_code}</span>/<span class="highlight">{question_no}</span></div>
+                    </div>
+
+                    <div class="terminal-section">
+                        <h3>🔹 Live Demo</h3>
+                        
+                        <div class="demo-terminal">
+                            <div class="demo-terminal-header">
+                                <div class="demo-terminal-button demo-close"></div>
+                                <div class="demo-terminal-button demo-minimize"></div>
+                                <div class="demo-terminal-button demo-maximize"></div>
+                                <span class="demo-terminal-title">terminal — bash — 80×24</span>
+                            </div>
+                            <div class="demo-terminal-body" id="demoTerminal">
+                                <div class="demo-line">
+                                    <span class="demo-prompt">user@localhost:~$</span> <span class="demo-command" id="typedCmd"></span><span class="demo-cursor" id="demoCursor"></span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
         
         <script src="{{ url_for('static', filename='js/index.js') }}"></script>
-
+        <script src="{{ url_for('static', filename='js/terminal.js') }}"></script>
     </body>
 </html>

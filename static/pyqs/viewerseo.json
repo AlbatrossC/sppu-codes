@@ -1,4 +1,84 @@
 [
+    {
+    "subjectName": "Basic Electrical Engineering",
+    "branch": "FY - First Year Engineering",
+    "sem": 1,
+    "link": "/questionpapers/basic-electical-engineering",
+    "description": "SPPU Basic Electrical Engineering question papers for First Year (FY) Engineering Sem 1 students. Powered by Sppu Codes.",
+    "keywords": ["sppu", "basic electrical engineering", "bee", "fy", "first year", "sem 1", "question papers", "pyq", "previous year papers", "circuits", "machines", "transformers"]
+  },
+  {
+    "subjectName": "Engineering Mathematics I",
+    "branch": "FY - First Year Engineering",
+    "sem": 1,
+    "link": "/questionpapers/engineering-mathematics---i",
+    "description": "SPPU Engineering Mathematics I question papers for First Year (FY) Engineering Sem 1 students. Powered by Sppu Codes.",
+    "keywords": ["sppu", "engineering mathematics 1", "maths 1", "m1", "fy", "sem 1", "question papers", "pyq", "previous year papers", "calculus", "matrices"]
+  },
+  {
+    "subjectName": "Engineering Mechanics",
+    "branch": "FY - First Year Engineering",
+    "sem": 1,
+    "link": "/questionpapers/engineering-mechanics",
+    "description": "SPPU Engineering Mechanics question papers for First Year (FY) Engineering Sem 1 students. Powered by Sppu Codes.",
+    "keywords": ["sppu", "engineering mechanics", "mechanics", "fy", "sem 1", "statics", "dynamics", "question papers", "pyq", "previous year papers"]
+  },
+  {
+    "subjectName": "Engineering Physics",
+    "branch": "FY - First Year Engineering",
+    "sem": 1,
+    "link": "/questionpapers/engineering-physics",
+    "description": "SPPU Engineering Physics question papers for First Year (FY) Engineering Sem 1 students. Powered by Sppu Codes.",
+    "keywords": ["sppu", "engineering physics", "physics", "fy", "sem 1", "question papers", "pyq", "previous year papers", "waves", "optics", "modern physics"]
+  },
+  {
+    "subjectName": "Programming & Problem Solving",
+    "branch": "FY - First Year Engineering",
+    "sem": 1,
+    "link": "/questionpapers/programming-&-problem-solving",
+    "description": "SPPU Programming & Problem Solving question papers for First Year (FY) Engineering Sem 1 students. Powered by Sppu Codes.",
+    "keywords": ["sppu", "programming", "problem solving", "pps", "c programming", "fy", "sem 1", "question papers", "pyq", "previous year papers"]
+  }, 
+    {
+    "subjectName": "Basic Electronics Engineering",
+    "branch": "FY - First Year Engineering",
+    "sem": 2,
+    "link": "/questionpapers/basic-electronics-engineering",
+    "description": "SPPU Basic Electronics Engineering question papers for First Year (FY) Engineering Sem 2 students. Powered by Sppu Codes.",
+    "keywords": ["sppu", "basic electronics engineering", "bee", "electronics", "fy", "sem 2", "diodes", "transistors", "question papers", "previous year papers"]
+  },
+  {
+    "subjectName": "Engineering Chemistry",
+    "branch": "FY - First Year Engineering",
+    "sem": 2,
+    "link": "/questionpapers/engineering-chemistry",
+    "description": "SPPU Engineering Chemistry question papers for First Year (FY) Engineering Sem 2 students. Powered by Sppu Codes.",
+    "keywords": ["sppu", "engineering chemistry", "chemistry", "fy", "sem 2", "polymers", "corrosion", "water treatment", "question papers", "pyq", "previous year papers"]
+  },
+  {
+    "subjectName": "Engineering Graphics",
+    "branch": "FY - First Year Engineering",
+    "sem": 2,
+    "link": "/questionpapers/engineering-graphics",
+    "description": "SPPU Engineering Graphics question papers for First Year (FY) Engineering Sem 2 students. Powered by Sppu Codes.",
+    "keywords": ["sppu", "engineering graphics", "eg", "fy", "sem 2", "orthographic", "isometric", "drafting", "question papers", "pyq", "previous year papers"]
+  },
+  {
+    "subjectName": "Engineering Mathematics II",
+    "branch": "FY - First Year Engineering",
+    "sem": 2,
+    "link": "/questionpapers/engineering-mathematics---ii",
+    "description": "SPPU Engineering Mathematics II question papers for First Year (FY) Engineering Sem 2 students. Powered by Sppu Codes.",
+    "keywords": ["sppu", "engineering mathematics 2", "maths 2", "m2", "fy", "sem 2", "differential equations", "laplace", "question papers", "pyq"]
+  },
+  {
+    "subjectName": "Systems in Mechanical Engineering",
+    "branch": "FY - First Year Engineering",
+    "sem": 2,
+    "link": "/questionpapers/systems-in-mechanical-engineering",
+    "description": "SPPU Systems in Mechanical Engineering question papers for First Year (FY) Engineering Sem 2 students. Powered by Sppu Codes.",
+    "keywords": ["sppu", "systems in mechanical engineering", "sme", "mechanical", "fy", "sem 2", "machines", "thermodynamics", "question papers", "pyq", "previous year papers"]
+  },
   {
     "subjectName": "Discrete Mathematics",
     "branch": "AIDS - Artificial Intelligence and Data Science",
@@ -182,5 +262,13 @@
     "link": "/questionpapers/principles-of-programming-languages",
     "description": "Sppu Principles of Programming Languages question papers: for Second Year (SE) CSE Sem 4 students. Powered by Sppu Codes.",
     "keywords": ["sppu", "principles of programming languages", "ppl", "question papers", "pyq", "previous year papers", "sppu codes", "se", "second year", "cse", "sem 4", "syntax", "semantics", "grammars", "parsing", "language design", "programming paradigms"]
+  },
+  {
+    "subjectName": "microprocessor",
+    "branch": "CS - Computer Science",
+    "sem": 4,
+    "link": "/questionpapers/microprocessor",
+    "description": "SPPU Microprocessor question papers for Second Year (SE) CSE Sem 4 students. Powered by Sppu Codes.",
+    "keywords": ["sppu", "microprocessor", "mp", "8086", "assembly language", "addressing modes", "instruction set", "microarchitecture", "interrupts", "question papers", "pyq", "previous year papers", "se", "cse", "sem 4"]
   }
 ]

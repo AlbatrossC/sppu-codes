@@ -192,6 +192,141 @@
                 "https://res.cloudinary.com/diiiuwl1p/raw/upload/v1748712204/cse/sem-4/principles-of-programming-languages/insem-feb-2023.pdf",
                 "https://res.cloudinary.com/diiiuwl1p/raw/upload/v1748712205/cse/sem-4/principles-of-programming-languages/insem-march-2024.pdf",
                 "https://res.cloudinary.com/diiiuwl1p/raw/upload/v1748712205/cse/sem-4/principles-of-programming-languages/insem-march-2025.pdf"
+            ],
+            "microprocessor": [
+                "https://res.cloudinary.com/diiiuwl1p/raw/upload/v1763220241/cse/sem-4/Microprocessor/endsem-may-jun-2022.pdf",
+                "https://res.cloudinary.com/diiiuwl1p/raw/upload/v1763220242/cse/sem-4/Microprocessor/endsem-may-jun-2023.pdf",
+                "https://res.cloudinary.com/diiiuwl1p/raw/upload/v1763220243/cse/sem-4/Microprocessor/endsem-may-jun-2024.pdf",
+                "https://res.cloudinary.com/diiiuwl1p/raw/upload/v1763220244/cse/sem-4/Microprocessor/endsem-may-jun-2025.pdf",
+                "https://res.cloudinary.com/diiiuwl1p/raw/upload/v1763220244/cse/sem-4/Microprocessor/endsem-nov-dec-2022.pdf",
+                "https://res.cloudinary.com/diiiuwl1p/raw/upload/v1763220245/cse/sem-4/Microprocessor/endsem-nov-dec-2023.pdf",
+                "https://res.cloudinary.com/diiiuwl1p/raw/upload/v1763220247/cse/sem-4/Microprocessor/endsem-nov-dec-2024.pdf",
+                "https://res.cloudinary.com/diiiuwl1p/raw/upload/v1763220248/cse/sem-4/Microprocessor/insem-feb---2023.pdf",
+                "https://res.cloudinary.com/diiiuwl1p/raw/upload/v1763220249/cse/sem-4/Microprocessor/insem-march-2024.pdf"
+            ]
+        }
+    },
+    "fy": {
+        "sem-1": {
+            "basic-electical-engineering": [
+                "https://res.cloudinary.com/diiiuwl1p/raw/upload/v1763220265/fy/sem-1/basic-electical-engineering/endsem-may-jun-2022.pdf",
+                "https://res.cloudinary.com/diiiuwl1p/raw/upload/v1763220266/fy/sem-1/basic-electical-engineering/endsem-may-jun-2023.pdf",
+                "https://res.cloudinary.com/diiiuwl1p/raw/upload/v1763220267/fy/sem-1/basic-electical-engineering/endsem-may-jun-2024.pdf",
+                "https://res.cloudinary.com/diiiuwl1p/raw/upload/v1763220267/fy/sem-1/basic-electical-engineering/endsem-may-jun-2025.pdf",
+                "https://res.cloudinary.com/diiiuwl1p/raw/upload/v1763220268/fy/sem-1/basic-electical-engineering/endsem-nov-dec-2023.pdf",
+                "https://res.cloudinary.com/diiiuwl1p/raw/upload/v1763220270/fy/sem-1/basic-electical-engineering/endsem-nov-dec-2024.pdf",
+                "https://res.cloudinary.com/diiiuwl1p/raw/upload/v1763220270/fy/sem-1/basic-electical-engineering/insem-march-2020.pdf",
+                "https://res.cloudinary.com/diiiuwl1p/raw/upload/v1763220271/fy/sem-1/basic-electical-engineering/insem-march-2024.pdf",
+                "https://res.cloudinary.com/diiiuwl1p/raw/upload/v1763220272/fy/sem-1/basic-electical-engineering/insem-oct---2023.pdf",
+                "https://res.cloudinary.com/diiiuwl1p/raw/upload/v1763220273/fy/sem-1/basic-electical-engineering/insem-oct-2019.pdf",
+                "https://res.cloudinary.com/diiiuwl1p/raw/upload/v1763220274/fy/sem-1/basic-electical-engineering/insem-oct-2022.pdf",
+                "https://res.cloudinary.com/diiiuwl1p/raw/upload/v1763220275/fy/sem-1/basic-electical-engineering/insem-sep---2024.pdf",
+                "https://res.cloudinary.com/diiiuwl1p/raw/upload/v1763220275/fy/sem-1/basic-electical-engineering/other-nov-dec-2019.pdf"
+            ],
+            "engineering-mathematics---i": [
+                "https://res.cloudinary.com/diiiuwl1p/raw/upload/v1763220276/fy/sem-1/engineering-mathematics---i/endsem-may-jun-2022.pdf",
+                "https://res.cloudinary.com/diiiuwl1p/raw/upload/v1763220278/fy/sem-1/engineering-mathematics---i/endsem-may-jun-2023.pdf",
+                "https://res.cloudinary.com/diiiuwl1p/raw/upload/v1763220280/fy/sem-1/engineering-mathematics---i/endsem-may-jun-2025.pdf",
+                "https://res.cloudinary.com/diiiuwl1p/raw/upload/v1763220281/fy/sem-1/engineering-mathematics---i/endsem-nov-dec-2023.pdf",
+                "https://res.cloudinary.com/diiiuwl1p/raw/upload/v1763220282/fy/sem-1/engineering-mathematics---i/endsem-nov-dec-2024.pdf",
+                "https://res.cloudinary.com/diiiuwl1p/raw/upload/v1763220282/fy/sem-1/engineering-mathematics---i/insem-oct-2019.pdf",
+                "https://res.cloudinary.com/diiiuwl1p/raw/upload/v1763220283/fy/sem-1/engineering-mathematics---i/insem-oct-2022.pdf",
+                "https://res.cloudinary.com/diiiuwl1p/raw/upload/v1763220284/fy/sem-1/engineering-mathematics---i/insem-sep---2024.pdf",
+                "https://res.cloudinary.com/diiiuwl1p/raw/upload/v1763220284/fy/sem-1/engineering-mathematics---i/other-may-jun-2024.pdf",
+                "https://res.cloudinary.com/diiiuwl1p/raw/upload/v1763220285/fy/sem-1/engineering-mathematics---i/other-nov-dec-2019.pdf"
+            ],
+            "engineering-mechanics": [
+                "https://res.cloudinary.com/diiiuwl1p/raw/upload/v1763220287/fy/sem-1/engineering-mechanics/endsem-may-jun-2022.pdf",
+                "https://res.cloudinary.com/diiiuwl1p/raw/upload/v1763220288/fy/sem-1/engineering-mechanics/endsem-may-jun-2023.pdf",
+                "https://res.cloudinary.com/diiiuwl1p/raw/upload/v1763220290/fy/sem-1/engineering-mechanics/endsem-may-jun-2024.pdf",
+                "https://res.cloudinary.com/diiiuwl1p/raw/upload/v1763220291/fy/sem-1/engineering-mechanics/endsem-may-jun-2025.pdf",
+                "https://res.cloudinary.com/diiiuwl1p/raw/upload/v1763220292/fy/sem-1/engineering-mechanics/endsem-nov-dec-2019.pdf",
+                "https://res.cloudinary.com/diiiuwl1p/raw/upload/v1763220293/fy/sem-1/engineering-mechanics/endsem-nov-dec-2023.pdf",
+                "https://res.cloudinary.com/diiiuwl1p/raw/upload/v1763220293/fy/sem-1/engineering-mechanics/endsem-nov-dec-2024.pdf",
+                "https://res.cloudinary.com/diiiuwl1p/raw/upload/v1763220294/fy/sem-1/engineering-mechanics/insem-march-2020.pdf",
+                "https://res.cloudinary.com/diiiuwl1p/raw/upload/v1763220295/fy/sem-1/engineering-mechanics/insem-march-2024.pdf",
+                "https://res.cloudinary.com/diiiuwl1p/raw/upload/v1763220296/fy/sem-1/engineering-mechanics/insem-oct---2023.pdf",
+                "https://res.cloudinary.com/diiiuwl1p/raw/upload/v1763220297/fy/sem-1/engineering-mechanics/insem-oct-2019.pdf",
+                "https://res.cloudinary.com/diiiuwl1p/raw/upload/v1763220298/fy/sem-1/engineering-mechanics/insem-oct-2022.pdf",
+                "https://res.cloudinary.com/diiiuwl1p/raw/upload/v1763220298/fy/sem-1/engineering-mechanics/insem-sep---2024.pdf"
+            ],
+            "engineering-physics": [
+                "https://res.cloudinary.com/diiiuwl1p/raw/upload/v1763220299/fy/sem-1/engineering-physics/endsem-may-jun-2022.pdf",
+                "https://res.cloudinary.com/diiiuwl1p/raw/upload/v1763220300/fy/sem-1/engineering-physics/endsem-may-jun-2023.pdf",
+                "https://res.cloudinary.com/diiiuwl1p/raw/upload/v1763220300/fy/sem-1/engineering-physics/endsem-may-jun-2024.pdf",
+                "https://res.cloudinary.com/diiiuwl1p/raw/upload/v1763220301/fy/sem-1/engineering-physics/endsem-may-jun-2025.pdf",
+                "https://res.cloudinary.com/diiiuwl1p/raw/upload/v1763220302/fy/sem-1/engineering-physics/endsem-nov-dec-2023.pdf",
+                "https://res.cloudinary.com/diiiuwl1p/raw/upload/v1763220302/fy/sem-1/engineering-physics/endsem-nov-dec-2024.pdf",
+                "https://res.cloudinary.com/diiiuwl1p/raw/upload/v1763220303/fy/sem-1/engineering-physics/insem-march-2020.pdf",
+                "https://res.cloudinary.com/diiiuwl1p/raw/upload/v1763220305/fy/sem-1/engineering-physics/insem-march-2024.pdf",
+                "https://res.cloudinary.com/diiiuwl1p/raw/upload/v1763220307/fy/sem-1/engineering-physics/insem-oct-2019.pdf",
+                "https://res.cloudinary.com/diiiuwl1p/raw/upload/v1763220307/fy/sem-1/engineering-physics/insem-oct-2022.pdf",
+                "https://res.cloudinary.com/diiiuwl1p/raw/upload/v1763220308/fy/sem-1/engineering-physics/insem-oct-2023.pdf",
+                "https://res.cloudinary.com/diiiuwl1p/raw/upload/v1763220308/fy/sem-1/engineering-physics/insem-sep---2024.pdf",
+                "https://res.cloudinary.com/diiiuwl1p/raw/upload/v1763220309/fy/sem-1/engineering-physics/other-nov-dec-2019.pdf"
+            ],
+            "programming-&-problem-solving": []
+        },
+        "sem-2": {
+            "basic-electronics-engineering": [
+                "https://res.cloudinary.com/diiiuwl1p/raw/upload/v1763220314/fy/sem-2/basic-electronics-engineering/endsem-may-jun-2022.pdf",
+                "https://res.cloudinary.com/diiiuwl1p/raw/upload/v1763220315/fy/sem-2/basic-electronics-engineering/endsem-may-jun-2023.pdf",
+                "https://res.cloudinary.com/diiiuwl1p/raw/upload/v1763220315/fy/sem-2/basic-electronics-engineering/endsem-may-jun-2025.pdf",
+                "https://res.cloudinary.com/diiiuwl1p/raw/upload/v1763220316/fy/sem-2/basic-electronics-engineering/endsem-nov-dec-2019.pdf",
+                "https://res.cloudinary.com/diiiuwl1p/raw/upload/v1763220316/fy/sem-2/basic-electronics-engineering/endsem-nov-dec-2023.pdf",
+                "https://res.cloudinary.com/diiiuwl1p/raw/upload/v1763220317/fy/sem-2/basic-electronics-engineering/endsem-nov-dec-2024.pdf",
+                "https://res.cloudinary.com/diiiuwl1p/raw/upload/v1763220317/fy/sem-2/basic-electronics-engineering/insem-march-2020.pdf",
+                "https://res.cloudinary.com/diiiuwl1p/raw/upload/v1763220318/fy/sem-2/basic-electronics-engineering/insem-march-2024.pdf",
+                "https://res.cloudinary.com/diiiuwl1p/raw/upload/v1763220319/fy/sem-2/basic-electronics-engineering/insem-oct---2023.pdf",
+                "https://res.cloudinary.com/diiiuwl1p/raw/upload/v1763220319/fy/sem-2/basic-electronics-engineering/insem-oct-2019.pdf",
+                "https://res.cloudinary.com/diiiuwl1p/raw/upload/v1763220320/fy/sem-2/basic-electronics-engineering/insem-oct-2022.pdf",
+                "https://res.cloudinary.com/diiiuwl1p/raw/upload/v1763220320/fy/sem-2/basic-electronics-engineering/insem-sep---2024.pdf"
+            ],
+            "engineering-chemistry": [
+                "https://res.cloudinary.com/diiiuwl1p/raw/upload/v1763220321/fy/sem-2/engineering-chemistry/endsem-may-jun-2022.pdf",
+                "https://res.cloudinary.com/diiiuwl1p/raw/upload/v1763220321/fy/sem-2/engineering-chemistry/endsem-may-jun-2023.pdf",
+                "https://res.cloudinary.com/diiiuwl1p/raw/upload/v1763220322/fy/sem-2/engineering-chemistry/endsem-may-jun-2024.pdf",
+                "https://res.cloudinary.com/diiiuwl1p/raw/upload/v1763220323/fy/sem-2/engineering-chemistry/endsem-may-jun-2025.pdf",
+                "https://res.cloudinary.com/diiiuwl1p/raw/upload/v1763220323/fy/sem-2/engineering-chemistry/endsem-nov-dec-2023.pdf",
+                "https://res.cloudinary.com/diiiuwl1p/raw/upload/v1763220324/fy/sem-2/engineering-chemistry/endsem-nov-dec-2024.pdf",
+                "https://res.cloudinary.com/diiiuwl1p/raw/upload/v1763220324/fy/sem-2/engineering-chemistry/insem-march-2020.pdf",
+                "https://res.cloudinary.com/diiiuwl1p/raw/upload/v1763220325/fy/sem-2/engineering-chemistry/insem-march-2024.pdf",
+                "https://res.cloudinary.com/diiiuwl1p/raw/upload/v1763220326/fy/sem-2/engineering-chemistry/insem-oct---2023.pdf",
+                "https://res.cloudinary.com/diiiuwl1p/raw/upload/v1763220327/fy/sem-2/engineering-chemistry/insem-oct-2019.pdf",
+                "https://res.cloudinary.com/diiiuwl1p/raw/upload/v1763220328/fy/sem-2/engineering-chemistry/insem-oct-2022.pdf",
+                "https://res.cloudinary.com/diiiuwl1p/raw/upload/v1763220328/fy/sem-2/engineering-chemistry/insem-sep---2024.pdf",
+                "https://res.cloudinary.com/diiiuwl1p/raw/upload/v1763220329/fy/sem-2/engineering-chemistry/other-nov-dec-2019.pdf"
+            ],
+            "engineering-graphics": [
+                "https://res.cloudinary.com/diiiuwl1p/raw/upload/v1763220331/fy/sem-2/engineering-graphics/other-may-jun-2022.pdf",
+                "https://res.cloudinary.com/diiiuwl1p/raw/upload/v1763220332/fy/sem-2/engineering-graphics/other-may-jun-2023.pdf",
+                "https://res.cloudinary.com/diiiuwl1p/raw/upload/v1763220333/fy/sem-2/engineering-graphics/other-may-jun-2024.pdf",
+                "https://res.cloudinary.com/diiiuwl1p/raw/upload/v1763220335/fy/sem-2/engineering-graphics/other-may-jun-2025.pdf",
+                "https://res.cloudinary.com/diiiuwl1p/raw/upload/v1763220336/fy/sem-2/engineering-graphics/other-nov-dec-2023.pdf",
+                "https://res.cloudinary.com/diiiuwl1p/raw/upload/v1763220337/fy/sem-2/engineering-graphics/other-nov-dec-2024.pdf"
+            ],
+            "engineering-mathematics---ii": [
+                "https://res.cloudinary.com/diiiuwl1p/raw/upload/v1763220338/fy/sem-2/engineering-mathematics---ii/endsem-may-jun-2022.pdf",
+                "https://res.cloudinary.com/diiiuwl1p/raw/upload/v1763220339/fy/sem-2/engineering-mathematics---ii/endsem-may-jun-2023.pdf",
+                "https://res.cloudinary.com/diiiuwl1p/raw/upload/v1763220340/fy/sem-2/engineering-mathematics---ii/endsem-may-jun-2024.pdf",
+                "https://res.cloudinary.com/diiiuwl1p/raw/upload/v1763220340/fy/sem-2/engineering-mathematics---ii/endsem-may-jun-2025.pdf",
+                "https://res.cloudinary.com/diiiuwl1p/raw/upload/v1763220341/fy/sem-2/engineering-mathematics---ii/endsem-nov-dec-2023.pdf",
+                "https://res.cloudinary.com/diiiuwl1p/raw/upload/v1763220342/fy/sem-2/engineering-mathematics---ii/endsem-nov-dec-2024.pdf",
+                "https://res.cloudinary.com/diiiuwl1p/raw/upload/v1763220343/fy/sem-2/engineering-mathematics---ii/insem-march-2020.pdf",
+                "https://res.cloudinary.com/diiiuwl1p/raw/upload/v1763220343/fy/sem-2/engineering-mathematics---ii/insem-march-2024.pdf"
+            ],
+            "systems-in-mechanical-engineering": [
+                "https://res.cloudinary.com/diiiuwl1p/raw/upload/v1763220344/fy/sem-2/systems-in-mechanical-engineering/endsem-may-jun-2022.pdf",
+                "https://res.cloudinary.com/diiiuwl1p/raw/upload/v1763220344/fy/sem-2/systems-in-mechanical-engineering/endsem-may-jun-2023.pdf",
+                "https://res.cloudinary.com/diiiuwl1p/raw/upload/v1763220345/fy/sem-2/systems-in-mechanical-engineering/endsem-may-jun-2024.pdf",
+                "https://res.cloudinary.com/diiiuwl1p/raw/upload/v1763220346/fy/sem-2/systems-in-mechanical-engineering/endsem-may-jun-2025.pdf",
+                "https://res.cloudinary.com/diiiuwl1p/raw/upload/v1763220346/fy/sem-2/systems-in-mechanical-engineering/endsem-nov-dec-2023.pdf",
+                "https://res.cloudinary.com/diiiuwl1p/raw/upload/v1763220347/fy/sem-2/systems-in-mechanical-engineering/endsem-nov-dec-2024.pdf",
+                "https://res.cloudinary.com/diiiuwl1p/raw/upload/v1763220348/fy/sem-2/systems-in-mechanical-engineering/insem-oct---2023.pdf",
+                "https://res.cloudinary.com/diiiuwl1p/raw/upload/v1763220348/fy/sem-2/systems-in-mechanical-engineering/insem-oct-2019.pdf",
+                "https://res.cloudinary.com/diiiuwl1p/raw/upload/v1763220349/fy/sem-2/systems-in-mechanical-engineering/insem-oct-2022.pdf",
+                "https://res.cloudinary.com/diiiuwl1p/raw/upload/v1763220349/fy/sem-2/systems-in-mechanical-engineering/insem-sep---2024.pdf",
+                "https://res.cloudinary.com/diiiuwl1p/raw/upload/v1763220350/fy/sem-2/systems-in-mechanical-engineering/other-nov-dec-2019.pdf"
             ]
         }
     }

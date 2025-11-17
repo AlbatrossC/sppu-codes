@@ -265,7 +265,22 @@
                 "https://res.cloudinary.com/diiiuwl1p/raw/upload/v1763220308/fy/sem-1/engineering-physics/insem-sep---2024.pdf",
                 "https://res.cloudinary.com/diiiuwl1p/raw/upload/v1763220309/fy/sem-1/engineering-physics/other-nov-dec-2019.pdf"
             ],
-            "programming-&-problem-solving": []
+            "programming-&-problem-solving": [],
+            "programming-problem-solving": [
+                "https://res.cloudinary.com/diiiuwl1p/raw/upload/v1763394666/fy/sem-1/programming-problem-solving/endsem-may-jun-2022.pdf",
+                "https://res.cloudinary.com/diiiuwl1p/raw/upload/v1763394667/fy/sem-1/programming-problem-solving/endsem-may-jun-2023.pdf",
+                "https://res.cloudinary.com/diiiuwl1p/raw/upload/v1763394667/fy/sem-1/programming-problem-solving/endsem-may-jun-2024.pdf",
+                "https://res.cloudinary.com/diiiuwl1p/raw/upload/v1763394668/fy/sem-1/programming-problem-solving/endsem-may-jun-2025.pdf",
+                "https://res.cloudinary.com/diiiuwl1p/raw/upload/v1763394669/fy/sem-1/programming-problem-solving/endsem-nov-dec-2019.pdf",
+                "https://res.cloudinary.com/diiiuwl1p/raw/upload/v1763394669/fy/sem-1/programming-problem-solving/endsem-nov-dec-2023.pdf",
+                "https://res.cloudinary.com/diiiuwl1p/raw/upload/v1763394670/fy/sem-1/programming-problem-solving/endsem-nov-dec-2024.pdf",
+                "https://res.cloudinary.com/diiiuwl1p/raw/upload/v1763394670/fy/sem-1/programming-problem-solving/insem-march-2020.pdf",
+                "https://res.cloudinary.com/diiiuwl1p/raw/upload/v1763394671/fy/sem-1/programming-problem-solving/insem-march-2024.pdf",
+                "https://res.cloudinary.com/diiiuwl1p/raw/upload/v1763394671/fy/sem-1/programming-problem-solving/insem-oct---2023.pdf",
+                "https://res.cloudinary.com/diiiuwl1p/raw/upload/v1763394672/fy/sem-1/programming-problem-solving/insem-oct-2019.pdf",
+                "https://res.cloudinary.com/diiiuwl1p/raw/upload/v1763394673/fy/sem-1/programming-problem-solving/insem-oct-2022.pdf",
+                "https://res.cloudinary.com/diiiuwl1p/raw/upload/v1763394673/fy/sem-1/programming-problem-solving/insem-sep---2024.pdf"
+            ]
         },
         "sem-2": {
             "basic-electronics-engineering": [

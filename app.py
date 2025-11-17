@@ -167,65 +167,116 @@ def contact():
 # =============================================================================
 # QUESTION PAPER ROUTES
 # =============================================================================
+# Global variables for lazy loading
+QUESTION_PAPER_DATA = None
+SEO_DATA_INDEX = None
+SEO_DATA_RAW = None
 
-# Question paper data initialization
-
-# Question paper data initialization
-QUESTION_PAPER_DATA = {}
-SEO_DATA = {}
 data_json_path = os.path.join(os.path.dirname(__file__), 'static', 'pyqs', 'questionpapers.json')
 seo_json_path = os.path.join(os.path.dirname(__file__), 'static', 'pyqs', 'viewerseo.json')
 
+
 def load_question_paper_data():
-    """Load question paper data from JSON file on application startup"""
+    """Lazy load question paper data from JSON file"""
     global QUESTION_PAPER_DATA
-    try:
-        with open(data_json_path, 'r', encoding='utf-8') as f:
-            QUESTION_PAPER_DATA = json.load(f)
-        print("SUCCESS: questionpapers.json loaded successfully.")
-    except FileNotFoundError:
-        print(f"ERROR: questionpapers.json not found at {data_json_path}")
-    except json.JSONDecodeError as e:
-        print(f"ERROR: questionpapers.json is not valid JSON! Details: {e}")
+    if QUESTION_PAPER_DATA is None:
+        try:
+            with open(data_json_path, 'r', encoding='utf-8') as f:
+                QUESTION_PAPER_DATA = json.load(f)
+            print("SUCCESS: questionpapers.json loaded successfully.")
+        except FileNotFoundError:
+            print(f"ERROR: questionpapers.json not found at {data_json_path}")
+            QUESTION_PAPER_DATA = {}
+        except json.JSONDecodeError as e:
+            print(f"ERROR: questionpapers.json is not valid JSON! Details: {e}")
+            QUESTION_PAPER_DATA = {}
+    return QUESTION_PAPER_DATA
+
 
 def load_seo_data():
-    """Load SEO data from JSON file on application startup"""
-    global SEO_DATA
-    try:
-        with open(seo_json_path, 'r') as f:
-            seo_list = json.load(f)
-            # Convert list to dictionary for faster lookup by link
-            SEO_DATA = {item['link']: item for item in seo_list}
-        print("SUCCESS: viewerseo.json loaded successfully.")
-    except FileNotFoundError:
-        print(f"ERROR: viewerseo.json not found at {seo_json_path}")
-        SEO_DATA = {}
-    except json.JSONDecodeError as e:
-        print(f"ERROR: viewerseo.json is not valid JSON! Details: {e}")
-        SEO_DATA = {}
+    """Lazy load SEO data and build index for O(1) lookup by link"""
+    global SEO_DATA_INDEX, SEO_DATA_RAW
+    
+    if SEO_DATA_INDEX is None:
+        try:
+            with open(seo_json_path, 'r', encoding='utf-8') as f:
+                data = json.load(f)
+                SEO_DATA_RAW = data
+                
+                # Build index: link -> subject data for O(1) lookup
+                SEO_DATA_INDEX = {}
+                
+                branches = data.get('branches', {})
+                for branch_key, branch_data in branches.items():
+                    branch_name = branch_data.get('name', branch_key)
+                    semesters = branch_data.get('semesters', {})
+                    
+                    for sem_key, subjects in semesters.items():
+                        # Extract semester number from 'sem-X' format
+                        sem_number = sem_key.split('-')[-1] if '-' in sem_key else sem_key
+                        
+                        for subject in subjects:
+                            link = subject.get('link')
+                            if link:
+                                # Store subject data with branch and semester info
+                                SEO_DATA_INDEX[link] = {
+                                    'subjectName': subject.get('subjectName', ''),
+                                    'link': link,
+                                    'description': subject.get('description', ''),
+                                    'keywords': subject.get('keywords', []),
+                                    'branch': branch_name,
+                                    'branch_key': branch_key,
+                                    'sem': sem_number,
+                                    'sem_key': sem_key
+                                }
+            
+            print(f"SUCCESS: viewerseo.json loaded successfully. Indexed {len(SEO_DATA_INDEX)} subjects.")
+        except FileNotFoundError:
+            print(f"ERROR: viewerseo.json not found at {seo_json_path}")
+            SEO_DATA_INDEX = {}
+            SEO_DATA_RAW = {'branches': {}}
+        except json.JSONDecodeError as e:
+            print(f"ERROR: viewerseo.json is not valid JSON! Details: {e}")
+            SEO_DATA_INDEX = {}
+            SEO_DATA_RAW = {'branches': {}}
+    
+    return SEO_DATA_INDEX, SEO_DATA_RAW
 
-# Initialize data on startup
-load_question_paper_data()
-load_seo_data()
 
 @app.route('/questionpapers')
 def select_page():
-    # Group data from SEO_DATA
+    # Lazy load SEO data only when this route is accessed
+    seo_index, seo_raw = load_seo_data()
+    
+    # Organize data by branch and semester for display
     organized_data = defaultdict(lambda: defaultdict(list))
-
-    for item in SEO_DATA.values():
-        branch = item.get("branch", "Unknown Branch")
-        sem = f"Semester {item.get('sem', 'Unknown')}"
-        organized_data[branch][sem].append(item)
-
+    
+    branches = seo_raw.get('branches', {})
+    for branch_key, branch_data in branches.items():
+        branch_name = branch_data.get('name', branch_key)
+        semesters = branch_data.get('semesters', {})
+        
+        for sem_key, subjects in semesters.items():
+            sem_number = sem_key.split('-')[-1] if '-' in sem_key else sem_key
+            sem_display = f"Semester {sem_number}"
+            
+            for subject in subjects:
+                organized_data[branch_name][sem_display].append(subject)
+    
     return render_template('select.html', organized_data=organized_data)
+
 
 @app.route('/questionpapers/<subject_name>')
 def viewer_page(subject_name):
     """Display PDF viewer page for selected subject with all available question papers"""
+    # Lazy load both JSON files only when this route is accessed
+    question_data = load_question_paper_data()
+    seo_index, _ = load_seo_data()
+    
+    # Find PDF URLs for the subject
     raw_pdf_urls = [
         url 
-        for branch in QUESTION_PAPER_DATA.values()
+        for branch in question_data.values()
         for semester in branch.values()
         for subject, urls in semester.items()
         if subject == subject_name
@@ -235,29 +286,31 @@ def viewer_page(subject_name):
     if not raw_pdf_urls:
         abort(404, description=f"No question papers found for subject: {subject_name}")
     
+    # Prepare PDF data for JavaScript
     pdf_data_list = [
         {'filename': url.split('/')[-1].split('?')[0], 'url': url}
         for url in raw_pdf_urls
     ]
-
-    # Get SEO data for current route
-    current_route = f"/questionpapers/{subject_name}"
-    seo_info = SEO_DATA.get(current_route, {})
+    
+    # O(1) lookup for SEO data using the index
+    seo_info = seo_index.get(subject_name, {})
     
     # Prepare SEO metadata
+    subject_display_name = seo_info.get('subjectName', subject_name.replace('-', ' ').replace('_', ' ').title())
+    
     seo_data = {
-        'title': f"Sppu {seo_info.get('subjectName', subject_name.replace('_', ' ').title())} Question Papers: Sppu Codes",
-        'description': seo_info.get('description', f"SPPU {subject_name.replace('_', ' ').title()} Question Papers - View PDFs for selected subjects"),
-        'keywords': ', '.join(seo_info.get('keywords', [])) if seo_info.get('keywords') else f"sppu, {subject_name.replace('_', ' ')}, question papers",
-        'subject_name': seo_info.get('subjectName', subject_name.replace('_', ' ').title())
+        'title': f"Sppu {subject_display_name} Question Papers: Sppu Codes",
+        'description': seo_info.get('description', f"SPPU {subject_display_name} Question Papers - View PDFs for selected subjects"),
+        'keywords': ', '.join(seo_info.get('keywords', [])) if seo_info.get('keywords') else f"sppu, {subject_name.replace('-', ' ').replace('_', ' ')}, question papers",
+        'subject_name': subject_display_name,
+        'branch': seo_info.get('branch', ''),
+        'semester': seo_info.get('sem', '')
     }
-
+    
     return render_template('viewer.html', 
                          subject_name=subject_name, 
                          pdf_data_for_js=pdf_data_list,
                          seo_data=seo_data)
-
-    print("hey",pdf_data_list)
 
 # =============================================================================
 # SUBJECT AND QUESTION ROUTES

@@ -6,9 +6,31 @@ import requests
 from datetime import datetime
 from functools import lru_cache
 from collections import defaultdict
+from flask import render_template
+from werkzeug.exceptions import HTTPException
+
+
 
 app = Flask(__name__)
 app.secret_key = 'karltos'
+MAINTENANCE_MODE = os.getenv("MAINTENANCE_MODE", "false").lower() == "true"
+MAINTENANCE_BYPASS_IP = os.getenv("MAINTENANCE_BYPASS_IP")
+
+
+@app.before_request
+def maintenance():
+    if MAINTENANCE_MODE:
+        # Allow bypass for your IP (optional)
+        if MAINTENANCE_BYPASS_IP and request.remote_addr == MAINTENANCE_BYPASS_IP:
+            return  # let you access normally
+        
+        # Allow static files so your maintenance page loads properly
+        if request.path.startswith("/static"):
+            return
+        
+        # Show maintenance page for everyone else
+        return render_template("maintenance.html"), 503
+
 
 # =============================================================================
 # CONFIGURATION AND INITIALIZATION

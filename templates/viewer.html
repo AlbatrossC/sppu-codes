@@ -4,6 +4,11 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <script>
+    (function(){
+        window.IS_MOBILE_DEVICE=/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)||window.innerWidth<768;
+    })();
+    </script>
     <title>{{ seo_data.title }}</title>
     <meta name="description" content="{{ seo_data.description }}">
     <meta name="keywords" content="{{ seo_data.keywords }}">
@@ -17,9 +22,12 @@
     <meta name="summary" content="Download and view {{ seo_data.subject_name }} question papers online. Access INSEM and ENDSEM papers with our PDF viewer.">
 
     <link rel="canonical" href="https://sppucodes.vercel.app/questionpapers/{{ subject_name }}">
-    <meta name="google-adsense-account" content="ca-pub-6918638598461716">
-    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6918638598461716"
-     crossorigin="anonymous"></script>
+    <script>
+    if(!window.IS_MOBILE_DEVICE){
+        document.write('<meta name="google-adsense-account" content="ca-pub-6918638598461716">');
+        document.write('<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6918638598461716" crossorigin="anonymous"><\/script>');
+    }
+    </script>
 
     <meta property="og:title" content="{{ seo_data.title }}">
     <meta property="og:description" content="{{ seo_data.description }}">
@@ -217,58 +225,50 @@
 <script>
     'use strict';
     
-    // CRITICAL: Microsoft Clarity Global Unmask Configuration
-    // This must run BEFORE any Clarity recording starts
+    // Clarity Global Unmask Configuration
     (function initializeClarityUnmask() {
-        if (typeof clarity !== 'undefined') {
+        function enableUnmask() {
             try {
                 clarity('set', 'unmask', true);
-                console.log('✅ Clarity: Global unmask enabled');
+                console.log('Clarity: Global unmask enabled');
             } catch (e) {
-                console.warn('⚠️ Clarity: Unable to set global unmask', e);
+                console.warn('Clarity: Unable to set global unmask', e);
             }
+        }
+        if (typeof clarity !== 'undefined') {
+            enableUnmask();
         } else {
-            // Wait for Clarity to load
-            const checkClarity = setInterval(() => {
+            var checkClarity = setInterval(function() {
                 if (typeof clarity !== 'undefined') {
                     clearInterval(checkClarity);
-                    try {
-                        clarity('set', 'unmask', true);
-                        console.log('✅ Clarity: Global unmask enabled (delayed)');
-                    } catch (e) {
-                        console.warn('⚠️ Clarity: Unable to set global unmask', e);
-                    }
+                    enableUnmask();
+                    console.log('Clarity: Global unmask enabled (delayed)');
                 }
             }, 100);
-            
-            // Stop checking after 10 seconds
-            setTimeout(() => clearInterval(checkClarity), 10000);
+            setTimeout(function() { clearInterval(checkClarity); }, 10000);
         }
     })();
 
-    // Dynamic Clarity Unmask Function - Adds class to all elements
+    // Apply Clarity unmask class to all elements
     function applyClarityUnmaskToAllElements() {
-        const allElements = document.querySelectorAll('*');
-        let unmaskedCount = 0;
-        
-        allElements.forEach(element => {
-            if (!element.classList.contains('clarity-unmask')) {
-                element.classList.add('clarity-unmask');
+        var allElements = document.querySelectorAll('*');
+        var unmaskedCount = 0;
+        allElements.forEach(function(el) {
+            if (!el.classList.contains('clarity-unmask')) {
+                el.classList.add('clarity-unmask');
                 unmaskedCount++;
             }
         });
-        
-        console.log(`✅ Clarity: Applied unmask class to ${unmaskedCount} additional elements`);
+        console.log('Clarity: Applied unmask class to ' + unmaskedCount + ' elements');
     }
 
-    // Observer to unmask dynamically created elements
-    const clarityUnmaskObserver = new MutationObserver((mutations) => {
-        mutations.forEach((mutation) => {
-            mutation.addedNodes.forEach((node) => {
-                if (node.nodeType === 1) { // Element node
+    // Observer for dynamically created elements
+    var clarityUnmaskObserver = new MutationObserver(function(mutations) {
+        mutations.forEach(function(mutation) {
+            mutation.addedNodes.forEach(function(node) {
+                if (node.nodeType === 1) {
                     node.classList.add('clarity-unmask');
-                    // Also unmask all children
-                    node.querySelectorAll('*').forEach(child => {
+                    node.querySelectorAll('*').forEach(function(child) {
                         child.classList.add('clarity-unmask');
                     });
                 }
@@ -276,10 +276,10 @@
         });
     });
 
-    const initialPdfDataFromServer = {{ pdf_data_for_js | tojson | safe }};
-    const subjectNameFromServer = {{ seo_data.subject_name | tojson | safe }};
+    var initialPdfDataFromServer = {{ pdf_data_for_js | tojson | safe }};
+    var subjectNameFromServer = {{ seo_data.subject_name | tojson | safe }};
 
-    const DOM = {
+    var DOM = {
         pdfContainer: document.getElementById('pdf-container'),
         subjectDisplay: document.getElementById('subject-display'),
         pdfCount: document.getElementById('pdf-count'),
@@ -288,7 +288,7 @@
         backBtn: document.getElementById('back-btn')
     };
 
-    const state = {
+    var state = {
         pdfFiles: [],
         isRendering: false,
         activeObjectURLs: new Map(),
@@ -300,30 +300,34 @@
         preloadComplete: false
     };
 
-    // Service Worker Registration and Management
-    const ServiceWorkerManager = {
-        async register() {
+    // Service Worker Manager
+    var ServiceWorkerManager = {
+        register: function() {
+            var self = this;
             if ('serviceWorker' in navigator) {
-                try {
-                    const registration = await navigator.serviceWorker.register('/sw.js');
-                    await navigator.serviceWorker.ready;
-                    state.serviceWorkerReady = true;
-                    navigator.serviceWorker.addEventListener('message', (event) => this.handleMessage(event));
-                    this.cleanCache();
-                    console.log('📄 PDF Viewer: Service Worker ready for offline caching');
-                    return registration;
-                } catch (error) {
-                    console.warn('📄 PDF Viewer: Service Worker unavailable, PDFs will load from network');
-                    return null;
-                }
-            } else {
-                console.warn('📄 PDF Viewer: Service Worker not supported in this browser');
-                return null;
+                return navigator.serviceWorker.register('/sw.js')
+                    .then(function() {
+                        return navigator.serviceWorker.ready;
+                    })
+                    .then(function(registration) {
+                        state.serviceWorkerReady = true;
+                        navigator.serviceWorker.addEventListener('message', function(e) { self.handleMessage(e); });
+                        self.cleanCache();
+                        console.log('PDF Viewer: Service Worker ready for offline caching');
+                        return registration;
+                    })
+                    .catch(function(error) {
+                        console.warn('PDF Viewer: Service Worker unavailable, PDFs will load from network');
+                        return null;
+                    });
             }
+            console.warn('PDF Viewer: Service Worker not supported in this browser');
+            return Promise.resolve(null);
         },
 
-        handleMessage(event) {
-            const { type, data } = event.data;
+        handleMessage: function(event) {
+            var type = event.data.type;
+            var data = event.data.data;
             switch (type) {
                 case 'PDF_DOWNLOAD_START':
                     state.cacheProgress.total++;
@@ -334,173 +338,169 @@
                     break;
                 case 'PDF_DOWNLOAD_ERROR':
                     state.cacheProgress.failed++;
-                    console.warn(`📄 PDF Viewer: Failed to cache ${data.fileName}`);
+                    console.warn('PDF Viewer: Failed to cache ' + data.fileName);
                     break;
                 case 'PDF_CACHE_CHECK':
-                    data.cachedUrls.forEach(url => {
+                    data.cachedUrls.forEach(function(url) {
                         state.cachedPdfs.add(url);
                     });
                     break;
             }
-            
-            const { total, completed, failed } = state.cacheProgress;
-            if (completed + failed === total && total > 0) {
-                console.log(`📄 PDF Viewer: Cache complete - ${completed} cached, ${failed} failed out of ${total} PDFs`);
+            var cp = state.cacheProgress;
+            if (cp.completed + cp.failed === cp.total && cp.total > 0) {
+                console.log('PDF Viewer: Cache complete - ' + cp.completed + ' cached, ' + cp.failed + ' failed out of ' + cp.total + ' PDFs');
             }
         },
 
-        async initiatePdfCaching(pdfUrls) {
+        initiatePdfCaching: function(pdfUrls) {
             if (!state.serviceWorkerReady || pdfUrls.length === 0) return;
-            
             state.cacheProgress = { total: 0, completed: 0, failed: 0 };
-            console.log(`📄 PDF Viewer: Starting background cache for ${pdfUrls.length} PDFs`);
-            
-            navigator.serviceWorker.controller?.postMessage({
-                type: 'CACHE_PDFS',
-                urls: pdfUrls
-            });
+            console.log('PDF Viewer: Starting background cache for ' + pdfUrls.length + ' PDFs');
+            if (navigator.serviceWorker.controller) {
+                navigator.serviceWorker.controller.postMessage({ type: 'CACHE_PDFS', urls: pdfUrls });
+            }
         },
 
-        async checkCachedPdfs(pdfUrls) {
-            if (!state.serviceWorkerReady) return [];
-            return new Promise((resolve) => {
-                const messageChannel = new MessageChannel();
-                messageChannel.port1.onmessage = (event) => {
+        checkCachedPdfs: function(pdfUrls) {
+            if (!state.serviceWorkerReady) return Promise.resolve([]);
+            return new Promise(function(resolve) {
+                var messageChannel = new MessageChannel();
+                messageChannel.port1.onmessage = function(event) {
                     resolve(event.data.cachedUrls || []);
                 };
-                navigator.serviceWorker.controller?.postMessage({
-                    type: 'CHECK_CACHED_PDFS',
-                    urls: pdfUrls
-                }, [messageChannel.port2]);
-                setTimeout(() => resolve([]), 1000);
+                if (navigator.serviceWorker.controller) {
+                    navigator.serviceWorker.controller.postMessage({ type: 'CHECK_CACHED_PDFS', urls: pdfUrls }, [messageChannel.port2]);
+                }
+                setTimeout(function() { resolve([]); }, 1000);
             });
         },
 
-        cleanCache() {
-            if (state.serviceWorkerReady) {
-                navigator.serviceWorker.controller?.postMessage({ type: 'CLEAN_CACHE' });
+        cleanCache: function() {
+            if (state.serviceWorkerReady && navigator.serviceWorker.controller) {
+                navigator.serviceWorker.controller.postMessage({ type: 'CLEAN_CACHE' });
             }
         }
     };
 
-    // Efficient PDF preloading with priority queue
-    const PreloadManager = {
+    // Preload Manager
+    var PreloadManager = {
         preloadQueue: [],
         maxConcurrent: 2,
         activePreloads: 0,
 
-        async preloadPdfViewer() {
-            if (state.preloadComplete) return;
-            
-            return new Promise((resolve) => {
-                const preloadIframe = document.createElement('iframe');
+        preloadPdfViewer: function() {
+            if (state.preloadComplete) return Promise.resolve();
+            return new Promise(function(resolve) {
+                var preloadIframe = document.createElement('iframe');
                 preloadIframe.style.cssText = 'position:absolute;left:-9999px;width:1px;height:1px;opacity:0;pointer-events:none;';
                 preloadIframe.setAttribute('aria-hidden', 'true');
                 preloadIframe.classList.add('clarity-unmask');
                 preloadIframe.src = state.pdfViewerBase;
                 
-                preloadIframe.onload = () => {
+                preloadIframe.onload = function() {
                     state.preloadComplete = true;
-                    console.log('📄 PDF Viewer: PDF.js viewer preloaded');
+                    console.log('PDF Viewer: PDF.js viewer preloaded');
                     if (preloadIframe.parentNode) preloadIframe.remove();
                     resolve();
                 };
                 
-                preloadIframe.onerror = () => {
-                    console.warn('📄 PDF Viewer: PDF.js viewer preload failed');
+                preloadIframe.onerror = function() {
+                    console.warn('PDF Viewer: PDF.js viewer preload failed');
                     if (preloadIframe.parentNode) preloadIframe.remove();
                     resolve();
                 };
                 
                 document.body.appendChild(preloadIframe);
-                
-                setTimeout(() => {
+                setTimeout(function() {
                     if (preloadIframe.parentNode) preloadIframe.remove();
                     resolve();
                 }, 3000);
             });
         },
 
-        addToPreloadQueue(pdfUrl, priority = 1) {
-            this.preloadQueue.push({ url: pdfUrl, priority });
-            this.preloadQueue.sort((a, b) => b.priority - a.priority);
+        addToPreloadQueue: function(pdfUrl, priority) {
+            var self = this;
+            priority = priority || 1;
+            this.preloadQueue.push({ url: pdfUrl, priority: priority });
+            this.preloadQueue.sort(function(a, b) { return b.priority - a.priority; });
             this.processQueue();
         },
 
-        async processQueue() {
+        processQueue: function() {
+            var self = this;
             if (this.activePreloads >= this.maxConcurrent || this.preloadQueue.length === 0) return;
-            
-            const { url } = this.preloadQueue.shift();
+            var item = this.preloadQueue.shift();
             this.activePreloads++;
-            
-            try {
-                await fetch(url, { cache: 'default' });
-            } catch (error) {
-                // Silent fail for preloading
-            } finally {
-                this.activePreloads--;
-                this.processQueue();
-            }
+            fetch(item.url, { cache: 'default' })
+                .catch(function() {})
+                .finally(function() {
+                    self.activePreloads--;
+                    self.processQueue();
+                });
         }
     };
 
-    const debounce = (func, wait) => {
-        let timeout;
-        return (...args) => {
+    function debounce(func, wait) {
+        var timeout;
+        return function() {
+            var args = arguments;
+            var context = this;
             clearTimeout(timeout);
-            timeout = setTimeout(() => func(...args), wait);
+            timeout = setTimeout(function() { func.apply(context, args); }, wait);
         };
-    };
+    }
 
-    async function loadPdfIntoIframe(iframe, pdfUrl, loader, retryCount = 0) {
-        const oldObjectURL = state.activeObjectURLs.get(iframe);
+    function loadPdfIntoIframe(iframe, pdfUrl, loader, retryCount) {
+        retryCount = retryCount || 0;
+        var oldObjectURL = state.activeObjectURLs.get(iframe);
         if (oldObjectURL) {
             URL.revokeObjectURL(oldObjectURL);
             state.activeObjectURLs.delete(iframe);
         }
 
-        try {
-            if (!isValidUrl(pdfUrl)) throw new Error('Invalid PDF URL');
-            const isCached = state.cachedPdfs.has(pdfUrl);
-            
-            const response = await fetch(pdfUrl, { cache: isCached ? 'force-cache' : 'default' });
-            if (!response.ok) throw new Error(`HTTP ${response.status}`);
-            
-            const blob = await response.blob();
-            const fileUrlToLoad = URL.createObjectURL(blob);
-            state.activeObjectURLs.set(iframe, fileUrlToLoad);
-            
-            const iframeSrc = `${state.pdfViewerBase}?file=${encodeURIComponent(fileUrlToLoad)}`;
-            iframe.src = iframeSrc;
+        if (!isValidUrl(pdfUrl)) {
+            showPdfError(iframe, loader, 'Invalid PDF URL');
+            return Promise.resolve();
+        }
 
-            iframe.onload = () => {
-                if (loader && loader.parentNode) loader.remove();
-            };
-            
-            iframe.onerror = () => {
-                if (loader && loader.parentNode) loader.remove();
-                if (iframe.parentElement) {
-                    const errorMsg = document.createElement('div');
-                    errorMsg.className = 'no-pdf-message clarity-unmask';
-                    errorMsg.textContent = 'Error loading PDF. Please check the URL and network.';
-                    iframe.parentElement.innerHTML = '';
-                    iframe.parentElement.appendChild(errorMsg);
+        var isCached = state.cachedPdfs.has(pdfUrl);
+        return fetch(pdfUrl, { cache: isCached ? 'force-cache' : 'default' })
+            .then(function(response) {
+                if (!response.ok) throw new Error('HTTP ' + response.status);
+                return response.blob();
+            })
+            .then(function(blob) {
+                var fileUrlToLoad = URL.createObjectURL(blob);
+                state.activeObjectURLs.set(iframe, fileUrlToLoad);
+                iframe.src = state.pdfViewerBase + '?file=' + encodeURIComponent(fileUrlToLoad);
+                iframe.onload = function() {
+                    if (loader && loader.parentNode) loader.remove();
+                };
+                iframe.onerror = function() {
+                    showPdfError(iframe, loader, 'Error loading PDF. Please check the URL and network.');
+                };
+            })
+            .catch(function(error) {
+                if (retryCount < 2) {
+                    return new Promise(function(resolve) {
+                        setTimeout(function() {
+                            resolve(loadPdfIntoIframe(iframe, pdfUrl, loader, retryCount + 1));
+                        }, 1000);
+                    });
                 }
-            };
-        } catch (error) {
-            if (retryCount < 2) {
-                setTimeout(() => loadPdfIntoIframe(iframe, pdfUrl, loader, retryCount + 1), 1000);
-                return;
-            }
-            if (loader && loader.parentNode) loader.remove();
-            if (iframe.parentElement) {
-                const errorMsg = document.createElement('div');
-                errorMsg.className = 'no-pdf-message clarity-unmask';
-                errorMsg.textContent = 'Error loading PDF. Please try again or check your network.';
-                iframe.parentElement.innerHTML = '';
-                iframe.parentElement.appendChild(errorMsg);
-            }
-            console.warn(`📄 PDF Viewer: Failed to load ${pdfUrl.split('/').pop()} after ${retryCount + 1} attempts`);
+                showPdfError(iframe, loader, 'Error loading PDF. Please try again or check your network.');
+                console.warn('PDF Viewer: Failed to load ' + pdfUrl.split('/').pop() + ' after ' + (retryCount + 1) + ' attempts');
+            });
+    }
+
+    function showPdfError(iframe, loader, message) {
+        if (loader && loader.parentNode) loader.remove();
+        if (iframe.parentElement) {
+            var errorMsg = document.createElement('div');
+            errorMsg.className = 'no-pdf-message clarity-unmask';
+            errorMsg.textContent = message;
+            iframe.parentElement.innerHTML = '';
+            iframe.parentElement.appendChild(errorMsg);
         }
     }
 
@@ -508,7 +508,7 @@
         try {
             new URL(url);
             return url.toLowerCase().endsWith('.pdf');
-        } catch {
+        } catch (e) {
             return false;
         }
     }
@@ -517,123 +517,115 @@
         DOM.subjectDisplay.textContent = subjectNameFromServer || "Subject";
     }
 
-    const filterPDFs = (() => {
-        const cache = new Map();
-        const maxSize = 5;
-        return (examType) => {
-            const key = examType.toLowerCase();
+    var filterPDFs = (function() {
+        var cache = new Map();
+        var maxSize = 5;
+        return function(examType) {
+            var key = examType.toLowerCase();
             if (cache.has(key)) {
-                const val = cache.get(key);
+                var val = cache.get(key);
                 cache.delete(key);
                 cache.set(key, val);
                 return val;
             }
-            const result = state.pdfFiles.filter(file => file.date.toLowerCase().includes(key));
+            var result = state.pdfFiles.filter(function(file) {
+                return file.date.toLowerCase().includes(key);
+            });
             if (cache.size >= maxSize) cache.delete(cache.keys().next().value);
             cache.set(key, result);
             return result;
         };
     })();
 
-    async function renderPDFs() {
+    function renderPDFs() {
         if (state.isRendering) return;
         state.isRendering = true;
 
-        await state.renderQueue;
-        state.renderQueue = new Promise(async (resolve) => {
-            const count = parseInt(DOM.pdfCount.value, 10);
-            const examType = DOM.examType.value;
-            const filteredData = filterPDFs(examType);
+        state.renderQueue = state.renderQueue.then(function() {
+            return new Promise(function(resolve) {
+                var count = parseInt(DOM.pdfCount.value, 10);
+                var examType = DOM.examType.value;
+                var filteredData = filterPDFs(examType);
 
-            DOM.pdfContainer.querySelectorAll('iframe').forEach(iframe => {
-                const oldObjectURL = state.activeObjectURLs.get(iframe);
-                if (oldObjectURL) {
-                    URL.revokeObjectURL(oldObjectURL);
-                    state.activeObjectURLs.delete(iframe);
+                DOM.pdfContainer.querySelectorAll('iframe').forEach(function(iframe) {
+                    var oldObjectURL = state.activeObjectURLs.get(iframe);
+                    if (oldObjectURL) {
+                        URL.revokeObjectURL(oldObjectURL);
+                        state.activeObjectURLs.delete(iframe);
+                    }
+                    iframe.remove();
+                });
+
+                DOM.pdfContainer.className = 'grid-' + count + ' clarity-unmask';
+                
+                if (!filteredData.length) {
+                    DOM.pdfContainer.innerHTML = '<div class="no-pdf-message clarity-unmask">No papers for this filter.</div>';
+                    state.isRendering = false;
+                    resolve();
+                    return;
                 }
-                iframe.remove();
-            });
 
-            DOM.pdfContainer.className = `grid-${count} clarity-unmask`;
-            
-            if (!filteredData.length) {
-                const noDataMsg = document.createElement('div');
-                noDataMsg.className = 'no-pdf-message clarity-unmask';
-                noDataMsg.textContent = 'No papers for this filter.';
                 DOM.pdfContainer.innerHTML = '';
-                DOM.pdfContainer.appendChild(noDataMsg);
+                var fragment = document.createDocumentFragment();
+                var maxRender = Math.min(count, filteredData.length);
+
+                for (var i = 0; i < count; i++) {
+                    var div = document.createElement('div');
+                    div.className = 'pdf-viewer clarity-unmask';
+                    
+                    if (i < maxRender) {
+                        var loader = document.createElement('div');
+                        loader.className = 'loader-container clarity-unmask';
+                        loader.innerHTML = '<div class="loader clarity-unmask"></div>';
+                        div.appendChild(loader);
+
+                        var selector = createPaperSelector(filteredData, i, 'viewer-' + i);
+                        div.appendChild(selector);
+
+                        var iframe = document.createElement('iframe');
+                        iframe.className = 'clarity-unmask';
+                        iframe.title = 'PDF Viewer ' + (i + 1) + ' - ' + filteredData[i].originalFilename;
+                        div.appendChild(iframe);
+                        loadPdfIntoIframe(iframe, filteredData[i].link, loader);
+
+                        if (i + 1 < filteredData.length) {
+                            PreloadManager.addToPreloadQueue(filteredData[i + 1].link, 0.5);
+                        }
+                    } else {
+                        div.innerHTML = '<div class="no-more-papers clarity-unmask">No additional paper for this slot.</div>';
+                    }
+                    fragment.appendChild(div);
+                }
+                DOM.pdfContainer.appendChild(fragment);
+                applyClarityUnmaskToAllElements();
                 state.isRendering = false;
                 resolve();
-                return;
-            }
-
-            DOM.pdfContainer.innerHTML = '';
-            const fragment = document.createDocumentFragment();
-            const maxRender = Math.min(count, filteredData.length);
-
-            for (let i = 0; i < count; i++) {
-                const div = document.createElement('div');
-                div.className = 'pdf-viewer clarity-unmask';
-                
-                if (i < maxRender) {
-                    const loader = document.createElement('div');
-                    loader.className = 'loader-container clarity-unmask';
-                    const loaderSpinner = document.createElement('div');
-                    loaderSpinner.className = 'loader clarity-unmask';
-                    loader.appendChild(loaderSpinner);
-                    div.appendChild(loader);
-
-                    const selector = createPaperSelector(filteredData, i, `viewer-${i}`);
-                    div.appendChild(selector);
-
-                    const iframe = document.createElement('iframe');
-                    iframe.className = 'clarity-unmask';
-                    iframe.title = `PDF Viewer ${i + 1} - ${filteredData[i].originalFilename}`;
-                    div.appendChild(iframe);
-                    loadPdfIntoIframe(iframe, filteredData[i].link, loader);
-
-                    if (i + 1 < filteredData.length) {
-                        PreloadManager.addToPreloadQueue(filteredData[i + 1].link, 0.5);
-                    }
-                } else {
-                    const noMoreMsg = document.createElement('div');
-                    noMoreMsg.className = 'no-more-papers clarity-unmask';
-                    noMoreMsg.textContent = 'No additional paper for this slot.';
-                    div.appendChild(noMoreMsg);
-                }
-                fragment.appendChild(div);
-            }
-            DOM.pdfContainer.appendChild(fragment);
-            
-            // Apply unmask to newly created elements
-            applyClarityUnmaskToAllElements();
-            
-            state.isRendering = false;
-            resolve();
+            });
         });
     }
 
     function createPaperSelector(data, initialIndex, viewerId) {
-        const selectorContainer = document.createElement('div');
+        var selectorContainer = document.createElement('div');
         selectorContainer.className = 'paper-selector clarity-unmask';
 
-        const label = document.createElement('label');
+        var label = document.createElement('label');
         label.className = 'paper-selector-label clarity-unmask';
         label.textContent = 'Paper:';
-        const selectId = `paper-select-${viewerId}`;
+        var selectId = 'paper-select-' + viewerId;
         label.htmlFor = selectId;
 
-        const select = document.createElement('select');
+        var select = document.createElement('select');
         select.id = selectId;
         select.className = 'clarity-unmask';
-        select.setAttribute('aria-label', `Select paper for viewer ${viewerId.split('-')[1] + 1}`);
+        select.setAttribute('aria-label', 'Select paper for viewer ' + (parseInt(viewerId.split('-')[1]) + 1));
         select.size = 1;
-        select.addEventListener('focus', () => { select.size = Math.min(5, data.length || 1); });
-        select.addEventListener('blur', () => { select.size = 1; });
-        select.addEventListener('change', () => { select.size = 1; });
+        
+        select.addEventListener('focus', function() { select.size = Math.min(5, data.length || 1); });
+        select.addEventListener('blur', function() { select.size = 1; });
+        select.addEventListener('change', function() { select.size = 1; });
 
-        data.forEach((item, idx) => {
-            const option = document.createElement('option');
+        data.forEach(function(item, idx) {
+            var option = document.createElement('option');
             option.className = 'clarity-unmask';
             option.value = idx;
             option.textContent = item.date;
@@ -641,22 +633,20 @@
             select.appendChild(option);
         });
 
-        select.addEventListener('change', debounce(async (e) => {
-            const idx = parseInt(e.target.value, 10);
-            const pdfUrl = data[idx].link;
-            const viewerDiv = selectorContainer.closest('.pdf-viewer');
-            const iframe = viewerDiv.querySelector('iframe');
+        select.addEventListener('change', debounce(function(e) {
+            var idx = parseInt(e.target.value, 10);
+            var pdfUrl = data[idx].link;
+            var viewerDiv = selectorContainer.closest('.pdf-viewer');
+            var iframe = viewerDiv.querySelector('iframe');
             if (!iframe) return;
             
-            iframe.title = `PDF Viewer ${viewerId.split('-')[1] + 1} - ${data[idx].originalFilename}`;
+            iframe.title = 'PDF Viewer ' + (parseInt(viewerId.split('-')[1]) + 1) + ' - ' + data[idx].originalFilename;
 
-            const loader = document.createElement('div');
+            var loader = document.createElement('div');
             loader.className = 'loader-container clarity-unmask';
-            const loaderSpinner = document.createElement('div');
-            loaderSpinner.className = 'loader clarity-unmask';
-            loader.appendChild(loaderSpinner);
+            loader.innerHTML = '<div class="loader clarity-unmask"></div>';
             viewerDiv.insertBefore(loader, iframe);
-            await loadPdfIntoIframe(iframe, pdfUrl, loader);
+            loadPdfIntoIframe(iframe, pdfUrl, loader);
         }, 150));
 
         selectorContainer.appendChild(label);
@@ -666,111 +656,99 @@
 
     function toggleFullscreen() {
         if (document.fullscreenElement) {
-            document.exitFullscreen().catch(err => console.error("📄 PDF Viewer: Error exiting fullscreen:", err));
+            document.exitFullscreen().catch(function(err) { console.error("PDF Viewer: Error exiting fullscreen:", err); });
         } else {
-            document.documentElement.requestFullscreen({ navigationUI: 'hide' }).catch(err => console.error("📄 PDF Viewer: Error entering fullscreen:", err));
+            document.documentElement.requestFullscreen({ navigationUI: 'hide' }).catch(function(err) { console.error("PDF Viewer: Error entering fullscreen:", err); });
         }
     }
 
     function updateFullscreenButton() {
-        const isFullscreen = document.fullscreenElement;
+        var isFullscreen = document.fullscreenElement;
         DOM.fullscreenBtn.innerHTML = isFullscreen ?
-            `<svg class="icon clarity-unmask" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24"><path d="M4 14h6m0 0v6m0-6l-7 7m17-11h-6m0 0V4m0 6l7-7"/></svg> Exit Fullscreen` :
-            `<svg class="icon clarity-unmask" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24"><path d="M8 3H5a2 2 0 0 0-2 2v3m18 0V5a2 2 0 0 0-2-2h-3m0 18h3a2 2 0 0 0 2-2v-3M3 16v3a2 2 0 0 0 2 2h3"/></svg> Fullscreen`;
+            '<svg class="icon clarity-unmask" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24"><path d="M4 14h6m0 0v6m0-6l-7 7m17-11h-6m0 0V4m0 6l7-7"/></svg> Exit Fullscreen' :
+            '<svg class="icon clarity-unmask" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24"><path d="M8 3H5a2 2 0 0 0-2 2v3m18 0V5a2 2 0 0 0-2-2h-3m0 18h3a2 2 0 0 0 2-2v-3M3 16v3a2 2 0 0 0 2 2h3"/></svg> Fullscreen';
     }
 
     function setupEventListeners() {
-        const debouncedRender = debounce(renderPDFs, 250);
+        var debouncedRender = debounce(renderPDFs, 250);
         DOM.pdfCount.addEventListener('change', debouncedRender);
         DOM.examType.addEventListener('change', debouncedRender);
         DOM.fullscreenBtn.addEventListener('click', toggleFullscreen);
-        DOM.backBtn.addEventListener('click', () => window.location.href = '/questionpapers');
+        DOM.backBtn.addEventListener('click', function() { window.location.href = '/questionpapers'; });
         document.addEventListener('fullscreenchange', updateFullscreenButton);
-        document.addEventListener('keydown', (e) => {
+        document.addEventListener('keydown', function(e) {
             if (e.key === 'Escape' && document.fullscreenElement) {
-                document.exitFullscreen().catch(err => console.error("📄 PDF Viewer: Error exiting fullscreen on escape:", err));
+                document.exitFullscreen().catch(function(err) { console.error("PDF Viewer: Error exiting fullscreen on escape:", err); });
             }
         });
     }
 
-    async function init() {
-        console.log('📄 PDF Viewer: Initializing...');
+    function init() {
+        console.log('PDF Viewer: Initializing...');
+        if (window.IS_MOBILE_DEVICE) {
+            console.log('PDF Viewer: Mobile device detected, forcing desktop view');
+        }
         
-        // Apply unmask to all initial elements
         applyClarityUnmaskToAllElements();
-        
-        // Start observing for dynamic elements
-        clarityUnmaskObserver.observe(document.body, {
-            childList: true,
-            subtree: true
-        });
+        clarityUnmaskObserver.observe(document.body, { childList: true, subtree: true });
         
         updateSubjectDisplay();
         setupEventListeners();
-
         PreloadManager.preloadPdfViewer();
 
-        await ServiceWorkerManager.register();
+        ServiceWorkerManager.register().then(function() {
+            if (initialPdfDataFromServer && initialPdfDataFromServer.length > 0) {
+                state.pdfFiles = initialPdfDataFromServer
+                    .map(function(pdfObject) {
+                        if (!pdfObject || typeof pdfObject.filename !== 'string' || typeof pdfObject.url !== 'string' || !isValidUrl(pdfObject.url)) {
+                            return null;
+                        }
+                        return {
+                            date: pdfObject.filename.replace(/\.pdf$/i, ''),
+                            link: pdfObject.url,
+                            originalFilename: pdfObject.filename
+                        };
+                    })
+                    .filter(function(item) { return item !== null; })
+                    .sort(function(a, b) { return b.date.localeCompare(a.date); });
 
-        if (initialPdfDataFromServer && initialPdfDataFromServer.length > 0) {
-            state.pdfFiles = initialPdfDataFromServer
-                .map(pdfObject => {
-                    if (!pdfObject || typeof pdfObject.filename !== 'string' || typeof pdfObject.url !== 'string' || !isValidUrl(pdfObject.url)) {
-                        return null;
+                var hasInsem = state.pdfFiles.some(function(file) { return file.date.toLowerCase().includes('insem'); });
+                var hasEndsem = state.pdfFiles.some(function(file) { return file.date.toLowerCase().includes('endsem'); });
+
+                DOM.examType.querySelector('option[value="insem"]').disabled = !hasInsem;
+                DOM.examType.querySelector('option[value="endsem"]').disabled = !hasEndsem;
+
+                if (hasInsem) DOM.examType.value = 'insem';
+                else if (hasEndsem) DOM.examType.value = 'endsem';
+
+                console.log('PDF Viewer: Loaded ' + state.pdfFiles.length + ' papers for ' + (subjectNameFromServer || 'this subject'));
+
+                var pdfUrls = state.pdfFiles.map(function(file) { return file.link; });
+                return ServiceWorkerManager.checkCachedPdfs(pdfUrls).then(function(cachedUrls) {
+                    cachedUrls.forEach(function(url) { state.cachedPdfs.add(url); });
+                    var uncachedUrls = pdfUrls.filter(function(url) { return !state.cachedPdfs.has(url); });
+                    if (uncachedUrls.length > 0) {
+                        ServiceWorkerManager.initiatePdfCaching(uncachedUrls);
+                    } else if (cachedUrls.length > 0) {
+                        console.log('PDF Viewer: ' + cachedUrls.length + ' PDFs already cached');
                     }
-                    return {
-                        date: pdfObject.filename.replace(/\.pdf$/i, ''),
-                        link: pdfObject.url,
-                        originalFilename: pdfObject.filename
-                    };
-                })
-                .filter(item => item !== null)
-                .sort((a, b) => b.date.localeCompare(a.date));
-
-            const hasInsem = state.pdfFiles.some(file => file.date.toLowerCase().includes('insem'));
-            const hasEndsem = state.pdfFiles.some(file => file.date.toLowerCase().includes('endsem'));
-
-            DOM.examType.querySelector('option[value="insem"]').disabled = !hasInsem;
-            DOM.examType.querySelector('option[value="endsem"]').disabled = !hasEndsem;
-
-            if (hasInsem) DOM.examType.value = 'insem';
-            else if (hasEndsem) DOM.examType.value = 'endsem';
-
-            console.log(`📄 PDF Viewer: Loaded ${state.pdfFiles.length} papers for ${subjectNameFromServer || 'this subject'}`);
-
-            const pdfUrls = state.pdfFiles.map(file => file.link);
-            const cachedUrls = await ServiceWorkerManager.checkCachedPdfs(pdfUrls);
-            cachedUrls.forEach(url => {
-                state.cachedPdfs.add(url);
-            });
-
-            const uncachedUrls = pdfUrls.filter(url => !state.cachedPdfs.has(url));
-            if (uncachedUrls.length > 0) {
-                ServiceWorkerManager.initiatePdfCaching(uncachedUrls);
-            } else if (cachedUrls.length > 0) {
-                console.log(`📄 PDF Viewer: ${cachedUrls.length} PDFs already cached`);
+                    renderPDFs();
+                });
+            } else {
+                DOM.pdfContainer.innerHTML = '<div class="no-pdf-message clarity-unmask">No question papers found for this subject.</div>';
+                DOM.subjectDisplay.textContent = subjectNameFromServer || 'No Subject';
+                console.warn('PDF Viewer: No PDF data available');
             }
-
-            renderPDFs();
-        } else {
-            const noDataMsg = document.createElement('div');
-            noDataMsg.className = 'no-pdf-message clarity-unmask';
-            noDataMsg.textContent = 'No question papers found for this subject.';
-            DOM.pdfContainer.innerHTML = '';
-            DOM.pdfContainer.appendChild(noDataMsg);
-            DOM.subjectDisplay.textContent = subjectNameFromServer || 'No Subject';
-            console.warn('📄 PDF Viewer: No PDF data available');
-        }
-        
-        // Final unmask pass after everything is loaded
-        setTimeout(() => {
-            applyClarityUnmaskToAllElements();
-            console.log('✅ Clarity: Final unmask pass completed');
-        }, 1000);
+        }).then(function() {
+            setTimeout(function() {
+                applyClarityUnmaskToAllElements();
+                console.log('Clarity: Final unmask pass completed');
+            }, 1000);
+        });
     }
 
-    window.addEventListener('beforeunload', () => {
-        state.activeObjectURLs.forEach(url => URL.revokeObjectURL(url));
+    window.addEventListener('beforeunload', function() {
+        state.activeObjectURLs.forEach(function(url) { URL.revokeObjectURL(url); });
         state.activeObjectURLs.clear();
         clarityUnmaskObserver.disconnect();
     });

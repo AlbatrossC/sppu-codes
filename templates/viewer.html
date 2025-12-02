@@ -48,8 +48,21 @@
 
     <link href="/static/pdfjs/web/viewer.html" rel="preload" fetchpriority="high" as="document">
     <link href="/static/pdfjs/web/viewer.css" rel="preload" fetchpriority="high" as="style">
-    <link href="{{ url_for('static', filename='css/viewer.css') }}?v=1.0" rel="stylesheet">
+    <link href="{{ url_for('static', filename='css/viewer.css') }}?v=1.5" rel="stylesheet">
     <link href="/static/pdfjs/web/pdf.worker.js" rel="preload" fetchpriority="high" as="worker">
+    
+    <!-- Clarity Unmask Styles -->
+    <style>
+        /* Force Clarity to unmask all form elements */
+        select, option, button, label, input {
+            -webkit-mask: none !important;
+            mask: none !important;
+        }
+        [data-clarity-unmask="true"] {
+            -webkit-mask: none !important;
+            mask: none !important;
+        }
+    </style>
 
     <script type="application/ld+json">
     {
@@ -145,7 +158,7 @@
     }
     </script>
 </head>
-<body class="clarity-unmask">
+<body class="clarity-unmask" data-clarity-unmask="true">
     <div class="seo-content clarity-unmask">
         <h1 class="clarity-unmask">{{ seo_data.subject_name }} Question Papers - SPPU University</h1>
         <p class="clarity-unmask">Access and download {{ seo_data.subject_name }} question papers from Savitribai Phule Pune University (SPPU). Our collection includes INSEM (Internal Semester) and ENDSEM (End Semester) exam papers.</p>
@@ -185,42 +198,42 @@
         <p class="clarity-unmask">Explore {{ seo_data.subject_name }} resources including SPPU question papers from Savitribai Phule Pune University. Find INSEM and ENDSEM papers for effective examination preparation. Our platform offers academic resources, a PDF viewer for online study, university question papers, and materials for semester examinations.</p>
     </div>
 
-    <header class="clarity-unmask">
-        <div class="header-info clarity-unmask">
-            <button class="back clarity-unmask" id="back-btn" aria-label="Go back to question papers list">
+    <header class="clarity-unmask" data-clarity-unmask="true">
+        <div class="header-info clarity-unmask" data-clarity-unmask="true">
+            <button class="back clarity-unmask" data-clarity-unmask="true" id="back-btn" aria-label="Go back to question papers list">
                 <svg class="icon clarity-unmask" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>
                 Back
             </button>
-            <h1 class="clarity-unmask"><div class="subject-badge clarity-unmask" id="subject-display">{{ seo_data.subject_name }}</div></h1>
+            <h1 class="clarity-unmask" data-clarity-unmask="true"><div class="subject-badge clarity-unmask" data-clarity-unmask="true" id="subject-display">{{ seo_data.subject_name }}</div></h1>
         </div>
-        <div class="header-center clarity-unmask">
-            <div class="control-group clarity-unmask">
-                <label for="pdf-count" class="clarity-unmask">Layout:</label>
-                <select id="pdf-count" aria-label="Select PDF layout" class="clarity-unmask">
-                    <option value="1" selected class="clarity-unmask">Single</option>
-                    <option value="2" class="clarity-unmask">Split (2)</option>
-                    <option value="3" class="clarity-unmask">Split (3)</option>
-                    <option value="4" class="clarity-unmask">Grid (4)</option>
+        <div class="header-center clarity-unmask" data-clarity-unmask="true">
+            <div class="control-group clarity-unmask" data-clarity-unmask="true">
+                <label for="pdf-count" class="clarity-unmask" data-clarity-unmask="true">Layout:</label>
+                <select id="pdf-count" aria-label="Select PDF layout" class="clarity-unmask" data-clarity-unmask="true" data-clarity-mask="false">
+                    <option value="1" selected class="clarity-unmask" data-clarity-unmask="true">Single</option>
+                    <option value="2" class="clarity-unmask" data-clarity-unmask="true">Split (2)</option>
+                    <option value="3" class="clarity-unmask" data-clarity-unmask="true">Split (3)</option>
+                    <option value="4" class="clarity-unmask" data-clarity-unmask="true">Grid (4)</option>
                 </select>
             </div>
-            <div class="control-group clarity-unmask">
-                <label for="exam-type" class="clarity-unmask">Exam:</label>
-                <select id="exam-type" aria-label="Select exam type" class="clarity-unmask">
-                    <option value="insem" class="clarity-unmask">INSEM</option>
-                    <option value="endsem" class="clarity-unmask">ENDSEM</option>
+            <div class="control-group clarity-unmask" data-clarity-unmask="true">
+                <label for="exam-type" class="clarity-unmask" data-clarity-unmask="true">Exam:</label>
+                <select id="exam-type" aria-label="Select exam type" class="clarity-unmask" data-clarity-unmask="true" data-clarity-mask="false">
+                    <option value="insem" class="clarity-unmask" data-clarity-unmask="true">INSEM</option>
+                    <option value="endsem" class="clarity-unmask" data-clarity-unmask="true">ENDSEM</option>
                 </select>
             </div>
         </div>
-        <div class="header-controls clarity-unmask">
-            <button class="primary clarity-unmask" id="fullscreen-btn" aria-label="Toggle fullscreen mode">
+        <div class="header-controls clarity-unmask" data-clarity-unmask="true">
+            <button class="primary clarity-unmask" data-clarity-unmask="true" id="fullscreen-btn" aria-label="Toggle fullscreen mode">
                 <svg class="icon clarity-unmask" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24"><path d="M8 3H5a2 2 0 0 0-2 2v3m18 0V5a2 2 0 0 0-2-2h-3m0 18h3a2 2 0 0 0 2-2v-3M3 16v3a2 2 0 0 0 2 2h3"/></svg>
                 Fullscreen
             </button>
         </div>
     </header>
 
-    <div class="grid-1 clarity-unmask" id="pdf-container">
-        <div class="no-pdf-message clarity-unmask">Loading PDFs...<div class="loader clarity-unmask"></div></div>
+    <div class="grid-1 clarity-unmask" data-clarity-unmask="true" id="pdf-container">
+        <div class="no-pdf-message clarity-unmask" data-clarity-unmask="true">Loading PDFs...<div class="loader clarity-unmask" data-clarity-unmask="true"></div></div>
     </div>
 <script>
     'use strict';
@@ -229,12 +242,21 @@
     (function initializeClarityUnmask() {
         function enableUnmask() {
             try {
+                // Set global unmask
                 clarity('set', 'unmask', true);
-                console.log('Clarity: Global unmask enabled');
+                // Explicitly unmask form elements
+                clarity('set', 'unmask-selector', 'select, option, button, label, input, .control-group, .paper-selector');
+                console.log('Clarity: Global unmask enabled with form elements');
             } catch (e) {
                 console.warn('Clarity: Unable to set global unmask', e);
             }
         }
+        
+        // Configure Clarity to not mask any content
+        window.clarity = window.clarity || function() {
+            (window.clarity.q = window.clarity.q || []).push(arguments);
+        };
+        
         if (typeof clarity !== 'undefined') {
             enableUnmask();
         } else {
@@ -249,7 +271,7 @@
         }
     })();
 
-    // Apply Clarity unmask class to all elements
+    // Apply Clarity unmask attributes to all elements
     function applyClarityUnmaskToAllElements() {
         var allElements = document.querySelectorAll('*');
         var unmaskedCount = 0;
@@ -258,8 +280,16 @@
                 el.classList.add('clarity-unmask');
                 unmaskedCount++;
             }
+            // Add data attribute for Clarity
+            if (!el.hasAttribute('data-clarity-unmask')) {
+                el.setAttribute('data-clarity-unmask', 'true');
+            }
+            // Explicitly set mask to false for form elements
+            if (el.tagName === 'SELECT' || el.tagName === 'OPTION' || el.tagName === 'BUTTON' || el.tagName === 'INPUT') {
+                el.setAttribute('data-clarity-mask', 'false');
+            }
         });
-        console.log('Clarity: Applied unmask class to ' + unmaskedCount + ' elements');
+        console.log('Clarity: Applied unmask to ' + unmaskedCount + ' elements');
     }
 
     // Observer for dynamically created elements
@@ -268,8 +298,16 @@
             mutation.addedNodes.forEach(function(node) {
                 if (node.nodeType === 1) {
                     node.classList.add('clarity-unmask');
+                    node.setAttribute('data-clarity-unmask', 'true');
+                    if (node.tagName === 'SELECT' || node.tagName === 'OPTION' || node.tagName === 'BUTTON' || node.tagName === 'INPUT') {
+                        node.setAttribute('data-clarity-mask', 'false');
+                    }
                     node.querySelectorAll('*').forEach(function(child) {
                         child.classList.add('clarity-unmask');
+                        child.setAttribute('data-clarity-unmask', 'true');
+                        if (child.tagName === 'SELECT' || child.tagName === 'OPTION' || child.tagName === 'BUTTON' || child.tagName === 'INPUT') {
+                            child.setAttribute('data-clarity-mask', 'false');
+                        }
                     });
                 }
             });
@@ -557,9 +595,10 @@
                 });
 
                 DOM.pdfContainer.className = 'grid-' + count + ' clarity-unmask';
+                DOM.pdfContainer.setAttribute('data-clarity-unmask', 'true');
                 
                 if (!filteredData.length) {
-                    DOM.pdfContainer.innerHTML = '<div class="no-pdf-message clarity-unmask">No papers for this filter.</div>';
+                    DOM.pdfContainer.innerHTML = '<div class="no-pdf-message clarity-unmask" data-clarity-unmask="true">No papers for this filter.</div>';
                     state.isRendering = false;
                     resolve();
                     return;
@@ -572,11 +611,13 @@
                 for (var i = 0; i < count; i++) {
                     var div = document.createElement('div');
                     div.className = 'pdf-viewer clarity-unmask';
+                    div.setAttribute('data-clarity-unmask', 'true');
                     
                     if (i < maxRender) {
                         var loader = document.createElement('div');
                         loader.className = 'loader-container clarity-unmask';
-                        loader.innerHTML = '<div class="loader clarity-unmask"></div>';
+                        loader.setAttribute('data-clarity-unmask', 'true');
+                        loader.innerHTML = '<div class="loader clarity-unmask" data-clarity-unmask="true"></div>';
                         div.appendChild(loader);
 
                         var selector = createPaperSelector(filteredData, i, 'viewer-' + i);
@@ -584,6 +625,7 @@
 
                         var iframe = document.createElement('iframe');
                         iframe.className = 'clarity-unmask';
+                        iframe.setAttribute('data-clarity-unmask', 'true');
                         iframe.title = 'PDF Viewer ' + (i + 1) + ' - ' + filteredData[i].originalFilename;
                         div.appendChild(iframe);
                         loadPdfIntoIframe(iframe, filteredData[i].link, loader);
@@ -592,7 +634,7 @@
                             PreloadManager.addToPreloadQueue(filteredData[i + 1].link, 0.5);
                         }
                     } else {
-                        div.innerHTML = '<div class="no-more-papers clarity-unmask">No additional paper for this slot.</div>';
+                        div.innerHTML = '<div class="no-more-papers clarity-unmask" data-clarity-unmask="true">No additional paper for this slot.</div>';
                     }
                     fragment.appendChild(div);
                 }
@@ -607,9 +649,11 @@
     function createPaperSelector(data, initialIndex, viewerId) {
         var selectorContainer = document.createElement('div');
         selectorContainer.className = 'paper-selector clarity-unmask';
+        selectorContainer.setAttribute('data-clarity-unmask', 'true');
 
         var label = document.createElement('label');
         label.className = 'paper-selector-label clarity-unmask';
+        label.setAttribute('data-clarity-unmask', 'true');
         label.textContent = 'Paper:';
         var selectId = 'paper-select-' + viewerId;
         label.htmlFor = selectId;
@@ -617,6 +661,8 @@
         var select = document.createElement('select');
         select.id = selectId;
         select.className = 'clarity-unmask';
+        select.setAttribute('data-clarity-unmask', 'true');
+        select.setAttribute('data-clarity-mask', 'false');
         select.setAttribute('aria-label', 'Select paper for viewer ' + (parseInt(viewerId.split('-')[1]) + 1));
         select.size = 1;
         
@@ -627,6 +673,8 @@
         data.forEach(function(item, idx) {
             var option = document.createElement('option');
             option.className = 'clarity-unmask';
+            option.setAttribute('data-clarity-unmask', 'true');
+            option.setAttribute('data-clarity-mask', 'false');
             option.value = idx;
             option.textContent = item.date;
             if (idx === initialIndex) option.selected = true;
@@ -644,7 +692,8 @@
 
             var loader = document.createElement('div');
             loader.className = 'loader-container clarity-unmask';
-            loader.innerHTML = '<div class="loader clarity-unmask"></div>';
+            loader.setAttribute('data-clarity-unmask', 'true');
+            loader.innerHTML = '<div class="loader clarity-unmask" data-clarity-unmask="true"></div>';
             viewerDiv.insertBefore(loader, iframe);
             loadPdfIntoIframe(iframe, pdfUrl, loader);
         }, 150));

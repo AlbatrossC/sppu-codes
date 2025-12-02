@@ -84,6 +84,7 @@ header {
     align-items: center;
     gap: 4px;
     position: relative;
+    z-index: 100;
 }
 
 .control-group label {
@@ -95,6 +96,8 @@ header {
 
 select {
     appearance: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
     background: var(--dropdown-bg);
     color: var(--dropdown-text);
     font-size: 13px;
@@ -110,6 +113,12 @@ select {
     background-repeat: no-repeat;
     background-position: right 10px center;
     background-size: 12px;
+    /* Clarity visibility improvements */
+    position: relative;
+    z-index: 10;
+    opacity: 1 !important;
+    visibility: visible !important;
+    pointer-events: auto !important;
 }
 
 select:hover {
@@ -127,6 +136,9 @@ select option {
     background: var(--dropdown-bg);
     color: var(--dropdown-text);
     padding: 8px 12px;
+    /* Clarity visibility for options */
+    opacity: 1 !important;
+    visibility: visible !important;
 }
 
 select option:hover,
@@ -216,6 +228,10 @@ button.back:hover {
     box-shadow: var(--shadow);
     transition: var(--transition-speed);
     opacity: 0.92;
+    /* Clarity visibility improvements */
+    z-index: 50;
+    visibility: visible !important;
+    pointer-events: auto !important;
 }
 
 .paper-selector:hover,
@@ -362,4 +378,53 @@ button.back:hover {
 .seo-content h1, .seo-content h2, .seo-content h3, .seo-content p {
     margin: 0 !important;
     padding: 0 !important;
+}
+
+/* Clarity Recording Visibility Fixes */
+.clarity-unmask,
+[data-clarity-unmask="true"] {
+    opacity: 1 !important;
+    visibility: visible !important;
+    -webkit-mask: none !important;
+    mask: none !important;
+    -webkit-text-security: none !important;
+    text-security: none !important;
+}
+
+/* Ensure select dropdowns are fully visible to Clarity */
+select.clarity-unmask,
+select[data-clarity-unmask="true"],
+select[data-clarity-mask="false"] {
+    color: var(--dropdown-text) !important;
+    background-color: var(--dropdown-bg) !important;
+    -webkit-text-fill-color: var(--dropdown-text) !important;
+}
+
+/* Ensure labels and text are visible */
+label.clarity-unmask,
+.paper-selector-label,
+.control-group label {
+    color: var(--secondary-color) !important;
+    -webkit-text-fill-color: var(--secondary-color) !important;
+    opacity: 1 !important;
+}
+
+/* Button text visibility for Clarity */
+button.clarity-unmask,
+button[data-clarity-unmask="true"] {
+    color: var(--text-light) !important;
+    -webkit-text-fill-color: var(--text-light) !important;
+}
+
+/* Ensure header controls are always on top and visible */
+.header-center,
+.header-controls {
+    z-index: 100;
+    position: relative;
+}
+
+/* Fix for dropdown option visibility in Clarity recordings */
+select:focus,
+select:active {
+    z-index: 1000;
 }

@@ -48,21 +48,8 @@
 
     <link href="/static/pdfjs/web/viewer.html" rel="preload" fetchpriority="high" as="document">
     <link href="/static/pdfjs/web/viewer.css" rel="preload" fetchpriority="high" as="style">
-    <link href="{{ url_for('static', filename='css/viewer.css') }}?v=1.5" rel="stylesheet">
+    <link href="{{ url_for('static', filename='css/viewer.css') }}?v=1.6" rel="stylesheet">
     <link href="/static/pdfjs/web/pdf.worker.js" rel="preload" fetchpriority="high" as="worker">
-    
-    <!-- Clarity Unmask Styles -->
-    <style>
-        /* Force Clarity to unmask all form elements */
-        select, option, button, label, input {
-            -webkit-mask: none !important;
-            mask: none !important;
-        }
-        [data-clarity-unmask="true"] {
-            -webkit-mask: none !important;
-            mask: none !important;
-        }
-    </style>
 
     <script type="application/ld+json">
     {
@@ -158,170 +145,168 @@
     }
     </script>
 </head>
-<body class="clarity-unmask" data-clarity-unmask="true">
-    <div class="seo-content clarity-unmask">
-        <h1 class="clarity-unmask">{{ seo_data.subject_name }} Question Papers - SPPU University</h1>
-        <p class="clarity-unmask">Access and download {{ seo_data.subject_name }} question papers from Savitribai Phule Pune University (SPPU). Our collection includes INSEM (Internal Semester) and ENDSEM (End Semester) exam papers.</p>
+<body>
+    <div class="seo-content">
+        <h1>{{ seo_data.subject_name }} Question Papers - SPPU University</h1>
+        <p>Access and download {{ seo_data.subject_name }} question papers from Savitribai Phule Pune University (SPPU). Our collection includes INSEM (Internal Semester) and ENDSEM (End Semester) exam papers.</p>
 
-        <h2 class="clarity-unmask">Available {{ seo_data.subject_name }} Papers</h2>
-        <p class="clarity-unmask">We offer {{ pdf_data_for_js | length }} question papers for {{ seo_data.subject_name }}, covering various exam patterns and years. All papers are in PDF format for easy viewing and download.</p>
+        <h2>Available {{ seo_data.subject_name }} Papers</h2>
+        <p>We offer {{ pdf_data_for_js | length }} question papers for {{ seo_data.subject_name }}, covering various exam patterns and years. All papers are in PDF format for easy viewing and download.</p>
 
-        <h3 class="clarity-unmask">INSEM Papers for {{ seo_data.subject_name }}</h3>
-        <p class="clarity-unmask">Prepare for mid-term evaluations with {{ seo_data.subject_name }} INSEM papers, aligned with the SPPU exam pattern and syllabus.</p>
+        <h3>INSEM Papers for {{ seo_data.subject_name }}</h3>
+        <p>Prepare for mid-term evaluations with {{ seo_data.subject_name }} INSEM papers, aligned with the SPPU exam pattern and syllabus.</p>
 
-        <h3 class="clarity-unmask">ENDSEM Papers for {{ seo_data.subject_name }}</h3>
-        <p class="clarity-unmask">Access {{ seo_data.subject_name }} ENDSEM papers covering the entire syllabus, essential for final exam preparation.</p>
+        <h3>ENDSEM Papers for {{ seo_data.subject_name }}</h3>
+        <p>Access {{ seo_data.subject_name }} ENDSEM papers covering the entire syllabus, essential for final exam preparation.</p>
 
-        <h2 class="clarity-unmask">Online PDF Viewer Features</h2>
-        <p class="clarity-unmask">Our PDF viewer enables you to:</p>
-        <ul class="clarity-unmask">
-            <li class="clarity-unmask">View papers in single or split-screen mode.</li>
-            <li class="clarity-unmask">Compare multiple papers simultaneously.</li>
-            <li class="clarity-unmask">Use fullscreen mode for better readability.</li>
-            <li class="clarity-unmask">Filter by exam type (INSEM/ENDSEM).</li>
-            <li class="clarity-unmask">Download papers for offline study.</li>
+        <h2>Online PDF Viewer Features</h2>
+        <p>Our PDF viewer enables you to:</p>
+        <ul>
+            <li>View papers in single or split-screen mode.</li>
+            <li>Compare multiple papers simultaneously.</li>
+            <li>Use fullscreen mode for better readability.</li>
+            <li>Filter by exam type (INSEM/ENDSEM).</li>
+            <li>Download papers for offline study.</li>
         </ul>
 
-        <h2 class="clarity-unmask">About SPPU Codes</h2>
-        <p class="clarity-unmask">SPPU Codes is your resource for SPPU academic materials. We provide easy access to question papers to help students excel.</p>
+        <h2>About SPPU Codes</h2>
+        <p>SPPU Codes is your resource for SPPU academic materials. We provide easy access to question papers to help students excel.</p>
 
-        <h3 class="clarity-unmask">Study Materials for {{ seo_data.subject_name }}</h3>
-        <p class="clarity-unmask">{{ seo_data.subject_name }} is a key subject in the SPPU curriculum. Our question paper collection helps students understand exam patterns, practice effectively, and improve academic performance.</p>
-        <div class="clarity-unmask">
-            <h3 class="clarity-unmask">Direct Links to Question Papers:</h3>
+        <h3>Study Materials for {{ seo_data.subject_name }}</h3>
+        <p>{{ seo_data.subject_name }} is a key subject in the SPPU curriculum. Our question paper collection helps students understand exam patterns, practice effectively, and improve academic performance.</p>
+        <div>
+            <h3>Direct Links to Question Papers:</h3>
             {% for pdf in pdf_data_for_js %}
-                <a href="{{ pdf.url }}" download="{{ pdf.filename }}" class="clarity-unmask">Download {{ pdf.filename }} ({{ seo_data.subject_name }})</a>
+                <a href="{{ pdf.url }}" download="{{ pdf.filename }}">Download {{ pdf.filename }} ({{ seo_data.subject_name }})</a>
             {% endfor %}
         </div>
 
-        <h2 class="clarity-unmask">Relevant Keywords & Topics</h2>
-        <p class="clarity-unmask">Explore {{ seo_data.subject_name }} resources including SPPU question papers from Savitribai Phule Pune University. Find INSEM and ENDSEM papers for effective examination preparation. Our platform offers academic resources, a PDF viewer for online study, university question papers, and materials for semester examinations.</p>
+        <h2>Relevant Keywords & Topics</h2>
+        <p>Explore {{ seo_data.subject_name }} resources including SPPU question papers from Savitribai Phule Pune University. Find INSEM and ENDSEM papers for effective examination preparation. Our platform offers academic resources, a PDF viewer for online study, university question papers, and materials for semester examinations.</p>
     </div>
 
-    <header class="clarity-unmask" data-clarity-unmask="true">
-        <div class="header-info clarity-unmask" data-clarity-unmask="true">
-            <button class="back clarity-unmask" data-clarity-unmask="true" id="back-btn" aria-label="Go back to question papers list">
-                <svg class="icon clarity-unmask" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>
+    <header>
+        <div class="header-info">
+            <button class="back" id="back-btn" aria-label="Go back to question papers list">
+                <svg class="icon" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>
                 Back
             </button>
-            <h1 class="clarity-unmask" data-clarity-unmask="true"><div class="subject-badge clarity-unmask" data-clarity-unmask="true" id="subject-display">{{ seo_data.subject_name }}</div></h1>
+            <h1><div class="subject-badge" id="subject-display">{{ seo_data.subject_name }}</div></h1>
         </div>
-        <div class="header-center clarity-unmask" data-clarity-unmask="true">
-            <div class="control-group clarity-unmask" data-clarity-unmask="true">
-                <label for="pdf-count" class="clarity-unmask" data-clarity-unmask="true">Layout:</label>
-                <select id="pdf-count" aria-label="Select PDF layout" class="clarity-unmask" data-clarity-unmask="true" data-clarity-mask="false">
-                    <option value="1" selected class="clarity-unmask" data-clarity-unmask="true">Single</option>
-                    <option value="2" class="clarity-unmask" data-clarity-unmask="true">Split (2)</option>
-                    <option value="3" class="clarity-unmask" data-clarity-unmask="true">Split (3)</option>
-                    <option value="4" class="clarity-unmask" data-clarity-unmask="true">Grid (4)</option>
-                </select>
+        <div class="header-center">
+            <div class="control-group">
+                <label>Layout:</label>
+                <div class="custom-dropdown" id="pdf-count-dropdown" data-value="1">
+                    <div class="dropdown-selected">
+                        <span class="dropdown-text">Single</span>
+                        <svg class="dropdown-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+                    </div>
+                    <div class="dropdown-options">
+                        <div class="dropdown-option selected" data-value="1">Single</div>
+                        <div class="dropdown-option" data-value="2">Split (2)</div>
+                        <div class="dropdown-option" data-value="3">Split (3)</div>
+                        <div class="dropdown-option" data-value="4">Grid (4)</div>
+                    </div>
+                </div>
             </div>
-            <div class="control-group clarity-unmask" data-clarity-unmask="true">
-                <label for="exam-type" class="clarity-unmask" data-clarity-unmask="true">Exam:</label>
-                <select id="exam-type" aria-label="Select exam type" class="clarity-unmask" data-clarity-unmask="true" data-clarity-mask="false">
-                    <option value="insem" class="clarity-unmask" data-clarity-unmask="true">INSEM</option>
-                    <option value="endsem" class="clarity-unmask" data-clarity-unmask="true">ENDSEM</option>
-                </select>
+            <div class="control-group">
+                <label>Exam:</label>
+                <div class="custom-dropdown" id="exam-type-dropdown" data-value="insem">
+                    <div class="dropdown-selected">
+                        <span class="dropdown-text">INSEM</span>
+                        <svg class="dropdown-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+                    </div>
+                    <div class="dropdown-options">
+                        <div class="dropdown-option selected" data-value="insem">INSEM</div>
+                        <div class="dropdown-option" data-value="endsem">ENDSEM</div>
+                    </div>
+                </div>
             </div>
         </div>
-        <div class="header-controls clarity-unmask" data-clarity-unmask="true">
-            <button class="primary clarity-unmask" data-clarity-unmask="true" id="fullscreen-btn" aria-label="Toggle fullscreen mode">
-                <svg class="icon clarity-unmask" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24"><path d="M8 3H5a2 2 0 0 0-2 2v3m18 0V5a2 2 0 0 0-2-2h-3m0 18h3a2 2 0 0 0 2-2v-3M3 16v3a2 2 0 0 0 2 2h3"/></svg>
+        <div class="header-controls">
+            <button class="primary" id="fullscreen-btn" aria-label="Toggle fullscreen mode">
+                <svg class="icon" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24"><path d="M8 3H5a2 2 0 0 0-2 2v3m18 0V5a2 2 0 0 0-2-2h-3m0 18h3a2 2 0 0 0 2-2v-3M3 16v3a2 2 0 0 0 2 2h3"/></svg>
                 Fullscreen
             </button>
         </div>
     </header>
 
-    <div class="grid-1 clarity-unmask" data-clarity-unmask="true" id="pdf-container">
-        <div class="no-pdf-message clarity-unmask" data-clarity-unmask="true">Loading PDFs...<div class="loader clarity-unmask" data-clarity-unmask="true"></div></div>
+    <div class="grid-1" id="pdf-container">
+        <div class="no-pdf-message">Loading PDFs...<div class="loader"></div></div>
     </div>
 <script>
     'use strict';
-    
-    // Clarity Global Unmask Configuration
-    (function initializeClarityUnmask() {
-        function enableUnmask() {
-            try {
-                // Set global unmask
-                clarity('set', 'unmask', true);
-                // Explicitly unmask form elements
-                clarity('set', 'unmask-selector', 'select, option, button, label, input, .control-group, .paper-selector');
-                console.log('Clarity: Global unmask enabled with form elements');
-            } catch (e) {
-                console.warn('Clarity: Unable to set global unmask', e);
-            }
-        }
-        
-        // Configure Clarity to not mask any content
-        window.clarity = window.clarity || function() {
-            (window.clarity.q = window.clarity.q || []).push(arguments);
-        };
-        
-        if (typeof clarity !== 'undefined') {
-            enableUnmask();
-        } else {
-            var checkClarity = setInterval(function() {
-                if (typeof clarity !== 'undefined') {
-                    clearInterval(checkClarity);
-                    enableUnmask();
-                    console.log('Clarity: Global unmask enabled (delayed)');
-                }
-            }, 100);
-            setTimeout(function() { clearInterval(checkClarity); }, 10000);
-        }
-    })();
-
-    // Apply Clarity unmask attributes to all elements
-    function applyClarityUnmaskToAllElements() {
-        var allElements = document.querySelectorAll('*');
-        var unmaskedCount = 0;
-        allElements.forEach(function(el) {
-            if (!el.classList.contains('clarity-unmask')) {
-                el.classList.add('clarity-unmask');
-                unmaskedCount++;
-            }
-            // Add data attribute for Clarity
-            if (!el.hasAttribute('data-clarity-unmask')) {
-                el.setAttribute('data-clarity-unmask', 'true');
-            }
-            // Explicitly set mask to false for form elements
-            if (el.tagName === 'SELECT' || el.tagName === 'OPTION' || el.tagName === 'BUTTON' || el.tagName === 'INPUT') {
-                el.setAttribute('data-clarity-mask', 'false');
-            }
-        });
-        console.log('Clarity: Applied unmask to ' + unmaskedCount + ' elements');
-    }
-
-    // Observer for dynamically created elements
-    var clarityUnmaskObserver = new MutationObserver(function(mutations) {
-        mutations.forEach(function(mutation) {
-            mutation.addedNodes.forEach(function(node) {
-                if (node.nodeType === 1) {
-                    node.classList.add('clarity-unmask');
-                    node.setAttribute('data-clarity-unmask', 'true');
-                    if (node.tagName === 'SELECT' || node.tagName === 'OPTION' || node.tagName === 'BUTTON' || node.tagName === 'INPUT') {
-                        node.setAttribute('data-clarity-mask', 'false');
-                    }
-                    node.querySelectorAll('*').forEach(function(child) {
-                        child.classList.add('clarity-unmask');
-                        child.setAttribute('data-clarity-unmask', 'true');
-                        if (child.tagName === 'SELECT' || child.tagName === 'OPTION' || child.tagName === 'BUTTON' || child.tagName === 'INPUT') {
-                            child.setAttribute('data-clarity-mask', 'false');
-                        }
-                    });
-                }
-            });
-        });
-    });
 
     var initialPdfDataFromServer = {{ pdf_data_for_js | tojson | safe }};
     var subjectNameFromServer = {{ seo_data.subject_name | tojson | safe }};
 
+    // Custom Dropdown Component
+    var CustomDropdown = {
+        init: function(element, onChange) {
+            var self = this;
+            var selected = element.querySelector('.dropdown-selected');
+            var options = element.querySelector('.dropdown-options');
+            var allOptions = element.querySelectorAll('.dropdown-option');
+            
+            element._getValue = function() {
+                return element.getAttribute('data-value');
+            };
+            
+            element._setValue = function(value, triggerChange) {
+                var option = element.querySelector('.dropdown-option[data-value="' + value + '"]');
+                if (option && !option.classList.contains('disabled')) {
+                    element.setAttribute('data-value', value);
+                    element.querySelector('.dropdown-text').textContent = option.textContent;
+                    allOptions.forEach(function(opt) { opt.classList.remove('selected'); });
+                    option.classList.add('selected');
+                    if (triggerChange && onChange) onChange(value);
+                }
+            };
+            
+            element._setDisabled = function(value, disabled) {
+                var option = element.querySelector('.dropdown-option[data-value="' + value + '"]');
+                if (option) {
+                    if (disabled) option.classList.add('disabled');
+                    else option.classList.remove('disabled');
+                }
+            };
+            
+            selected.addEventListener('click', function(e) {
+                e.stopPropagation();
+                var isOpen = element.classList.contains('open');
+                self.closeAll();
+                if (!isOpen) element.classList.add('open');
+            });
+            
+            allOptions.forEach(function(option) {
+                option.addEventListener('click', function(e) {
+                    e.stopPropagation();
+                    if (option.classList.contains('disabled')) return;
+                    var value = option.getAttribute('data-value');
+                    element._setValue(value, true);
+                    element.classList.remove('open');
+                });
+            });
+            
+            return element;
+        },
+        
+        closeAll: function() {
+            document.querySelectorAll('.custom-dropdown.open').forEach(function(dd) {
+                dd.classList.remove('open');
+            });
+        }
+    };
+    
+    document.addEventListener('click', function() {
+        CustomDropdown.closeAll();
+    });
+
     var DOM = {
         pdfContainer: document.getElementById('pdf-container'),
         subjectDisplay: document.getElementById('subject-display'),
-        pdfCount: document.getElementById('pdf-count'),
-        examType: document.getElementById('exam-type'),
+        pdfCountDropdown: null,
+        examTypeDropdown: null,
         fullscreenBtn: document.getElementById('fullscreen-btn'),
         backBtn: document.getElementById('back-btn')
     };
@@ -432,7 +417,6 @@
                 var preloadIframe = document.createElement('iframe');
                 preloadIframe.style.cssText = 'position:absolute;left:-9999px;width:1px;height:1px;opacity:0;pointer-events:none;';
                 preloadIframe.setAttribute('aria-hidden', 'true');
-                preloadIframe.classList.add('clarity-unmask');
                 preloadIframe.src = state.pdfViewerBase;
                 
                 preloadIframe.onload = function() {
@@ -535,7 +519,7 @@
         if (loader && loader.parentNode) loader.remove();
         if (iframe.parentElement) {
             var errorMsg = document.createElement('div');
-            errorMsg.className = 'no-pdf-message clarity-unmask';
+            errorMsg.className = 'no-pdf-message';
             errorMsg.textContent = message;
             iframe.parentElement.innerHTML = '';
             iframe.parentElement.appendChild(errorMsg);
@@ -581,8 +565,8 @@
 
         state.renderQueue = state.renderQueue.then(function() {
             return new Promise(function(resolve) {
-                var count = parseInt(DOM.pdfCount.value, 10);
-                var examType = DOM.examType.value;
+                var count = parseInt(DOM.pdfCountDropdown._getValue(), 10);
+                var examType = DOM.examTypeDropdown._getValue();
                 var filteredData = filterPDFs(examType);
 
                 DOM.pdfContainer.querySelectorAll('iframe').forEach(function(iframe) {
@@ -594,11 +578,10 @@
                     iframe.remove();
                 });
 
-                DOM.pdfContainer.className = 'grid-' + count + ' clarity-unmask';
-                DOM.pdfContainer.setAttribute('data-clarity-unmask', 'true');
+                DOM.pdfContainer.className = 'grid-' + count;
                 
                 if (!filteredData.length) {
-                    DOM.pdfContainer.innerHTML = '<div class="no-pdf-message clarity-unmask" data-clarity-unmask="true">No papers for this filter.</div>';
+                    DOM.pdfContainer.innerHTML = '<div class="no-pdf-message">No papers for this filter.</div>';
                     state.isRendering = false;
                     resolve();
                     return;
@@ -610,22 +593,18 @@
 
                 for (var i = 0; i < count; i++) {
                     var div = document.createElement('div');
-                    div.className = 'pdf-viewer clarity-unmask';
-                    div.setAttribute('data-clarity-unmask', 'true');
+                    div.className = 'pdf-viewer';
                     
                     if (i < maxRender) {
                         var loader = document.createElement('div');
-                        loader.className = 'loader-container clarity-unmask';
-                        loader.setAttribute('data-clarity-unmask', 'true');
-                        loader.innerHTML = '<div class="loader clarity-unmask" data-clarity-unmask="true"></div>';
+                        loader.className = 'loader-container';
+                        loader.innerHTML = '<div class="loader"></div>';
                         div.appendChild(loader);
 
                         var selector = createPaperSelector(filteredData, i, 'viewer-' + i);
                         div.appendChild(selector);
 
                         var iframe = document.createElement('iframe');
-                        iframe.className = 'clarity-unmask';
-                        iframe.setAttribute('data-clarity-unmask', 'true');
                         iframe.title = 'PDF Viewer ' + (i + 1) + ' - ' + filteredData[i].originalFilename;
                         div.appendChild(iframe);
                         loadPdfIntoIframe(iframe, filteredData[i].link, loader);
@@ -634,12 +613,11 @@
                             PreloadManager.addToPreloadQueue(filteredData[i + 1].link, 0.5);
                         }
                     } else {
-                        div.innerHTML = '<div class="no-more-papers clarity-unmask" data-clarity-unmask="true">No additional paper for this slot.</div>';
+                        div.innerHTML = '<div class="no-more-papers">No additional paper for this slot.</div>';
                     }
                     fragment.appendChild(div);
                 }
                 DOM.pdfContainer.appendChild(fragment);
-                applyClarityUnmaskToAllElements();
                 state.isRendering = false;
                 resolve();
             });
@@ -648,41 +626,36 @@
 
     function createPaperSelector(data, initialIndex, viewerId) {
         var selectorContainer = document.createElement('div');
-        selectorContainer.className = 'paper-selector clarity-unmask';
-        selectorContainer.setAttribute('data-clarity-unmask', 'true');
+        selectorContainer.className = 'paper-selector';
 
         var label = document.createElement('label');
-        label.className = 'paper-selector-label clarity-unmask';
-        label.setAttribute('data-clarity-unmask', 'true');
+        label.className = 'paper-selector-label';
         label.textContent = 'Paper:';
-        var selectId = 'paper-select-' + viewerId;
-        label.htmlFor = selectId;
 
-        var select = document.createElement('select');
-        select.id = selectId;
-        select.className = 'clarity-unmask';
-        select.setAttribute('data-clarity-unmask', 'true');
-        select.setAttribute('data-clarity-mask', 'false');
-        select.setAttribute('aria-label', 'Select paper for viewer ' + (parseInt(viewerId.split('-')[1]) + 1));
-        select.size = 1;
+        var dropdown = document.createElement('div');
+        dropdown.className = 'custom-dropdown paper-dropdown';
+        dropdown.setAttribute('data-value', initialIndex);
         
-        select.addEventListener('focus', function() { select.size = Math.min(5, data.length || 1); });
-        select.addEventListener('blur', function() { select.size = 1; });
-        select.addEventListener('change', function() { select.size = 1; });
-
+        var selectedDiv = document.createElement('div');
+        selectedDiv.className = 'dropdown-selected';
+        selectedDiv.innerHTML = '<span class="dropdown-text">' + data[initialIndex].date + '</span><svg class="dropdown-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>';
+        
+        var optionsDiv = document.createElement('div');
+        optionsDiv.className = 'dropdown-options';
+        
         data.forEach(function(item, idx) {
-            var option = document.createElement('option');
-            option.className = 'clarity-unmask';
-            option.setAttribute('data-clarity-unmask', 'true');
-            option.setAttribute('data-clarity-mask', 'false');
-            option.value = idx;
+            var option = document.createElement('div');
+            option.className = 'dropdown-option' + (idx === initialIndex ? ' selected' : '');
+            option.setAttribute('data-value', idx);
             option.textContent = item.date;
-            if (idx === initialIndex) option.selected = true;
-            select.appendChild(option);
+            optionsDiv.appendChild(option);
         });
-
-        select.addEventListener('change', debounce(function(e) {
-            var idx = parseInt(e.target.value, 10);
+        
+        dropdown.appendChild(selectedDiv);
+        dropdown.appendChild(optionsDiv);
+        
+        CustomDropdown.init(dropdown, function(idx) {
+            idx = parseInt(idx, 10);
             var pdfUrl = data[idx].link;
             var viewerDiv = selectorContainer.closest('.pdf-viewer');
             var iframe = viewerDiv.querySelector('iframe');
@@ -691,15 +664,14 @@
             iframe.title = 'PDF Viewer ' + (parseInt(viewerId.split('-')[1]) + 1) + ' - ' + data[idx].originalFilename;
 
             var loader = document.createElement('div');
-            loader.className = 'loader-container clarity-unmask';
-            loader.setAttribute('data-clarity-unmask', 'true');
-            loader.innerHTML = '<div class="loader clarity-unmask" data-clarity-unmask="true"></div>';
+            loader.className = 'loader-container';
+            loader.innerHTML = '<div class="loader"></div>';
             viewerDiv.insertBefore(loader, iframe);
             loadPdfIntoIframe(iframe, pdfUrl, loader);
-        }, 150));
+        });
 
         selectorContainer.appendChild(label);
-        selectorContainer.appendChild(select);
+        selectorContainer.appendChild(dropdown);
         return selectorContainer;
     }
 
@@ -714,20 +686,32 @@
     function updateFullscreenButton() {
         var isFullscreen = document.fullscreenElement;
         DOM.fullscreenBtn.innerHTML = isFullscreen ?
-            '<svg class="icon clarity-unmask" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24"><path d="M4 14h6m0 0v6m0-6l-7 7m17-11h-6m0 0V4m0 6l7-7"/></svg> Exit Fullscreen' :
-            '<svg class="icon clarity-unmask" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24"><path d="M8 3H5a2 2 0 0 0-2 2v3m18 0V5a2 2 0 0 0-2-2h-3m0 18h3a2 2 0 0 0 2-2v-3M3 16v3a2 2 0 0 0 2 2h3"/></svg> Fullscreen';
+            '<svg class="icon" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24"><path d="M4 14h6m0 0v6m0-6l-7 7m17-11h-6m0 0V4m0 6l7-7"/></svg> Exit Fullscreen' :
+            '<svg class="icon" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24"><path d="M8 3H5a2 2 0 0 0-2 2v3m18 0V5a2 2 0 0 0-2-2h-3m0 18h3a2 2 0 0 0 2-2v-3M3 16v3a2 2 0 0 0 2 2h3"/></svg> Fullscreen';
     }
 
     function setupEventListeners() {
         var debouncedRender = debounce(renderPDFs, 250);
-        DOM.pdfCount.addEventListener('change', debouncedRender);
-        DOM.examType.addEventListener('change', debouncedRender);
+        
+        DOM.pdfCountDropdown = CustomDropdown.init(
+            document.getElementById('pdf-count-dropdown'),
+            debouncedRender
+        );
+        
+        DOM.examTypeDropdown = CustomDropdown.init(
+            document.getElementById('exam-type-dropdown'),
+            debouncedRender
+        );
+        
         DOM.fullscreenBtn.addEventListener('click', toggleFullscreen);
         DOM.backBtn.addEventListener('click', function() { window.location.href = '/questionpapers'; });
         document.addEventListener('fullscreenchange', updateFullscreenButton);
         document.addEventListener('keydown', function(e) {
-            if (e.key === 'Escape' && document.fullscreenElement) {
-                document.exitFullscreen().catch(function(err) { console.error("PDF Viewer: Error exiting fullscreen on escape:", err); });
+            if (e.key === 'Escape') {
+                CustomDropdown.closeAll();
+                if (document.fullscreenElement) {
+                    document.exitFullscreen().catch(function(err) { console.error("PDF Viewer: Error exiting fullscreen on escape:", err); });
+                }
             }
         });
     }
@@ -737,9 +721,6 @@
         if (window.IS_MOBILE_DEVICE) {
             console.log('PDF Viewer: Mobile device detected, forcing desktop view');
         }
-        
-        applyClarityUnmaskToAllElements();
-        clarityUnmaskObserver.observe(document.body, { childList: true, subtree: true });
         
         updateSubjectDisplay();
         setupEventListeners();
@@ -764,11 +745,11 @@
                 var hasInsem = state.pdfFiles.some(function(file) { return file.date.toLowerCase().includes('insem'); });
                 var hasEndsem = state.pdfFiles.some(function(file) { return file.date.toLowerCase().includes('endsem'); });
 
-                DOM.examType.querySelector('option[value="insem"]').disabled = !hasInsem;
-                DOM.examType.querySelector('option[value="endsem"]').disabled = !hasEndsem;
+                DOM.examTypeDropdown._setDisabled('insem', !hasInsem);
+                DOM.examTypeDropdown._setDisabled('endsem', !hasEndsem);
 
-                if (hasInsem) DOM.examType.value = 'insem';
-                else if (hasEndsem) DOM.examType.value = 'endsem';
+                if (hasInsem) DOM.examTypeDropdown._setValue('insem', false);
+                else if (hasEndsem) DOM.examTypeDropdown._setValue('endsem', false);
 
                 console.log('PDF Viewer: Loaded ' + state.pdfFiles.length + ' papers for ' + (subjectNameFromServer || 'this subject'));
 
@@ -784,22 +765,16 @@
                     renderPDFs();
                 });
             } else {
-                DOM.pdfContainer.innerHTML = '<div class="no-pdf-message clarity-unmask">No question papers found for this subject.</div>';
+                DOM.pdfContainer.innerHTML = '<div class="no-pdf-message">No question papers found for this subject.</div>';
                 DOM.subjectDisplay.textContent = subjectNameFromServer || 'No Subject';
                 console.warn('PDF Viewer: No PDF data available');
             }
-        }).then(function() {
-            setTimeout(function() {
-                applyClarityUnmaskToAllElements();
-                console.log('Clarity: Final unmask pass completed');
-            }, 1000);
         });
     }
 
     window.addEventListener('beforeunload', function() {
         state.activeObjectURLs.forEach(function(url) { URL.revokeObjectURL(url); });
         state.activeObjectURLs.clear();
-        clarityUnmaskObserver.disconnect();
     });
 
     document.addEventListener('DOMContentLoaded', init);

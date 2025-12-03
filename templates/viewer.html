@@ -211,14 +211,14 @@
             </div>
             <div class="control-group">
                 <label>Exam:</label>
-                <div class="custom-dropdown" id="exam-type-dropdown" data-value="insem">
+                <div class="custom-dropdown" id="exam-type-dropdown" data-value="endsem">
                     <div class="dropdown-selected">
-                        <span class="dropdown-text">INSEM</span>
+                        <span class="dropdown-text">ENDSEM</span>
                         <svg class="dropdown-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
                     </div>
                     <div class="dropdown-options">
-                        <div class="dropdown-option selected" data-value="insem">INSEM</div>
-                        <div class="dropdown-option" data-value="endsem">ENDSEM</div>
+                        <div class="dropdown-option" data-value="insem">INSEM</div>
+                        <div class="dropdown-option selected" data-value="endsem">ENDSEM</div>
                     </div>
                 </div>
             </div>
@@ -748,8 +748,8 @@
                 DOM.examTypeDropdown._setDisabled('insem', !hasInsem);
                 DOM.examTypeDropdown._setDisabled('endsem', !hasEndsem);
 
-                if (hasInsem) DOM.examTypeDropdown._setValue('insem', false);
-                else if (hasEndsem) DOM.examTypeDropdown._setValue('endsem', false);
+                if (hasEndsem) DOM.examTypeDropdown._setValue('endsem', false);
+                else if (hasInsem) DOM.examTypeDropdown._setValue('insem', false);
 
                 console.log('PDF Viewer: Loaded ' + state.pdfFiles.length + ' papers for ' + (subjectNameFromServer || 'this subject'));
 

@@ -5,18 +5,19 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>SPPU Error</title>
     <meta name="google-adsense-account" content="ca-pub-6918638598461716">
+    <link rel="icon" href="{{ url_for('get_image', filename='favicon.ico') }}" type="image/x-icon">
+
     <script src="https://cdnjs.cloudflare.com/ajax/libs/lodash.js/4.17.21/lodash.min.js"></script>
     <style>
         * {
             margin: 0;
             padding: 0;
-            box-sizing: border-box
+            box-sizing: border-box;
         }
         
-        html,
-        body {
+        html, body {
             height: 100%;
-            margin: 0
+            margin: 0;
         }
         
         body {
@@ -26,19 +27,19 @@
             background-color: #121212;
             min-height: 100vh;
             display: flex;
-            flex-direction: column
+            flex-direction: column;
         }
         
         header {
             width: 100%;
             padding: clamp(10px, 2vw, 15px) 0;
             border-bottom: 2px solid #333;
-            text-align: center
+            text-align: center;
         }
         
         header h1 {
             color: #ffffff;
-            font-size: clamp(1.5rem, 3vw, 2rem)
+            font-size: clamp(1.5rem, 3vw, 2rem);
         }
         
         .main-container {
@@ -48,29 +49,12 @@
             padding: clamp(20px, 3vw, 40px);
             max-width: 1400px;
             margin: 0 auto;
-            width: 100%
+            width: 100%;
         }
         
-        .content-wrapper {
-            display: flex;
-            gap: 2rem;
-            flex: 1;
-            margin-top: 2rem
-        }
-        
-        .error-section {
-            flex: 1;
-            min-width: 0
-        }
-        
-        .search-section {
-            flex: 1;
-            min-width: 0
-        }
-        
-        .error-container {
+        .error-header {
             text-align: center;
-            margin-bottom: 2rem
+            margin-bottom: 2rem;
         }
         
         .error-code {
@@ -82,60 +66,61 @@
             color: transparent;
             margin: 0;
             line-height: 1;
-            text-shadow: 2px 2px 20px rgba(45, 118, 204, 0.2)
+            text-shadow: 2px 2px 20px rgba(45, 118, 204, 0.2);
         }
         
         .error-message {
             font-size: clamp(1.25rem, 2.5vw, 1.75rem);
             color: #e0e0e0;
-            margin: 1rem 0
+            margin: 1rem 0;
         }
         
-        .error-reasons {
+        .error-description {
+            color: #aaa;
+            font-size: clamp(0.9rem, 1.5vw, 1.1rem);
+            max-width: 600px;
+            margin: 0 auto;
+        }
+        
+        .sections-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+        
+        .section {
             background: #1e1e1e;
             border-radius: 12px;
             padding: clamp(1.5rem, 3vw, 2rem);
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1)
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
         }
         
-        .error-reasons h3 {
-            color: #ffffff;
+        .section-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
             margin-bottom: 1rem;
-            font-size: clamp(1.1rem, 2vw, 1.3rem)
+            padding-bottom: 1rem;
+            border-bottom: 2px solid #333;
         }
         
-        .error-reasons ul {
-            list-style: none
-        }
-        
-        .error-reasons li {
-            color: #ccc;
-            margin: 0.5rem 0;
-            padding-left: 1.5rem;
-            position: relative
-        }
-        
-        .error-reasons li::before {
-            content: "•";
-            color: #2d76cc;
-            position: absolute;
-            left: 0
-        }
-        
-        .search-container {
-            background: #1e1e1e;
-            border-radius: 12px;
-            padding: clamp(1.5rem, 3vw, 2rem);
-            height: 100%
-        }
-        
-        .search-title {
+        .section-title {
             color: #ffffff;
-            margin-bottom: 1rem;
-            font-size: clamp(1.1rem, 2vw, 1.3rem)
+            font-size: clamp(1.1rem, 2vw, 1.3rem);
+            margin: 0;
         }
         
-        input {
+        .section-count {
+            background: #2d76cc;
+            color: #fff;
+            padding: 0.25rem 0.75rem;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            font-weight: 600;
+        }
+        
+        .search-box {
             width: 100%;
             padding: clamp(0.8rem, 1.5vw, 1rem);
             border: 2px solid #333;
@@ -144,22 +129,37 @@
             background-color: #252525;
             color: #e0e0e0;
             outline: none;
-            transition: all 0.2s
+            transition: all 0.2s;
+            margin-bottom: 1rem;
         }
         
-        input::placeholder {
-            color: #888
+        .search-box::placeholder {
+            color: #888;
         }
         
-        input:focus {
+        .search-box:focus {
             border-color: #2d76cc;
-            box-shadow: 0 0 15px rgba(45, 118, 204, 0.1)
+            box-shadow: 0 0 15px rgba(45, 118, 204, 0.1);
         }
         
         .results {
-            margin-top: 1rem;
+            max-height: 500px;
+            overflow-y: auto;
             border-radius: 8px;
-            overflow: hidden
+        }
+        
+        .results::-webkit-scrollbar {
+            width: 8px;
+        }
+        
+        .results::-webkit-scrollbar-track {
+            background: #252525;
+            border-radius: 4px;
+        }
+        
+        .results::-webkit-scrollbar-thumb {
+            background: #2d76cc;
+            border-radius: 4px;
         }
         
         .result-item {
@@ -170,27 +170,42 @@
             color: #e0e0e0;
             border-bottom: 1px solid #333;
             transition: all 0.2s;
-            background-color: #252525
+            background-color: #252525;
+            cursor: pointer;
         }
         
         .result-item:last-child {
-            border-bottom: none
+            border-bottom: none;
         }
         
         .result-item:hover {
             background-color: #2a2a2a;
-            transform: translateX(5px)
+            transform: translateX(5px);
         }
         
-        .short-form {
-            font-size: 1.2rem;
+        .result-code {
+            font-size: 1.1rem;
             font-weight: bold;
-            color: #2d76cc
+            color: #2d76cc;
+            margin-bottom: 0.25rem;
         }
         
-        .full-name {
+        .result-name {
             font-size: 0.9rem;
-            color: #ccc
+            color: #ccc;
+        }
+        
+        .result-meta {
+            font-size: 0.8rem;
+            color: #888;
+            margin-top: 0.25rem;
+        }
+        
+        .no-results {
+            text-align: center;
+            padding: 2rem;
+            color: #888;
+            font-style: italic;
         }
         
         .footer {
@@ -198,24 +213,21 @@
             padding: clamp(20px, 3vw, 40px);
             color: #aaa;
             font-size: clamp(0.8rem, 1.2vw, 1rem);
-            border-top: 2px solid #333
+            border-top: 2px solid #333;
         }
         
         .footer a {
             color: #aaa;
-            text-decoration: none
+            text-decoration: none;
         }
         
         .footer a:hover {
-            color: #ccc
+            color: #ccc;
         }
         
-        @media (max-width:768px) {
-            .content-wrapper {
-                flex-direction: column
-            }
-            .search-section {
-                margin-top: 2rem
+        @media (max-width: 768px) {
+            .sections-container {
+                grid-template-columns: 1fr;
             }
         }
     </style>
@@ -226,68 +238,147 @@
             <h1>SPPU Codes</h1>
         </a>
     </header>
+    
     <div class="main-container">
-        <div class="content-wrapper">
-            <section class="error-section">
-                <div class="error-container">
-                    <h2 class="error-code">404</h2>
-                    <p class="error-message">Page Not Found</p>
+        <div class="error-header">
+            <h2 class="error-code">404</h2>
+            <p class="error-message">Page Not Found</p>
+            <p class="error-description">
+                The page you're looking for doesn't exist. Browse available subjects and question papers below.
+            </p>
+        </div>
+        
+        <div class="sections-container">
+            <!-- Subject Codes Section -->
+            <div class="section">
+                <div class="section-header">
+                    <h3 class="section-title">Subject Codes</h3>
+                    <span class="section-count" id="subject-count">0</span>
                 </div>
-                <div class="error-reasons">
-                    <h3>Why am I seeing this?</h3>
-                    <ul>
-                        <li>The code for this subject might not be available yet</li>
-                        <li>The URL might have been typed incorrectly</li>
-                        <li>The page may have been moved or deleted</li>
-                        <li>You might be looking for a subject that's not in our database</li>
-                    </ul>
+                <input 
+                    type="text" 
+                    class="search-box" 
+                    placeholder="Search subjects (e.g., OOPL, DSL)..." 
+                    id="subject-search"
+                >
+                <div class="results" id="subject-results"></div>
+            </div>
+            
+            <!-- Question Papers Section -->
+            <div class="section">
+                <div class="section-header">
+                    <h3 class="section-title">Question Papers</h3>
+                    <span class="section-count" id="qp-count">0</span>
                 </div>
-            </section>
-            <section class="search-section">
-                <div class="search-container">
-                    <h3 class="search-title">Search Available Subjects</h3>
-                    <input type="text" placeholder="Type to search (e.g., OOPL, DSL)" id="search">
-                    <div class="results" id="results"></div>
-                </div>
-            </section>
+                <input 
+                    type="text" 
+                    class="search-box" 
+                    placeholder="Search question papers..." 
+                    id="qp-search"
+                >
+                <div class="results" id="qp-results"></div>
+            </div>
         </div>
     </div>
+    
     <footer class="footer">
         <p>Made with ❤️ for SPPU Students</p>
     </footer>
+    
     <script>
-        const subjects = [
-            { short: 'OOPL', full: 'Object-Oriented Programming Lab', href: '/oop' },
-            { short: 'CGL', full: 'Computer Graphics Lab', href: '/cgl' },
-            { short: 'DSL', full: 'Data Structures Laboratory', href: '/dsl' },
-            { short: 'IOTL', full: 'Internet of Things Laboratory', href: '/iotl' },
-        ];
-
-        const searchInput = document.getElementById('search');
-        const resultsContainer = document.getElementById('results');
-
-        const debounceSearch = _.debounce((searchTerm) => {
-            const filteredSubjects = subjects.filter(subject =>
-                subject.short.toLowerCase().includes(searchTerm.toLowerCase()) ||
-                subject.full.toLowerCase().includes(searchTerm.toLowerCase())
-            );
-
-            resultsContainer.innerHTML = filteredSubjects
+        // Fetch data from backend API
+        let subjectCodes = [];
+        let questionPapers = [];
+        
+        // Fetch and populate data
+        async function loadData() {
+            try {
+                const response = await fetch('/api/error-page-data');
+                const data = await response.json();
+                
+                subjectCodes = data.subjects || [];
+                questionPapers = data.questionPapers || [];
+                
+                // Update counts
+                document.getElementById('subject-count').textContent = subjectCodes.length;
+                document.getElementById('qp-count').textContent = questionPapers.length;
+                
+                // Initial render
+                renderSubjects(subjectCodes);
+                renderQuestionPapers(questionPapers);
+            } catch (error) {
+                console.error('Error loading data:', error);
+                document.getElementById('subject-results').innerHTML = '<div class="no-results">Error loading subjects</div>';
+                document.getElementById('qp-results').innerHTML = '<div class="no-results">Error loading question papers</div>';
+            }
+        }
+        
+        // Render functions
+        function renderSubjects(subjects) {
+            const container = document.getElementById('subject-results');
+            
+            if (subjects.length === 0) {
+                container.innerHTML = '<div class="no-results">No subjects found</div>';
+                return;
+            }
+            
+            container.innerHTML = subjects
                 .map(subject => `
                     <a href="${subject.href}" class="result-item">
-                        <span class="short-form">${subject.short}</span>
-                        <span class="full-name">${subject.full}</span>
+                        <span class="result-code">${subject.code.toUpperCase()}</span>
+                        <span class="result-name">${subject.name}</span>
                     </a>
                 `)
                 .join('');
+        }
+        
+        function renderQuestionPapers(papers) {
+            const container = document.getElementById('qp-results');
+            
+            if (papers.length === 0) {
+                container.innerHTML = '<div class="no-results">No question papers found</div>';
+                return;
+            }
+            
+            container.innerHTML = papers
+                .map(paper => `
+                    <a href="${paper.href}" class="result-item">
+                        <span class="result-code">${paper.name}</span>
+                        <span class="result-meta">${paper.branch} • Semester ${paper.semester}</span>
+                    </a>
+                `)
+                .join('');
+        }
+        
+        // Search handlers with debounce
+        const debouncedSubjectSearch = _.debounce((searchTerm) => {
+            const filtered = subjectCodes.filter(subject =>
+                subject.code.toLowerCase().includes(searchTerm.toLowerCase()) ||
+                subject.name.toLowerCase().includes(searchTerm.toLowerCase())
+            );
+            renderSubjects(filtered);
         }, 200);
-
-        searchInput.addEventListener('input', (e) => {
-            debounceSearch(e.target.value);
+        
+        const debouncedQPSearch = _.debounce((searchTerm) => {
+            const filtered = questionPapers.filter(paper =>
+                paper.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
+                paper.branch.toLowerCase().includes(searchTerm.toLowerCase()) ||
+                paper.link.toLowerCase().includes(searchTerm.toLowerCase())
+            );
+            renderQuestionPapers(filtered);
+        }, 200);
+        
+        // Event listeners
+        document.getElementById('subject-search').addEventListener('input', (e) => {
+            debouncedSubjectSearch(e.target.value);
         });
-
-        // Show all subjects initially
-        debounceSearch('');
+        
+        document.getElementById('qp-search').addEventListener('input', (e) => {
+            debouncedQPSearch(e.target.value);
+        });
+        
+        // Load data on page load
+        loadData();
     </script>
 </body>
 </html>

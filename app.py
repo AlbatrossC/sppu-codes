@@ -440,7 +440,76 @@ def index_verify():
 # =============================================================================
 # ERROR HANDLERS
 # =============================================================================
-
+@app.route('/api/error-page-data')
+def error_page_data():
+    """
+    API endpoint to provide all available subjects and question papers
+    for the 404 error page
+    """
+    try:
+        # Get all subject codes from questions directory
+        subjects = []
+        if os.path.exists(QUESTIONS_DIR):
+            for file in os.listdir(QUESTIONS_DIR):
+                if file.endswith('.json'):
+                    try:
+                        with open(os.path.join(QUESTIONS_DIR, file), 'r', encoding='utf-8') as f:
+                            subject_data = json.load(f)
+                            default = subject_data.get("default", {})
+                            subject_code = file.replace('.json', '')
+                            
+                            subjects.append({
+                                'code': subject_code,
+                                'name': default.get('subject_name', subject_code.upper()),
+                                'href': f'/{subject_code}'
+                            })
+                    except Exception as e:
+                        print(f"Error reading {file}: {e}")
+                        continue
+        
+        # Sort subjects alphabetically by code
+        subjects.sort(key=lambda x: x['code'])
+        
+        # Get all question papers from SEO data
+        question_papers = []
+        seo_index, seo_raw = load_seo_data()
+        
+        branches = seo_raw.get('branches', {})
+        for branch_key, branch_data in branches.items():
+            branch_name = branch_data.get('name', branch_key)
+            semesters = branch_data.get('semesters', {})
+            
+            for sem_key, subjects_list in semesters.items():
+                sem_number = sem_key.split('-')[-1] if '-' in sem_key else sem_key
+                
+                for subject in subjects_list:
+                    link = subject.get('link')
+                    if link:
+                        question_papers.append({
+                            'name': subject.get('subjectName', link.replace('-', ' ').title()),
+                            'link': link,
+                            'branch': branch_name,
+                            'semester': sem_number,
+                            'href': f'/questionpapers/{link}'
+                        })
+        
+        # Sort question papers by branch, then semester, then name
+        question_papers.sort(key=lambda x: (x['branch'], int(x['semester']) if x['semester'].isdigit() else 0, x['name']))
+        
+        return jsonify({
+            'subjects': subjects,
+            'questionPapers': question_papers
+        })
+    
+    except Exception as e:
+        print(f"Error generating error page data: {e}")
+        return jsonify({
+            'subjects': [],
+            'questionPapers': [],
+            'error': str(e)
+        }), 500
+    
+    
 @app.errorhandler(404)
 def page_not_found(e):
     """Handle 404 errors with custom error page"""

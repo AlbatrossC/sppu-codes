@@ -472,6 +472,40 @@
         };
     }
 
+    function formatPdfName(filename) {
+        var name = filename.replace(/\.pdf$/i, '');
+        var parts = name.split('-');
+        
+        var year = '';
+        var type = '';
+        var months = [];
+        var monthNames = ['jan', 'january', 'feb', 'february', 'mar', 'march', 'apr', 'april', 'may', 'jun', 'june', 'jul', 'july', 'aug', 'august', 'sep', 'sept', 'september', 'oct', 'october', 'nov', 'november', 'dec', 'december'];
+
+        // Find year
+        var yearMatch = name.match(/\d{4}/);
+        if (yearMatch) year = yearMatch[0];
+
+        // Find type
+        if (name.toLowerCase().includes('endsem')) type = 'Endsem';
+        else if (name.toLowerCase().includes('insem')) type = 'Insem';
+
+        // Find months
+        parts.forEach(function(part) {
+            if (monthNames.includes(part.toLowerCase())) {
+                months.push(part.charAt(0).toUpperCase() + part.slice(1));
+            }
+        });
+
+        if (!year && !type && months.length === 0) return name;
+
+        var result = [];
+        if (year) result.push(year);
+        if (months.length) result.push(months.join(' '));
+        if (type) result.push(type);
+
+        return result.join(' ');
+    }
+
     function loadPdfIntoIframe(iframe, pdfUrl, loader, retryCount) {
         retryCount = retryCount || 0;
         var oldObjectURL = state.activeObjectURLs.get(iframe);
@@ -551,7 +585,7 @@
                 return val;
             }
             var result = state.pdfFiles.filter(function(file) {
-                return file.date.toLowerCase().includes(key);
+                return file.originalFilename.toLowerCase().includes(key);
             });
             if (cache.size >= maxSize) cache.delete(cache.keys().next().value);
             cache.set(key, result);
@@ -734,7 +768,7 @@
                             return null;
                         }
                         return {
-                            date: pdfObject.filename.replace(/\.pdf$/i, ''),
+                            date: formatPdfName(pdfObject.filename),
                             link: pdfObject.url,
                             originalFilename: pdfObject.filename
                         };
@@ -742,8 +776,8 @@
                     .filter(function(item) { return item !== null; })
                     .sort(function(a, b) { return b.date.localeCompare(a.date); });
 
-                var hasInsem = state.pdfFiles.some(function(file) { return file.date.toLowerCase().includes('insem'); });
-                var hasEndsem = state.pdfFiles.some(function(file) { return file.date.toLowerCase().includes('endsem'); });
+                var hasInsem = state.pdfFiles.some(function(file) { return file.originalFilename.toLowerCase().includes('insem'); });
+                var hasEndsem = state.pdfFiles.some(function(file) { return file.originalFilename.toLowerCase().includes('endsem'); });
 
                 DOM.examTypeDropdown._setDisabled('insem', !hasInsem);
                 DOM.examTypeDropdown._setDisabled('endsem', !hasEndsem);

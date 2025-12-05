@@ -7,64 +7,64 @@
           {
             "subjectName": "Basic Electrical Engineering",
             "link": "basic-electrical-engineering",
-            "description": "SPPU Basic Electrical Engineering question papers for First Year (FY) Engineering Sem 1 students. Powered by Sppu Codes.",
-            "keywords": ["sppu", "basic electrical engineering", "bee", "fy", "first year", "sem 1", "circuits", "machines", "transformers"]
+            "description": "View Basic Electrical Engineering PDF resources for First Year (FY) Sem 1.",
+            "keywords": ["bee", "electrical", "circuits", "kvl", "kcl", "transformers", "fy", "sem 1"]
           },
           {
             "subjectName": "Engineering Mathematics I",
             "link": "engineering-mathematics-i",
-            "description": "SPPU Engineering Mathematics I question papers for First Year (FY) Engineering Sem 1 students. Powered by Sppu Codes.",
-            "keywords": ["sppu", "engineering mathematics 1", "maths 1", "m1", "fy", "sem 1", "calculus", "matrices"]
+            "description": "View Engineering Mathematics I PDF resources for First Year (FY) Sem 1.",
+            "keywords": ["m1", "maths", "matrices", "calculus", "taylor series", "fy", "sem 1"]
           },
           {
             "subjectName": "Engineering Mechanics",
             "link": "engineering-mechanics",
-            "description": "SPPU Engineering Mechanics question papers for First Year (FY) Engineering Sem 1 students. Powered by Sppu Codes.",
-            "keywords": ["sppu", "engineering mechanics", "mechanics", "fy", "sem 1", "statics", "dynamics"]
+            "description": "View Engineering Mechanics PDF resources for First Year (FY) Sem 1.",
+            "keywords": ["mechanics", "statics", "dynamics", "forces", "friction", "fy", "sem 1"]
           },
           {
             "subjectName": "Engineering Physics",
             "link": "engineering-physics",
-            "description": "SPPU Engineering Physics question papers for First Year (FY) Engineering Sem 1 students. Powered by Sppu Codes.",
-            "keywords": ["sppu", "engineering physics", "physics", "fy", "sem 1", "waves", "optics", "modern physics"]
+            "description": "View Engineering Physics PDF resources for First Year (FY) Sem 1.",
+            "keywords": ["physics", "optics", "quantum", "lasers", "nanotechnology", "fy", "sem 1"]
           },
           {
             "subjectName": "Programming & Problem Solving",
             "link": "programming-and-problem-solving",
-            "description": "SPPU Programming & Problem Solving question papers for First Year (FY) Engineering Sem 1 students. Powered by Sppu Codes.",
-            "keywords": ["sppu", "programming", "problem solving", "pps", "c programming", "fy", "sem 1"]
+            "description": "View Programming & Problem Solving PDF resources for First Year (FY) Sem 1.",
+            "keywords": ["pps", "python", "programming", "algorithms", "flowcharts", "fy", "sem 1"]
           }
         ],
         "sem-2": [
           {
             "subjectName": "Basic Electronics Engineering",
             "link": "basic-electronics-engineering",
-            "description": "SPPU Basic Electronics Engineering question papers for First Year (FY) Engineering Sem 2 students. Powered by Sppu Codes.",
-            "keywords": ["sppu", "basic electronics engineering", "bee", "electronics", "fy", "sem 2", "diodes", "transistors"]
+            "description": "View Basic Electronics Engineering PDF resources for First Year (FY) Sem 2.",
+            "keywords": ["bxr", "electronics", "diodes", "transistors", "op-amp", "fy", "sem 2"]
           },
           {
             "subjectName": "Engineering Chemistry",
             "link": "engineering-chemistry",
-            "description": "SPPU Engineering Chemistry question papers for First Year (FY) Engineering Sem 2 students. Powered by Sppu Codes.",
-            "keywords": ["sppu", "engineering chemistry", "chemistry", "fy", "sem 2", "polymers", "corrosion", "water treatment"]
+            "description": "View Engineering Chemistry PDF resources for First Year (FY) Sem 2.",
+            "keywords": ["chemistry", "polymers", "fuel", "corrosion", "water", "fy", "sem 2"]
           },
           {
             "subjectName": "Engineering Graphics",
             "link": "engineering-graphics",
-            "description": "SPPU Engineering Graphics question papers for First Year (FY) Engineering Sem 2 students. Powered by Sppu Codes.",
-            "keywords": ["sppu", "engineering graphics", "eg", "fy", "sem 2", "orthographic", "isometric", "drafting"]
+            "description": "View Engineering Graphics PDF resources for First Year (FY) Sem 2.",
+            "keywords": ["eg", "graphics", "orthographic", "isometric", "cad", "fy", "sem 2"]
           },
           {
             "subjectName": "Engineering Mathematics II",
             "link": "engineering-mathematics-ii",
-            "description": "SPPU Engineering Mathematics II question papers for First Year (FY) Engineering Sem 2 students. Powered by Sppu Codes.",
-            "keywords": ["sppu", "engineering mathematics 2", "maths 2", "m2", "fy", "sem 2", "differential equations", "laplace"]
+            "description": "View Engineering Mathematics II PDF resources for First Year (FY) Sem 2.",
+            "keywords": ["m2", "maths", "integration", "differential equations", "curves", "fy", "sem 2"]
           },
           {
             "subjectName": "Systems in Mechanical Engineering",
             "link": "systems-in-mechanical-engineering",
-            "description": "SPPU Systems in Mechanical Engineering question papers for First Year (FY) Engineering Sem 2 students. Powered by Sppu Codes.",
-            "keywords": ["sppu", "systems in mechanical engineering", "sme", "mechanical", "fy", "sem 2", "machines", "thermodynamics"]
+            "description": "View Systems in Mechanical Engineering PDF resources for First Year (FY) Sem 2.",
+            "keywords": ["sme", "mechanical", "vehicles", "energy sources", "manufacturing", "fy", "sem 2"]
           }
         ]
       }
@@ -74,161 +74,249 @@
       "semesters": {
         "sem-3": [
           {
+            "subjectName": "Computer Graphics",
+            "link": "computer-graphics",
+            "description": "View Computer Graphics resources for AI&DS Sem 3.",
+            "keywords": ["cg", "graphics", "rendering", "animations", "opengl", "aids", "sem 3"]
+          },
+          {
             "subjectName": "Discrete Mathematics",
             "link": "discrete-mathematics",
-            "description": "Sppu Discrete Mathematics (DM) question papers for Second Year (SE) AI&DS Sem 3 students. Find previous year papers compiled by Sppu Codes.",
-            "keywords": ["sppu", "discrete mathematics", "dm", "se", "second year", "ai&ds", "sem 3", "logic", "graphs", "sets", "relations"]
+            "description": "View Discrete Mathematics resources for AI&DS Sem 3.",
+            "keywords": ["dm", "sets", "logic", "graphs", "trees", "aids", "sem 3"]
           },
           {
             "subjectName": "Fundamentals Of Data Structures",
             "link": "fundamentals-of-data-structures",
-            "description": "Sppu Fundamentals of Data Structures (FDS) question papers for Second Year (SE) AI&DS Sem 3 students. Available on Sppu Codes.",
-            "keywords": ["sppu", "fundamentals of data structures", "fds", "data structures", "se", "ai&ds", "sem 3", "linked list", "stack", "queue", "arrays"]
+            "description": "View Fundamentals Of Data Structures resources for AI&DS Sem 3.",
+            "keywords": ["fds", "structures", "arrays", "pointers", "algorithms", "aids", "sem 3"]
           },
           {
             "subjectName": "Object Oriented Programming",
             "link": "object-oriented-programming",
-            "description": "Sppu Object Oriented Programming (OOP) question papers for Second Year (SE) AI&DS Sem 3 students. Provided by Sppu Codes.",
-            "keywords": ["sppu", "object oriented programming", "oop", "se", "ai&ds", "sem 3", "c++", "java", "inheritance", "polymorphism"]
-          },
-          {
-            "subjectName": "Computer Graphics",
-            "link": "computer-graphics",
-            "description": "Sppu Computer Graphics (CG) question papers for Second Year (SE) AI&DS Sem 3 students. Find previous year papers curated by Sppu Codes.",
-            "keywords": ["sppu", "computer graphics", "cg", "se", "ai&ds", "sem 3", "graphics ddl", "rendering", "transformations", "cgl"]
+            "description": "View Object Oriented Programming resources for AI&DS Sem 3.",
+            "keywords": ["oop", "java", "cpp", "classes", "inheritance", "aids", "sem 3"]
           },
           {
             "subjectName": "Operating Systems",
             "link": "operating-systems",
-            "description": "Sppu Operating Systems (OS) question papers for Second Year (SE) AI&DS Sem 3 students. Find all papers on Sppu Codes.",
-            "keywords": ["sppu", "operating systems", "os", "se", "ai&ds", "sem 3", "scheduling", "memory management", "threads", "processes"]
+            "description": "View Operating Systems resources for AI&DS Sem 3.",
+            "keywords": ["os", "linux", "scheduling", "threads", "memory", "aids", "sem 3"]
           }
         ],
         "sem-4": [
           {
-            "subjectName": "Statistics",
-            "link": "statistics",
-            "description": "Sppu Statistics question papers for Second Year (SE) AI&DS Sem 4 students. Browse easily with Sppu Codes.",
-            "keywords": ["sppu", "statistics", "stats", "se", "ai&ds", "sem 4", "probability", "regression", "data analysis", "hypothesis testing"]
-          },
-          {
             "subjectName": "Data Structures And Algorithms",
             "link": "data-structures-and-algorithms",
-            "description": "Sppu Data Structure and Algorithm (DSA) question papers for Second Year (SE) AI&DS Sem 4 students. Hosted by Sppu Codes.",
-            "keywords": ["sppu", "data structure and algorithm", "dsa", "dsal", "se", "ai&ds", "sem 4", "sorting", "trees", "graphs", "recursion"]
-          },
-          {
-            "subjectName": "Software Engineering",
-            "link": "software-engineering",
-            "description": "Sppu Software Engineering question papers for Second Year (SE) AI&DS Sem 4 students. Powered by Sppu Codes.",
-            "keywords": ["sppu", "software engineering", "se", "ai&ds", "sem 4", "sdlc", "agile", "software testing", "project management"]
+            "description": "View Data Structures And Algorithms resources for AI&DS Sem 4.",
+            "keywords": ["dsa", "sorting", "searching", "hashing", "graphs", "aids", "sem 4"]
           },
           {
             "subjectName": "Internet Of Things",
             "link": "internet-of-things",
-            "description": "Sppu Internet of Things (IoT) question papers for Second Year (SE) AI&DS Sem 4 students. Explore all papers on Sppu Codes.",
-            "keywords": ["sppu", "internet of things", "iot", "iotl", "se", "ai&ds", "sem 4", "sensors", "cloud", "embedded systems", "iot protocols"]
+            "description": "View Internet Of Things resources for AI&DS Sem 4.",
+            "keywords": ["iot", "sensors", "arduino", "raspberry pi", "cloud", "aids", "sem 4"]
           },
           {
             "subjectName": "Management Information Systems",
             "link": "management-information-systems",
-            "description": "Sppu Management Information System (MIS) question papers for Second Year (SE) AI&DS Sem 4 students. Available at Sppu Codes.",
-            "keywords": ["sppu", "management information system", "mis", "se", "ai&ds", "sem 4", "erp", "information systems", "decision support"]
+            "description": "View Management Information Systems resources for AI&DS Sem 4.",
+            "keywords": ["mis", "management", "business", "data", "erp", "aids", "sem 4"]
+          },
+          {
+            "subjectName": "Software Engineering",
+            "link": "software-engineering",
+            "description": "View Software Engineering resources for AI&DS Sem 4.",
+            "keywords": ["se", "sdlc", "agile", "testing", "requirements", "aids", "sem 4"]
+          },
+          {
+            "subjectName": "Statistics",
+            "link": "statistics",
+            "description": "View Statistics resources for AI&DS Sem 4.",
+            "keywords": ["stats", "probability", "regression", "hypothesis", "analysis", "aids", "sem 4"]
           }
         ],
         "sem-5": [
           {
             "subjectName": "Artificial Intelligence",
-            "link": "artificial-intelligence",
-            "description": "Sppu Artificial Intelligence (AI) question papers for Third Year (TE) AI&DS Sem 5 students. Find previous year papers compiled by Sppu Codes.",
-            "keywords": ["sppu", "artificial intelligence", "ai", "te", "third year", "ai&ds", "sem 5", "machine learning", "neural networks", "search algorithms"]
+            "link": "artificial-intelligence-aids",
+            "description": "View Artificial Intelligence resources for AI&DS Sem 5.",
+            "keywords": ["ai", "agents", "search", "logic", "planning", "aids", "sem 5"]
           },
           {
             "subjectName": "Computer Networks",
             "link": "computer-networks",
-            "description": "Sppu Computer Networks question papers for Third Year (TE) AI&DS Sem 5 students. Available on Sppu Codes.",
-            "keywords": ["sppu", "computer networks", "cn", "te", "ai&ds", "sem 5", "osi model", "tcp/ip", "routing", "protocols"]
+            "description": "View Computer Networks resources for AI&DS Sem 5.",
+            "keywords": ["cn", "tcp/ip", "osi", "routing", "packets", "aids", "sem 5"]
           },
           {
             "subjectName": "Database Management System",
             "link": "database-management-system",
-            "description": "Sppu Database Management System (DBMS) question papers for Third Year (TE) AI&DS Sem 5 students. Provided by Sppu Codes.",
-            "keywords": ["sppu", "database management system", "dbms", "te", "ai&ds", "sem 5", "sql", "normalization", "transactions", "relational database"]
+            "description": "View Database Management System resources for AI&DS Sem 5.",
+            "keywords": ["dbms", "sql", "normalization", "transactions", "nosql", "aids", "sem 5"]
           },
           {
-            "subjectName": "Human Computer Interface",
-            "link": "human-computer-interface-ele-i",
-            "description": "Sppu Human Computer Interface (HCI) Elective I question papers for Third Year (TE) AI&DS Sem 5 students. Find previous year papers curated by Sppu Codes.",
-            "keywords": ["sppu", "human computer interface", "hci", "elective", "te", "ai&ds", "sem 5", "usability", "ui design", "ux design"]
+            "subjectName": "Human Computer Interface (Elective I)",
+            "link": "human-computer-interface-ele-i-aids",
+            "description": "View Human Computer Interface Elective resources for AI&DS Sem 5.",
+            "keywords": ["hci", "ui/ux", "design", "usability", "interaction", "aids", "sem 5"]
           },
           {
-            "subjectName": "Pattern Recognition",
+            "subjectName": "Pattern Recognition (Elective I)",
             "link": "pattern-recognition-ele-i",
-            "description": "Sppu Pattern Recognition Elective I question papers for Third Year (TE) AI&DS Sem 5 students. Find all papers on Sppu Codes.",
-            "keywords": ["sppu", "pattern recognition", "pr", "elective", "te", "ai&ds", "sem 5", "feature extraction", "classification", "clustering"]
+            "description": "View Pattern Recognition Elective resources for AI&DS Sem 5.",
+            "keywords": ["pr", "patterns", "classification", "clustering", "features", "aids", "sem 5"]
           },
           {
             "subjectName": "Web Technology",
-            "link": "web-technology",
-            "description": "Sppu Web Technology question papers for Third Year (TE) AI&DS Sem 5 students. Browse easily with Sppu Codes.",
-            "keywords": ["sppu", "web technology", "wt", "te", "ai&ds", "sem 5", "html", "css", "javascript", "php", "web development"]
+            "link": "web-technology-aids",
+            "description": "View Web Technology resources for AI&DS Sem 5.",
+            "keywords": ["wt", "html", "css", "javascript", "react", "aids", "sem 5"]
           }
         ],
         "sem-6": [
           {
             "subjectName": "Artificial Neural Network",
             "link": "artificial-neural-network",
-            "description": "Sppu Artificial Neural Network (ANN) question papers for Third Year (TE) AI&DS Sem 6 students. Hosted by Sppu Codes.",
-            "keywords": ["sppu", "artificial neural network", "ann", "neural networks", "te", "ai&ds", "sem 6", "backpropagation", "deep learning", "perceptron"]
+            "description": "View Artificial Neural Network resources for AI&DS Sem 6.",
+            "keywords": ["ann", "neurons", "deep learning", "backpropagation", "cnn", "aids", "sem 6"]
           },
           {
-            "subjectName": "Cloud Computing",
+            "subjectName": "Cloud Computing (Elective II)",
             "link": "cloud-computing-ele-ii",
-            "description": "Sppu Cloud Computing Elective II question papers for Third Year (TE) AI&DS Sem 6 students. Powered by Sppu Codes.",
-            "keywords": ["sppu", "cloud computing", "cc", "elective", "te", "ai&ds", "sem 6", "aws", "virtualization", "saas", "paas", "iaas"]
+            "description": "View Cloud Computing Elective resources for AI&DS Sem 6.",
+            "keywords": ["cc", "aws", "azure", "virtualization", "saas", "aids", "sem 6"]
           },
           {
             "subjectName": "Cyber Security",
             "link": "cyber-security",
-            "description": "Sppu Cyber Security question papers for Third Year (TE) AI&DS Sem 6 students. Explore all papers on Sppu Codes.",
-            "keywords": ["sppu", "cyber security", "cybersecurity", "information security", "te", "ai&ds", "sem 6", "cryptography", "network security", "ethical hacking"]
+            "description": "View Cyber Security resources for AI&DS Sem 6.",
+            "keywords": ["cs", "security", "encryption", "firewalls", "hacking", "aids", "sem 6"]
           },
           {
             "subjectName": "Data Science",
             "link": "data-science",
-            "description": "Sppu Data Science question papers for Third Year (TE) AI&DS Sem 6 students. Available at Sppu Codes.",
-            "keywords": ["sppu", "data science", "ds", "te", "ai&ds", "sem 6", "data analytics", "big data", "data mining", "machine learning", "python"]
+            "description": "View Data Science resources for AI&DS Sem 6.",
+            "keywords": ["ds", "analytics", "visualization", "mining", "pandas", "aids", "sem 6"]
           },
           {
-            "subjectName": "Natural Language Processing",
+            "subjectName": "Natural Language Processing (Elective II)",
             "link": "natural-language-processing-ele-ii",
-            "description": "Sppu Natural Language Processing (NLP) Elective II question papers for Third Year (TE) AI&DS Sem 6 students. Find previous year papers compiled by Sppu Codes.",
-            "keywords": ["sppu", "natural language processing", "nlp", "elective", "te", "ai&ds", "sem 6", "text processing", "sentiment analysis", "language models"]
+            "description": "View Natural Language Processing Elective resources for AI&DS Sem 6.",
+            "keywords": ["nlp", "text", "linguistics", "speech", "tokens", "aids", "sem 6"]
           },
           {
-            "subjectName": "Software Modeling And Architecture",
+            "subjectName": "Software Modeling And Architecture (Elective II)",
             "link": "software-modeling-and-architecture-ele-ii",
-            "description": "Sppu Software Modeling and Architectures Elective II question papers for Third Year (TE) AI&DS Sem 6 students. Available on Sppu Codes.",
-            "keywords": ["sppu", "software modeling and architectures", "sma", "software architecture", "elective", "te", "ai&ds", "sem 6", "uml", "design patterns", "microservices"]
+            "description": "View Software Modeling And Architecture Elective resources for AI&DS Sem 6.",
+            "keywords": ["sma", "uml", "design patterns", "architecture", "diagrams", "aids", "sem 6"]
           }
         ]
       }
     },
-    "CS": {
-      "name": "Computer Science",
+    "CSE": {
+      "name": "Computer Science Engineering",
       "semesters": {
         "sem-4": [
           {
-            "subjectName": "Principles of Programming Languages",
-            "link": "principles-of-programming-languages",
-            "description": "Sppu Principles of Programming Languages question papers for Second Year (SE) CSE Sem 4 students. Powered by Sppu Codes.",
-            "keywords": ["sppu", "principles of programming languages", "ppl", "se", "second year", "cse", "sem 4", "syntax", "semantics", "grammars", "parsing"]
-          },
-          {
             "subjectName": "Microprocessor",
             "link": "microprocessor",
-            "description": "SPPU Microprocessor question papers for Second Year (SE) CSE Sem 4 students. Powered by Sppu Codes.",
-            "keywords": ["sppu", "microprocessor", "mp", "8086", "assembly language", "se", "cse", "sem 4", "addressing modes", "instruction set", "interrupts"]
+            "description": "View Microprocessor resources for CSE Sem 4.",
+            "keywords": ["mp", "8086", "assembly", "registers", "intel", "cse", "sem 4"]
+          },
+          {
+            "subjectName": "Principles of Programming Languages",
+            "link": "principles-of-programming-languages",
+            "description": "View Principles of Programming Languages resources for CSE Sem 4.",
+            "keywords": ["ppl", "syntax", "semantics", "paradigms", "types", "cse", "sem 4"]
+          }
+        ],
+        "sem-5": [
+          {
+            "subjectName": "Computer Network And Security",
+            "link": "computer-network-and-security",
+            "description": "View Computer Network And Security resources for CSE Sem 5.",
+            "keywords": ["cns", "network", "security", "protocols", "cryptography", "cse", "sem 5"]
+          },
+          {
+            "subjectName": "Database Management Systems",
+            "link": "database-management-systems",
+            "description": "View Database Management Systems resources for CSE Sem 5.",
+            "keywords": ["dbms", "sql", "data", "relational", "storage", "cse", "sem 5"]
+          },
+          {
+            "subjectName": "Human Computer Interface (Elective I)",
+            "link": "human-computer-interface-ele-i-cse",
+            "description": "View Human Computer Interface Elective resources for CSE Sem 5.",
+            "keywords": ["hci", "interaction", "usability", "interface", "design", "cse", "sem 5"]
+          },
+          {
+            "subjectName": "Internet Of Things And Embedded Systems (Elective I)",
+            "link": "internet-of-things-and-embedded-systems-ele-i",
+            "description": "View Internet Of Things And Embedded Systems Elective resources for CSE Sem 5.",
+            "keywords": ["iot", "embedded", "microcontrollers", "smart", "sensors", "cse", "sem 5"]
+          },
+          {
+            "subjectName": "Software Project Management (Elective I)",
+            "link": "software-project-management-ele-i",
+            "description": "View Software Project Management Elective resources for CSE Sem 5.",
+            "keywords": ["spm", "project", "planning", "risk", "estimation", "cse", "sem 5"]
+          },
+          {
+            "subjectName": "Systems Programming And Operating System",
+            "link": "systems-programming-and-operating-system",
+            "description": "View Systems Programming And Operating System resources for CSE Sem 5.",
+            "keywords": ["spos", "system", "os", "compiler", "linker", "cse", "sem 5"]
+          },
+          {
+            "subjectName": "Theory Of Computation",
+            "link": "theory-of-computation",
+            "description": "View Theory Of Computation resources for CSE Sem 5.",
+            "keywords": ["toc", "automata", "grammar", "turing", "computation", "cse", "sem 5"]
+          }
+        ],
+        "sem-6": [
+          {
+            "subjectName": "Artificial Intelligence",
+            "link": "artificial-intelligence-cse",
+            "description": "View Artificial Intelligence resources for CSE Sem 6.",
+            "keywords": ["ai", "intelligence", "ml", "robotics", "expert systems", "cse", "sem 6"]
+          },
+          {
+            "subjectName": "Augmented And Virtual Reality (Elective II)",
+            "link": "augmented-and-virtual-reality-ele-ii",
+            "description": "View Augmented And Virtual Reality Elective resources for CSE Sem 6.",
+            "keywords": ["arvr", "ar", "vr", "virtual", "augmented", "cse", "sem 6"]
+          },
+          {
+            "subjectName": "Cloud Computing",
+            "link": "cloud-computing",
+            "description": "View Cloud Computing resources for CSE Sem 6.",
+            "keywords": ["cc", "cloud", "services", "distributed", "storage", "cse", "sem 6"]
+          },
+          {
+            "subjectName": "Data Science And Big Data Analytics",
+            "link": "data-science-and-big-data-analytics",
+            "description": "View Data Science And Big Data Analytics resources for CSE Sem 6.",
+            "keywords": ["dsbda", "data", "big data", "hadoop", "analytics", "cse", "sem 6"]
+          },
+          {
+            "subjectName": "Information Security (Elective II)",
+            "link": "information-security-ele-ii",
+            "description": "View Information Security Elective resources for CSE Sem 6.",
+            "keywords": ["is", "infosec", "security", "protection", "privacy", "cse", "sem 6"]
+          },
+          {
+            "subjectName": "Software Modeling And Architectures (Elective II)",
+            "link": "software-modeling-and-architectures-ele-ii",
+            "description": "View Software Modeling And Architectures Elective resources for CSE Sem 6.",
+            "keywords": ["sma", "modeling", "architecture", "patterns", "design", "cse", "sem 6"]
+          },
+          {
+            "subjectName": "Web Technology",
+            "link": "web-technology-cse",
+            "description": "View Web Technology resources for CSE Sem 6.",
+            "keywords": ["wt", "web", "frontend", "backend", "fullstack", "cse", "sem 6"]
           }
         ]
       }

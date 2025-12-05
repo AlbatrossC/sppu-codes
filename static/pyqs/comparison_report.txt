@@ -41,8 +41,8 @@
 SUMMARY
 ============================================================
 Total Unique Subjects: 34
-✓ Present in Both Files: 34
-⚠ Missing in questionpapers.json: 0
-⚠ Missing in viewerseo.json: 0
+Present in Both: 34
+Missing in questionpapers.json: 0
+Missing in viewerseo.json: 0
 
 ============================================================

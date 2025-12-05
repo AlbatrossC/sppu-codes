@@ -353,7 +353,8 @@
                 "https://res.cloudinary.com/diiiuwl1p/raw/upload/v1763404556/cse/sem-4/microprocessor/endsem-nov-dec-2023.pdf",
                 "https://res.cloudinary.com/diiiuwl1p/raw/upload/v1763404557/cse/sem-4/microprocessor/endsem-nov-dec-2024.pdf",
                 "https://res.cloudinary.com/diiiuwl1p/raw/upload/v1763404557/cse/sem-4/microprocessor/insem-feb---2023.pdf",
-                "https://res.cloudinary.com/diiiuwl1p/raw/upload/v1763404558/cse/sem-4/microprocessor/insem-march-2024.pdf"
+                "https://res.cloudinary.com/diiiuwl1p/raw/upload/v1763404558/cse/sem-4/microprocessor/insem-march-2024.pdf",
+                "https://res.cloudinary.com/diiiuwl1p/raw/upload/v1764921170/cse/sem-4/microprocessor/insem-feb-2023.pdf"
             ],
             "principles-of-programming-languages": [
                 "https://res.cloudinary.com/diiiuwl1p/raw/upload/v1763404559/cse/sem-4/principles-of-programming-languages/endsem-may-jun-2022.pdf",
@@ -364,6 +365,142 @@
                 "https://res.cloudinary.com/diiiuwl1p/raw/upload/v1763404562/cse/sem-4/principles-of-programming-languages/insem-feb-2023.pdf",
                 "https://res.cloudinary.com/diiiuwl1p/raw/upload/v1763404562/cse/sem-4/principles-of-programming-languages/insem-march-2024.pdf",
                 "https://res.cloudinary.com/diiiuwl1p/raw/upload/v1763404563/cse/sem-4/principles-of-programming-languages/insem-march-2025.pdf"
+            ]
+        },
+        "sem-5": {
+            "computer-network-and-security": [
+                "https://res.cloudinary.com/diiiuwl1p/raw/upload/v1764921170/cse/sem-5/computer-network-and-security/endsem-may-jun-2022.pdf",
+                "https://res.cloudinary.com/diiiuwl1p/raw/upload/v1764921171/cse/sem-5/computer-network-and-security/endsem-may-jun-2023.pdf",
+                "https://res.cloudinary.com/diiiuwl1p/raw/upload/v1764921172/cse/sem-5/computer-network-and-security/endsem-may-jun-2024.pdf",
+                "https://res.cloudinary.com/diiiuwl1p/raw/upload/v1764921172/cse/sem-5/computer-network-and-security/endsem-may-jun-2025.pdf",
+                "https://res.cloudinary.com/diiiuwl1p/raw/upload/v1764921173/cse/sem-5/computer-network-and-security/endsem-nov-dec-2022.pdf",
+                "https://res.cloudinary.com/diiiuwl1p/raw/upload/v1764921174/cse/sem-5/computer-network-and-security/endsem-nov-dec-2023.pdf",
+                "https://res.cloudinary.com/diiiuwl1p/raw/upload/v1764921174/cse/sem-5/computer-network-and-security/endsem-nov-dec-2024.pdf",
+                "https://res.cloudinary.com/diiiuwl1p/raw/upload/v1764921175/cse/sem-5/computer-network-and-security/insem-august-2025.pdf",
+                "https://res.cloudinary.com/diiiuwl1p/raw/upload/v1764921175/cse/sem-5/computer-network-and-security/insem-oct-2022.pdf",
+                "https://res.cloudinary.com/diiiuwl1p/raw/upload/v1764921176/cse/sem-5/computer-network-and-security/insem-sep-2023.pdf",
+                "https://res.cloudinary.com/diiiuwl1p/raw/upload/v1764921176/cse/sem-5/computer-network-and-security/insem-sep-2024.pdf"
+            ],
+            "database-management-systems": [
+                "https://res.cloudinary.com/diiiuwl1p/raw/upload/v1764921178/cse/sem-5/database-management-systems/endsem-may-jun-2022.pdf",
+                "https://res.cloudinary.com/diiiuwl1p/raw/upload/v1764921178/cse/sem-5/database-management-systems/endsem-may-jun-2023.pdf",
+                "https://res.cloudinary.com/diiiuwl1p/raw/upload/v1764921179/cse/sem-5/database-management-systems/endsem-may-jun-2024.pdf",
+                "https://res.cloudinary.com/diiiuwl1p/raw/upload/v1764921180/cse/sem-5/database-management-systems/endsem-may-jun-2025.pdf",
+                "https://res.cloudinary.com/diiiuwl1p/raw/upload/v1764921180/cse/sem-5/database-management-systems/endsem-nov-dec-2022.pdf",
+                "https://res.cloudinary.com/diiiuwl1p/raw/upload/v1764921181/cse/sem-5/database-management-systems/endsem-nov-dec-2023.pdf",
+                "https://res.cloudinary.com/diiiuwl1p/raw/upload/v1764921181/cse/sem-5/database-management-systems/endsem-nov-dec-2024.pdf",
+                "https://res.cloudinary.com/diiiuwl1p/raw/upload/v1764921182/cse/sem-5/database-management-systems/insem-august-2025.pdf",
+                "https://res.cloudinary.com/diiiuwl1p/raw/upload/v1764921182/cse/sem-5/database-management-systems/insem-oct-2022.pdf",
+                "https://res.cloudinary.com/diiiuwl1p/raw/upload/v1764921183/cse/sem-5/database-management-systems/insem-sep-2023.pdf",
+                "https://res.cloudinary.com/diiiuwl1p/raw/upload/v1764921184/cse/sem-5/database-management-systems/insem-sep-2024.pdf"
+            ],
+            "human-computer-interface-ele-i": [
+                "https://res.cloudinary.com/diiiuwl1p/raw/upload/v1764921184/cse/sem-5/human-computer-interface-ele-i/endsem-may-jun-2024.pdf",
+                "https://res.cloudinary.com/diiiuwl1p/raw/upload/v1764921185/cse/sem-5/human-computer-interface-ele-i/endsem-may-jun-2025.pdf",
+                "https://res.cloudinary.com/diiiuwl1p/raw/upload/v1764921185/cse/sem-5/human-computer-interface-ele-i/endsem-nov-dec-2023.pdf",
+                "https://res.cloudinary.com/diiiuwl1p/raw/upload/v1764921186/cse/sem-5/human-computer-interface-ele-i/endsem-nov-dec-2024.pdf",
+                "https://res.cloudinary.com/diiiuwl1p/raw/upload/v1764921187/cse/sem-5/human-computer-interface-ele-i/insem-august-2025.pdf",
+                "https://res.cloudinary.com/diiiuwl1p/raw/upload/v1764921187/cse/sem-5/human-computer-interface-ele-i/insem-sep-2024.pdf"
+            ],
+            "internet-of-things-and-embedded-systems-ele-i": [
+                "https://res.cloudinary.com/diiiuwl1p/raw/upload/v1764921188/cse/sem-5/internet-of-things-and-embedded-systems-ele-i/endsem-may-jun-2022.pdf",
+                "https://res.cloudinary.com/diiiuwl1p/raw/upload/v1764921189/cse/sem-5/internet-of-things-and-embedded-systems-ele-i/endsem-may-jun-2023.pdf",
+                "https://res.cloudinary.com/diiiuwl1p/raw/upload/v1764921189/cse/sem-5/internet-of-things-and-embedded-systems-ele-i/endsem-may-jun-2024.pdf",
+                "https://res.cloudinary.com/diiiuwl1p/raw/upload/v1764921190/cse/sem-5/internet-of-things-and-embedded-systems-ele-i/endsem-may-jun-2025.pdf",
+                "https://res.cloudinary.com/diiiuwl1p/raw/upload/v1764921190/cse/sem-5/internet-of-things-and-embedded-systems-ele-i/endsem-nov-dec-2022.pdf",
+                "https://res.cloudinary.com/diiiuwl1p/raw/upload/v1764921191/cse/sem-5/internet-of-things-and-embedded-systems-ele-i/endsem-nov-dec-2023.pdf",
+                "https://res.cloudinary.com/diiiuwl1p/raw/upload/v1764921192/cse/sem-5/internet-of-things-and-embedded-systems-ele-i/endsem-nov-dec-2024.pdf",
+                "https://res.cloudinary.com/diiiuwl1p/raw/upload/v1764921192/cse/sem-5/internet-of-things-and-embedded-systems-ele-i/insem-august-2025.pdf",
+                "https://res.cloudinary.com/diiiuwl1p/raw/upload/v1764921193/cse/sem-5/internet-of-things-and-embedded-systems-ele-i/insem-oct-2022.pdf",
+                "https://res.cloudinary.com/diiiuwl1p/raw/upload/v1764921193/cse/sem-5/internet-of-things-and-embedded-systems-ele-i/insem-sep-2023.pdf",
+                "https://res.cloudinary.com/diiiuwl1p/raw/upload/v1764921194/cse/sem-5/internet-of-things-and-embedded-systems-ele-i/insem-sep-2024.pdf"
+            ],
+            "software-project-management-ele-i": [
+                "https://res.cloudinary.com/diiiuwl1p/raw/upload/v1764921194/cse/sem-5/software-project-management-ele-i/endsem-may-jun-2022.pdf"
+            ],
+            "systems-programming-and-operating-system": [
+                "https://res.cloudinary.com/diiiuwl1p/raw/upload/v1764921195/cse/sem-5/systems-programming-and-operating-system/endsem-may-jun-2022.pdf",
+                "https://res.cloudinary.com/diiiuwl1p/raw/upload/v1764921196/cse/sem-5/systems-programming-and-operating-system/endsem-may-jun-2023.pdf",
+                "https://res.cloudinary.com/diiiuwl1p/raw/upload/v1764921197/cse/sem-5/systems-programming-and-operating-system/endsem-may-jun-2024.pdf",
+                "https://res.cloudinary.com/diiiuwl1p/raw/upload/v1764921197/cse/sem-5/systems-programming-and-operating-system/endsem-may-jun-2025.pdf",
+                "https://res.cloudinary.com/diiiuwl1p/raw/upload/v1764921198/cse/sem-5/systems-programming-and-operating-system/endsem-nov-dec-2022.pdf",
+                "https://res.cloudinary.com/diiiuwl1p/raw/upload/v1764921198/cse/sem-5/systems-programming-and-operating-system/endsem-nov-dec-2023.pdf",
+                "https://res.cloudinary.com/diiiuwl1p/raw/upload/v1764921199/cse/sem-5/systems-programming-and-operating-system/endsem-nov-dec-2024.pdf",
+                "https://res.cloudinary.com/diiiuwl1p/raw/upload/v1764921200/cse/sem-5/systems-programming-and-operating-system/insem-august-2025.pdf",
+                "https://res.cloudinary.com/diiiuwl1p/raw/upload/v1764921200/cse/sem-5/systems-programming-and-operating-system/insem-oct-2022.pdf",
+                "https://res.cloudinary.com/diiiuwl1p/raw/upload/v1764921201/cse/sem-5/systems-programming-and-operating-system/insem-sep-2023.pdf",
+                "https://res.cloudinary.com/diiiuwl1p/raw/upload/v1764921202/cse/sem-5/systems-programming-and-operating-system/insem-sep-2024.pdf"
+            ],
+            "theory-of-computation": [
+                "https://res.cloudinary.com/diiiuwl1p/raw/upload/v1764921202/cse/sem-5/theory-of-computation/endsem-may-jun-2022.pdf",
+                "https://res.cloudinary.com/diiiuwl1p/raw/upload/v1764921203/cse/sem-5/theory-of-computation/endsem-may-jun-2023.pdf",
+                "https://res.cloudinary.com/diiiuwl1p/raw/upload/v1764921204/cse/sem-5/theory-of-computation/endsem-may-jun-2024.pdf",
+                "https://res.cloudinary.com/diiiuwl1p/raw/upload/v1764921205/cse/sem-5/theory-of-computation/endsem-may-jun-2025.pdf",
+                "https://res.cloudinary.com/diiiuwl1p/raw/upload/v1764921205/cse/sem-5/theory-of-computation/endsem-nov-dec-2022.pdf",
+                "https://res.cloudinary.com/diiiuwl1p/raw/upload/v1764921206/cse/sem-5/theory-of-computation/endsem-nov-dec-2023.pdf",
+                "https://res.cloudinary.com/diiiuwl1p/raw/upload/v1764921206/cse/sem-5/theory-of-computation/endsem-nov-dec-2024.pdf",
+                "https://res.cloudinary.com/diiiuwl1p/raw/upload/v1764921207/cse/sem-5/theory-of-computation/insem-august-2025.pdf",
+                "https://res.cloudinary.com/diiiuwl1p/raw/upload/v1764921208/cse/sem-5/theory-of-computation/insem-oct-2022.pdf",
+                "https://res.cloudinary.com/diiiuwl1p/raw/upload/v1764921208/cse/sem-5/theory-of-computation/insem-sep-2023.pdf",
+                "https://res.cloudinary.com/diiiuwl1p/raw/upload/v1764921209/cse/sem-5/theory-of-computation/insem-sep-2024.pdf"
+            ]
+        },
+        "sem-6": {
+            "artificial-intelligence": [
+                "https://res.cloudinary.com/diiiuwl1p/raw/upload/v1764921209/cse/sem-6/artificial-intelligence/endsem-may-jun-2022.pdf",
+                "https://res.cloudinary.com/diiiuwl1p/raw/upload/v1764921210/cse/sem-6/artificial-intelligence/endsem-may-jun-2023.pdf",
+                "https://res.cloudinary.com/diiiuwl1p/raw/upload/v1764921210/cse/sem-6/artificial-intelligence/endsem-may-jun-2024.pdf",
+                "https://res.cloudinary.com/diiiuwl1p/raw/upload/v1764921211/cse/sem-6/artificial-intelligence/endsem-may-jun-2025.pdf",
+                "https://res.cloudinary.com/diiiuwl1p/raw/upload/v1764921212/cse/sem-6/artificial-intelligence/endsem-nov-dec-2022.pdf",
+                "https://res.cloudinary.com/diiiuwl1p/raw/upload/v1764921214/cse/sem-6/artificial-intelligence/endsem-nov-dec-2023.pdf",
+                "https://res.cloudinary.com/diiiuwl1p/raw/upload/v1764921215/cse/sem-6/artificial-intelligence/endsem-nov-dec-2024.pdf",
+                "https://res.cloudinary.com/diiiuwl1p/raw/upload/v1764921215/cse/sem-6/artificial-intelligence/insem-feb-2023.pdf",
+                "https://res.cloudinary.com/diiiuwl1p/raw/upload/v1764921216/cse/sem-6/artificial-intelligence/insem-march-2024.pdf"
+            ],
+            "augmented-and-virtual-reality-ele-ii": [
+                "https://res.cloudinary.com/diiiuwl1p/raw/upload/v1764921217/cse/sem-6/augmented-and-virtual-reality-ele-ii/endsem-nov-dec-2022.pdf",
+                "https://res.cloudinary.com/diiiuwl1p/raw/upload/v1764921217/cse/sem-6/augmented-and-virtual-reality-ele-ii/insem-august-2025.pdf",
+                "https://res.cloudinary.com/diiiuwl1p/raw/upload/v1764921219/cse/sem-6/augmented-and-virtual-reality-ele-ii/insem-oct-2022.pdf",
+                "https://res.cloudinary.com/diiiuwl1p/raw/upload/v1764921219/cse/sem-6/augmented-and-virtual-reality-ele-ii/insem-sep-2024.pdf"
+            ],
+            "cloud-computing": [
+                "https://res.cloudinary.com/diiiuwl1p/raw/upload/v1764921220/cse/sem-6/cloud-computing/endsem-may-jun-2022.pdf",
+                "https://res.cloudinary.com/diiiuwl1p/raw/upload/v1764921221/cse/sem-6/cloud-computing/endsem-may-jun-2023.pdf",
+                "https://res.cloudinary.com/diiiuwl1p/raw/upload/v1764921221/cse/sem-6/cloud-computing/endsem-may-jun-2024.pdf",
+                "https://res.cloudinary.com/diiiuwl1p/raw/upload/v1764921222/cse/sem-6/cloud-computing/endsem-may-jun-2025.pdf",
+                "https://res.cloudinary.com/diiiuwl1p/raw/upload/v1764921223/cse/sem-6/cloud-computing/endsem-nov-dec-2022.pdf",
+                "https://res.cloudinary.com/diiiuwl1p/raw/upload/v1764921224/cse/sem-6/cloud-computing/endsem-nov-dec-2023.pdf",
+                "https://res.cloudinary.com/diiiuwl1p/raw/upload/v1764921224/cse/sem-6/cloud-computing/endsem-nov-dec-2024.pdf",
+                "https://res.cloudinary.com/diiiuwl1p/raw/upload/v1764921225/cse/sem-6/cloud-computing/insem-feb-2023.pdf",
+                "https://res.cloudinary.com/diiiuwl1p/raw/upload/v1764921226/cse/sem-6/cloud-computing/insem-march-2024.pdf"
+            ],
+            "data-science-and-big-data-analytics": [
+                "https://res.cloudinary.com/diiiuwl1p/raw/upload/v1764921226/cse/sem-6/data-science-and-big-data-analytics/endsem-may-jun-2022.pdf",
+                "https://res.cloudinary.com/diiiuwl1p/raw/upload/v1764921227/cse/sem-6/data-science-and-big-data-analytics/endsem-may-jun-2023.pdf",
+                "https://res.cloudinary.com/diiiuwl1p/raw/upload/v1764921228/cse/sem-6/data-science-and-big-data-analytics/endsem-may-jun-2024.pdf",
+                "https://res.cloudinary.com/diiiuwl1p/raw/upload/v1764921228/cse/sem-6/data-science-and-big-data-analytics/endsem-may-jun-2025.pdf",
+                "https://res.cloudinary.com/diiiuwl1p/raw/upload/v1764921229/cse/sem-6/data-science-and-big-data-analytics/endsem-nov-dec-2022.pdf",
+                "https://res.cloudinary.com/diiiuwl1p/raw/upload/v1764921230/cse/sem-6/data-science-and-big-data-analytics/endsem-nov-dec-2023.pdf",
+                "https://res.cloudinary.com/diiiuwl1p/raw/upload/v1764921230/cse/sem-6/data-science-and-big-data-analytics/endsem-nov-dec-2024.pdf",
+                "https://res.cloudinary.com/diiiuwl1p/raw/upload/v1764921231/cse/sem-6/data-science-and-big-data-analytics/insem-feb-2023.pdf",
+                "https://res.cloudinary.com/diiiuwl1p/raw/upload/v1764921231/cse/sem-6/data-science-and-big-data-analytics/insem-march-2024.pdf"
+            ],
+            "information-security-ele-ii": [
+                "https://res.cloudinary.com/diiiuwl1p/raw/upload/v1764921232/cse/sem-6/information-security-ele-ii/endsem-may-jun-2025.pdf"
+            ],
+            "software-modeling-and-architectures-ele-ii": [
+                "https://res.cloudinary.com/diiiuwl1p/raw/upload/v1764921232/cse/sem-6/software-modeling-and-architectures-ele-ii/endsem-may-jun-2023.pdf"
+            ],
+            "web-technology": [
+                "https://res.cloudinary.com/diiiuwl1p/raw/upload/v1764921233/cse/sem-6/web-technology/endsem-may-jun-2022.pdf",
+                "https://res.cloudinary.com/diiiuwl1p/raw/upload/v1764921233/cse/sem-6/web-technology/endsem-may-jun-2023.pdf",
+                "https://res.cloudinary.com/diiiuwl1p/raw/upload/v1764921234/cse/sem-6/web-technology/endsem-may-jun-2024.pdf",
+                "https://res.cloudinary.com/diiiuwl1p/raw/upload/v1764921235/cse/sem-6/web-technology/endsem-may-jun-2025.pdf",
+                "https://res.cloudinary.com/diiiuwl1p/raw/upload/v1764921235/cse/sem-6/web-technology/endsem-nov-dec-2022.pdf",
+                "https://res.cloudinary.com/diiiuwl1p/raw/upload/v1764921236/cse/sem-6/web-technology/endsem-nov-dec-2023.pdf",
+                "https://res.cloudinary.com/diiiuwl1p/raw/upload/v1764921236/cse/sem-6/web-technology/endsem-nov-dec-2024.pdf",
+                "https://res.cloudinary.com/diiiuwl1p/raw/upload/v1764921237/cse/sem-6/web-technology/insem-feb-2023.pdf",
+                "https://res.cloudinary.com/diiiuwl1p/raw/upload/v1764921238/cse/sem-6/web-technology/insem-march-2024.pdf"
             ]
         }
     }

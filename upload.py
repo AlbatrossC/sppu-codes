@@ -13,7 +13,7 @@ cloudinary.config(
 )
 
 # Root directory containing PDF files (change as needed)
-ROOT_DIR = 'aids'
+ROOT_DIR = 'cse'
 OUTPUT_JSON = 'questionpapers.json'
 
 # Load existing JSON if present; otherwise, initialize a new structure

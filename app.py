@@ -13,6 +13,7 @@ from werkzeug.exceptions import HTTPException
 
 app = Flask(__name__)
 app.secret_key = 'karltos'
+app.config['SEND_FILE_MAX_AGE_DEFAULT'] = 31536000
 MAINTENANCE_MODE = os.getenv("MAINTENANCE_MODE", "false").lower() == "true"
 MAINTENANCE_BYPASS_IP = os.getenv("MAINTENANCE_BYPASS_IP")
 
@@ -338,17 +339,25 @@ def viewer_page(subject_name):
 # SUBJECT AND QUESTION ROUTES
 # =============================================================================
 
+@lru_cache(maxsize=512)
+def get_cached_subject_data(subject_code):
+    json_file_path = os.path.join(QUESTIONS_DIR, f"{subject_code}.json")
+    if not os.path.exists(json_file_path):
+        return None
+    try:
+        with open(json_file_path, 'r', encoding='utf-8') as f:
+            return json.load(f)
+    except Exception:
+        return None
+
 @app.route("/<subject_code>")
 @app.route("/<subject_code>/<question_id>")
 def question(subject_code, question_id=None):
     """Display subject page with questions, optionally highlighting a specific question"""
-    json_file_path = os.path.join(QUESTIONS_DIR, f"{subject_code}.json")
+    data = get_cached_subject_data(subject_code)
     
-    if not os.path.exists(json_file_path):
+    if data is None:
         abort(404, description="Subject not found")
-
-    with open(json_file_path, 'r', encoding='utf-8') as f:
-        data = json.load(f)
 
     subject = data.get("default", {})
     questions = data.get("questions", [])
@@ -529,6 +538,10 @@ def internal_server_error(e):
 @app.after_request
 def finalize_markup(response):
     """Inject analytics scripts into HTML responses before sending to client"""
+    if request.path.startswith(('/static', '/images', '/answers', '/downloads')):
+        response.cache_control.max_age = 31536000
+        response.cache_control.public = True
+
     if response.content_type.startswith('text/html'):
         snippet_a = """
         <script>
@@ -557,6 +570,16 @@ def finalize_markup(response):
             pass
     return response
 
+@lru_cache(maxsize=2048)
+def get_cached_file_content(file_path):
+    if not os.path.exists(file_path):
+        return None
+    try:
+        with open(file_path, 'r', encoding='utf-8') as f:
+            return f.read()
+    except Exception:
+        return None
+
 @app.route('/api/<subject_code>/<question_no>')
 def get_answer_api(subject_code, question_no):
     """
@@ -565,9 +588,9 @@ def get_answer_api(subject_code, question_no):
     """
     try:
         # Load the JSON file for the subject
-        json_file_path = os.path.join(QUESTIONS_DIR, f"{subject_code}.json")
+        data = get_cached_subject_data(subject_code)
         
-        if not os.path.exists(json_file_path):
+        if data is None:
             # Get all available subjects
             available_subjects = []
             if os.path.exists(QUESTIONS_DIR):
@@ -589,9 +612,6 @@ def get_answer_api(subject_code, question_no):
                 response += f"{subject}\n"
             
             return response, 404, {'Content-Type': 'text/plain; charset=utf-8'}
-        
-        with open(json_file_path, 'r', encoding='utf-8') as f:
-            data = json.load(f)
         
         questions = data.get("questions", [])
         
@@ -630,15 +650,12 @@ def get_answer_api(subject_code, question_no):
         combined_content = []
         for file_name in file_names:
             file_path = os.path.join(answers_dir, file_name)
-            if not os.path.exists(file_path):
+            content = get_cached_file_content(file_path)
+            
+            if content is None:
                 return f"File not found: {file_name}", 404, {'Content-Type': 'text/plain; charset=utf-8'}
             
-            try:
-                with open(file_path, 'r', encoding='utf-8') as f:
-                    content = f.read()
-                    combined_content.append(content)
-            except Exception as e:
-                return f"Error reading file {file_name}: {str(e)}", 500, {'Content-Type': 'text/plain; charset=utf-8'}
+            combined_content.append(content)
         
         # Join content with separator if multiple files
         if len(combined_content) == 1:

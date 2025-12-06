@@ -1,0 +1,506 @@
+{
+    "fy": {
+        "sem-1": {
+            "basic-electrical-engineering": [
+                "https://zauiiivigqoifsvtqhnt.supabase.co/storage/v1/object/public/sppu-questionpapers/fy/sem-1/basic-electrical-engineering/endsem-may-jun-2022-bee.pdf",
+                "https://zauiiivigqoifsvtqhnt.supabase.co/storage/v1/object/public/sppu-questionpapers/fy/sem-1/basic-electrical-engineering/endsem-may-jun-2023-bee.pdf",
+                "https://zauiiivigqoifsvtqhnt.supabase.co/storage/v1/object/public/sppu-questionpapers/fy/sem-1/basic-electrical-engineering/endsem-may-jun-2024-bee.pdf",
+                "https://zauiiivigqoifsvtqhnt.supabase.co/storage/v1/object/public/sppu-questionpapers/fy/sem-1/basic-electrical-engineering/endsem-may-jun-2025-bee.pdf",
+                "https://zauiiivigqoifsvtqhnt.supabase.co/storage/v1/object/public/sppu-questionpapers/fy/sem-1/basic-electrical-engineering/endsem-nov-dec-2019-bee.pdf",
+                "https://zauiiivigqoifsvtqhnt.supabase.co/storage/v1/object/public/sppu-questionpapers/fy/sem-1/basic-electrical-engineering/endsem-nov-dec-2023-bee.pdf",
+                "https://zauiiivigqoifsvtqhnt.supabase.co/storage/v1/object/public/sppu-questionpapers/fy/sem-1/basic-electrical-engineering/endsem-nov-dec-2024-bee.pdf",
+                "https://zauiiivigqoifsvtqhnt.supabase.co/storage/v1/object/public/sppu-questionpapers/fy/sem-1/basic-electrical-engineering/insem-march-2020-bee.pdf",
+                "https://zauiiivigqoifsvtqhnt.supabase.co/storage/v1/object/public/sppu-questionpapers/fy/sem-1/basic-electrical-engineering/insem-march-2024-bee.pdf",
+                "https://zauiiivigqoifsvtqhnt.supabase.co/storage/v1/object/public/sppu-questionpapers/fy/sem-1/basic-electrical-engineering/insem-oct-2019-bee.pdf",
+                "https://zauiiivigqoifsvtqhnt.supabase.co/storage/v1/object/public/sppu-questionpapers/fy/sem-1/basic-electrical-engineering/insem-oct-2022-bee.pdf",
+                "https://zauiiivigqoifsvtqhnt.supabase.co/storage/v1/object/public/sppu-questionpapers/fy/sem-1/basic-electrical-engineering/insem-oct-2023-bee.pdf",
+                "https://zauiiivigqoifsvtqhnt.supabase.co/storage/v1/object/public/sppu-questionpapers/fy/sem-1/basic-electrical-engineering/insem-sep-2024-bee.pdf"
+            ],
+            "engineering-mathematics-i": [
+                "https://zauiiivigqoifsvtqhnt.supabase.co/storage/v1/object/public/sppu-questionpapers/fy/sem-1/engineering-mathematics-i/endsem-may-jun-2022-emi.pdf",
+                "https://zauiiivigqoifsvtqhnt.supabase.co/storage/v1/object/public/sppu-questionpapers/fy/sem-1/engineering-mathematics-i/endsem-may-jun-2023-emi.pdf",
+                "https://zauiiivigqoifsvtqhnt.supabase.co/storage/v1/object/public/sppu-questionpapers/fy/sem-1/engineering-mathematics-i/endsem-may-jun-2024-emi.pdf",
+                "https://zauiiivigqoifsvtqhnt.supabase.co/storage/v1/object/public/sppu-questionpapers/fy/sem-1/engineering-mathematics-i/endsem-may-jun-2025-emi.pdf",
+                "https://zauiiivigqoifsvtqhnt.supabase.co/storage/v1/object/public/sppu-questionpapers/fy/sem-1/engineering-mathematics-i/endsem-nov-dec-2019-emi.pdf",
+                "https://zauiiivigqoifsvtqhnt.supabase.co/storage/v1/object/public/sppu-questionpapers/fy/sem-1/engineering-mathematics-i/endsem-nov-dec-2023-emi.pdf",
+                "https://zauiiivigqoifsvtqhnt.supabase.co/storage/v1/object/public/sppu-questionpapers/fy/sem-1/engineering-mathematics-i/endsem-nov-dec-2024-emi.pdf",
+                "https://zauiiivigqoifsvtqhnt.supabase.co/storage/v1/object/public/sppu-questionpapers/fy/sem-1/engineering-mathematics-i/insem-oct-2019-emi.pdf",
+                "https://zauiiivigqoifsvtqhnt.supabase.co/storage/v1/object/public/sppu-questionpapers/fy/sem-1/engineering-mathematics-i/insem-oct-2022-emi.pdf",
+                "https://zauiiivigqoifsvtqhnt.supabase.co/storage/v1/object/public/sppu-questionpapers/fy/sem-1/engineering-mathematics-i/insem-sep-2024-emi.pdf"
+            ],
+            "engineering-mechanics": [
+                "https://zauiiivigqoifsvtqhnt.supabase.co/storage/v1/object/public/sppu-questionpapers/fy/sem-1/engineering-mechanics/endsem-may-jun-2022-em.pdf",
+                "https://zauiiivigqoifsvtqhnt.supabase.co/storage/v1/object/public/sppu-questionpapers/fy/sem-1/engineering-mechanics/endsem-may-jun-2023-em.pdf",
+                "https://zauiiivigqoifsvtqhnt.supabase.co/storage/v1/object/public/sppu-questionpapers/fy/sem-1/engineering-mechanics/endsem-may-jun-2024-em.pdf",
+                "https://zauiiivigqoifsvtqhnt.supabase.co/storage/v1/object/public/sppu-questionpapers/fy/sem-1/engineering-mechanics/endsem-may-jun-2025-em.pdf",
+                "https://zauiiivigqoifsvtqhnt.supabase.co/storage/v1/object/public/sppu-questionpapers/fy/sem-1/engineering-mechanics/endsem-nov-dec-2019-em.pdf",
+                "https://zauiiivigqoifsvtqhnt.supabase.co/storage/v1/object/public/sppu-questionpapers/fy/sem-1/engineering-mechanics/endsem-nov-dec-2023-em.pdf",
+                "https://zauiiivigqoifsvtqhnt.supabase.co/storage/v1/object/public/sppu-questionpapers/fy/sem-1/engineering-mechanics/endsem-nov-dec-2024-em.pdf",
+                "https://zauiiivigqoifsvtqhnt.supabase.co/storage/v1/object/public/sppu-questionpapers/fy/sem-1/engineering-mechanics/insem-march-2020-em.pdf",
+                "https://zauiiivigqoifsvtqhnt.supabase.co/storage/v1/object/public/sppu-questionpapers/fy/sem-1/engineering-mechanics/insem-march-2024-em.pdf",
+                "https://zauiiivigqoifsvtqhnt.supabase.co/storage/v1/object/public/sppu-questionpapers/fy/sem-1/engineering-mechanics/insem-oct-2019-em.pdf",
+                "https://zauiiivigqoifsvtqhnt.supabase.co/storage/v1/object/public/sppu-questionpapers/fy/sem-1/engineering-mechanics/insem-oct-2022-em.pdf",
+                "https://zauiiivigqoifsvtqhnt.supabase.co/storage/v1/object/public/sppu-questionpapers/fy/sem-1/engineering-mechanics/insem-oct-2023-em.pdf",
+                "https://zauiiivigqoifsvtqhnt.supabase.co/storage/v1/object/public/sppu-questionpapers/fy/sem-1/engineering-mechanics/insem-sep-2024-em.pdf"
+            ],
+            "engineering-physics": [
+                "https://zauiiivigqoifsvtqhnt.supabase.co/storage/v1/object/public/sppu-questionpapers/fy/sem-1/engineering-physics/endsem-may-jun-2022-ep.pdf",
+                "https://zauiiivigqoifsvtqhnt.supabase.co/storage/v1/object/public/sppu-questionpapers/fy/sem-1/engineering-physics/endsem-may-jun-2023-ep.pdf",
+                "https://zauiiivigqoifsvtqhnt.supabase.co/storage/v1/object/public/sppu-questionpapers/fy/sem-1/engineering-physics/endsem-may-jun-2024-ep.pdf",
+                "https://zauiiivigqoifsvtqhnt.supabase.co/storage/v1/object/public/sppu-questionpapers/fy/sem-1/engineering-physics/endsem-may-jun-2025-ep.pdf",
+                "https://zauiiivigqoifsvtqhnt.supabase.co/storage/v1/object/public/sppu-questionpapers/fy/sem-1/engineering-physics/endsem-nov-dec-2019-ep.pdf",
+                "https://zauiiivigqoifsvtqhnt.supabase.co/storage/v1/object/public/sppu-questionpapers/fy/sem-1/engineering-physics/endsem-nov-dec-2023-ep.pdf",
+                "https://zauiiivigqoifsvtqhnt.supabase.co/storage/v1/object/public/sppu-questionpapers/fy/sem-1/engineering-physics/endsem-nov-dec-2024-ep.pdf",
+                "https://zauiiivigqoifsvtqhnt.supabase.co/storage/v1/object/public/sppu-questionpapers/fy/sem-1/engineering-physics/insem-march-2020-ep.pdf",
+                "https://zauiiivigqoifsvtqhnt.supabase.co/storage/v1/object/public/sppu-questionpapers/fy/sem-1/engineering-physics/insem-march-2024-ep.pdf",
+                "https://zauiiivigqoifsvtqhnt.supabase.co/storage/v1/object/public/sppu-questionpapers/fy/sem-1/engineering-physics/insem-oct-2019-ep.pdf",
+                "https://zauiiivigqoifsvtqhnt.supabase.co/storage/v1/object/public/sppu-questionpapers/fy/sem-1/engineering-physics/insem-oct-2022-ep.pdf",
+                "https://zauiiivigqoifsvtqhnt.supabase.co/storage/v1/object/public/sppu-questionpapers/fy/sem-1/engineering-physics/insem-oct-2023-ep.pdf",
+                "https://zauiiivigqoifsvtqhnt.supabase.co/storage/v1/object/public/sppu-questionpapers/fy/sem-1/engineering-physics/insem-sep-2024-ep.pdf"
+            ],
+            "programming-and-problem-solving": [
+                "https://zauiiivigqoifsvtqhnt.supabase.co/storage/v1/object/public/sppu-questionpapers/fy/sem-1/programming-and-problem-solving/endsem-may-jun-2022-paps.pdf",
+                "https://zauiiivigqoifsvtqhnt.supabase.co/storage/v1/object/public/sppu-questionpapers/fy/sem-1/programming-and-problem-solving/endsem-may-jun-2023-paps.pdf",
+                "https://zauiiivigqoifsvtqhnt.supabase.co/storage/v1/object/public/sppu-questionpapers/fy/sem-1/programming-and-problem-solving/endsem-may-jun-2024-paps.pdf",
+                "https://zauiiivigqoifsvtqhnt.supabase.co/storage/v1/object/public/sppu-questionpapers/fy/sem-1/programming-and-problem-solving/endsem-may-jun-2025-paps.pdf",
+                "https://zauiiivigqoifsvtqhnt.supabase.co/storage/v1/object/public/sppu-questionpapers/fy/sem-1/programming-and-problem-solving/endsem-nov-dec-2019-paps.pdf",
+                "https://zauiiivigqoifsvtqhnt.supabase.co/storage/v1/object/public/sppu-questionpapers/fy/sem-1/programming-and-problem-solving/endsem-nov-dec-2023-paps.pdf",
+                "https://zauiiivigqoifsvtqhnt.supabase.co/storage/v1/object/public/sppu-questionpapers/fy/sem-1/programming-and-problem-solving/endsem-nov-dec-2024-paps.pdf",
+                "https://zauiiivigqoifsvtqhnt.supabase.co/storage/v1/object/public/sppu-questionpapers/fy/sem-1/programming-and-problem-solving/insem-march-2020-paps.pdf",
+                "https://zauiiivigqoifsvtqhnt.supabase.co/storage/v1/object/public/sppu-questionpapers/fy/sem-1/programming-and-problem-solving/insem-march-2024-paps.pdf",
+                "https://zauiiivigqoifsvtqhnt.supabase.co/storage/v1/object/public/sppu-questionpapers/fy/sem-1/programming-and-problem-solving/insem-oct-2019-paps.pdf",
+                "https://zauiiivigqoifsvtqhnt.supabase.co/storage/v1/object/public/sppu-questionpapers/fy/sem-1/programming-and-problem-solving/insem-oct-2022-paps.pdf",
+                "https://zauiiivigqoifsvtqhnt.supabase.co/storage/v1/object/public/sppu-questionpapers/fy/sem-1/programming-and-problem-solving/insem-oct-2023-paps.pdf",
+                "https://zauiiivigqoifsvtqhnt.supabase.co/storage/v1/object/public/sppu-questionpapers/fy/sem-1/programming-and-problem-solving/insem-sep-2024-paps.pdf"
+            ]
+        },
+        "sem-2": {
+            "basic-electronics-engineering": [
+                "https://zauiiivigqoifsvtqhnt.supabase.co/storage/v1/object/public/sppu-questionpapers/fy/sem-2/basic-electronics-engineering/endsem-may-jun-2022-bee.pdf",
+                "https://zauiiivigqoifsvtqhnt.supabase.co/storage/v1/object/public/sppu-questionpapers/fy/sem-2/basic-electronics-engineering/endsem-may-jun-2023-bee.pdf",
+                "https://zauiiivigqoifsvtqhnt.supabase.co/storage/v1/object/public/sppu-questionpapers/fy/sem-2/basic-electronics-engineering/endsem-may-jun-2025-bee.pdf",
+                "https://zauiiivigqoifsvtqhnt.supabase.co/storage/v1/object/public/sppu-questionpapers/fy/sem-2/basic-electronics-engineering/endsem-nov-dec-2019-bee.pdf",
+                "https://zauiiivigqoifsvtqhnt.supabase.co/storage/v1/object/public/sppu-questionpapers/fy/sem-2/basic-electronics-engineering/endsem-nov-dec-2023-bee.pdf",
+                "https://zauiiivigqoifsvtqhnt.supabase.co/storage/v1/object/public/sppu-questionpapers/fy/sem-2/basic-electronics-engineering/endsem-nov-dec-2024-bee.pdf",
+                "https://zauiiivigqoifsvtqhnt.supabase.co/storage/v1/object/public/sppu-questionpapers/fy/sem-2/basic-electronics-engineering/insem-march-2020-bee.pdf",
+                "https://zauiiivigqoifsvtqhnt.supabase.co/storage/v1/object/public/sppu-questionpapers/fy/sem-2/basic-electronics-engineering/insem-march-2024-bee.pdf",
+                "https://zauiiivigqoifsvtqhnt.supabase.co/storage/v1/object/public/sppu-questionpapers/fy/sem-2/basic-electronics-engineering/insem-oct-2019-bee.pdf",
+                "https://zauiiivigqoifsvtqhnt.supabase.co/storage/v1/object/public/sppu-questionpapers/fy/sem-2/basic-electronics-engineering/insem-oct-2022-bee.pdf",
+                "https://zauiiivigqoifsvtqhnt.supabase.co/storage/v1/object/public/sppu-questionpapers/fy/sem-2/basic-electronics-engineering/insem-oct-2023-bee.pdf",
+                "https://zauiiivigqoifsvtqhnt.supabase.co/storage/v1/object/public/sppu-questionpapers/fy/sem-2/basic-electronics-engineering/insem-sep-2024-bee.pdf"
+            ],
+            "engineering-chemistry": [
+                "https://zauiiivigqoifsvtqhnt.supabase.co/storage/v1/object/public/sppu-questionpapers/fy/sem-2/engineering-chemistry/endsem-may-jun-2022-ec.pdf",
+                "https://zauiiivigqoifsvtqhnt.supabase.co/storage/v1/object/public/sppu-questionpapers/fy/sem-2/engineering-chemistry/endsem-may-jun-2023-ec.pdf",
+                "https://zauiiivigqoifsvtqhnt.supabase.co/storage/v1/object/public/sppu-questionpapers/fy/sem-2/engineering-chemistry/endsem-may-jun-2024-ec.pdf",
+                "https://zauiiivigqoifsvtqhnt.supabase.co/storage/v1/object/public/sppu-questionpapers/fy/sem-2/engineering-chemistry/endsem-may-jun-2025-ec.pdf",
+                "https://zauiiivigqoifsvtqhnt.supabase.co/storage/v1/object/public/sppu-questionpapers/fy/sem-2/engineering-chemistry/endsem-nov-dec-2019-ec.pdf",
+                "https://zauiiivigqoifsvtqhnt.supabase.co/storage/v1/object/public/sppu-questionpapers/fy/sem-2/engineering-chemistry/endsem-nov-dec-2023-ec.pdf",
+                "https://zauiiivigqoifsvtqhnt.supabase.co/storage/v1/object/public/sppu-questionpapers/fy/sem-2/engineering-chemistry/endsem-nov-dec-2024-ec.pdf",
+                "https://zauiiivigqoifsvtqhnt.supabase.co/storage/v1/object/public/sppu-questionpapers/fy/sem-2/engineering-chemistry/insem-march-2020-ec.pdf",
+                "https://zauiiivigqoifsvtqhnt.supabase.co/storage/v1/object/public/sppu-questionpapers/fy/sem-2/engineering-chemistry/insem-march-2024-ec.pdf",
+                "https://zauiiivigqoifsvtqhnt.supabase.co/storage/v1/object/public/sppu-questionpapers/fy/sem-2/engineering-chemistry/insem-oct-2019-ec.pdf",
+                "https://zauiiivigqoifsvtqhnt.supabase.co/storage/v1/object/public/sppu-questionpapers/fy/sem-2/engineering-chemistry/insem-oct-2022-ec.pdf",
+                "https://zauiiivigqoifsvtqhnt.supabase.co/storage/v1/object/public/sppu-questionpapers/fy/sem-2/engineering-chemistry/insem-oct-2023-ec.pdf",
+                "https://zauiiivigqoifsvtqhnt.supabase.co/storage/v1/object/public/sppu-questionpapers/fy/sem-2/engineering-chemistry/insem-sep-2024-ec.pdf"
+            ],
+            "engineering-graphics": [
+                "https://zauiiivigqoifsvtqhnt.supabase.co/storage/v1/object/public/sppu-questionpapers/fy/sem-2/engineering-graphics/other-may-jun-2022-eg.pdf",
+                "https://zauiiivigqoifsvtqhnt.supabase.co/storage/v1/object/public/sppu-questionpapers/fy/sem-2/engineering-graphics/other-may-jun-2023-eg.pdf",
+                "https://zauiiivigqoifsvtqhnt.supabase.co/storage/v1/object/public/sppu-questionpapers/fy/sem-2/engineering-graphics/other-may-jun-2024-eg.pdf",
+                "https://zauiiivigqoifsvtqhnt.supabase.co/storage/v1/object/public/sppu-questionpapers/fy/sem-2/engineering-graphics/other-may-jun-2025-eg.pdf",
+                "https://zauiiivigqoifsvtqhnt.supabase.co/storage/v1/object/public/sppu-questionpapers/fy/sem-2/engineering-graphics/other-nov-dec-2023-eg.pdf",
+                "https://zauiiivigqoifsvtqhnt.supabase.co/storage/v1/object/public/sppu-questionpapers/fy/sem-2/engineering-graphics/other-nov-dec-2024-eg.pdf"
+            ],
+            "engineering-mathematics-ii": [
+                "https://zauiiivigqoifsvtqhnt.supabase.co/storage/v1/object/public/sppu-questionpapers/fy/sem-2/engineering-mathematics-ii/endsem-may-jun-2022-emi.pdf",
+                "https://zauiiivigqoifsvtqhnt.supabase.co/storage/v1/object/public/sppu-questionpapers/fy/sem-2/engineering-mathematics-ii/endsem-may-jun-2023-emi.pdf",
+                "https://zauiiivigqoifsvtqhnt.supabase.co/storage/v1/object/public/sppu-questionpapers/fy/sem-2/engineering-mathematics-ii/endsem-may-jun-2024-emi.pdf",
+                "https://zauiiivigqoifsvtqhnt.supabase.co/storage/v1/object/public/sppu-questionpapers/fy/sem-2/engineering-mathematics-ii/endsem-may-jun-2025-emi.pdf",
+                "https://zauiiivigqoifsvtqhnt.supabase.co/storage/v1/object/public/sppu-questionpapers/fy/sem-2/engineering-mathematics-ii/endsem-nov-dec-2023-emi.pdf",
+                "https://zauiiivigqoifsvtqhnt.supabase.co/storage/v1/object/public/sppu-questionpapers/fy/sem-2/engineering-mathematics-ii/endsem-nov-dec-2024-emi.pdf",
+                "https://zauiiivigqoifsvtqhnt.supabase.co/storage/v1/object/public/sppu-questionpapers/fy/sem-2/engineering-mathematics-ii/insem-march-2020-emi.pdf",
+                "https://zauiiivigqoifsvtqhnt.supabase.co/storage/v1/object/public/sppu-questionpapers/fy/sem-2/engineering-mathematics-ii/insem-march-2024-emi.pdf"
+            ],
+            "systems-in-mechanical-engineering": [
+                "https://zauiiivigqoifsvtqhnt.supabase.co/storage/v1/object/public/sppu-questionpapers/fy/sem-2/systems-in-mechanical-engineering/endsem-may-jun-2022-sime.pdf",
+                "https://zauiiivigqoifsvtqhnt.supabase.co/storage/v1/object/public/sppu-questionpapers/fy/sem-2/systems-in-mechanical-engineering/endsem-may-jun-2023-sime.pdf",
+                "https://zauiiivigqoifsvtqhnt.supabase.co/storage/v1/object/public/sppu-questionpapers/fy/sem-2/systems-in-mechanical-engineering/endsem-may-jun-2024-sime.pdf",
+                "https://zauiiivigqoifsvtqhnt.supabase.co/storage/v1/object/public/sppu-questionpapers/fy/sem-2/systems-in-mechanical-engineering/endsem-may-jun-2025-sime.pdf",
+                "https://zauiiivigqoifsvtqhnt.supabase.co/storage/v1/object/public/sppu-questionpapers/fy/sem-2/systems-in-mechanical-engineering/endsem-nov-dec-2019-sime.pdf",
+                "https://zauiiivigqoifsvtqhnt.supabase.co/storage/v1/object/public/sppu-questionpapers/fy/sem-2/systems-in-mechanical-engineering/endsem-nov-dec-2023-sime.pdf",
+                "https://zauiiivigqoifsvtqhnt.supabase.co/storage/v1/object/public/sppu-questionpapers/fy/sem-2/systems-in-mechanical-engineering/endsem-nov-dec-2024-sime.pdf",
+                "https://zauiiivigqoifsvtqhnt.supabase.co/storage/v1/object/public/sppu-questionpapers/fy/sem-2/systems-in-mechanical-engineering/insem-oct-2019-sime.pdf",
+                "https://zauiiivigqoifsvtqhnt.supabase.co/storage/v1/object/public/sppu-questionpapers/fy/sem-2/systems-in-mechanical-engineering/insem-oct-2022-sime.pdf",
+                "https://zauiiivigqoifsvtqhnt.supabase.co/storage/v1/object/public/sppu-questionpapers/fy/sem-2/systems-in-mechanical-engineering/insem-oct-2023-sime.pdf",
+                "https://zauiiivigqoifsvtqhnt.supabase.co/storage/v1/object/public/sppu-questionpapers/fy/sem-2/systems-in-mechanical-engineering/insem-sep-2024-sime.pdf"
+            ]
+        }
+    },
+    "aids": {
+        "sem-3": {
+            "computer-graphics": [
+                "https://zauiiivigqoifsvtqhnt.supabase.co/storage/v1/object/public/sppu-questionpapers/aids/sem-3/computer-graphics/endsem-may-jun-2023-cg.pdf",
+                "https://zauiiivigqoifsvtqhnt.supabase.co/storage/v1/object/public/sppu-questionpapers/aids/sem-3/computer-graphics/endsem-may-jun-2024-cg.pdf",
+                "https://zauiiivigqoifsvtqhnt.supabase.co/storage/v1/object/public/sppu-questionpapers/aids/sem-3/computer-graphics/endsem-nov-dec-2023-cg.pdf",
+                "https://zauiiivigqoifsvtqhnt.supabase.co/storage/v1/object/public/sppu-questionpapers/aids/sem-3/computer-graphics/insem-oct-2023-cg.pdf",
+                "https://zauiiivigqoifsvtqhnt.supabase.co/storage/v1/object/public/sppu-questionpapers/aids/sem-3/computer-graphics/insem-sept-2024-cg.pdf"
+            ],
+            "discrete-mathematics": [
+                "https://zauiiivigqoifsvtqhnt.supabase.co/storage/v1/object/public/sppu-questionpapers/aids/sem-3/discrete-mathematics/endsem-may-jun-2022-dm.pdf",
+                "https://zauiiivigqoifsvtqhnt.supabase.co/storage/v1/object/public/sppu-questionpapers/aids/sem-3/discrete-mathematics/endsem-may-jun-2023-dm.pdf",
+                "https://zauiiivigqoifsvtqhnt.supabase.co/storage/v1/object/public/sppu-questionpapers/aids/sem-3/discrete-mathematics/endsem-may-jun-2024-dm.pdf",
+                "https://zauiiivigqoifsvtqhnt.supabase.co/storage/v1/object/public/sppu-questionpapers/aids/sem-3/discrete-mathematics/endsem-nov-dec-2022-dm.pdf",
+                "https://zauiiivigqoifsvtqhnt.supabase.co/storage/v1/object/public/sppu-questionpapers/aids/sem-3/discrete-mathematics/endsem-nov-dec-2023-dm.pdf",
+                "https://zauiiivigqoifsvtqhnt.supabase.co/storage/v1/object/public/sppu-questionpapers/aids/sem-3/discrete-mathematics/insem-oct-2022-dm.pdf",
+                "https://zauiiivigqoifsvtqhnt.supabase.co/storage/v1/object/public/sppu-questionpapers/aids/sem-3/discrete-mathematics/insem-oct-2023-dm.pdf",
+                "https://zauiiivigqoifsvtqhnt.supabase.co/storage/v1/object/public/sppu-questionpapers/aids/sem-3/discrete-mathematics/insem-sept-2024-dm.pdf"
+            ],
+            "fundamentals-of-data-structures": [
+                "https://zauiiivigqoifsvtqhnt.supabase.co/storage/v1/object/public/sppu-questionpapers/aids/sem-3/fundamentals-of-data-structures/endsem-may-jun-2023-fods.pdf",
+                "https://zauiiivigqoifsvtqhnt.supabase.co/storage/v1/object/public/sppu-questionpapers/aids/sem-3/fundamentals-of-data-structures/endsem-may-jun-2024-fods.pdf",
+                "https://zauiiivigqoifsvtqhnt.supabase.co/storage/v1/object/public/sppu-questionpapers/aids/sem-3/fundamentals-of-data-structures/endsem-nov-dec-2022-fods.pdf",
+                "https://zauiiivigqoifsvtqhnt.supabase.co/storage/v1/object/public/sppu-questionpapers/aids/sem-3/fundamentals-of-data-structures/endsem-nov-dec-2023-fods.pdf",
+                "https://zauiiivigqoifsvtqhnt.supabase.co/storage/v1/object/public/sppu-questionpapers/aids/sem-3/fundamentals-of-data-structures/insem-oct-2022-fods.pdf",
+                "https://zauiiivigqoifsvtqhnt.supabase.co/storage/v1/object/public/sppu-questionpapers/aids/sem-3/fundamentals-of-data-structures/insem-oct-2023-fods.pdf",
+                "https://zauiiivigqoifsvtqhnt.supabase.co/storage/v1/object/public/sppu-questionpapers/aids/sem-3/fundamentals-of-data-structures/insem-sept-2024-fods.pdf"
+            ],
+            "object-oriented-programming": [
+                "https://zauiiivigqoifsvtqhnt.supabase.co/storage/v1/object/public/sppu-questionpapers/aids/sem-3/object-oriented-programming/endsem-may-jun-2023-oop.pdf",
+                "https://zauiiivigqoifsvtqhnt.supabase.co/storage/v1/object/public/sppu-questionpapers/aids/sem-3/object-oriented-programming/endsem-nov-dec-2022-oop.pdf",
+                "https://zauiiivigqoifsvtqhnt.supabase.co/storage/v1/object/public/sppu-questionpapers/aids/sem-3/object-oriented-programming/endsem-nov-dec-2023-oop.pdf",
+                "https://zauiiivigqoifsvtqhnt.supabase.co/storage/v1/object/public/sppu-questionpapers/aids/sem-3/object-oriented-programming/insem-oct-2023-oop.pdf",
+                "https://zauiiivigqoifsvtqhnt.supabase.co/storage/v1/object/public/sppu-questionpapers/aids/sem-3/object-oriented-programming/insem-sept-2024-oop.pdf"
+            ],
+            "operating-systems": [
+                "https://zauiiivigqoifsvtqhnt.supabase.co/storage/v1/object/public/sppu-questionpapers/aids/sem-3/operating-systems/endsem-may-jun-2023-os.pdf",
+                "https://zauiiivigqoifsvtqhnt.supabase.co/storage/v1/object/public/sppu-questionpapers/aids/sem-3/operating-systems/endsem-may-jun-2024-os.pdf",
+                "https://zauiiivigqoifsvtqhnt.supabase.co/storage/v1/object/public/sppu-questionpapers/aids/sem-3/operating-systems/endsem-nov-dec-2022-os.pdf",
+                "https://zauiiivigqoifsvtqhnt.supabase.co/storage/v1/object/public/sppu-questionpapers/aids/sem-3/operating-systems/endsem-nov-dec-2023-os.pdf",
+                "https://zauiiivigqoifsvtqhnt.supabase.co/storage/v1/object/public/sppu-questionpapers/aids/sem-3/operating-systems/insem-oct-2022-os.pdf",
+                "https://zauiiivigqoifsvtqhnt.supabase.co/storage/v1/object/public/sppu-questionpapers/aids/sem-3/operating-systems/insem-oct-2023-os.pdf",
+                "https://zauiiivigqoifsvtqhnt.supabase.co/storage/v1/object/public/sppu-questionpapers/aids/sem-3/operating-systems/insem-sept-2024-os.pdf"
+            ]
+        },
+        "sem-4": {
+            "data-structures-and-algorithms": [
+                "https://zauiiivigqoifsvtqhnt.supabase.co/storage/v1/object/public/sppu-questionpapers/aids/sem-4/data-structures-and-algorithms/endsem-may-jun-2023-dsaa.pdf",
+                "https://zauiiivigqoifsvtqhnt.supabase.co/storage/v1/object/public/sppu-questionpapers/aids/sem-4/data-structures-and-algorithms/endsem-may-jun-2024-dsaa.pdf",
+                "https://zauiiivigqoifsvtqhnt.supabase.co/storage/v1/object/public/sppu-questionpapers/aids/sem-4/data-structures-and-algorithms/endsem-nov-dec-2023-dsaa.pdf",
+                "https://zauiiivigqoifsvtqhnt.supabase.co/storage/v1/object/public/sppu-questionpapers/aids/sem-4/data-structures-and-algorithms/insem-feb-2023-dsaa.pdf",
+                "https://zauiiivigqoifsvtqhnt.supabase.co/storage/v1/object/public/sppu-questionpapers/aids/sem-4/data-structures-and-algorithms/insem-march-2024-dsaa.pdf"
+            ],
+            "internet-of-things": [
+                "https://zauiiivigqoifsvtqhnt.supabase.co/storage/v1/object/public/sppu-questionpapers/aids/sem-4/internet-of-things/endsem-may-jun-2022-iot.pdf",
+                "https://zauiiivigqoifsvtqhnt.supabase.co/storage/v1/object/public/sppu-questionpapers/aids/sem-4/internet-of-things/endsem-may-jun-2023-iot.pdf",
+                "https://zauiiivigqoifsvtqhnt.supabase.co/storage/v1/object/public/sppu-questionpapers/aids/sem-4/internet-of-things/endsem-may-jun-2024-iot.pdf",
+                "https://zauiiivigqoifsvtqhnt.supabase.co/storage/v1/object/public/sppu-questionpapers/aids/sem-4/internet-of-things/endsem-nov-dec-2023-iot.pdf",
+                "https://zauiiivigqoifsvtqhnt.supabase.co/storage/v1/object/public/sppu-questionpapers/aids/sem-4/internet-of-things/insem-feb-2023-iot.pdf",
+                "https://zauiiivigqoifsvtqhnt.supabase.co/storage/v1/object/public/sppu-questionpapers/aids/sem-4/internet-of-things/insem-march-2024-iot.pdf"
+            ],
+            "management-information-systems": [
+                "https://zauiiivigqoifsvtqhnt.supabase.co/storage/v1/object/public/sppu-questionpapers/aids/sem-4/management-information-systems/endsem-may-jun-2022-mis.pdf",
+                "https://zauiiivigqoifsvtqhnt.supabase.co/storage/v1/object/public/sppu-questionpapers/aids/sem-4/management-information-systems/endsem-may-jun-2023-mis.pdf",
+                "https://zauiiivigqoifsvtqhnt.supabase.co/storage/v1/object/public/sppu-questionpapers/aids/sem-4/management-information-systems/endsem-may-jun-2024-mis.pdf",
+                "https://zauiiivigqoifsvtqhnt.supabase.co/storage/v1/object/public/sppu-questionpapers/aids/sem-4/management-information-systems/endsem-nov-dec-2022-mis.pdf",
+                "https://zauiiivigqoifsvtqhnt.supabase.co/storage/v1/object/public/sppu-questionpapers/aids/sem-4/management-information-systems/endsem-nov-dec-2023-mis.pdf",
+                "https://zauiiivigqoifsvtqhnt.supabase.co/storage/v1/object/public/sppu-questionpapers/aids/sem-4/management-information-systems/insem-feb-2023-mis.pdf",
+                "https://zauiiivigqoifsvtqhnt.supabase.co/storage/v1/object/public/sppu-questionpapers/aids/sem-4/management-information-systems/insem-march-2024-mis.pdf"
+            ],
+            "software-engineering": [
+                "https://zauiiivigqoifsvtqhnt.supabase.co/storage/v1/object/public/sppu-questionpapers/aids/sem-4/software-engineering/endsem-may-jun-2022-se.pdf",
+                "https://zauiiivigqoifsvtqhnt.supabase.co/storage/v1/object/public/sppu-questionpapers/aids/sem-4/software-engineering/endsem-may-jun-2023-se.pdf",
+                "https://zauiiivigqoifsvtqhnt.supabase.co/storage/v1/object/public/sppu-questionpapers/aids/sem-4/software-engineering/endsem-may-jun-2024-se.pdf",
+                "https://zauiiivigqoifsvtqhnt.supabase.co/storage/v1/object/public/sppu-questionpapers/aids/sem-4/software-engineering/endsem-nov-dec-2022-se.pdf",
+                "https://zauiiivigqoifsvtqhnt.supabase.co/storage/v1/object/public/sppu-questionpapers/aids/sem-4/software-engineering/endsem-nov-dec-2023-se.pdf",
+                "https://zauiiivigqoifsvtqhnt.supabase.co/storage/v1/object/public/sppu-questionpapers/aids/sem-4/software-engineering/insem-feb-2023-se.pdf",
+                "https://zauiiivigqoifsvtqhnt.supabase.co/storage/v1/object/public/sppu-questionpapers/aids/sem-4/software-engineering/insem-march-2024-se.pdf"
+            ],
+            "statistics": [
+                "https://zauiiivigqoifsvtqhnt.supabase.co/storage/v1/object/public/sppu-questionpapers/aids/sem-4/statistics/endsem-may-jun-2022-s.pdf",
+                "https://zauiiivigqoifsvtqhnt.supabase.co/storage/v1/object/public/sppu-questionpapers/aids/sem-4/statistics/endsem-may-jun-2023-s.pdf",
+                "https://zauiiivigqoifsvtqhnt.supabase.co/storage/v1/object/public/sppu-questionpapers/aids/sem-4/statistics/endsem-may-jun-2024-s.pdf",
+                "https://zauiiivigqoifsvtqhnt.supabase.co/storage/v1/object/public/sppu-questionpapers/aids/sem-4/statistics/endsem-nov-dec-2022-s.pdf",
+                "https://zauiiivigqoifsvtqhnt.supabase.co/storage/v1/object/public/sppu-questionpapers/aids/sem-4/statistics/endsem-nov-dec-2023-s.pdf",
+                "https://zauiiivigqoifsvtqhnt.supabase.co/storage/v1/object/public/sppu-questionpapers/aids/sem-4/statistics/insem-feb-2023-s.pdf",
+                "https://zauiiivigqoifsvtqhnt.supabase.co/storage/v1/object/public/sppu-questionpapers/aids/sem-4/statistics/insem-march-2024-s.pdf"
+            ]
+        },
+        "sem-5": {
+            "artificial-intelligence-aids": [
+                "https://zauiiivigqoifsvtqhnt.supabase.co/storage/v1/object/public/sppu-questionpapers/aids/sem-5/artificial-intelligence-aids/endsem-may-jun-2023-aia.pdf",
+                "https://zauiiivigqoifsvtqhnt.supabase.co/storage/v1/object/public/sppu-questionpapers/aids/sem-5/artificial-intelligence-aids/endsem-may-jun-2024-aia.pdf",
+                "https://zauiiivigqoifsvtqhnt.supabase.co/storage/v1/object/public/sppu-questionpapers/aids/sem-5/artificial-intelligence-aids/endsem-may-jun-2025-aia.pdf",
+                "https://zauiiivigqoifsvtqhnt.supabase.co/storage/v1/object/public/sppu-questionpapers/aids/sem-5/artificial-intelligence-aids/endsem-nov-dec-2022-aia.pdf",
+                "https://zauiiivigqoifsvtqhnt.supabase.co/storage/v1/object/public/sppu-questionpapers/aids/sem-5/artificial-intelligence-aids/endsem-nov-dec-2023-aia.pdf",
+                "https://zauiiivigqoifsvtqhnt.supabase.co/storage/v1/object/public/sppu-questionpapers/aids/sem-5/artificial-intelligence-aids/endsem-nov-dec-2024-aia.pdf",
+                "https://zauiiivigqoifsvtqhnt.supabase.co/storage/v1/object/public/sppu-questionpapers/aids/sem-5/artificial-intelligence-aids/insem-august-2025-aia.pdf",
+                "https://zauiiivigqoifsvtqhnt.supabase.co/storage/v1/object/public/sppu-questionpapers/aids/sem-5/artificial-intelligence-aids/insem-oct-2022-aia.pdf",
+                "https://zauiiivigqoifsvtqhnt.supabase.co/storage/v1/object/public/sppu-questionpapers/aids/sem-5/artificial-intelligence-aids/insem-sep-2023-aia.pdf",
+                "https://zauiiivigqoifsvtqhnt.supabase.co/storage/v1/object/public/sppu-questionpapers/aids/sem-5/artificial-intelligence-aids/insem-sep-2024-aia.pdf"
+            ],
+            "computer-networks": [
+                "https://zauiiivigqoifsvtqhnt.supabase.co/storage/v1/object/public/sppu-questionpapers/aids/sem-5/computer-networks/endsem-may-jun-2023-cn.pdf",
+                "https://zauiiivigqoifsvtqhnt.supabase.co/storage/v1/object/public/sppu-questionpapers/aids/sem-5/computer-networks/endsem-may-jun-2024-cn.pdf",
+                "https://zauiiivigqoifsvtqhnt.supabase.co/storage/v1/object/public/sppu-questionpapers/aids/sem-5/computer-networks/endsem-may-jun-2025-cn.pdf",
+                "https://zauiiivigqoifsvtqhnt.supabase.co/storage/v1/object/public/sppu-questionpapers/aids/sem-5/computer-networks/endsem-nov-dec-2022-cn.pdf",
+                "https://zauiiivigqoifsvtqhnt.supabase.co/storage/v1/object/public/sppu-questionpapers/aids/sem-5/computer-networks/endsem-nov-dec-2023-cn.pdf",
+                "https://zauiiivigqoifsvtqhnt.supabase.co/storage/v1/object/public/sppu-questionpapers/aids/sem-5/computer-networks/endsem-nov-dec-2024-cn.pdf",
+                "https://zauiiivigqoifsvtqhnt.supabase.co/storage/v1/object/public/sppu-questionpapers/aids/sem-5/computer-networks/insem-august-2025-cn.pdf",
+                "https://zauiiivigqoifsvtqhnt.supabase.co/storage/v1/object/public/sppu-questionpapers/aids/sem-5/computer-networks/insem-oct-2022-cn.pdf",
+                "https://zauiiivigqoifsvtqhnt.supabase.co/storage/v1/object/public/sppu-questionpapers/aids/sem-5/computer-networks/insem-sep-2023-cn.pdf",
+                "https://zauiiivigqoifsvtqhnt.supabase.co/storage/v1/object/public/sppu-questionpapers/aids/sem-5/computer-networks/insem-sep-2024-cn.pdf"
+            ],
+            "database-management-system": [
+                "https://zauiiivigqoifsvtqhnt.supabase.co/storage/v1/object/public/sppu-questionpapers/aids/sem-5/database-management-system/endsem-may-jun-2023-dms.pdf",
+                "https://zauiiivigqoifsvtqhnt.supabase.co/storage/v1/object/public/sppu-questionpapers/aids/sem-5/database-management-system/endsem-may-jun-2024-dms.pdf",
+                "https://zauiiivigqoifsvtqhnt.supabase.co/storage/v1/object/public/sppu-questionpapers/aids/sem-5/database-management-system/endsem-may-jun-2025-dms.pdf",
+                "https://zauiiivigqoifsvtqhnt.supabase.co/storage/v1/object/public/sppu-questionpapers/aids/sem-5/database-management-system/endsem-nov-dec-2022-dms.pdf",
+                "https://zauiiivigqoifsvtqhnt.supabase.co/storage/v1/object/public/sppu-questionpapers/aids/sem-5/database-management-system/endsem-nov-dec-2023-dms.pdf",
+                "https://zauiiivigqoifsvtqhnt.supabase.co/storage/v1/object/public/sppu-questionpapers/aids/sem-5/database-management-system/endsem-nov-dec-2024-dms.pdf",
+                "https://zauiiivigqoifsvtqhnt.supabase.co/storage/v1/object/public/sppu-questionpapers/aids/sem-5/database-management-system/insem-august-2025-dms.pdf",
+                "https://zauiiivigqoifsvtqhnt.supabase.co/storage/v1/object/public/sppu-questionpapers/aids/sem-5/database-management-system/insem-oct-2022-dms.pdf",
+                "https://zauiiivigqoifsvtqhnt.supabase.co/storage/v1/object/public/sppu-questionpapers/aids/sem-5/database-management-system/insem-sep-2023-dms.pdf",
+                "https://zauiiivigqoifsvtqhnt.supabase.co/storage/v1/object/public/sppu-questionpapers/aids/sem-5/database-management-system/insem-sep-2024-dms.pdf"
+            ],
+            "human-computer-interface-ele-i-aids": [
+                "https://zauiiivigqoifsvtqhnt.supabase.co/storage/v1/object/public/sppu-questionpapers/aids/sem-5/human-computer-interface-ele-i-aids/endsem-may-jun-2023-hcieia.pdf",
+                "https://zauiiivigqoifsvtqhnt.supabase.co/storage/v1/object/public/sppu-questionpapers/aids/sem-5/human-computer-interface-ele-i-aids/endsem-may-jun-2024-hcieia.pdf",
+                "https://zauiiivigqoifsvtqhnt.supabase.co/storage/v1/object/public/sppu-questionpapers/aids/sem-5/human-computer-interface-ele-i-aids/endsem-may-jun-2025-hcieia.pdf",
+                "https://zauiiivigqoifsvtqhnt.supabase.co/storage/v1/object/public/sppu-questionpapers/aids/sem-5/human-computer-interface-ele-i-aids/endsem-nov-dec-2022-hcieia.pdf",
+                "https://zauiiivigqoifsvtqhnt.supabase.co/storage/v1/object/public/sppu-questionpapers/aids/sem-5/human-computer-interface-ele-i-aids/endsem-nov-dec-2023-hcieia.pdf",
+                "https://zauiiivigqoifsvtqhnt.supabase.co/storage/v1/object/public/sppu-questionpapers/aids/sem-5/human-computer-interface-ele-i-aids/endsem-nov-dec-2024-hcieia.pdf",
+                "https://zauiiivigqoifsvtqhnt.supabase.co/storage/v1/object/public/sppu-questionpapers/aids/sem-5/human-computer-interface-ele-i-aids/insem-august-2025-hcieia.pdf",
+                "https://zauiiivigqoifsvtqhnt.supabase.co/storage/v1/object/public/sppu-questionpapers/aids/sem-5/human-computer-interface-ele-i-aids/insem-oct-2022-hcieia.pdf",
+                "https://zauiiivigqoifsvtqhnt.supabase.co/storage/v1/object/public/sppu-questionpapers/aids/sem-5/human-computer-interface-ele-i-aids/insem-sep-2023-hcieia.pdf",
+                "https://zauiiivigqoifsvtqhnt.supabase.co/storage/v1/object/public/sppu-questionpapers/aids/sem-5/human-computer-interface-ele-i-aids/insem-sep-2024-hcieia.pdf"
+            ],
+            "pattern-recognition-ele-i": [
+                "https://zauiiivigqoifsvtqhnt.supabase.co/storage/v1/object/public/sppu-questionpapers/aids/sem-5/pattern-recognition-ele-i/endsem-nov-dec-2024-pr-ele-i.pdf",
+                "https://zauiiivigqoifsvtqhnt.supabase.co/storage/v1/object/public/sppu-questionpapers/aids/sem-5/pattern-recognition-ele-i/insem-sep-2024-pr-ele-i.pdf"
+            ],
+            "web-technology-aids": [
+                "https://zauiiivigqoifsvtqhnt.supabase.co/storage/v1/object/public/sppu-questionpapers/aids/sem-5/web-technology-aids/endsem-may-jun-2023-wta.pdf",
+                "https://zauiiivigqoifsvtqhnt.supabase.co/storage/v1/object/public/sppu-questionpapers/aids/sem-5/web-technology-aids/endsem-may-jun-2024-wta.pdf",
+                "https://zauiiivigqoifsvtqhnt.supabase.co/storage/v1/object/public/sppu-questionpapers/aids/sem-5/web-technology-aids/endsem-may-jun-2025-wta.pdf",
+                "https://zauiiivigqoifsvtqhnt.supabase.co/storage/v1/object/public/sppu-questionpapers/aids/sem-5/web-technology-aids/endsem-nov-dec-2022-wta.pdf",
+                "https://zauiiivigqoifsvtqhnt.supabase.co/storage/v1/object/public/sppu-questionpapers/aids/sem-5/web-technology-aids/endsem-nov-dec-2023-wta.pdf",
+                "https://zauiiivigqoifsvtqhnt.supabase.co/storage/v1/object/public/sppu-questionpapers/aids/sem-5/web-technology-aids/insem-august-2025-wta.pdf",
+                "https://zauiiivigqoifsvtqhnt.supabase.co/storage/v1/object/public/sppu-questionpapers/aids/sem-5/web-technology-aids/insem-oct-2022-wta.pdf",
+                "https://zauiiivigqoifsvtqhnt.supabase.co/storage/v1/object/public/sppu-questionpapers/aids/sem-5/web-technology-aids/insem-sep-2023-wta.pdf",
+                "https://zauiiivigqoifsvtqhnt.supabase.co/storage/v1/object/public/sppu-questionpapers/aids/sem-5/web-technology-aids/insem-sep-2024-wta.pdf"
+            ]
+        },
+        "sem-6": {
+            "artificial-neural-network": [
+                "https://zauiiivigqoifsvtqhnt.supabase.co/storage/v1/object/public/sppu-questionpapers/aids/sem-6/artificial-neural-network/endsem-may-jun-2023-ann.pdf",
+                "https://zauiiivigqoifsvtqhnt.supabase.co/storage/v1/object/public/sppu-questionpapers/aids/sem-6/artificial-neural-network/endsem-may-jun-2024-ann.pdf",
+                "https://zauiiivigqoifsvtqhnt.supabase.co/storage/v1/object/public/sppu-questionpapers/aids/sem-6/artificial-neural-network/endsem-may-jun-2025-ann.pdf",
+                "https://zauiiivigqoifsvtqhnt.supabase.co/storage/v1/object/public/sppu-questionpapers/aids/sem-6/artificial-neural-network/endsem-nov-dec-2023-ann.pdf",
+                "https://zauiiivigqoifsvtqhnt.supabase.co/storage/v1/object/public/sppu-questionpapers/aids/sem-6/artificial-neural-network/insem-feb-2023-ann.pdf",
+                "https://zauiiivigqoifsvtqhnt.supabase.co/storage/v1/object/public/sppu-questionpapers/aids/sem-6/artificial-neural-network/insem-march-2024-ann.pdf",
+                "https://zauiiivigqoifsvtqhnt.supabase.co/storage/v1/object/public/sppu-questionpapers/aids/sem-6/artificial-neural-network/insem-march-2025-ann.pdf"
+            ],
+            "cloud-computing-ele-ii": [
+                "https://zauiiivigqoifsvtqhnt.supabase.co/storage/v1/object/public/sppu-questionpapers/aids/sem-6/cloud-computing-ele-ii/endsem-may-jun-2023-cc-ele-ii.pdf",
+                "https://zauiiivigqoifsvtqhnt.supabase.co/storage/v1/object/public/sppu-questionpapers/aids/sem-6/cloud-computing-ele-ii/endsem-may-jun-2024-cc-ele-ii.pdf",
+                "https://zauiiivigqoifsvtqhnt.supabase.co/storage/v1/object/public/sppu-questionpapers/aids/sem-6/cloud-computing-ele-ii/endsem-may-jun-2025-cc-ele-ii.pdf",
+                "https://zauiiivigqoifsvtqhnt.supabase.co/storage/v1/object/public/sppu-questionpapers/aids/sem-6/cloud-computing-ele-ii/endsem-nov-dec-2024-cc-ele-ii.pdf",
+                "https://zauiiivigqoifsvtqhnt.supabase.co/storage/v1/object/public/sppu-questionpapers/aids/sem-6/cloud-computing-ele-ii/insem-feb-2023-cc-ele-ii.pdf",
+                "https://zauiiivigqoifsvtqhnt.supabase.co/storage/v1/object/public/sppu-questionpapers/aids/sem-6/cloud-computing-ele-ii/insem-march-2024-cc-ele-ii.pdf",
+                "https://zauiiivigqoifsvtqhnt.supabase.co/storage/v1/object/public/sppu-questionpapers/aids/sem-6/cloud-computing-ele-ii/insem-march-2025-cc-ele-ii.pdf"
+            ],
+            "cyber-security": [
+                "https://zauiiivigqoifsvtqhnt.supabase.co/storage/v1/object/public/sppu-questionpapers/aids/sem-6/cyber-security/endsem-may-jun-2023-cs.pdf",
+                "https://zauiiivigqoifsvtqhnt.supabase.co/storage/v1/object/public/sppu-questionpapers/aids/sem-6/cyber-security/endsem-may-jun-2024-cs.pdf",
+                "https://zauiiivigqoifsvtqhnt.supabase.co/storage/v1/object/public/sppu-questionpapers/aids/sem-6/cyber-security/endsem-may-jun-2025-cs.pdf",
+                "https://zauiiivigqoifsvtqhnt.supabase.co/storage/v1/object/public/sppu-questionpapers/aids/sem-6/cyber-security/endsem-nov-dec-2024-cs.pdf",
+                "https://zauiiivigqoifsvtqhnt.supabase.co/storage/v1/object/public/sppu-questionpapers/aids/sem-6/cyber-security/insem-feb-2023-cs.pdf",
+                "https://zauiiivigqoifsvtqhnt.supabase.co/storage/v1/object/public/sppu-questionpapers/aids/sem-6/cyber-security/insem-march-2024-cs.pdf",
+                "https://zauiiivigqoifsvtqhnt.supabase.co/storage/v1/object/public/sppu-questionpapers/aids/sem-6/cyber-security/insem-march-2025-cs.pdf",
+                "https://zauiiivigqoifsvtqhnt.supabase.co/storage/v1/object/public/sppu-questionpapers/aids/sem-6/cyber-security/insem-sep-2024-cs.pdf"
+            ],
+            "data-science": [
+                "https://zauiiivigqoifsvtqhnt.supabase.co/storage/v1/object/public/sppu-questionpapers/aids/sem-6/data-science/endsem-may-jun-2023-ds.pdf",
+                "https://zauiiivigqoifsvtqhnt.supabase.co/storage/v1/object/public/sppu-questionpapers/aids/sem-6/data-science/endsem-may-jun-2024-ds.pdf",
+                "https://zauiiivigqoifsvtqhnt.supabase.co/storage/v1/object/public/sppu-questionpapers/aids/sem-6/data-science/endsem-may-jun-2025-ds.pdf",
+                "https://zauiiivigqoifsvtqhnt.supabase.co/storage/v1/object/public/sppu-questionpapers/aids/sem-6/data-science/endsem-nov-dec-2024-ds.pdf",
+                "https://zauiiivigqoifsvtqhnt.supabase.co/storage/v1/object/public/sppu-questionpapers/aids/sem-6/data-science/insem-feb-2023-ds.pdf",
+                "https://zauiiivigqoifsvtqhnt.supabase.co/storage/v1/object/public/sppu-questionpapers/aids/sem-6/data-science/insem-march-2024-ds.pdf",
+                "https://zauiiivigqoifsvtqhnt.supabase.co/storage/v1/object/public/sppu-questionpapers/aids/sem-6/data-science/insem-march-2025-ds.pdf"
+            ],
+            "natural-language-processing-ele-ii": [
+                "https://zauiiivigqoifsvtqhnt.supabase.co/storage/v1/object/public/sppu-questionpapers/aids/sem-6/natural-language-processing-ele-ii/endsem-may-jun-2023-nlp-ele-ii.pdf",
+                "https://zauiiivigqoifsvtqhnt.supabase.co/storage/v1/object/public/sppu-questionpapers/aids/sem-6/natural-language-processing-ele-ii/endsem-may-jun-2024-nlp-ele-ii.pdf",
+                "https://zauiiivigqoifsvtqhnt.supabase.co/storage/v1/object/public/sppu-questionpapers/aids/sem-6/natural-language-processing-ele-ii/endsem-may-jun-2025-nlp-ele-ii.pdf",
+                "https://zauiiivigqoifsvtqhnt.supabase.co/storage/v1/object/public/sppu-questionpapers/aids/sem-6/natural-language-processing-ele-ii/insem-feb-2023-nlp-ele-ii.pdf",
+                "https://zauiiivigqoifsvtqhnt.supabase.co/storage/v1/object/public/sppu-questionpapers/aids/sem-6/natural-language-processing-ele-ii/insem-march-2024-nlp-ele-ii.pdf",
+                "https://zauiiivigqoifsvtqhnt.supabase.co/storage/v1/object/public/sppu-questionpapers/aids/sem-6/natural-language-processing-ele-ii/insem-march-2025-nlp-ele-ii.pdf"
+            ],
+            "software-modeling-and-architecture-ele-ii": [
+                "https://zauiiivigqoifsvtqhnt.supabase.co/storage/v1/object/public/sppu-questionpapers/aids/sem-6/software-modeling-and-architecture-ele-ii/endsem-may-jun-2023-smaa-ele-ii.pdf"
+            ]
+        }
+    },
+    "cse": {
+        "sem-4": {
+            "microprocessor": [
+                "https://zauiiivigqoifsvtqhnt.supabase.co/storage/v1/object/public/sppu-questionpapers/cse/sem-4/microprocessor/endsem-may-jun-2022-m.pdf",
+                "https://zauiiivigqoifsvtqhnt.supabase.co/storage/v1/object/public/sppu-questionpapers/cse/sem-4/microprocessor/endsem-may-jun-2023-m.pdf",
+                "https://zauiiivigqoifsvtqhnt.supabase.co/storage/v1/object/public/sppu-questionpapers/cse/sem-4/microprocessor/endsem-may-jun-2024-m.pdf",
+                "https://zauiiivigqoifsvtqhnt.supabase.co/storage/v1/object/public/sppu-questionpapers/cse/sem-4/microprocessor/endsem-may-jun-2025-m.pdf",
+                "https://zauiiivigqoifsvtqhnt.supabase.co/storage/v1/object/public/sppu-questionpapers/cse/sem-4/microprocessor/endsem-nov-dec-2022-m.pdf",
+                "https://zauiiivigqoifsvtqhnt.supabase.co/storage/v1/object/public/sppu-questionpapers/cse/sem-4/microprocessor/endsem-nov-dec-2023-m.pdf",
+                "https://zauiiivigqoifsvtqhnt.supabase.co/storage/v1/object/public/sppu-questionpapers/cse/sem-4/microprocessor/endsem-nov-dec-2024-m.pdf",
+                "https://zauiiivigqoifsvtqhnt.supabase.co/storage/v1/object/public/sppu-questionpapers/cse/sem-4/microprocessor/insem-feb-2023-m.pdf",
+                "https://zauiiivigqoifsvtqhnt.supabase.co/storage/v1/object/public/sppu-questionpapers/cse/sem-4/microprocessor/insem-march-2024-m.pdf"
+            ],
+            "principles-of-programming-languages": [
+                "https://zauiiivigqoifsvtqhnt.supabase.co/storage/v1/object/public/sppu-questionpapers/cse/sem-4/principles-of-programming-languages/endsem-may-jun-2022-popl.pdf",
+                "https://zauiiivigqoifsvtqhnt.supabase.co/storage/v1/object/public/sppu-questionpapers/cse/sem-4/principles-of-programming-languages/endsem-may-jun-2023-popl.pdf",
+                "https://zauiiivigqoifsvtqhnt.supabase.co/storage/v1/object/public/sppu-questionpapers/cse/sem-4/principles-of-programming-languages/endsem-may-jun-2024-popl.pdf",
+                "https://zauiiivigqoifsvtqhnt.supabase.co/storage/v1/object/public/sppu-questionpapers/cse/sem-4/principles-of-programming-languages/endsem-nov-dec-2022-popl.pdf",
+                "https://zauiiivigqoifsvtqhnt.supabase.co/storage/v1/object/public/sppu-questionpapers/cse/sem-4/principles-of-programming-languages/endsem-nov-dec-2023-popl.pdf",
+                "https://zauiiivigqoifsvtqhnt.supabase.co/storage/v1/object/public/sppu-questionpapers/cse/sem-4/principles-of-programming-languages/insem-feb-2023-popl.pdf",
+                "https://zauiiivigqoifsvtqhnt.supabase.co/storage/v1/object/public/sppu-questionpapers/cse/sem-4/principles-of-programming-languages/insem-march-2024-popl.pdf",
+                "https://zauiiivigqoifsvtqhnt.supabase.co/storage/v1/object/public/sppu-questionpapers/cse/sem-4/principles-of-programming-languages/insem-march-2025-popl.pdf"
+            ]
+        },
+        "sem-5": {
+            "computer-network-and-security": [
+                "https://zauiiivigqoifsvtqhnt.supabase.co/storage/v1/object/public/sppu-questionpapers/cse/sem-5/computer-network-and-security/endsem-may-jun-2022-cnas.pdf",
+                "https://zauiiivigqoifsvtqhnt.supabase.co/storage/v1/object/public/sppu-questionpapers/cse/sem-5/computer-network-and-security/endsem-may-jun-2023-cnas.pdf",
+                "https://zauiiivigqoifsvtqhnt.supabase.co/storage/v1/object/public/sppu-questionpapers/cse/sem-5/computer-network-and-security/endsem-may-jun-2024-cnas.pdf",
+                "https://zauiiivigqoifsvtqhnt.supabase.co/storage/v1/object/public/sppu-questionpapers/cse/sem-5/computer-network-and-security/endsem-may-jun-2025-cnas.pdf",
+                "https://zauiiivigqoifsvtqhnt.supabase.co/storage/v1/object/public/sppu-questionpapers/cse/sem-5/computer-network-and-security/endsem-nov-dec-2022-cnas.pdf",
+                "https://zauiiivigqoifsvtqhnt.supabase.co/storage/v1/object/public/sppu-questionpapers/cse/sem-5/computer-network-and-security/endsem-nov-dec-2023-cnas.pdf",
+                "https://zauiiivigqoifsvtqhnt.supabase.co/storage/v1/object/public/sppu-questionpapers/cse/sem-5/computer-network-and-security/endsem-nov-dec-2024-cnas.pdf",
+                "https://zauiiivigqoifsvtqhnt.supabase.co/storage/v1/object/public/sppu-questionpapers/cse/sem-5/computer-network-and-security/insem-august-2025-cnas.pdf",
+                "https://zauiiivigqoifsvtqhnt.supabase.co/storage/v1/object/public/sppu-questionpapers/cse/sem-5/computer-network-and-security/insem-oct-2022-cnas.pdf",
+                "https://zauiiivigqoifsvtqhnt.supabase.co/storage/v1/object/public/sppu-questionpapers/cse/sem-5/computer-network-and-security/insem-sep-2023-cnas.pdf",
+                "https://zauiiivigqoifsvtqhnt.supabase.co/storage/v1/object/public/sppu-questionpapers/cse/sem-5/computer-network-and-security/insem-sep-2024-cnas.pdf"
+            ],
+            "database-management-systems": [
+                "https://zauiiivigqoifsvtqhnt.supabase.co/storage/v1/object/public/sppu-questionpapers/cse/sem-5/database-management-systems/endsem-may-jun-2022-dms.pdf",
+                "https://zauiiivigqoifsvtqhnt.supabase.co/storage/v1/object/public/sppu-questionpapers/cse/sem-5/database-management-systems/endsem-may-jun-2023-dms.pdf",
+                "https://zauiiivigqoifsvtqhnt.supabase.co/storage/v1/object/public/sppu-questionpapers/cse/sem-5/database-management-systems/endsem-may-jun-2024-dms.pdf",
+                "https://zauiiivigqoifsvtqhnt.supabase.co/storage/v1/object/public/sppu-questionpapers/cse/sem-5/database-management-systems/endsem-may-jun-2025-dms.pdf",
+                "https://zauiiivigqoifsvtqhnt.supabase.co/storage/v1/object/public/sppu-questionpapers/cse/sem-5/database-management-systems/endsem-nov-dec-2022-dms.pdf",
+                "https://zauiiivigqoifsvtqhnt.supabase.co/storage/v1/object/public/sppu-questionpapers/cse/sem-5/database-management-systems/endsem-nov-dec-2023-dms.pdf",
+                "https://zauiiivigqoifsvtqhnt.supabase.co/storage/v1/object/public/sppu-questionpapers/cse/sem-5/database-management-systems/endsem-nov-dec-2024-dms.pdf",
+                "https://zauiiivigqoifsvtqhnt.supabase.co/storage/v1/object/public/sppu-questionpapers/cse/sem-5/database-management-systems/insem-august-2025-dms.pdf",
+                "https://zauiiivigqoifsvtqhnt.supabase.co/storage/v1/object/public/sppu-questionpapers/cse/sem-5/database-management-systems/insem-oct-2022-dms.pdf",
+                "https://zauiiivigqoifsvtqhnt.supabase.co/storage/v1/object/public/sppu-questionpapers/cse/sem-5/database-management-systems/insem-sep-2023-dms.pdf",
+                "https://zauiiivigqoifsvtqhnt.supabase.co/storage/v1/object/public/sppu-questionpapers/cse/sem-5/database-management-systems/insem-sep-2024-dms.pdf"
+            ],
+            "human-computer-interface-ele-i-cse": [
+                "https://zauiiivigqoifsvtqhnt.supabase.co/storage/v1/object/public/sppu-questionpapers/cse/sem-5/human-computer-interface-ele-i-cse/endsem-may-jun-2024-hcieic.pdf",
+                "https://zauiiivigqoifsvtqhnt.supabase.co/storage/v1/object/public/sppu-questionpapers/cse/sem-5/human-computer-interface-ele-i-cse/endsem-may-jun-2025-hcieic.pdf",
+                "https://zauiiivigqoifsvtqhnt.supabase.co/storage/v1/object/public/sppu-questionpapers/cse/sem-5/human-computer-interface-ele-i-cse/endsem-nov-dec-2023-hcieic.pdf",
+                "https://zauiiivigqoifsvtqhnt.supabase.co/storage/v1/object/public/sppu-questionpapers/cse/sem-5/human-computer-interface-ele-i-cse/endsem-nov-dec-2024-hcieic.pdf",
+                "https://zauiiivigqoifsvtqhnt.supabase.co/storage/v1/object/public/sppu-questionpapers/cse/sem-5/human-computer-interface-ele-i-cse/insem-august-2025-hcieic.pdf",
+                "https://zauiiivigqoifsvtqhnt.supabase.co/storage/v1/object/public/sppu-questionpapers/cse/sem-5/human-computer-interface-ele-i-cse/insem-sep-2024-hcieic.pdf"
+            ],
+            "internet-of-things-and-embedded-systems-ele-i": [
+                "https://zauiiivigqoifsvtqhnt.supabase.co/storage/v1/object/public/sppu-questionpapers/cse/sem-5/internet-of-things-and-embedded-systems-ele-i/endsem-may-jun-2022-iotaes-ele-i.pdf",
+                "https://zauiiivigqoifsvtqhnt.supabase.co/storage/v1/object/public/sppu-questionpapers/cse/sem-5/internet-of-things-and-embedded-systems-ele-i/endsem-may-jun-2023-iotaes-ele-i.pdf",
+                "https://zauiiivigqoifsvtqhnt.supabase.co/storage/v1/object/public/sppu-questionpapers/cse/sem-5/internet-of-things-and-embedded-systems-ele-i/endsem-may-jun-2024-iotaes-ele-i.pdf",
+                "https://zauiiivigqoifsvtqhnt.supabase.co/storage/v1/object/public/sppu-questionpapers/cse/sem-5/internet-of-things-and-embedded-systems-ele-i/endsem-may-jun-2025-iotaes-ele-i.pdf",
+                "https://zauiiivigqoifsvtqhnt.supabase.co/storage/v1/object/public/sppu-questionpapers/cse/sem-5/internet-of-things-and-embedded-systems-ele-i/endsem-nov-dec-2022-iotaes-ele-i.pdf",
+                "https://zauiiivigqoifsvtqhnt.supabase.co/storage/v1/object/public/sppu-questionpapers/cse/sem-5/internet-of-things-and-embedded-systems-ele-i/endsem-nov-dec-2023-iotaes-ele-i.pdf",
+                "https://zauiiivigqoifsvtqhnt.supabase.co/storage/v1/object/public/sppu-questionpapers/cse/sem-5/internet-of-things-and-embedded-systems-ele-i/endsem-nov-dec-2024-iotaes-ele-i.pdf",
+                "https://zauiiivigqoifsvtqhnt.supabase.co/storage/v1/object/public/sppu-questionpapers/cse/sem-5/internet-of-things-and-embedded-systems-ele-i/insem-august-2025-iotaes-ele-i.pdf",
+                "https://zauiiivigqoifsvtqhnt.supabase.co/storage/v1/object/public/sppu-questionpapers/cse/sem-5/internet-of-things-and-embedded-systems-ele-i/insem-oct-2022-iotaes-ele-i.pdf",
+                "https://zauiiivigqoifsvtqhnt.supabase.co/storage/v1/object/public/sppu-questionpapers/cse/sem-5/internet-of-things-and-embedded-systems-ele-i/insem-sep-2023-iotaes-ele-i.pdf",
+                "https://zauiiivigqoifsvtqhnt.supabase.co/storage/v1/object/public/sppu-questionpapers/cse/sem-5/internet-of-things-and-embedded-systems-ele-i/insem-sep-2024-iotaes-ele-i.pdf"
+            ],
+            "software-project-management-ele-i": [
+                "https://zauiiivigqoifsvtqhnt.supabase.co/storage/v1/object/public/sppu-questionpapers/cse/sem-5/software-project-management-ele-i/endsem-may-jun-2022-spm-ele-i.pdf"
+            ],
+            "systems-programming-and-operating-system": [
+                "https://zauiiivigqoifsvtqhnt.supabase.co/storage/v1/object/public/sppu-questionpapers/cse/sem-5/systems-programming-and-operating-system/endsem-may-jun-2022-spaos.pdf",
+                "https://zauiiivigqoifsvtqhnt.supabase.co/storage/v1/object/public/sppu-questionpapers/cse/sem-5/systems-programming-and-operating-system/endsem-may-jun-2023-spaos.pdf",
+                "https://zauiiivigqoifsvtqhnt.supabase.co/storage/v1/object/public/sppu-questionpapers/cse/sem-5/systems-programming-and-operating-system/endsem-may-jun-2024-spaos.pdf",
+                "https://zauiiivigqoifsvtqhnt.supabase.co/storage/v1/object/public/sppu-questionpapers/cse/sem-5/systems-programming-and-operating-system/endsem-may-jun-2025-spaos.pdf",
+                "https://zauiiivigqoifsvtqhnt.supabase.co/storage/v1/object/public/sppu-questionpapers/cse/sem-5/systems-programming-and-operating-system/endsem-nov-dec-2022-spaos.pdf",
+                "https://zauiiivigqoifsvtqhnt.supabase.co/storage/v1/object/public/sppu-questionpapers/cse/sem-5/systems-programming-and-operating-system/endsem-nov-dec-2023-spaos.pdf",
+                "https://zauiiivigqoifsvtqhnt.supabase.co/storage/v1/object/public/sppu-questionpapers/cse/sem-5/systems-programming-and-operating-system/endsem-nov-dec-2024-spaos.pdf",
+                "https://zauiiivigqoifsvtqhnt.supabase.co/storage/v1/object/public/sppu-questionpapers/cse/sem-5/systems-programming-and-operating-system/insem-august-2025-spaos.pdf",
+                "https://zauiiivigqoifsvtqhnt.supabase.co/storage/v1/object/public/sppu-questionpapers/cse/sem-5/systems-programming-and-operating-system/insem-oct-2022-spaos.pdf",
+                "https://zauiiivigqoifsvtqhnt.supabase.co/storage/v1/object/public/sppu-questionpapers/cse/sem-5/systems-programming-and-operating-system/insem-sep-2023-spaos.pdf",
+                "https://zauiiivigqoifsvtqhnt.supabase.co/storage/v1/object/public/sppu-questionpapers/cse/sem-5/systems-programming-and-operating-system/insem-sep-2024-spaos.pdf"
+            ],
+            "theory-of-computation": [
+                "https://zauiiivigqoifsvtqhnt.supabase.co/storage/v1/object/public/sppu-questionpapers/cse/sem-5/theory-of-computation/endsem-may-jun-2022-toc.pdf",
+                "https://zauiiivigqoifsvtqhnt.supabase.co/storage/v1/object/public/sppu-questionpapers/cse/sem-5/theory-of-computation/endsem-may-jun-2023-toc.pdf",
+                "https://zauiiivigqoifsvtqhnt.supabase.co/storage/v1/object/public/sppu-questionpapers/cse/sem-5/theory-of-computation/endsem-may-jun-2024-toc.pdf",
+                "https://zauiiivigqoifsvtqhnt.supabase.co/storage/v1/object/public/sppu-questionpapers/cse/sem-5/theory-of-computation/endsem-may-jun-2025-toc.pdf",
+                "https://zauiiivigqoifsvtqhnt.supabase.co/storage/v1/object/public/sppu-questionpapers/cse/sem-5/theory-of-computation/endsem-nov-dec-2022-toc.pdf",
+                "https://zauiiivigqoifsvtqhnt.supabase.co/storage/v1/object/public/sppu-questionpapers/cse/sem-5/theory-of-computation/endsem-nov-dec-2023-toc.pdf",
+                "https://zauiiivigqoifsvtqhnt.supabase.co/storage/v1/object/public/sppu-questionpapers/cse/sem-5/theory-of-computation/endsem-nov-dec-2024-toc.pdf",
+                "https://zauiiivigqoifsvtqhnt.supabase.co/storage/v1/object/public/sppu-questionpapers/cse/sem-5/theory-of-computation/insem-august-2025-toc.pdf",
+                "https://zauiiivigqoifsvtqhnt.supabase.co/storage/v1/object/public/sppu-questionpapers/cse/sem-5/theory-of-computation/insem-oct-2022-toc.pdf",
+                "https://zauiiivigqoifsvtqhnt.supabase.co/storage/v1/object/public/sppu-questionpapers/cse/sem-5/theory-of-computation/insem-sep-2023-toc.pdf",
+                "https://zauiiivigqoifsvtqhnt.supabase.co/storage/v1/object/public/sppu-questionpapers/cse/sem-5/theory-of-computation/insem-sep-2024-toc.pdf"
+            ]
+        },
+        "sem-6": {
+            "artificial-intelligence-cse": [
+                "https://zauiiivigqoifsvtqhnt.supabase.co/storage/v1/object/public/sppu-questionpapers/cse/sem-6/artificial-intelligence-cse/endsem-may-jun-2022-aic.pdf",
+                "https://zauiiivigqoifsvtqhnt.supabase.co/storage/v1/object/public/sppu-questionpapers/cse/sem-6/artificial-intelligence-cse/endsem-may-jun-2023-aic.pdf",
+                "https://zauiiivigqoifsvtqhnt.supabase.co/storage/v1/object/public/sppu-questionpapers/cse/sem-6/artificial-intelligence-cse/endsem-may-jun-2024-aic.pdf",
+                "https://zauiiivigqoifsvtqhnt.supabase.co/storage/v1/object/public/sppu-questionpapers/cse/sem-6/artificial-intelligence-cse/endsem-may-jun-2025-aic.pdf",
+                "https://zauiiivigqoifsvtqhnt.supabase.co/storage/v1/object/public/sppu-questionpapers/cse/sem-6/artificial-intelligence-cse/endsem-nov-dec-2022-aic.pdf",
+                "https://zauiiivigqoifsvtqhnt.supabase.co/storage/v1/object/public/sppu-questionpapers/cse/sem-6/artificial-intelligence-cse/endsem-nov-dec-2023-aic.pdf",
+                "https://zauiiivigqoifsvtqhnt.supabase.co/storage/v1/object/public/sppu-questionpapers/cse/sem-6/artificial-intelligence-cse/endsem-nov-dec-2024-aic.pdf",
+                "https://zauiiivigqoifsvtqhnt.supabase.co/storage/v1/object/public/sppu-questionpapers/cse/sem-6/artificial-intelligence-cse/insem-feb-2023-aic.pdf",
+                "https://zauiiivigqoifsvtqhnt.supabase.co/storage/v1/object/public/sppu-questionpapers/cse/sem-6/artificial-intelligence-cse/insem-march-2024-aic.pdf"
+            ],
+            "augmented-and-virtual-reality-ele-ii": [
+                "https://zauiiivigqoifsvtqhnt.supabase.co/storage/v1/object/public/sppu-questionpapers/cse/sem-6/augmented-and-virtual-reality-ele-ii/endsem-nov-dec-2022-aavr-ele-ii.pdf",
+                "https://zauiiivigqoifsvtqhnt.supabase.co/storage/v1/object/public/sppu-questionpapers/cse/sem-6/augmented-and-virtual-reality-ele-ii/insem-august-2025-aavr-ele-ii.pdf",
+                "https://zauiiivigqoifsvtqhnt.supabase.co/storage/v1/object/public/sppu-questionpapers/cse/sem-6/augmented-and-virtual-reality-ele-ii/insem-oct-2022-aavr-ele-ii.pdf",
+                "https://zauiiivigqoifsvtqhnt.supabase.co/storage/v1/object/public/sppu-questionpapers/cse/sem-6/augmented-and-virtual-reality-ele-ii/insem-sep-2024-aavr-ele-ii.pdf"
+            ],
+            "cloud-computing": [
+                "https://zauiiivigqoifsvtqhnt.supabase.co/storage/v1/object/public/sppu-questionpapers/cse/sem-6/cloud-computing/endsem-may-jun-2022-cc.pdf",
+                "https://zauiiivigqoifsvtqhnt.supabase.co/storage/v1/object/public/sppu-questionpapers/cse/sem-6/cloud-computing/endsem-may-jun-2023-cc.pdf",
+                "https://zauiiivigqoifsvtqhnt.supabase.co/storage/v1/object/public/sppu-questionpapers/cse/sem-6/cloud-computing/endsem-may-jun-2024-cc.pdf",
+                "https://zauiiivigqoifsvtqhnt.supabase.co/storage/v1/object/public/sppu-questionpapers/cse/sem-6/cloud-computing/endsem-may-jun-2025-cc.pdf",
+                "https://zauiiivigqoifsvtqhnt.supabase.co/storage/v1/object/public/sppu-questionpapers/cse/sem-6/cloud-computing/endsem-nov-dec-2022-cc.pdf",
+                "https://zauiiivigqoifsvtqhnt.supabase.co/storage/v1/object/public/sppu-questionpapers/cse/sem-6/cloud-computing/endsem-nov-dec-2023-cc.pdf",
+                "https://zauiiivigqoifsvtqhnt.supabase.co/storage/v1/object/public/sppu-questionpapers/cse/sem-6/cloud-computing/endsem-nov-dec-2024-cc.pdf",
+                "https://zauiiivigqoifsvtqhnt.supabase.co/storage/v1/object/public/sppu-questionpapers/cse/sem-6/cloud-computing/insem-feb-2023-cc.pdf",
+                "https://zauiiivigqoifsvtqhnt.supabase.co/storage/v1/object/public/sppu-questionpapers/cse/sem-6/cloud-computing/insem-march-2024-cc.pdf"
+            ],
+            "data-science-and-big-data-analytics": [
+                "https://zauiiivigqoifsvtqhnt.supabase.co/storage/v1/object/public/sppu-questionpapers/cse/sem-6/data-science-and-big-data-analytics/endsem-may-jun-2022-dsabda.pdf",
+                "https://zauiiivigqoifsvtqhnt.supabase.co/storage/v1/object/public/sppu-questionpapers/cse/sem-6/data-science-and-big-data-analytics/endsem-may-jun-2023-dsabda.pdf",
+                "https://zauiiivigqoifsvtqhnt.supabase.co/storage/v1/object/public/sppu-questionpapers/cse/sem-6/data-science-and-big-data-analytics/endsem-may-jun-2024-dsabda.pdf",
+                "https://zauiiivigqoifsvtqhnt.supabase.co/storage/v1/object/public/sppu-questionpapers/cse/sem-6/data-science-and-big-data-analytics/endsem-may-jun-2025-dsabda.pdf",
+                "https://zauiiivigqoifsvtqhnt.supabase.co/storage/v1/object/public/sppu-questionpapers/cse/sem-6/data-science-and-big-data-analytics/endsem-nov-dec-2022-dsabda.pdf",
+                "https://zauiiivigqoifsvtqhnt.supabase.co/storage/v1/object/public/sppu-questionpapers/cse/sem-6/data-science-and-big-data-analytics/endsem-nov-dec-2023-dsabda.pdf",
+                "https://zauiiivigqoifsvtqhnt.supabase.co/storage/v1/object/public/sppu-questionpapers/cse/sem-6/data-science-and-big-data-analytics/endsem-nov-dec-2024-dsabda.pdf",
+                "https://zauiiivigqoifsvtqhnt.supabase.co/storage/v1/object/public/sppu-questionpapers/cse/sem-6/data-science-and-big-data-analytics/insem-feb-2023-dsabda.pdf",
+                "https://zauiiivigqoifsvtqhnt.supabase.co/storage/v1/object/public/sppu-questionpapers/cse/sem-6/data-science-and-big-data-analytics/insem-march-2024-dsabda.pdf"
+            ],
+            "information-security-ele-ii": [
+                "https://zauiiivigqoifsvtqhnt.supabase.co/storage/v1/object/public/sppu-questionpapers/cse/sem-6/information-security-ele-ii/endsem-may-jun-2025-is-ele-ii.pdf"
+            ],
+            "software-modeling-and-architectures-ele-ii": [
+                "https://zauiiivigqoifsvtqhnt.supabase.co/storage/v1/object/public/sppu-questionpapers/cse/sem-6/software-modeling-and-architectures-ele-ii/endsem-may-jun-2023-smaa-ele-ii.pdf"
+            ],
+            "web-technology-cse": [
+                "https://zauiiivigqoifsvtqhnt.supabase.co/storage/v1/object/public/sppu-questionpapers/cse/sem-6/web-technology-cse/endsem-may-jun-2022-wtc.pdf",
+                "https://zauiiivigqoifsvtqhnt.supabase.co/storage/v1/object/public/sppu-questionpapers/cse/sem-6/web-technology-cse/endsem-may-jun-2023-wtc.pdf",
+                "https://zauiiivigqoifsvtqhnt.supabase.co/storage/v1/object/public/sppu-questionpapers/cse/sem-6/web-technology-cse/endsem-may-jun-2024-wtc.pdf",
+                "https://zauiiivigqoifsvtqhnt.supabase.co/storage/v1/object/public/sppu-questionpapers/cse/sem-6/web-technology-cse/endsem-may-jun-2025-wtc.pdf",
+                "https://zauiiivigqoifsvtqhnt.supabase.co/storage/v1/object/public/sppu-questionpapers/cse/sem-6/web-technology-cse/endsem-nov-dec-2022-wtc.pdf",
+                "https://zauiiivigqoifsvtqhnt.supabase.co/storage/v1/object/public/sppu-questionpapers/cse/sem-6/web-technology-cse/endsem-nov-dec-2023-wtc.pdf",
+                "https://zauiiivigqoifsvtqhnt.supabase.co/storage/v1/object/public/sppu-questionpapers/cse/sem-6/web-technology-cse/endsem-nov-dec-2024-wtc.pdf",
+                "https://zauiiivigqoifsvtqhnt.supabase.co/storage/v1/object/public/sppu-questionpapers/cse/sem-6/web-technology-cse/insem-feb-2023-wtc.pdf",
+                "https://zauiiivigqoifsvtqhnt.supabase.co/storage/v1/object/public/sppu-questionpapers/cse/sem-6/web-technology-cse/insem-march-2024-wtc.pdf"
+            ]
+        }
+    }
+}

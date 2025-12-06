@@ -35,7 +35,8 @@
 
 body {
     font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
-    height: 100vh; /* Fixed height */
+    height: 100vh; /* Fallback */
+    height: 100dvh; /* Dynamic viewport height for mobile */
     display: flex;
     flex-direction: column;
     background: var(--background-dark);
@@ -478,7 +479,7 @@ button.back:hover {
     }
 
     .paper-selector {
-        bottom: 16px;
+        bottom: calc(16px + env(safe-area-inset-bottom, 0px));
         padding: 4px 6px 4px 12px;
         width: auto;
         max-width: 95%;
@@ -489,6 +490,7 @@ button.back:hover {
     }
 }
 
+/* Extra small devices */
 @media (max-width: 480px) {
     header {
         padding: 4px;
@@ -530,7 +532,7 @@ button.back:hover {
     }
     
     .paper-selector {
-        bottom: 12px;
+        bottom: calc(12px + env(safe-area-inset-bottom, 0px));
     }
     
     .paper-selector-label {

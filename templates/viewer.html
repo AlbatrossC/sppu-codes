@@ -48,7 +48,7 @@
 
     <link href="/static/pdfjs/web/viewer.html" rel="preload" fetchpriority="high" as="document">
     <link href="/static/pdfjs/web/viewer.css" rel="preload" fetchpriority="high" as="style">
-    <link href="{{ url_for('static', filename='css/viewer.css') }}?v=1.6" rel="stylesheet">
+    <link href="{{ url_for('static', filename='css/viewer.css') }}?v=2.0" rel="stylesheet">
     <link href="/static/pdfjs/web/pdf.worker.js" rel="preload" fetchpriority="high" as="worker">
 
     <script type="application/ld+json">
@@ -146,6 +146,17 @@
     </script>
 </head>
 <body>
+    <div id="rotation-prompt" class="rotation-prompt" style="display: none;">
+        <div class="rotation-content">
+            <svg class="rotation-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <rect x="5" y="2" width="14" height="20" rx="2" ry="2"></rect>
+                <path d="M12 18h.01"></path>
+            </svg>
+            <p>Please rotate your device horizontally for split view</p>
+            <button class="primary" id="dismiss-rotation">Dismiss</button>
+        </div>
+    </div>
+
     <div class="seo-content">
         <h1>{{ seo_data.subject_name }} Question Papers - SPPU University</h1>
         <p>Access and download {{ seo_data.subject_name }} question papers from Savitribai Phule Pune University (SPPU). Our collection includes INSEM (Internal Semester) and ENDSEM (End Semester) exam papers.</p>
@@ -727,9 +738,17 @@
     function setupEventListeners() {
         var debouncedRender = debounce(renderPDFs, 250);
         
+        // Modified handler for layout dropdown
+        var onLayoutChange = function(val) {
+            if (window.IS_MOBILE_DEVICE && val === '2') {
+                checkOrientation();
+            }
+            debouncedRender();
+        };
+
         DOM.pdfCountDropdown = CustomDropdown.init(
             document.getElementById('pdf-count-dropdown'),
-            debouncedRender
+            onLayoutChange
         );
         
         DOM.examTypeDropdown = CustomDropdown.init(
@@ -750,15 +769,47 @@
         });
     }
 
+    function checkOrientation() {
+        var prompt = document.getElementById('rotation-prompt');
+        if (window.innerHeight > window.innerWidth) {
+            prompt.style.display = 'flex';
+        } else {
+            prompt.style.display = 'none';
+        }
+    }
+
     function init() {
         console.log('PDF Viewer: Initializing...');
-        if (window.IS_MOBILE_DEVICE) {
-            console.log('PDF Viewer: Mobile device detected, forcing desktop view');
-        }
         
         updateSubjectDisplay();
         setupEventListeners();
         PreloadManager.preloadPdfViewer();
+
+        if (window.IS_MOBILE_DEVICE) {
+            console.log('PDF Viewer: Mobile device detected, adjusting layout options');
+            // Hide options 3 and 4 for mobile
+            var layoutDropdown = document.getElementById('pdf-count-dropdown');
+            var options = layoutDropdown.querySelectorAll('.dropdown-option');
+            options.forEach(function(opt) {
+                var val = opt.getAttribute('data-value');
+                if (val === '3' || val === '4') {
+                    opt.style.display = 'none';
+                }
+            });
+
+            // Listen for orientation changes to hide prompt
+            window.addEventListener('resize', function() {
+                if (DOM.pdfCountDropdown && DOM.pdfCountDropdown._getValue() === '2') {
+                    if (window.innerWidth > window.innerHeight) {
+                        document.getElementById('rotation-prompt').style.display = 'none';
+                    }
+                }
+            });
+            
+            document.getElementById('dismiss-rotation').addEventListener('click', function() {
+                document.getElementById('rotation-prompt').style.display = 'none';
+            });
+        }
 
         ServiceWorkerManager.register().then(function() {
             if (initialPdfDataFromServer && initialPdfDataFromServer.length > 0) {

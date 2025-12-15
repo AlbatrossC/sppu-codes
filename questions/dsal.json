@@ -5,7 +5,7 @@
     "description": "Explore Data Structures and Algorithms Laboratory programs and solutions with detailed explanations and code examples.",
     "keywords": ["Data Structures", "Algorithms", "Python", "C++", "Hash Tables", "Trees", "Graphs", "DFS", "BFS"],
     "url": "https://sppucodes.vercel.app/dsal",
-    "question_paper_url":"https://sppucodes.vercel.app/questionpapers/data-structure-and-algorithm"
+    "question_paper_url":"https://sppucodes.vercel.app/questionpapers/data-structures-and-algorithms"
   },
   "questions": [
     {

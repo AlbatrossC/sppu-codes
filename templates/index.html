@@ -232,7 +232,48 @@
             outline: none;
         }
 
-        </style>
+        /* Mobile Menu Styles */
+        .mobile-menu {
+            display: none;
+            flex-direction: column;
+            position: fixed;
+            top: 0;
+            right: 0;
+            width: 78vw;
+            max-width: 340px;
+            height: 100vh;
+            background: var(--secondary-bg, #1e1e1e);
+            box-shadow: -2px 0 16px rgba(0,0,0,0.25);
+            z-index: 2000;
+            padding: 2.5rem 1.5rem 1.5rem 1.5rem;
+            gap: 1.5rem;
+            transition: transform 0.3s cubic-bezier(.4,0,.2,1), opacity 0.2s;
+            transform: translateX(100%);
+            opacity: 0;
+        }
+        .mobile-menu.open {
+            display: flex;
+            transform: translateX(0);
+            opacity: 1;
+        }
+        .mobile-menu a {
+            color: var(--text-primary, #e0e0e0);
+            text-decoration: none;
+            font-size: 1.2rem;
+            padding: 0.7rem 0;
+            border-bottom: 1px solid var(--border-color, #333);
+        }
+        .mobile-menu a:last-child {
+            border-bottom: none;
+        }
+        @media (min-width: 900px) {
+            .mobile-menu-toggle { display: none !important; }
+            .mobile-menu { display: none !important; }
+        }
+        @media (max-width: 899px) {
+            .header__actions { display: none !important; }
+        }
+            </style>
     </head>
     
     <body>
@@ -268,6 +309,12 @@
                         <a href="/questionpapers" class="copy-button">Question Papers</a>
                     </nav>
                 </div>
+                <!-- Mobile Menu -->
+                <nav class="mobile-menu" id="mobileMenu" aria-label="Mobile navigation">
+                    <a href="/submit" class="submit-button">Submit Codes</a>
+                    <a href="/questionpapers" class="copy-button">Question Papers</a>
+                    <a href="/contact">Contact</a>
+                </nav>
             </header>
                         
             <main>
@@ -425,5 +472,40 @@
         
         <script src="{{ url_for('static', filename='js/index.js') }}"></script>
         <script src="{{ url_for('static', filename='js/terminal.js') }}"></script>
+        <script>
+            // Mobile menu toggle logic
+            document.addEventListener('DOMContentLoaded', function() {
+                const menuBtn = document.querySelector('.mobile-menu-toggle');
+                const mobileMenu = document.getElementById('mobileMenu');
+                // Close menu when clicking outside or on a link
+                function closeMenu() {
+                    mobileMenu.classList.remove('open');
+                }
+                menuBtn.addEventListener('click', function(e) {
+                    e.stopPropagation();
+                    mobileMenu.classList.toggle('open');
+                });
+                // Close on link click
+                mobileMenu.querySelectorAll('a').forEach(link => {
+                    link.addEventListener('click', closeMenu);
+                });
+                // Close on outside click
+                document.addEventListener('click', function(e) {
+                    if (mobileMenu.classList.contains('open') && !mobileMenu.contains(e.target) && e.target !== menuBtn) {
+                        closeMenu();
+                    }
+                });
+                // Prevent scroll when menu open
+                const body = document.body;
+                const observer = new MutationObserver(() => {
+                    if (mobileMenu.classList.contains('open')) {
+                        body.style.overflow = 'hidden';
+                    } else {
+                        body.style.overflow = '';
+                    }
+                });
+                observer.observe(mobileMenu, { attributes: true, attributeFilter: ['class'] });
+            });
+        </script>
     </body>
 </html>

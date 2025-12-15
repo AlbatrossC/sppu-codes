@@ -31,10 +31,10 @@
         <meta name="language" content="English">
             
         <!-- CSS -->
-        <link rel="stylesheet" href="{{ url_for('static', filename='css/index.css', v='2.4') }}" media="all">
-        <link rel="stylesheet" href="{{ url_for('static', filename='css/header.css', v='2.4') }}" media="all">
-        <link rel="stylesheet" href="{{ url_for('static', filename='css/footer.css', v='2.4') }}" media="all">
-        <link rel="stylesheet" href="{{ url_for('static', filename='css/terminal.css', v='1.0') }}" media="all">
+        <link rel="stylesheet" href="{{ url_for('static', filename='css/index.css', v='2.5') }}" media="all">
+        <link rel="stylesheet" href="{{ url_for('static', filename='css/header.css', v='2.5') }}" media="all">
+        <link rel="stylesheet" href="{{ url_for('static', filename='css/footer.css', v='2.5') }}" media="all">
+        <link rel="stylesheet" href="{{ url_for('static', filename='css/terminal.css', v='1.1') }}" media="all">
 
         
         <link rel="icon" href="{{ url_for('get_image', filename='favicon.ico') }}" type="image/x-icon">
@@ -243,20 +243,28 @@
                         <img src="images/logo.webp" alt="SPPU Codes Logo" width="40" height="40" fetchpriority="high">
                         <h1>SPPU Codes</h1>
                     </a>
-                    
+                    <div style="display: flex; align-items: center;">
+                        <button class="mobile-search-toggle" aria-label="Show Search" tabindex="0">
+                            <span class="search-icon-svg">
+                                <!-- Simple magnifier SVG -->
+                                <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+                                    <circle cx="11" cy="11" r="7" stroke="#b0b0b0" stroke-width="2"/>
+                                    <line x1="16.4142" y1="16" x2="21" y2="20.5858" stroke="#b0b0b0" stroke-width="2" stroke-linecap="round"/>
+                                </svg>
+                            </span>
+                        </button>
+                        <button class="mobile-menu-toggle" aria-label="Toggle Mobile Menu">
+                            <span class="menu-icon"></span>
+                        </button>
+                    </div>
                     <div class="search-container">
                         <div class="search-wrapper">
-                            <input type="text" id="subject-search" placeholder="Search subjects..." aria-label="Search Subjects">
+                            <input type="text" id="subject-search" placeholder="Search Question Papers And Subjects...." aria-label="Search Subjects">
                         </div>
                     </div>
-            
-                    <button class="mobile-menu-toggle" aria-label="Toggle Mobile Menu">
-                        <span class="menu-icon"></span>
-                    </button>
-                    
+
                     <nav class="header__actions" aria-label="Main navigation">
                         <a href="/submit" class="submit-button">Submit Codes</a>
-                        <a href="/download" class="download-button">Download Codes</a>
                         <a href="/questionpapers" class="copy-button">Question Papers</a>
                     </nav>
                 </div>

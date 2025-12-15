@@ -39,7 +39,6 @@ def maintenance():
 # Directory paths
 BASE_DIR = os.path.join(os.path.dirname(__file__), 'static')
 QUESTIONS_DIR = os.path.join(os.path.dirname(__file__), 'questions')
-downloads_folder = os.path.join(app.root_path, 'downloads')
 
 # Database configuration
 # For Local Testing
@@ -68,15 +67,6 @@ def index():
     """Render the home page"""
     return render_template('index.html')
 
-@app.route('/download')
-def download():
-    """Render the downloads page"""
-    return render_template('download.html')
-
-@app.route('/downloads/<filename>')
-def download_file(filename):
-    """Serve downloadable files from the downloads directory"""
-    return send_from_directory(downloads_folder, filename)
 
 # =============================================================================
 # FORM HANDLING ROUTES
@@ -444,7 +434,7 @@ def index_verify():
 def error_page_data():
     """
     API endpoint to provide all available subjects and question papers
-    for the 404 error page
+    for the 404 error page and search functionality.
     """
     try:
         # Get all subject codes from questions directory
@@ -457,7 +447,7 @@ def error_page_data():
                             subject_data = json.load(f)
                             default = subject_data.get("default", {})
                             subject_code = file.replace('.json', '')
-                            
+
                             subjects.append({
                                 'code': subject_code,
                                 'name': default.get('subject_name', subject_code.upper()),
@@ -466,22 +456,22 @@ def error_page_data():
                     except Exception as e:
                         print(f"Error reading {file}: {e}")
                         continue
-        
+
         # Sort subjects alphabetically by code
         subjects.sort(key=lambda x: x['code'])
-        
+
         # Get all question papers from SEO data
         question_papers = []
         seo_index, seo_raw = load_seo_data()
-        
+
         branches = seo_raw.get('branches', {})
         for branch_key, branch_data in branches.items():
             branch_name = branch_data.get('name', branch_key)
             semesters = branch_data.get('semesters', {})
-            
+
             for sem_key, subjects_list in semesters.items():
                 sem_number = sem_key.split('-')[-1] if '-' in sem_key else sem_key
-                
+
                 for subject in subjects_list:
                     link = subject.get('link')
                     if link:
@@ -492,15 +482,15 @@ def error_page_data():
                             'semester': sem_number,
                             'href': f'/questionpapers/{link}'
                         })
-        
+
         # Sort question papers by branch, then semester, then name
         question_papers.sort(key=lambda x: (x['branch'], int(x['semester']) if x['semester'].isdigit() else 0, x['name']))
-        
+
         return jsonify({
             'subjects': subjects,
             'questionPapers': question_papers
         })
-    
+
     except Exception as e:
         print(f"Error generating error page data: {e}")
         return jsonify({

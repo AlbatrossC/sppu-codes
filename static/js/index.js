@@ -1,14 +1,14 @@
 console.log(`
-    ⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢸⣿⣿⣿⣿⣿⣿⡆⠀⠀⠀⢀⣴⣶⣶⣶⣶⣄⠀⣀⣴⣶⣶⣶⣶⡀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
-    ⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢸⣿⣿⠀⠀⠀⠀⠀⢠⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣦⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
-    ⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢈⣿⣿⠀⠀⠀⠀⠀⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⡿⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
-    ⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢸⣿⣿⠀⠀⠀⠀⠀⠸⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⡿⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
-    ⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢸⣿⣿⠀⠀⠀⠀⠀⠀⠹⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⠟⠁⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+    ⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢸⣿⣿⣿⣿⣿⡆⠀⠀⠀⢀⣴⣶⣶⣶⣶⣄⠀⣀⣴⣶⣶⣶⣶⡀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+    ⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢸⣿⣿⠀⠀⠀⠀⠀⢠⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣦⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+    ⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢈⣿⣿⠀⠀⠀⠀⠀⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⡿⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+    ⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢸⣿⣿⠀⠀⠀⠀⠀⠸⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⡿⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+    ⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢸⣿⣿⠀⠀⠀⠀⠀⠀⠹⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⠟⠁⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
     ⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢸⣿⣿⠀⠀⠀⠀⠀⠀⠀⠈⠻⣿⣿⣿⣿⣿⣿⣿⣿⣿⡿⠋⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
     ⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢀⣀⣸⣿⣿⣀⣀⡀⠀⠀⠀⠀⠀⠀⠈⠻⢿⢿⣿⣿⣿⠟⠁⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
     ⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠸⠿⠿⠿⠿⠿⠿⠇⠀⠀⠀⠀⠀⠀⠀⠀⠀⠈⠙⠉⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
     ⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
-    ⠀⠀⠀⠀⢾⣿⣿⣿⣿⣿⣿⠆⠠⣿⡿⣿⣿⣿⢿⣿⣦⣴⣿⡿⠿⢿⣿⣷⣄⠀⢾⣿⣿⣿⣿⡿⣿⠆⢸⣿⣿⣿⣿⣿⣿⡆⠀⠀⠀⠀
+    ⠀⠀⠀⠀⢾⣿⣿⣿⣿⣿⣿⠆⠠⣿⡿⣿⣿⣿⢿⣿⣦⣴⣿⡿⠿⢿⣿⣷⣄⠀⢾⣿⣿⣿⣿⡿⣿⠆⢸⣿⣿⣿⣿⣿⡆⠀⠀⠀⠀
     ⠀⠀⠀⠀⠀⠀⠈⢿⣿⣧⠀⠀⠀⠀⣠⣿⡿⠁⠀⣰⣿⡿⠁⠀⠀⠀⠈⠻⣿⣧⡀⠀⠘⣿⡟⠀⠀⠀⠀⠀⢸⣿⣿⠀⠀⠀⠀⠀⠀⠀
     ⠀⠀⠀⠀⠀⠀⠀⠀⢻⣿⣧⡀⠀⢰⣿⡿⠁⠀⠀⣿⣿⠁⠀⠀⠀⠀⠀⠀⢻⣿⣇⠀⠀⣿⡇⠀⠀⠀⠀⠀⠸⣿⣿⠀⠀⠀⠀⠀⠀⠀
     ⠀⠀⠀⠀⠀⠀⠀⠀⠀⠹⣿⣷⣴⣿⡟⠀⠀⠀⢰⣿⡟⠀⠀⠀⠀⠀⠀⠀⢸⣿⣿⠀⠀⣿⡇⠀⠀⠀⠀⠀⢸⣿⣿⠀⠀⠀⠀⠀⠀⠀
@@ -59,13 +59,212 @@ document.addEventListener('DOMContentLoaded', function () {
     const header = document.querySelector('header');
     const mobileMenuToggle = document.querySelector('.mobile-menu-toggle');
     const headerActions = document.querySelector('.header__actions');
-    const searchContainer = document.querySelector('.search-container');
-    let isMenuOpen = false;
-
-    // Search elements
     const searchInput = document.querySelector('#subject-search');
-    const subjectItems = document.querySelectorAll('.subject-list li');
-    let searchTimeout;
+    const searchDropdown = document.createElement('div');
+    searchDropdown.className = 'search-dropdown';
+    document.body.appendChild(searchDropdown);
+
+    // Mobile search toggle
+    const mobileSearchToggle = document.querySelector('.mobile-search-toggle');
+    const searchContainer = document.querySelector('.search-container');
+
+    function closeMobileSearch() {
+        if (window.innerWidth <= 768) {
+            searchContainer.classList.remove('active');
+        }
+    }
+
+    if (mobileSearchToggle) {
+        mobileSearchToggle.addEventListener('click', function (e) {
+            e.stopPropagation();
+            searchContainer.classList.toggle('active');
+            if (searchContainer.classList.contains('active')) {
+                setTimeout(() => searchInput.focus(), 100);
+            }
+        });
+    }
+
+    // Hide search bar on mobile when clicking outside
+    document.addEventListener('click', function (e) {
+        if (
+            window.innerWidth <= 768 &&
+            searchContainer.classList.contains('active') &&
+            !searchContainer.contains(e.target) &&
+            !mobileSearchToggle.contains(e.target)
+        ) {
+            searchContainer.classList.remove('active');
+            searchDropdown.style.display = 'none';
+        }
+    });
+
+    // Hide search bar on mobile when pressing Escape
+    document.addEventListener('keydown', function (e) {
+        if (window.innerWidth <= 768 && e.key === 'Escape') {
+            closeMobileSearch();
+            searchDropdown.style.display = 'none';
+        }
+    });
+
+    // Load data from all JSON files in the questions folder
+    let searchData = [];
+    const maxResults = 8;
+
+    // Levenshtein distance for fuzzy matching
+    function levenshtein(a, b) {
+        if (a.length === 0) return b.length;
+        if (b.length === 0) return a.length;
+        const matrix = [];
+        for (let i = 0; i <= b.length; i++) matrix[i] = [i];
+        for (let j = 0; j <= a.length; j++) matrix[0][j] = j;
+        for (let i = 1; i <= b.length; i++) {
+            for (let j = 1; j <= a.length; j++) {
+                if (b.charAt(i - 1).toLowerCase() === a.charAt(j - 1).toLowerCase()) {
+                    matrix[i][j] = matrix[i - 1][j - 1];
+                } else {
+                    matrix[i][j] = Math.min(
+                        matrix[i - 1][j - 1] + 1,
+                        matrix[i][j - 1] + 1,
+                        matrix[i - 1][j] + 1
+                    );
+                }
+            }
+        }
+        return matrix[b.length][a.length];
+    }
+
+    async function loadSearchData() {
+        try {
+            const response = await fetch('/api/error-page-data');
+            const data = await response.json();
+
+            // Separate and tag results for sorting and styling
+            const codeResults = data.subjects.map(subject => ({
+                type: 'CODE',
+                emoji: '💻',
+                subjectName: subject.name,
+                branchName: '',
+                link: subject.href,
+                subjectCode: subject.code || '', // Add code for short form search
+            }));
+            const qpResults = data.questionPapers.map(paper => ({
+                type: 'QUESTION PAPER',
+                emoji: '📄',
+                subjectName: paper.name,
+                branchName: paper.branch,
+                link: paper.href,
+                subjectCode: '', // No code for question paper
+            }));
+
+            // Always show question papers first, then codes
+            searchData = [...qpResults, ...codeResults];
+        } catch (error) {
+            console.error('Failed to load search data:', error);
+        }
+    }
+
+    // Position dropdown below the search bar
+    function positionDropdown() {
+        const isMobile = window.innerWidth <= 768;
+        if (isMobile) {
+            searchDropdown.style.position = 'fixed';
+            searchDropdown.style.top = (parseInt(getComputedStyle(document.documentElement).getPropertyValue('--header-height')) || 70) + 'px';
+            searchDropdown.style.left = '0px';
+            searchDropdown.style.width = '100vw';
+        } else {
+            const rect = searchInput.getBoundingClientRect();
+            searchDropdown.style.position = 'absolute';
+            searchDropdown.style.top = `${rect.bottom + window.scrollY}px`;
+            searchDropdown.style.left = `${rect.left + window.scrollX}px`;
+            searchDropdown.style.width = `${rect.width}px`;
+        }
+    }
+
+    // Highlight matched text
+    function highlightMatch(text, query) {
+        if (!query) return text;
+        // Highlight all occurrences, case-insensitive
+        const regex = new RegExp(`(${query.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')})`, 'gi');
+        return text.replace(regex, '<mark>$1</mark>');
+    }
+
+    // Improved filter logic: startswith > contains > fuzzy
+    let searchResults = [];
+    function filterResults(query) {
+        const lowerQuery = query.toLowerCase();
+
+        // Helper to check if a string starts with query
+        function startsWith(str) {
+            return str.toLowerCase().startsWith(lowerQuery);
+        }
+        // Helper to check if a string contains query
+        function contains(str) {
+            return str.toLowerCase().includes(lowerQuery);
+        }
+        // Helper for fuzzy match (Levenshtein distance <= 2)
+        function fuzzy(str) {
+            return levenshtein(str.toLowerCase(), lowerQuery) <= 2;
+        }
+
+        // 1. Results that start with query (subjectName or subjectCode)
+        const startsWithResults = searchData.filter(item =>
+            startsWith(item.subjectName) || (item.subjectCode && startsWith(item.subjectCode))
+        );
+        // 2. Results that contain query (subjectName or subjectCode), but not startswith
+        const containsResults = searchData.filter(item =>
+            !startsWith(item.subjectName) && !startsWith(item.subjectCode || '') &&
+            (contains(item.subjectName) || (item.subjectCode && contains(item.subjectCode)))
+        );
+        // 3. Fuzzy matches (subjectName or subjectCode), but not already included
+        const fuzzyResults = searchData.filter(item => {
+            if (
+                startsWith(item.subjectName) || (item.subjectCode && startsWith(item.subjectCode)) ||
+                contains(item.subjectName) || (item.subjectCode && contains(item.subjectCode))
+            ) return false;
+            return (
+                fuzzy(item.subjectName) ||
+                (item.subjectCode && fuzzy(item.subjectCode))
+            );
+        });
+
+        searchResults = [...startsWithResults, ...containsResults, ...fuzzyResults];
+    }
+
+    // Render search results
+    function renderResults() {
+        searchDropdown.innerHTML = '';
+        if (searchResults.length === 0) {
+            const noResults = document.createElement('div');
+            noResults.className = 'search-no-results';
+            noResults.textContent = `No subject found for "${searchInput.value}". Try checking spelling or using a shorter name.`;
+            searchDropdown.appendChild(noResults);
+            return;
+        }
+
+        searchResults.slice(0, maxResults).forEach(result => {
+            const row = document.createElement('div');
+            row.className = `search-result-row ${result.type === 'QUESTION PAPER' ? 'qp-row' : 'code-row'}`;
+            // Highlight both subjectName and subjectCode
+            let nameHtml = highlightMatch(result.subjectName, searchInput.value);
+            if (result.subjectCode) {
+                // Show code in parentheses if present
+                nameHtml += ` <span class="result-shortcode">(${highlightMatch(result.subjectCode, searchInput.value)})</span>`;
+            }
+            row.innerHTML = `
+                <span class="result-type-label">
+                    <span class="result-emoji">${result.emoji}</span>
+                    <span class="result-type-text">${result.type === 'QUESTION PAPER' ? 'Question Paper' : 'Code'}</span>
+                </span>
+                <span class="result-main">
+                    <span class="result-name">${nameHtml}</span>
+                    ${result.branchName ? `<span class="result-branch">– ${result.branchName}</span>` : ''}
+                </span>
+            `;
+            row.addEventListener('click', () => {
+                window.location.href = result.link;
+            });
+            searchDropdown.appendChild(row);
+        });
+    }
 
     // Header scroll effect
     window.addEventListener('scroll', () => {
@@ -115,84 +314,33 @@ document.addEventListener('DOMContentLoaded', function () {
         }, 250);
     });
 
-    // Search functionality
-    if (searchInput && subjectItems.length > 0) {
-        // Function to highlight matching text
-        function highlightMatch(item, searchTerm) {
-            if (searchTerm === '') {
-                // Reset highlights
-                item.querySelector('.short-form').innerHTML = item.querySelector('.short-form').textContent;
-                item.querySelector('.full-name').innerHTML = item.querySelector('.full-name').textContent;
-                return;
-            }
-
-            const highlightText = (text, term) => {
-                const regex = new RegExp(`(${term})`, 'gi');
-                return text.replace(regex, '<mark style="background-color: rgba(45, 118, 204, 0.2); color: var(--text-primary); padding: 0 2px; border-radius: 2px;">$1</mark>');
-            };
-
-            const shortForm = item.querySelector('.short-form');
-            const fullName = item.querySelector('.full-name');
-
-            shortForm.innerHTML = highlightText(shortForm.textContent, searchTerm);
-            fullName.innerHTML = highlightText(fullName.textContent, searchTerm);
+    // Handle input events
+    searchInput.addEventListener('input', () => {
+        const query = searchInput.value.trim();
+        if (query === '') {
+            searchDropdown.style.display = 'none';
+            return;
         }
+        filterResults(query);
+        renderResults();
+        positionDropdown();
+        searchDropdown.style.display = 'block';
+    });
 
-        // Function to perform search
-        function performSearch() {
-            const searchTerm = searchInput.value.toLowerCase().trim();
-
-            let hasVisibleItems = false;
-
-            subjectItems.forEach(item => {
-                const shortForm = item.querySelector('.short-form').textContent.toLowerCase();
-                const fullName = item.querySelector('.full-name').textContent.toLowerCase();
-
-                if (shortForm.includes(searchTerm) || fullName.includes(searchTerm)) {
-                    item.style.display = 'block'; // Show the item
-                    highlightMatch(item, searchTerm);
-                    hasVisibleItems = true;
-                } else {
-                    item.style.display = 'none'; // Hide the item
-                }
-            });
-
-            // Add "no results" message if all items are hidden
-            const noResultsMsg = document.querySelector('.no-results-message');
-
-            if (!hasVisibleItems && searchTerm !== '') {
-                if (!noResultsMsg) {
-                    const noResultsMsg = document.createElement('div');
-                    noResultsMsg.className = 'no-results-message';
-                    noResultsMsg.style.textAlign = 'center';
-                    noResultsMsg.style.padding = '2rem';
-                    noResultsMsg.style.color = 'var(--text-muted)';
-                    noResultsMsg.style.backgroundColor = 'var(--secondary-bg)';
-                    noResultsMsg.style.borderRadius = 'var(--border-radius-soft)';
-                    noResultsMsg.style.border = '1px solid var(--border-color)';
-                    noResultsMsg.style.margin = '2rem auto';
-                    noResultsMsg.style.maxWidth = '500px';
-                    subjectItems[0].parentNode.appendChild(noResultsMsg);
-                }
-                noResultsMsg.textContent = `No subjects found matching "${searchInput.value}"`;
-                noResultsMsg.style.display = 'block';
-            } else if (noResultsMsg) {
-                noResultsMsg.style.display = 'none';
-            }
+    // Close dropdown on outside click
+    document.addEventListener('click', event => {
+        if (!searchInput.contains(event.target) && !searchDropdown.contains(event.target)) {
+            searchDropdown.style.display = 'none';
         }
+    });
 
-        // Add search input event listener with debouncing
-        searchInput.addEventListener('input', function () {
-            clearTimeout(searchTimeout);
-            searchTimeout = setTimeout(performSearch, 300); // Debounce for 300ms
-        });
-
-        // Clear search when clicking the clear button (x) in the input
-        searchInput.addEventListener('search', performSearch);
-
-        // Initialize search on page load (in case there's a value)
-        if (searchInput.value) {
-            performSearch();
+    // Close dropdown on escape key
+    document.addEventListener('keydown', event => {
+        if (event.key === 'Escape') {
+            searchDropdown.style.display = 'none';
         }
-    }
+    });
+
+    // Load data on page load
+    loadSearchData();
 });

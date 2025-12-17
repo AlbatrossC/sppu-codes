@@ -251,6 +251,9 @@ def viewer_page(subject_name):
             for sem_key, subjects in data.items():
                 if sem_key == 'branch_name':
                     continue
+                # Fix: Only process if subjects is a dict
+                if not isinstance(subjects, dict):
+                    continue
                 for subj_key, subj_data in subjects.items():
                     if subj_key == subject_name:
                         # subj_data: {subject_name, seo_data, pdf_links}

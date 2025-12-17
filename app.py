@@ -8,6 +8,7 @@ from functools import lru_cache
 from collections import defaultdict
 from flask import render_template
 from werkzeug.exceptions import HTTPException
+import glob
 
 
 
@@ -257,24 +258,39 @@ def load_seo_data():
 
 @app.route('/questionpapers')
 def select_page():
-    # Lazy load SEO data only when this route is accessed
-    seo_index, seo_raw = load_seo_data()
-    
-    # Organize data by branch and semester for display
-    organized_data = defaultdict(lambda: defaultdict(list))
-    
-    branches = seo_raw.get('branches', {})
-    for branch_key, branch_data in branches.items():
-        branch_name = branch_data.get('name', branch_key)
-        semesters = branch_data.get('semesters', {})
-        
-        for sem_key, subjects in semesters.items():
-            sem_number = sem_key.split('-')[-1] if '-' in sem_key else sem_key
-            sem_display = f"Semester {sem_number}"
-            
-            for subject in subjects:
-                organized_data[branch_name][sem_display].append(subject)
-    
+    """
+    Dynamically load all branches, semesters, and subjects from question-papers/*.json
+    and render the selection UI.
+    """
+    qp_dir = os.path.join(os.path.dirname(__file__), 'question-papers')
+    organized_data = {}  # {branch_name: {semester_display: [subjects]}}
+
+    for file_path in glob.glob(os.path.join(qp_dir, '*.json')):
+        try:
+            with open(file_path, 'r', encoding='utf-8') as f:
+                data = json.load(f)
+            branch_name = data.get('branch_name', os.path.splitext(os.path.basename(file_path))[0])
+            semesters = data.copy()
+            semesters.pop('branch_name', None)
+            branch_semesters = {}
+            for sem_key, subjects in semesters.items():
+                # sem_key: 'sem-1', 'sem-2', etc.
+                sem_number = sem_key.split('-')[-1] if '-' in sem_key else sem_key
+                sem_display = f"Semester {sem_number}"
+                subject_list = []
+                for subject_link, subject_data in subjects.items():
+                    subject_list.append({
+                        'subjectName': subject_data.get('subject_name', subject_link.replace('-', ' ').title()),
+                        'link': subject_link
+                    })
+                if subject_list:
+                    branch_semesters[sem_display] = subject_list
+            if branch_semesters:
+                organized_data[branch_name] = branch_semesters
+        except Exception as e:
+            print(f"Error loading {file_path}: {e}")
+            continue
+
     return render_template('select.html', organized_data=organized_data)
 
 

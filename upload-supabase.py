@@ -82,14 +82,15 @@ def filename_from_url(url: str) -> str:
 
 def reorder_branch_data(branch_data: dict) -> dict:
     """
-    Ensures branch_name is the first key in the JSON.
+    Ensures branch_name and branch_code are the first keys (in that order).
     """
     ordered = {
-        "branch_name": branch_data.get("branch_name")
+        "branch_name": branch_data.get("branch_name"),
+        "branch_code": branch_data.get("branch_code"),
     }
 
     for key in branch_data:
-        if key != "branch_name":
+        if key not in ("branch_name", "branch_code"):
             ordered[key] = branch_data[key]
 
     return ordered
@@ -131,10 +132,13 @@ for BRANCH in BRANCHES:
         branch_data = {}
 
     # =========================
-    # Ensure branch_name exists
+    # Ensure branch_name & branch_code exist
     # =========================
     if "branch_name" not in branch_data:
         branch_data["branch_name"] = None
+
+    if "branch_code" not in branch_data:
+        branch_data["branch_code"] = None
 
     print(f"\n🚀 Processing branch: {BRANCH}")
 

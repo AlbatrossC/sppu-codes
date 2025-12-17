@@ -1,5 +1,6 @@
 {
-    "branch_name": "Computer ScienceEngineering",
+    "branch_name": "Computer Science",
+    "branch_code": "CS",
     "sem-4": {
         "microprocessor-cse": {
             "subject_name": "Microprocessor",

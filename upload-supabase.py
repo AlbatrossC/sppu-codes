@@ -80,6 +80,21 @@ def filename_from_url(url: str) -> str:
     return os.path.basename(urlparse(url).path)
 
 
+def reorder_branch_data(branch_data: dict) -> dict:
+    """
+    Ensures branch_name is the first key in the JSON.
+    """
+    ordered = {
+        "branch_name": branch_data.get("branch_name")
+    }
+
+    for key in branch_data:
+        if key != "branch_name":
+            ordered[key] = branch_data[key]
+
+    return ordered
+
+
 # =========================
 # User Input
 # =========================
@@ -115,6 +130,12 @@ for BRANCH in BRANCHES:
     else:
         branch_data = {}
 
+    # =========================
+    # Ensure branch_name exists
+    # =========================
+    if "branch_name" not in branch_data:
+        branch_data["branch_name"] = None
+
     print(f"\n🚀 Processing branch: {BRANCH}")
 
     for sem in sorted(os.listdir(BRANCH)):
@@ -144,7 +165,6 @@ for BRANCH in BRANCHES:
                     "pdf_links": []
                 }
 
-            # Existing filenames from JSON
             existing_files = {
                 filename_from_url(url)
                 for url in subject_entry.get("pdf_links", [])
@@ -171,8 +191,10 @@ for BRANCH in BRANCHES:
                 branch_data[sem][subject_link] = subject_entry
 
     # =========================
-    # Save JSON
+    # Reorder & Save JSON
     # =========================
+    branch_data = reorder_branch_data(branch_data)
+
     with open(output_json_path, "w", encoding="utf-8") as f:
         json.dump(branch_data, f, indent=4)
 

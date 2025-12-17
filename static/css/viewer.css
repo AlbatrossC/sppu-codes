@@ -48,13 +48,13 @@ body {
 
 header {
     background: #222;
-    padding: 0 16px;
+    padding: 0 18px;
     display: flex;
     justify-content: space-between;
     align-items: center;
     flex-wrap: wrap;
     gap: 10px;
-    height: 48px; /* Compact fixed height */
+    height: 56px; /* Slightly taller for improved touch targets */
     flex-shrink: 0;
     box-shadow: 0 1px 0 rgba(255,255,255,0.05);
     z-index: 10;
@@ -259,6 +259,54 @@ button.back {
 
 button.back:hover {
     background-color: var(--green-hover);
+}
+
+/* Watermark toggle specific styles */
+.watermark-toggle {
+    display: flex;
+    align-items: center;
+}
+
+.watermark-toggle button {
+    background: rgba(255,255,255,0.03);
+    color: var(--text-light);
+    border: 1px solid rgba(255,255,255,0.08);
+    padding: 6px 12px;
+    height: 36px;
+    min-width: 150px;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    border-radius: 10px;
+    transition: all var(--transition-speed) ease;
+    font-weight: 600;
+}
+
+.watermark-toggle button .icon {
+    width: 16px;
+    height: 16px;
+    flex-shrink: 0;
+    color: var(--secondary-color);
+}
+
+.watermark-toggle .wm-label {
+    color: var(--text-light);
+    font-size: 13px;
+    line-height: 1;
+}
+
+.watermark-toggle button[aria-pressed="true"] {
+    background: rgba(var(--primary-color-rgb),0.12);
+    border-color: rgba(var(--primary-color-rgb),0.22);
+    color: var(--primary-color);
+}
+
+@media (max-width: 768px) {
+    .watermark-toggle button {
+        min-width: 120px;
+        padding: 6px 10px;
+    }
+    .watermark-toggle .wm-label { font-size: 12px; }
 }
 
 #pdf-container {

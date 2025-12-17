@@ -732,5 +732,200 @@ See https://github.com/adobe-type-tools/cmap-resources
 
     </div> <!-- outerContainer -->
     <div id="printContainer"></div>
+    <!-- Watermark removal and toggle script -->
+    <script>
+      (function () {
+        'use strict';
+
+        const BUTTON_ID = 'watermarkToggleButton';
+        let observer = null;
+        let pagerenderedHandler = null;
+        let pagerenderedHookRetries = 0;
+        const MAX_RETRIES = 30; // ~6s at 200ms
+        const RETRY_DELAY = 200;
+
+        function log(...args) {
+          if (window.console) console.log('[watermark-toggle]', ...args);
+        }
+
+        function removeMarkedContent() {
+          let removedSpans = 0;
+          try {
+            document.querySelectorAll('.textLayer .markedContent').forEach(mc => {
+              removedSpans += mc.querySelectorAll('span[role="presentation"]').length || 0;
+              mc.remove();
+            });
+            if (removedSpans > 0) {
+              log('Removed watermark overlay spans:', removedSpans);
+            }
+          } catch (e) {
+            // defensive
+          }
+          return removedSpans;
+        }
+
+        function tryUncheckWatermarkLayer() {
+          try {
+            const labels = Array.from(document.querySelectorAll('#layersView label, #layersView .treeItem > label'));
+            const watermarkLabel = labels.find(l => l.textContent && l.textContent.trim().toLowerCase() === 'watermark');
+            if (watermarkLabel) {
+              const checkbox = watermarkLabel.querySelector('input[type="checkbox"]');
+              if (checkbox && checkbox.checked) {
+                checkbox.click();
+                log('Unchecked watermark layer in Layers panel');
+              }
+              // remove layers tree item to avoid UI showing ghost entry
+              const treeItem = watermarkLabel.closest('.treeItem');
+              if (treeItem) {
+                treeItem.remove();
+                log('Removed watermark entry from Layers panel');
+              }
+            }
+          } catch (e) {
+            // ignore
+          }
+        }
+
+        function installObserverIfNeeded() {
+          if (observer) return;
+          observer = new MutationObserver(() => {
+            removeMarkedContent();
+          });
+          observer.observe(document.body, { childList: true, subtree: true });
+          // keep reference for debugging
+          window._watermarkObserver = observer;
+          log('Installed DOM MutationObserver for watermark removal');
+        }
+
+        function hookPagerenderedWithRetry() {
+          try {
+            const app = window.PDFViewerApplication;
+            const eventBus = app && app.eventBus;
+            if (eventBus && typeof eventBus.on === 'function') {
+              // store handler so we can avoid double-registering
+              if (!pagerenderedHandler) {
+                pagerenderedHandler = () => removeMarkedContent();
+                eventBus.on('pagerendered', pagerenderedHandler);
+                log('Registered pagerendered handler on PDF.js eventBus');
+              }
+              return true;
+            }
+          } catch (e) {}
+
+          if (pagerenderedHookRetries++ < MAX_RETRIES) {
+            setTimeout(hookPagerenderedWithRetry, RETRY_DELAY);
+          } else {
+            log('Could not hook pagerendered event (PDFViewerApplication not ready)');
+          }
+          return false;
+        }
+
+        function removeWatermarkFull() {
+          tryUncheckWatermarkLayer();
+          removeMarkedContent();
+          installObserverIfNeeded();
+          hookPagerenderedWithRetry();
+          log('Watermark removal executed');
+        }
+
+        function onToggleClicked(btn) {
+          const pressed = btn.getAttribute('aria-pressed') === 'true';
+          if (!pressed) {
+            // User requested hiding watermark -> set pressed=true
+            btn.setAttribute('aria-pressed', 'true');
+            btn.classList.add('toggled');
+            removeWatermarkFull();
+          } else {
+            // User requested restoring watermark -> reload viewer to allow normal behavior
+            btn.setAttribute('aria-pressed', 'false');
+            btn.classList.remove('toggled');
+            try {
+              if (observer) {
+                observer.disconnect();
+                observer = null;
+                window._watermarkObserver = null;
+              }
+            } catch (e) {}
+            // Reload to restore upstream behavior (safe and simple)
+            log('Reloading viewer to restore watermark behavior');
+            try { location.reload(); } catch (e) { log('Reload blocked'); }
+          }
+        }
+
+        function attachButton() {
+          const btn = document.getElementById(BUTTON_ID);
+          if (!btn) return false;
+          // ensure initial accessible state is "not pressed" meaning watermark visible
+          btn.setAttribute('aria-pressed', 'false');
+          btn.addEventListener('click', () => onToggleClicked(btn));
+          return true;
+        }
+
+        // Direct attach if button exists now
+        if (!attachButton()) {
+          // delegated fallback for async UI creation
+          document.addEventListener('click', (ev) => {
+            const el = ev.target && ev.target.closest && ev.target.closest('#' + BUTTON_ID);
+            if (el) {
+              // ensure listener is installed once
+              if (!el.getAttribute('data-wm-attached')) {
+                el.setAttribute('data-wm-attached', '1');
+                el.addEventListener('click', () => onToggleClicked(el));
+              }
+            }
+          }, true);
+        }
+
+        // Expose API for debugging / manual invocation
+        window.removeWatermarkFull = removeWatermarkFull;
+        window._watermarkToggle = {
+          removeMarkedContent,
+          removeWatermarkFull,
+          installObserverIfNeeded,
+        };
+
+        // If someone injects state via URL hash (convenience), e.g. #nowatermark
+        try {
+          if (location.hash && location.hash.toLowerCase().includes('nowatermark')) {
+            // ensure button toggled if present
+            const btn = document.getElementById(BUTTON_ID);
+            if (btn) { btn.setAttribute('aria-pressed', 'true'); btn.classList.add('toggled'); }
+            removeWatermarkFull();
+          }
+        } catch (e) {}
+
+        // Auto-run removal once if the toggle is already pressed (unlikely) to cover pre-checked state
+        setTimeout(() => {
+          const btn = document.getElementById(BUTTON_ID);
+          if (btn && btn.getAttribute('aria-pressed') === 'true') removeWatermarkFull();
+        }, 500);
+
+        // Listen for parent postMessage commands to remove/restore watermark.
+        window.addEventListener('message', function (event) {
+          try {
+            // only accept messages from same origin for safety
+            if (event.origin !== location.origin) return;
+          } catch (e) {
+            // ignore origin check errors
+          }
+          var data = event.data || {};
+          if (data && data.type === 'watermark') {
+            if (data.command === 'remove') {
+              removeWatermarkFull();
+            } else if (data.command === 'restore') {
+              try {
+                if (observer) {
+                  observer.disconnect();
+                  observer = null;
+                  window._watermarkObserver = null;
+                }
+              } catch (e) {}
+              log('Restore requested via postMessage; reloading viewer');
+              try { location.reload(); } catch (e) { }
+            }
+          }
+        }, false);
+      })();
+    </script>
   </body>
 </html>

@@ -220,6 +220,13 @@
                     </div>
                 </div>
             </div>
+            <!-- Improved Watermark toggle placed after Layout -->
+            <div class="control-group watermark-toggle" id="watermark-control">
+                <button id="watermarkGlobalToggle" aria-pressed="false" title="Toggle watermark overlays" type="button" aria-label="Toggle watermark visibility">
+                    <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8S1 12 1 12z"></path><circle cx="12" cy="12" r="3"></circle></svg>
+                    <span class="wm-label" id="watermarkGlobalToggleLabel">Hide watermark</span>
+                </button>
+            </div>
             <div class="control-group">
                 <label>Exam:</label>
                 <div class="custom-dropdown" id="exam-type-dropdown" data-value="endsem">
@@ -863,6 +870,96 @@
     });
 
     document.addEventListener('DOMContentLoaded', init);
+</script>
+<!-- Global watermark toggle controller: sends commands to every embedded PDF viewer iframe -->
+<script>
+(function(){
+    'use strict';
+    var btn = document.getElementById('watermarkGlobalToggle');
+    var label = document.getElementById('watermarkGlobalToggleLabel');
+
+    function getAllViewerIframes() {
+        return Array.from(document.querySelectorAll('#pdf-container iframe'));
+    }
+
+    function sendCommandToIframe(iframe, cmd) {
+        try {
+            var cw = iframe.contentWindow;
+            if (!cw) return false;
+            // prefer direct call if the viewer exposes API
+            if (typeof cw.removeWatermarkFull === 'function') {
+                if (cmd === 'remove') {
+                    try { cw.removeWatermarkFull(); } catch (e) {}
+                } else if (cmd === 'restore') {
+                    try { cw.location.reload(); } catch (e) { try { cw.postMessage({type:'watermark', command:'restore'}, location.origin); } catch (e2) {} }
+                }
+                return true;
+            }
+            // fallback to postMessage API
+            try {
+                cw.postMessage({ type: 'watermark', command: cmd }, location.origin);
+                return true;
+            } catch (e) {
+                return false;
+            }
+        } catch (e) {
+            return false;
+        }
+    }
+
+    function applyToAll(cmd) {
+        var iframes = getAllViewerIframes();
+        iframes.forEach(function(iframe) {
+            var ok = sendCommandToIframe(iframe, cmd);
+            if (!ok) {
+                // try after load
+                var handler = function() {
+                    try { sendCommandToIframe(iframe, cmd); } catch(e) {}
+                    iframe.removeEventListener('load', handler);
+                };
+                iframe.addEventListener('load', handler);
+            }
+        });
+    }
+
+    function setButtonState(hidden) {
+        if (!btn) return;
+        btn.setAttribute('aria-pressed', hidden ? 'true' : 'false');
+        if (hidden) {
+            btn.classList.add('active');
+            label.textContent = 'Show watermark';
+        } else {
+            btn.classList.remove('active');
+            label.textContent = 'Hide watermark';
+        }
+    }
+
+    if (btn) {
+        btn.addEventListener('click', function() {
+            var pressed = btn.getAttribute('aria-pressed') === 'true';
+            if (!pressed) {
+                // hide watermark
+                setButtonState(true);
+                applyToAll('remove');
+            } else {
+                // restore watermark (reload each iframe)
+                setButtonState(false);
+                applyToAll('restore');
+            }
+        });
+    }
+
+    // If new iframes are added dynamically, observe the container and apply removal when toggle is active
+    var container = document.getElementById('pdf-container');
+    if (container) {
+        var mo = new MutationObserver(function() {
+            try {
+                if (btn && btn.getAttribute('aria-pressed') === 'true') applyToAll('remove');
+            } catch (e) {}
+        });
+        mo.observe(container, { childList: true, subtree: true });
+    }
+})();
 </script>
 </body>
 </html>

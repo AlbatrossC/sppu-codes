@@ -202,7 +202,9 @@
                 <svg class="icon" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>
                 Back
             </button>
-            <h1><div class="subject-badge" id="subject-display">{{ seo_data.subject_name }}</div></h1>
+            <h1>
+                <div class="subject-badge" id="subject-display">{{ seo_data.subject_name }}</div>
+            </h1>
         </div>
         <div class="header-center">
             <div class="control-group">
@@ -220,13 +222,6 @@
                     </div>
                 </div>
             </div>
-            <!-- Improved Watermark toggle placed after Layout -->
-            <div class="control-group watermark-toggle" id="watermark-control">
-                <button id="watermarkGlobalToggle" aria-pressed="false" title="Toggle watermark overlays" type="button" aria-label="Toggle watermark visibility">
-                    <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8S1 12 1 12z"></path><circle cx="12" cy="12" r="3"></circle></svg>
-                    <span class="wm-label" id="watermarkGlobalToggleLabel">Hide watermark</span>
-                </button>
-            </div>
             <div class="control-group">
                 <label>Exam:</label>
                 <div class="custom-dropdown" id="exam-type-dropdown" data-value="endsem">
@@ -242,6 +237,13 @@
             </div>
         </div>
         <div class="header-controls">
+            <!-- Watermark toggle moved here, before fullscreen -->
+            <div class="control-group watermark-toggle" id="watermark-control">
+                <button id="watermarkGlobalToggle" aria-pressed="false" title="Toggle watermark overlays" type="button" aria-label="Toggle watermark visibility">
+                    <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8S1 12 1 12z"></path><circle cx="12" cy="12" r="3"></circle></svg>
+                    <span class="wm-label" id="watermarkGlobalToggleLabel">Hide watermark</span>
+                </button>
+            </div>
             <button class="primary" id="fullscreen-btn" aria-label="Toggle fullscreen mode">
                 <svg class="icon" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24"><path d="M8 3H5a2 2 0 0 0-2 2v3m18 0V5a2 2 0 0 0-2-2h-3m0 18h3a2 2 0 0 0 2-2v-3M3 16v3a2 2 0 0 0 2 2h3"/></svg>
                 Fullscreen

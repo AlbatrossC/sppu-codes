@@ -21,7 +21,7 @@
     <meta name="topic" content="Academic Question Papers, SPPU University Papers">
     <meta name="summary" content="Download and view {{ seo_data.subject_name }} question papers online. Access INSEM and ENDSEM papers with our PDF viewer.">
 
-    <link rel="canonical" href="https://sppucodes.vercel.app/questionpapers/{{ subject_name }}">
+    <link rel="canonical" href="https://sppucodes.vercel.app/question-papers/{{ subject_name }}">
     <script>
     if(!window.IS_MOBILE_DEVICE){
         document.write('<meta name="google-adsense-account" content="ca-pub-6918638598461716">');
@@ -31,7 +31,7 @@
 
     <meta property="og:title" content="{{ seo_data.title }}">
     <meta property="og:description" content="{{ seo_data.description }}">
-    <meta property="og:url" content="https://sppucodes.vercel.app/questionpapers/{{ subject_name }}">
+    <meta property="og:url" content="https://sppucodes.vercel.app/question-papers/{{ subject_name }}">
     <meta property="og:image" content="https://sppucodes.vercel.app/images/logo.png">
     <meta property="og:type" content="website">
     <meta property="og:site_name" content="SPPU Codes">
@@ -57,7 +57,7 @@
         "@type": "WebPage",
         "name": "{{ seo_data.title }}",
         "description": "{{ seo_data.description }}",
-        "url": "https://sppucodes.vercel.app/questionpapers/{{ subject_name }}",
+        "url": "https://sppucodes.vercel.app/question-papers/{{ subject_name }}",
         "inLanguage": "en-US",
         "isPartOf": {
             "@type": "WebSite",
@@ -110,8 +110,8 @@
             "@type": "BreadcrumbList",
             "itemListElement": [
                 {"@type": "ListItem", "position": 1, "name": "Home", "item": "https://sppucodes.vercel.app"},
-                {"@type": "ListItem", "position": 2, "name": "Question Papers", "item": "https://sppucodes.vercel.app/questionpapers"},
-                {"@type": "ListItem", "position": 3, "name": "{{ seo_data.subject_name }}", "item": "https://sppucodes.vercel.app/questionpapers/{{ subject_name }}"}
+                {"@type": "ListItem", "position": 2, "name": "Question Papers", "item": "https://sppucodes.vercel.app/question-papers"},
+                {"@type": "ListItem", "position": 3, "name": "{{ seo_data.subject_name }}", "item": "https://sppucodes.vercel.app/question-papers/{{ subject_name }}"}
             ]
         }
     }
@@ -757,7 +757,7 @@
         );
         
         DOM.fullscreenBtn.addEventListener('click', toggleFullscreen);
-        DOM.backBtn.addEventListener('click', function() { window.location.href = '/questionpapers'; });
+        DOM.backBtn.addEventListener('click', function() { window.location.href = '/question-papers'; });
         document.addEventListener('fullscreenchange', updateFullscreenButton);
         document.addEventListener('keydown', function(e) {
             if (e.key === 'Escape') {

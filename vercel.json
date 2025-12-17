@@ -15,6 +15,18 @@
   ],
   "routes": [
     {
+      "src": "^/questionpapers$",
+      "status": 301,
+      "headers": { "Location": "/question-papers" },
+      "continue": false
+    },
+    {
+      "src": "^/questionpapers/(.+)$",
+      "status": 301,
+      "headers": { "Location": "/question-papers/$1" },
+      "continue": false
+    },
+    {
       "src": "/static/(.*)",
       "dest": "/static/$1"
     },

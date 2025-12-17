@@ -209,9 +209,12 @@ def select_page():
             branch_name = data.get('branch_name', os.path.splitext(os.path.basename(file_path))[0])
             semesters = data.copy()
             semesters.pop('branch_name', None)
+            semesters.pop('branch_code', None)
             branch_semesters = {}
             for sem_key, subjects in semesters.items():
-                # sem_key: 'sem-1', 'sem-2', etc.
+                # Only process if subjects is a dict (skip strings/nulls)
+                if not isinstance(subjects, dict):
+                    continue
                 sem_number = sem_key.split('-')[-1] if '-' in sem_key else sem_key
                 sem_display = f"Semester {sem_number}"
                 subject_list = []
@@ -249,9 +252,7 @@ def viewer_page(subject_name):
                 data = json.load(f)
             # Each file: {branch_name, sem-1: {...}, sem-2: {...}, ...}
             for sem_key, subjects in data.items():
-                if sem_key == 'branch_name':
-                    continue
-                # Fix: Only process if subjects is a dict
+                # Only process if subjects is a dict (skip strings/nulls)
                 if not isinstance(subjects, dict):
                     continue
                 for subj_key, subj_data in subjects.items():

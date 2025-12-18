@@ -1,6 +1,6 @@
 console.log(`
     ⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢸⣿⣿⣿⣿⣿⡆⠀⠀⠀⢀⣴⣶⣶⣶⣶⣄⠀⣀⣴⣶⣶⣶⣶⡀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
-    ⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢸⣿⣿⠀⠀⠀⠀⠀⢠⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣦⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+    ⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢸⣿⣿⠀⠀⠀⠀⠀⢠⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣦⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
     ⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢈⣿⣿⠀⠀⠀⠀⠀⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⡿⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
     ⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢸⣿⣿⠀⠀⠀⠀⠀⠸⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⡿⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
     ⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢸⣿⣿⠀⠀⠀⠀⠀⠀⠹⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⠟⠁⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
@@ -24,101 +24,104 @@ console.log(`
                         Dive in: https://github.com/AlbatrossC/sppu-codes
             ⠀
     `);
-
 (function () {
-    // Function to load Google Tag Manager asynchronously
+    /* =====================================================
+       GOOGLE TAG (UNCHANGED)
+    ===================================================== */
     function loadGTM() {
-        var script = document.createElement('script');
+        const script = document.createElement('script');
         script.src = 'https://www.googletagmanager.com/gtag/js?id=G-1R5FFVKTF8';
         script.async = true;
-
         script.onload = function () {
             window.dataLayer = window.dataLayer || [];
-            function gtag() {
-                window.dataLayer.push(arguments);
-            }
+            function gtag() { window.dataLayer.push(arguments); }
             gtag('js', new Date());
             gtag('config', 'G-1R5FFVKTF8');
         };
-
         document.head.appendChild(script);
     }
 
-    // Defer loading of GTM until after the page has loaded
     if (document.readyState === 'complete') {
-        loadGTM(); // If the page is already loaded, load GTM immediately
+        loadGTM();
     } else {
-        window.addEventListener('load', function () {
-            loadGTM(); // Load GTM after the page has fully loaded
-        });
+        window.addEventListener('load', loadGTM);
     }
 })();
 
 document.addEventListener('DOMContentLoaded', function () {
-    // Header elements
+    /* =====================================================
+       ELEMENTS
+    ===================================================== */
+    const searchInput = document.getElementById('subject-search');
+    const mobileSearchToggle = document.querySelector('.mobile-search-toggle');
+    const searchContainer = document.querySelector('.search-container');
     const header = document.querySelector('header');
-    const mobileMenuToggle = document.querySelector('.mobile-menu-toggle');
-    const headerActions = document.querySelector('.header__actions');
-    const searchInput = document.querySelector('#subject-search');
+
     const searchDropdown = document.createElement('div');
     searchDropdown.className = 'search-dropdown';
     document.body.appendChild(searchDropdown);
 
-    // Mobile search toggle
-    const mobileSearchToggle = document.querySelector('.mobile-search-toggle');
-    const searchContainer = document.querySelector('.search-container');
+    /* =====================================================
+       STATE
+    ===================================================== */
+    let isLoaded = false;
+    const MAX_RESULTS = 10;
 
-    function closeMobileSearch() {
-        if (window.innerWidth <= 768) {
-            searchContainer.classList.remove('active');
-        }
+    const searchData = {
+        questionPapers: [],
+        codes: []
+    };
+
+    /* =====================================================
+       UTILS – STRING NORMALIZATION
+    ===================================================== */
+    function normalize(str) {
+        return str
+            .toLowerCase()
+            .replace(/[^a-z0-9\s]/g, '')
+            .replace(/\s+/g, ' ')
+            .trim();
     }
 
-    if (mobileSearchToggle) {
-        mobileSearchToggle.addEventListener('click', function (e) {
-            e.stopPropagation();
-            searchContainer.classList.toggle('active');
-            if (searchContainer.classList.contains('active')) {
-                setTimeout(() => searchInput.focus(), 100);
-            }
+    /* =====================================================
+       FUZZY SCORE (IMPROVED)
+       Lower score = better match
+    ===================================================== */
+    function fuzzyScore(query, target) {
+        if (!query || !target) return Infinity;
+
+        query = normalize(query);
+        target = normalize(target);
+
+        if (target.startsWith(query)) return 0;              // best
+        if (target.includes(query)) return 1;                // very good
+
+        // Token similarity
+        const qTokens = query.split(' ');
+        const tTokens = target.split(' ');
+        let hits = 0;
+
+        qTokens.forEach(qt => {
+            if (tTokens.some(tt => tt.startsWith(qt))) hits++;
         });
+
+        if (hits > 0) return 2 - hits * 0.1;
+
+        // Levenshtein fallback
+        return levenshtein(query, target);
     }
 
-    // Hide search bar on mobile when clicking outside
-    document.addEventListener('click', function (e) {
-        if (
-            window.innerWidth <= 768 &&
-            searchContainer.classList.contains('active') &&
-            !searchContainer.contains(e.target) &&
-            !mobileSearchToggle.contains(e.target)
-        ) {
-            searchContainer.classList.remove('active');
-            searchDropdown.style.display = 'none';
-        }
-    });
-
-    // Hide search bar on mobile when pressing Escape
-    document.addEventListener('keydown', function (e) {
-        if (window.innerWidth <= 768 && e.key === 'Escape') {
-            closeMobileSearch();
-            searchDropdown.style.display = 'none';
-        }
-    });
-
-    // Load data from all JSON files in the questions folder
-    let searchData = [];
-    const maxResults = 8;
-
-    // Levenshtein distance for fuzzy matching
     function levenshtein(a, b) {
         if (a.length === 0) return b.length;
         if (b.length === 0) return a.length;
+
         const matrix = [];
         for (let i = 0; i <= b.length; i++) matrix[i] = [i];
         for (let j = 0; j <= a.length; j++) matrix[0][j] = j;
+
         for (let i = 1; i <= b.length; i++) {
             for (let j = 1; j <= a.length; j++) {
-                if (b.charAt(i - 1).toLowerCase() === a.charAt(j - 1).toLowerCase()) {
+                if (b[i - 1] === a[j - 1]) {
                     matrix[i][j] = matrix[i - 1][j - 1];
                 } else {
                     matrix[i][j] = Math.min(
@@ -132,215 +135,206 @@ document.addEventListener('DOMContentLoaded', function () {
         return matrix[b.length][a.length];
     }
 
+    /* =====================================================
+       LOAD SEARCH DATA (ON DEMAND)
+    ===================================================== */
     async function loadSearchData() {
+        if (isLoaded) return;
+
         try {
-            const response = await fetch('/api/error-page-data');
-            const data = await response.json();
+            // Question Papers
+            const qpRes = await fetch('/api/question-papers/search');
+            const qpData = await qpRes.json();
 
-            // Separate and tag results for sorting and styling
-            const codeResults = data.subjects.map(subject => ({
+            searchData.questionPapers = qpData.map(item => ({
+                type: 'QUESTION_PAPER',
+                label: '📄 Question Paper',
+                subjectName: item.subject_name,
+                subjectLink: item.subject_link,
+                branchName: item.branch_name,
+                // branchName is only for display, not for search
+            }));
+
+            // Codes (Subjects)
+            const codeRes = await fetch('/api/subjects/search');
+            const codeData = await codeRes.json();
+
+            searchData.codes = codeData.map(s => ({
                 type: 'CODE',
-                emoji: '💻',
-                subjectName: subject.name,
-                branchName: '',
-                link: subject.href,
-                subjectCode: subject.code || '', // Add code for short form search
-            }));
-            const qpResults = data.questionPapers.map(paper => ({
-                type: 'QUESTION PAPER',
-                emoji: '📄',
-                subjectName: paper.name,
-                branchName: paper.branch,
-                link: paper.href,
-                subjectCode: '', // No code for question paper
+                label: '💻 Code',
+                subjectName: s.subject_name,
+                subjectCode: s.subject_code,
+                link: s.url
             }));
 
-            // Always show question papers first, then codes
-            searchData = [...qpResults, ...codeResults];
-        } catch (error) {
-            console.error('Failed to load search data:', error);
+            isLoaded = true;
+        } catch (err) {
+            console.error('Search data load failed:', err);
         }
     }
 
-    // Position dropdown below the search bar
-    function positionDropdown() {
-        const isMobile = window.innerWidth <= 768;
-        if (isMobile) {
-            searchDropdown.style.position = 'fixed';
-            searchDropdown.style.top = (parseInt(getComputedStyle(document.documentElement).getPropertyValue('--header-height')) || 70) + 'px';
-            searchDropdown.style.left = '0px';
-            searchDropdown.style.width = '100vw';
-        } else {
-            const rect = searchInput.getBoundingClientRect();
-            searchDropdown.style.position = 'absolute';
-            searchDropdown.style.top = `${rect.bottom + window.scrollY}px`;
-            searchDropdown.style.left = `${rect.left + window.scrollX}px`;
-            searchDropdown.style.width = `${rect.width}px`;
-        }
+    /* =====================================================
+       SEARCH TOGGLE
+    ===================================================== */
+    if (mobileSearchToggle) {
+        mobileSearchToggle.addEventListener('click', async (e) => {
+            e.stopPropagation();
+            searchContainer.classList.toggle('active');
+
+            if (searchContainer.classList.contains('active')) {
+                await loadSearchData();
+                setTimeout(() => searchInput.focus(), 100);
+            } else {
+                searchDropdown.style.display = 'none';
+            }
+        });
     }
 
-    // Highlight matched text
+    /* =====================================================
+       FILTER & SORT
+    ===================================================== */
+    function filterAndSort(query) {
+        const resultsQP = [];
+        const resultsCode = [];
+
+        // Only search by subject name for question papers
+        searchData.questionPapers.forEach(item => {
+            const score = fuzzyScore(query, item.subjectName);
+            if (score <= 3) resultsQP.push({ ...item, score });
+        });
+
+        // For codes, search by subject name and subject code (short form)
+        searchData.codes.forEach(item => {
+            const scoreName = fuzzyScore(query, item.subjectName);
+            const scoreCode = fuzzyScore(query, item.subjectCode || "");
+            const score = Math.min(scoreName, scoreCode);
+            if (score <= 3) resultsCode.push({ ...item, score });
+        });
+
+        resultsQP.sort((a, b) => a.score - b.score);
+        resultsCode.sort((a, b) => a.score - b.score);
+
+        return { resultsQP, resultsCode };
+    }
+
+    // Remove highlightMatch, just return text as-is
     function highlightMatch(text, query) {
-        if (!query) return text;
-        // Highlight all occurrences, case-insensitive
-        const regex = new RegExp(`(${query.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')})`, 'gi');
-        return text.replace(regex, '<mark>$1</mark>');
+        return text;
     }
 
-    // Improved filter logic: startswith > contains > fuzzy
-    let searchResults = [];
-    function filterResults(query) {
-        const lowerQuery = query.toLowerCase();
-
-        // Helper to check if a string starts with query
-        function startsWith(str) {
-            return str.toLowerCase().startsWith(lowerQuery);
-        }
-        // Helper to check if a string contains query
-        function contains(str) {
-            return str.toLowerCase().includes(lowerQuery);
-        }
-        // Helper for fuzzy match (Levenshtein distance <= 2)
-        function fuzzy(str) {
-            return levenshtein(str.toLowerCase(), lowerQuery) <= 2;
-        }
-
-        // 1. Results that start with query (subjectName or subjectCode)
-        const startsWithResults = searchData.filter(item =>
-            startsWith(item.subjectName) || (item.subjectCode && startsWith(item.subjectCode))
-        );
-        // 2. Results that contain query (subjectName or subjectCode), but not startswith
-        const containsResults = searchData.filter(item =>
-            !startsWith(item.subjectName) && !startsWith(item.subjectCode || '') &&
-            (contains(item.subjectName) || (item.subjectCode && contains(item.subjectCode)))
-        );
-        // 3. Fuzzy matches (subjectName or subjectCode), but not already included
-        const fuzzyResults = searchData.filter(item => {
-            if (
-                startsWith(item.subjectName) || (item.subjectCode && startsWith(item.subjectCode)) ||
-                contains(item.subjectName) || (item.subjectCode && contains(item.subjectCode))
-            ) return false;
-            return (
-                fuzzy(item.subjectName) ||
-                (item.subjectCode && fuzzy(item.subjectCode))
-            );
-        });
-
-        searchResults = [...startsWithResults, ...containsResults, ...fuzzyResults];
-    }
-
-    // Render search results
-    function renderResults() {
+    /* =====================================================
+       RENDER
+    ===================================================== */
+    function renderResults(qp, codes) {
         searchDropdown.innerHTML = '';
-        if (searchResults.length === 0) {
-            const noResults = document.createElement('div');
-            noResults.className = 'search-no-results';
-            noResults.textContent = `No subject found for "${searchInput.value}". Try checking spelling or using a shorter name.`;
-            searchDropdown.appendChild(noResults);
-            return;
+
+        function renderSection(title, items, typeClass) {
+            if (!items.length) return;
+
+            const section = document.createElement('div');
+            section.className = 'search-section';
+
+            const header = document.createElement('div');
+            header.className = 'search-section-header';
+            header.textContent = title;
+            section.appendChild(header);
+
+            const list = document.createElement('div');
+            list.className = 'search-section-list';
+
+            items.slice(0, MAX_RESULTS).forEach(item => {
+                const row = document.createElement('div');
+                row.className = `search-result-row ${typeClass}`;
+
+                // For codes, show subject code as a badge
+                let codeBadge = '';
+                if (typeClass === 'code-row' && item.subjectCode) {
+                    codeBadge = `<span class="result-shortcode">${highlightMatch(item.subjectCode, searchInput.value)}</span>`;
+                }
+
+                // For question papers, show branch name as a badge
+                let branchBadge = '';
+                if (typeClass === 'qp-row' && item.branchName) {
+                    branchBadge = `<span class="result-branch">– ${item.branchName}</span>`;
+                }
+
+                // Highlight subject name and code
+                let highlightedName = highlightMatch(item.subjectName, searchInput.value);
+
+                row.innerHTML = `
+                    <span class="result-type-label">${item.label}</span>
+                    <span class="result-main">
+                        <span class="result-name">${highlightedName}${codeBadge}</span>
+                        ${branchBadge}
+                    </span>
+                `;
+
+                row.onclick = () => window.location.href = item.link || `/question-papers/${item.subjectLink}`;
+                list.appendChild(row);
+            });
+
+            section.appendChild(list);
+            searchDropdown.appendChild(section);
         }
 
-        searchResults.slice(0, maxResults).forEach(result => {
-            const row = document.createElement('div');
-            row.className = `search-result-row ${result.type === 'QUESTION PAPER' ? 'qp-row' : 'code-row'}`;
-            // Highlight both subjectName and subjectCode
-            let nameHtml = highlightMatch(result.subjectName, searchInput.value);
-            if (result.subjectCode) {
-                // Show code in parentheses if present
-                nameHtml += ` <span class="result-shortcode">(${highlightMatch(result.subjectCode, searchInput.value)})</span>`;
-            }
-            row.innerHTML = `
-                <span class="result-type-label">
-                    <span class="result-emoji">${result.emoji}</span>
-                    <span class="result-type-text">${result.type === 'QUESTION PAPER' ? 'Question Paper' : 'Code'}</span>
-                </span>
-                <span class="result-main">
-                    <span class="result-name">${nameHtml}</span>
-                    ${result.branchName ? `<span class="result-branch">– ${result.branchName}</span>` : ''}
-                </span>
+        renderSection('Question Papers', qp, 'qp-row');
+        renderSection('Codes', codes, 'code-row');
+
+        if (!qp.length && !codes.length) {
+            searchDropdown.innerHTML = `
+                <div class="search-no-results">
+                    No results found for "${searchInput.value}"
+                </div>
             `;
-            row.addEventListener('click', () => {
-                window.location.href = result.link;
-            });
-            searchDropdown.appendChild(row);
-        });
+        }
     }
 
-    // Header scroll effect
-    window.addEventListener('scroll', () => {
-        if (window.scrollY > 50) {
-            header.classList.add('scrolled');
-        } else {
-            header.classList.remove('scrolled');
-        }
-    });
+    /* =====================================================
+       POSITIONING
+    ===================================================== */
+    function positionDropdown() {
+        const rect = searchInput.getBoundingClientRect();
+        searchDropdown.style.position = 'absolute';
+        searchDropdown.style.top = `${rect.bottom + window.scrollY}px`;
+        searchDropdown.style.left = `${rect.left + window.scrollX}px`;
+        searchDropdown.style.width = `${rect.width}px`;
+    }
 
-    // Mobile menu toggle functionality
-    mobileMenuToggle.addEventListener('click', (e) => {
-        e.stopPropagation(); // Prevent event from bubbling up
-        isMenuOpen = !isMenuOpen;
-        headerActions.classList.toggle('active');
-        searchContainer.classList.toggle('active');
-        mobileMenuToggle.classList.toggle('active');
-        mobileMenuToggle.setAttribute('aria-expanded', isMenuOpen);
-    });
-
-    // Close mobile menu when clicking outside
-    document.addEventListener('click', (event) => {
-        const isClickInsideHeader = header.contains(event.target);
-        const isClickOnToggle = mobileMenuToggle.contains(event.target);
-
-        if (!isClickInsideHeader && !isClickOnToggle && isMenuOpen) {
-            isMenuOpen = false;
-            headerActions.classList.remove('active');
-            searchContainer.classList.remove('active');
-            mobileMenuToggle.classList.remove('active');
-            mobileMenuToggle.setAttribute('aria-expanded', false);
-        }
-    });
-
-    // Handle window resize
-    let resizeTimer;
-    window.addEventListener('resize', () => {
-        clearTimeout(resizeTimer);
-        resizeTimer = setTimeout(() => {
-            if (window.innerWidth > 768 && isMenuOpen) {
-                isMenuOpen = false;
-                headerActions.classList.remove('active');
-                searchContainer.classList.remove('active');
-                mobileMenuToggle.classList.remove('active');
-                mobileMenuToggle.setAttribute('aria-expanded', false);
-            }
-        }, 250);
-    });
-
-    // Handle input events
-    searchInput.addEventListener('input', () => {
+    /* =====================================================
+       INPUT HANDLING
+    ===================================================== */
+    searchInput.addEventListener('input', async () => {
         const query = searchInput.value.trim();
-        if (query === '') {
+        if (!query) {
             searchDropdown.style.display = 'none';
             return;
         }
-        filterResults(query);
-        renderResults();
+
+        await loadSearchData();   // 🔥 ENSURE DATA EXISTS
+
+        const { resultsQP, resultsCode } = filterAndSort(query);
+        renderResults(resultsQP, resultsCode);
         positionDropdown();
         searchDropdown.style.display = 'block';
     });
 
-    // Close dropdown on outside click
-    document.addEventListener('click', event => {
-        if (!searchInput.contains(event.target) && !searchDropdown.contains(event.target)) {
+    document.addEventListener('click', (e) => {
+        if (!searchDropdown.contains(e.target) && e.target !== searchInput) {
             searchDropdown.style.display = 'none';
         }
     });
 
-    // Close dropdown on escape key
-    document.addEventListener('keydown', event => {
-        if (event.key === 'Escape') {
+    document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape') {
             searchDropdown.style.display = 'none';
         }
     });
 
-    // Load data on page load
-    loadSearchData();
+    /* =====================================================
+       HEADER SCROLL EFFECT (UNCHANGED)
+    ===================================================== */
+    window.addEventListener('scroll', () => {
+        if (window.scrollY > 50) header.classList.add('scrolled');
+        else header.classList.remove('scrolled');
+    });
 });

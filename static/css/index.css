@@ -105,6 +105,30 @@ mark {
     min-width: 320px;
 }
 
+.search-section {
+    padding: 0;
+    margin: 0;
+}
+
+.search-section-header {
+    font-size: 1.08rem;
+    font-weight: 700;
+    color: var(--accent-primary);
+    padding: 8px 18px 4px 18px;
+    background: var(--secondary-bg);
+    border-bottom: 1px solid var(--border-color);
+    letter-spacing: 0.01em;
+    margin-bottom: 0;
+}
+
+.search-section-list {
+    display: flex;
+    flex-direction: column;
+    gap: 0; /* Remove gap between rows */
+    margin: 0;
+    padding: 0;
+}
+
 .search-result-row {
     display: flex;
     align-items: center;
@@ -115,15 +139,28 @@ mark {
     border-bottom: 1px solid var(--border-color);
     font-size: 1rem;
     min-width: 0;
+    margin: 0; /* Remove margin between rows */
+    background: transparent;
 }
 
 .search-result-row:last-child {
     border-bottom: none;
 }
 
-.search-result-row:hover {
-    background: rgba(45, 118, 204, 0.13);
-    transform: translateX(3px) scale(1.01);
+.search-section-list .search-result-row:first-child {
+    border-top-left-radius: 0;
+    border-top-right-radius: 0;
+}
+
+.search-section-list .search-result-row:last-child {
+    border-bottom-left-radius: 0;
+    border-bottom-right-radius: 0;
+}
+
+.search-section + .search-section {
+    border-top: 1px solid var(--border-color);
+    margin-top: 0;
+    padding-top: 0;
 }
 
 .result-type-label {

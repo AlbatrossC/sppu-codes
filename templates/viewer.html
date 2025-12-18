@@ -258,7 +258,7 @@
     'use strict';
 
     var initialPdfDataFromServer = {{ pdf_data_for_js | tojson | safe }};
-    var subjectNameFromServer = {{ seo_data.subject_name | tojson | safe }};
+    var subjectNameFromServer = {{ (seo_data.subject_name or subject_name) | tojson | safe }};
 
     // Custom Dropdown Component
     var CustomDropdown = {

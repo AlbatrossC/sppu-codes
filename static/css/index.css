@@ -96,15 +96,16 @@ mark {
     background: var(--secondary-bg);
     border: 1.5px solid var(--accent-primary);
     border-radius: var(--border-radius-soft);
-    box-shadow: 0 8px 32px rgba(45, 118, 204, 0.08), 0 1.5px 8px rgba(0,0,0,0.10);
+    box-shadow: 0 8px 32px rgba(0,0,0,0.12), 0 1.5px 8px rgba(0,0,0,0.10);
     z-index: 3000;
     max-height: 60vh;
     overflow-y: auto;
     display: none;
-    padding: 8px 0;
+    padding: 4px 0;
     min-width: 320px;
     animation: fadeIn 0.25s;
     font-size: 1rem;
+    background-image: none !important;
 }
 
 @media (max-width: 900px) {
@@ -128,10 +129,10 @@ mark {
 }
 
 .search-section-header {
-    font-size: 1.08rem;
-    font-weight: 700;
+    font-size: 0.99rem;
+    font-weight: 600;
     color: var(--accent-primary);
-    padding: 8px 18px 4px 18px;
+    padding: 4px 14px 2px 14px;
     background: var(--secondary-bg);
     border-bottom: 1px solid var(--border-color);
     letter-spacing: 0.01em;
@@ -149,74 +150,85 @@ mark {
 .search-result-row {
     display: flex;
     align-items: center;
-    gap: 16px;
-    padding: 14px 18px;
+    gap: 14px;
+    padding: 0 14px;
     cursor: pointer;
-    transition: background 0.18s, box-shadow 0.18s;
+    transition: background 0.16s, box-shadow 0.16s;
     border-bottom: 1px solid var(--border-color);
-    background: #181f2a;
-    border-radius: 8px;
-    margin: 2px 0;
-    box-shadow: 0 2px 8px rgba(45, 118, 204, 0.05);
-    font-size: 1rem;
-    min-width: 0;
+    background: var(--primary-bg);
+    border-radius: 6px;
     margin: 0;
+    box-shadow: none;
+    font-size: 0.97rem;
+    min-width: 0;
+    height: 38px;
+    min-height: 38px;
     position: relative;
+    background-image: none !important;
+    white-space: nowrap;
+    overflow: hidden;
 }
 
-.search-result-row:last-child {
-    border-bottom: none;
+.search-result-row > span,
+.search-result-row > div {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    white-space: nowrap;
+    overflow: hidden;
 }
 
-.search-result-row.active,
-.search-result-row:hover {
+.search-result-row .result-name {
+    font-size: 1rem;
+    font-weight: 500;
+    color: var(--text-primary);
+    margin-right: 8px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    max-width: 180px;
+    transition: background 0.2s;
+}
+
+.search-result-row mark {
     background: #232c3d;
     color: var(--accent-primary);
-    box-shadow: 0 4px 16px rgba(45, 118, 204, 0.13);
+    border-radius: 3px;
+    padding: 0 3px;
+    font-weight: 700;
+    box-shadow: 0 0 0 2px #232c3d;
 }
 
 .result-type-label {
     display: flex;
     align-items: center;
-    gap: 6px;
+    gap: 4px;
     font-size: 0.82rem;
-    font-weight: 700;
+    font-weight: 600;
     text-transform: uppercase;
-    border-radius: 16px;
-    padding: 3px 14px;
-    font-size: 0.93em;
-    font-weight: 700;
-    background: #181f2a;
+    border-radius: 10px;
+    padding: 2px 10px;
+    background: transparent;
     color: #2d76cc;
-    border: 1.5px solid #2d76cc;
-    letter-spacing: 0.04em;
-    display: inline-flex;
-}
-
-.result-shortform {
-    background: #222;
-    color: #ffd700;
-    font-size: 0.92em;
-    font-weight: 700;
-    border-radius: 8px;
-    padding: 2px 8px;
-    margin-left: 8px;
-    letter-spacing: 0.04em;
-    border: 1px solid #444;
-    display: inline-block;
+    border: 1px solid #2d76cc;
+    letter-spacing: 0.03em;
+    min-width: 44px;
+    justify-content: center;
+    height: 26px;
 }
 
 .result-shortcode {
-    background: #181f2a;
+    background: transparent;
     color: #2d76cc;
-    border: 1.5px solid #2d76cc;
-    border-radius: 8px;
-    padding: 2px 10px;
-    font-weight: 700;
+    border: 1px solid #2d76cc;
+    border-radius: 7px;
+    padding: 1px 7px;
+    font-weight: 600;
     font-size: 0.93em;
     letter-spacing: 0.04em;
     margin-left: 0.5em;
     display: inline-block;
+    height: 24px;
 }
 
 .result-branch {
@@ -224,23 +236,41 @@ mark {
     font-size: 0.93em;
     margin-left: 0.5em;
     display: inline-block;
+    height: 24px;
 }
 
-.result-name {
-    font-size: 1.05rem;
+.search-result-row.active,
+.search-result-row:hover {
+    background: var(--secondary-bg);
+    color: var(--accent-primary);
+    box-shadow: 0 2px 8px rgba(0,0,0,0.10);
+    background-image: none !important;
+}
+
+.search-section-header {
+    font-size: 0.99rem;
     font-weight: 600;
-    color: var(--text-primary);
-    white-space: normal;
-    word-break: break-word;
-    line-height: 1.3;
-    margin-right: 4px;
+    color: var(--accent-primary);
+    padding: 4px 14px 2px 14px;
+    background: var(--secondary-bg);
+    border-bottom: 1px solid var(--border-color);
+    letter-spacing: 0.01em;
+    margin-bottom: 0;
+}
+
+.search-section-list {
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+    margin: 0;
+    padding: 0;
 }
 
 .search-no-results {
-    padding: 18px 10px;
+    padding: 10px 6px;
     text-align: center;
     color: var(--text-secondary);
-    font-size: 1rem;
+    font-size: 0.95rem;
     font-style: italic;
 }
 
@@ -270,35 +300,37 @@ mark {
         padding: 0;
     }
     .search-result-row {
-        padding: 10px 8px;
-        font-size: 0.98rem;
-        min-height: 36px;
-        gap: 8px;
+        padding: 0 6px;
+        font-size: 0.95rem;
+        min-height: 32px;
+        height: 32px;
+        gap: 5px;
+        border-radius: 5px;
     }
     .result-type-label {
-        min-width: 70px;
-        font-size: 0.92rem;
-        padding: 3px 7px;
-    }
-    .result-shortform, .result-shortcode {
-        font-size: 0.89em;
+        min-width: 36px;
+        font-size: 0.89rem;
         padding: 2px 6px;
-        margin-left: 4px;
+        height: 22px;
     }
-    .result-main {
-        flex-wrap: wrap;
-        gap: 4px;
+    .result-shortcode {
+        font-size: 0.89em;
+        padding: 1px 5px;
+        margin-left: 4px;
+        height: 20px;
     }
     .result-name {
-        font-size: 1rem;
+        font-size: 0.95rem;
         margin-right: 2px;
+        max-width: 90px;
     }
     .result-branch {
-        font-size: 0.93rem;
+        font-size: 0.91rem;
+        height: 20px;
     }
     .search-no-results {
-        padding: 12px 4px;
-        font-size: 0.95rem;
+        padding: 8px 2px;
+        font-size: 0.93rem;
     }
 }
 

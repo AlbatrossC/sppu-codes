@@ -273,23 +273,22 @@ document.addEventListener('DOMContentLoaded', function () {
 
                 let badge = '';
                 if (typeClass === 'code-row' && item.subjectCode) {
-                    badge = `<span class="result-shortcode" style="margin-left:0.5em;background:#181f2a;color:#2d76cc;border:1.5px solid #2d76cc;padding:2px 10px;font-weight:700;font-size:0.93em;letter-spacing:0.04em;">${item.subjectCode.toUpperCase()}</span>`;
+                    badge = `<span class="result-shortcode">${item.subjectCode.toUpperCase()}</span>`;
                 } else if (typeClass === 'qp-row' && item.branch) {
-                    badge = `<span class="result-branch" style="font-size: 0.93em; color: #8ab4f8; display: block; margin-left:0.5em;">${item.branch}</span>`;
+                    badge = `<span class="result-branch">${item.branch}</span>`;
                 }
 
-                // Improved layout: name left, badge right, label right-aligned
+                // Single-row horizontal layout
                 row.innerHTML = `
-                    <div style="display: flex; flex-direction: row; align-items: center; justify-content: space-between; width: 100%;">
-                        <div style="display: flex; flex-direction: column;">
-                            <span class="result-name" style="font-size:1.08em;font-weight:600;">${highlight(item.subjectName, searchInput.value)}</span>
-                            ${badge ? `<span>${badge}</span>` : ''}
-                        </div>
-                        <span class="result-type-label" style="margin-left:1em;min-width:60px;display:inline-flex;align-items:center;justify-content:center;">
-                            ${typeClass === 'qp-row' ? '<svg style="width:1.1em;height:1.1em;margin-right:4px;" fill="none" stroke="#2d76cc" stroke-width="2" viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="16" rx="2"/><path d="M16 2v4"/><path d="M8 2v4"/></svg>' : '<svg style="width:1.1em;height:1.1em;margin-right:4px;" fill="none" stroke="#2d76cc" stroke-width="2" viewBox="0 0 24 24"><rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 3v4"/><path d="M8 3v4"/></svg>'}
-                            ${typeClass === 'qp-row' ? 'QP' : 'CODE'}
-                        </span>
-                    </div>
+                    <span class="result-name">${highlight(item.subjectName, searchInput.value)}</span>
+                    ${badge ? badge : ''}
+                    <span class="result-type-label">
+                        ${typeClass === 'qp-row'
+                            ? '<svg style="width:1em;height:1em;margin-right:3px;" fill="none" stroke="#2d76cc" stroke-width="2" viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="16" rx="2"/><path d="M16 2v4"/><path d="M8 2v4"/></svg>'
+                            : '<svg style="width:1em;height:1em;margin-right:3px;" fill="none" stroke="#2d76cc" stroke-width="2" viewBox="0 0 24 24"><rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 3v4"/><path d="M8 3v4"/></svg>'
+                        }
+                        ${typeClass === 'qp-row' ? 'QP' : 'CODE'}
+                    </span>
                 `;
 
                 row.onclick = () => {

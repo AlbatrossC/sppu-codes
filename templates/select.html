@@ -16,10 +16,7 @@
     <header>
         <div class="header__container">
             <button onclick="location.href='/'" class="home-button" aria-label="Go to home page">Home</button>
-            <div class="header-content">
-                <h1 onclick="location.href='/question-papers'" class="main-title">SPPU Question Papers</h1>
-            </div>
-            <div class="spacer"></div>
+            <h1 onclick="location.href='/question-papers'" class="main-title">SPPU Question Papers</h1>
         </div>
     </header>
 
@@ -57,9 +54,7 @@
                 <div class="cards-grid">
                     {% for subject in subjects %}
                     <div class="card subject-card">
-                        <div class="subject-info">
-                            <h3>{{ subject.subject_name }}</h3>
-                        </div>
+                        <h3>{{ subject.subject_name }}</h3>
                         <a href="/question-papers/{{ subject.subject_link }}" class="view-button">View Question Papers</a>
                     </div>
                     {% endfor %}

@@ -24,6 +24,8 @@ console.log(`
                         Dive in: https://github.com/AlbatrossC/sppu-codes
             ⠀
     `);
+// ... [Keep the initial console.log ASCII art exactly as it is] ...
+
 (function () {
     /* =====================================================
        GOOGLE TAG (UNCHANGED)
@@ -76,6 +78,7 @@ document.addEventListener('DOMContentLoaded', function () {
        UTILS – STRING NORMALIZATION
     ===================================================== */
     function normalize(str) {
+        if (!str) return "";
         return str
             .toLowerCase()
             .replace(/[^a-z0-9\s]/g, '')
@@ -84,87 +87,68 @@ document.addEventListener('DOMContentLoaded', function () {
     }
 
     /* =====================================================
-       FUZZY SCORE (IMPROVED)
-       Lower score = better match
+       FUZZY SCORE
     ===================================================== */
     function fuzzyScore(query, target) {
         if (!query || !target) return Infinity;
-
         query = normalize(query);
         target = normalize(target);
 
-        if (target.startsWith(query)) return 0;              // best
-        if (target.includes(query)) return 1;                // very good
+        if (target.startsWith(query)) return 0;
+        if (target.includes(query)) return 1;
 
-        // Token similarity
         const qTokens = query.split(' ');
         const tTokens = target.split(' ');
         let hits = 0;
-
         qTokens.forEach(qt => {
             if (tTokens.some(tt => tt.startsWith(qt))) hits++;
         });
 
         if (hits > 0) return 2 - hits * 0.1;
-
-        // Levenshtein fallback
         return levenshtein(query, target);
     }
 
     function levenshtein(a, b) {
         if (a.length === 0) return b.length;
         if (b.length === 0) return a.length;
-
         const matrix = [];
         for (let i = 0; i <= b.length; i++) matrix[i] = [i];
         for (let j = 0; j <= a.length; j++) matrix[0][j] = j;
-
         for (let i = 1; i <= b.length; i++) {
             for (let j = 1; j <= a.length; j++) {
-                if (b[i - 1] === a[j - 1]) {
-                    matrix[i][j] = matrix[i - 1][j - 1];
-                } else {
-                    matrix[i][j] = Math.min(
-                        matrix[i - 1][j - 1] + 1,
-                        matrix[i][j - 1] + 1,
-                        matrix[i - 1][j] + 1
-                    );
-                }
+                if (b[i - 1] === a[j - 1]) matrix[i][j] = matrix[i - 1][j - 1];
+                else matrix[i][j] = Math.min(matrix[i - 1][j - 1] + 1, matrix[i][j - 1] + 1, matrix[i - 1][j] + 1);
             }
         }
         return matrix[b.length][a.length];
     }
 
     /* =====================================================
-       LOAD SEARCH DATA (ON DEMAND)
+       LOAD SEARCH DATA (FIXED KEYS)
     ===================================================== */
     async function loadSearchData() {
         if (isLoaded) return;
-
         try {
             // Question Papers
             const qpRes = await fetch('/api/question-papers/search');
             const qpData = await qpRes.json();
-
             searchData.questionPapers = qpData.map(item => ({
                 type: 'QUESTION_PAPER',
-                label: '📄 Question Paper',
+                label: '📄 QP',
                 subjectName: item.subject_name,
-                subjectLink: item.subject_link,
-                branchName: item.branch_name,
-                // branchName is only for display, not for search
+                link: item.link, // Matches API "link"
+                branch: item.branch // Matches API "branch"
             }));
 
             // Codes (Subjects)
             const codeRes = await fetch('/api/subjects/search');
             const codeData = await codeRes.json();
-
             searchData.codes = codeData.map(s => ({
                 type: 'CODE',
                 label: '💻 Code',
                 subjectName: s.subject_name,
                 subjectCode: s.subject_code,
-                link: s.url
+                link: s.url || `/${s.subject_code}` // Use URL or generate from code
             }));
 
             isLoaded = true;
@@ -180,7 +164,6 @@ document.addEventListener('DOMContentLoaded', function () {
         mobileSearchToggle.addEventListener('click', async (e) => {
             e.stopPropagation();
             searchContainer.classList.toggle('active');
-
             if (searchContainer.classList.contains('active')) {
                 await loadSearchData();
                 setTimeout(() => searchInput.focus(), 100);
@@ -197,13 +180,11 @@ document.addEventListener('DOMContentLoaded', function () {
         const resultsQP = [];
         const resultsCode = [];
 
-        // Only search by subject name for question papers
         searchData.questionPapers.forEach(item => {
             const score = fuzzyScore(query, item.subjectName);
             if (score <= 3) resultsQP.push({ ...item, score });
         });
 
-        // For codes, search by subject name and subject code (short form)
         searchData.codes.forEach(item => {
             const scoreName = fuzzyScore(query, item.subjectName);
             const scoreCode = fuzzyScore(query, item.subjectCode || "");
@@ -213,17 +194,11 @@ document.addEventListener('DOMContentLoaded', function () {
 
         resultsQP.sort((a, b) => a.score - b.score);
         resultsCode.sort((a, b) => a.score - b.score);
-
         return { resultsQP, resultsCode };
     }
 
-    // Remove highlightMatch, just return text as-is
-    function highlightMatch(text, query) {
-        return text;
-    }
-
     /* =====================================================
-       RENDER
+       RENDER (FIXED DISPLAY LOGIC)
     ===================================================== */
     function renderResults(qp, codes) {
         searchDropdown.innerHTML = '';
@@ -233,7 +208,6 @@ document.addEventListener('DOMContentLoaded', function () {
 
             const section = document.createElement('div');
             section.className = 'search-section';
-
             const header = document.createElement('div');
             header.className = 'search-section-header';
             header.textContent = title;
@@ -246,30 +220,28 @@ document.addEventListener('DOMContentLoaded', function () {
                 const row = document.createElement('div');
                 row.className = `search-result-row ${typeClass}`;
 
-                // For codes, show subject code as a badge
-                let codeBadge = '';
+                let badge = '';
                 if (typeClass === 'code-row' && item.subjectCode) {
-                    codeBadge = `<span class="result-shortcode">${highlightMatch(item.subjectCode, searchInput.value)}</span>`;
+                    badge = `<span class="result-shortcode">${item.subjectCode.toUpperCase()}</span>`;
+                } else if (typeClass === 'qp-row' && item.branch) {
+                    badge = `<span class="result-branch" style="font-size: 0.8em; color: #888; display: block;">${item.branch}</span>`;
                 }
-
-                // For question papers, show branch name as a badge
-                let branchBadge = '';
-                if (typeClass === 'qp-row' && item.branchName) {
-                    branchBadge = `<span class="result-branch">– ${item.branchName}</span>`;
-                }
-
-                // Highlight subject name and code
-                let highlightedName = highlightMatch(item.subjectName, searchInput.value);
 
                 row.innerHTML = `
-                    <span class="result-type-label">${item.label}</span>
-                    <span class="result-main">
-                        <span class="result-name">${highlightedName}${codeBadge}</span>
-                        ${branchBadge}
-                    </span>
+                    <div style="display: flex; flex-direction: column; width: 100%;">
+                        <div style="display: flex; justify-content: space-between; align-items: center;">
+                            <span class="result-name">${item.subjectName}</span>
+                            <span class="result-type-label" style="font-size: 0.7em; opacity: 0.6;">${item.label}</span>
+                        </div>
+                        ${badge}
+                    </div>
                 `;
 
-                row.onclick = () => window.location.href = item.link || `/question-papers/${item.subjectLink}`;
+                row.onclick = () => {
+                    if (item.link) {
+                        window.location.href = item.link;
+                    }
+                };
                 list.appendChild(row);
             });
 
@@ -281,41 +253,31 @@ document.addEventListener('DOMContentLoaded', function () {
         renderSection('Codes', codes, 'code-row');
 
         if (!qp.length && !codes.length) {
-            searchDropdown.innerHTML = `
-                <div class="search-no-results">
-                    No results found for "${searchInput.value}"
-                </div>
-            `;
+            searchDropdown.innerHTML = `<div class="search-no-results">No results found for "${searchInput.value}"</div>`;
         }
     }
 
     /* =====================================================
-       POSITIONING
+       POSITIONING & EVENTS
     ===================================================== */
     function positionDropdown() {
         const rect = searchInput.getBoundingClientRect();
-        searchDropdown.style.position = 'absolute';
         searchDropdown.style.top = `${rect.bottom + window.scrollY}px`;
         searchDropdown.style.left = `${rect.left + window.scrollX}px`;
         searchDropdown.style.width = `${rect.width}px`;
+        searchDropdown.style.display = 'block';
     }
 
-    /* =====================================================
-       INPUT HANDLING
-    ===================================================== */
     searchInput.addEventListener('input', async () => {
         const query = searchInput.value.trim();
         if (!query) {
             searchDropdown.style.display = 'none';
             return;
         }
-
-        await loadSearchData();   // 🔥 ENSURE DATA EXISTS
-
+        await loadSearchData();
         const { resultsQP, resultsCode } = filterAndSort(query);
         renderResults(resultsQP, resultsCode);
         positionDropdown();
-        searchDropdown.style.display = 'block';
     });
 
     document.addEventListener('click', (e) => {
@@ -324,17 +286,9 @@ document.addEventListener('DOMContentLoaded', function () {
         }
     });
 
-    document.addEventListener('keydown', (e) => {
-        if (e.key === 'Escape') {
-            searchDropdown.style.display = 'none';
-        }
-    });
-
-    /* =====================================================
-       HEADER SCROLL EFFECT (UNCHANGED)
-    ===================================================== */
     window.addEventListener('scroll', () => {
         if (window.scrollY > 50) header.classList.add('scrolled');
         else header.classList.remove('scrolled');
+        if (searchDropdown.style.display === 'block') positionDropdown();
     });
 });

@@ -1,15 +1,15 @@
-// Google Tag Manager 
+// =============================================================================
+// Google Tag Manager + Fonts (Deferred)
+// =============================================================================
 (function () {
     function loadGTM() {
-        var script = document.createElement('script');
+        const script = document.createElement('script');
         script.src = 'https://www.googletagmanager.com/gtag/js?id=G-1R5FFVKTF8';
         script.async = true;
 
         script.onload = function () {
             window.dataLayer = window.dataLayer || [];
-            function gtag() {
-                window.dataLayer.push(arguments);
-            }
+            function gtag() { window.dataLayer.push(arguments); }
             gtag('js', new Date());
             gtag('config', 'G-1R5FFVKTF8');
         };
@@ -17,156 +17,128 @@
         document.head.appendChild(script);
     }
 
-    // Function to load Google Fonts asynchronously
     function loadGoogleFonts() {
-        var link = document.createElement('link');
+        const link = document.createElement('link');
         link.rel = 'stylesheet';
         link.href = 'https://fonts.googleapis.com/css2?family=Fira+Code&display=swap';
-        link.type = 'text/css';
         document.head.appendChild(link);
     }
 
-    // Load Google Tag Manager after a delay or when needed
-    setTimeout(loadGTM, 3000); // Delay GTM loading by 3 seconds
-
-    // Load Google Fonts and marked.js only when needed
-    document.addEventListener('DOMContentLoaded', function () {
-        loadGoogleFonts();
-    });
+    setTimeout(loadGTM, 3000);
+    document.addEventListener('DOMContentLoaded', loadGoogleFonts);
 })();
 
-// Modal backdrop setup
+// =============================================================================
+// Modal Backdrop
+// =============================================================================
 const backdrop = document.createElement('div');
 backdrop.className = 'modal-backdrop';
 document.body.appendChild(backdrop);
 
-//Function to Load file
-async function loadFile(subject, fileName, questionText, element) {
-    console.log(`Loading file: ${subject}/${fileName}`);
+// =============================================================================
+// Answer Cache (subject-question-fileIndex)
+// =============================================================================
+const answerCache = new Map();
 
-    const questionItem = element.closest('.question-item');
+// =============================================================================
+// Load Answer (API-driven)
+// =============================================================================
+async function loadAnswer(subject, questionNo, title, button, fileName, fileIndex) {
+    const cacheKey = `${subject}-${questionNo}-${fileIndex}`;
+
+    const questionItem = button.closest('.question-item');
     if (!questionItem) return;
 
     const answerBox = questionItem.querySelector('.answer-box');
     if (!answerBox) return;
 
-    const questionId = answerBox.id.match(/\d+[a-z]?/)?.[0];
-    if (!questionId) return;
+    const questionTitle = answerBox.querySelector('h3');
+    const codeContent = answerBox.querySelector('pre');
 
-    const questionTitle = document.getElementById('questionText' + questionId);
-    const codeContent = document.getElementById('codeContent' + questionId);
-    if (!questionTitle || !codeContent) return;
-
-    // Show loading state
-    codeContent.textContent = 'Loading...';
+    // Show modal
     answerBox.style.display = 'block';
     backdrop.style.display = 'block';
     document.body.style.overflow = 'hidden';
 
-    // Create modal content wrapper if needed
-    if (!answerBox.querySelector('.modal-content')) {
-        const modalContent = document.createElement('div');
-        modalContent.className = 'modal-content';
-        modalContent.append(...answerBox.children);
-        answerBox.appendChild(modalContent);
+    questionTitle.textContent = title;
+    codeContent.textContent = 'Loading...';
+    button.disabled = true;
+
+    // Serve from cache
+    if (answerCache.has(cacheKey)) {
+        codeContent.textContent = answerCache.get(cacheKey);
+        button.disabled = false;
+        return;
     }
 
     try {
-        const startTime = performance.now(); // For performance measurement
-        const response = await fetch(`/answers/${subject}/${fileName}`);
-        
+        const response = await fetch(
+            `/api/${subject}/${questionNo}?no_question=1&split=${fileIndex}`
+        );
+
         if (!response.ok) {
-            throw new Error(`HTTP error! Status: ${response.status}`);
+            throw new Error(`HTTP ${response.status}`);
         }
-        
-        const data = await response.text();
-        questionTitle.textContent = questionText;
-        codeContent.textContent = data;
-        
-        console.log(`File loaded in ${performance.now() - startTime}ms`);
+
+        const text = await response.text();
+        codeContent.textContent = text.trim();
+        answerCache.set(cacheKey, text.trim());
+
     } catch (err) {
-        console.error('File load error:', err);
-        codeContent.textContent = `Error loading file: ${err.message}`;
-        alert(`Failed to load ${fileName}. Error: ${err.message}`);
+        console.error('Answer load error:', err);
+        codeContent.textContent = 'Failed to load answer.';
+        alert('Failed to load answer. Please try again.');
+    } finally {
+        button.disabled = false;
     }
 }
 
-// Function to copy code to clipboard
+// =============================================================================
+// Copy Code
+// =============================================================================
 function copyCode(elementId) {
     const codeElement = document.getElementById(elementId);
     if (!codeElement) return;
-    
-    const codeText = codeElement.innerText;
-    const copyButton = document.querySelector(`#${elementId}`).parentElement.querySelector('.copy-btn');
-    if (!copyButton) return;
 
-    navigator.clipboard.writeText(codeText)
-        .then(() => {
-            copyButton.classList.add('copied');
-            copyButton.innerHTML = 'Copied to Clipboard';
-            setTimeout(() => {
-                copyButton.classList.remove('copied');
-                copyButton.innerHTML = 'Copy Code';
-            }, 5000);
-        })
-        .catch(err => {
-            alert('Failed to copy code! Please try selecting and copying manually.');
-        });
+    const text = codeElement.innerText;
+    const btn = codeElement.closest('.answer-box').querySelector('.copy-btn');
+
+    navigator.clipboard.writeText(text).then(() => {
+        btn.textContent = 'Copied!';
+        btn.classList.add('copied');
+
+        setTimeout(() => {
+            btn.textContent = 'Copy Code';
+            btn.classList.remove('copied');
+        }, 3000);
+    }).catch(() => {
+        alert('Copy failed. Please copy manually.');
+    });
 }
 
-// Function to close modal boxes
+// =============================================================================
+// Close Modal
+// =============================================================================
 function closeBox(boxId) {
     const box = document.getElementById(boxId);
-    if (box) {
-        box.classList.remove('split-view');
-        box.style.display = 'none';
-        backdrop.style.display = 'none';
-        document.body.style.overflow = 'auto';
-    }
+    if (!box) return;
+
+    box.style.display = 'none';
+    backdrop.style.display = 'none';
+    document.body.style.overflow = 'auto';
 }
 
-// Function to download code
-async function downloadCode(subject, fileName) {
-    try {
-        const response = await fetch(`/answers/${subject}/${fileName}`);
-        if (!response.ok) {
-            throw new Error(`HTTP error! Status: ${response.status}`);
-        }
-        const data = await response.text();
-        
-        const blob = new Blob([data], { type: 'text/plain' });
-        const url = URL.createObjectURL(blob);
-        const a = document.createElement('a');
-        a.href = url;
-        a.download = fileName;
-        document.body.appendChild(a);
-        a.click();
-        document.body.removeChild(a);
-        URL.revokeObjectURL(url);
-    } catch (err) {
-        alert(`Failed to download ${fileName}. Error: ${err.message}`);
-    }
-}
-
-// Event: Close modal or popup with Escape key
-document.addEventListener('keydown', function(event) {
-    if (event.key === 'Escape') {
-        const popup = document.getElementById('dynamicCopyPopup');
-        if (popup && popup.style.display === 'flex') {
-            closePopup();
-        } else {
-            const visibleModal = document.querySelector('.answer-box[style*="display: block"]');
-            if (visibleModal) {
-                closeBox(visibleModal.id);
-            }
-        }
+// =============================================================================
+// Global Escape + Backdrop Click
+// =============================================================================
+document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape') {
+        const openModal = document.querySelector('.answer-box[style*="display: block"]');
+        if (openModal) closeBox(openModal.id);
     }
 });
 
-// Close modals by clicking on backdrop
-backdrop.addEventListener('click', function() {
-    const visibleModal = document.querySelector('.answer-box[style*="display: block"]');
-    if (visibleModal) {
-        closeBox(visibleModal.id);
-    }
+backdrop.addEventListener('click', () => {
+    const openModal = document.querySelector('.answer-box[style*="display: block"]');
+    if (openModal) closeBox(openModal.id);
 });

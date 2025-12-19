@@ -304,20 +304,18 @@
             <h1>
                 <strong>Q{{ question.question_no }}: </strong>{{ question.question }}
             </h1>
-            {% for individual_file_name in question.file_name %}
+            {% for file in question.file_name %}
+            <!-- UPDATE: Added loop.index to arguments for fileIndex -->
             <button class="view-code-btn"  
-                    onclick="loadFile('{{ subject_code }}', '{{ individual_file_name }}', '{{ question.title }} ({{ individual_file_name }})', this)">
-                {% if question.file_name | length == 1 %}View Code{% else %}View Code {{ loop.index }}{% endif %}
+                    onclick="loadAnswer('{{ subject_code }}', '{{ question.question_no }}', '{{ question.title }}', this, '{{ file }}', {{ loop.index }})">
+                View Code {{ loop.index }}
             </button>
             {% endfor %}
-            {% if question.file_name | length > 1 %}
-            <p class="multiple-solutions-note">
-                <em>Note: Multiple "View Code" buttons may indicate different solutions to the same question or sub-parts of the question.</em>
-            </p>
-            {% endif %}
             <div class="answer-box" id="answerBox{{ question.question_no }}">
-                <h3 id="questionText{{ question.question_no }}"></h3>
-                <pre id="codeContent{{ question.question_no }}"></pre>
+                <div class="modal-content">
+                    <h3 id="questionText{{ question.question_no }}"></h3>
+                    <pre id="codeContent{{ question.question_no }}"></pre>
+                </div>
                 <div class="copy-close-container">
                     <button class="copy-btn" onclick="copyCode('codeContent{{ question.question_no }}')">Copy Code</button>
                     <button class="close-btn" onclick="closeBox('answerBox{{ question.question_no }}')">Close</button>
@@ -357,20 +355,18 @@
                     <strong>Q{{ question_item.question_no }}: </strong>{{ question_item.question }}
                 </a>
             </h1>
-            {% for individual_file_name in question_item.file_name %}
+            {% for file in question_item.file_name %}
+            <!-- UPDATE: Added loop.index to arguments for fileIndex -->
             <button class="view-code-btn" 
-                    onclick="loadFile('{{ subject_code }}', '{{ individual_file_name }}', '{{ question_item.title }} ({{ individual_file_name }})', this)">
-                {% if question_item.file_name | length == 1 %}View Code{% else %}View Code {{ loop.index }}{% endif %}
+                    onclick="loadAnswer('{{ subject_code }}', '{{ question_item.question_no }}', '{{ question_item.title }}', this, '{{ file }}', {{ loop.index }})">
+                View Code {{ loop.index }}
             </button>
             {% endfor %}
-            {% if question_item.file_name | length > 1 %}
-            <p class="multiple-solutions-note">
-                <em>Note: Multiple "View Code" buttons may indicate different solutions to the same question or sub-parts of the question.</em>
-            </p>
-            {% endif %}
             <div class="answer-box" id="answerBox{{ question_item.question_no }}">
-                <h3 id="questionText{{ question_item.question_no }}"></h3>
-                <pre id="codeContent{{ question_item.question_no }}"></pre>
+                <div class="modal-content">
+                    <h3 id="questionText{{ question_item.question_no }}"></h3>
+                    <pre id="codeContent{{ question_item.question_no }}"></pre>
+                </div>
                 <div class="copy-close-container">
                     <button class="copy-btn" onclick="copyCode('codeContent{{ question_item.question_no }}')">Copy Code</button>
                     <button class="close-btn" onclick="closeBox('answerBox{{ question_item.question_no }}')">Close</button>

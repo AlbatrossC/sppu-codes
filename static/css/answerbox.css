@@ -76,12 +76,13 @@
 
 /* Modal Content */
 .modal-content {
-    height: 100%;
+    height: auto;
     max-height: calc(90vh - 110px);
     overflow-y: auto;
     padding-right: 10px;
     margin-bottom: 60px;
     scroll-behavior: smooth;
+    -webkit-overflow-scrolling: touch;
 }
 
 /* Custom Scrollbar */
@@ -148,6 +149,7 @@
         max-height: calc(95vh - 80px);
         padding-right: 5px;
         margin-bottom: 40px;
+        -webkit-overflow-scrolling: touch;
     }
     
     .answer-box pre {

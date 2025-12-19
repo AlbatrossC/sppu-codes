@@ -1,24 +1,31 @@
 from flask import (
-    Flask, render_template, send_from_directory, abort,
-    request, redirect, url_for, flash, jsonify
+    Flask, render_template, send_from_directory,
+    abort, request, redirect, jsonify
 )
 import os
 import json
-import psycopg2
 from functools import lru_cache
 from urllib.parse import urlparse
 import glob
 
 # =============================================================================
-# APP INIT & MAINTENANCE
+# APP INIT
 # =============================================================================
 
 app = Flask(__name__)
-app.secret_key = 'karltos'
+app.secret_key = "karltos"
+
+BASE_DIR = os.path.dirname(__file__)
+QUESTIONS_DIR = os.path.join(BASE_DIR, "questions")
+ANSWERS_DIR = os.path.join(BASE_DIR, "answers")
+QUESTION_PAPERS_DIR = os.path.join(BASE_DIR, "question-papers")
+
+# =============================================================================
+# MAINTENANCE MODE
+# =============================================================================
 
 MAINTENANCE_MODE = os.getenv("MAINTENANCE_MODE", "false").lower() == "true"
 MAINTENANCE_BYPASS_IP = os.getenv("MAINTENANCE_BYPASS_IP")
-
 
 @app.before_request
 def maintenance():
@@ -28,18 +35,21 @@ def maintenance():
         if request.path.startswith("/static"):
             return
         return render_template("maintenance.html"), 503
-    
+
+# =============================================================================
+# STATIC FILES
+# =============================================================================
+
 @app.route("/images/<filename>")
 def get_image(filename):
     images_dir = os.path.join(BASE_DIR, "images")
-    if not os.path.exists(os.path.join(images_dir, filename)):
+    path = os.path.join(images_dir, filename)
+    if not os.path.exists(path):
         abort(404)
     return send_from_directory(images_dir, filename)
 
-
-
 # =============================================================================
-# LOCAL FALLBACK REDIRECT
+# URL MIGRATION (OLD → NEW)
 # =============================================================================
 
 @app.before_request
@@ -50,45 +60,12 @@ def questionpapers_redirect():
     if path.startswith("/questionpapers/"):
         return redirect("/question-papers" + path[len("/questionpapers"):], code=301)
 
-
 # =============================================================================
-# PATHS
-# =============================================================================
-
-BASE_DIR = os.path.dirname(__file__)
-QUESTIONS_DIR = os.path.join(BASE_DIR, "questions")
-QUESTION_PAPERS_DIR = os.path.join(BASE_DIR, "question-papers")
-
-DATABASE_URL = os.getenv("DATABASE_URL")
-
-
-# =============================================================================
-# DATABASE
-# =============================================================================
-
-def connect_db():
-    try:
-        return psycopg2.connect(DATABASE_URL)
-    except Exception as e:
-        print("DB error:", e)
-        return None
-
-
-# =============================================================================
-# QUESTION PAPERS – LOADER & CACHE
+# QUESTION PAPERS CACHE
 # =============================================================================
 
 @lru_cache(maxsize=1)
 def load_question_papers():
-    """
-    Loads and indexes all question-papers/*.json once.
-    Returns:
-    {
-      "branches": [...],
-      "subjects_index": {subject_link: [pdfs]},
-      "search_index": [...]
-    }
-    """
     branches = []
     subjects_index = {}
     search_index = []
@@ -121,14 +98,16 @@ def load_question_papers():
 
                 subjects_index.setdefault(subject_link, []).extend(
                     subject.get("pdf_links", [])
+
+
                 )
 
                 search_index.append({
-                    "branch_name": branch_name,
-                    "branch_code": branch_code,
-                    "semester": sem_no,
+                    "type": "QUESTION_PAPER",
                     "subject_name": subject.get("subject_name"),
-                    "subject_link": subject_link
+                    "branch": branch_name,
+                    "semester": sem_no,
+                    "link": f"/question-papers/{subject_link}"
                 })
 
             branch_entry["semesters"][f"Semester {sem_no}"] = subjects
@@ -141,7 +120,6 @@ def load_question_papers():
         "search_index": search_index
     }
 
-
 # =============================================================================
 # MAIN ROUTES
 # =============================================================================
@@ -150,21 +128,17 @@ def load_question_papers():
 def index():
     return render_template("index.html")
 
-
 # =============================================================================
-# QUESTION PAPERS ROUTES
+# QUESTION PAPERS
 # =============================================================================
 
 @app.route("/question-papers")
 def select_page():
     qp = load_question_papers()
-    organized_data = {}
-
-    for branch in qp["branches"]:
-        organized_data[branch["branch_name"]] = branch["semesters"]
-
+    organized_data = {
+        b["branch_name"]: b["semesters"] for b in qp["branches"]
+    }
     return render_template("select.html", organized_data=organized_data)
-
 
 @app.route("/question-papers/<subject_link>")
 def viewer_page(subject_link):
@@ -182,9 +156,9 @@ def viewer_page(subject_link):
 
     seo_data = {
         "title": f"{subject_display} Question Papers | SPPU Codes",
-        "description": f"Download {subject_display} SPPU question papers.",
+        "description": f"Download {subject_display} SPPU question papers",
         "keywords": f"{subject_display}, sppu, question papers",
-        "subject_name": subject_display  # Add this line
+        "subject_name": subject_display
     }
 
     return render_template(
@@ -194,43 +168,16 @@ def viewer_page(subject_link):
         seo_data=seo_data
     )
 
-
 # =============================================================================
-# SEARCH API (FAST)
-# =============================================================================
-
-@app.route("/api/question-papers/search")
-def question_papers_search():
-    qp = load_question_papers()
-    return jsonify(qp["search_index"])
-
-
-@app.route("/api/subjects/search")
-def subjects_search():
-    subjects = []
-    for file_path in glob.glob(os.path.join(QUESTIONS_DIR, "*.json")):
-        try:
-            with open(file_path, "r", encoding="utf-8") as f:
-                data = json.load(f)
-            default = data.get("default", {})
-            subjects.append({
-                "subject_code": default.get("subject_code"),
-                "subject_name": default.get("subject_name"),
-                "url": default.get("url")
-            })
-        except Exception as e:
-            continue
-    return jsonify(subjects)
-
-
-# =============================================================================
-# EXISTING SUBJECT / QUESTION ROUTES (UNCHANGED)
+# 🔥 SUBJECT ROUTES (FIXED)
+# filename == link (ai.json → /ai)
 # =============================================================================
 
-@app.route("/<subject_code>")
-@app.route("/<subject_code>/<question_id>")
-def question(subject_code, question_id=None):
-    json_path = os.path.join(QUESTIONS_DIR, f"{subject_code}.json")
+@app.route("/<subject_link>")
+@app.route("/<subject_link>/<question_id>")
+def subject_page(subject_link, question_id=None):
+    json_path = os.path.join(QUESTIONS_DIR, f"{subject_link}.json")
+
     if not os.path.exists(json_path):
         abort(404)
 
@@ -240,41 +187,127 @@ def question(subject_code, question_id=None):
     subject = data.get("default", {})
     questions = data.get("questions", [])
 
-    question_map = {q["id"]: q for q in questions}
-    selected = question_map.get(question_id)
-
-    title = subject.get("subject_name", subject_code)
-    description = subject.get("description", "")
-
     groups = {}
     for q in questions:
         groups.setdefault(q["group"], []).append(q)
 
+    sorted_groups = sorted(groups.keys())
+
+    selected_question = None
+    if question_id:
+        selected_question = next(
+            (q for q in questions if q["id"] == question_id), None
+        )
+        if not selected_question:
+            abort(404)
+
     return render_template(
         "subject.html",
-        title=title,
-        description=description,
-        subject_code=subject_code,
+        title=subject.get("subject_name", subject_link.upper()),
+        description=subject.get("description", ""),
+        keywords=subject.get("keywords", []),
+        url=subject.get("url"),
+        subject_code=subject_link,          # 🔑 link, not JSON subject_code
         subject_name=subject.get("subject_name"),
+        question_paper_url=subject.get("question_paper_url"),
         groups=groups,
-        sorted_groups=sorted(groups),
-        question=selected
+        sorted_groups=sorted_groups,
+        question=selected_question
     )
 
+# =============================================================================
+# ANSWER API (TERMINAL + MODAL)
+# =============================================================================
+
+@app.route("/api/<subject_link>/<question_no>")
+def answer_api(subject_link, question_no):
+    json_path = os.path.join(QUESTIONS_DIR, f"{subject_link}.json")
+    if not os.path.exists(json_path):
+        return "Subject not found", 404, {"Content-Type": "text/plain"}
+
+    with open(json_path, "r", encoding="utf-8") as f:
+        data = json.load(f)
+
+    question = next(
+        (q for q in data.get("questions", [])
+         if str(q.get("question_no")) == str(question_no)),
+        None
+    )
+
+    if not question:
+        return "Question not found", 404, {"Content-Type": "text/plain"}
+
+    files = question.get("file_name", [])
+    if not files:
+        return "No answer files", 404, {"Content-Type": "text/plain"}
+
+    subject_dir = os.path.join(ANSWERS_DIR, subject_link)
+    if not os.path.exists(subject_dir):
+        return "Answer directory missing", 404, {"Content-Type": "text/plain"}
+
+    # ---------------------------
+    # Query flags
+    # ---------------------------
+    no_question = request.args.get("no_question") == "1"
+    split = request.args.get("split")
+
+    output = []
+
+    # Include question (terminal default)
+    if not no_question:
+        output.append(question["question"].strip())
+        output.append("")
+
+    # Split mode → return only ONE file
+    if split:
+        try:
+            index = int(split) - 1
+            if index < 0 or index >= len(files):
+                return "Invalid split index", 400, {"Content-Type": "text/plain"}
+            files = [files[index]]
+        except ValueError:
+            return "Invalid split parameter", 400, {"Content-Type": "text/plain"}
+
+    # Read files
+    for fname in files:
+        path = os.path.join(subject_dir, fname)
+        if not os.path.exists(path):
+            return f"File missing: {fname}", 404, {"Content-Type": "text/plain"}
+
+        with open(path, "r", encoding="utf-8") as f:
+            content = f.read()
+
+        if not split:
+            output.append("-" * 40)
+            output.append(f"File: {fname}")
+            output.append("-" * 40)
+
+        output.append(content.strip())
+        output.append("")
+
+    return "\n".join(output).strip(), 200, {
+        "Content-Type": "text/plain; charset=utf-8"
+    }
 
 # =============================================================================
-# STATIC & SEO FILES
+# SEARCH API
 # =============================================================================
 
-@app.route("/sitemap.xml")
-def sitemap():
-    return send_from_directory(".", "sitemap.xml")
+@app.route("/api/question-papers/search")
+def question_papers_search():
+    return jsonify(load_question_papers()["search_index"])
 
+# =============================================================================
+# SEO FILES
+# =============================================================================
 
 @app.route("/robots.txt")
 def robots():
     return send_from_directory(".", "robots.txt")
 
+@app.route("/sitemap.xml")
+def sitemap():
+    return send_from_directory(".", "sitemap.xml")
 
 # =============================================================================
 # ERRORS
@@ -284,31 +317,9 @@ def robots():
 def not_found(e):
     return render_template("error.html", error_code=404), 404
 
-
 @app.errorhandler(500)
 def server_error(e):
     return render_template("error.html", error_code=500), 500
-
-
-# =============================================================================
-# ANALYTICS INJECTION
-# =============================================================================
-
-@app.after_request
-def inject_analytics(response):
-    if response.content_type.startswith("text/html"):
-        snippet = """
-        <script defer src="https://cloud.umami.is/script.js"
-        data-website-id="52ac9be0-a82e-4e1b-a1eb-38a1036db726"></script>
-        """
-        try:
-            response.set_data(
-                response.get_data().replace(b"</body>", snippet.encode() + b"</body>")
-            )
-        except Exception:
-            pass
-    return response
-
 
 # =============================================================================
 # ENTRY

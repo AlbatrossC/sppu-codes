@@ -16,7 +16,8 @@ from datetime import datetime
 # =============================================================================
 
 app = Flask(__name__)
-app.secret_key = "karltos"  # Make sure this is secure in production
+# Use an environment variable for secret key in production, fallback to hardcoded for local
+app.secret_key = os.getenv("SECRET_KEY", "karltos")
 
 BASE_DIR = os.path.dirname(__file__)
 QUESTIONS_DIR = os.path.join(BASE_DIR, "questions")
@@ -82,7 +83,7 @@ def init_db():
         conn.close()
 
 def send_discord_notification(notification_type, data):
-    """Sends a formatted embed message to Discord."""
+    """Sends a formatted embed message to Discord with Custom Headers for Vercel."""
     if not DISCORD_WEBHOOK_URL:
         print("Discord Webhook URL not set.")
         return
@@ -115,10 +116,26 @@ def send_discord_notification(notification_type, data):
         "embeds": [embed]
     }
 
+    # CRITICAL FIX FOR VERCEL:
+    # Discord blocks default python-requests user agents from cloud IPs.
+    headers = {
+        "Content-Type": "application/json",
+        "User-Agent": "SPPU-Codes-Bot/1.0 (Vercel; +https://yourwebsite.com)"
+    }
+
     try:
-        requests.post(DISCORD_WEBHOOK_URL, json=payload)
-    except Exception as e:
+        response = requests.post(
+            DISCORD_WEBHOOK_URL, 
+            json=payload, 
+            headers=headers, 
+            timeout=5 # Add timeout to prevent serverless function hanging
+        )
+        response.raise_for_status() # Raises error for 4xx/5xx codes
+        print(f"Discord notification sent successfully. Status: {response.status_code}")
+    except requests.exceptions.RequestException as e:
         print(f"Failed to send Discord notification: {e}")
+        if hasattr(e, 'response') and e.response is not None:
+             print(f"Discord Response: {e.response.text}")
 
 # =============================================================================
 # MAINTENANCE MODE
@@ -514,8 +531,9 @@ def server_error(e):
 # ENTRY
 # =============================================================================
 
+# This logic is usually for local dev. Vercel uses WSGI but might not trigger __main__
 if __name__ == "__main__":
-    # Initialize Database Tables
     init_db()
-    
     app.run(host="0.0.0.0", port=3000, debug=True)
+else:
+    pass

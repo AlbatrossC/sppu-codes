@@ -1,24 +1,124 @@
 from flask import (
     Flask, render_template, send_from_directory,
-    abort, request, redirect, jsonify
+    abort, request, redirect, jsonify, flash, url_for
 )
 import os
 import json
+import psycopg2
+import requests
 from functools import lru_cache
 from urllib.parse import urlparse
 import glob
+from datetime import datetime
 
 # =============================================================================
 # APP INIT
 # =============================================================================
 
 app = Flask(__name__)
-app.secret_key = "karltos"
+app.secret_key = "karltos"  # Make sure this is secure in production
 
 BASE_DIR = os.path.dirname(__file__)
 QUESTIONS_DIR = os.path.join(BASE_DIR, "questions")
 ANSWERS_DIR = os.path.join(BASE_DIR, "answers")
 QUESTION_PAPERS_DIR = os.path.join(BASE_DIR, "question-papers")
+
+# Environment Variables
+DATABASE_URL = os.getenv("DATABASE_URL")
+DISCORD_WEBHOOK_URL = os.getenv("DISCORD_WEBHOOK_URL")
+
+# =============================================================================
+# DATABASE & NOTIFICATION UTILS
+# =============================================================================
+
+def get_db_connection():
+    """Establishes a connection to the PostgreSQL database."""
+    if not DATABASE_URL:
+        return None
+    try:
+        conn = psycopg2.connect(DATABASE_URL, sslmode='require')
+        return conn
+    except Exception as e:
+        print(f"Database connection error: {e}")
+        return None
+
+def init_db():
+    """Creates necessary tables if they don't exist."""
+    conn = get_db_connection()
+    if not conn:
+        print("Warning: DATABASE_URL not set. Database features disabled.")
+        return
+
+    try:
+        with conn:
+            with conn.cursor() as cur:
+                # Table for Code Submissions
+                cur.execute("""
+                    CREATE TABLE IF NOT EXISTS submissions (
+                        id SERIAL PRIMARY KEY,
+                        name VARCHAR(100),
+                        year VARCHAR(10),
+                        branch VARCHAR(50),
+                        subject VARCHAR(200),
+                        question TEXT,
+                        answer TEXT,
+                        created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+                    );
+                """)
+                # Table for Contact Messages
+                cur.execute("""
+                    CREATE TABLE IF NOT EXISTS contacts (
+                        id SERIAL PRIMARY KEY,
+                        name VARCHAR(100),
+                        email VARCHAR(150),
+                        message TEXT,
+                        created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+                    );
+                """)
+        print("Database initialized successfully.")
+    except Exception as e:
+        print(f"Error initializing database: {e}")
+    finally:
+        conn.close()
+
+def send_discord_notification(notification_type, data):
+    """Sends a formatted embed message to Discord."""
+    if not DISCORD_WEBHOOK_URL:
+        print("Discord Webhook URL not set.")
+        return
+
+    embed = {}
+    
+    if notification_type == "submit":
+        embed = {
+            "title": "🚀 New Code Submission",
+            "color": 5763719,  # Green/Blue
+            "fields": [
+                {"name": "Contributor Name", "value": data.get("name", "Anonymous"), "inline": True},
+                {"name": "Subject", "value": data.get("subject"), "inline": True},
+                {"name": "Branch/Year", "value": f"{data.get('branch')} - {data.get('year')}", "inline": False}
+            ],
+            "footer": {"text": "Check database for full code"}
+        }
+    elif notification_type == "contact":
+        embed = {
+            "title": "📩 New Contact Query",
+            "color": 15158332,  # Red/Orange
+            "fields": [
+                {"name": "From", "value": data.get("name"), "inline": True},
+                {"name": "Email", "value": data.get("email"), "inline": True},
+                {"name": "Message Snippet", "value": (data.get("message")[:200] + '...') if len(data.get("message")) > 200 else data.get("message"), "inline": False}
+            ]
+        }
+
+    payload = {
+        "embeds": [embed]
+    }
+
+    try:
+        requests.post(DISCORD_WEBHOOK_URL, json=payload)
+    except Exception as e:
+        print(f"Failed to send Discord notification: {e}")
 
 # =============================================================================
 # MAINTENANCE MODE
@@ -32,7 +132,7 @@ def maintenance():
     if MAINTENANCE_MODE:
         if MAINTENANCE_BYPASS_IP and request.remote_addr == MAINTENANCE_BYPASS_IP:
             return
-        if request.path.startswith("/static"):
+        if request.path.startswith("/static") or request.path.startswith("/images"):
             return
         return render_template("maintenance.html"), 503
 
@@ -70,6 +170,9 @@ def load_question_papers():
     subjects_index = {}
     search_index = []
 
+    if not os.path.exists(QUESTION_PAPERS_DIR):
+        return {"branches": [], "subjects_index": {}, "search_index": []}
+
     for file_path in glob.glob(os.path.join(QUESTION_PAPERS_DIR, "*.json")):
         with open(file_path, "r", encoding="utf-8") as f:
             data = json.load(f)
@@ -98,8 +201,6 @@ def load_question_papers():
 
                 subjects_index.setdefault(subject_link, []).extend(
                     subject.get("pdf_links", [])
-
-
                 )
 
                 search_index.append({
@@ -127,6 +228,90 @@ def load_question_papers():
 @app.route("/")
 def index():
     return render_template("index.html")
+
+# -----------------------------------------------------------------------------
+# SUBMIT ROUTE
+# -----------------------------------------------------------------------------
+@app.route("/submit", methods=["GET", "POST"])
+def submit_code():
+    if request.method == "POST":
+        name = request.form.get("name", "Anonymous")
+        year = request.form.get("year")
+        branch = request.form.get("branch")
+        subject = request.form.get("subject")
+        question = request.form.get("question")
+        answer = request.form.get("answer")
+
+        # Database Insertion
+        conn = get_db_connection()
+        if conn:
+            try:
+                with conn:
+                    with conn.cursor() as cur:
+                        cur.execute(
+                            "INSERT INTO submissions (name, year, branch, subject, question, answer) VALUES (%s, %s, %s, %s, %s, %s)",
+                            (name, year, branch, subject, question, answer)
+                        )
+                flash("Your code has been submitted successfully! It will be reviewed shortly.", "success")
+                
+                # Send Discord Notification
+                send_discord_notification("submit", {
+                    "name": name,
+                    "year": year,
+                    "branch": branch,
+                    "subject": subject
+                })
+            except Exception as e:
+                print(f"Submit Error: {e}")
+                flash("An error occurred while saving your submission. Please try again.", "error")
+            finally:
+                conn.close()
+        else:
+            flash("Database connection unavailable. Please try again later.", "error")
+
+        return redirect(url_for('submit_code'))
+
+    return render_template("submit.html")
+
+# -----------------------------------------------------------------------------
+# CONTACT ROUTE
+# -----------------------------------------------------------------------------
+@app.route("/contact", methods=["GET", "POST"])
+def contact_us():
+    if request.method == "POST":
+        name = request.form.get("name")
+        email = request.form.get("email")
+        message = request.form.get("message")
+
+        # Database Insertion
+        conn = get_db_connection()
+        if conn:
+            try:
+                with conn:
+                    with conn.cursor() as cur:
+                        cur.execute(
+                            "INSERT INTO contacts (name, email, message) VALUES (%s, %s, %s)",
+                            (name, email, message)
+                        )
+                flash("Your message has been sent successfully!", "success")
+
+                # Send Discord Notification
+                send_discord_notification("contact", {
+                    "name": name,
+                    "email": email,
+                    "message": message
+                })
+            except Exception as e:
+                print(f"Contact Error: {e}")
+                flash("An error occurred. Please try again.", "error")
+            finally:
+                conn.close()
+        else:
+            flash("Database connection unavailable. Please try again later.", "error")
+
+        return redirect(url_for('contact_us'))
+
+    return render_template("contact.html")
 
 # =============================================================================
 # QUESTION PAPERS
@@ -176,6 +361,10 @@ def viewer_page(subject_link):
 @app.route("/<subject_link>")
 @app.route("/<subject_link>/<question_id>")
 def subject_page(subject_link, question_id=None):
+    # Avoid conflict with reserved routes
+    if subject_link in ['submit', 'contact', 'images', 'static', 'api']:
+        abort(404)
+
     json_path = os.path.join(QUESTIONS_DIR, f"{subject_link}.json")
 
     if not os.path.exists(json_path):
@@ -326,4 +515,7 @@ def server_error(e):
 # =============================================================================
 
 if __name__ == "__main__":
+    # Initialize Database Tables
+    init_db()
+    
     app.run(host="0.0.0.0", port=3000, debug=True)

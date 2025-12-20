@@ -352,3 +352,51 @@ mark {
     --border-radius-soft: 12px;
     --transition-speed: 0.3s;
 }
+
+/* Mobile Menu Styles - Improved */
+.mobile-menu {
+    display: none;
+    flex-direction: column;
+    position: fixed;
+    top: 0;
+    right: 0;
+    width: 78vw;
+    max-width: 340px;
+    height: 100vh;
+    background: var(--secondary-bg, #1e1e1e);
+    box-shadow: -4px 0 20px rgba(0,0,0,0.3);
+    z-index: 2000;
+    padding: 3rem 2rem 2rem 2rem;
+    gap: 1rem;
+    transition: transform 0.3s cubic-bezier(.4,0,.2,1), opacity 0.2s;
+    transform: translateX(100%);
+    opacity: 0;
+    border-radius: 16px 0 0 16px;
+    border-left: 2px solid var(--accent-primary);
+}
+
+.mobile-menu.open {
+    display: flex;
+    transform: translateX(0);
+    opacity: 1;
+}
+
+.mobile-menu a {
+    color: var(--text-primary, #e0e0e0);
+    text-decoration: none;
+    font-size: 1.1rem;
+    font-weight: 500;
+    padding: 1rem 1.5rem;
+    border-radius: 12px;
+    transition: background 0.2s ease, transform 0.2s ease;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    position: relative;
+}
+
+.mobile-menu a:hover {
+    background: rgba(45, 118, 204, 0.1);
+    transform: translateX(-4px);
+    color: var(--accent-primary);
+}

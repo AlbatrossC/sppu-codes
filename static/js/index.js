@@ -24,7 +24,6 @@ console.log(`
                         Dive in: https://github.com/AlbatrossC/sppu-codes
             ⠀
     `);
-// ... [Keep the initial console.log ASCII art exactly as it is] ...
 
 (function () {
     /* =====================================================
@@ -93,7 +92,7 @@ document.addEventListener('DOMContentLoaded', function () {
         if (!str) return "";
         return str
             .toLowerCase()
-            .replace(/[^a-z0-9\s]/g, '')
+            .replace(/[^a-z0-9\s]/g, ' ')
             .replace(/\s+/g, ' ')
             .trim();
     }
@@ -316,7 +315,7 @@ document.addEventListener('DOMContentLoaded', function () {
         const rect = searchInput.getBoundingClientRect();
         if (window.innerWidth <= 900) {
             searchDropdown.style.position = 'fixed';
-            searchDropdown.style.top = `${header.offsetHeight}px`;
+            searchDropdown.style.top = `${header.offsetHeight + (searchContainer.classList.contains('active') ? searchContainer.offsetHeight : 0)}px`;
             searchDropdown.style.left = '0';
             searchDropdown.style.width = '100vw';
             searchDropdown.style.maxWidth = '100vw';

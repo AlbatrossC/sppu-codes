@@ -503,6 +503,25 @@ def answer_api(subject_link, question_no):
 def question_papers_search():
     return jsonify(load_question_papers()["search_index"])
 
+@app.route("/api/subjects/search")
+def subjects_search():
+    subjects = []
+    if os.path.exists(QUESTIONS_DIR):
+        for file in os.listdir(QUESTIONS_DIR):
+            if file.endswith(".json"):
+                subject_link = file[:-5]
+                json_path = os.path.join(QUESTIONS_DIR, file)
+                try:
+                    with open(json_path, "r", encoding="utf-8") as f:
+                        data = json.load(f)
+                    subject_name = data.get("default", {}).get("subject_name", subject_link)
+                except Exception:
+                    subject_name = subject_link
+                subjects.append({
+                    "subject_link": subject_link,
+                    "subject_name": subject_name
+                })
+    return jsonify(subjects)
 # =============================================================================
 # SEO FILES
 # =============================================================================

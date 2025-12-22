@@ -2,7 +2,7 @@
 <html lang="en">
     <head>    
         <!-- Preload critical assets -->
-        <link rel="preload" href="static/css/index.css?v=2.4" as="style">
+        <link rel="preload" href="static/css/index.css?v=2.6" as="style">
         <link rel="preload" href="images/logo.webp" as="image">
 
         <meta name="google-site-verification" content="s0ezZ-kg4bjZR6Jbt_-6H1Im5EDs61Rg5yWJr6BHXFY" />
@@ -31,11 +31,10 @@
         <meta name="language" content="English">
             
         <!-- CSS -->
-        <link rel="stylesheet" href="{{ url_for('static', filename='css/index.css', v='2.5') }}" media="all">
-        <link rel="stylesheet" href="{{ url_for('static', filename='css/header.css', v='2.5') }}" media="all">
-        <link rel="stylesheet" href="{{ url_for('static', filename='css/footer.css', v='2.5') }}" media="all">
+        <link rel="stylesheet" href="{{ url_for('static', filename='css/index.css', v='2.6') }}" media="all">
+        <link rel="stylesheet" href="{{ url_for('static', filename='css/header.css', v='2.6') }}" media="all">
+        <link rel="stylesheet" href="{{ url_for('static', filename='css/footer.css', v='2.6') }}" media="all">
         <link rel="stylesheet" href="{{ url_for('static', filename='css/terminal.css', v='1.1') }}" media="all">
-
         
         <link rel="icon" href="{{ url_for('get_image', filename='favicon.ico') }}" type="image/x-icon">
 
@@ -83,197 +82,6 @@
                 }
             }
         </script>
-
-        <style>
-            * {
-                margin: 0;
-                padding: 0;
-                box-sizing: border-box
-            }
-
-            :root {
-                --primary-bg: #121212;
-                --secondary-bg: #1e1e1e;
-                --border-color: #333;
-                --text-primary: #e0e0e0;
-                --text-secondary: #ccc;
-                --text-muted: #aaa;
-                --accent-color: #2d76cc;
-                --accent-hover: #1d5bb1;
-                --container-padding: clamp(10px, 1vw, 15px);
-            }
-
-            html {
-                font-size: 15px;
-                scroll-behavior: smooth
-            }
-
-            body {
-                padding-top: var(--header-height);
-                background: var(--primary-bg);
-                color: var(--text-primary);
-                font-family: 'Inter', sans-serif;
-                line-height: 1.6;
-                margin: 0;
-            }
-
-            .content {
-                flex: 1;
-                width: 100%;
-                padding: var(--container-padding);
-                position: relative;
-            }
-
-            /* Subject Card Styling */
-            .subject-list a {
-                display: flex;
-                flex-direction: column;
-                justify-content: center;
-                align-items: center;
-                background: var(--secondary-bg);
-                padding: 1.75rem;
-                border-radius: var(--border-radius-soft);
-                text-decoration: none;
-                color: var(--text-primary);
-                box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-                height: 155px;
-                transition: transform 0.3s ease, box-shadow 0.3s ease;
-                position: relative;
-                overflow: hidden;
-                text-align: center;
-                border: 1px solid var(--border-color);
-            }
-
-            #semester-heading, .semester-heading {
-                font-size: 1.4rem; 
-                margin: 1rem 0; 
-                color: #e0e0e0; 
-                font-weight: 500; 
-                text-align: left; 
-                border-left: 4px solid #2d76cc; 
-                padding-left: 10px; 
-            }
-
-        /* Pop-up Notification Styling */
-        .popup-notification {
-            position: fixed;
-            bottom: 24px;
-            left: 50%;
-            transform: translateX(-50%) translateY(100px);
-            background-color: rgba(45, 118, 204, 0.95);
-            color: #fff;
-            padding: 16px 24px;
-            border-radius: 10px;
-            box-shadow: 0 6px 16px rgba(0, 0, 0, 0.25);
-            z-index: 1000;
-            transition: transform 0.4s ease-out, opacity 0.4s ease-out;
-            max-width: 92%;
-            width: fit-content;
-            min-width: 260px;
-            text-align: center;
-            font-size: 15.5px;
-            line-height: 1.5;
-            animation: slideIn 0.5s forwards, fadeOut 0.5s forwards 5.5s;
-        }
-
-        /* Link Styling */
-        .popup-notification a {
-            color: #e0f3ff;
-            text-decoration: underline;
-            font-weight: 600;
-        }
-        .popup-notification a:hover {
-            text-decoration: none;
-        }
-
-        /* Entrance Animation */
-        @keyframes slideIn {
-            0% {
-                transform: translateX(-50%) translateY(100px);
-                opacity: 0;
-            }
-            100% {
-                transform: translateX(-50%) translateY(0);
-                opacity: 1;
-            }
-        }
-
-        /* Exit Animation */
-        @keyframes fadeOut {
-            0% {
-                opacity: 1;
-                transform: translateX(-50%) translateY(0);
-            }
-            100% {
-                opacity: 0;
-                transform: translateX(-50%) translateY(20px);
-            }
-        }
-
-        /* Close Button Styling */
-        .close-notification {
-            position: absolute;
-            top: 6px;
-            right: 10px;
-            font-size: 18px;
-            cursor: pointer;
-            opacity: 0.75;
-            font-weight: bold;
-            background: none;
-            border: none;
-            color: #fff;
-            padding: 4px;
-            transition: opacity 0.2s, transform 0.2s;
-        }
-        .close-notification:hover,
-        .close-notification:focus {
-            opacity: 1;
-            transform: scale(1.1);
-            outline: none;
-        }
-
-        /* Mobile Menu Styles */
-        .mobile-menu {
-            display: none;
-            flex-direction: column;
-            position: fixed;
-            top: 0;
-            right: 0;
-            width: 78vw;
-            max-width: 340px;
-            height: 100vh;
-            background: var(--secondary-bg, #1e1e1e);
-            box-shadow: -2px 0 16px rgba(0,0,0,0.25);
-            z-index: 2000;
-            padding: 2.5rem 1.5rem 1.5rem 1.5rem;
-            gap: 1.5rem;
-            transition: transform 0.3s cubic-bezier(.4,0,.2,1), opacity 0.2s;
-            transform: translateX(100%);
-            opacity: 0;
-        }
-        .mobile-menu.open {
-            display: flex;
-            transform: translateX(0);
-            opacity: 1;
-        }
-        .mobile-menu a {
-            color: var(--text-primary, #e0e0e0);
-            text-decoration: none;
-            font-size: 1.2rem;
-            padding: 0.7rem 0;
-            border-bottom: 1px solid var(--border-color, #333);
-        }
-        .mobile-menu a:last-child {
-            border-bottom: none;
-        }
-        @media (min-width: 900px) {
-            .mobile-menu-toggle { display: none !important; }
-            .mobile-menu { display: none !important; }
-        }
-        @media (max-width: 899px) {
-            .header__actions { display: none !important; }
-        }
-            </style>
     </head>
     
     <body>
@@ -284,13 +92,13 @@
                         <img src="images/logo.webp" alt="SPPU Codes Logo" width="40" height="40" fetchpriority="high">
                         <h1>SPPU Codes</h1>
                     </a>
-                    <div style="display: flex; align-items: center;">
+                    
+                    <div class="header__mobile-actions">
                         <button class="mobile-search-toggle" aria-label="Show Search" tabindex="0">
                             <span class="search-icon-svg">
-                                <!-- Simple magnifier SVG -->
-                                <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
-                                    <circle cx="11" cy="11" r="7" stroke="#b0b0b0" stroke-width="2"/>
-                                    <line x1="16.4142" y1="16" x2="21" y2="20.5858" stroke="#b0b0b0" stroke-width="2" stroke-linecap="round"/>
+                                <svg width="22" height="22" viewBox="0 0 24 24" fill="none">
+                                    <circle cx="11" cy="11" r="7" stroke="currentColor" stroke-width="2"/>
+                                    <line x1="16.4142" y1="16" x2="21" y2="20.5858" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
                                 </svg>
                             </span>
                         </button>
@@ -298,9 +106,10 @@
                             <span class="menu-icon"></span>
                         </button>
                     </div>
+                    
                     <div class="search-container">
                         <div class="search-wrapper">
-                            <input type="text" id="subject-search" placeholder="Search Question Papers And Subjects...." aria-label="Search Subjects">
+                            <input type="text" id="subject-search" placeholder="Search subjects and question papers..." aria-label="Search Subjects">
                         </div>
                     </div>
 
@@ -309,10 +118,12 @@
                         <a href="/questionpapers" class="copy-button">Question Papers</a>
                     </nav>
                 </div>
+                
                 <!-- Mobile Menu -->
                 <nav class="mobile-menu" id="mobileMenu" aria-label="Mobile navigation">
-                    <a href="/submit" class="submit-button">Submit Codes</a>
-                    <a href="/questionpapers" class="copy-button">Question Papers</a>
+                    <button class="mobile-menu__close" id="closeMenuBtn" aria-label="Close Menu">&times;</button>
+                    <a href="/submit">Submit Codes</a>
+                    <a href="/questionpapers">Question Papers</a>
                     <a href="/contact">Contact</a>
                 </nav>
             </header>
@@ -380,13 +191,12 @@
                         <ul class="subject-list">
                             <li>
                                 <h3>
-                                    <a href="/dbms" title=" DataBase Management Systems Programs">
+                                    <a href="/dbms" title="DataBase Management Systems Programs">
                                         <span class="short-form">DBMS</span>
                                         <span class="full-name">DataBase Management Systems</span>
                                     </a>
                                 </h3>
                             </li>
-
                             <li>
                                 <h3>
                                     <a href="/cnl" title="Computer Networks Laboratory">
@@ -395,7 +205,6 @@
                                     </a>
                                 </h3>
                             </li>
-
                             <li>
                                 <h3>
                                     <a href="/ai" title="Artificial Intelligence Laboratory">
@@ -471,41 +280,7 @@
         </div>
         
         <script src="{{ url_for('static', filename='js/index.js') }}"></script>
+        <script src="{{ url_for('static', filename='js/mobile-menu.js') }}"></script>
         <script src="{{ url_for('static', filename='js/terminal.js') }}"></script>
-        <script>
-            // Mobile menu toggle logic
-            document.addEventListener('DOMContentLoaded', function() {
-                const menuBtn = document.querySelector('.mobile-menu-toggle');
-                const mobileMenu = document.getElementById('mobileMenu');
-                // Close menu when clicking outside or on a link
-                function closeMenu() {
-                    mobileMenu.classList.remove('open');
-                }
-                menuBtn.addEventListener('click', function(e) {
-                    e.stopPropagation();
-                    mobileMenu.classList.toggle('open');
-                });
-                // Close on link click
-                mobileMenu.querySelectorAll('a').forEach(link => {
-                    link.addEventListener('click', closeMenu);
-                });
-                // Close on outside click
-                document.addEventListener('click', function(e) {
-                    if (mobileMenu.classList.contains('open') && !mobileMenu.contains(e.target) && e.target !== menuBtn) {
-                        closeMenu();
-                    }
-                });
-                // Prevent scroll when menu open
-                const body = document.body;
-                const observer = new MutationObserver(() => {
-                    if (mobileMenu.classList.contains('open')) {
-                        body.style.overflow = 'hidden';
-                    } else {
-                        body.style.overflow = '';
-                    }
-                });
-                observer.observe(mobileMenu, { attributes: true, attributeFilter: ['class'] });
-            });
-        </script>
     </body>
 </html>

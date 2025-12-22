@@ -8,7 +8,7 @@
     <meta name="description" content="SPPU Question Papers - View categorized SPPU Previous Year Exam Papers by branch and semester." />
     <link rel="canonical" href="https://sppucodes.vercel.app/question-papers" />
     <link rel="icon" href="/images/favicon.ico" type="image/x-icon" />
-    <link rel="stylesheet" href="/static/css/select.css?v=1.0">
+    <link rel="stylesheet" href="/static/css/select.css?v=1.1">
     <meta name="google-adsense-account" content="ca-pub-6918638598461716">
 </head>
 <body>
@@ -22,11 +22,15 @@
 
     <!-- MAIN CONTENT -->
     <div class="container">
-        <div class="breadcrumb" id="breadcrumb"></div>
+        <div class="breadcrumb-container">
+            <div class="breadcrumb" id="breadcrumb">
+                <span class="breadcrumb-item active">Branches</span>
+            </div>
+        </div>
 
         <div class="navigation">
             <div id="branches" class="nav-level active">
-                <h2>Select a Branch</h2>
+                <h2 class="section-title">Select a Branch</h2>
                 <div class="cards-grid">
                     {% for branch in organized_data.keys() %}
                     <div class="card" onclick="showSemesters('{{ branch }}')">
@@ -38,7 +42,7 @@
 
             {% for branch, semesters in organized_data.items() %}
             <div id="{{ branch | replace(' ', '_') }}-sems" class="nav-level">
-                <h2>{{ branch }} - Select Semester</h2>
+                <h2 class="section-title">{{ branch }} - Select Semester</h2>
                 <div class="cards-grid">
                     {% for sem in semesters.keys() %}
                     <div class="card" onclick="showSubjects('{{ branch }}', '{{ sem }}')">
@@ -50,11 +54,13 @@
 
             {% for sem, subjects in semesters.items() %}
             <div id="{{ branch | replace(' ', '_') }}-{{ sem | replace(' ', '_') }}-subjects" class="nav-level">
-                <h2>{{ branch }} - {{ sem }} Subjects</h2>
+                <h2 class="section-title">{{ branch }} - {{ sem }}</h2>
                 <div class="cards-grid">
                     {% for subject in subjects %}
                     <div class="card subject-card">
-                        <h3>{{ subject.subject_name }}</h3>
+                        <div class="subject-info">
+                            <h3>{{ subject.subject_name }}</h3>
+                        </div>
                         <a href="/question-papers/{{ subject.subject_link }}" class="view-button">View Question Papers</a>
                     </div>
                     {% endfor %}
@@ -74,20 +80,30 @@
 
         function updateBreadcrumb(path) {
             breadcrumb.innerHTML = '';
+            if (path.length === 0) {
+                const span = document.createElement('span');
+                span.classList.add('breadcrumb-item', 'active');
+                span.textContent = 'Branches';
+                breadcrumb.appendChild(span);
+                return;
+            }
+            
             path.forEach((item, index) => {
                 const span = document.createElement('span');
                 span.classList.add('breadcrumb-item');
-                span.textContent = item.name;
-                if (index < path.length - 1) {
-                    span.onclick = item.onClick;
-                } else {
+                if (index === path.length - 1) {
                     span.classList.add('active');
+                } else {
+                    span.classList.add('clickable');
+                    span.onclick = item.onClick;
                 }
+                span.textContent = item.name;
                 breadcrumb.appendChild(span);
+                
                 if (index < path.length - 1) {
                     const separator = document.createElement('span');
                     separator.classList.add('breadcrumb-separator');
-                    separator.textContent = '>'; 
+                    separator.innerHTML = '&rsaquo;';
                     breadcrumb.appendChild(separator);
                 }
             });
@@ -100,6 +116,7 @@
                 { name: 'Branches', onClick: () => showBranches() },
                 { name: branch }
             ]);
+            window.scrollTo({ top: 0, behavior: 'smooth' });
         }
 
         function showSubjects(branch, sem) {
@@ -110,13 +127,20 @@
                 { name: branch, onClick: () => showSemesters(branch) },
                 { name: sem }
             ]);
+            window.scrollTo({ top: 0, behavior: 'smooth' });
         }
 
         function showBranches() {
             clearActive();
             document.getElementById('branches').classList.add('active');
             updateBreadcrumb([]);
+            window.scrollTo({ top: 0, behavior: 'smooth' });
         }
+
+        // Initialize breadcrumb
+        document.addEventListener('DOMContentLoaded', () => {
+            updateBreadcrumb([]);
+        });
     </script>
 </body>
 </html>

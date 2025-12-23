@@ -83,6 +83,7 @@ header {
     display: flex;
     align-items: center;
     height: 100%;
+    min-width: 0; /* allow flex children to shrink on small screens */
 }
 
 .header-center {
@@ -114,11 +115,13 @@ header {
     margin-left: 8px;
     border: none;
     transition: color 0.2s ease;
-    white-space: nowrap;
+    /* allow wrapping for long subject names and avoid hard truncation */
+    white-space: normal;
+    word-break: break-word;
+    overflow: visible;
+    text-overflow: unset;
+    max-width: 100%;
     user-select: text;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    max-width: 200px;
 }
 
 .control-group {
@@ -664,10 +667,12 @@ button.back:hover {
         gap: 6px;
         height: var(--header-height-mobile);
         order: 1;
+        min-width: 0; /* ensure container can shrink */
     }
 
     .header-info h1 {
         height: auto;
+        min-width: 0;
     }
 
     .header-center {
@@ -690,11 +695,16 @@ button.back:hover {
 
     .subject-badge {
         font-size: 13px;
-        height: 30px;
-        padding: 0 8px;
+        height: auto;
+        padding: 4px 8px;
         min-width: 60px;
         margin-left: 4px;
-        max-width: 120px;
+        /* allow the badge to occupy up to ~65% of the header row and wrap onto a second line */
+        max-width: 65%;
+        line-height: 1.15;
+        white-space: normal;
+        overflow: visible;
+        text-overflow: unset;
     }
 
     .control-group {
@@ -817,11 +827,15 @@ button.back:hover {
 
     .subject-badge {
         font-size: 12px;
-        height: 28px;
-        padding: 0 6px;
+        height: auto;
+        padding: 3px 6px;
         min-width: 50px;
-        max-width: 100px;
+        max-width: 70%;
         margin-left: 2px;
+        line-height: 1.1;
+        white-space: normal;
+        overflow: visible;
+        text-overflow: unset;
     }
 
     .control-group {

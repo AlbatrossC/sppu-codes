@@ -2,6 +2,7 @@ from flask import (
     Flask, render_template, send_from_directory,
     abort, request, redirect, jsonify, flash, url_for
 )
+from werkzeug.exceptions import HTTPException
 import os
 import json
 import psycopg2
@@ -540,11 +541,33 @@ def sitemap():
 
 @app.errorhandler(404)
 def not_found(e):
-    return render_template("error.html", error_code=404), 404
+    path = request.path
+    app.logger.info(f"404 Not Found: {path} from {request.remote_addr}")
+    return render_template("error.html", error_code=404, requested_path=path), 404
 
 @app.errorhandler(500)
 def server_error(e):
-    return render_template("error.html", error_code=500), 500
+    # Log full exception with stack trace
+    app.logger.exception(f"500 Internal Server Error at {request.path}")
+
+    # In debug mode, expose a short error message to the template for easier debugging
+    error_message = None
+    try:
+        if app.debug:
+            error_message = str(e)
+    except Exception:
+        error_message = None
+
+    return render_template("error.html", error_code=500, error_message=error_message), 500
+
+
+@app.errorhandler(HTTPException)
+def handle_http_exception(e):
+    """Catch other HTTP exceptions (e.g., 403, 405) and render the error page with context."""
+    code = getattr(e, 'code', 500) or 500
+    description = getattr(e, 'description', '')
+    app.logger.warning(f"HTTP {code} {e.name} for path {request.path} from {request.remote_addr}")
+    return render_template("error.html", error_code=code, error_message=description, requested_path=request.path), code
 
 # =============================================================================
 # ENTRY

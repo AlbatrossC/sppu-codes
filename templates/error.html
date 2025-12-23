@@ -34,12 +34,35 @@
             width: 100%;
             padding: clamp(10px, 2vw, 15px) 0;
             border-bottom: 2px solid #333;
-            text-align: center;
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
         }
-        
+
         header h1 {
             color: #ffffff;
             font-size: clamp(1.5rem, 3vw, 2rem);
+            margin: 0;
+        }
+
+        /* Home button on the left */
+        .home-btn {
+            position: absolute;
+            left: clamp(10px, 2vw, 15px);
+            background: #28a745; /* green */
+            color: #ffffff;
+            padding: 0.45rem 0.75rem;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: 600;
+            box-shadow: 0 2px 6px rgba(40,167,69,0.15);
+            transition: transform 0.12s ease, background 0.12s ease;
+        }
+
+        .home-btn:hover {
+            background: #218838;
+            transform: translateY(-1px);
         }
         
         .main-container {
@@ -234,6 +257,7 @@
 </head>
 <body>
     <header>
+        <a href="/" class="home-btn" aria-label="Home">Home</a>
         <a href="/" style="text-decoration: none;">
             <h1>SPPU Codes</h1>
         </a>
@@ -249,22 +273,7 @@
         </div>
         
         <div class="sections-container">
-            <!-- Subject Codes Section -->
-            <div class="section">
-                <div class="section-header">
-                    <h3 class="section-title">Subject Codes</h3>
-                    <span class="section-count" id="subject-count">0</span>
-                </div>
-                <input 
-                    type="text" 
-                    class="search-box" 
-                    placeholder="Search subjects (e.g., OOPL, DSL)..." 
-                    id="subject-search"
-                >
-                <div class="results" id="subject-results"></div>
-            </div>
-            
-            <!-- Question Papers Section -->
+            <!-- Question Papers Section (moved first) -->
             <div class="section">
                 <div class="section-header">
                     <h3 class="section-title">Question Papers</h3>
@@ -278,107 +287,121 @@
                 >
                 <div class="results" id="qp-results"></div>
             </div>
+
+            <!-- Subject Codes Section (moved second) -->
+            <div class="section">
+                <div class="section-header">
+                    <h3 class="section-title">Subject Codes</h3>
+                    <span class="section-count" id="subject-count">0</span>
+                </div>
+                <input 
+                    type="text" 
+                    class="search-box" 
+                    placeholder="Search subjects (e.g., OOPL, DSL)..." 
+                    id="subject-search"
+                >
+                <div class="results" id="subject-results"></div>
+            </div>
         </div>
     </div>
     
-    <footer class="footer">
-        <p>Made with ❤️ for SPPU Students</p>
-    </footer>
+    
     
     <script>
-        // Fetch data from backend API
+        // --- Use actual backend endpoints and client-side filtering ---
+        // Backend exposes:
+        //  - /api/subjects/search -> [{ subject_link, subject_name }, ...]
+        //  - /api/question-papers/search -> [{ type, subject_name, branch, semester, link }, ...]
+
         let subjectCodes = [];
         let questionPapers = [];
-        
-        // Fetch and populate data
-        async function loadData() {
-            try {
-                const response = await fetch('/api/error-page-data');
-                const data = await response.json();
-                
-                subjectCodes = data.subjects || [];
-                questionPapers = data.questionPapers || [];
-                
-                // Update counts
-                document.getElementById('subject-count').textContent = subjectCodes.length;
-                document.getElementById('qp-count').textContent = questionPapers.length;
-                
-                // Initial render
-                renderSubjects(subjectCodes);
-                renderQuestionPapers(questionPapers);
-            } catch (error) {
-                console.error('Error loading data:', error);
-                document.getElementById('subject-results').innerHTML = '<div class="no-results">Error loading subjects</div>';
-                document.getElementById('qp-results').innerHTML = '<div class="no-results">Error loading question papers</div>';
-            }
-        }
-        
+
         // Render functions
-        function renderSubjects(subjects) {
+        function renderSubjects(list) {
             const container = document.getElementById('subject-results');
-            
-            if (subjects.length === 0) {
+            if (!list || list.length === 0) {
                 container.innerHTML = '<div class="no-results">No subjects found</div>';
                 return;
             }
-            
-            container.innerHTML = subjects
-                .map(subject => `
-                    <a href="${subject.href}" class="result-item">
-                        <span class="result-code">${subject.code.toUpperCase()}</span>
-                        <span class="result-name">${subject.name}</span>
-                    </a>
-                `)
-                .join('');
+            container.innerHTML = list.map(s => `
+                <a href="/${s.subject_link}" class="result-item">
+                    <span class="result-code">${(s.subject_link || '').toUpperCase()}</span>
+                    <span class="result-name">${s.subject_name || ''}</span>
+                </a>
+            `).join('');
         }
-        
-        function renderQuestionPapers(papers) {
+
+        function renderQuestionPapers(list) {
             const container = document.getElementById('qp-results');
-            
-            if (papers.length === 0) {
+            if (!list || list.length === 0) {
                 container.innerHTML = '<div class="no-results">No question papers found</div>';
                 return;
             }
-            
-            container.innerHTML = papers
-                .map(paper => `
-                    <a href="${paper.href}" class="result-item">
-                        <span class="result-code">${paper.name}</span>
-                        <span class="result-meta">${paper.branch} • Semester ${paper.semester}</span>
-                    </a>
-                `)
-                .join('');
+            container.innerHTML = list.map(p => `
+                <a href="${p.link || '#'}" class="result-item">
+                    <span class="result-code">${p.subject_name || ''}</span>
+                    <span class="result-meta">${p.branch ? p.branch + ' • ' : ''}${p.semester ? 'Semester ' + p.semester : ''}</span>
+                </a>
+            `).join('');
         }
-        
-        // Search handlers with debounce
+
+        // Fetch initial data from backend and store locally
+        async function loadInitialData() {
+            const subjContainer = document.getElementById('subject-results');
+            const qpContainer = document.getElementById('qp-results');
+            subjContainer.innerHTML = '<div class="no-results">Loading...</div>';
+            qpContainer.innerHTML = '<div class="no-results">Loading...</div>';
+            try {
+                const [sRes, qRes] = await Promise.all([
+                    fetch('/api/subjects/search'),
+                    fetch('/api/question-papers/search')
+                ]);
+                if (!sRes.ok || !qRes.ok) throw new Error('Failed to fetch');
+                subjectCodes = await sRes.json();
+                questionPapers = await qRes.json();
+
+                document.getElementById('subject-count').textContent = subjectCodes.length;
+                document.getElementById('qp-count').textContent = questionPapers.length;
+
+                renderSubjects(subjectCodes);
+                renderQuestionPapers(questionPapers);
+            } catch (err) {
+                subjContainer.innerHTML = '<div class="no-results">Error loading subjects</div>';
+                qpContainer.innerHTML = '<div class="no-results">Error loading question papers</div>';
+            }
+        }
+
+        // Search handlers (filter client-side)
         const debouncedSubjectSearch = _.debounce((searchTerm) => {
-            const filtered = subjectCodes.filter(subject =>
-                subject.code.toLowerCase().includes(searchTerm.toLowerCase()) ||
-                subject.name.toLowerCase().includes(searchTerm.toLowerCase())
+            const term = (searchTerm || '').toLowerCase().trim();
+            if (!term) return renderSubjects(subjectCodes);
+            const filtered = subjectCodes.filter(s =>
+                (s.subject_link || '').toLowerCase().includes(term) ||
+                (s.subject_name || '').toLowerCase().includes(term)
             );
             renderSubjects(filtered);
         }, 200);
-        
+
         const debouncedQPSearch = _.debounce((searchTerm) => {
-            const filtered = questionPapers.filter(paper =>
-                paper.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
-                paper.branch.toLowerCase().includes(searchTerm.toLowerCase()) ||
-                paper.link.toLowerCase().includes(searchTerm.toLowerCase())
+            const term = (searchTerm || '').toLowerCase().trim();
+            if (!term) return renderQuestionPapers(questionPapers);
+            const filtered = questionPapers.filter(p =>
+                (p.subject_name || '').toLowerCase().includes(term) ||
+                (p.branch || '').toLowerCase().includes(term) ||
+                (p.link || '').toLowerCase().includes(term)
             );
             renderQuestionPapers(filtered);
         }, 200);
-        
-        // Event listeners
+
         document.getElementById('subject-search').addEventListener('input', (e) => {
             debouncedSubjectSearch(e.target.value);
         });
-        
         document.getElementById('qp-search').addEventListener('input', (e) => {
             debouncedQPSearch(e.target.value);
         });
-        
-        // Load data on page load
-        loadData();
+
+        // Initial fetch
+        loadInitialData();
     </script>
 </body>
 </html>

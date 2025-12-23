@@ -10,7 +10,7 @@
     <meta property="og:url" content="{{ url }}">
     <link rel="canonical" href="{{ url }}">
     <link rel="stylesheet" href="/static/css/answerbox.css?v=1.8">
-    <link rel="stylesheet" href="/static/css/subjectlayout.css?v=1.9">
+    <link rel="stylesheet" href="/static/css/subjectlayout.css?v=2.0">
     <script src="/static/js/script.js" defer></script>
     <link rel="icon" href="/images/favicon.ico" type="image/x-icon">
     
@@ -121,13 +121,11 @@
         position: relative;
     }
 
-    /* Wide Skyscraper Ad for Desktop */
     .ad-slot.wide-skyscraper {
         height: 600px;
         width: 160px;
     }
 
-    /* Mobile Banner Ad */
     .mobile-ad-container {
         position: fixed;
         bottom: 0;
@@ -148,7 +146,6 @@
         max-width: 90vw;
     }
 
-    /* Main content adjustment for desktop */
     @media (min-width: 1200px) {
         body {
             padding-left: 180px;
@@ -164,7 +161,6 @@
         }
     }
 
-    /* Mobile and tablet styles */
     @media (max-width: 1199px) {
         .ads-container {
             display: none;
@@ -173,7 +169,7 @@
         body {
             padding-left: 0;
             padding-right: 0;
-            padding-bottom: 80px; /* Space for mobile ad */
+            padding-bottom: 80px;
         }
         
         .mobile-ad-container {
@@ -181,14 +177,12 @@
         }
     }
 
-    /* Ensure content wrapper maintains its structure */
     .content {
         max-width: 1200px;
         margin: 0 auto;
         padding: 1.5rem;
     }
 
-    /* Header adjustments - Full width on desktop */
     header {
         width: 100%;
         max-width: none;
@@ -197,7 +191,6 @@
         box-sizing: border-box;
     }
 
-    /* Ensure header content is centered but header spans full width */
     @media (min-width: 1200px) {
         header {
             margin-left: -180px;
@@ -208,14 +201,10 @@
         header > * {
             max-width: 1200px;
             margin: 0 auto;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
             padding: 0 1rem;
         }
     }
 
-    /* AdSense styling - clean and policy compliant */
     .adsbygoogle {
         display: block !important;
         background: transparent !important;
@@ -228,7 +217,6 @@
     <div class="ads-container left-ads">
         <div class="ad-rail">
             <div class="ad-slot wide-skyscraper">
-                <!-- Left Side Google AdSense Wide Skyscraper Ad -->
                 <ins class="adsbygoogle"
                     style="display:inline-block;width:160px;height:600px"
                     data-ad-client="ca-pub-6918638598461716"
@@ -254,11 +242,8 @@
         </div>
     </div>
 
-    
-    <!-- Mobile Ad Container (Fixed at bottom) -->
     <div class="mobile-ad-container" id="mobileAdContainer">
         <div class="ad-slot">
-            <!-- Mobile Banner Ad -->
             <ins class="adsbygoogle"
                 style="display:inline-block;width:300px;height:50px"
                 data-ad-client="ca-pub-6918638598461716"
@@ -269,33 +254,42 @@
         </div>
     </div>
 
-
     <header>
-        <div>
-            <h3>
-                <a href="/{{ subject_code }}" class="a">{{ subject_name }} ({{ subject_code }}) Codes</a>
-            </h3>
-            <div style="display:flex;gap:0.5rem;">
-                <button onclick="location.href='/'" class="home-btn" aria-label="Go to home page">Home</button>
+        <div class="header-content">
+            <div class="header-left">
+                <button onclick="location.href='/'" class="home-btn" aria-label="Go to home page">
+                    Home
+                </button>
+            </div>
+            
+            <div class="header-center">
+                <h3>
+                    <a href="/{{ subject_code }}" class="subject-link">
+                        {{ subject_name }} ({{ subject_code }}) Codes
+                    </a>
+                </h3>
+            </div>
+            
+            <div class="header-right">
+                <button onclick="window.open('https://github.com/AlbatrossC/codes/tree/main/answers/{{ subject_code }}', '_blank')" 
+                        class="github-btn" 
+                        aria-label="View code repository on GitHub">
+                    <svg class="github-icon" viewBox="0 0 16 16" width="16" height="16" aria-hidden="true">
+                        <path fill="currentColor" d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"></path>
+                    </svg>
+                    <span>Answer Codes</span>
+                </button>
                 
                 {% if question_paper_url %}
                 <button onclick="location.href='{{ question_paper_url }}'" 
                         class="qp-btn" 
                         aria-label="View Question Papers">
-                    View Question Papers
+                    Question Papers
                 </button>
                 {% endif %}
             </div>
         </div>
     </header>
-
-
-    <div class="info-box">
-        <p>
-            If the code doesn't load, you can check it out on 
-            <a href="https://github.com/AlbatrossC/codes/tree/main/answers/{{ subject_code }}" target="_blank" rel="noopener noreferrer">GitHub</a>
-        </p>
-    </div>
 
     {% if question %}
     <div class="group">
@@ -305,7 +299,6 @@
                 <strong>Q{{ question.question_no }}: </strong>{{ question.question }}
             </h1>
             {% for file in question.file_name %}
-            <!-- UPDATE: Added loop.index to arguments for fileIndex -->
             <button class="view-code-btn"  
                     onclick="loadAnswer('{{ subject_code }}', '{{ question.question_no }}', '{{ question.title }}', this, '{{ file }}', {{ loop.index }})">
                 View Code {{ loop.index }}
@@ -356,7 +349,6 @@
                 </a>
             </h1>
             {% for file in question_item.file_name %}
-            <!-- UPDATE: Added loop.index to arguments for fileIndex -->
             <button class="view-code-btn" 
                     onclick="loadAnswer('{{ subject_code }}', '{{ question_item.question_no }}', '{{ question_item.title }}', this, '{{ file }}', {{ loop.index }})">
                 View Code {{ loop.index }}
@@ -379,10 +371,8 @@
     {% endif %}
 
     <script>
-    // Initialize AdSense ads after page load
     window.addEventListener('DOMContentLoaded', function() {
         try {
-            // Initialize all AdSense ads
             (adsbygoogle = window.adsbygoogle || []).push({});
             (adsbygoogle = window.adsbygoogle || []).push({});
             (adsbygoogle = window.adsbygoogle || []).push({});

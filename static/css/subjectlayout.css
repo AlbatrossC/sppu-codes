@@ -19,9 +19,12 @@
     --color-accent-blue: #58a6ff;
     --color-accent-green: #238636;
     --color-accent-green-hover: #2ea043;
+    --color-accent-red: #da3633;
+    --color-accent-red-hover: #f85149;
     --color-accent-yellow: #ffeb3b;
+    --color-github: #24292e;
+    --color-github-hover: #1b1f23;
     
-    /* Spacing Variables */
     --space-xs: 0.5rem;
     --space-sm: 0.75rem;
     --space-md: 1rem;
@@ -29,11 +32,9 @@
     --space-xl: 1.5rem;
     --space-xxl: 2rem;
     
-    /* Shadow Variables */
     --shadow-sm: 0 2px 4px rgba(0, 0, 0, 0.4);
     --shadow-md: 0 2px 8px rgba(0, 0, 0, 0.2);
     
-    /* Border Radius Variables */
     --radius-sm: 4px;
     --radius-md: 8px;
 }
@@ -66,17 +67,78 @@ body {
 
 /* Header Styles */
 header {
+    background-color: var(--color-bg-secondary);
+    border-bottom: 1px solid var(--color-border);
+    padding: var(--space-md) var(--space-xl);
+    width: 100%;
+    box-sizing: border-box;
+}
+
+.header-content {
+    display: grid;
+    grid-template-columns: auto 1fr auto;
+    align-items: center;
+    gap: var(--space-md);
+    max-width: 100%;
+}
+
+.header-left {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+}
+
+.header-center {
     display: flex;
     align-items: center;
     justify-content: center;
-    padding: var(--space-md) var(--space-xl);
-    background-color: var(--color-bg-secondary);
-    border-bottom: 1px solid var(--color-border);
-    position: relative;
-    min-height: 70px;
-    width: 100%;
+    min-width: 0;
 }
 
+.header-center h3 {
+    font-size: 1.5rem;
+    color: var(--color-text-primary);
+    margin: 0;
+    text-align: center;
+    word-break: break-word;
+    overflow-wrap: break-word;
+    line-height: 1.4;
+}
+
+.subject-link {
+    text-decoration: none;
+    color: inherit;
+    transition: color 0.2s ease;
+}
+
+.subject-link:hover {
+    color: var(--color-accent-blue);
+}
+
+.header-right {
+    display: flex;
+    align-items: center;
+    gap: var(--space-sm);
+    justify-content: flex-end;
+}
+
+/* Button Base Styles */
+.btn-base {
+    padding: 0.625rem 1rem;
+    border: none;
+    border-radius: var(--radius-sm);
+    cursor: pointer;
+    font-size: 0.875rem;
+    font-weight: 500;
+    transition: all 0.2s ease;
+    white-space: nowrap;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    text-decoration: none;
+}
+
+/* Home Button */
 .home-btn {
     background-color: var(--color-accent-green);
     color: #fff;
@@ -84,69 +146,59 @@ header {
     border: none;
     border-radius: var(--radius-sm);
     cursor: pointer;
-    font-size: 1rem;
+    font-size: 0.875rem;
+    font-weight: 500;
     transition: background-color 0.2s ease;
-    z-index: 1;
-    position: absolute;
-    left: var(--space-xl);
-    top: 50%;
-    transform: translateY(-50%);
 }
 
 .home-btn:hover {
     background-color: var(--color-accent-green-hover);
 }
 
-header h3 {
-    font-size: 1.75rem;
-    color: var(--color-text-primary);
-    margin: 0 auto;
-    text-align: center;
-    padding: 0 4rem;
-    max-width: 100%;
-    overflow-wrap: break-word;
+/* GitHub Button */
+.github-btn {
+    background-color: var(--color-github);
+    color: #fff;
+    padding: 0.625rem 1rem;
+    border: 2px solid #444;
+    border-radius: var(--radius-sm);
+    cursor: pointer;
+    font-size: 0.875rem;
+    font-weight: 500;
+    transition: all 0.2s ease;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
 }
 
-/* Header QUestion Papers */
+.github-btn:hover {
+    background-color: var(--color-github-hover);
+    border-color: #666;
+    transform: translateY(-1px);
+}
+
+.github-icon {
+    width: 16px;
+    height: 16px;
+    flex-shrink: 0;
+}
+
+/* Question Papers Button */
 .qp-btn {
-    background-color: var(--color-accent-blue);
+    background-color: var(--color-accent-red);
     color: #fff;
-    padding: 0.625rem 1.25rem;
+    padding: 0.625rem 1rem;
     border: none;
     border-radius: var(--radius-sm);
     cursor: pointer;
-    font-size: 1rem;
+    font-size: 0.875rem;
+    font-weight: 500;
     transition: background-color 0.2s ease;
-    z-index: 1;
-    position: absolute;
-    right: var(--space-xl);
-    top: 50%;
-    transform: translateY(-50%);
 }
 
 .qp-btn:hover {
-    background-color: var(--color-accent-blue);
+    background-color: var(--color-accent-red-hover);
 }
-
-/* Mobile responsive fix */
-@media (max-width: 768px) {
-    .home-btn {
-        position: static;
-        transform: none;
-        margin-right: 0.5rem;
-    }
-    .qp-btn {
-        position: static;
-        transform: none;
-        margin-left: 0.5rem;
-    }
-    header div {
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-    }
-}
-
 
 /* Typography */
 h1, h2, h3, h4, h5, h6 {
@@ -182,54 +234,7 @@ a:hover {
     word-wrap: break-word;
 }
 
-/* Button Styles */
-.btn {
-    display: inline-block;
-    padding: var(--space-xs) var(--space-md);
-    border-radius: var(--radius-sm);
-    font-size: 0.875rem;
-    font-weight: 500;
-    text-align: center;
-    cursor: pointer;
-    transition: all 0.2s ease;
-    border: none;
-    outline: none;
-}
-
-.btn-primary {
-    background-color: var(--color-accent-green);
-    color: #fff;
-}
-
-.btn-primary:hover {
-    background-color: var(--color-accent-green-hover);
-}
-
-.btn-outline {
-    background-color: transparent;
-    border: 2px solid;
-}
-
-.btn-blue {
-    color: var(--color-accent-blue);
-    border-color: var(--color-accent-blue);
-}
-
-.btn-blue:hover {
-    color: #fff;
-    background-color: var(--color-accent-blue);
-}
-
-.btn-green {
-    color: var(--color-accent-green);
-    border-color: var(--color-accent-green);
-}
-
-.btn-green:hover {
-    color: #fff;
-    background-color: var(--color-accent-green);
-}
-
+/* View Code Button */
 .view-code-btn {
     display: inline-block;
     padding: 0.625rem 1rem;
@@ -337,50 +342,6 @@ a:hover {
     color: var(--color-text-secondary);
 }
 
-/* Info and Note Styles */
-.info-box {
-    background-color: rgba(0, 0, 0, 0.2);
-    border-radius: var(--radius-sm);
-    padding: var(--space-md);
-    display: inline-flex;
-    align-items: center;
-    flex-wrap: wrap;
-    max-width: 90%;
-    margin: var(--space-xs) 0;
-}
-
-.info-box p {
-    margin: 0;
-    color: var(--color-accent-yellow);
-    font-size: 0.875rem;
-    line-height: 1.4;
-}
-
-.info-box a {
-    color: var(--color-accent-yellow);
-    text-decoration: none;
-    font-weight: 600;
-    padding: 0.125rem 0.25rem;
-    border-radius: var(--radius-sm);
-    transition: all 0.2s ease;
-}
-
-.info-box a:hover {
-    background-color: var(--color-accent-yellow);
-    color: #000;
-    cursor: pointer;
-}
-
-.multiple-solutions-note {
-    font-size: 0.8rem;
-    color: var(--color-text-secondary);
-    margin-top: var(--space-sm);
-    margin-bottom: var(--space-sm);
-    font-style: italic;
-    line-height: 1.4;
-    clear: both;
-}
-
 /* Image Styles */
 .image-section {
     margin: var(--space-lg) 0;
@@ -463,13 +424,37 @@ a:hover {
     color: var(--color-accent-blue);
 }
 
-/* Responsive Styles */
+/* Tablet Responsive */
 @media (max-width: 992px) {
     .content {
         padding: var(--space-md);
     }
+    
+    .header-content {
+        grid-template-columns: 1fr;
+        gap: var(--space-sm);
+    }
+    
+    .header-left,
+    .header-right {
+        justify-content: center;
+    }
+    
+    .header-center {
+        order: -1;
+    }
+    
+    .header-center h3 {
+        font-size: 1.25rem;
+    }
+    
+    .header-right {
+        flex-wrap: wrap;
+        justify-content: center;
+    }
 }
 
+/* Mobile Responsive */
 @media (max-width: 768px) {
     :root {
         --space-xl: 1.25rem;
@@ -478,32 +463,44 @@ a:hover {
     
     header {
         padding: var(--space-md);
-        align-items: center;
-        justify-content: space-between;
-        flex-wrap: wrap;
-        gap: var(--space-xs);
-        min-height: 90px;
     }
-
-    .home-btn {
-        position: static;
-        transform: none;
-        margin: 0;
-        padding: var(--space-xs) var(--space-md);
-        font-size: 0.9375rem;
-        width: auto;
+    
+    .header-content {
+        display: flex;
+        flex-direction: column;
+        gap: var(--space-sm);
     }
-
-    header h3 {
-        font-size: 1.25rem;
-        padding: 0;
-        margin: 0;
-        text-align: center;
+    
+    .header-left,
+    .header-center,
+    .header-right {
         width: 100%;
-        overflow-wrap: break-word;
-        line-height: 1.3;
+        justify-content: center;
     }
-
+    
+    .header-center h3 {
+        font-size: 1.1rem;
+        padding: 0 var(--space-sm);
+    }
+    
+    .header-right {
+        flex-direction: column;
+        width: 100%;
+        gap: var(--space-xs);
+    }
+    
+    .home-btn,
+    .github-btn,
+    .qp-btn {
+        width: 100%;
+        justify-content: center;
+        padding: 0.75rem 1rem;
+    }
+    
+    .github-btn span {
+        display: inline;
+    }
+    
     .question-item {
         padding: var(--space-lg);
     }
@@ -530,24 +527,26 @@ a:hover {
     .questions-list li {
         padding: 0.625rem 0.875rem;
     }
+    
+    .view-code-btn,
+    .download-code-btn {
+        width: 100%;
+        margin-right: 0;
+        justify-content: center;
+    }
 }
 
+/* Small Mobile */
 @media (max-width: 480px) {
     header {
-        min-height: 100px;
         padding: var(--space-sm);
     }
-
-    header h3 {
+    
+    .header-center h3 {
         font-size: 1rem;
+        line-height: 1.3;
     }
-
-    .home-btn {
-        width: 100%;
-        text-align: center;
-        padding: var(--space-xs) 0.875rem;
-    }
-
+    
     .question-item {
         padding: var(--space-md);
     }
@@ -556,16 +555,26 @@ a:hover {
         padding: var(--space-md);
     }
     
-    .btn {
-        display: block;
-        width: 100%;
-        margin-bottom: var(--space-xs);
+    .home-btn,
+    .github-btn,
+    .qp-btn {
+        font-size: 0.8125rem;
+        padding: 0.625rem 0.875rem;
     }
     
-    .view-code-btn,
-    .download-code-btn {
-        display: block;
-        width: 100%;
-        margin-right: 0;
+    .github-icon {
+        width: 14px;
+        height: 14px;
+    }
+}
+
+/* Desktop specific - maintain original spacing */
+@media (min-width: 993px) {
+    .header-content {
+        grid-template-columns: minmax(120px, auto) 1fr minmax(300px, auto);
+    }
+    
+    .header-right {
+        gap: var(--space-sm);
     }
 }

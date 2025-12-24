@@ -241,12 +241,61 @@
                     <span class="wm-label" id="watermarkGlobalToggleLabel">Hide watermark</span>
                 </button>
             </div>
+            <button class="download-btn" id="download-btn" aria-label="Download papers">
+                <svg class="icon" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line></svg>
+                <span class="btn-text">Download</span>
+            </button>
             <button class="primary" id="fullscreen-btn" aria-label="Toggle fullscreen mode">
                 <svg class="icon" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24"><path d="M8 3H5a2 2 0 0 0-2 2v3m18 0V5a2 2 0 0 0-2-2h-3m0 18h3a2 2 0 0 0 2-2v-3M3 16v3a2 2 0 0 0 2 2h3"/></svg>
                 <span class="btn-text">Fullscreen</span>
             </button>
         </div>
     </header>
+
+    <!-- Download Modal -->
+    <div class="download-modal" id="download-modal">
+        <div class="download-modal-overlay" id="download-modal-overlay"></div>
+        <div class="download-modal-content">
+            <div class="download-modal-header">
+                <h2 class="download-modal-title">Download <span id="download-subject-name">{{ seo_data.subject_name }}</span> Papers</h2>
+                <button class="download-modal-close" id="download-modal-close" aria-label="Close modal">
+                    <svg class="icon" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
+                </button>
+            </div>
+            <div class="download-modal-body">
+                <div class="download-option">
+                    <div class="download-option-info">
+                        <h3 class="download-option-title">INSEM Papers</h3>
+                        <p class="download-option-desc">Download all INSEM question papers as ZIP</p>
+                    </div>
+                    <a href="#" class="download-zip-btn" id="download-insem-btn">
+                        <svg class="icon" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line></svg>
+                        <span>Download ZIP</span>
+                    </a>
+                </div>
+                <div class="download-option">
+                    <div class="download-option-info">
+                        <h3 class="download-option-title">ENDSEM Papers</h3>
+                        <p class="download-option-desc">Download all ENDSEM question papers as ZIP</p>
+                    </div>
+                    <a href="#" class="download-zip-btn" id="download-endsem-btn">
+                        <svg class="icon" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line></svg>
+                        <span>Download ZIP</span>
+                    </a>
+                </div>
+                <div class="download-option">
+                    <div class="download-option-info">
+                        <h3 class="download-option-title">All Papers</h3>
+                        <p class="download-option-desc">Download all question papers (INSEM + ENDSEM) as ZIP</p>
+                    </div>
+                    <a href="#" class="download-zip-btn" id="download-all-btn">
+                        <svg class="icon" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line></svg>
+                        <span>Download ZIP</span>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
 
     <div class="grid-1" id="pdf-container">
         <div class="no-pdf-message">Loading PDFs...<div class="loader"></div></div>
@@ -367,7 +416,12 @@
             fullscreenBtn: document.getElementById('fullscreen-btn'),
             backBtn: document.getElementById('back-btn'),
             watermarkBtn: document.getElementById('watermarkGlobalToggle'),
-            watermarkLabel: document.getElementById('watermarkGlobalToggleLabel')
+            watermarkLabel: document.getElementById('watermarkGlobalToggleLabel'),
+            downloadBtn: document.getElementById('download-btn'),
+            downloadModal: document.getElementById('download-modal'),
+            downloadModalOverlay: document.getElementById('download-modal-overlay'),
+            downloadModalClose: document.getElementById('download-modal-close'),
+            downloadSubjectName: document.getElementById('download-subject-name')
         };
 
         var state = {
@@ -993,6 +1047,23 @@
             }
         };
 
+        function openDownloadModal() {
+            if (DOM.downloadModal && DOM.downloadSubjectName) {
+                DOM.downloadSubjectName.textContent = subjectNameFromServer || 'Subject';
+                DOM.downloadModal.classList.add('active');
+                document.body.style.overflow = 'hidden';
+                Logger.info('Download modal opened');
+            }
+        }
+
+        function closeDownloadModal() {
+            if (DOM.downloadModal) {
+                DOM.downloadModal.classList.remove('active');
+                document.body.style.overflow = '';
+                Logger.info('Download modal closed');
+            }
+        }
+
         function setupEventListeners() {
             var debouncedRender = debounce(renderPDFs, 250);
             
@@ -1019,6 +1090,18 @@
                 window.location.href = '/question-papers'; 
             });
             
+            if (DOM.downloadBtn) {
+                DOM.downloadBtn.addEventListener('click', openDownloadModal);
+            }
+            
+            if (DOM.downloadModalOverlay) {
+                DOM.downloadModalOverlay.addEventListener('click', closeDownloadModal);
+            }
+            
+            if (DOM.downloadModalClose) {
+                DOM.downloadModalClose.addEventListener('click', closeDownloadModal);
+            }
+            
             if (DOM.watermarkBtn) {
                 DOM.watermarkBtn.addEventListener('click', function() {
                     WatermarkManager.toggle();
@@ -1030,7 +1113,9 @@
             document.addEventListener('keydown', function(e) {
                 if (e.key === 'Escape') {
                     CustomDropdown.closeAll();
-                    if (document.fullscreenElement) {
+                    if (DOM.downloadModal && DOM.downloadModal.classList.contains('active')) {
+                        closeDownloadModal();
+                    } else if (document.fullscreenElement) {
                         document.exitFullscreen().catch(function(err) { 
                             Logger.error('Error exiting fullscreen on escape', err.message); 
                         });

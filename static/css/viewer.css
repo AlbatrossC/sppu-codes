@@ -7,6 +7,11 @@
     --green-color: #28a745;
     --green-hover: #218838;
 
+    /* updated watermark color: muted teal */
+    --watermark-color: #0ea5a4;
+    --watermark-hover: #0b9a94;
+    --watermark-color-rgb: 14, 165, 164;
+
     --background-dark: #1e1e1e;
     --background-dark-rgb: 30, 30, 30;
     --background-light: #282828;
@@ -324,9 +329,10 @@ button.download-btn:hover {
 }
 
 .watermark-toggle button {
-    background: rgba(255,255,255,0.06);
-    color: var(--secondary-color);
-    border: 1px solid rgba(255,255,255,0.1);
+    /* keep same structure as other buttons but use watermark color */
+    background: var(--watermark-color);
+    color: var(--text-light);
+    border: none;
     min-width: 140px;
     border-radius: var(--border-radius);
     font-weight: 500;
@@ -335,18 +341,18 @@ button.download-btn:hover {
     height: 38px;
     padding: 0 14px;
     box-shadow: var(--shadow);
+    transition: all var(--transition-speed) ease;
 }
 
 .watermark-toggle button:hover {
-    background: rgba(255,255,255,0.1);
-    border-color: var(--secondary-color);
+    background: var(--watermark-hover);
 }
 
 .watermark-toggle button.active,
 .watermark-toggle button[aria-pressed="true"] {
-    background: rgba(var(--primary-color-rgb),0.15);
-    border-color: var(--primary-color);
-    color: var(--primary-color);
+    background: rgba(var(--watermark-color-rgb),0.18);
+    border: 1px solid var(--watermark-color);
+    color: var(--text-light);
 }
 
 .watermark-toggle .wm-label {
@@ -1208,4 +1214,149 @@ button.download-btn:hover {
     body {
         background: var(--background-dark);
     }
+}
+
+/* Additional styles for download modal enhancements */
+
+/* Disabled button state */
+.download-zip-btn.disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+    pointer-events: none;
+    background: #6b7280;
+}
+
+.download-zip-btn.disabled:hover {
+    transform: none;
+    background: #6b7280;
+}
+
+/* Toast notification styles */
+.download-error-toast,
+.download-progress-toast,
+.download-success-toast {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    padding: 1rem 1.5rem;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    z-index: 10000;
+    font-weight: 500;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    max-width: 400px;
+}
+
+.download-error-toast {
+    background: #ef4444;
+    color: white;
+}
+
+.download-progress-toast {
+    background: #3b82f6;
+    color: white;
+}
+
+.download-success-toast {
+    background: #10b981;
+    color: white;
+}
+
+/* Toast animations */
+@keyframes slideInRight {
+    from {
+        transform: translateX(400px);
+        opacity: 0;
+    }
+    to {
+        transform: translateX(0);
+        opacity: 1;
+    }
+}
+
+@keyframes slideOutRight {
+    from {
+        transform: translateX(0);
+        opacity: 1;
+    }
+    to {
+        transform: translateX(400px);
+        opacity: 0;
+    }
+}
+
+/* Progress loader inside toast */
+.download-progress-toast .loader {
+    width: 20px;
+    height: 20px;
+    border: 2px solid rgba(255, 255, 255, 0.3);
+    border-top-color: white;
+    border-radius: 50%;
+    animation: spin 0.8s linear infinite;
+}
+
+@keyframes spin {
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+/* Download option enhanced styles */
+.download-option {
+    opacity: 1;
+    transition: opacity 0.3s ease;
+}
+
+.download-option.disabled {
+    opacity: 0.6;
+}
+
+.download-option-desc {
+    transition: color 0.2s ease;
+}
+
+/* Mobile responsiveness for toasts */
+@media (max-width: 640px) {
+    .download-error-toast,
+    .download-progress-toast,
+    .download-success-toast {
+        right: 10px;
+        left: 10px;
+        top: 10px;
+        max-width: calc(100% - 20px);
+    }
+}
+
+/* Ensure JSZip works properly */
+/* Add visual feedback during ZIP creation */
+.creating-zip {
+    pointer-events: none;
+    opacity: 0.7;
+}
+
+/* Download modal improvements */
+.download-modal-body {
+    max-height: 70vh;
+    overflow-y: auto;
+}
+
+/* Scrollbar styling for modal */
+.download-modal-body::-webkit-scrollbar {
+    width: 8px;
+}
+
+.download-modal-body::-webkit-scrollbar-track {
+    background: #f1f1f1;
+    border-radius: 4px;
+}
+
+.download-modal-body::-webkit-scrollbar-thumb {
+    background: #888;
+    border-radius: 4px;
+}
+
+.download-modal-body::-webkit-scrollbar-thumb:hover {
+    background: #555;
 }

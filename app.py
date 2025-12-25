@@ -189,14 +189,19 @@ def load_question_papers():
     search_index = []
 
     if not os.path.exists(QUESTION_PAPERS_DIR):
-        return {"branches": [], "subjects_index": {}, "search_index": []}
+        return {
+            "branches": [],
+            "subjects_index": {},
+            "search_index": []
+        }
 
     for file_path in glob.glob(os.path.join(QUESTION_PAPERS_DIR, "*.json")):
+        branch_code = os.path.splitext(os.path.basename(file_path))[0]
+
         with open(file_path, "r", encoding="utf-8") as f:
             data = json.load(f)
 
         branch_name = data.get("branch_name")
-        branch_code = data.get("branch_code")
 
         branch_entry = {
             "branch_name": branch_name,
@@ -212,8 +217,10 @@ def load_question_papers():
             subjects = []
 
             for subject_link, subject in value.items():
+                subject_name = subject.get("subject_name")
+
                 subjects.append({
-                    "subject_name": subject.get("subject_name"),
+                    "subject_name": subject_name,
                     "subject_link": subject_link
                 })
 
@@ -223,10 +230,11 @@ def load_question_papers():
 
                 search_index.append({
                     "type": "QUESTION_PAPER",
-                    "subject_name": subject.get("subject_name"),
+                    "subject_name": subject_name,
                     "branch": branch_name,
+                    "branch_code": branch_code,
                     "semester": sem_no,
-                    "link": f"/question-papers/{subject_link}"
+                    "link": f"/question-papers/{branch_code}/{subject_link}"
                 })
 
             branch_entry["semesters"][f"Semester {sem_no}"] = subjects

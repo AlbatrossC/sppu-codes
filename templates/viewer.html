@@ -183,12 +183,6 @@
 
         <h3>Study Materials for {{ seo_data.subject_name }}</h3>
         <p>{{ seo_data.subject_name }} is a key subject in the SPPU curriculum. Our question paper collection helps students understand exam patterns, practice effectively, and improve academic performance.</p>
-        <div>
-            <h3>Direct Links to Question Papers:</h3>
-            {% for pdf in pdf_data_for_js %}
-                <a href="{{ pdf.url }}" download="{{ pdf.filename }}">Download {{ pdf.filename }} ({{ seo_data.subject_name }})</a>
-            {% endfor %}
-        </div>
 
         <h2>Relevant Keywords & Topics</h2>
         <p>Explore {{ seo_data.subject_name }} resources including SPPU question papers from Savitribai Phule Pune University. Find INSEM and ENDSEM papers for effective examination preparation. Our platform offers academic resources, a PDF viewer for online study, university question papers, and materials for semester examinations.</p>
@@ -258,6 +252,8 @@
         <div class="download-modal-content">
             <div class="download-modal-header">
                 <h2 class="download-modal-title">Download <span id="download-subject-name">{{ seo_data.subject_name }}</span> Papers</h2>
+                <!-- status element for download script -->
+                <p id="download-status" aria-live="polite" style="margin-left:12px;color:var(--text-light);font-weight:500;"></p>
                 <button class="download-modal-close" id="download-modal-close" aria-label="Close modal">
                     <svg class="icon" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
                 </button>
@@ -268,30 +264,36 @@
                         <h3 class="download-option-title">INSEM Papers</h3>
                         <p class="download-option-desc">Download all INSEM question papers as ZIP</p>
                     </div>
-                    <a href="#" class="download-zip-btn" id="download-insem-btn">
+                    <!-- lazy-load & invoke download script on click -->
+                    <button type="button" class="download-zip-btn" id="download-insem-btn" data-download="insem"
+                        onclick="(function(ev,btn){ ev&&ev.preventDefault&&ev.preventDefault(); if(!window.DownloadPaper){ var s=document.createElement('script'); s.src='/static/js/download-paper.js'; s.onload=function(){ window.DownloadPaper && window.DownloadPaper.handleClick(ev, btn); }; s.onerror=function(){ var el=document.getElementById('download-status'); if(el) el.textContent='Failed to load download helper.'; }; document.head.appendChild(s);} else { window.DownloadPaper.handleClick(ev, btn);} })(event, this);">
                         <svg class="icon" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line></svg>
                         <span>Download ZIP</span>
-                    </a>
+                    </button>
                 </div>
+
                 <div class="download-option">
                     <div class="download-option-info">
                         <h3 class="download-option-title">ENDSEM Papers</h3>
                         <p class="download-option-desc">Download all ENDSEM question papers as ZIP</p>
                     </div>
-                    <a href="#" class="download-zip-btn" id="download-endsem-btn">
+                    <button type="button" class="download-zip-btn" id="download-endsem-btn" data-download="endsem"
+                        onclick="(function(ev,btn){ ev&&ev.preventDefault&&ev.preventDefault(); if(!window.DownloadPaper){ var s=document.createElement('script'); s.src='/static/js/download-paper.js'; s.onload=function(){ window.DownloadPaper && window.DownloadPaper.handleClick(ev, btn); }; s.onerror=function(){ var el=document.getElementById('download-status'); if(el) el.textContent='Failed to load download helper.'; }; document.head.appendChild(s);} else { window.DownloadPaper.handleClick(ev, btn);} })(event, this);">
                         <svg class="icon" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line></svg>
                         <span>Download ZIP</span>
-                    </a>
+                    </button>
                 </div>
+
                 <div class="download-option">
                     <div class="download-option-info">
                         <h3 class="download-option-title">All Papers</h3>
                         <p class="download-option-desc">Download all question papers (INSEM + ENDSEM) as ZIP</p>
                     </div>
-                    <a href="#" class="download-zip-btn" id="download-all-btn">
+                    <button type="button" class="download-zip-btn" id="download-all-btn" data-download="all"
+                        onclick="(function(ev,btn){ ev&&ev.preventDefault&&ev.preventDefault(); if(!window.DownloadPaper){ var s=document.createElement('script'); s.src='/static/js/download-paper.js'; s.onload=function(){ window.DownloadPaper && window.DownloadPaper.handleClick(ev, btn); }; s.onerror=function(){ var el=document.getElementById('download-status'); if(el) el.textContent='Failed to load download helper.'; }; document.head.appendChild(s);} else { window.DownloadPaper.handleClick(ev, btn);} })(event, this);">
                         <svg class="icon" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line></svg>
                         <span>Download ZIP</span>
-                    </a>
+                    </button>
                 </div>
             </div>
         </div>

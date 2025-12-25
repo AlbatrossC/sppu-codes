@@ -234,7 +234,7 @@ def load_question_papers():
                     "branch": branch_name,
                     "branch_code": branch_code,
                     "semester": sem_no,
-                    "link": f"/question-papers/{branch_code}/{subject_link}"
+                    "link": f"/question-papers/{subject_link}"
                 })
 
             branch_entry["semesters"][f"Semester {sem_no}"] = subjects

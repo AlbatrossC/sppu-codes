@@ -311,7 +311,7 @@
         // --- Use actual backend endpoints and client-side filtering ---
         // Backend exposes:
         //  - /api/subjects/search -> [{ subject_link, subject_name }, ...]
-        //  - /api/question-papers/search -> [{ type, subject_name, branch, semester, link }, ...]
+        //  - /api/question-papers/list -> [{ subject_link, subject_name, branch_name, branch_code, semester, public_url, repo_path }, ...]
 
         let subjectCodes = [];
         let questionPapers = [];
@@ -354,11 +354,19 @@
             try {
                 const [sRes, qRes] = await Promise.all([
                     fetch('/api/subjects/search'),
-                    fetch('/api/question-papers/search')
+                    fetch('/api/question-papers/list')
                 ]);
                 if (!sRes.ok || !qRes.ok) throw new Error('Failed to fetch');
                 subjectCodes = await sRes.json();
-                questionPapers = await qRes.json();
+                // Map question-papers list to fields expected by renderQuestionPapers
+                const rawQPs = await qRes.json();
+                questionPapers = rawQPs.map(item => ({
+                    subject_link: item.subject_link,
+                    subject_name: item.subject_name,
+                    branch: item.branch_name || item.branch_code || '',
+                    semester: item.semester,
+                    link: item.public_url
+                }));
 
                 document.getElementById('subject-count').textContent = subjectCodes.length;
                 document.getElementById('qp-count').textContent = questionPapers.length;

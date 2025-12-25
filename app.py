@@ -12,10 +12,6 @@ from urllib.parse import urlparse
 import glob
 from datetime import datetime
 
-# =============================================================================
-# APP INIT
-# =============================================================================
-
 app = Flask(__name__)
 # Use an environment variable for secret key in production, fallback to hardcoded for local
 app.secret_key = os.getenv("SECRET_KEY", "karltos")
@@ -185,14 +181,14 @@ def questionpapers_redirect():
 @lru_cache(maxsize=1)
 def load_question_papers():
     branches = []
+    papers_list = []
     subjects_index = {}
-    search_index = []
 
     if not os.path.exists(QUESTION_PAPERS_DIR):
         return {
             "branches": [],
-            "subjects_index": {},
-            "search_index": []
+            "question_papers_list": [],
+            "subjects_index": {}
         }
 
     for file_path in glob.glob(os.path.join(QUESTION_PAPERS_DIR, "*.json")):
@@ -201,7 +197,7 @@ def load_question_papers():
         with open(file_path, "r", encoding="utf-8") as f:
             data = json.load(f)
 
-        branch_name = data.get("branch_name")
+        branch_name = data.get("branch_name", branch_code)
 
         branch_entry = {
             "branch_name": branch_name,
@@ -213,28 +209,39 @@ def load_question_papers():
             if not key.startswith("sem-") or not isinstance(value, dict):
                 continue
 
-            sem_no = key.split("-")[-1]
+            sem_no = int(key.split("-")[-1])
             subjects = []
 
             for subject_link, subject in value.items():
-                subject_name = subject.get("subject_name")
+                subject_name = subject.get("subject_name", subject_link)
 
+                # ---------- Navigation (select.html) ----------
                 subjects.append({
                     "subject_name": subject_name,
                     "subject_link": subject_link
                 })
 
-                subjects_index.setdefault(subject_link, []).extend(
-                    subject.get("pdf_links", [])
-                )
+                # ---------- Viewer page (Supabase PDFs) ----------
+                subjects_index[subject_link] = subject.get("pdf_links", [])
 
-                search_index.append({
+                # ---------- Canonical list (search + download) ----------
+                papers_list.append({
                     "type": "QUESTION_PAPER",
                     "subject_name": subject_name,
-                    "branch": branch_name,
+                    "subject_link": subject_link,
+
+                    # UI display
+                    "branch_name": branch_name,
+
+                    # Resolution metadata
                     "branch_code": branch_code,
                     "semester": sem_no,
-                    "link": f"/question-papers/{subject_link}"
+
+                    # Clean public URL
+                    "public_url": f"/question-papers/{subject_link}",
+
+                    # GitHub repo path (used by download JS)
+                    "repo_path": f"{branch_code}/sem-{sem_no}/{subject_link}"
                 })
 
             branch_entry["semesters"][f"Semester {sem_no}"] = subjects
@@ -243,9 +250,86 @@ def load_question_papers():
 
     return {
         "branches": branches,
-        "subjects_index": subjects_index,
-        "search_index": search_index
+        "question_papers_list": papers_list,
+        "subjects_index": subjects_index
     }
+
+@app.route("/api/question-papers/list")
+def question_papers_list():
+    return jsonify(load_question_papers()["question_papers_list"])
+
+@app.route("/question-papers")
+def select_page():
+    qp = load_question_papers()
+
+    # Build view model ONLY from branches structure
+    organized_data = {
+        branch["branch_name"]: branch["semesters"]
+        for branch in qp["branches"]
+    }
+
+    return render_template(
+        "select.html",
+        organized_data=organized_data
+    )
+
+
+@app.route("/question-papers/<subject_link>")
+def viewer_page(subject_link):
+    qp = load_question_papers()
+    pdfs = qp["subjects_index"].get(subject_link)
+
+    if not pdfs:
+        abort(404)
+
+    subject_display = subject_link.replace("-", " ").title()
+
+    pdf_data = [
+        {
+            "filename": os.path.basename(urlparse(u).path),
+            "url": u
+        }
+        for u in pdfs
+    ]
+
+    seo_data = {
+        "title": f"{subject_display} Question Papers | SPPU Codes",
+        "description": f"Download {subject_display} SPPU question papers",
+        "keywords": f"{subject_display}, sppu, question papers",
+        "subject_name": subject_display
+    }
+
+    return render_template(
+        "viewer.html",
+        subject_name=subject_display,
+        pdf_data_for_js=pdf_data,
+        seo_data=seo_data
+    )
+
+# =============================================================================
+# SEARCH API
+# =============================================================================
+
+
+@app.route("/api/subjects/search")
+def subjects_search():
+    subjects = []
+    if os.path.exists(QUESTIONS_DIR):
+        for file in os.listdir(QUESTIONS_DIR):
+            if file.endswith(".json"):
+                subject_link = file[:-5]
+                json_path = os.path.join(QUESTIONS_DIR, file)
+                try:
+                    with open(json_path, "r", encoding="utf-8") as f:
+                        data = json.load(f)
+                    subject_name = data.get("default", {}).get("subject_name", subject_link)
+                except Exception:
+                    subject_name = subject_link
+                subjects.append({
+                    "subject_link": subject_link,
+                    "subject_name": subject_name
+                })
+    return jsonify(subjects)
 
 # =============================================================================
 # MAIN ROUTES
@@ -338,46 +422,6 @@ def contact_us():
         return redirect(url_for('contact_us'))
 
     return render_template("contact.html")
-
-# =============================================================================
-# QUESTION PAPERS
-# =============================================================================
-
-@app.route("/question-papers")
-def select_page():
-    qp = load_question_papers()
-    organized_data = {
-        b["branch_name"]: b["semesters"] for b in qp["branches"]
-    }
-    return render_template("select.html", organized_data=organized_data)
-
-@app.route("/question-papers/<subject_link>")
-def viewer_page(subject_link):
-    qp = load_question_papers()
-    pdfs = qp["subjects_index"].get(subject_link)
-
-    if not pdfs:
-        abort(404)
-
-    subject_display = subject_link.replace("-", " ").title()
-    pdf_data = [
-        {"filename": os.path.basename(urlparse(u).path), "url": u}
-        for u in pdfs
-    ]
-
-    seo_data = {
-        "title": f"{subject_display} Question Papers | SPPU Codes",
-        "description": f"Download {subject_display} SPPU question papers",
-        "keywords": f"{subject_display}, sppu, question papers",
-        "subject_name": subject_display
-    }
-
-    return render_template(
-        "viewer.html",
-        subject_name=subject_display,
-        pdf_data_for_js=pdf_data,
-        seo_data=seo_data
-    )
 
 # =============================================================================
 # 🔥 SUBJECT ROUTES (FIXED)
@@ -504,33 +548,7 @@ def answer_api(subject_link, question_no):
         "Content-Type": "text/plain; charset=utf-8"
     }
 
-# =============================================================================
-# SEARCH API
-# =============================================================================
 
-@app.route("/api/question-papers/search")
-def question_papers_search():
-    return jsonify(load_question_papers()["search_index"])
-
-@app.route("/api/subjects/search")
-def subjects_search():
-    subjects = []
-    if os.path.exists(QUESTIONS_DIR):
-        for file in os.listdir(QUESTIONS_DIR):
-            if file.endswith(".json"):
-                subject_link = file[:-5]
-                json_path = os.path.join(QUESTIONS_DIR, file)
-                try:
-                    with open(json_path, "r", encoding="utf-8") as f:
-                        data = json.load(f)
-                    subject_name = data.get("default", {}).get("subject_name", subject_link)
-                except Exception:
-                    subject_name = subject_link
-                subjects.append({
-                    "subject_link": subject_link,
-                    "subject_name": subject_name
-                })
-    return jsonify(subjects)
 # =============================================================================
 # SEO FILES
 # =============================================================================

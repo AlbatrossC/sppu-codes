@@ -159,15 +159,15 @@ document.addEventListener('DOMContentLoaded', function () {
         if (isLoaded) return;
         try {
             // Load Question Papers
-            const qpRes = await fetch('/api/question-papers/search');
+            const qpRes = await fetch('/api/question-papers/list');
             const qpData = await qpRes.json();
             searchData.questionPapers = qpData.map(item => ({
                 type: 'QUESTION_PAPER',
                 label: '📄 QP',
                 subjectName: item.subject_name,
-                subjectCode: '',
-                link: item.link,
-                branch: item.branch
+                subjectCode: '', // no code in list; keep empty
+                link: item.public_url,
+                branch: item.branch_name || item.branch_code || ''
             }));
 
             // Load Codes (Subjects)
@@ -187,8 +187,8 @@ document.addEventListener('DOMContentLoaded', function () {
                 type: 'CODE',
                 label: '💻 Code',
                 subjectName: s.subject_name,
-                subjectCode: s.subject_code,
-                link: s.url || `/${s.subject_code}`
+                subjectCode: s.subject_code || s.subject_link || '',
+                link: s.url || `/${(s.subject_code || s.subject_link || '').replace(/^\//, '')}`
             }));
 
             isLoaded = true;

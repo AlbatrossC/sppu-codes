@@ -5,9 +5,9 @@
         "microprocessor-cse": {
             "subject_name": "Microprocessor",
             "seo_data": {
-                "title": null,
-                "description": null,
-                "keywords": null
+                "title": "SPPU Microprocessor | Computer Science Question Papers | Sppu Codes",
+                "description": "Microprocessor is a key subject for semester 4 in Computer Science at SPPU, focusing on processor architecture and programming. The question papers, based on PAT 2019 and the revised syllabus, include both in-semester and end-semester exams. Practicing these papers helps students understand the SPPU exam pattern, marking scheme, and typical question types. This resource is valuable for reinforcing microprocessor concepts and preparing thoroughly for university and internal assessments.",
+                "keywords": "microprocessor question papers sppu, sppu cs microprocessor insem, sppu microprocessor endsem, pat 2019 microprocessor, sppu sem 4 microprocessor papers, computer science microprocessor sppu, sppu microprocessor exam pattern, sppu microprocessor previous papers, sppu cs microprocessor preparation, sppu microprocessor syllabus"
             },
             "pdf_links": [
                 "https://zauiiivigqoifsvtqhnt.supabase.co/storage/v1/object/public/sppu-questionpapers/cse/sem-4/microprocessor-cse/endsem-may-jun-2022-pat2019-mc.pdf",
@@ -24,9 +24,9 @@
         "principles-of-programming-languages-cse": {
             "subject_name": "Principles Of Programming Languages",
             "seo_data": {
-                "title": null,
-                "description": null,
-                "keywords": null
+                "title": "SPPU Principles Of Programming Languages | Computer Science Question Papers | Sppu Codes",
+                "description": "Principles Of Programming Languages is an important subject for semester 4 in Computer Science at SPPU, covering language paradigms and syntax. The question papers, structured as per PAT 2019 and the revised syllabus, include both in-semester and end-semester exams. Practicing these papers helps students get familiar with the SPPU exam format, marking scheme, and question types. This collection is ideal for mastering language principles and preparing efficiently for university and internal assessments.",
+                "keywords": "principles of programming languages question papers sppu, sppu cs popl insem, sppu popl endsem, pat 2019 programming languages, sppu sem 4 popl papers, computer science popl sppu, sppu popl exam pattern, sppu popl previous papers, sppu cs popl preparation, sppu popl syllabus"
             },
             "pdf_links": [
                 "https://zauiiivigqoifsvtqhnt.supabase.co/storage/v1/object/public/sppu-questionpapers/cse/sem-4/principles-of-programming-languages-cse/endsem-may-jun-2022-pat2019-poplc.pdf",
@@ -44,9 +44,9 @@
         "computer-network-and-security-cse": {
             "subject_name": "Computer Network And Security",
             "seo_data": {
-                "title": null,
-                "description": null,
-                "keywords": null
+                "title": "SPPU Computer Network And Security | Computer Science Question Papers | Sppu Codes",
+                "description": "Computer Network And Security is a vital subject for semester 5 in Computer Science at SPPU, focusing on networking protocols and security mechanisms. The question papers, based on PAT 2019 and the revised syllabus, include both in-semester and end-semester exams. Practicing these papers helps students understand the SPPU exam pattern, marking scheme, and question types. This resource is ideal for reinforcing networking and security concepts and preparing thoroughly for university and internal assessments.",
+                "keywords": "computer network and security question papers sppu, sppu cs network security insem, sppu network security endsem, pat 2019 network security, sppu sem 5 network security papers, computer science network security sppu, sppu network security exam pattern, sppu network security previous papers, sppu cs network security preparation, sppu network security syllabus"
             },
             "pdf_links": [
                 "https://zauiiivigqoifsvtqhnt.supabase.co/storage/v1/object/public/sppu-questionpapers/cse/sem-5/computer-network-and-security-cse/endsem-may-jun-2022-pat2019-cnasc.pdf",
@@ -65,9 +65,9 @@
         "database-management-systems-cse": {
             "subject_name": "Database Management Systems",
             "seo_data": {
-                "title": null,
-                "description": null,
-                "keywords": null
+                "title": "SPPU Database Management Systems | Computer Science Question Papers | Sppu Codes",
+                "description": "Database Management Systems is a core subject for semester 5 in Computer Science at SPPU, focusing on data organization and retrieval. The question papers, structured as per PAT 2019 and the revised syllabus, include both in-semester and end-semester exams. Practicing these papers helps students get familiar with the SPPU exam format, marking scheme, and question types. This collection is valuable for mastering DBMS concepts and preparing efficiently for university and internal assessments.",
+                "keywords": "database management systems question papers sppu, sppu cs dbms insem, sppu dbms endsem, pat 2019 database management systems, sppu sem 5 dbms papers, computer science dbms sppu, sppu dbms exam pattern, sppu dbms previous papers, sppu cs dbms preparation, sppu dbms syllabus"
             },
             "pdf_links": [
                 "https://zauiiivigqoifsvtqhnt.supabase.co/storage/v1/object/public/sppu-questionpapers/cse/sem-5/database-management-systems-cse/endsem-may-jun-2022-pat2019-dmsc.pdf",
@@ -86,9 +86,9 @@
         "human-computer-interface-ele-i-cse": {
             "subject_name": "Human Computer Interface Ele I",
             "seo_data": {
-                "title": null,
-                "description": null,
-                "keywords": null
+                "title": "SPPU Human Computer Interface Ele I | Computer Science Question Papers | Sppu Codes",
+                "description": "Human Computer Interface Ele I is an elective subject for semester 5 in Computer Science at SPPU, focusing on user interface design and usability. The question papers, based on PAT 2019 and the revised syllabus, include both in-semester and end-semester exams. Practicing these papers helps students understand the SPPU exam pattern, marking scheme, and question types. This resource is ideal for reinforcing HCI concepts and preparing thoroughly for university and internal assessments.",
+                "keywords": "human computer interface question papers sppu, sppu cs hci insem, sppu hci endsem, pat 2019 human computer interface, sppu sem 5 hci papers, computer science hci sppu, sppu hci exam pattern, sppu hci previous papers, sppu cs hci preparation, sppu hci syllabus"
             },
             "pdf_links": [
                 "https://zauiiivigqoifsvtqhnt.supabase.co/storage/v1/object/public/sppu-questionpapers/cse/sem-5/human-computer-interface-ele-i-cse/endsem-may-jun-2024-pat2019-hcieic.pdf",
@@ -102,9 +102,9 @@
         "internet-of-things-and-embedded-systems-ele-i-cse": {
             "subject_name": "Internet Of Things And Embedded Systems Ele I",
             "seo_data": {
-                "title": null,
-                "description": null,
-                "keywords": null
+                "title": "SPPU Internet Of Things And Embedded Systems Ele I | Computer Science Question Papers | Sppu Codes",
+                "description": "Internet Of Things And Embedded Systems Ele I is an elective subject for semester 5 in Computer Science at SPPU, focusing on IoT devices and embedded technologies. The question papers, structured as per PAT 2019 and the revised syllabus, include both in-semester and end-semester exams. Practicing these papers helps students get familiar with the SPPU exam format, marking scheme, and question types. This collection is valuable for mastering IoT and embedded systems concepts and preparing efficiently for university and internal assessments.",
+                "keywords": "internet of things embedded systems question papers sppu, sppu cs iot embedded insem, sppu iot embedded endsem, pat 2019 iot embedded systems, sppu sem 5 iot embedded papers, computer science iot embedded sppu, sppu iot embedded exam pattern, sppu iot embedded previous papers, sppu cs iot embedded preparation, sppu iot embedded syllabus"
             },
             "pdf_links": [
                 "https://zauiiivigqoifsvtqhnt.supabase.co/storage/v1/object/public/sppu-questionpapers/cse/sem-5/internet-of-things-and-embedded-systems-ele-i-cse/endsem-may-jun-2022-pat2019-iotaeseic.pdf",
@@ -123,9 +123,9 @@
         "software-project-management-ele-i-cse": {
             "subject_name": "Software Project Management Ele I",
             "seo_data": {
-                "title": null,
-                "description": null,
-                "keywords": null
+                "title": "SPPU Software Project Management Ele I | Computer Science Question Papers | Sppu Codes",
+                "description": "Software Project Management Ele I is an elective subject for semester 5 in Computer Science at SPPU, focusing on project planning and execution. The question paper, based on PAT 2019 and the revised syllabus, is designed to help students understand the SPPU exam format and marking scheme. Practicing this paper supports concept mastery and effective preparation for university and internal assessments.",
+                "keywords": "software project management question papers sppu, sppu cs spm insem, sppu spm endsem, pat 2019 software project management, sppu sem 5 spm papers, computer science spm sppu, sppu spm exam pattern, sppu spm previous papers, sppu cs spm preparation, sppu spm syllabus"
             },
             "pdf_links": [
                 "https://zauiiivigqoifsvtqhnt.supabase.co/storage/v1/object/public/sppu-questionpapers/cse/sem-5/software-project-management-ele-i-cse/endsem-may-jun-2022-pat2019-spmeic.pdf"
@@ -134,9 +134,9 @@
         "systems-programming-and-operating-system-cse": {
             "subject_name": "Systems Programming And Operating System",
             "seo_data": {
-                "title": null,
-                "description": null,
-                "keywords": null
+                "title": "SPPU Systems Programming And Operating System | Computer Science Question Papers | Sppu Codes",
+                "description": "Systems Programming And Operating System is a core subject for semester 5 in Computer Science at SPPU, focusing on system software and OS concepts. The question papers, based on PAT 2019 and the revised syllabus, include both in-semester and end-semester exams. Practicing these papers helps students understand the SPPU exam pattern, marking scheme, and question types. This resource is ideal for reinforcing systems programming concepts and preparing thoroughly for university and internal assessments.",
+                "keywords": "systems programming operating system question papers sppu, sppu cs systems programming insem, sppu operating system endsem, pat 2019 systems programming, sppu sem 5 operating system papers, computer science systems programming sppu, sppu operating system exam pattern, sppu operating system previous papers, sppu cs operating system preparation, sppu operating system syllabus"
             },
             "pdf_links": [
                 "https://zauiiivigqoifsvtqhnt.supabase.co/storage/v1/object/public/sppu-questionpapers/cse/sem-5/systems-programming-and-operating-system-cse/endsem-may-jun-2022-pat2019-spaosc.pdf",
@@ -155,9 +155,9 @@
         "theory-of-computation-cse": {
             "subject_name": "Theory Of Computation",
             "seo_data": {
-                "title": null,
-                "description": null,
-                "keywords": null
+                "title": "SPPU Theory Of Computation | Computer Science Question Papers | Sppu Codes",
+                "description": "Theory Of Computation is a fundamental subject for semester 5 in Computer Science at SPPU, focusing on automata, languages, and computation theory. The question papers, structured as per PAT 2019 and the revised syllabus, include both in-semester and end-semester exams. Practicing these papers helps students get familiar with the SPPU exam format, marking scheme, and question types. This collection is valuable for mastering computation theory and preparing efficiently for university and internal assessments.",
+                "keywords": "theory of computation question papers sppu, sppu cs toc insem, sppu toc endsem, pat 2019 theory of computation, sppu sem 5 toc papers, computer science toc sppu, sppu toc exam pattern, sppu toc previous papers, sppu cs toc preparation, sppu toc syllabus"
             },
             "pdf_links": [
                 "https://zauiiivigqoifsvtqhnt.supabase.co/storage/v1/object/public/sppu-questionpapers/cse/sem-5/theory-of-computation-cse/endsem-may-jun-2022-pat2019-tocc.pdf",
@@ -178,9 +178,9 @@
         "artificial-intelligence-cse": {
             "subject_name": "Artificial Intelligence",
             "seo_data": {
-                "title": null,
-                "description": null,
-                "keywords": null
+                "title": "SPPU Artificial Intelligence | Computer Science Question Papers | Sppu Codes",
+                "description": "Artificial Intelligence is a core subject for semester 6 in Computer Science at SPPU, focusing on intelligent systems and learning algorithms. The question papers, based on PAT 2019 and the revised syllabus, include both in-semester and end-semester exams. Practicing these papers helps students understand the SPPU exam pattern, marking scheme, and question types. This resource is ideal for reinforcing AI concepts and preparing thoroughly for university and internal assessments.",
+                "keywords": "artificial intelligence question papers sppu, sppu cs ai insem, sppu ai endsem, pat 2019 artificial intelligence, sppu sem 6 ai papers, computer science ai sppu, sppu ai exam pattern, sppu ai previous papers, sppu cs ai preparation, sppu ai syllabus"
             },
             "pdf_links": [
                 "https://zauiiivigqoifsvtqhnt.supabase.co/storage/v1/object/public/sppu-questionpapers/cse/sem-6/artificial-intelligence-cse/endsem-may-jun-2022-pat2019-aic.pdf",
@@ -197,9 +197,9 @@
         "augmented-and-virtual-reality-ele-ii-cse": {
             "subject_name": "Augmented And Virtual Reality Ele II",
             "seo_data": {
-                "title": null,
-                "description": null,
-                "keywords": null
+                "title": "SPPU Augmented And Virtual Reality Ele II | Computer Science Question Papers | Sppu Codes",
+                "description": "Augmented And Virtual Reality Ele II is an elective subject for semester 6 in Computer Science at SPPU, focusing on immersive technologies and applications. The question papers, based on PAT 2019 and the revised syllabus, include both in-semester and end-semester exams. Practicing these papers helps students understand the SPPU exam pattern, marking scheme, and question types. This resource is ideal for reinforcing AR and VR concepts and preparing thoroughly for university and internal assessments.",
+                "keywords": "augmented virtual reality question papers sppu, sppu cs avr insem, sppu avr endsem, pat 2019 augmented virtual reality, sppu sem 6 avr papers, computer science avr sppu, sppu avr exam pattern, sppu avr previous papers, sppu cs avr preparation, sppu avr syllabus"
             },
             "pdf_links": [
                 "https://zauiiivigqoifsvtqhnt.supabase.co/storage/v1/object/public/sppu-questionpapers/cse/sem-6/augmented-and-virtual-reality-ele-ii-cse/endsem-nov-dec-2022-pat2019-aavreiic.pdf",
@@ -211,9 +211,9 @@
         "cloud-computing-cse": {
             "subject_name": "Cloud Computing",
             "seo_data": {
-                "title": null,
-                "description": null,
-                "keywords": null
+                "title": "SPPU Cloud Computing | Computer Science Question Papers | Sppu Codes",
+                "description": "Cloud Computing is a significant subject for semester 6 in Computer Science at SPPU, focusing on distributed systems and cloud services. The question papers, structured as per PAT 2019 and the revised syllabus, include both in-semester and end-semester exams. Practicing these papers helps students get familiar with the SPPU exam format, marking scheme, and question types. This collection is valuable for mastering cloud computing concepts and preparing efficiently for university and internal assessments.",
+                "keywords": "cloud computing question papers sppu, sppu cs cloud computing insem, sppu cloud computing endsem, pat 2019 cloud computing, sppu sem 6 cloud computing papers, computer science cloud computing sppu, sppu cloud computing exam pattern, sppu cloud computing previous papers, sppu cs cloud computing preparation, sppu cloud computing syllabus"
             },
             "pdf_links": [
                 "https://zauiiivigqoifsvtqhnt.supabase.co/storage/v1/object/public/sppu-questionpapers/cse/sem-6/cloud-computing-cse/endsem-may-jun-2022-pat2019-ccc.pdf",
@@ -230,9 +230,9 @@
         "data-science-and-big-data-analytics-cse": {
             "subject_name": "Data Science And Big Data Analytics",
             "seo_data": {
-                "title": null,
-                "description": null,
-                "keywords": null
+                "title": "SPPU Data Science And Big Data Analytics | Computer Science Question Papers | Sppu Codes",
+                "description": "Data Science And Big Data Analytics is a core subject for semester 6 in Computer Science at SPPU, focusing on data analysis and large-scale data processing. The question papers, based on PAT 2019 and the revised syllabus, include both in-semester and end-semester exams. Practicing these papers helps students understand the SPPU exam pattern, marking scheme, and question types. This resource is ideal for reinforcing data analytics concepts and preparing thoroughly for university and internal assessments.",
+                "keywords": "data science big data analytics question papers sppu, sppu cs data science insem, sppu big data endsem, pat 2019 data science analytics, sppu sem 6 data analytics papers, computer science data science sppu, sppu data analytics exam pattern, sppu data analytics previous papers, sppu cs data analytics preparation, sppu data analytics syllabus"
             },
             "pdf_links": [
                 "https://zauiiivigqoifsvtqhnt.supabase.co/storage/v1/object/public/sppu-questionpapers/cse/sem-6/data-science-and-big-data-analytics-cse/endsem-may-jun-2022-pat2019-dsabdac.pdf",
@@ -249,9 +249,9 @@
         "information-security-ele-ii-cse": {
             "subject_name": "Information Security Ele II",
             "seo_data": {
-                "title": null,
-                "description": null,
-                "keywords": null
+                "title": "SPPU Information Security Ele II | Computer Science Question Papers | Sppu Codes",
+                "description": "Information Security Ele II is an elective subject for semester 6 in Computer Science at SPPU, focusing on security principles and data protection. The question paper, based on PAT 2019 and the revised syllabus, is designed to help students understand the SPPU exam format and marking scheme. Practicing this paper supports concept mastery and effective preparation for university and internal assessments.",
+                "keywords": "information security question papers sppu, sppu cs info security insem, sppu info security endsem, pat 2019 information security, sppu sem 6 info security papers, computer science info security sppu, sppu info security exam pattern, sppu info security previous papers, sppu cs info security preparation, sppu info security syllabus"
             },
             "pdf_links": [
                 "https://zauiiivigqoifsvtqhnt.supabase.co/storage/v1/object/public/sppu-questionpapers/cse/sem-6/information-security-ele-ii-cse/endsem-may-jun-2025-pat2019-iseiic.pdf"
@@ -260,9 +260,9 @@
         "software-modeling-and-architectures-ele-ii-cse": {
             "subject_name": "Software Modeling And Architectures Ele II",
             "seo_data": {
-                "title": null,
-                "description": null,
-                "keywords": null
+                "title": "SPPU Software Modeling And Architectures Ele II | Computer Science Question Papers | Sppu Codes",
+                "description": "Software Modeling And Architectures Ele II is an elective subject for semester 6 in Computer Science at SPPU, focusing on software design and architectural patterns. The question paper, based on PAT 2019 and the revised syllabus, is designed to help students understand the SPPU exam format and marking scheme. Practicing this paper supports concept mastery and effective preparation for university and internal assessments.",
+                "keywords": "software modeling architectures question papers sppu, sppu cs software modeling insem, sppu software modeling endsem, pat 2019 software modeling, sppu sem 6 software modeling papers, computer science software modeling sppu, sppu software modeling exam pattern, sppu software modeling previous papers, sppu cs software modeling preparation, sppu software modeling syllabus"
             },
             "pdf_links": [
                 "https://zauiiivigqoifsvtqhnt.supabase.co/storage/v1/object/public/sppu-questionpapers/cse/sem-6/software-modeling-and-architectures-ele-ii-cse/endsem-may-jun-2023-pat2019-smaaeiic.pdf"
@@ -271,9 +271,9 @@
         "web-technology-cse": {
             "subject_name": "Web Technology",
             "seo_data": {
-                "title": null,
-                "description": null,
-                "keywords": null
+                "title": "SPPU Web Technology | Computer Science Question Papers | Sppu Codes",
+                "description": "Web Technology is a significant subject for semester 6 in Computer Science at SPPU, focusing on web development and internet protocols. The question papers, structured as per PAT 2019 and the revised syllabus, include both in-semester and end-semester exams. Practicing these papers helps students get familiar with the SPPU exam format, marking scheme, and question types. This collection is valuable for mastering web technology concepts and preparing efficiently for university and internal assessments.",
+                "keywords": "web technology question papers sppu, sppu cs web technology insem, sppu web technology endsem, pat 2019 web technology, sppu sem 6 web technology papers, computer science web technology sppu, sppu web technology exam pattern, sppu web technology previous papers, sppu cs web technology preparation, sppu web technology syllabus"
             },
             "pdf_links": [
                 "https://zauiiivigqoifsvtqhnt.supabase.co/storage/v1/object/public/sppu-questionpapers/cse/sem-6/web-technology-cse/endsem-may-jun-2022-pat2019-wtc.pdf",

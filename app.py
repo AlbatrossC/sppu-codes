@@ -518,12 +518,52 @@ def subjects_search():
 @app.route("/api/<subject_link>/<question_no>")
 def answer_api(subject_link, question_no):
     data = load_subject_data(subject_link)
-    if not data:
-        return "Subject not found", 404, {"Content-Type": "text/plain"}
 
-    question = get_question_by_number(data.get("questions", []), question_no)
+    # ===============================
+    # SUBJECT NOT FOUND
+    # ===============================
+    if not data:
+        output = []
+        output.append("No question found")
+        output.append("")
+        output.append("Available subjects:")
+        output.append("")
+
+        if os.path.exists(QUESTIONS_DIR):
+            for f in sorted(os.listdir(QUESTIONS_DIR)):
+                if f.endswith(".json"):
+                    code = f[:-5]
+                    d = load_subject_data(code)
+                    full_name = d.get("default", {}).get("subject_name", code.upper()) if d else code.upper()
+                    output.append(f"{code} --> {full_name}")
+                    output.append("")
+
+        return "\n".join(output).strip(), 404, {
+            "Content-Type": "text/plain; charset=utf-8"
+        }
+
+    questions = data.get("questions", [])
+    question = get_question_by_number(questions, question_no)
+
+    # ===============================
+    # QUESTION NOT FOUND
+    # ===============================
     if not question:
-        return "Question not found", 404, {"Content-Type": "text/plain"}
+        output = []
+        output.append("No question found")
+        output.append("")
+        output.append(f"Available questions for subject: {subject_link}")
+        output.append("")
+
+        for q in questions:
+            q_no = q.get("question_no", "N/A")
+            q_text = q.get("question", "").strip()
+            output.append(f"{q_no} --> {q_text}")
+            output.append("")
+
+        return "\n".join(output).strip(), 404, {
+            "Content-Type": "text/plain; charset=utf-8"
+        }
 
     files = question.get("file_name", [])
     if not files:
@@ -546,7 +586,7 @@ def answer_api(subject_link, question_no):
         return error, 404, {"Content-Type": "text/plain"}
 
     output = []
-    
+
     if not no_question:
         output.append(question["question"].strip())
         output.append("")
@@ -559,7 +599,9 @@ def answer_api(subject_link, question_no):
         output.append(content)
         output.append("")
 
-    return "\n".join(output).strip(), 200, {"Content-Type": "text/plain; charset=utf-8"}
+    return "\n".join(output).strip(), 200, {
+        "Content-Type": "text/plain; charset=utf-8"
+    }
 
 
 @app.route("/api/notify-download", methods=["POST"])

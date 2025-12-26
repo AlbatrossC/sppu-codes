@@ -1,0 +1,539 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sitemap - SPPU Codes</title>
+    <meta name="description" content="Complete sitemap of SPPU Codes with all question papers, code solutions, and resources organized by branch and subject.">
+    <meta name="robots" content="index, follow">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+            line-height: 1.6;
+            color: #1f2937;
+            background: #f9fafb;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 40px 20px;
+        }
+
+        header {
+            background: #667eea;
+            color: white;
+            padding: 60px 20px;
+            text-align: center;
+            margin-bottom: 40px;
+            border-radius: 0 0 20px 20px;
+        }
+
+        header h1 {
+            font-size: 2.5rem;
+            margin-bottom: 10px;
+            font-weight: 700;
+        }
+
+        header p {
+            font-size: 1.1rem;
+            opacity: 0.95;
+        }
+
+        .breadcrumb {
+            margin-bottom: 30px;
+            font-size: 0.9rem;
+        }
+
+        .breadcrumb a {
+            color: #667eea;
+            text-decoration: none;
+        }
+
+        .breadcrumb a:hover {
+            text-decoration: underline;
+        }
+
+        .breadcrumb span {
+            color: #9ca3af;
+            margin: 0 8px;
+        }
+
+        .section {
+            background: white;
+            border-radius: 12px;
+            padding: 30px;
+            margin-bottom: 30px;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+        }
+
+        .section-title {
+            font-size: 1.8rem;
+            color: #111827;
+            margin-bottom: 20px;
+            padding-bottom: 15px;
+            border-bottom: 3px solid #667eea;
+            font-weight: 600;
+        }
+
+        .subsection {
+            margin-bottom: 35px;
+        }
+
+        .subsection:last-child {
+            margin-bottom: 0;
+        }
+
+        .subsection-title {
+            font-size: 1.3rem;
+            color: #374151;
+            margin-bottom: 15px;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+        }
+
+        .subsection-title::before {
+            content: '';
+            width: 4px;
+            height: 24px;
+            background: #667eea;
+            margin-right: 12px;
+            border-radius: 2px;
+        }
+
+        .links-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 12px;
+        }
+
+        .link-item {
+            display: flex;
+            flex-direction: column;
+            padding: 14px 18px;
+            background: #f9fafb;
+            border: 1px solid #e5e7eb;
+            border-radius: 8px;
+            text-decoration: none;
+            color: #1f2937;
+            transition: all 0.2s ease;
+            font-size: 0.95rem;
+        }
+
+        .link-item:hover {
+            background: #f3f4f6;
+            border-color: #667eea;
+            transform: translateX(4px);
+            box-shadow: 0 2px 8px rgba(102, 126, 234, 0.15);
+        }
+
+        .link-item::before {
+            content: '→';
+            margin-right: 8px;
+            color: #667eea;
+            font-weight: bold;
+            margin-bottom: 8px;
+        }
+
+        .link-url {
+            font-size: 0.75rem;
+            color: #9ca3af;
+            font-family: 'Courier New', monospace;
+            word-break: break-all;
+            margin-top: 6px;
+            padding-top: 6px;
+            border-top: 1px solid #e5e7eb;
+        }
+
+        .main-pages {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 16px;
+            margin-bottom: 20px;
+        }
+
+        .main-page-card {
+            display: block;
+            padding: 20px;
+            background: #667eea;
+            color: white;
+            border-radius: 10px;
+            text-decoration: none;
+            text-align: center;
+            font-weight: 600;
+            font-size: 1.1rem;
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+            box-shadow: 0 4px 6px rgba(102, 126, 234, 0.3);
+        }
+
+        .main-page-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 8px 16px rgba(102, 126, 234, 0.4);
+        }
+
+        .branch-badge {
+            display: inline-block;
+            padding: 4px 10px;
+            background: #dbeafe;
+            color: #1e40af;
+            border-radius: 4px;
+            font-size: 0.8rem;
+            font-weight: 600;
+            margin-left: 8px;
+            vertical-align: middle;
+        }
+
+        .count {
+            color: #6b7280;
+            font-size: 0.85rem;
+            margin-left: 8px;
+        }
+
+        footer {
+            text-align: center;
+            padding: 40px 20px;
+            color: #6b7280;
+            font-size: 0.9rem;
+        }
+
+        footer a {
+            color: #667eea;
+            text-decoration: none;
+        }
+
+        footer a:hover {
+            text-decoration: underline;
+        }
+
+        @media (max-width: 768px) {
+            header h1 {
+                font-size: 2rem;
+            }
+
+            .section {
+                padding: 20px;
+            }
+
+            .section-title {
+                font-size: 1.5rem;
+            }
+
+            .subsection-title {
+                font-size: 1.1rem;
+            }
+
+            .links-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>SPPU Codes Sitemap</h1>
+        <p>Complete directory of all question papers and code solutions</p>
+    </header>
+
+    <div class="container">
+        <div class="breadcrumb">
+            <a href="/">Home</a>
+            <span>/</span>
+            <strong>Sitemap</strong>
+        </div>
+
+        <!-- Main Pages Section -->
+        <div class="section">
+            <h2 class="section-title">Main Pages</h2>
+            <div class="main-pages">
+                <a href="/" class="main-page-card">Home</a>
+                <a href="/question-papers" class="main-page-card">Question Papers</a>
+                <a href="/submit" class="main-page-card">Submit Code</a>
+                <a href="/contact" class="main-page-card">Contact Us</a>
+            </div>
+        </div>
+
+        <!-- Question Papers Section -->
+        <div class="section">
+            <h2 class="section-title">Question Papers <span class="count">(60 subjects)</span></h2>
+            
+            <!-- AIDS Branch -->
+            <div class="subsection">
+                <h3 class="subsection-title">
+                    AI & Data Science (AIDS)
+                    <span class="branch-badge">AIDS</span>
+                    <span class="count">(22 subjects)</span>
+                </h3>
+                <div class="links-grid">
+                    <a href="/question-papers/computer-graphics-aids" class="link-item">Computer Graphics<span class="link-url">/question-papers/computer-graphics-aids</span></a>
+                    <a href="/question-papers/discrete-mathematics-aids" class="link-item">Discrete Mathematics<span class="link-url">/question-papers/discrete-mathematics-aids</span></a>
+                    <a href="/question-papers/fundamentals-of-data-structures-aids" class="link-item">Fundamentals of Data Structures<span class="link-url">/question-papers/fundamentals-of-data-structures-aids</span></a>
+                    <a href="/question-papers/object-oriented-programming-aids" class="link-item">Object Oriented Programming<span class="link-url">/question-papers/object-oriented-programming-aids</span></a>
+                    <a href="/question-papers/operating-systems-aids" class="link-item">Operating Systems<span class="link-url">/question-papers/operating-systems-aids</span></a>
+                    <a href="/question-papers/data-structures-and-algorithms-aids" class="link-item">Data Structures and Algorithms<span class="link-url">/question-papers/data-structures-and-algorithms-aids</span></a>
+                    <a href="/question-papers/internet-of-things-aids" class="link-item">Internet of Things<span class="link-url">/question-papers/internet-of-things-aids</span></a>
+                    <a href="/question-papers/management-information-systems-aids" class="link-item">Management Information Systems<span class="link-url">/question-papers/management-information-systems-aids</span></a>
+                    <a href="/question-papers/software-engineering-aids" class="link-item">Software Engineering<span class="link-url">/question-papers/software-engineering-aids</span></a>
+                    <a href="/question-papers/statistics-aids" class="link-item">Statistics<span class="link-url">/question-papers/statistics-aids</span></a>
+                    <a href="/question-papers/artificial-intelligence-aids" class="link-item">Artificial Intelligence<span class="link-url">/question-papers/artificial-intelligence-aids</span></a>
+                    <a href="/question-papers/computer-networks-aids" class="link-item">Computer Networks<span class="link-url">/question-papers/computer-networks-aids</span></a>
+                    <a href="/question-papers/database-management-system-aids" class="link-item">Database Management System<span class="link-url">/question-papers/database-management-system-aids</span></a>
+                    <a href="/question-papers/human-computer-interface-ele-i-aids" class="link-item">Human Computer Interface (Elective I)<span class="link-url">/question-papers/human-computer-interface-ele-i-aids</span></a>
+                    <a href="/question-papers/pattern-recognition-ele-i-aids" class="link-item">Pattern Recognition (Elective I)<span class="link-url">/question-papers/pattern-recognition-ele-i-aids</span></a>
+                    <a href="/question-papers/web-technology-aids" class="link-item">Web Technology<span class="link-url">/question-papers/web-technology-aids</span></a>
+                    <a href="/question-papers/artificial-neural-network-aids" class="link-item">Artificial Neural Network<span class="link-url">/question-papers/artificial-neural-network-aids</span></a>
+                    <a href="/question-papers/cloud-computing-ele-ii-aids" class="link-item">Cloud Computing (Elective II)<span class="link-url">/question-papers/cloud-computing-ele-ii-aids</span></a>
+                    <a href="/question-papers/cyber-security-aids" class="link-item">Cyber Security<span class="link-url">/question-papers/cyber-security-aids</span></a>
+                    <a href="/question-papers/data-science-aids" class="link-item">Data Science<span class="link-url">/question-papers/data-science-aids</span></a>
+                    <a href="/question-papers/natural-language-processing-ele-ii-aids" class="link-item">Natural Language Processing (Elective II)<span class="link-url">/question-papers/natural-language-processing-ele-ii-aids</span></a>
+                    <a href="/question-papers/software-modeling-and-architecture-ele-ii-aids" class="link-item">Software Modeling and Architecture (Elective II)<span class="link-url">/question-papers/software-modeling-and-architecture-ele-ii-aids</span></a>
+                </div>
+            </div>
+
+            <!-- CSE Branch -->
+            <div class="subsection">
+                <h3 class="subsection-title">
+                    Computer Science & Engineering (CSE)
+                    <span class="branch-badge">CSE</span>
+                    <span class="count">(18 subjects)</span>
+                </h3>
+                <div class="links-grid">
+                    <a href="/question-papers/computer-graphics-cse" class="link-item">Computer Graphics<span class="link-url">/question-papers/computer-graphics-cse</span></a>
+                    <a href="/question-papers/microprocessor-cse" class="link-item">Microprocessor<span class="link-url">/question-papers/microprocessor-cse</span></a>
+                    <a href="/question-papers/principles-of-programming-languages-cse" class="link-item">Principles of Programming Languages<span class="link-url">/question-papers/principles-of-programming-languages-cse</span></a>
+                    <a href="/question-papers/computer-network-and-security-cse" class="link-item">Computer Network and Security<span class="link-url">/question-papers/computer-network-and-security-cse</span></a>
+                    <a href="/question-papers/database-management-systems-cse" class="link-item">Database Management Systems<span class="link-url">/question-papers/database-management-systems-cse</span></a>
+                    <a href="/question-papers/human-computer-interface-ele-i-cse" class="link-item">Human Computer Interface (Elective I)<span class="link-url">/question-papers/human-computer-interface-ele-i-cse</span></a>
+                    <a href="/question-papers/internet-of-things-and-embedded-systems-ele-i-cse" class="link-item">Internet of Things and Embedded Systems (Elective I)<span class="link-url">/question-papers/internet-of-things-and-embedded-systems-ele-i-cse</span></a>
+                    <a href="/question-papers/software-project-management-ele-i-cse" class="link-item">Software Project Management (Elective I)<span class="link-url">/question-papers/software-project-management-ele-i-cse</span></a>
+                    <a href="/question-papers/systems-programming-and-operating-system-cse" class="link-item">Systems Programming and Operating System<span class="link-url">/question-papers/systems-programming-and-operating-system-cse</span></a>
+                    <a href="/question-papers/theory-of-computation-cse" class="link-item">Theory of Computation<span class="link-url">/question-papers/theory-of-computation-cse</span></a>
+                    <a href="/question-papers/artificial-intelligence-cse" class="link-item">Artificial Intelligence<span class="link-url">/question-papers/artificial-intelligence-cse</span></a>
+                    <a href="/question-papers/augmented-and-virtual-reality-ele-ii-cse" class="link-item">Augmented and Virtual Reality (Elective II)<span class="link-url">/question-papers/augmented-and-virtual-reality-ele-ii-cse</span></a>
+                    <a href="/question-papers/cloud-computing-cse" class="link-item">Cloud Computing<span class="link-url">/question-papers/cloud-computing-cse</span></a>
+                    <a href="/question-papers/data-science-and-big-data-analytics-cse" class="link-item">Data Science and Big Data Analytics<span class="link-url">/question-papers/data-science-and-big-data-analytics-cse</span></a>
+                    <a href="/question-papers/information-security-ele-ii-cse" class="link-item">Information Security (Elective II)<span class="link-url">/question-papers/information-security-ele-ii-cse</span></a>
+                    <a href="/question-papers/software-modeling-and-architectures-ele-ii-cse" class="link-item">Software Modeling and Architectures (Elective II)<span class="link-url">/question-papers/software-modeling-and-architectures-ele-ii-cse</span></a>
+                    <a href="/question-papers/web-technology-cse" class="link-item">Web Technology<span class="link-url">/question-papers/web-technology-cse</span></a>
+                </div>
+            </div>
+
+            <!-- First Year -->
+            <div class="subsection">
+                <h3 class="subsection-title">
+                    First Year Engineering (FY)
+                    <span class="branch-badge">FY</span>
+                    <span class="count">(10 subjects)</span>
+                </h3>
+                <div class="links-grid">
+                    <a href="/question-papers/basic-electrical-engineering-fy" class="link-item">Basic Electrical Engineering<span class="link-url">/question-papers/basic-electrical-engineering-fy</span></a>
+                    <a href="/question-papers/engineering-mathematics-i-fy" class="link-item">Engineering Mathematics I<span class="link-url">/question-papers/engineering-mathematics-i-fy</span></a>
+                    <a href="/question-papers/engineering-mechanics-fy" class="link-item">Engineering Mechanics<span class="link-url">/question-papers/engineering-mechanics-fy</span></a>
+                    <a href="/question-papers/engineering-physics-fy" class="link-item">Engineering Physics<span class="link-url">/question-papers/engineering-physics-fy</span></a>
+                    <a href="/question-papers/programming-and-problem-solving-fy" class="link-item">Programming and Problem Solving<span class="link-url">/question-papers/programming-and-problem-solving-fy</span></a>
+                    <a href="/question-papers/basic-electronics-engineering-fy" class="link-item">Basic Electronics Engineering<span class="link-url">/question-papers/basic-electronics-engineering-fy</span></a>
+                    <a href="/question-papers/engineering-chemistry-fy" class="link-item">Engineering Chemistry<span class="link-url">/question-papers/engineering-chemistry-fy</span></a>
+                    <a href="/question-papers/engineering-graphics-fy" class="link-item">Engineering Graphics<span class="link-url">/question-papers/engineering-graphics-fy</span></a>
+                    <a href="/question-papers/engineering-mathematics-ii-fy" class="link-item">Engineering Mathematics II<span class="link-url">/question-papers/engineering-mathematics-ii-fy</span></a>
+                    <a href="/question-papers/systems-in-mechanical-engineering-fy" class="link-item">Systems in Mechanical Engineering<span class="link-url">/question-papers/systems-in-mechanical-engineering-fy</span></a>
+                </div>
+            </div>
+        </div>
+
+        <!-- Code Solutions Section -->
+        <div class="section">
+            <h2 class="section-title">Code Solutions <span class="count">(8 subjects, 117 programs)</span></h2>
+            
+            <!-- OOP -->
+            <div class="subsection">
+                <h3 class="subsection-title">
+                    Object Oriented Programming (OOP)
+                    <span class="count">(7 programs)</span>
+                </h3>
+                <div class="main-pages">
+                    <a href="/oop" class="main-page-card">View All OOP Programs</a>
+                </div>
+                <div class="links-grid">
+                    <a href="/oop/complex-number" class="link-item">Complex Number Operations<span class="link-url">/oop/complex-number</span></a>
+                    <a href="/oop/student-db" class="link-item">Student Database<span class="link-url">/oop/student-db</span></a>
+                    <a href="/oop/publication-class" class="link-item">Publication Class<span class="link-url">/oop/publication-class</span></a>
+                    <a href="/oop/file-handling" class="link-item">File Handling<span class="link-url">/oop/file-handling</span></a>
+                    <a href="/oop/selection-sort" class="link-item">Selection Sort<span class="link-url">/oop/selection-sort</span></a>
+                    <a href="/oop/stl-sorting" class="link-item">STL Sorting<span class="link-url">/oop/stl-sorting</span></a>
+                    <a href="/oop/map-container" class="link-item">Map Container<span class="link-url">/oop/map-container</span></a>
+                </div>
+            </div>
+
+            <!-- CGL -->
+            <div class="subsection">
+                <h3 class="subsection-title">
+                    Computer Graphics Lab (CGL)
+                    <span class="count">(6 programs)</span>
+                </h3>
+                <div class="main-pages">
+                    <a href="/cgl" class="main-page-card">View All CGL Programs</a>
+                </div>
+                <div class="links-grid">
+                    <a href="/cgl/scan-fill" class="link-item">Scan Fill Algorithm<span class="link-url">/cgl/scan-fill</span></a>
+                    <a href="/cgl/cohen-sutherland" class="link-item">Cohen Sutherland Line Clipping<span class="link-url">/cgl/cohen-sutherland</span></a>
+                    <a href="/cgl/dda-bresenham" class="link-item">DDA & Bresenham Line Drawing<span class="link-url">/cgl/dda-bresenham</span></a>
+                    <a href="/cgl/2d-transformations" class="link-item">2D Transformations<span class="link-url">/cgl/2d-transformations</span></a>
+                    <a href="/cgl/hilbert-curve" class="link-item">Hilbert Curve<span class="link-url">/cgl/hilbert-curve</span></a>
+                    <a href="/cgl/3d-transformations" class="link-item">3D Transformations<span class="link-url">/cgl/3d-transformations</span></a>
+                </div>
+            </div>
+
+            <!-- DSL -->
+            <div class="subsection">
+                <h3 class="subsection-title">
+                    Data Structures Lab (DSL)
+                    <span class="count">(15 programs)</span>
+                </h3>
+                <div class="main-pages">
+                    <a href="/dsl" class="main-page-card">View All DSL Programs</a>
+                </div>
+                <div class="links-grid">
+                    <a href="/dsl/student-sports" class="link-item">Student Sports Data<span class="link-url">/dsl/student-sports</span></a>
+                    <a href="/dsl/marks-computation" class="link-item">Marks Computation<span class="link-url">/dsl/marks-computation</span></a>
+                    <a href="/dsl/bank-transactions" class="link-item">Bank Transactions<span class="link-url">/dsl/bank-transactions</span></a>
+                    <a href="/dsl/linear-sentinel-search" class="link-item">Linear & Sentinel Search<span class="link-url">/dsl/linear-sentinel-search</span></a>
+                    <a href="/dsl/binary-fibonacci-search" class="link-item">Binary & Fibonacci Search<span class="link-url">/dsl/binary-fibonacci-search</span></a>
+                    <a href="/dsl/selection-bubble-sort" class="link-item">Selection & Bubble Sort<span class="link-url">/dsl/selection-bubble-sort</span></a>
+                    <a href="/dsl/insertion-shell-sort" class="link-item">Insertion & Shell Sort<span class="link-url">/dsl/insertion-shell-sort</span></a>
+                    <a href="/dsl/radix-sort" class="link-item">Radix Sort<span class="link-url">/dsl/radix-sort</span></a>
+                    <a href="/dsl/pinnacle-club" class="link-item">Pinnacle Club<span class="link-url">/dsl/pinnacle-club</span></a>
+                    <a href="/dsl/binary-operations" class="link-item">Binary Operations<span class="link-url">/dsl/binary-operations</span></a>
+                    <a href="/dsl/palindrome-check" class="link-item">Palindrome Check<span class="link-url">/dsl/palindrome-check</span></a>
+                    <a href="/dsl/expression-conversion" class="link-item">Expression Conversion<span class="link-url">/dsl/expression-conversion</span></a>
+                    <a href="/dsl/job-queue" class="link-item">Job Queue<span class="link-url">/dsl/job-queue</span></a>
+                    <a href="/dsl/priority-queue" class="link-item">Priority Queue<span class="link-url">/dsl/priority-queue</span></a>
+                    <a href="/dsl/double-ended-queue" class="link-item">Double Ended Queue<span class="link-url">/dsl/double-ended-queue</span></a>
+                </div>
+            </div>
+
+            <!-- IOTL -->
+            <div class="subsection">
+                <h3 class="subsection-title">
+                    Internet of Things Lab (IOTL)
+                    <span class="count">(10 programs)</span>
+                </h3>
+                <div class="main-pages">
+                    <a href="/iotl" class="main-page-card">View All IOTL Programs</a>
+                </div>
+                <div class="links-grid">
+                    <a href="/iotl/blinking-led" class="link-item">Blinking LED<span class="link-url">/iotl/blinking-led</span></a>
+                    <a href="/iotl/led-counter" class="link-item">LED Counter<span class="link-url">/iotl/led-counter</span></a>
+                    <a href="/iotl/led-control" class="link-item">LED Control<span class="link-url">/iotl/led-control</span></a>
+                    <a href="/iotl/square-number" class="link-item">Square Number Display<span class="link-url">/iotl/square-number</span></a>
+                    <a href="/iotl/led-color-control" class="link-item">LED Color Control<span class="link-url">/iotl/led-color-control</span></a>
+                    <a href="/iotl/temperature-sensor" class="link-item">Temperature Sensor<span class="link-url">/iotl/temperature-sensor</span></a>
+                    <a href="/iotl/temperature-display" class="link-item">Temperature Display<span class="link-url">/iotl/temperature-display</span></a>
+                    <a href="/iotl/temperature-graph" class="link-item">Temperature Graph<span class="link-url">/iotl/temperature-graph</span></a>
+                    <a href="/iotl/piezo-knock" class="link-item">Piezo Knock Sensor<span class="link-url">/iotl/piezo-knock</span></a>
+                    <a href="/iotl/obstacle-ir-sensor" class="link-item">Obstacle IR Sensor<span class="link-url">/iotl/obstacle-ir-sensor</span></a>
+                </div>
+            </div>
+
+            <!-- DSAL -->
+            <div class="subsection">
+                <h3 class="subsection-title">
+                    Data Structures & Algorithms Lab (DSAL)
+                    <span class="count">(12 programs)</span>
+                </h3>
+                <div class="main-pages">
+                    <a href="/dsal" class="main-page-card">View All DSAL Programs</a>
+                </div>
+                <div class="links-grid">
+                    <a href="/dsal/telephone-book" class="link-item">Telephone Book<span class="link-url">/dsal/telephone-book</span></a>
+                    <a href="/dsal/set-adt" class="link-item">Set ADT<span class="link-url">/dsal/set-adt</span></a>
+                    <a href="/dsal/book-tree" class="link-item">Book Tree<span class="link-url">/dsal/book-tree</span></a>
+                    <a href="/dsal/binary-search-tree" class="link-item">Binary Search Tree<span class="link-url">/dsal/binary-search-tree</span></a>
+                    <a href="/dsal/threaded-binary-tree" class="link-item">Threaded Binary Tree<span class="link-url">/dsal/threaded-binary-tree</span></a>
+                    <a href="/dsal/graph-dfs-bfs" class="link-item">Graph DFS & BFS<span class="link-url">/dsal/graph-dfs-bfs</span></a>
+                    <a href="/dsal/flight-graph" class="link-item">Flight Graph<span class="link-url">/dsal/flight-graph</span></a>
+                    <a href="/dsal/optimal-bst" class="link-item">Optimal Binary Search Tree<span class="link-url">/dsal/optimal-bst</span></a>
+                    <a href="/dsal/dictionary-avl" class="link-item">Dictionary using AVL Tree<span class="link-url">/dsal/dictionary-avl</span></a>
+                    <a href="/dsal/max-min-marks-heap" class="link-item">Max-Min Marks using Heap<span class="link-url">/dsal/max-min-marks-heap</span></a>
+                    <a href="/dsal/student-sequential-file" class="link-item">Student Sequential File<span class="link-url">/dsal/student-sequential-file</span></a>
+                    <a href="/dsal/employee-index-sequential-file" class="link-item">Employee Index Sequential File<span class="link-url">/dsal/employee-index-sequential-file</span></a>
+                </div>
+            </div>
+
+            <!-- DBMS -->
+            <div class="subsection">
+                <h3 class="subsection-title">
+                    Database Management Systems (DBMS)
+                    <span class="count">(7 programs)</span>
+                </h3>
+                <div class="main-pages">
+                    <a href="/dbms" class="main-page-card">View All DBMS Programs</a>
+                </div>
+                <div class="links-grid">
+                    <a href="/dbms/sql-queries-demo" class="link-item">SQL Queries Demo<span class="link-url">/dbms/sql-queries-demo</span></a>
+                    <a href="/dbms/sql-joins-subqueries-views" class="link-item">SQL Joins, Subqueries & Views<span class="link-url">/dbms/sql-joins-subqueries-views</span></a>
+                    <a href="/dbms/mongodb-crud" class="link-item">MongoDB CRUD Operations<span class="link-url">/dbms/mongodb-crud</span></a>
+                    <a href="/dbms/plsql-unnamed-block" class="link-item">PL/SQL Unnamed Block<span class="link-url">/dbms/plsql-unnamed-block</span></a>
+                    <a href="/dbms/data-import-export" class="link-item">Data Import & Export<span class="link-url">/dbms/data-import-export</span></a>
+                    <a href="/dbms/plsql-cursors" class="link-item">PL/SQL Cursors<span class="link-url">/dbms/plsql-cursors</span></a>
+                    <a href="/dbms/database-connectivity" class="link-item">Database Connectivity<span class="link-url">/dbms/database-connectivity</span></a>
+                </div>
+            </div>
+
+            <!-- CNL -->
+            <div class="subsection">
+                <h3 class="subsection-title">
+                    Computer Networks Lab (CNL)
+                    <span class="count">(11 programs)</span>
+                </h3>
+                <div class="main-pages">
+                    <a href="/cnl" class="main-page-card">View All CNL Programs</a>
+                </div>
+                <div class="links-grid">
+                    <a href="/cnl/bus-topology" class="link-item">Bus Topology<span class="link-url">/cnl/bus-topology</span></a>
+                    <a href="/cnl/rip-routing" class="link-item">RIP Routing<span class="link-url">/cnl/rip-routing</span></a>
+                    <a href="/cnl/subnetting-program" class="link-item">Subnetting Program<span class="link-url">/cnl/subnetting-program</span></a>
+                    <a href="/cnl/routing-protocols" class="link-item">Routing Protocols<span class="link-url">/cnl/routing-protocols</span></a>
+                    <a href="/cnl/socket-programming-tcp-udp" class="link-item">Socket Programming (TCP/UDP)<span class="link-url">/cnl/socket-programming-tcp-udp</span></a>
+                    <a href="/cnl/tcp-socket-hello-file" class="link-item">TCP Socket Hello File Transfer<span class="link-url">/cnl/tcp-socket-hello-file</span></a>
+                    <a href="/cnl/udp-file-transfer" class="link-item">UDP File Transfer<span class="link-url">/cnl/udp-file-transfer</span></a>
+                    <a href="/cnl/https-http-ftp-analysis" class="link-item">HTTPS/HTTP/FTP Analysis<span class="link-url">/cnl/https-http-ftp-analysis</span></a>
+                    <a href="/cnl/ssl-capture" class="link-item">SSL Capture<span class="link-url">/cnl/ssl-capture</span></a>
+                    <a href="/cnl/dhcp-server" class="link-item">DHCP Server<span class="link-url">/cnl/dhcp-server</span></a>
+                    <a href="/cnl/dns-lookup" class="link-item">DNS Lookup<span class="link-url">/cnl/dns-lookup</span></a>
+                </div>
+            </div>
+
+            <!-- AI -->
+            <div class="subsection">
+                <h3 class="subsection-title">
+                    Artificial Intelligence (AI)
+                    <span class="count">(6 programs)</span>
+                </h3>
+                <div class="main-pages">
+                    <a href="/ai" class="main-page-card">View All AI Programs</a>
+                </div>
+                <div class="links-grid">
+                    <a href="/ai/dfs-bfs" class="link-item">DFS & BFS<span class="link-url">/ai/dfs-bfs</span></a>
+                    <a href="/ai/a-star-algorithm" class="link-item">A* Algorithm<span class="link-url">/ai/a-star-algorithm</span></a>
+                    <a href="/ai/alpha-beta-search" class="link-item">Alpha-Beta Search<span class="link-url">/ai/alpha-beta-search</span></a>
+                    <a href="/ai/csp-nqueens-graph-coloring" class="link-item">CSP: N-Queens & Graph Coloring<span class="link-url">/ai/csp-nqueens-graph-coloring</span></a>
+                    <a href="/ai/greedy-search-algorithms" class="link-item">Greedy Search Algorithms<span class="link-url">/ai/greedy-search-algorithms</span></a>
+                    <a href="/ai/elementary-chatbot" class="link-item">Elementary Chatbot<span class="link-url">/ai/elementary-chatbot</span></a>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <footer>
+        <p>&copy; 2025 <a href="/">SPPU Codes</a> | All Rights Reserved</p>
+        <p>Helping SPPU students with question papers and code solutions</p>
+    </footer>
+</body>
+</html>

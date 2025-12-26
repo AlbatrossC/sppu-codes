@@ -1,417 +1,764 @@
+<?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+
+<!-- Homepage - Updates when major content/layout changes -->
 <url>
-<loc>https://sppucodes.vercel.app/</loc>
-<lastmod>2025-08-22T16:17:24+01:00</lastmod>
-<priority>1.0</priority>
+  <loc>https://sppucodes.vercel.app/</loc>
+  <lastmod>2025-12-26</lastmod>
+  <changefreq>weekly</changefreq>
+  <priority>1.00</priority>
 </url>
+
+<!-- Question Papers Main Page - Updates when new subjects/branches added -->
 <url>
-<loc>https://sppucodes.vercel.app/submit</loc>
-<lastmod>2025-08-22T16:17:24+01:00</lastmod>
-<priority>1.0</priority>
+  <loc>https://sppucodes.vercel.app/question-papers</loc>
+  <lastmod>2025-12-26</lastmod>
+  <changefreq>weekly</changefreq>
+  <priority>0.95</priority>
 </url>
+
+<!-- Individual Question Paper Pages - AIDS Branch -->
+<!-- lastmod = when PDFs were last added/updated for each subject -->
 <url>
-<loc>https://sppucodes.vercel.app/questionpapers</loc>
-<lastmod>2025-08-22T16:17:24+01:00</lastmod>
-<priority>1.0</priority>
+  <loc>https://sppucodes.vercel.app/question-papers/computer-graphics-aids</loc>
+  <lastmod>2024-05-15</lastmod>
+  <changefreq>monthly</changefreq>
+  <priority>0.90</priority>
 </url>
 <url>
-<loc>https://sppucodes.vercel.app/oop</loc>
-<lastmod>2025-08-22T16:17:24+01:00</lastmod>
-<priority>1.0</priority>
+  <loc>https://sppucodes.vercel.app/question-papers/discrete-mathematics-aids</loc>
+  <lastmod>2024-02-10</lastmod>
+  <changefreq>monthly</changefreq>
+  <priority>0.90</priority>
 </url>
 <url>
-<loc>https://sppucodes.vercel.app/cgl</loc>
-<lastmod>2025-08-22T16:17:24+01:00</lastmod>
-<priority>1.0</priority>
+  <loc>https://sppucodes.vercel.app/question-papers/fundamentals-of-data-structures-aids</loc>
+  <lastmod>2024-03-22</lastmod>
+  <changefreq>monthly</changefreq>
+  <priority>0.90</priority>
 </url>
 <url>
-<loc>https://sppucodes.vercel.app/dsl</loc>
-<lastmod>2025-08-22T16:17:24+01:00</lastmod>
-<priority>1.0</priority>
+  <loc>https://sppucodes.vercel.app/question-papers/object-oriented-programming-aids</loc>
+  <lastmod>2024-06-08</lastmod>
+  <changefreq>monthly</changefreq>
+  <priority>0.90</priority>
 </url>
 <url>
-<loc>https://sppucodes.vercel.app/iotl</loc>
-<lastmod>2025-08-22T16:17:24+01:00</lastmod>
-<priority>1.0</priority>
+  <loc>https://sppucodes.vercel.app/question-papers/operating-systems-aids</loc>
+  <lastmod>2024-04-18</lastmod>
+  <changefreq>monthly</changefreq>
+  <priority>0.90</priority>
 </url>
 <url>
-<loc>https://sppucodes.vercel.app/dsal</loc>
-<lastmod>2025-08-22T16:17:24+01:00</lastmod>
-<priority>1.0</priority>
+  <loc>https://sppucodes.vercel.app/question-papers/data-structures-and-algorithms-aids</loc>
+  <lastmod>2024-05-25</lastmod>
+  <changefreq>monthly</changefreq>
+  <priority>0.90</priority>
 </url>
 <url>
-<loc>https://sppucodes.vercel.app/dbms</loc>
-<lastmod>2025-08-22T16:17:24+01:00</lastmod>
-<priority>1.0</priority>
+  <loc>https://sppucodes.vercel.app/question-papers/internet-of-things-aids</loc>
+  <lastmod>2024-06-12</lastmod>
+  <changefreq>monthly</changefreq>
+  <priority>0.90</priority>
 </url>
 <url>
-<loc>https://sppucodes.vercel.app/contact</loc>
-<lastmod>2025-08-22T16:17:24+01:00</lastmod>
-<priority>1.0</priority>
+  <loc>https://sppucodes.vercel.app/question-papers/management-information-systems-aids</loc>
+  <lastmod>2024-03-30</lastmod>
+  <changefreq>monthly</changefreq>
+  <priority>0.90</priority>
 </url>
 <url>
-<loc>https://sppucodes.vercel.app/questionpapers/discrete-mathematics</loc>
-<lastmod>2025-08-22T16:17:27+01:00</lastmod>
-<priority>0.8</priority>
+  <loc>https://sppucodes.vercel.app/question-papers/software-engineering-aids</loc>
+  <lastmod>2024-04-20</lastmod>
+  <changefreq>monthly</changefreq>
+  <priority>0.90</priority>
 </url>
 <url>
-<loc>https://sppucodes.vercel.app/questionpapers/fundamentals-of-data-structures</loc>
-<lastmod>2025-08-22T16:17:27+01:00</lastmod>
-<priority>0.8</priority>
+  <loc>https://sppucodes.vercel.app/question-papers/statistics-aids</loc>
+  <lastmod>2024-02-28</lastmod>
+  <changefreq>monthly</changefreq>
+  <priority>0.90</priority>
 </url>
 <url>
-<loc>https://sppucodes.vercel.app/questionpapers/object-oriented-programming</loc>
-<lastmod>2025-08-22T16:17:27+01:00</lastmod>
-<priority>0.8</priority>
+  <loc>https://sppucodes.vercel.app/question-papers/artificial-intelligence-aids</loc>
+  <lastmod>2024-11-15</lastmod>
+  <changefreq>monthly</changefreq>
+  <priority>0.90</priority>
 </url>
 <url>
-<loc>https://sppucodes.vercel.app/questionpapers/computer-graphics</loc>
-<lastmod>2025-08-22T16:17:27+01:00</lastmod>
-<priority>0.8</priority>
+  <loc>https://sppucodes.vercel.app/question-papers/computer-networks-aids</loc>
+  <lastmod>2024-10-22</lastmod>
+  <changefreq>monthly</changefreq>
+  <priority>0.90</priority>
 </url>
 <url>
-<loc>https://sppucodes.vercel.app/questionpapers/operating-systems</loc>
-<lastmod>2025-08-22T16:17:27+01:00</lastmod>
-<priority>0.8</priority>
+  <loc>https://sppucodes.vercel.app/question-papers/database-management-system-aids</loc>
+  <lastmod>2024-11-08</lastmod>
+  <changefreq>monthly</changefreq>
+  <priority>0.90</priority>
 </url>
 <url>
-<loc>https://sppucodes.vercel.app/questionpapers/statistics</loc>
-<lastmod>2025-08-22T16:17:27+01:00</lastmod>
-<priority>0.8</priority>
+  <loc>https://sppucodes.vercel.app/question-papers/human-computer-interface-ele-i-aids</loc>
+  <lastmod>2024-05-10</lastmod>
+  <changefreq>monthly</changefreq>
+  <priority>0.90</priority>
 </url>
 <url>
-<loc>https://sppucodes.vercel.app/questionpapers/data-structure-and-algorithm</loc>
-<lastmod>2025-08-22T16:17:27+01:00</lastmod>
-<priority>0.8</priority>
+  <loc>https://sppucodes.vercel.app/question-papers/pattern-recognition-ele-i-aids</loc>
+  <lastmod>2024-04-28</lastmod>
+  <changefreq>monthly</changefreq>
+  <priority>0.90</priority>
 </url>
 <url>
-<loc>https://sppucodes.vercel.app/questionpapers/software-engineering</loc>
-<lastmod>2025-08-22T16:17:27+01:00</lastmod>
-<priority>0.8</priority>
+  <loc>https://sppucodes.vercel.app/question-papers/web-technology-aids</loc>
+  <lastmod>2024-11-20</lastmod>
+  <changefreq>monthly</changefreq>
+  <priority>0.90</priority>
 </url>
 <url>
-<loc>https://sppucodes.vercel.app/questionpapers/internet-of-things</loc>
-<lastmod>2025-08-22T16:17:27+01:00</lastmod>
-<priority>0.8</priority>
+  <loc>https://sppucodes.vercel.app/question-papers/artificial-neural-network-aids</loc>
+  <lastmod>2024-12-05</lastmod>
+  <changefreq>monthly</changefreq>
+  <priority>0.90</priority>
 </url>
 <url>
-<loc>https://sppucodes.vercel.app/questionpapers/management-information-system</loc>
-<lastmod>2025-08-22T16:17:27+01:00</lastmod>
-<priority>0.8</priority>
+  <loc>https://sppucodes.vercel.app/question-papers/cloud-computing-ele-ii-aids</loc>
+  <lastmod>2024-11-28</lastmod>
+  <changefreq>monthly</changefreq>
+  <priority>0.90</priority>
 </url>
 <url>
-<loc>https://sppucodes.vercel.app/questionpapers/artificial-intelligence</loc>
-<lastmod>2025-08-22T16:17:27+01:00</lastmod>
-<priority>0.8</priority>
+  <loc>https://sppucodes.vercel.app/question-papers/cyber-security-aids</loc>
+  <lastmod>2024-12-10</lastmod>
+  <changefreq>monthly</changefreq>
+  <priority>0.90</priority>
 </url>
 <url>
-<loc>https://sppucodes.vercel.app/questionpapers/computer-networks</loc>
-<lastmod>2025-08-22T16:17:27+01:00</lastmod>
-<priority>0.8</priority>
+  <loc>https://sppucodes.vercel.app/question-papers/data-science-aids</loc>
+  <lastmod>2024-11-18</lastmod>
+  <changefreq>monthly</changefreq>
+  <priority>0.90</priority>
 </url>
 <url>
-<loc>https://sppucodes.vercel.app/questionpapers/database-management-system</loc>
-<lastmod>2025-08-22T16:17:27+01:00</lastmod>
-<priority>0.8</priority>
+  <loc>https://sppucodes.vercel.app/question-papers/natural-language-processing-ele-ii-aids</loc>
+  <lastmod>2024-12-02</lastmod>
+  <changefreq>monthly</changefreq>
+  <priority>0.90</priority>
 </url>
 <url>
-<loc>https://sppucodes.vercel.app/questionpapers/human-computer-interface-ele-i</loc>
-<lastmod>2025-08-22T16:17:27+01:00</lastmod>
-<priority>0.8</priority>
+  <loc>https://sppucodes.vercel.app/question-papers/software-modeling-and-architecture-ele-ii-aids</loc>
+  <lastmod>2024-11-25</lastmod>
+  <changefreq>monthly</changefreq>
+  <priority>0.90</priority>
 </url>
+
+<!-- Individual Question Paper Pages - CSE Branch -->
 <url>
-<loc>https://sppucodes.vercel.app/questionpapers/pattern-recognition-ele-i</loc>
-<lastmod>2025-08-22T16:17:27+01:00</lastmod>
-<priority>0.8</priority>
+  <loc>https://sppucodes.vercel.app/question-papers/computer-graphics-cse</loc>
+  <lastmod>2024-05-15</lastmod>
+  <changefreq>monthly</changefreq>
+  <priority>0.90</priority>
 </url>
 <url>
-<loc>https://sppucodes.vercel.app/questionpapers/web-technology</loc>
-<lastmod>2025-08-22T16:17:27+01:00</lastmod>
-<priority>0.8</priority>
+  <loc>https://sppucodes.vercel.app/question-papers/microprocessor-cse</loc>
+  <lastmod>2024-04-05</lastmod>
+  <changefreq>monthly</changefreq>
+  <priority>0.90</priority>
 </url>
 <url>
-<loc>https://sppucodes.vercel.app/questionpapers/cloud-computing-ele-ii</loc>
-<lastmod>2025-08-22T16:17:27+01:00</lastmod>
-<priority>0.8</priority>
+  <loc>https://sppucodes.vercel.app/question-papers/principles-of-programming-languages-cse</loc>
+  <lastmod>2024-03-18</lastmod>
+  <changefreq>monthly</changefreq>
+  <priority>0.90</priority>
 </url>
 <url>
-<loc>https://sppucodes.vercel.app/questionpapers/cyber-security</loc>
-<lastmod>2025-08-22T16:17:27+01:00</lastmod>
-<priority>0.8</priority>
+  <loc>https://sppucodes.vercel.app/question-papers/computer-network-and-security-cse</loc>
+  <lastmod>2024-10-28</lastmod>
+  <changefreq>monthly</changefreq>
+  <priority>0.90</priority>
 </url>
 <url>
-<loc>https://sppucodes.vercel.app/questionpapers/data-science</loc>
-<lastmod>2025-08-22T16:17:27+01:00</lastmod>
-<priority>0.8</priority>
+  <loc>https://sppucodes.vercel.app/question-papers/database-management-systems-cse</loc>
+  <lastmod>2024-11-10</lastmod>
+  <changefreq>monthly</changefreq>
+  <priority>0.90</priority>
 </url>
 <url>
-<loc>https://sppucodes.vercel.app/questionpapers/natural-language-processing-ele-ii</loc>
-<lastmod>2025-08-22T16:17:27+01:00</lastmod>
-<priority>0.8</priority>
+  <loc>https://sppucodes.vercel.app/question-papers/human-computer-interface-ele-i-cse</loc>
+  <lastmod>2024-05-12</lastmod>
+  <changefreq>monthly</changefreq>
+  <priority>0.90</priority>
 </url>
 <url>
-<loc>https://sppucodes.vercel.app/questionpapers/software-modeling-and-architectures-ele-ii</loc>
-<lastmod>2025-08-22T16:17:27+01:00</lastmod>
-<priority>0.8</priority>
+  <loc>https://sppucodes.vercel.app/question-papers/internet-of-things-and-embedded-systems-ele-i-cse</loc>
+  <lastmod>2024-06-15</lastmod>
+  <changefreq>monthly</changefreq>
+  <priority>0.90</priority>
 </url>
 <url>
-<loc>https://sppucodes.vercel.app/questionpapers/principles-of-programming-languages</loc>
-<lastmod>2025-08-22T16:17:27+01:00</lastmod>
-<priority>0.8</priority>
+  <loc>https://sppucodes.vercel.app/question-papers/software-project-management-ele-i-cse</loc>
+  <lastmod>2024-04-22</lastmod>
+  <changefreq>monthly</changefreq>
+  <priority>0.90</priority>
 </url>
 <url>
-<loc>https://sppucodes.vercel.app/cgl/scan-fill</loc>
-<lastmod>2025-08-22T16:17:28+01:00</lastmod>
-<priority>0.8</priority>
+  <loc>https://sppucodes.vercel.app/question-papers/systems-programming-and-operating-system-cse</loc>
+  <lastmod>2024-04-30</lastmod>
+  <changefreq>monthly</changefreq>
+  <priority>0.90</priority>
 </url>
 <url>
-<loc>https://sppucodes.vercel.app/cgl/cohen-sutherland</loc>
-<lastmod>2025-08-22T16:17:28+01:00</lastmod>
-<priority>0.8</priority>
+  <loc>https://sppucodes.vercel.app/question-papers/theory-of-computation-cse</loc>
+  <lastmod>2024-03-25</lastmod>
+  <changefreq>monthly</changefreq>
+  <priority>0.90</priority>
 </url>
 <url>
-<loc>https://sppucodes.vercel.app/cgl/dda-bresenham</loc>
-<lastmod>2025-08-22T16:17:28+01:00</lastmod>
-<priority>0.8</priority>
+  <loc>https://sppucodes.vercel.app/question-papers/artificial-intelligence-cse</loc>
+  <lastmod>2024-11-18</lastmod>
+  <changefreq>monthly</changefreq>
+  <priority>0.90</priority>
 </url>
 <url>
-<loc>https://sppucodes.vercel.app/cgl/2d-transformations</loc>
-<lastmod>2025-08-22T16:17:28+01:00</lastmod>
-<priority>0.8</priority>
+  <loc>https://sppucodes.vercel.app/question-papers/augmented-and-virtual-reality-ele-ii-cse</loc>
+  <lastmod>2024-12-08</lastmod>
+  <changefreq>monthly</changefreq>
+  <priority>0.90</priority>
 </url>
 <url>
-<loc>https://sppucodes.vercel.app/cgl/hilbert-curve</loc>
-<lastmod>2025-08-22T16:17:28+01:00</lastmod>
-<priority>0.8</priority>
+  <loc>https://sppucodes.vercel.app/question-papers/cloud-computing-cse</loc>
+  <lastmod>2024-11-30</lastmod>
+  <changefreq>monthly</changefreq>
+  <priority>0.90</priority>
 </url>
 <url>
-<loc>https://sppucodes.vercel.app/cgl/3d-transformations</loc>
-<lastmod>2025-08-22T16:17:28+01:00</lastmod>
-<priority>0.8</priority>
+  <loc>https://sppucodes.vercel.app/question-papers/data-science-and-big-data-analytics-cse</loc>
+  <lastmod>2024-11-22</lastmod>
+  <changefreq>monthly</changefreq>
+  <priority>0.90</priority>
 </url>
 <url>
-<loc>https://sppucodes.vercel.app/oop/complex-number</loc>
-<lastmod>2025-08-22T16:17:28+01:00</lastmod>
-<priority>0.8</priority>
+  <loc>https://sppucodes.vercel.app/question-papers/information-security-ele-ii-cse</loc>
+  <lastmod>2024-12-12</lastmod>
+  <changefreq>monthly</changefreq>
+  <priority>0.90</priority>
 </url>
 <url>
-<loc>https://sppucodes.vercel.app/oop/student-db</loc>
-<lastmod>2025-08-22T16:17:28+01:00</lastmod>
-<priority>0.8</priority>
+  <loc>https://sppucodes.vercel.app/question-papers/software-modeling-and-architectures-ele-ii-cse</loc>
+  <lastmod>2024-11-26</lastmod>
+  <changefreq>monthly</changefreq>
+  <priority>0.90</priority>
 </url>
 <url>
-<loc>https://sppucodes.vercel.app/oop/publication-class</loc>
-<lastmod>2025-08-22T16:17:28+01:00</lastmod>
-<priority>0.8</priority>
+  <loc>https://sppucodes.vercel.app/question-papers/web-technology-cse</loc>
+  <lastmod>2024-11-20</lastmod>
+  <changefreq>monthly</changefreq>
+  <priority>0.90</priority>
 </url>
+
+<!-- Individual Question Paper Pages - First Year (FY) -->
 <url>
-<loc>https://sppucodes.vercel.app/oop/file-handling</loc>
-<lastmod>2025-08-22T16:17:28+01:00</lastmod>
-<priority>0.8</priority>
+  <loc>https://sppucodes.vercel.app/question-papers/basic-electrical-engineering-fy</loc>
+  <lastmod>2024-01-15</lastmod>
+  <changefreq>monthly</changefreq>
+  <priority>0.90</priority>
 </url>
 <url>
-<loc>https://sppucodes.vercel.app/oop/selection-sort</loc>
-<lastmod>2025-08-22T16:17:28+01:00</lastmod>
-<priority>0.8</priority>
+  <loc>https://sppucodes.vercel.app/question-papers/engineering-mathematics-i-fy</loc>
+  <lastmod>2024-01-20</lastmod>
+  <changefreq>monthly</changefreq>
+  <priority>0.90</priority>
 </url>
 <url>
-<loc>https://sppucodes.vercel.app/oop/stl-sorting</loc>
-<lastmod>2025-08-22T16:17:28+01:00</lastmod>
-<priority>0.8</priority>
+  <loc>https://sppucodes.vercel.app/question-papers/engineering-mechanics-fy</loc>
+  <lastmod>2024-01-18</lastmod>
+  <changefreq>monthly</changefreq>
+  <priority>0.90</priority>
 </url>
 <url>
-<loc>https://sppucodes.vercel.app/oop/map-container</loc>
-<lastmod>2025-08-22T16:17:28+01:00</lastmod>
-<priority>0.8</priority>
+  <loc>https://sppucodes.vercel.app/question-papers/engineering-physics-fy</loc>
+  <lastmod>2024-01-25</lastmod>
+  <changefreq>monthly</changefreq>
+  <priority>0.90</priority>
 </url>
 <url>
-<loc>https://sppucodes.vercel.app/iotl/blinking-led</loc>
-<lastmod>2025-08-22T16:17:29+01:00</lastmod>
-<priority>0.8</priority>
+  <loc>https://sppucodes.vercel.app/question-papers/programming-and-problem-solving-fy</loc>
+  <lastmod>2024-01-28</lastmod>
+  <changefreq>monthly</changefreq>
+  <priority>0.90</priority>
 </url>
 <url>
-<loc>https://sppucodes.vercel.app/iotl/led-counter</loc>
-<lastmod>2025-08-22T16:17:29+01:00</lastmod>
-<priority>0.8</priority>
+  <loc>https://sppucodes.vercel.app/question-papers/basic-electronics-engineering-fy</loc>
+  <lastmod>2024-06-05</lastmod>
+  <changefreq>monthly</changefreq>
+  <priority>0.90</priority>
 </url>
 <url>
-<loc>https://sppucodes.vercel.app/iotl/led-control</loc>
-<lastmod>2025-08-22T16:17:29+01:00</lastmod>
-<priority>0.8</priority>
+  <loc>https://sppucodes.vercel.app/question-papers/engineering-chemistry-fy</loc>
+  <lastmod>2024-06-10</lastmod>
+  <changefreq>monthly</changefreq>
+  <priority>0.90</priority>
 </url>
 <url>
-<loc>https://sppucodes.vercel.app/iotl/square-number</loc>
-<lastmod>2025-08-22T16:17:29+01:00</lastmod>
-<priority>0.8</priority>
+  <loc>https://sppucodes.vercel.app/question-papers/engineering-graphics-fy</loc>
+  <lastmod>2024-06-08</lastmod>
+  <changefreq>monthly</changefreq>
+  <priority>0.90</priority>
 </url>
 <url>
-<loc>https://sppucodes.vercel.app/iotl/led-color-control</loc>
-<lastmod>2025-08-22T16:17:29+01:00</lastmod>
-<priority>0.8</priority>
+  <loc>https://sppucodes.vercel.app/question-papers/engineering-mathematics-ii-fy</loc>
+  <lastmod>2024-06-15</lastmod>
+  <changefreq>monthly</changefreq>
+  <priority>0.90</priority>
 </url>
 <url>
-<loc>https://sppucodes.vercel.app/iotl/temperature-sensor</loc>
-<lastmod>2025-08-22T16:17:29+01:00</lastmod>
-<priority>0.8</priority>
+  <loc>https://sppucodes.vercel.app/question-papers/systems-in-mechanical-engineering-fy</loc>
+  <lastmod>2024-06-12</lastmod>
+  <changefreq>monthly</changefreq>
+  <priority>0.90</priority>
 </url>
+
+<!-- Code Subject Pages - Update when new codes added -->
 <url>
-<loc>https://sppucodes.vercel.app/iotl/temperature-display</loc>
-<lastmod>2025-08-22T16:17:29+01:00</lastmod>
-<priority>0.8</priority>
+  <loc>https://sppucodes.vercel.app/oop</loc>
+  <lastmod>2024-08-15</lastmod>
+  <changefreq>weekly</changefreq>
+  <priority>0.80</priority>
 </url>
 <url>
-<loc>https://sppucodes.vercel.app/iotl/temperature-graph</loc>
-<lastmod>2025-08-22T16:17:29+01:00</lastmod>
-<priority>0.8</priority>
+  <loc>https://sppucodes.vercel.app/cgl</loc>
+  <lastmod>2024-09-10</lastmod>
+  <changefreq>weekly</changefreq>
+  <priority>0.80</priority>
 </url>
 <url>
-<loc>https://sppucodes.vercel.app/iotl/piezo-knock</loc>
-<lastmod>2025-08-22T16:17:29+01:00</lastmod>
-<priority>0.8</priority>
+  <loc>https://sppucodes.vercel.app/dsl</loc>
+  <lastmod>2024-07-20</lastmod>
+  <changefreq>weekly</changefreq>
+  <priority>0.80</priority>
 </url>
 <url>
-<loc>https://sppucodes.vercel.app/iotl/obstacle-ir-sensor</loc>
-<lastmod>2025-08-22T16:17:29+01:00</lastmod>
-<priority>0.8</priority>
+  <loc>https://sppucodes.vercel.app/iotl</loc>
+  <lastmod>2024-09-05</lastmod>
+  <changefreq>weekly</changefreq>
+  <priority>0.80</priority>
 </url>
 <url>
-<loc>https://sppucodes.vercel.app/dsl/student-sports</loc>
-<lastmod>2025-08-22T16:17:29+01:00</lastmod>
-<priority>0.8</priority>
+  <loc>https://sppucodes.vercel.app/dsal</loc>
+  <lastmod>2024-08-25</lastmod>
+  <changefreq>weekly</changefreq>
+  <priority>0.80</priority>
 </url>
 <url>
-<loc>https://sppucodes.vercel.app/dsl/marks-computation</loc>
-<lastmod>2025-08-22T16:17:29+01:00</lastmod>
-<priority>0.8</priority>
+  <loc>https://sppucodes.vercel.app/dbms</loc>
+  <lastmod>2024-10-12</lastmod>
+  <changefreq>weekly</changefreq>
+  <priority>0.80</priority>
 </url>
 <url>
-<loc>https://sppucodes.vercel.app/dsl/bank-transactions</loc>
-<lastmod>2025-08-22T16:17:29+01:00</lastmod>
-<priority>0.8</priority>
+  <loc>https://sppucodes.vercel.app/cnl</loc>
+  <lastmod>2024-10-20</lastmod>
+  <changefreq>weekly</changefreq>
+  <priority>0.80</priority>
 </url>
 <url>
-<loc>https://sppucodes.vercel.app/dsl/linear-sentinel-search</loc>
-<lastmod>2025-08-22T16:17:29+01:00</lastmod>
-<priority>0.8</priority>
+  <loc>https://sppucodes.vercel.app/ai</loc>
+  <lastmod>2024-11-05</lastmod>
+  <changefreq>weekly</changefreq>
+  <priority>0.80</priority>
 </url>
+
+<!-- Individual Code Pages - Static content, no lastmod needed -->
+<!-- OOP -->
 <url>
-<loc>https://sppucodes.vercel.app/dsl/binary-fibonacci-search</loc>
-<lastmod>2025-08-22T16:17:29+01:00</lastmod>
-<priority>0.8</priority>
+  <loc>https://sppucodes.vercel.app/oop/complex-number</loc>
+  <changefreq>monthly</changefreq>
+  <priority>0.70</priority>
 </url>
 <url>
-<loc>https://sppucodes.vercel.app/dsl/selection-bubble-sort</loc>
-<lastmod>2025-08-22T16:17:29+01:00</lastmod>
-<priority>0.8</priority>
+  <loc>https://sppucodes.vercel.app/oop/student-db</loc>
+  <changefreq>monthly</changefreq>
+  <priority>0.70</priority>
 </url>
 <url>
-<loc>https://sppucodes.vercel.app/dsl/insertion-shell-sort</loc>
-<lastmod>2025-08-22T16:17:29+01:00</lastmod>
-<priority>0.8</priority>
+  <loc>https://sppucodes.vercel.app/oop/publication-class</loc>
+  <changefreq>monthly</changefreq>
+  <priority>0.70</priority>
 </url>
 <url>
-<loc>https://sppucodes.vercel.app/dsl/radix-sort</loc>
-<lastmod>2025-08-22T16:17:29+01:00</lastmod>
-<priority>0.8</priority>
+  <loc>https://sppucodes.vercel.app/oop/file-handling</loc>
+  <changefreq>monthly</changefreq>
+  <priority>0.70</priority>
 </url>
 <url>
-<loc>https://sppucodes.vercel.app/dsl/pinnacle-club</loc>
-<lastmod>2025-08-22T16:17:29+01:00</lastmod>
-<priority>0.8</priority>
+  <loc>https://sppucodes.vercel.app/oop/selection-sort</loc>
+  <changefreq>monthly</changefreq>
+  <priority>0.70</priority>
 </url>
 <url>
-<loc>https://sppucodes.vercel.app/dsl/binary-operations</loc>
-<lastmod>2025-08-22T16:17:29+01:00</lastmod>
-<priority>0.8</priority>
+  <loc>https://sppucodes.vercel.app/oop/stl-sorting</loc>
+  <changefreq>monthly</changefreq>
+  <priority>0.70</priority>
 </url>
 <url>
-<loc>https://sppucodes.vercel.app/dsl/palindrome-check</loc>
-<lastmod>2025-08-22T16:17:29+01:00</lastmod>
-<priority>0.8</priority>
+  <loc>https://sppucodes.vercel.app/oop/map-container</loc>
+  <changefreq>monthly</changefreq>
+  <priority>0.70</priority>
 </url>
+
+<!-- CGL -->
 <url>
-<loc>https://sppucodes.vercel.app/dsl/expression-conversion</loc>
-<lastmod>2025-08-22T16:17:29+01:00</lastmod>
-<priority>0.8</priority>
+  <loc>https://sppucodes.vercel.app/cgl/scan-fill</loc>
+  <changefreq>monthly</changefreq>
+  <priority>0.70</priority>
 </url>
 <url>
-<loc>https://sppucodes.vercel.app/dsl/job-queue</loc>
-<lastmod>2025-08-22T16:17:29+01:00</lastmod>
-<priority>0.8</priority>
+  <loc>https://sppucodes.vercel.app/cgl/cohen-sutherland</loc>
+  <changefreq>monthly</changefreq>
+  <priority>0.70</priority>
 </url>
 <url>
-<loc>https://sppucodes.vercel.app/dsl/priority-queue</loc>
-<lastmod>2025-08-22T16:17:29+01:00</lastmod>
-<priority>0.8</priority>
+  <loc>https://sppucodes.vercel.app/cgl/dda-bresenham</loc>
+  <changefreq>monthly</changefreq>
+  <priority>0.70</priority>
 </url>
 <url>
-<loc>https://sppucodes.vercel.app/dsl/double-ended-queue</loc>
-<lastmod>2025-08-22T16:17:29+01:00</lastmod>
-<priority>0.8</priority>
+  <loc>https://sppucodes.vercel.app/cgl/2d-transformations</loc>
+  <changefreq>monthly</changefreq>
+  <priority>0.70</priority>
 </url>
 <url>
-<loc>https://sppucodes.vercel.app/dsal/telephone-book</loc>
-<lastmod>2025-08-22T16:17:29+01:00</lastmod>
-<priority>0.8</priority>
+  <loc>https://sppucodes.vercel.app/cgl/hilbert-curve</loc>
+  <changefreq>monthly</changefreq>
+  <priority>0.70</priority>
 </url>
 <url>
-<loc>https://sppucodes.vercel.app/dsal/set-adt</loc>
-<lastmod>2025-08-22T16:17:29+01:00</lastmod>
-<priority>0.8</priority>
+  <loc>https://sppucodes.vercel.app/cgl/3d-transformations</loc>
+  <changefreq>monthly</changefreq>
+  <priority>0.70</priority>
 </url>
+
+<!-- DSL -->
 <url>
-<loc>https://sppucodes.vercel.app/dsal/book-tree</loc>
-<lastmod>2025-08-22T16:17:29+01:00</lastmod>
-<priority>0.8</priority>
+  <loc>https://sppucodes.vercel.app/dsl/student-sports</loc>
+  <changefreq>monthly</changefreq>
+  <priority>0.70</priority>
 </url>
 <url>
-<loc>https://sppucodes.vercel.app/dsal/binary-search-tree</loc>
-<lastmod>2025-08-22T16:17:29+01:00</lastmod>
-<priority>0.8</priority>
+  <loc>https://sppucodes.vercel.app/dsl/marks-computation</loc>
+  <changefreq>monthly</changefreq>
+  <priority>0.70</priority>
 </url>
 <url>
-<loc>https://sppucodes.vercel.app/dsal/threaded-binary-tree</loc>
-<lastmod>2025-08-22T16:17:29+01:00</lastmod>
-<priority>0.8</priority>
+  <loc>https://sppucodes.vercel.app/dsl/bank-transactions</loc>
+  <changefreq>monthly</changefreq>
+  <priority>0.70</priority>
 </url>
 <url>
-<loc>https://sppucodes.vercel.app/dsal/graph-dfs-bfs</loc>
-<lastmod>2025-08-22T16:17:29+01:00</lastmod>
-<priority>0.8</priority>
+  <loc>https://sppucodes.vercel.app/dsl/linear-sentinel-search</loc>
+  <changefreq>monthly</changefreq>
+  <priority>0.70</priority>
 </url>
 <url>
-<loc>https://sppucodes.vercel.app/dsal/flight-graph</loc>
-<lastmod>2025-08-22T16:17:29+01:00</lastmod>
-<priority>0.8</priority>
+  <loc>https://sppucodes.vercel.app/dsl/binary-fibonacci-search</loc>
+  <changefreq>monthly</changefreq>
+  <priority>0.70</priority>
 </url>
 <url>
-<loc>https://sppucodes.vercel.app/dsal/optimal-bst</loc>
-<lastmod>2025-08-22T16:17:29+01:00</lastmod>
-<priority>0.8</priority>
+  <loc>https://sppucodes.vercel.app/dsl/selection-bubble-sort</loc>
+  <changefreq>monthly</changefreq>
+  <priority>0.70</priority>
 </url>
 <url>
-<loc>https://sppucodes.vercel.app/dsal/dictionary-avl</loc>
-<lastmod>2025-08-22T16:17:29+01:00</lastmod>
-<priority>0.8</priority>
+  <loc>https://sppucodes.vercel.app/dsl/insertion-shell-sort</loc>
+  <changefreq>monthly</changefreq>
+  <priority>0.70</priority>
 </url>
 <url>
-<loc>https://sppucodes.vercel.app/dsal/max-min-marks-heap</loc>
-<lastmod>2025-08-22T16:17:29+01:00</lastmod>
-<priority>0.8</priority>
+  <loc>https://sppucodes.vercel.app/dsl/radix-sort</loc>
+  <changefreq>monthly</changefreq>
+  <priority>0.70</priority>
 </url>
 <url>
-<loc>https://sppucodes.vercel.app/dsal/student-sequential-file</loc>
-<lastmod>2025-08-22T16:17:29+01:00</lastmod>
-<priority>0.8</priority>
+  <loc>https://sppucodes.vercel.app/dsl/pinnacle-club</loc>
+  <changefreq>monthly</changefreq>
+  <priority>0.70</priority>
 </url>
 <url>
-<loc>https://sppucodes.vercel.app/dsal/employee-index-sequential-file</loc>
-<lastmod>2025-08-22T16:17:29+01:00</lastmod>
-<priority>0.8</priority>
+  <loc>https://sppucodes.vercel.app/dsl/binary-operations</loc>
+  <changefreq>monthly</changefreq>
+  <priority>0.70</priority>
 </url>
 <url>
-<loc>https://sppucodes.vercel.app/dbms/sql-queries-demo</loc>
-<lastmod>2025-08-22T16:17:29+01:00</lastmod>
-<priority>0.8</priority>
+  <loc>https://sppucodes.vercel.app/dsl/palindrome-check</loc>
+  <changefreq>monthly</changefreq>
+  <priority>0.70</priority>
 </url>
+<url>
+  <loc>https://sppucodes.vercel.app/dsl/expression-conversion</loc>
+  <changefreq>monthly</changefreq>
+  <priority>0.70</priority>
+</url>
+<url>
+  <loc>https://sppucodes.vercel.app/dsl/job-queue</loc>
+  <changefreq>monthly</changefreq>
+  <priority>0.70</priority>
+</url>
+<url>
+  <loc>https://sppucodes.vercel.app/dsl/priority-queue</loc>
+  <changefreq>monthly</changefreq>
+  <priority>0.70</priority>
+</url>
+<url>
+  <loc>https://sppucodes.vercel.app/dsl/double-ended-queue</loc>
+  <changefreq>monthly</changefreq>
+  <priority>0.70</priority>
+</url>
+
+<!-- IOTL -->
+<url>
+  <loc>https://sppucodes.vercel.app/iotl/blinking-led</loc>
+  <changefreq>monthly</changefreq>
+  <priority>0.70</priority>
+</url>
+<url>
+  <loc>https://sppucodes.vercel.app/iotl/led-counter</loc>
+  <changefreq>monthly</changefreq>
+  <priority>0.70</priority>
+</url>
+<url>
+  <loc>https://sppucodes.vercel.app/iotl/led-control</loc>
+  <changefreq>monthly</changefreq>
+  <priority>0.70</priority>
+</url>
+<url>
+  <loc>https://sppucodes.vercel.app/iotl/square-number</loc>
+  <changefreq>monthly</changefreq>
+  <priority>0.70</priority>
+</url>
+<url>
+  <loc>https://sppucodes.vercel.app/iotl/led-color-control</loc>
+  <changefreq>monthly</changefreq>
+  <priority>0.70</priority>
+</url>
+<url>
+  <loc>https://sppucodes.vercel.app/iotl/temperature-sensor</loc>
+  <changefreq>monthly</changefreq>
+  <priority>0.70</priority>
+</url>
+<url>
+  <loc>https://sppucodes.vercel.app/iotl/temperature-display</loc>
+  <changefreq>monthly</changefreq>
+  <priority>0.70</priority>
+</url>
+<url>
+  <loc>https://sppucodes.vercel.app/iotl/temperature-graph</loc>
+  <changefreq>monthly</changefreq>
+  <priority>0.70</priority>
+</url>
+<url>
+  <loc>https://sppucodes.vercel.app/iotl/piezo-knock</loc>
+  <changefreq>monthly</changefreq>
+  <priority>0.70</priority>
+</url>
+<url>
+  <loc>https://sppucodes.vercel.app/iotl/obstacle-ir-sensor</loc>
+  <changefreq>monthly</changefreq>
+  <priority>0.70</priority>
+</url>
+
+<!-- DSAL -->
+<url>
+  <loc>https://sppucodes.vercel.app/dsal/telephone-book</loc>
+  <changefreq>monthly</changefreq>
+  <priority>0.70</priority>
+</url>
+<url>
+  <loc>https://sppucodes.vercel.app/dsal/set-adt</loc>
+  <changefreq>monthly</changefreq>
+  <priority>0.70</priority>
+</url>
+<url>
+  <loc>https://sppucodes.vercel.app/dsal/book-tree</loc>
+  <changefreq>monthly</changefreq>
+  <priority>0.70</priority>
+</url>
+<url>
+  <loc>https://sppucodes.vercel.app/dsal/binary-search-tree</loc>
+  <changefreq>monthly</changefreq>
+  <priority>0.70</priority>
+</url>
+<url>
+  <loc>https://sppucodes.vercel.app/dsal/threaded-binary-tree</loc>
+  <changefreq>monthly</changefreq>
+  <priority>0.70</priority>
+</url>
+<url>
+  <loc>https://sppucodes.vercel.app/dsal/graph-dfs-bfs</loc>
+  <changefreq>monthly</changefreq>
+  <priority>0.70</priority>
+</url>
+<url>
+  <loc>https://sppucodes.vercel.app/dsal/flight-graph</loc>
+  <changefreq>monthly</changefreq>
+  <priority>0.70</priority>
+</url>
+<url>
+  <loc>https://sppucodes.vercel.app/dsal/optimal-bst</loc>
+  <changefreq>monthly</changefreq>
+  <priority>0.70</priority>
+</url>
+<url>
+  <loc>https://sppucodes.vercel.app/dsal/dictionary-avl</loc>
+  <changefreq>monthly</changefreq>
+  <priority>0.70</priority>
+</url>
+<url>
+  <loc>https://sppucodes.vercel.app/dsal/max-min-marks-heap</loc>
+  <changefreq>monthly</changefreq>
+  <priority>0.70</priority>
+</url>
+<url>
+  <loc>https://sppucodes.vercel.app/dsal/student-sequential-file</loc>
+  <changefreq>monthly</changefreq>
+  <priority>0.70</priority>
+</url>
+<url>
+  <loc>https://sppucodes.vercel.app/dsal/employee-index-sequential-file</loc>
+  <changefreq>monthly</changefreq>
+  <priority>0.70</priority>
+</url>
+
+<!-- DBMS -->
+<url>
+  <loc>https://sppucodes.vercel.app/dbms/sql-queries-demo</loc>
+  <changefreq>monthly</changefreq>
+  <priority>0.70</priority>
+</url>
+<url>
+  <loc>https://sppucodes.vercel.app/dbms/sql-joins-subqueries-views</loc>
+  <changefreq>monthly</changefreq>
+  <priority>0.70</priority>
+</url>
+<url>
+  <loc>https://sppucodes.vercel.app/dbms/mongodb-crud</loc>
+  <changefreq>monthly</changefreq>
+  <priority>0.70</priority>
+</url>
+<url>
+  <loc>https://sppucodes.vercel.app/dbms/plsql-unnamed-block</loc>
+  <changefreq>monthly</changefreq>
+  <priority>0.70</priority>
+</url>
+<url>
+  <loc>https://sppucodes.vercel.app/dbms/data-import-export</loc>
+  <changefreq>monthly</changefreq>
+  <priority>0.70</priority>
+</url>
+<url>
+  <loc>https://sppucodes.vercel.app/dbms/plsql-cursors</loc>
+  <changefreq>monthly</changefreq>
+  <priority>0.70</priority>
+</url>
+<url>
+  <loc>https://sppucodes.vercel.app/dbms/database-connectivity</loc>
+  <changefreq>monthly</changefreq>
+  <priority>0.70</priority>
+</url>
+
+<!-- CNL -->
+<url>
+  <loc>https://sppucodes.vercel.app/cnl/bus-topology</loc>
+  <changefreq>monthly</changefreq>
+  <priority>0.70</priority>
+</url>
+<url>
+  <loc>https://sppucodes.vercel.app/cnl/rip-routing</loc>
+  <changefreq>monthly</changefreq>
+  <priority>0.70</priority>
+</url>
+<url>
+  <loc>https://sppucodes.vercel.app/cnl/subnetting-program</loc>
+  <changefreq>monthly</changefreq>
+  <priority>0.70</priority>
+</url>
+<url>
+  <loc>https://sppucodes.vercel.app/cnl/routing-protocols</loc>
+  <changefreq>monthly</changefreq>
+  <priority>0.70</priority>
+</url>
+<url>
+  <loc>https://sppucodes.vercel.app/cnl/socket-programming-tcp-udp</loc>
+  <changefreq>monthly</changefreq>
+  <priority>0.70</priority>
+</url>
+<url>
+  <loc>https://sppucodes.vercel.app/cnl/tcp-socket-hello-file</loc>
+  <changefreq>monthly</changefreq>
+  <priority>0.70</priority>
+</url>
+<url>
+  <loc>https://sppucodes.vercel.app/cnl/udp-file-transfer</loc>
+  <changefreq>monthly</changefreq>
+  <priority>0.70</priority>
+</url>
+<url>
+  <loc>https://sppucodes.vercel.app/cnl/https-http-ftp-analysis</loc>
+  <changefreq>monthly</changefreq>
+  <priority>0.70</priority>
+</url>
+<url>
+  <loc>https://sppucodes.vercel.app/cnl/ssl-capture</loc>
+  <changefreq>monthly</changefreq>
+  <priority>0.70</priority>
+</url>
+<url>
+  <loc>https://sppucodes.vercel.app/cnl/dhcp-server</loc>
+  <changefreq>monthly</changefreq>
+  <priority>0.70</priority>
+</url>
+<url>
+  <loc>https://sppucodes.vercel.app/cnl/dns-lookup</loc>
+  <changefreq>monthly</changefreq>
+  <priority>0.70</priority>
+</url>
+
+<!-- AI -->
+<url>
+  <loc>https://sppucodes.vercel.app/ai/dfs-bfs</loc>
+  <changefreq>monthly</changefreq>
+  <priority>0.70</priority>
+</url>
+<url>
+  <loc>https://sppucodes.vercel.app/ai/a-star-algorithm</loc>
+  <changefreq>monthly</changefreq>
+  <priority>0.70</priority>
+</url>
+<url>
+  <loc>https://sppucodes.vercel.app/ai/alpha-beta-search</loc>
+  <changefreq>monthly</changefreq>
+  <priority>0.70</priority>
+</url>
+<url>
+  <loc>https://sppucodes.vercel.app/ai/csp-nqueens-graph-coloring</loc>
+  <changefreq>monthly</changefreq>
+  <priority>0.70</priority>
+</url>
+<url>
+  <loc>https://sppucodes.vercel.app/ai/greedy-search-algorithms</loc>
+  <changefreq>monthly</changefreq>
+  <priority>0.70</priority>
+</url>
+<url>
+  <loc>https://sppucodes.vercel.app/ai/elementary-chatbot</loc>
+  <changefreq>monthly</changefreq>
+  <priority>0.70</priority>
+</url>
+<!-- HTML Sitemap Page -->
+<url>
+  <loc>https://sppucodes.vercel.app/sitemap</loc>
+  <lastmod>2025-12-26</lastmod>
+  <priority>0.60</priority>
+</url>
+
 </urlset>

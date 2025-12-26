@@ -684,6 +684,10 @@ def robots():
 def sitemap():
     return send_from_directory(".", "sitemap.xml")
 
+@app.route("/sitemap")
+def sitemap_html():
+    return render_template("sitemap.html")
+
 # ============================================================================
 # ERROR HANDLERS
 # ============================================================================

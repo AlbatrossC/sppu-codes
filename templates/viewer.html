@@ -21,7 +21,7 @@
     <meta name="topic" content="Academic Question Papers, SPPU University Papers">
     <meta name="summary" content="Download and view {{ seo_data.subject_name }} question papers online. Access INSEM and ENDSEM papers with our PDF viewer.">
 
-    <link rel="canonical" href="https://sppucodes.vercel.app/question-papers/{{ subject_name }}">
+    <link rel="canonical" href="https://sppucodes.vercel.app/question-papers/{{ subject_link }}">
     <script>
     if(!window.IS_MOBILE_DEVICE){
         document.write('<meta name="google-adsense-account" content="ca-pub-6918638598461716">');
@@ -936,7 +936,7 @@
             var isFullscreen = !!document.fullscreenElement;
             var icon = isFullscreen ?
                 '<svg class="icon" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24"><path d="M4 14h6m0 0v6m0-6l-7 7m17-11h-6m0 0V4m0 6l7-7"/></svg>' :
-                '<svg class="icon" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24"><path d="M8 3H5a2 2 0 0 0-2 2v3m18 0V5a2 2 0 0 0-2-2h-3m0 18h3a2 2 0 0 0 2-2v-3M3 16v3a2 2 0 0 0 2 2h3"/></svg>';
+                '<svg class="icon" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24"><path d="M8 3H5a2 2 0 0 0-2 2v3m18 0V5a2 2 0 0 0-2-2h-3"/></svg>';
             var text = isFullscreen ? 'Exit Fullscreen' : 'Fullscreen';
             
             DOM.fullscreenBtn.innerHTML = icon + '<span class="btn-text">' + text + '</span>';

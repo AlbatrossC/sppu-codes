@@ -210,7 +210,11 @@ def _build_discord_embed(notification_type, data):
 
 @lru_cache(maxsize=1)
 def load_question_papers():
-    """Loads and caches question papers data from JSON files."""
+    """
+    Loads and caches question papers data from JSON files.
+    Normalizes subject data so subjects_index always stores a DICT.
+    """
+
     branches = []
     papers_list = []
     subjects_index = {}
@@ -229,6 +233,7 @@ def load_question_papers():
             data = json.load(f)
 
         branch_name = data.get("branch_name", branch_code)
+
         branch_entry = {
             "branch_name": branch_name,
             "branch_code": branch_code,
@@ -240,18 +245,37 @@ def load_question_papers():
                 continue
 
             sem_no = int(key.split("-")[-1])
-            subjects = []
+            subjects_for_sem = []
 
             for subject_link, subject in value.items():
+                if not isinstance(subject, dict):
+                    continue
+
                 subject_name = subject.get("subject_name", subject_link)
 
-                subjects.append({
+                # ----------------------------
+                # NORMALIZED SUBJECT OBJECT
+                # ----------------------------
+                subject_obj = {
+                    "subject_name": subject_name,
+                    "seo_data": subject.get("seo_data", {}),
+                    "pdf_links": subject.get("pdf_links", []),
+                    "branch_name": branch_name,
+                    "branch_code": branch_code,
+                    "semester": sem_no,
+                    "subject_link": subject_link
+                }
+
+                # Used by /question-papers/<subject>
+                subjects_index[subject_link] = subject_obj
+
+                # Used by select page
+                subjects_for_sem.append({
                     "subject_name": subject_name,
                     "subject_link": subject_link
                 })
 
-                subjects_index[subject_link] = subject.get("pdf_links", [])
-
+                # Used by API list
                 papers_list.append({
                     "type": "QUESTION_PAPER",
                     "subject_name": subject_name,
@@ -263,7 +287,7 @@ def load_question_papers():
                     "repo_path": f"{branch_code}/sem-{sem_no}/{subject_link}"
                 })
 
-            branch_entry["semesters"][f"Semester {sem_no}"] = subjects
+            branch_entry["semesters"][f"Semester {sem_no}"] = subjects_for_sem
 
         branches.append(branch_entry)
 
@@ -272,6 +296,7 @@ def load_question_papers():
         "question_papers_list": papers_list,
         "subjects_index": subjects_index
     }
+
 
 # ============================================================================
 # SUBJECT/QUESTIONS OPERATIONS
@@ -419,33 +444,42 @@ def select_page():
 @app.route("/question-papers/<subject_link>")
 def viewer_page(subject_link):
     qp = load_question_papers()
-    pdfs = qp["subjects_index"].get(subject_link)
+    subject = qp["subjects_index"].get(subject_link)
 
-    if not pdfs:
+    if not subject:
         abort(404)
 
-    subject_display = subject_link.replace("-", " ").title()
+    subject_name = subject["subject_name"]
+    seo_data = subject.get("seo_data", {})
 
     pdf_data = [
         {
             "filename": os.path.basename(urlparse(u).path),
             "url": u
         }
-        for u in pdfs
+        for u in subject.get("pdf_links", [])
     ]
 
     seo_data = {
-        "title": f"{subject_display} Question Papers | SPPU Codes",
-        "description": f"Download {subject_display} SPPU question papers",
-        "keywords": f"{subject_display}, sppu, question papers",
-        "subject_name": subject_display
+        "title": seo_data.get(
+            "title",
+            f"{subject_name} Question Papers | SPPU Codes"
+        ),
+        "description": seo_data.get(
+            "description",
+            f"{subject_name} SPPU question papers for exam preparation"
+        ),
+        "keywords": seo_data.get(
+            "keywords",
+            f"{subject_name}, sppu question papers"
+        )
     }
 
     return render_template(
         "viewer.html",
-        subject_name=subject_display,
-        pdf_data_for_js=pdf_data,
+        subject_name=subject_name,
         subject_link=subject_link,
+        pdf_data_for_js=pdf_data,
         seo_data=seo_data
     )
 

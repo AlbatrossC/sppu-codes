@@ -688,6 +688,10 @@ def sitemap():
 def sitemap_html():
     return render_template("sitemap.html")
 
+@app.route("/ads.txt")
+def ads_txt():
+    return send_from_directory(".", "ads.txt")
+
 # ============================================================================
 # ERROR HANDLERS
 # ============================================================================

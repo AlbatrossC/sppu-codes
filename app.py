@@ -737,6 +737,10 @@ def inject_analytics(response):
             if '</body>' in data:
                 # Analytics scripts to inject
                 analytics_code = '''
+<!-- Google AdSense -->
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6918638598461716"
+     crossorigin="anonymous"></script>
+
 <!-- Microsoft Clarity -->
 <script type="text/javascript">
     (function(c,l,a,r,i,t,y){
@@ -762,6 +766,8 @@ def inject_analytics(response):
             app.logger.error(f"Analytics injection error: {e}")
     
     return response
+
+
 # ============================================================================
 # APPLICATION ENTRY POINT
 # ============================================================================

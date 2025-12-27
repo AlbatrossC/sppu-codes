@@ -692,6 +692,10 @@ def sitemap_html():
 def ads_txt():
     return send_from_directory(".", "ads.txt")
 
+@app.route("/3fae365259364fc18250c434fb1477f0.txt")
+def bing_site_verification():
+    return send_from_directory(".", "3fae365259364fc18250c434fb1477f0.txt")
+
 # ============================================================================
 # ERROR HANDLERS
 # ============================================================================

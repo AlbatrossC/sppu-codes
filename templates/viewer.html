@@ -49,13 +49,42 @@
     <link href="{{ url_for('static', filename='css/viewer.css') }}?v=3.0" rel="stylesheet">
     <link href="/static/pdfjs/web/pdf.worker.js" rel="preload" fetchpriority="high" as="worker">
 
+    <!-- Fixed Breadcrumb Schema with Fallback for Empty Name -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "BreadcrumbList",
+        "itemListElement": [
+            {
+                "@type": "ListItem",
+                "position": 1,
+                "name": "Home",
+                "item": "https://sppucodes.vercel.app"
+            },
+            {
+                "@type": "ListItem",
+                "position": 2,
+                "name": "Question Papers",
+                "item": "https://sppucodes.vercel.app/question-papers"
+            },
+            {
+                "@type": "ListItem",
+                "position": 3,
+                "name": "{% if seo_data.subject_name %}{{ seo_data.subject_name }}{% else %}{{ subject_link.replace('-fy', '').replace('-aids', '').replace('-cse', '').replace('-', ' ').title() }}{% endif %}",
+                "item": "https://sppucodes.vercel.app/question-papers/{{ subject_link }}"
+            }
+        ]
+    }
+    </script>
+
+    <!-- Main WebPage Schema -->
     <script type="application/ld+json">
     {
         "@context": "https://schema.org",
         "@type": "WebPage",
         "name": "{{ seo_data.title }}",
         "description": "{{ seo_data.description }}",
-        "url": "https://sppucodes.vercel.app/question-papers/{{ subject_name }}",
+        "url": "https://sppucodes.vercel.app/question-papers/{{ subject_link }}",
         "inLanguage": "en-US",
         "isPartOf": {
             "@type": "WebSite",
@@ -103,26 +132,40 @@
                     {% endfor %}
                 ]
             }
-        },
-        "breadcrumb": {
-            "@type": "BreadcrumbList",
-            "itemListElement": [
-                {"@type": "ListItem", "position": 1, "name": "Home", "item": "https://sppucodes.vercel.app"},
-                {"@type": "ListItem", "position": 2, "name": "Question Papers", "item": "https://sppucodes.vercel.app/question-papers"},
-                {"@type": "ListItem", "position": 3, "name": "{{ seo_data.subject_name }}", "item": "https://sppucodes.vercel.app/question-papers/{{ subject_name }}"}
-            ]
         }
     }
     </script>
+
+    <!-- Course Schema -->
     <script type="application/ld+json">
     {
         "@context": "https://schema.org",
         "@type": "Course",
         "name": "{{ seo_data.subject_name }}",
         "description": "Comprehensive {{ seo_data.subject_name }} course at Savitribai Phule Pune University. Access question papers, study materials, and examination resources for academic success.",
-        "provider": {"@type": "Organization", "name": "Savitribai Phule Pune University", "alternateName": "SPPU", "url": "https://www.unipune.ac.in/"},
-        "offers": {"@type": "Offer", "category": "Educational Resource", "price": "0", "priceCurrency": "INR", "availability": "https://schema.org/InStock", "validFrom": "2024-01-01"},
-        "hasCourseInstance": {"@type": "CourseInstance", "courseMode": "Online", "courseWorkload": "P4Y", "instructor": {"@type": "Organization", "name": "Savitribai Phule Pune University Faculty"}},
+        "provider": {
+            "@type": "Organization",
+            "name": "Savitribai Phule Pune University",
+            "alternateName": "SPPU",
+            "url": "https://www.unipune.ac.in/"
+        },
+        "offers": {
+            "@type": "Offer",
+            "category": "Educational Resource",
+            "price": "0",
+            "priceCurrency": "INR",
+            "availability": "https://schema.org/InStock",
+            "validFrom": "2024-01-01"
+        },
+        "hasCourseInstance": {
+            "@type": "CourseInstance",
+            "courseMode": "Online",
+            "courseWorkload": "P4Y",
+            "instructor": {
+                "@type": "Organization",
+                "name": "Savitribai Phule Pune University Faculty"
+            }
+        },
         "educationalCredentialAwarded": "University Degree",
         "numberOfCredits": 4,
         "coursePrerequisites": "High School Diploma or equivalent",

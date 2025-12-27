@@ -17,9 +17,9 @@
     <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1">
     <meta name="googlebot" content="index, follow">
     <meta name="bingbot" content="index, follow">
-    <meta name="subject" content="{{ seo_data.subject_name }} Question Papers">
+    <meta name="subject" content="{% if seo_data.subject_name %}{{ seo_data.subject_name }}{% else %}{{ subject_link.replace('-fy', '').replace('-aids', '').replace('-cse', '').replace('-', ' ').title() }}{% endif %} Question Papers">
     <meta name="topic" content="Academic Question Papers, SPPU University Papers">
-    <meta name="summary" content="Download and view {{ seo_data.subject_name }} question papers online. Access INSEM and ENDSEM papers with our PDF viewer.">
+    <meta name="summary" content="Download and view {% if seo_data.subject_name %}{{ seo_data.subject_name }}{% else %}{{ subject_link.replace('-fy', '').replace('-aids', '').replace('-cse', '').replace('-', ' ').title() }}{% endif %} question papers online. Access INSEM and ENDSEM papers with our PDF viewer.">
 
     <link rel="canonical" href="https://sppucodes.vercel.app/question-papers/{{ subject_link }}">
     <script>
@@ -31,7 +31,7 @@
 
     <meta property="og:title" content="{{ seo_data.title }}">
     <meta property="og:description" content="{{ seo_data.description }}">
-    <meta property="og:url" content="https://sppucodes.vercel.app/question-papers/{{ subject_name }}">
+    <meta property="og:url" content="https://sppucodes.vercel.app/question-papers/{{ subject_link }}">
     <meta property="og:image" content="https://sppucodes.vercel.app/images/logo.png">
     <meta property="og:type" content="website">
     <meta property="og:site_name" content="SPPU Codes">
@@ -49,7 +49,10 @@
     <link href="{{ url_for('static', filename='css/viewer.css') }}?v=3.0" rel="stylesheet">
     <link href="/static/pdfjs/web/pdf.worker.js" rel="preload" fetchpriority="high" as="worker">
 
-    <!-- Fixed Breadcrumb Schema with Fallback for Empty Name -->
+    <!-- Set subject name variable with fallback -->
+    {% set display_name = seo_data.subject_name if seo_data.subject_name else subject_link.replace('-fy', '').replace('-aids', '').replace('-cse', '').replace('-', ' ').title() %}
+
+    <!-- Fixed Breadcrumb Schema with Fallback -->
     <script type="application/ld+json">
     {
         "@context": "https://schema.org",
@@ -70,7 +73,7 @@
             {
                 "@type": "ListItem",
                 "position": 3,
-                "name": "{% if seo_data.subject_name %}{{ seo_data.subject_name }}{% else %}{{ subject_link.replace('-fy', '').replace('-aids', '').replace('-cse', '').replace('-', ' ').title() }}{% endif %}",
+                "name": "{{ display_name }}",
                 "item": "https://sppucodes.vercel.app/question-papers/{{ subject_link }}"
             }
         ]
@@ -102,8 +105,8 @@
         },
         "mainEntity": {
             "@type": "CollectionPage",
-            "name": "{{ seo_data.subject_name }} Question Papers Collection",
-            "description": "Complete collection of {{ seo_data.subject_name }} question papers including INSEM and ENDSEM papers from SPPU University.",
+            "name": "{{ display_name }} Question Papers Collection",
+            "description": "Complete collection of {{ display_name }} question papers including INSEM and ENDSEM papers from SPPU University.",
             "mainContentOfPage": {
                 "@type": "ItemList",
                 "numberOfItems": {{ pdf_data_for_js | length }},
@@ -112,7 +115,7 @@
                     {
                         "@type": "DigitalDocument",
                         "name": "{{ pdf.filename }}",
-                        "description": "{{ seo_data.subject_name }} question paper - {{ pdf.filename }}",
+                        "description": "{{ display_name }} question paper - {{ pdf.filename }}",
                         "contentUrl": "{{ pdf.url }}",
                         "encodingFormat": "application/pdf",
                         "position": {{ loop.index }},
@@ -120,7 +123,7 @@
                         "inLanguage": "en-US",
                         "about": {
                             "@type": "Thing",
-                            "name": "{{ seo_data.subject_name }}",
+                            "name": "{{ display_name }}",
                             "description": "Academic subject at Savitribai Phule Pune University"
                         },
                         "publisher": {
@@ -136,13 +139,13 @@
     }
     </script>
 
-    <!-- Course Schema -->
+    <!-- Course Schema with Fixed Name -->
     <script type="application/ld+json">
     {
         "@context": "https://schema.org",
         "@type": "Course",
-        "name": "{{ seo_data.subject_name }}",
-        "description": "Comprehensive {{ seo_data.subject_name }} course at Savitribai Phule Pune University. Access question papers, study materials, and examination resources for academic success.",
+        "name": "{{ display_name }}",
+        "description": "Comprehensive {{ display_name }} course at Savitribai Phule Pune University. Access question papers, study materials, and examination resources for academic success.",
         "provider": {
             "@type": "Organization",
             "name": "Savitribai Phule Pune University",
@@ -174,7 +177,7 @@
             {
                 "@type": "LearningResource",
                 "name": "{{ pdf.filename }}",
-                "description": "{{ seo_data.subject_name }} examination paper - {{ pdf.filename }}",
+                "description": "{{ display_name }} examination paper - {{ pdf.filename }}",
                 "learningResourceType": "Question Paper",
                 "educationalUse": "Examination Preparation",
                 "url": "{{ pdf.url }}",

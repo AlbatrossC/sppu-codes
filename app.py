@@ -714,6 +714,47 @@ def handle_http_exception(e):
     return render_template("error.html", error_code=code, error_message=description, requested_path=request.path), code
 
 # ============================================================================
+# ANALYTICS INJECTION
+# ============================================================================
+
+@app.after_request
+def inject_analytics(response):
+    """Injects analytics scripts into HTML responses."""
+    # Only process HTML responses
+    if response.content_type and 'text/html' in response.content_type:
+        try:
+            data = response.get_data(as_text=True)
+            
+            # Check if </body> tag exists
+            if '</body>' in data:
+                # Analytics scripts to inject
+                analytics_code = '''
+<!-- Microsoft Clarity -->
+<script type="text/javascript">
+    (function(c,l,a,r,i,t,y){
+        c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
+        t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;
+        y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
+    })(window, document, "clarity", "script", "qnqi8o9y94");
+</script>
+
+<!-- Vercel Web Analytics -->
+<script>
+    window.va = window.va || function () { (window.vaq = window.vaq || []).push(arguments); };
+</script>
+<script defer src="/_vercel/insights/script.js"></script>
+'''
+                
+                # Inject before closing </body> tag
+                data = data.replace('</body>', f'{analytics_code}\n</body>')
+                response.set_data(data)
+        
+        except Exception as e:
+            # Log error but don't break the response
+            app.logger.error(f"Analytics injection error: {e}")
+    
+    return response
+# ============================================================================
 # APPLICATION ENTRY POINT
 # ============================================================================
 

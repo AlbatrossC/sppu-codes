@@ -4,17 +4,13 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=5,user-scalable=yes">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <script>
-    (function(){
-        window.IS_MOBILE_DEVICE=/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)||window.innerWidth<768;
-    })();
-    </script>
     <title>{{ seo_data.title }}</title>
     <meta name="description" content="{{ seo_data.description }}">
     <meta name="keywords" content="{{ seo_data.keywords }}">
     <meta name="author" content="SPPU Codes Team">
     <meta name="language" content="English">
     <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1">
+    <meta name="page-type" content="viewer">
     <meta name="googlebot" content="index, follow">
     <meta name="bingbot" content="index, follow">
     <meta name="subject" content="{% if seo_data.subject_name %}{{ seo_data.subject_name }}{% else %}{{ subject_link.replace('-fy', '').replace('-aids', '').replace('-cse', '').replace('-', ' ').title() }}{% endif %} Question Papers">
@@ -22,12 +18,6 @@
     <meta name="summary" content="Download and view {% if seo_data.subject_name %}{{ seo_data.subject_name }}{% else %}{{ subject_link.replace('-fy', '').replace('-aids', '').replace('-cse', '').replace('-', ' ').title() }}{% endif %} question papers online. Access INSEM and ENDSEM papers with our PDF viewer.">
 
     <link rel="canonical" href="https://sppucodes.vercel.app/question-papers/{{ subject_link }}">
-    <script>
-    if(!window.IS_MOBILE_DEVICE){
-        document.write('<meta name="google-adsense-account" content="ca-pub-6918638598461716">');
-        document.write('<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6918638598461716" crossorigin="anonymous"><\/script>');
-    }
-    </script>
 
     <meta property="og:title" content="{{ seo_data.title }}">
     <meta property="og:description" content="{{ seo_data.description }}">
@@ -48,6 +38,7 @@
     <link href="/static/pdfjs/web/viewer.css" rel="preload" fetchpriority="high" as="style">
     <link href="{{ url_for('static', filename='css/viewer.css') }}?v=3.0" rel="stylesheet">
     <link href="/static/pdfjs/web/pdf.worker.js" rel="preload" fetchpriority="high" as="worker">
+    <script src="{{ url_for('static', filename='js/analytics.js') }}?v=3.0" defer></script>
 
     <!-- Set subject name variable with fallback -->
     {% set display_name = seo_data.subject_name if seo_data.subject_name else subject_link.replace('-fy', '').replace('-aids', '').replace('-cse', '').replace('-', ' ').title() %}

@@ -2,12 +2,57 @@
 // Exposes: window.DownloadPaper.handleClick(event, button)
 
 (function () {
-	// Utility: get status element
-	function setStatus(msg, level = "info") {
-		const el = document.getElementById("download-status");
-		if (!el) return;
-		el.textContent = msg;
-		el.dataset.status = level;
+	// Utility: get status element and update progress
+	function setStatus(msg, level = "info", progress = null) {
+		const statusEl = document.getElementById("download-status");
+		const containerEl = document.getElementById("download-status-container");
+		const progressFillEl = document.getElementById("download-progress-fill");
+		const percentageEl = document.getElementById("download-percentage");
+		
+		if (!statusEl || !containerEl) return;
+		
+		// Show container if hidden
+		if (containerEl.style.display === "none") {
+			containerEl.style.display = "flex";
+		}
+		
+		// Update status text
+		statusEl.textContent = msg;
+		statusEl.dataset.status = level;
+		
+		// Update progress bar
+		if (progress !== null && progressFillEl) {
+			const progressPercent = Math.min(Math.max(progress, 0), 100);
+			progressFillEl.style.width = progressPercent + "%";
+			progressFillEl.dataset.status = level;
+			
+			// Update percentage display
+			if (percentageEl) {
+				if (progressPercent > 0 && progressPercent < 100) {
+					percentageEl.textContent = progressPercent + "%";
+					percentageEl.style.display = "inline";
+				} else {
+					percentageEl.style.display = "none";
+				}
+			}
+		}
+	}
+	
+	// Reset status display
+	function resetStatus() {
+		const containerEl = document.getElementById("download-status-container");
+		const progressFillEl = document.getElementById("download-progress-fill");
+		const percentageEl = document.getElementById("download-percentage");
+		
+		if (containerEl) containerEl.style.display = "none";
+		if (progressFillEl) {
+			progressFillEl.style.width = "0%";
+			delete progressFillEl.dataset.status;
+		}
+		if (percentageEl) {
+			percentageEl.textContent = "";
+			percentageEl.style.display = "none";
+		}
 	}
 
 	// Simple script loader (idempotent)
@@ -60,34 +105,38 @@
 
 			const examType = (button && button.dataset && button.dataset.download) || (event && event.target && event.target.dataset && event.target.dataset.download);
 			if (!examType) {
-				setStatus("Invalid download type.", "error");
+				setStatus("Unable to determine download type. Please try again.", "error", 0);
 				return;
 			}
 
 			const buttons = document.querySelectorAll('button[data-download]');
 			buttons.forEach(b => b.disabled = true);
 
-			setStatus("Resolving subject metadata...", "info");
+			// Reset status display
+			resetStatus();
+			setStatus("Preparing download...", "info", 5);
 
 			const subject_link = getSubjectLinkFromPath();
 			if (!subject_link) {
-				setStatus("Invalid subject URL. Cannot determine subject.", "error");
+				setStatus("Could not identify the subject. Please refresh and try again.", "error", 0);
 				buttons.forEach(b => b.disabled = false);
 				return;
 			}
+
+			setStatus("Fetching subject information...", "info", 10);
 
 			let list;
 			try {
 				list = await safeFetchJson("/api/question-papers/list");
 			} catch (err) {
-				setStatus("Failed to fetch metadata. Please try again.", "error");
+				setStatus("Unable to connect to server. Please check your connection and try again.", "error", 0);
 				buttons.forEach(b => b.disabled = false);
 				return;
 			}
 
 			const meta = Array.isArray(list) && list.find(x => x.subject_link === subject_link);
 			if (!meta) {
-				setStatus("Subject not found in metadata.", "error");
+				setStatus("Subject information not found. Please contact support if this persists.", "error", 0);
 				buttons.forEach(b => b.disabled = false);
 				return;
 			}
@@ -95,7 +144,7 @@
 			const repoPath = meta.repo_path;
 			const subjectName = meta.subject_name || subject_link;
 
-			setStatus("Querying GitHub for files...", "info");
+			setStatus("Searching for available papers...", "info", 20);
 
 			const ghApiUrl = `https://api.github.com/repos/AlbatrossC/sppu-codes/contents/${encodeURIComponent(repoPath)}?ref=question-papers`;
 
@@ -105,28 +154,28 @@
 				if (resp.status === 403) {
 					const remaining = resp.headers.get("X-RateLimit-Remaining");
 					if (remaining === "0") {
-						setStatus("GitHub API rate limit exceeded. Please wait and try again later.", "error");
+						setStatus("Service temporarily unavailable. Please wait a moment and try again.", "error", 0);
 						buttons.forEach(b => b.disabled = false);
 						return;
 					}
-					setStatus("Access denied by GitHub API. Try again later.", "error");
+					setStatus("Access temporarily restricted. Please try again in a few moments.", "error", 0);
 					buttons.forEach(b => b.disabled = false);
 					return;
 				}
 				if (!resp.ok) {
-					setStatus(`GitHub API error: ${resp.status}`, "error");
+					setStatus("Unable to retrieve paper list. Please try again later.", "error", 0);
 					buttons.forEach(b => b.disabled = false);
 					return;
 				}
 				ghList = await resp.json();
 			} catch (err) {
-				setStatus("Network error while contacting GitHub. Check your connection.", "error");
+				setStatus("Connection error. Please check your internet connection and try again.", "error", 0);
 				buttons.forEach(b => b.disabled = false);
 				return;
 			}
 
 			if (!Array.isArray(ghList)) {
-				setStatus("Unexpected GitHub response.", "error");
+				setStatus("Unexpected response format. Please try again or contact support.", "error", 0);
 				buttons.forEach(b => b.disabled = false);
 				return;
 			}
@@ -140,26 +189,26 @@
 				.map(i => ({ name: i.name, download_url: i.download_url }));
 
 			if (!pdfItems.length) {
-				setStatus("No matching PDF files found for selected exam type.", "error");
+				setStatus("No papers found for the selected exam type. Please try a different option.", "error", 0);
 				buttons.forEach(b => b.disabled = false);
 				return;
 			}
 
-			setStatus(`Found ${pdfItems.length} PDF(s). Preparing download...`, "info");
+			setStatus(`Found ${pdfItems.length} paper${pdfItems.length > 1 ? 's' : ''}. Getting ready...`, "info", 30);
 
 			const jszipUrl = "https://cdnjs.cloudflare.com/ajax/libs/jszip/3.10.1/jszip.min.js";
 			const filesaverUrl = "https://cdnjs.cloudflare.com/ajax/libs/FileSaver.js/2.0.5/FileSaver.min.js";
-			setStatus("Loading ZIP libraries...", "info");
+			setStatus("Loading required tools...", "info", 35);
 			try {
 				await loadScript(jszipUrl);
 				await loadScript(filesaverUrl);
 			} catch (err) {
-				setStatus("Failed to load ZIP libraries. Please try again.", "error");
+				setStatus("Failed to initialize download tools. Please refresh and try again.", "error", 0);
 				buttons.forEach(b => b.disabled = false);
 				return;
 			}
 			if (typeof JSZip === "undefined" || typeof saveAs === "undefined") {
-				setStatus("ZIP libraries unavailable after load.", "error");
+				setStatus("Download tools not available. Please refresh the page and try again.", "error", 0);
 				buttons.forEach(b => b.disabled = false);
 				return;
 			}
@@ -170,8 +219,11 @@
 			let idx = 0;
 			let downloaded = 0;
 			let failed = 0;
+			const totalFiles = pdfItems.length;
+			const downloadStartProgress = 40;
+			const downloadEndProgress = 85;
 
-			setStatus(`Downloading files (0/${pdfItems.length})...`, "info");
+			setStatus(`Downloading ${totalFiles} paper${totalFiles > 1 ? 's' : ''}...`, "info", downloadStartProgress);
 
 			async function worker() {
 				while (true) {
@@ -184,11 +236,23 @@
 						const ab = await r.arrayBuffer();
 						zip.file(current.name, ab);
 						downloaded++;
-						setStatus(`Downloading files (${downloaded}/${pdfItems.length})...`, "info");
+						
+						// Calculate progress: download phase is 40% to 85%
+						const downloadProgress = downloadStartProgress + 
+							((downloaded / totalFiles) * (downloadEndProgress - downloadStartProgress));
+						const progressPercent = Math.round(downloadProgress);
+						
+						if (failed === 0) {
+							setStatus(`Downloaded ${downloaded} of ${totalFiles} paper${totalFiles > 1 ? 's' : ''}...`, "info", progressPercent);
+						} else {
+							setStatus(`Downloaded ${downloaded} of ${totalFiles} (${failed} failed)...`, "warning", progressPercent);
+						}
 					} catch (e) {
 						console.error("Download error", current.name, e);
 						failed++;
-						setStatus(`Some files failed to download. (${failed} failed)`, "warning");
+						const downloadProgress = downloadStartProgress + 
+							((downloaded / totalFiles) * (downloadEndProgress - downloadStartProgress));
+						setStatus(`Downloading... (${downloaded} downloaded, ${failed} failed)`, "warning", Math.round(downloadProgress));
 					}
 				}
 			}
@@ -198,21 +262,28 @@
 			await Promise.all(workers);
 
 			if (downloaded === 0) {
-				setStatus("All downloads failed. Aborting.", "error");
+				setStatus("All downloads failed. Please check your connection and try again.", "error", 0);
 				buttons.forEach(b => b.disabled = false);
 				return;
 			}
 
-			setStatus("Creating ZIP file...", "info");
+			setStatus("Creating ZIP archive...", "info", 85);
 			try {
 				const blob = await zip.generateAsync({ type: "blob" }, meta => {
 					const pct = Math.round((meta.percent || 0));
-					setStatus(`Creating ZIP: ${pct}%`, "info");
+					// ZIP creation phase is 85% to 95%
+					const zipProgress = 85 + (pct * 0.1);
+					setStatus(`Creating ZIP file... ${pct}%`, "info", Math.round(zipProgress));
 				});
 				const safeExam = examType.toLowerCase();
 				const zipName = `${subjectName.replace(/\s+/g, "_")}-${safeExam}.zip`;
 				saveAs(blob, zipName);
-				setStatus("Download started. Thank you!", "success");
+				setStatus("Download complete! Your ZIP file is ready.", "success", 100);
+				
+				// Hide status after 3 seconds on success
+				setTimeout(() => {
+					resetStatus();
+				}, 3000);
 
 				// --- NEW: send optional server-side Discord notification (no URLs included) ---
 				(function fireNotify() {
@@ -237,13 +308,13 @@
 				// --- END notify ---
 			} catch (err) {
 				console.error(err);
-				setStatus("Failed to create ZIP file.", "error");
+				setStatus("Failed to create ZIP file. Please try again.", "error", 0);
 			} finally {
 				buttons.forEach(b => b.disabled = false);
 			}
 		} catch (err) {
 			console.error(err);
-			setStatus("Unexpected error occurred. See console.", "error");
+			setStatus("An unexpected error occurred. Please try again or contact support if the issue persists.", "error", 0);
 			const buttons = document.querySelectorAll('button[data-download]');
 			buttons.forEach(b => b.disabled = false);
 		}

@@ -449,8 +449,29 @@ def viewer_page(subject_link):
     if not subject:
         abort(404)
 
-    subject_name = subject["subject_name"]
-    seo_data = subject.get("seo_data", {})
+    subject_name = subject.get("subject_name", subject_link)
+
+    branch_name = subject.get("branch_name", "").strip()
+    if not branch_name:
+        branch_name = "Engineering"
+
+    # Normalize seo_data (NULL-safe)
+    raw_seo = subject.get("seo_data") or {}
+
+    # 🔹 REQUIRED FALLBACK FORMAT
+    fallback_title = (
+        f"SPPU {subject_name} | {branch_name} Engineering Question Papers | SPPU Codes"
+    )
+
+    seo_data = {
+        "title": raw_seo.get("title") or fallback_title,
+        "description": raw_seo.get("description") or (
+            f"{subject_name} question papers for {branch_name} students of Savitribai Phule Pune University."
+        ),
+        "keywords": raw_seo.get("keywords") or (
+            f"{subject_name}, {branch_name}, SPPU question papers"
+        )
+    }
 
     pdf_data = [
         {
@@ -458,22 +479,8 @@ def viewer_page(subject_link):
             "url": u
         }
         for u in subject.get("pdf_links", [])
+        if isinstance(u, str)
     ]
-
-    seo_data = {
-        "title": seo_data.get(
-            "title",
-            f"{subject_name} Question Papers | SPPU Codes"
-        ),
-        "description": seo_data.get(
-            "description",
-            f"{subject_name} SPPU question papers for exam preparation"
-        ),
-        "keywords": seo_data.get(
-            "keywords",
-            f"{subject_name}, sppu question papers"
-        )
-    }
 
     return render_template(
         "viewer.html",
@@ -482,6 +489,7 @@ def viewer_page(subject_link):
         pdf_data_for_js=pdf_data,
         seo_data=seo_data
     )
+
 
 # ============================================================================
 # SUBJECT/QUESTIONS ROUTES

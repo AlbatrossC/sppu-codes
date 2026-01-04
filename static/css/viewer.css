@@ -1533,3 +1533,102 @@ button.download-btn:hover {
 .download-modal-body::-webkit-scrollbar-thumb:hover {
     background: #555;
 }
+/* Exam Type Toggle Buttons */
+.exam-type-buttons {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    height: 38px;
+}
+
+.exam-toggle-group {
+    display: flex;
+    background: rgba(255,255,255,0.06);
+    border-radius: var(--border-radius);
+    padding: 2px;
+    gap: 2px;
+    height: 38px;
+}
+
+.exam-toggle-btn {
+    padding: 0 16px;
+    height: 34px;
+    font-size: 13px;
+    font-weight: 600;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    background: transparent;
+    color: var(--text-dark);
+    transition: all var(--transition-speed) ease;
+    white-space: nowrap;
+    box-shadow: none;
+    min-width: 80px;
+}
+
+.exam-toggle-btn:hover:not(.active):not(.disabled) {
+    background: rgba(255,255,255,0.08);
+    color: var(--dropdown-text);
+    transform: none;
+    box-shadow: none;
+}
+
+.exam-toggle-btn.active {
+    background: var(--primary-color);
+    color: var(--text-light);
+    box-shadow: 0 2px 6px rgba(var(--primary-color-rgb), 0.3);
+}
+
+.exam-toggle-btn.active:hover {
+    background: var(--primary-hover);
+    transform: none;
+}
+
+.exam-toggle-btn.disabled {
+    opacity: 0.3;
+    cursor: not-allowed;
+    pointer-events: none;
+}
+
+/* Mobile Responsiveness for Exam Toggle */
+@media (max-width: 768px) {
+    .exam-type-buttons {
+        height: 36px;
+    }
+    
+    .exam-toggle-group {
+        height: 36px;
+    }
+    
+    .exam-toggle-btn {
+        padding: 0 12px;
+        height: 32px;
+        font-size: 12px;
+        min-width: 70px;
+    }
+    
+    .exam-type-buttons label {
+        font-size: 12px;
+    }
+}
+
+@media (max-width: 480px) {
+    .exam-type-buttons {
+        height: 34px;
+    }
+    
+    .exam-toggle-group {
+        height: 34px;
+    }
+    
+    .exam-toggle-btn {
+        padding: 0 10px;
+        height: 30px;
+        font-size: 11px;
+        min-width: 65px;
+    }
+    
+    .exam-type-buttons label {
+        font-size: 11px;
+    }
+}

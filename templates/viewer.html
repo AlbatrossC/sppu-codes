@@ -251,17 +251,11 @@
                     </div>
                 </div>
             </div>
-            <div class="control-group">
+            <div class="control-group exam-type-buttons">
                 <label>Exam:</label>
-                <div class="custom-dropdown" id="exam-type-dropdown" data-value="endsem">
-                    <div class="dropdown-selected">
-                        <span class="dropdown-text">ENDSEM</span>
-                        <svg class="dropdown-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
-                    </div>
-                    <div class="dropdown-options">
-                        <div class="dropdown-option" data-value="insem">INSEM</div>
-                        <div class="dropdown-option selected" data-value="endsem">ENDSEM</div>
-                    </div>
+                <div class="exam-toggle-group">
+                    <button type="button" class="exam-toggle-btn" data-value="insem">INSEM</button>
+                    <button type="button" class="exam-toggle-btn active" data-value="endsem">ENDSEM</button>
                 </div>
             </div>
         </div>
@@ -461,7 +455,7 @@
             pdfContainer: document.getElementById('pdf-container'),
             subjectDisplay: document.getElementById('subject-display'),
             pdfCountDropdown: null,
-            examTypeDropdown: null,
+            examTypeButtons: null,
             fullscreenBtn: document.getElementById('fullscreen-btn'),
             backBtn: document.getElementById('back-btn'),
             watermarkBtn: document.getElementById('watermarkGlobalToggle'),
@@ -838,7 +832,7 @@
             state.renderQueue = state.renderQueue.then(function() {
                 return new Promise(function(resolve) {
                     var count = parseInt(DOM.pdfCountDropdown._getValue(), 10);
-                    var examType = DOM.examTypeDropdown._getValue();
+                    var examType = document.querySelector('.exam-toggle-btn.active').getAttribute('data-value');
                     
                     state.currentLayout = count.toString();
                     state.currentExamType = examType;
@@ -1143,10 +1137,24 @@
                 onLayoutChange
             );
             
-            DOM.examTypeDropdown = CustomDropdown.init(
-                document.getElementById('exam-type-dropdown'),
-                debouncedRender
-            );
+            // Setup exam type toggle buttons
+            var examToggleButtons = document.querySelectorAll('.exam-toggle-btn');
+            examToggleButtons.forEach(function(btn) {
+                btn.addEventListener('click', function() {
+                    if (btn.classList.contains('disabled')) return;
+                    
+                    examToggleButtons.forEach(function(b) { 
+                        b.classList.remove('active'); 
+                    });
+                    btn.classList.add('active');
+                    
+                    state.currentExamType = btn.getAttribute('data-value');
+                    Logger.info('Exam type changed', {examType: state.currentExamType});
+                    debouncedRender();
+                });
+            });
+            
+            DOM.examTypeButtons = examToggleButtons;
             
             DOM.fullscreenBtn.addEventListener('click', toggleFullscreen);
             DOM.backBtn.addEventListener('click', function() { 
@@ -1274,13 +1282,33 @@
                         return file.originalFilename.toLowerCase().includes('endsem'); 
                     });
 
-                    DOM.examTypeDropdown._setDisabled('insem', !hasInsem);
-                    DOM.examTypeDropdown._setDisabled('endsem', !hasEndsem);
+                    var insemBtn = document.querySelector('.exam-toggle-btn[data-value="insem"]');
+                    var endsemBtn = document.querySelector('.exam-toggle-btn[data-value="endsem"]');
+
+                    if (insemBtn) {
+                        if (!hasInsem) {
+                            insemBtn.classList.add('disabled');
+                        } else {
+                            insemBtn.classList.remove('disabled');
+                        }
+                    }
+
+                    if (endsemBtn) {
+                        if (!hasEndsem) {
+                            endsemBtn.classList.add('disabled');
+                        } else {
+                            endsemBtn.classList.remove('disabled');
+                        }
+                    }
 
                     if (hasEndsem) {
-                        DOM.examTypeDropdown._setValue('endsem', false);
+                        endsemBtn.classList.add('active');
+                        insemBtn.classList.remove('active');
+                        state.currentExamType = 'endsem';
                     } else if (hasInsem) {
-                        DOM.examTypeDropdown._setValue('insem', false);
+                        insemBtn.classList.add('active');
+                        endsemBtn.classList.remove('active');
+                        state.currentExamType = 'insem';
                     }
 
                     Logger.info('Loaded ' + state.pdfFiles.length + ' papers for ' + 

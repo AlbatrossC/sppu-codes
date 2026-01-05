@@ -2,36 +2,27 @@
     --primary-color: #3b82f6;
     --primary-hover: #2a71dc;
     --primary-color-rgb: 59, 130, 246;
-
     --secondary-color: #40a9ff;
     --green-color: #28a745;
     --green-hover: #218838;
-
-    /* updated watermark color: muted teal */
     --watermark-color: #0ea5a4;
     --watermark-hover: #0b9a94;
     --watermark-color-rgb: 14, 165, 164;
-
     --background-dark: #1e1e1e;
     --background-dark-rgb: 30, 30, 30;
     --background-light: #282828;
     --background-light-rgb: 40, 40, 40;
-
     --text-light: #ffffff;
     --text-dark: #888;
-
     --dropdown-bg: #333;
     --dropdown-hover: #3a3a3a;
     --dropdown-border: #444;
     --dropdown-text: #f0f0f0;
-
-    --border-radius: 8px;
-    --transition-speed: 0.2s;
-
-    --shadow: 0 2px 10px rgba(0,0,0,0.15);
-    --shadow-hover: 0 4px 12px rgba(0,0,0,0.25);
-
-    --header-height-desktop: 56px;
+    --border-radius: 6px;
+    --transition-speed: 0.15s;
+    --shadow: 0 1px 3px rgba(0,0,0,0.2);
+    --shadow-hover: 0 2px 6px rgba(0,0,0,0.3);
+    --header-height-desktop: 52px;
     --header-height-mobile: 48px;
 }
 
@@ -53,10 +44,8 @@ body {
     -moz-osx-font-smoothing: grayscale;
     overscroll-behavior: none;
     overflow: hidden;
-    position: relative;
 }
 
-/* Header Styles - Optimized for desktop and mobile */
 header {
     background: #222;
     padding: 0 16px;
@@ -66,16 +55,15 @@ header {
     height: var(--header-height-desktop);
     min-height: var(--header-height-desktop);
     flex-shrink: 0;
-    box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+    box-shadow: 0 1px 3px rgba(0,0,0,0.3);
     z-index: 100;
-    gap: 12px;
-    position: relative;
+    gap: 16px;
 }
 
 .header-info, .header-center, .header-controls {
     display: flex;
     align-items: center;
-    gap: 10px;
+    gap: 12px;
     height: 100%;
 }
 
@@ -88,69 +76,59 @@ header {
     display: flex;
     align-items: center;
     height: 100%;
-    min-width: 0; /* allow flex children to shrink on small screens */
 }
 
 .header-center {
     flex: 1;
     justify-content: center;
-    gap: 16px;
-    min-width: 0;
+    gap: 20px;
     max-width: 600px;
 }
 
 .header-controls {
-    gap: 8px;
+    gap: 10px;
     flex-shrink: 0;
 }
 
 .subject-badge {
-    display: flex;
-    align-items: center;
-    justify-content: center;
     background: none;
     color: var(--secondary-color);
     font-weight: 600;
     font-size: 15px;
     padding: 0 12px;
     height: 36px;
-    min-width: 80px;
-    border-radius: 6px;
-    letter-spacing: 0.3px;
+    display: flex;
+    align-items: center;
+    border-radius: var(--border-radius);
+    letter-spacing: 0.02em;
     margin-left: 8px;
     border: none;
-    transition: color 0.2s ease;
-    /* allow wrapping for long subject names and avoid hard truncation */
-    white-space: normal;
-    word-break: break-word;
-    overflow: visible;
-    text-overflow: unset;
-    max-width: 100%;
-    user-select: text;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    max-width: 220px;
 }
 
 .control-group {
     display: flex;
     align-items: center;
-    gap: 6px;
-    height: 38px;
+    gap: 8px;
+    height: 36px;
     flex-shrink: 0;
 }
 
 .control-group label {
-    color: var(--secondary-color);
+    color: var(--text-dark);
     font-weight: 500;
     font-size: 13px;
     white-space: nowrap;
-    margin-right: 2px;
     flex-shrink: 0;
 }
 
-/* Custom Dropdown Styles */
 .custom-dropdown {
     position: relative;
-    min-width: 120px;
-    height: 38px;
+    min-width: 110px;
+    height: 36px;
     user-select: none;
     z-index: 1;
 }
@@ -165,9 +143,9 @@ header {
     font-size: 13px;
     font-weight: 500;
     padding: 0 12px;
-    height: 38px;
+    height: 36px;
     border-radius: var(--border-radius);
-    border: 1px solid rgba(255,255,255,0.1);
+    border: 1px solid rgba(255,255,255,0.08);
     cursor: pointer;
     display: flex;
     align-items: center;
@@ -177,8 +155,8 @@ header {
 
 .dropdown-selected:hover,
 .custom-dropdown.open .dropdown-selected {
-    background: rgba(255,255,255,0.12);
-    border-color: var(--primary-color);
+    background: rgba(255,255,255,0.1);
+    border-color: rgba(255,255,255,0.15);
 }
 
 .dropdown-text {
@@ -189,8 +167,8 @@ header {
 }
 
 .dropdown-arrow {
-    width: 14px;
-    height: 14px;
+    width: 12px;
+    height: 12px;
     margin-left: 8px;
     transition: transform var(--transition-speed) ease;
     flex-shrink: 0;
@@ -202,20 +180,20 @@ header {
 
 .dropdown-options {
     position: absolute;
-    top: calc(100% + 6px);
+    top: calc(100% + 4px);
     left: 0;
     right: 0;
     background: #2a2a2a;
-    border: 1px solid rgba(255,255,255,0.15);
+    border: 1px solid rgba(255,255,255,0.12);
     border-radius: var(--border-radius);
-    box-shadow: 0 10px 40px rgba(0,0,0,0.6);
-    max-height: 280px;
+    box-shadow: 0 8px 24px rgba(0,0,0,0.4);
+    max-height: 240px;
     overflow-y: auto;
     z-index: 2000;
     opacity: 0;
     visibility: hidden;
-    transform: translateY(-10px);
-    transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+    transform: translateY(-8px);
+    transition: all 0.15s ease;
 }
 
 .custom-dropdown.open .dropdown-options {
@@ -225,11 +203,11 @@ header {
 }
 
 .dropdown-option {
-    padding: 10px 12px;
+    padding: 9px 12px;
     font-size: 13px;
     color: var(--dropdown-text);
     cursor: pointer;
-    transition: background-color 0.15s ease;
+    transition: background-color 0.1s ease;
     user-select: none;
 }
 
@@ -250,7 +228,7 @@ header {
 }
 
 .dropdown-options::-webkit-scrollbar {
-    width: 6px;
+    width: 5px;
 }
 
 .dropdown-options::-webkit-scrollbar-track {
@@ -262,15 +240,10 @@ header {
     border-radius: 3px;
 }
 
-.dropdown-options::-webkit-scrollbar-thumb:hover {
-    background: #666;
-}
-
-/* Button Styles */
 button,
 .watermark-toggle button {
     padding: 0 14px;
-    height: 38px;
+    height: 36px;
     font-size: 13px;
     font-weight: 500;
     border: none;
@@ -288,13 +261,12 @@ button,
 }
 
 button:hover {
-    transform: translateY(-1px);
-    box-shadow: var(--shadow-hover);
     background: #4a4a4a;
+    box-shadow: var(--shadow-hover);
 }
 
 button:active {
-    transform: translateY(0);
+    transform: scale(0.98);
 }
 
 button.primary {
@@ -321,27 +293,16 @@ button.download-btn:hover {
     background-color: var(--green-hover);
 }
 
-/* Watermark toggle specific styles */
 .watermark-toggle {
     display: flex;
     align-items: center;
-    height: 38px;
+    height: 36px;
 }
 
 .watermark-toggle button {
-    /* keep same structure as other buttons but use watermark color */
     background: var(--watermark-color);
-    color: var(--text-light);
-    border: none;
-    min-width: 140px;
-    border-radius: var(--border-radius);
-    font-weight: 500;
-    font-size: 13px;
-    gap: 7px;
-    height: 38px;
-    padding: 0 14px;
-    box-shadow: var(--shadow);
-    transition: all var(--transition-speed) ease;
+    min-width: 36px;
+    height: 36px;
 }
 
 .watermark-toggle button:hover {
@@ -350,15 +311,12 @@ button.download-btn:hover {
 
 .watermark-toggle button.active,
 .watermark-toggle button[aria-pressed="true"] {
-    background: rgba(var(--watermark-color-rgb),0.18);
+    background: rgba(var(--watermark-color-rgb),0.2);
     border: 1px solid var(--watermark-color);
-    color: var(--text-light);
 }
 
 .watermark-toggle .wm-label {
-    color: inherit;
     font-size: 13px;
-    line-height: 1;
 }
 
 .icon {
@@ -367,7 +325,6 @@ button.download-btn:hover {
     flex-shrink: 0;
 }
 
-/* PDF Container - Optimized for screen fit */
 #pdf-container {
     flex: 1;
     display: grid;
@@ -375,7 +332,6 @@ button.download-btn:hover {
     padding: 0;
     background: var(--background-light);
     overflow: hidden;
-    position: relative;
     min-height: 0;
     height: calc(100vh - var(--header-height-desktop));
     height: calc(100dvh - var(--header-height-desktop));
@@ -399,7 +355,6 @@ button.download-btn:hover {
     flex: 1;
 }
 
-/* Floating Paper Selector - Enhanced Design */
 .paper-selector {
     position: absolute;
     bottom: 16px;
@@ -408,15 +363,15 @@ button.download-btn:hover {
     display: flex;
     align-items: center;
     gap: 10px;
-    padding: 6px 8px 6px 16px;
+    padding: 6px 8px 6px 14px;
     background: rgba(20, 20, 20, 0.92);
-    backdrop-filter: blur(16px);
-    -webkit-backdrop-filter: blur(16px);
-    border: 1px solid rgba(255, 255, 255, 0.12);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
     border-radius: 100px;
-    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.5);
-    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-    opacity: 0.92;
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.4);
+    transition: all 0.2s ease;
+    opacity: 0.9;
     z-index: 50;
     max-width: 90%;
 }
@@ -424,65 +379,56 @@ button.download-btn:hover {
 .paper-selector:hover,
 .paper-selector:focus-within {
     opacity: 1;
-    transform: translateX(-50%) translateY(-2px);
-    box-shadow: 0 12px 48px rgba(0, 0, 0, 0.6);
-    background: rgba(20, 20, 20, 0.96);
-    border-color: rgba(255, 255, 255, 0.2);
+    box-shadow: 0 6px 24px rgba(0, 0, 0, 0.5);
 }
 
 .paper-selector-label {
-    font-size: 12px;
+    font-size: 11px;
     font-weight: 600;
-    color: var(--secondary-color);
+    color: var(--text-dark);
     text-transform: uppercase;
-    letter-spacing: 0.6px;
+    letter-spacing: 0.05em;
     white-space: nowrap;
     flex-shrink: 0;
 }
 
 .paper-selector .custom-dropdown {
-    min-width: 180px;
-    max-width: 320px;
-    height: 36px;
+    min-width: 160px;
+    max-width: 280px;
+    height: 34px;
 }
 
 .paper-selector .dropdown-selected {
     background: transparent;
     border: none;
-    padding: 0 12px;
-    height: 36px;
-    color: var(--text-light);
+    padding: 0 10px;
+    height: 34px;
+    font-size: 12px;
 }
 
 .paper-selector .dropdown-selected:hover {
-    background: rgba(255,255,255,0.1);
-    border-radius: 20px;
+    background: rgba(255,255,255,0.08);
+    border-radius: 18px;
 }
 
 .paper-dropdown .dropdown-options {
-    bottom: calc(100% + 12px);
+    bottom: calc(100% + 10px);
     top: auto;
     left: 50%;
-    transform: translateX(-50%) translateY(10px);
+    transform: translateX(-50%) translateY(8px);
     width: max-content;
-    min-width: 240px;
-    max-width: 400px;
-    border-radius: 12px;
+    min-width: 200px;
+    max-width: 360px;
+    border-radius: 10px;
     background: #252525;
-    border: 1px solid rgba(255,255,255,0.12);
-    box-shadow: 0 12px 48px rgba(0,0,0,0.6);
-    opacity: 0;
-    visibility: hidden;
-    transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+    border: 1px solid rgba(255,255,255,0.1);
+    box-shadow: 0 8px 32px rgba(0,0,0,0.5);
 }
 
 .paper-dropdown.open .dropdown-options {
     transform: translateX(-50%) translateY(0);
-    opacity: 1;
-    visibility: visible;
 }
 
-/* Loader Styles */
 .loader-container {
     position: absolute;
     inset: 0;
@@ -495,20 +441,18 @@ button.download-btn:hover {
 }
 
 .loader {
-    width: 40px;
-    height: 40px;
-    border: 4px solid rgba(255,255,255,0.1);
-    border-top: 4px solid var(--primary-color);
+    width: 36px;
+    height: 36px;
+    border: 3px solid rgba(255,255,255,0.1);
+    border-top: 3px solid var(--primary-color);
     border-radius: 50%;
-    animation: spin 0.8s linear infinite;
+    animation: spin 0.7s linear infinite;
 }
 
 @keyframes spin {
-    0% { transform: rotate(0deg); }
-    100% { transform: rotate(360deg); }
+    to { transform: rotate(360deg); }
 }
 
-/* Grid Layouts */
 .grid-1 { 
     grid-template-columns: 1fr; 
 }
@@ -526,21 +470,20 @@ button.download-btn:hover {
     grid-template-rows: repeat(2, 1fr); 
 }
 
-/* Messages */
 .no-pdf-message, .no-more-papers {
     text-align: center;
     font-weight: 500;
 }
 
 .no-pdf-message {
-    padding: 40px 20px;
-    font-size: 16px;
+    padding: 32px 20px;
+    font-size: 15px;
     color: var(--text-dark);
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    gap: 16px;
+    gap: 14px;
 }
 
 .no-pdf-message.error-message {
@@ -548,19 +491,18 @@ button.download-btn:hover {
 }
 
 .no-more-papers {
-    padding: 20px;
-    font-size: 14px;
+    padding: 16px;
+    font-size: 13px;
     color: var(--text-dark);
-    background: rgba(255,255,255,0.03);
+    background: rgba(255,255,255,0.02);
     border-radius: var(--border-radius);
-    border: 1px solid rgba(255,255,255,0.08);
-    margin: 12px;
+    border: 1px solid rgba(255,255,255,0.06);
+    margin: 10px;
     display: flex;
     align-items: center;
     justify-content: center;
 }
 
-/* Rotation Prompt Styles */
 .rotation-prompt {
     position: fixed;
     inset: 0;
@@ -569,61 +511,52 @@ button.download-btn:hover {
     display: flex;
     align-items: center;
     justify-content: center;
-    backdrop-filter: blur(12px);
-    -webkit-backdrop-filter: blur(12px);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
 }
 
 .rotation-content {
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: 24px;
+    gap: 20px;
     color: var(--text-light);
     text-align: center;
-    padding: 32px 24px;
+    padding: 28px 20px;
     max-width: 90%;
 }
 
 .rotation-content p {
-    font-size: 16px;
+    font-size: 15px;
     font-weight: 500;
-    line-height: 1.5;
+    line-height: 1.4;
 }
 
 .rotation-icon {
-    width: 72px;
-    height: 72px;
+    width: 64px;
+    height: 64px;
     animation: rotate-device 2s infinite ease-in-out;
     color: var(--primary-color);
 }
 
 @keyframes rotate-device {
-    0% { transform: rotate(0deg); }
-    30% { transform: rotate(90deg); }
-    70% { transform: rotate(90deg); }
-    100% { transform: rotate(0deg); }
+    0%, 100% { transform: rotate(0deg); }
+    30%, 70% { transform: rotate(90deg); }
 }
 
-/* SEO Content - Hidden */
 .seo-content {
-    position: absolute !important;
-    left: -10000px !important;
-    width: 1px !important;
-    height: 1px !important;
-    overflow: hidden !important;
-    clip: rect(1px, 1px, 1px, 1px) !important;
-    white-space: nowrap !important;
+    position: absolute;
+    left: -10000px;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+    clip: rect(1px, 1px, 1px, 1px);
+    white-space: nowrap;
 }
 
-.seo-content h1, .seo-content h2, .seo-content h3, .seo-content p {
-    margin: 0 !important;
-    padding: 0 !important;
-}
-
-/* Scrollbar Styles */
 ::-webkit-scrollbar {
-    width: 8px;
-    height: 8px;
+    width: 7px;
+    height: 7px;
 }
 
 ::-webkit-scrollbar-track {
@@ -639,447 +572,55 @@ button.download-btn:hover {
     background: #555;
 }
 
-/* Tablet Styles (768px - 1024px) */
-@media (max-width: 1024px) {
-    header {
-        padding: 0 12px;
-        gap: 8px;
-    }
-
-    .header-center {
-        gap: 12px;
-    }
-
-    .control-group {
-        gap: 4px;
-    }
-
-    .subject-badge {
-        font-size: 14px;
-        padding: 0 10px;
-        max-width: 160px;
-    }
+.exam-type-buttons {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    height: 36px;
 }
 
-/* Mobile Styles - Optimized Header */
-@media (max-width: 768px) {
-    :root {
-        --header-height-mobile: 44px;
-    }
-
-    header {
-        flex-wrap: wrap;
-        height: auto;
-        min-height: var(--header-height-mobile);
-        padding: 6px 8px;
-        gap: 6px;
-    }
-
-    .header-info {
-        width: 100%;
-        justify-content: flex-start;
-        gap: 6px;
-        height: var(--header-height-mobile);
-        order: 1;
-        min-width: 0; /* ensure container can shrink */
-    }
-
-    .header-info h1 {
-        height: auto;
-        min-width: 0;
-    }
-
-    .header-center {
-        width: auto;
-        flex: 1;
-        justify-content: flex-start;
-        gap: 8px;
-        order: 2;
-        height: 40px;
-        min-width: 0;
-    }
-
-    .header-controls {
-        width: auto;
-        justify-content: flex-end;
-        gap: 6px;
-        order: 3;
-        height: 40px;
-    }
-
-    .subject-badge {
-        font-size: 13px;
-        height: auto;
-        padding: 4px 8px;
-        min-width: 60px;
-        margin-left: 4px;
-        /* allow the badge to occupy up to ~65% of the header row and wrap onto a second line */
-        max-width: 65%;
-        line-height: 1.15;
-        white-space: normal;
-        overflow: visible;
-        text-overflow: unset;
-    }
-
-    .control-group {
-        height: 36px;
-        gap: 4px;
-    }
-
-    .control-group label {
-        font-size: 12px;
-    }
-
-    .custom-dropdown {
-        min-width: 100px;
-        height: 36px;
-    }
-
-    .dropdown-selected {
-        height: 36px;
-        font-size: 12px;
-        padding: 0 10px;
-    }
-
-    .dropdown-arrow {
-        width: 12px;
-        height: 12px;
-        margin-left: 6px;
-    }
-
-    button,
-    .watermark-toggle button {
-        height: 36px;
-        font-size: 12px;
-        padding: 0 10px;
-        gap: 5px;
-    }
-
-    .btn-text {
-        display: none;
-    }
-
-    .watermark-toggle button {
-        min-width: 36px;
-        padding: 0 10px;
-    }
-
-    .watermark-toggle .wm-label {
-        display: none;
-    }
-
-    .icon {
-        width: 18px;
-        height: 18px;
-    }
-
-    .download-modal-content {
-        width: 95%;
-        max-width: 100%;
-        border-radius: 12px;
-    }
-
-    .download-modal-header {
-        padding: 20px;
-        gap: 12px;
-    }
-
-    .download-header-content {
-        gap: 12px;
-    }
-
-    .download-modal-title {
-        font-size: 18px;
-    }
-
-    .download-status-container {
-        gap: 8px;
-    }
-
-    .download-status-text {
-        font-size: 13px;
-    }
-
-    .download-percentage {
-        font-size: 12px;
-    }
-
-    .download-progress-bar {
-        height: 5px;
-    }
-
-    .download-modal-body {
-        padding: 20px;
-        gap: 12px;
-    }
-
-    .download-option {
-        flex-direction: column;
-        align-items: stretch;
-        padding: 16px;
-        gap: 16px;
-    }
-
-    .download-zip-btn {
-        width: 100%;
-        justify-content: center;
-        padding: 14px 20px;
-    }
-
-    #pdf-container {
-        height: calc(100vh - 90px);
-        height: calc(100dvh - 90px);
-    }
-
-    .paper-selector {
-        bottom: 12px;
-        padding: 4px 6px 4px 12px;
-        gap: 6px;
-        max-width: 94%;
-    }
-
-    .paper-selector-label {
-        font-size: 11px;
-    }
-
-    .paper-selector .custom-dropdown {
-        min-width: 140px;
-        max-width: 220px;
-        height: 32px;
-    }
-
-    .paper-selector .dropdown-selected {
-        height: 32px;
-        padding: 0 10px;
-        font-size: 12px;
-    }
-
-    .dropdown-option {
-        padding: 8px 10px;
-        font-size: 12px;
-    }
-
-    .loader {
-        width: 32px;
-        height: 32px;
-        border-width: 3px;
-    }
-
-    .no-pdf-message {
-        padding: 24px 16px;
-        font-size: 14px;
-    }
-
-    .rotation-content {
-        padding: 24px 16px;
-        gap: 20px;
-    }
-
-    .rotation-content p {
-        font-size: 14px;
-    }
-
-    .rotation-icon {
-        width: 56px;
-        height: 56px;
-    }
+.exam-toggle-group {
+    display: flex;
+    background: rgba(255,255,255,0.06);
+    border-radius: var(--border-radius);
+    padding: 2px;
+    gap: 2px;
+    height: 36px;
 }
 
-/* Small Mobile Styles */
-@media (max-width: 480px) {
-    header {
-        padding: 4px 6px;
-        gap: 4px;
-    }
-
-    .subject-badge {
-        font-size: 12px;
-        height: auto;
-        padding: 3px 6px;
-        min-width: 50px;
-        max-width: 70%;
-        margin-left: 2px;
-        line-height: 1.1;
-        white-space: normal;
-        overflow: visible;
-        text-overflow: unset;
-    }
-
-    .control-group {
-        height: 34px;
-        gap: 3px;
-    }
-
-    .control-group label {
-        font-size: 11px;
-    }
-
-    .custom-dropdown {
-        min-width: 90px;
-        height: 34px;
-    }
-
-    .dropdown-selected {
-        height: 34px;
-        font-size: 11px;
-        padding: 0 8px;
-    }
-
-    button,
-    .watermark-toggle button {
-        height: 34px;
-        font-size: 11px;
-        padding: 0 8px;
-        gap: 4px;
-    }
-
-    .icon {
-        width: 16px;
-        height: 16px;
-    }
-
-    .paper-selector {
-        bottom: 10px;
-        padding: 3px 5px 3px 10px;
-    }
-
-    .paper-selector-label {
-        font-size: 10px;
-    }
-
-    .paper-selector .custom-dropdown {
-        min-width: 120px;
-        max-width: 180px;
-        height: 30px;
-    }
-
-    .paper-selector .dropdown-selected {
-        height: 30px;
-        font-size: 11px;
-    }
-
-    .download-modal-header {
-        padding: 16px;
-        gap: 10px;
-    }
-
-    .download-header-content {
-        gap: 10px;
-    }
-
-    .download-modal-title {
-        font-size: 16px;
-    }
-
-    .download-status-container {
-        gap: 8px;
-    }
-
-    .download-status-content {
-        gap: 8px;
-    }
-
-    .download-status-text {
-        font-size: 12px;
-    }
-
-    .download-percentage {
-        font-size: 11px;
-    }
-
-    .download-progress-bar {
-        height: 4px;
-    }
-
-    .download-modal-body {
-        padding: 16px;
-        gap: 10px;
-    }
-
-    .download-option {
-        padding: 14px;
-    }
-
-    .download-option-title {
-        font-size: 15px;
-    }
-
-    .download-option-desc {
-        font-size: 12px;
-    }
-
-    .download-zip-btn {
-        padding: 12px 16px;
-        font-size: 13px;
-    }
+.exam-toggle-btn {
+    padding: 0 14px;
+    height: 32px;
+    font-size: 12px;
+    font-weight: 600;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    background: transparent;
+    color: var(--text-dark);
+    transition: all var(--transition-speed) ease;
+    white-space: nowrap;
+    box-shadow: none;
+    min-width: 72px;
 }
 
-/* Landscape Mobile Optimization */
-@media (max-width: 768px) and (orientation: landscape) {
-    header {
-        padding: 4px 8px;
-    }
-
-    .header-info,
-    .header-center,
-    .header-controls {
-        height: 38px;
-    }
-
-    .control-group,
-    button,
-    .watermark-toggle button {
-        height: 34px;
-    }
-
-    #pdf-container {
-        height: calc(100vh - 80px);
-        height: calc(100dvh - 80px);
-    }
+.exam-toggle-btn:hover:not(.active):not(.disabled) {
+    background: rgba(255,255,255,0.08);
+    color: var(--dropdown-text);
 }
 
-/* High DPI Displays */
-@media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
-    .icon {
-        image-rendering: -webkit-optimize-contrast;
-        image-rendering: crisp-edges;
-    }
+.exam-toggle-btn.active {
+    background: var(--primary-color);
+    color: var(--text-light);
+    box-shadow: 0 1px 4px rgba(var(--primary-color-rgb), 0.3);
 }
 
-/* Print Styles */
-@media print {
-    header,
-    .paper-selector,
-    .rotation-prompt,
-    .seo-content {
-        display: none !important;
-    }
-
-    body {
-        overflow: visible;
-    }
-
-    #pdf-container {
-        height: auto;
-    }
+.exam-toggle-btn.disabled {
+    opacity: 0.3;
+    cursor: not-allowed;
+    pointer-events: none;
 }
 
-/* Reduced Motion */
-@media (prefers-reduced-motion: reduce) {
-    *,
-    *::before,
-    *::after {
-        animation-duration: 0.01ms !important;
-        animation-iteration-count: 1 !important;
-        transition-duration: 0.01ms !important;
-    }
-
-    .rotation-icon {
-        animation: none;
-    }
-}
-
-/* Download Modal Styles */
 .download-modal {
     position: fixed;
     inset: 0;
@@ -1089,7 +630,7 @@ button.download-btn:hover {
     justify-content: center;
     opacity: 0;
     visibility: hidden;
-    transition: opacity 0.3s cubic-bezier(0.4, 0, 0.2, 1), visibility 0.3s;
+    transition: opacity 0.2s ease, visibility 0.2s;
     pointer-events: none;
 }
 
@@ -1103,24 +644,24 @@ button.download-btn:hover {
     position: absolute;
     inset: 0;
     background: rgba(0, 0, 0, 0.75);
-    backdrop-filter: blur(8px);
-    -webkit-backdrop-filter: blur(8px);
+    backdrop-filter: blur(6px);
+    -webkit-backdrop-filter: blur(6px);
 }
 
 .download-modal-content {
     position: relative;
     background: var(--background-light);
     border: 1px solid rgba(255, 255, 255, 0.1);
-    border-radius: 16px;
-    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
+    border-radius: 12px;
+    box-shadow: 0 12px 48px rgba(0, 0, 0, 0.5);
     width: 90%;
-    max-width: 560px;
+    max-width: 520px;
     max-height: 90vh;
     overflow: hidden;
     display: flex;
     flex-direction: column;
-    transform: scale(0.95) translateY(20px);
-    transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    transform: scale(0.96) translateY(12px);
+    transition: transform 0.2s ease;
     z-index: 10001;
 }
 
@@ -1132,10 +673,10 @@ button.download-btn:hover {
     display: flex;
     align-items: flex-start;
     justify-content: space-between;
-    padding: 24px 28px;
-    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    padding: 20px 24px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.08);
     background: rgba(255, 255, 255, 0.02);
-    gap: 16px;
+    gap: 14px;
 }
 
 .download-header-content {
@@ -1143,34 +684,33 @@ button.download-btn:hover {
     min-width: 0;
     display: flex;
     flex-direction: column;
-    gap: 16px;
+    gap: 14px;
 }
 
 .download-modal-title {
-    font-size: 20px;
+    font-size: 18px;
     font-weight: 600;
     color: var(--text-light);
     margin: 0;
-    line-height: 1.4;
+    line-height: 1.3;
 }
 
 .download-modal-title span {
     color: var(--secondary-color);
 }
 
-/* Download Status Container */
 .download-status-container {
     display: flex;
     flex-direction: column;
-    gap: 10px;
+    gap: 8px;
     width: 100%;
-    animation: fadeInDown 0.3s ease-out;
+    animation: fadeInDown 0.2s ease-out;
 }
 
 @keyframes fadeInDown {
     from {
         opacity: 0;
-        transform: translateY(-10px);
+        transform: translateY(-8px);
     }
     to {
         opacity: 1;
@@ -1182,16 +722,15 @@ button.download-btn:hover {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    gap: 12px;
-    flex-wrap: wrap;
+    gap: 10px;
 }
 
 .download-status-text {
     flex: 1;
     margin: 0;
-    font-size: 14px;
+    font-size: 13px;
     font-weight: 500;
-    line-height: 1.5;
+    line-height: 1.4;
     color: var(--text-light);
     min-width: 0;
 }
@@ -1213,67 +752,40 @@ button.download-btn:hover {
 }
 
 .download-percentage {
-    font-size: 13px;
+    font-size: 12px;
     font-weight: 600;
     color: var(--secondary-color);
     white-space: nowrap;
     flex-shrink: 0;
 }
 
-/* Progress Bar */
 .download-progress-bar {
     width: 100%;
-    height: 6px;
-    background: rgba(255, 255, 255, 0.1);
+    height: 5px;
+    background: rgba(255, 255, 255, 0.08);
     border-radius: 100px;
     overflow: hidden;
-    position: relative;
     box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.2);
 }
 
 .download-progress-fill {
     height: 100%;
-    background: linear-gradient(90deg, var(--primary-color) 0%, var(--secondary-color) 100%);
+    background: var(--primary-color);
     border-radius: 100px;
     width: 0%;
-    transition: width 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-    position: relative;
-    overflow: hidden;
-}
-
-.download-progress-fill::after {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    bottom: 0;
-    right: 0;
-    background: linear-gradient(90deg, 
-        transparent 0%, 
-        rgba(255, 255, 255, 0.3) 50%, 
-        transparent 100%);
-    animation: shimmer 2s infinite;
-}
-
-@keyframes shimmer {
-    0% {
-        transform: translateX(-100%);
-    }
-    100% {
-        transform: translateX(100%);
-    }
+    transition: width 0.3s ease;
 }
 
 .download-progress-fill[data-status="success"] {
-    background: linear-gradient(90deg, var(--green-color) 0%, #34d399 100%);
+    background: var(--green-color);
 }
 
 .download-progress-fill[data-status="error"] {
-    background: linear-gradient(90deg, #ef4444 0%, #f87171 100%);
+    background: #ef4444;
 }
 
 .download-progress-fill[data-status="warning"] {
-    background: linear-gradient(90deg, #f59e0b 0%, #fbbf24 100%);
+    background: #f59e0b;
 }
 
 .download-modal-close {
@@ -1281,15 +793,16 @@ button.download-btn:hover {
     border: none;
     color: var(--text-dark);
     cursor: pointer;
-    padding: 8px;
-    border-radius: 8px;
+    padding: 6px;
+    border-radius: 6px;
     display: flex;
     align-items: center;
     justify-content: center;
-    transition: all 0.2s ease;
-    width: 36px;
-    height: 36px;
+    transition: all 0.15s ease;
+    width: 32px;
+    height: 32px;
     flex-shrink: 0;
+    box-shadow: none;
 }
 
 .download-modal-close:hover {
@@ -1298,35 +811,34 @@ button.download-btn:hover {
 }
 
 .download-modal-close .icon {
-    width: 20px;
-    height: 20px;
+    width: 18px;
+    height: 18px;
 }
 
 .download-modal-body {
-    padding: 24px 28px;
+    padding: 20px 24px;
     overflow-y: auto;
     display: flex;
     flex-direction: column;
-    gap: 16px;
+    gap: 14px;
 }
 
 .download-option {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    padding: 20px;
+    padding: 16px;
     background: rgba(255, 255, 255, 0.03);
-    border: 1px solid rgba(255, 255, 255, 0.08);
-    border-radius: 12px;
-    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-    gap: 20px;
+    border: 1px solid rgba(255, 255, 255, 0.06);
+    border-radius: 10px;
+    transition: all 0.2s ease;
+    gap: 16px;
 }
 
 .download-option:hover {
     background: rgba(255, 255, 255, 0.05);
-    border-color: rgba(255, 255, 255, 0.15);
-    transform: translateY(-2px);
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+    border-color: rgba(255, 255, 255, 0.12);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
 }
 
 .download-option-info {
@@ -1335,63 +847,52 @@ button.download-btn:hover {
 }
 
 .download-option-title {
-    font-size: 16px;
+    font-size: 15px;
     font-weight: 600;
     color: var(--text-light);
-    margin: 0 0 6px 0;
+    margin: 0 0 4px 0;
 }
 
 .download-option-desc {
-    font-size: 13px;
+    font-size: 12px;
     color: var(--text-dark);
     margin: 0;
-    line-height: 1.5;
+    line-height: 1.4;
 }
 
 .download-zip-btn {
     display: flex;
     align-items: center;
-    gap: 8px;
-    padding: 12px 20px;
+    gap: 7px;
+    padding: 10px 16px;
     background: var(--green-color);
     color: var(--text-light);
     border: none;
-    border-radius: 10px;
-    font-size: 14px;
+    border-radius: 8px;
+    font-size: 13px;
     font-weight: 600;
-    text-decoration: none;
     cursor: pointer;
-    transition: all 0.2s ease;
+    transition: all 0.15s ease;
     flex-shrink: 0;
     white-space: nowrap;
-    box-shadow: 0 2px 8px rgba(40, 167, 69, 0.3);
+    box-shadow: 0 1px 4px rgba(40, 167, 69, 0.3);
+    height: auto;
 }
 
 .download-zip-btn:hover {
     background: var(--green-hover);
-    transform: translateY(-1px);
-    box-shadow: 0 4px 12px rgba(40, 167, 69, 0.4);
+    box-shadow: 0 2px 8px rgba(40, 167, 69, 0.4);
 }
 
 .download-zip-btn:active {
-    transform: translateY(0);
+    transform: scale(0.98);
 }
 
 .download-zip-btn .icon {
-    width: 18px;
-    height: 18px;
+    width: 16px;
+    height: 16px;
 }
 
-/* Dark Mode Enhancement (for systems that support it) */
-@media (prefers-color-scheme: dark) {
-    body {
-        background: var(--background-dark);
-    }
-}
-
-/* Additional styles for download modal enhancements */
-
-/* Disabled button state */
 .download-zip-btn.disabled {
     opacity: 0.5;
     cursor: not-allowed;
@@ -1399,236 +900,460 @@ button.download-btn:hover {
     background: #6b7280;
 }
 
-.download-zip-btn.disabled:hover {
-    transform: none;
-    background: #6b7280;
-}
-
-/* Toast notification styles */
-.download-error-toast,
-.download-progress-toast,
-.download-success-toast {
-    position: fixed;
-    top: 20px;
-    right: 20px;
-    padding: 1rem 1.5rem;
-    border-radius: 8px;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-    z-index: 10000;
-    font-weight: 500;
-    display: flex;
-    align-items: center;
-    gap: 12px;
-    max-width: 400px;
-}
-
-.download-error-toast {
-    background: #ef4444;
-    color: white;
-}
-
-.download-progress-toast {
-    background: #3b82f6;
-    color: white;
-}
-
-.download-success-toast {
-    background: #10b981;
-    color: white;
-}
-
-/* Toast animations */
-@keyframes slideInRight {
-    from {
-        transform: translateX(400px);
-        opacity: 0;
-    }
-    to {
-        transform: translateX(0);
-        opacity: 1;
-    }
-}
-
-@keyframes slideOutRight {
-    from {
-        transform: translateX(0);
-        opacity: 1;
-    }
-    to {
-        transform: translateX(400px);
-        opacity: 0;
-    }
-}
-
-/* Progress loader inside toast */
-.download-progress-toast .loader {
-    width: 20px;
-    height: 20px;
-    border: 2px solid rgba(255, 255, 255, 0.3);
-    border-top-color: white;
-    border-radius: 50%;
-    animation: spin 0.8s linear infinite;
-}
-
-@keyframes spin {
-    to {
-        transform: rotate(360deg);
-    }
-}
-
-/* Download option enhanced styles */
-.download-option {
-    opacity: 1;
-    transition: opacity 0.3s ease;
-}
-
-.download-option.disabled {
-    opacity: 0.6;
-}
-
-.download-option-desc {
-    transition: color 0.2s ease;
-}
-
-/* Mobile responsiveness for toasts */
-@media (max-width: 640px) {
-    .download-error-toast,
-    .download-progress-toast,
-    .download-success-toast {
-        right: 10px;
-        left: 10px;
-        top: 10px;
-        max-width: calc(100% - 20px);
-    }
-}
-
-/* Ensure JSZip works properly */
-/* Add visual feedback during ZIP creation */
-.creating-zip {
-    pointer-events: none;
-    opacity: 0.7;
-}
-
-/* Download modal improvements */
-.download-modal-body {
-    max-height: 70vh;
-    overflow-y: auto;
-}
-
-/* Scrollbar styling for modal */
-.download-modal-body::-webkit-scrollbar {
-    width: 8px;
-}
-
-.download-modal-body::-webkit-scrollbar-track {
-    background: #f1f1f1;
-    border-radius: 4px;
-}
-
-.download-modal-body::-webkit-scrollbar-thumb {
-    background: #888;
-    border-radius: 4px;
-}
-
-.download-modal-body::-webkit-scrollbar-thumb:hover {
-    background: #555;
-}
-/* Exam Type Toggle Buttons */
-.exam-type-buttons {
-    display: flex;
-    align-items: center;
-    gap: 6px;
-    height: 38px;
-}
-
-.exam-toggle-group {
-    display: flex;
-    background: rgba(255,255,255,0.06);
-    border-radius: var(--border-radius);
-    padding: 2px;
-    gap: 2px;
-    height: 38px;
-}
-
-.exam-toggle-btn {
-    padding: 0 16px;
-    height: 34px;
-    font-size: 13px;
-    font-weight: 600;
-    border: none;
-    border-radius: 6px;
-    cursor: pointer;
-    background: transparent;
-    color: var(--text-dark);
-    transition: all var(--transition-speed) ease;
-    white-space: nowrap;
-    box-shadow: none;
-    min-width: 80px;
-}
-
-.exam-toggle-btn:hover:not(.active):not(.disabled) {
-    background: rgba(255,255,255,0.08);
-    color: var(--dropdown-text);
-    transform: none;
-    box-shadow: none;
-}
-
-.exam-toggle-btn.active {
-    background: var(--primary-color);
-    color: var(--text-light);
-    box-shadow: 0 2px 6px rgba(var(--primary-color-rgb), 0.3);
-}
-
-.exam-toggle-btn.active:hover {
-    background: var(--primary-hover);
-    transform: none;
-}
-
-.exam-toggle-btn.disabled {
-    opacity: 0.3;
-    cursor: not-allowed;
-    pointer-events: none;
-}
-
-/* Mobile Responsiveness for Exam Toggle */
-@media (max-width: 768px) {
-    .exam-type-buttons {
-        height: 36px;
-    }
-    
-    .exam-toggle-group {
-        height: 36px;
-    }
-    
-    .exam-toggle-btn {
+@media (max-width: 1024px) {
+    header {
         padding: 0 12px;
+        gap: 12px;
+    }
+
+    .header-center {
+        gap: 16px;
+    }
+
+    .control-group {
+        gap: 6px;
+    }
+
+    .subject-badge {
+        font-size: 14px;
+        max-width: 180px;
+    }
+}
+
+@media (max-width: 768px) {
+    :root {
+        --header-height-mobile: 84px;
+    }
+
+    header {
+        flex-wrap: wrap;
+        height: auto;
+        min-height: var(--header-height-mobile);
+        padding: 8px 10px;
+        gap: 8px;
+    }
+
+    .header-info {
+        width: 100%;
+        justify-content: flex-start;
+        gap: 8px;
+        height: 36px;
+        order: 1;
+    }
+
+    .header-info h1 {
+        height: auto;
+        flex: 1;
+        min-width: 0;
+    }
+
+    .subject-badge {
+        font-size: 13px;
+        height: 28px;
+        padding: 0 10px;
+        margin-left: 0;
+        max-width: none;
+        flex: 1;
+        min-width: 0;
+    }
+
+    .header-center {
+        width: 100%;
+        flex: none;
+        justify-content: flex-start;
+        gap: 10px;
+        order: 2;
+        height: 36px;
+    }
+
+    .exam-type-buttons {
+        order: -1;
+    }
+
+    .exam-type-buttons label {
+        font-size: 11px;
+    }
+
+    .exam-toggle-group {
+        height: 32px;
+    }
+
+    .exam-toggle-btn {
+        height: 28px;
+        font-size: 11px;
+        padding: 0 10px;
+        min-width: 60px;
+    }
+
+    .header-controls {
+        width: 100%;
+        justify-content: flex-end;
+        gap: 8px;
+        order: 3;
+        height: 36px;
+    }
+
+    .control-group {
+        height: 32px;
+        gap: 6px;
+    }
+
+    .control-group label {
+        font-size: 11px;
+    }
+
+    .custom-dropdown {
+        min-width: 90px;
+        height: 32px;
+    }
+
+    .dropdown-selected {
         height: 32px;
         font-size: 12px;
-        min-width: 70px;
+        padding: 0 10px;
     }
-    
-    .exam-type-buttons label {
+
+    .dropdown-arrow {
+        width: 11px;
+        height: 11px;
+        margin-left: 6px;
+    }
+
+    button,
+    .watermark-toggle button {
+        height: 32px;
+        font-size: 12px;
+        padding: 0 10px;
+        gap: 6px;
+    }
+
+    .btn-text,
+    .watermark-toggle .wm-label {
+        display: none;
+    }
+
+    .watermark-toggle button {
+        min-width: 32px;
+        padding: 0 8px;
+    }
+
+    .icon {
+        width: 16px;
+        height: 16px;
+    }
+
+    #pdf-container {
+        height: calc(100vh - var(--header-height-mobile));
+        height: calc(100dvh - var(--header-height-mobile));
+    }
+
+    .paper-selector {
+        bottom: 12px;
+        padding: 5px 7px 5px 12px;
+        gap: 8px;
+        max-width: 92%;
+    }
+
+    .paper-selector-label {
+        font-size: 10px;
+    }
+
+    .paper-selector .custom-dropdown {
+        min-width: 140px;
+        max-width: 200px;
+        height: 30px;
+    }
+
+    .paper-selector .dropdown-selected {
+        height: 30px;
+        padding: 0 9px;
+        font-size: 11px;
+    }
+
+    .dropdown-option {
+        padding: 8px 10px;
+        font-size: 12px;
+    }
+
+    .loader {
+        width: 32px;
+        height: 32px;
+        border-width: 3px;
+    }
+
+    .no-pdf-message {
+        padding: 24px 16px;
+        font-size: 14px;
+    }
+
+    .rotation-content {
+        padding: 24px 16px;
+        gap: 18px;
+    }
+
+    .rotation-content p {
+        font-size: 14px;
+    }
+
+    .rotation-icon {
+        width: 56px;
+        height: 56px;
+    }
+
+    .download-modal-content {
+        width: 94%;
+        border-radius: 10px;
+    }
+
+    .download-modal-header {
+        padding: 16px 18px;
+        gap: 12px;
+    }
+
+    .download-header-content {
+        gap: 12px;
+    }
+
+    .download-modal-title {
+        font-size: 16px;
+    }
+
+    .download-status-text {
+        font-size: 12px;
+    }
+
+    .download-percentage {
+        font-size: 11px;
+    }
+
+    .download-progress-bar {
+        height: 4px;
+    }
+
+    .download-modal-body {
+        padding: 16px 18px;
+        gap: 12px;
+    }
+
+    .download-option {
+        flex-direction: column;
+        align-items: stretch;
+        padding: 14px;
+        gap: 12px;
+    }
+
+    .download-option-title {
+        font-size: 14px;
+    }
+
+    .download-option-desc {
+        font-size: 11px;
+    }
+
+    .download-zip-btn {
+        width: 100%;
+        justify-content: center;
+        padding: 11px 18px;
         font-size: 12px;
     }
 }
 
 @media (max-width: 480px) {
-    .exam-type-buttons {
-        height: 34px;
+    header {
+        padding: 6px 8px;
+        gap: 6px;
     }
-    
+
+    .header-info {
+        height: 32px;
+        gap: 6px;
+    }
+
+    .subject-badge {
+        font-size: 12px;
+        height: 26px;
+        padding: 0 8px;
+    }
+
+    .header-center {
+        height: 32px;
+        gap: 8px;
+    }
+
+    .exam-type-buttons label {
+        font-size: 10px;
+    }
+
     .exam-toggle-group {
-        height: 34px;
+        height: 30px;
     }
-    
+
     .exam-toggle-btn {
-        padding: 0 10px;
+        height: 26px;
+        font-size: 10px;
+        padding: 0 8px;
+        min-width: 54px;
+    }
+
+    .header-controls {
+        height: 32px;
+        gap: 6px;
+    }
+
+    .control-group {
+        height: 30px;
+        gap: 5px;
+    }
+
+    .control-group label {
+        font-size: 10px;
+    }
+
+    .custom-dropdown {
+        min-width: 80px;
+        height: 30px;
+    }
+
+    .dropdown-selected {
         height: 30px;
         font-size: 11px;
-        min-width: 65px;
+        padding: 0 8px;
     }
-    
-    .exam-type-buttons label {
+
+    button,
+    .watermark-toggle button {
+        height: 30px;
         font-size: 11px;
+        padding: 0 8px;
+        gap: 5px;
+    }
+
+    .watermark-toggle button {
+        min-width: 30px;
+        padding: 0 7px;
+    }
+
+    .icon {
+        width: 15px;
+        height: 15px;
+    }
+
+    .paper-selector {
+        bottom: 10px;
+        padding: 4px 6px 4px 10px;
+        gap: 6px;
+    }
+
+    .paper-selector-label {
+        font-size: 9px;
+    }
+
+    .paper-selector .custom-dropdown {
+        min-width: 120px;
+        max-width: 180px;
+        height: 28px;
+    }
+
+    .paper-selector .dropdown-selected {
+        height: 28px;
+        font-size: 11px;
+        padding: 0 8px;
+    }
+
+    .download-modal-header {
+        padding: 14px 16px;
+    }
+
+    .download-modal-title {
+        font-size: 15px;
+    }
+
+    .download-status-text {
+        font-size: 11px;
+    }
+
+    .download-percentage {
+        font-size: 10px;
+    }
+
+    .download-modal-body {
+        padding: 14px 16px;
+        gap: 10px;
+    }
+
+    .download-option {
+        padding: 12px;
+    }
+
+    .download-option-title {
+        font-size: 13px;
+    }
+
+    .download-option-desc {
+        font-size: 11px;
+    }
+
+    .download-zip-btn {
+        padding: 10px 16px;
+        font-size: 12px;
+    }
+}
+
+@media (max-width: 768px) and (orientation: landscape) {
+    :root {
+        --header-height-mobile: 76px;
+    }
+
+    header {
+        padding: 6px 10px;
+    }
+
+    .header-info,
+    .header-center,
+    .header-controls {
+        height: 32px;
+    }
+
+    .control-group,
+    button,
+    .watermark-toggle button {
+        height: 30px;
+    }
+
+    #pdf-container {
+        height: calc(100vh - var(--header-height-mobile));
+        height: calc(100dvh - var(--header-height-mobile));
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+    }
+
+    .rotation-icon {
+        animation: none;
+    }
+}
+
+@media print {
+    header,
+    .paper-selector,
+    .rotation-prompt,
+    .seo-content,
+    .download-modal {
+        display: none !important;
+    }
+
+    body {
+        overflow: visible;
+    }
+
+    #pdf-container {
+        height: auto;
     }
 }

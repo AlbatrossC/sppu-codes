@@ -1,399 +1,283 @@
 SPPU QUESTION PAPER RENAME REPORT
 ================================================================================
-Run Time           : 2026-01-04 18:34:13.884271
-Folders Processed  : aids, cse, fy, it
+Run Time           : 2026-01-05 21:33:30.651142
+Folders Processed  : it
 ================================================================================
 
-TOTAL FILES RENAMED : 0
-TOTAL FILES FAILED  : 0
-TOTAL FILES SKIPPED : 476
+TOTAL FILES RENAMED : 87
+TOTAL FILES FAILED  : 1
+TOTAL FILES SKIPPED : 92
+
+✅ FILES RENAMED
+--------------------------------------------------------------------------------
+OLD : D:\Sppu-questionpapers\it\sem-5\advanced-database-and-management-system-ele-i-it\August_2025.pdf
+NEW : D:\Sppu-questionpapers\it\sem-5\advanced-database-and-management-system-ele-i-it\insem-august-2025-pat2019-adamseii.pdf
+
+OLD : D:\Sppu-questionpapers\it\sem-5\design-and-analysis-of-algorithms-ele-i-it\May_Jun_2022.pdf
+NEW : D:\Sppu-questionpapers\it\sem-5\design-and-analysis-of-algorithms-ele-i-it\endsem-may-jun-2022-pat2019-daaoaeii.pdf
+
+OLD : D:\Sppu-questionpapers\it\sem-5\human-compter-interaction-it\August_2025.pdf
+NEW : D:\Sppu-questionpapers\it\sem-5\human-compter-interaction-it\insem-august-2025-pat2019-hcii.pdf
+
+OLD : D:\Sppu-questionpapers\it\sem-5\human-compter-interaction-it\May_Jun_2023.pdf
+NEW : D:\Sppu-questionpapers\it\sem-5\human-compter-interaction-it\endsem-may-jun-2023-pat2019-hcii.pdf
+
+OLD : D:\Sppu-questionpapers\it\sem-5\human-compter-interaction-it\May_Jun_2024.pdf
+NEW : D:\Sppu-questionpapers\it\sem-5\human-compter-interaction-it\endsem-may-jun-2024-pat2019-hcii.pdf
+
+OLD : D:\Sppu-questionpapers\it\sem-5\human-compter-interaction-it\May_Jun_2025.pdf
+NEW : D:\Sppu-questionpapers\it\sem-5\human-compter-interaction-it\endsem-may-jun-2025-pat2019-hcii.pdf
+
+OLD : D:\Sppu-questionpapers\it\sem-5\human-compter-interaction-it\Nov_Dec_2022.pdf
+NEW : D:\Sppu-questionpapers\it\sem-5\human-compter-interaction-it\endsem-nov-dec-2022-pat2019-hcii.pdf
+
+OLD : D:\Sppu-questionpapers\it\sem-5\human-compter-interaction-it\Nov_Dec_2023.pdf
+NEW : D:\Sppu-questionpapers\it\sem-5\human-compter-interaction-it\endsem-nov-dec-2023-pat2019-hcii.pdf
+
+OLD : D:\Sppu-questionpapers\it\sem-5\human-compter-interaction-it\Nov_Dec_2024.pdf
+NEW : D:\Sppu-questionpapers\it\sem-5\human-compter-interaction-it\endsem-nov-dec-2024-pat2019-hcii.pdf
+
+OLD : D:\Sppu-questionpapers\it\sem-5\human-compter-interaction-it\Oct - 2022.pdf
+NEW : D:\Sppu-questionpapers\it\sem-5\human-compter-interaction-it\insem-oct-2022-pat2019-hcii.pdf
+
+OLD : D:\Sppu-questionpapers\it\sem-5\human-compter-interaction-it\Sep - 2023.pdf
+NEW : D:\Sppu-questionpapers\it\sem-5\human-compter-interaction-it\insem-sep-2023-pat2019-hcii.pdf
+
+OLD : D:\Sppu-questionpapers\it\sem-5\human-compter-interaction-it\Sep - 2024.pdf
+NEW : D:\Sppu-questionpapers\it\sem-5\human-compter-interaction-it\insem-sep-2024-pat2019-hcii.pdf
+
+OLD : D:\Sppu-questionpapers\it\sem-5\internet-of-things-ele-i-it\May_Jun_2023.pdf
+NEW : D:\Sppu-questionpapers\it\sem-5\internet-of-things-ele-i-it\endsem-may-jun-2023-pat2019-ioteii.pdf
+
+OLD : D:\Sppu-questionpapers\it\sem-5\internet-of-things-ele-i-it\May_Jun_2024.pdf
+NEW : D:\Sppu-questionpapers\it\sem-5\internet-of-things-ele-i-it\endsem-may-jun-2024-pat2019-ioteii.pdf
+
+OLD : D:\Sppu-questionpapers\it\sem-5\internet-of-things-ele-i-it\May_Jun_2025.pdf
+NEW : D:\Sppu-questionpapers\it\sem-5\internet-of-things-ele-i-it\endsem-may-jun-2025-pat2019-ioteii.pdf
+
+OLD : D:\Sppu-questionpapers\it\sem-5\internet-of-things-ele-i-it\Nov_Dec_2022.pdf
+NEW : D:\Sppu-questionpapers\it\sem-5\internet-of-things-ele-i-it\endsem-nov-dec-2022-pat2019-ioteii.pdf
+
+OLD : D:\Sppu-questionpapers\it\sem-5\internet-of-things-ele-i-it\Nov_Dec_2023.pdf
+NEW : D:\Sppu-questionpapers\it\sem-5\internet-of-things-ele-i-it\endsem-nov-dec-2023-pat2019-ioteii.pdf
+
+OLD : D:\Sppu-questionpapers\it\sem-5\internet-of-things-ele-i-it\Nov_Dec_2024.pdf
+NEW : D:\Sppu-questionpapers\it\sem-5\internet-of-things-ele-i-it\endsem-nov-dec-2024-pat2019-ioteii.pdf
+
+OLD : D:\Sppu-questionpapers\it\sem-5\internet-of-things-ele-i-it\Oct - 2022.pdf
+NEW : D:\Sppu-questionpapers\it\sem-5\internet-of-things-ele-i-it\insem-oct-2022-pat2019-ioteii.pdf
+
+OLD : D:\Sppu-questionpapers\it\sem-5\internet-of-things-ele-i-it\Sep - 2023.pdf
+NEW : D:\Sppu-questionpapers\it\sem-5\internet-of-things-ele-i-it\insem-sep-2023-pat2019-ioteii.pdf
+
+OLD : D:\Sppu-questionpapers\it\sem-5\internet-of-things-ele-i-it\Sep - 2024.pdf
+NEW : D:\Sppu-questionpapers\it\sem-5\internet-of-things-ele-i-it\insem-sep-2024-pat2019-ioteii.pdf
+
+OLD : D:\Sppu-questionpapers\it\sem-5\machine-learning-it\August_2025.pdf
+NEW : D:\Sppu-questionpapers\it\sem-5\machine-learning-it\insem-august-2025-pat2019-mli.pdf
+
+OLD : D:\Sppu-questionpapers\it\sem-5\machine-learning-it\May_Jun_2023.pdf
+NEW : D:\Sppu-questionpapers\it\sem-5\machine-learning-it\endsem-may-jun-2023-pat2019-mli.pdf
+
+OLD : D:\Sppu-questionpapers\it\sem-5\machine-learning-it\May_Jun_2024.pdf
+NEW : D:\Sppu-questionpapers\it\sem-5\machine-learning-it\endsem-may-jun-2024-pat2019-mli.pdf
+
+OLD : D:\Sppu-questionpapers\it\sem-5\machine-learning-it\May_Jun_2025.pdf
+NEW : D:\Sppu-questionpapers\it\sem-5\machine-learning-it\endsem-may-jun-2025-pat2019-mli.pdf
+
+OLD : D:\Sppu-questionpapers\it\sem-5\machine-learning-it\Nov_Dec_2022.pdf
+NEW : D:\Sppu-questionpapers\it\sem-5\machine-learning-it\endsem-nov-dec-2022-pat2019-mli.pdf
+
+OLD : D:\Sppu-questionpapers\it\sem-5\machine-learning-it\Nov_Dec_2023.pdf
+NEW : D:\Sppu-questionpapers\it\sem-5\machine-learning-it\endsem-nov-dec-2023-pat2019-mli.pdf
+
+OLD : D:\Sppu-questionpapers\it\sem-5\machine-learning-it\Nov_Dec_2024.pdf
+NEW : D:\Sppu-questionpapers\it\sem-5\machine-learning-it\endsem-nov-dec-2024-pat2019-mli.pdf
+
+OLD : D:\Sppu-questionpapers\it\sem-5\machine-learning-it\Oct - 2022.pdf
+NEW : D:\Sppu-questionpapers\it\sem-5\machine-learning-it\insem-oct-2022-pat2019-mli.pdf
+
+OLD : D:\Sppu-questionpapers\it\sem-5\machine-learning-it\Sep - 2023.pdf
+NEW : D:\Sppu-questionpapers\it\sem-5\machine-learning-it\insem-sep-2023-pat2019-mli.pdf
+
+OLD : D:\Sppu-questionpapers\it\sem-5\machine-learning-it\Sep - 2024.pdf
+NEW : D:\Sppu-questionpapers\it\sem-5\machine-learning-it\insem-sep-2024-pat2019-mli.pdf
+
+OLD : D:\Sppu-questionpapers\it\sem-5\operating-systems-it\August_2025.pdf
+NEW : D:\Sppu-questionpapers\it\sem-5\operating-systems-it\insem-august-2025-pat2019-osi.pdf
+
+OLD : D:\Sppu-questionpapers\it\sem-5\operating-systems-it\May_Jun_2023.pdf
+NEW : D:\Sppu-questionpapers\it\sem-5\operating-systems-it\endsem-may-jun-2023-pat2019-osi.pdf
+
+OLD : D:\Sppu-questionpapers\it\sem-5\operating-systems-it\May_Jun_2024.pdf
+NEW : D:\Sppu-questionpapers\it\sem-5\operating-systems-it\endsem-may-jun-2024-pat2019-osi.pdf
+
+OLD : D:\Sppu-questionpapers\it\sem-5\operating-systems-it\May_Jun_2025.pdf
+NEW : D:\Sppu-questionpapers\it\sem-5\operating-systems-it\endsem-may-jun-2025-pat2019-osi.pdf
+
+OLD : D:\Sppu-questionpapers\it\sem-5\operating-systems-it\Nov_Dec_2022.pdf
+NEW : D:\Sppu-questionpapers\it\sem-5\operating-systems-it\endsem-nov-dec-2022-pat2019-osi.pdf
+
+OLD : D:\Sppu-questionpapers\it\sem-5\operating-systems-it\Nov_Dec_2023.pdf
+NEW : D:\Sppu-questionpapers\it\sem-5\operating-systems-it\endsem-nov-dec-2023-pat2019-osi.pdf
+
+OLD : D:\Sppu-questionpapers\it\sem-5\operating-systems-it\Nov_Dec_2024.pdf
+NEW : D:\Sppu-questionpapers\it\sem-5\operating-systems-it\endsem-nov-dec-2024-pat2019-osi.pdf
+
+OLD : D:\Sppu-questionpapers\it\sem-5\operating-systems-it\Oct - 2022.pdf
+NEW : D:\Sppu-questionpapers\it\sem-5\operating-systems-it\insem-oct-2022-pat2019-osi.pdf
+
+OLD : D:\Sppu-questionpapers\it\sem-5\operating-systems-it\Sep - 2023.pdf
+NEW : D:\Sppu-questionpapers\it\sem-5\operating-systems-it\insem-sep-2023-pat2019-osi.pdf
+
+OLD : D:\Sppu-questionpapers\it\sem-5\operating-systems-it\Sep - 2024.pdf
+NEW : D:\Sppu-questionpapers\it\sem-5\operating-systems-it\insem-sep-2024-pat2019-osi.pdf
+
+OLD : D:\Sppu-questionpapers\it\sem-5\theory-of-computation-it\August_2025.pdf
+NEW : D:\Sppu-questionpapers\it\sem-5\theory-of-computation-it\insem-august-2025-pat2019-toci.pdf
+
+OLD : D:\Sppu-questionpapers\it\sem-5\theory-of-computation-it\May_Jun_2023.pdf
+NEW : D:\Sppu-questionpapers\it\sem-5\theory-of-computation-it\endsem-may-jun-2023-pat2019-toci.pdf
+
+OLD : D:\Sppu-questionpapers\it\sem-5\theory-of-computation-it\May_Jun_2024.pdf
+NEW : D:\Sppu-questionpapers\it\sem-5\theory-of-computation-it\endsem-may-jun-2024-pat2019-toci.pdf
+
+OLD : D:\Sppu-questionpapers\it\sem-5\theory-of-computation-it\May_Jun_2025.pdf
+NEW : D:\Sppu-questionpapers\it\sem-5\theory-of-computation-it\endsem-may-jun-2025-pat2019-toci.pdf
+
+OLD : D:\Sppu-questionpapers\it\sem-5\theory-of-computation-it\Nov_Dec_2022.pdf
+NEW : D:\Sppu-questionpapers\it\sem-5\theory-of-computation-it\endsem-nov-dec-2022-pat2019-toci.pdf
+
+OLD : D:\Sppu-questionpapers\it\sem-5\theory-of-computation-it\Nov_Dec_2023.pdf
+NEW : D:\Sppu-questionpapers\it\sem-5\theory-of-computation-it\endsem-nov-dec-2023-pat2019-toci.pdf
+
+OLD : D:\Sppu-questionpapers\it\sem-5\theory-of-computation-it\Nov_Dec_2024.pdf
+NEW : D:\Sppu-questionpapers\it\sem-5\theory-of-computation-it\endsem-nov-dec-2024-pat2019-toci.pdf
+
+OLD : D:\Sppu-questionpapers\it\sem-5\theory-of-computation-it\Oct - 2022.pdf
+NEW : D:\Sppu-questionpapers\it\sem-5\theory-of-computation-it\insem-oct-2022-pat2019-toci.pdf
+
+OLD : D:\Sppu-questionpapers\it\sem-5\theory-of-computation-it\Sep - 2023.pdf
+NEW : D:\Sppu-questionpapers\it\sem-5\theory-of-computation-it\insem-sep-2023-pat2019-toci.pdf
+
+OLD : D:\Sppu-questionpapers\it\sem-5\theory-of-computation-it\Sep - 2024.pdf
+NEW : D:\Sppu-questionpapers\it\sem-5\theory-of-computation-it\insem-sep-2024-pat2019-toci.pdf
+
+OLD : D:\Sppu-questionpapers\it\sem-6\cloud-computing-ele-ii-it\Feb - 2023.pdf
+NEW : D:\Sppu-questionpapers\it\sem-6\cloud-computing-ele-ii-it\insem-feb-2023-pat2019-cceiii.pdf
+
+OLD : D:\Sppu-questionpapers\it\sem-6\cloud-computing-ele-ii-it\March_2024.pdf
+NEW : D:\Sppu-questionpapers\it\sem-6\cloud-computing-ele-ii-it\insem-march-2024-pat2019-cceiii.pdf
+
+OLD : D:\Sppu-questionpapers\it\sem-6\cloud-computing-ele-ii-it\May_Jun_2022.pdf
+NEW : D:\Sppu-questionpapers\it\sem-6\cloud-computing-ele-ii-it\endsem-may-jun-2022-pat2019-cceiii.pdf
+
+OLD : D:\Sppu-questionpapers\it\sem-6\cloud-computing-ele-ii-it\May_Jun_2023.pdf
+NEW : D:\Sppu-questionpapers\it\sem-6\cloud-computing-ele-ii-it\endsem-may-jun-2023-pat2019-cceiii.pdf
+
+OLD : D:\Sppu-questionpapers\it\sem-6\cloud-computing-ele-ii-it\May_Jun_2024.pdf
+NEW : D:\Sppu-questionpapers\it\sem-6\cloud-computing-ele-ii-it\endsem-may-jun-2024-pat2019-cceiii.pdf
+
+OLD : D:\Sppu-questionpapers\it\sem-6\cloud-computing-ele-ii-it\May_Jun_2025.pdf
+NEW : D:\Sppu-questionpapers\it\sem-6\cloud-computing-ele-ii-it\endsem-may-jun-2025-pat2019-cceiii.pdf
+
+OLD : D:\Sppu-questionpapers\it\sem-6\cloud-computing-ele-ii-it\Nov_Dec_2023.pdf
+NEW : D:\Sppu-questionpapers\it\sem-6\cloud-computing-ele-ii-it\endsem-nov-dec-2023-pat2019-cceiii.pdf
+
+OLD : D:\Sppu-questionpapers\it\sem-6\cloud-computing-ele-ii-it\Nov_Dec_2024.pdf
+NEW : D:\Sppu-questionpapers\it\sem-6\cloud-computing-ele-ii-it\endsem-nov-dec-2024-pat2019-cceiii.pdf
+
+OLD : D:\Sppu-questionpapers\it\sem-6\computer-network-and-security-it\Feb - 2023.pdf
+NEW : D:\Sppu-questionpapers\it\sem-6\computer-network-and-security-it\insem-feb-2023-pat2019-cnasi.pdf
+
+OLD : D:\Sppu-questionpapers\it\sem-6\computer-network-and-security-it\March_2024.pdf
+NEW : D:\Sppu-questionpapers\it\sem-6\computer-network-and-security-it\insem-march-2024-pat2019-cnasi.pdf
+
+OLD : D:\Sppu-questionpapers\it\sem-6\computer-network-and-security-it\May_Jun_2022.pdf
+NEW : D:\Sppu-questionpapers\it\sem-6\computer-network-and-security-it\endsem-may-jun-2022-pat2019-cnasi.pdf
+
+OLD : D:\Sppu-questionpapers\it\sem-6\computer-network-and-security-it\May_Jun_2023.pdf
+NEW : D:\Sppu-questionpapers\it\sem-6\computer-network-and-security-it\endsem-may-jun-2023-pat2019-cnasi.pdf
+
+OLD : D:\Sppu-questionpapers\it\sem-6\computer-network-and-security-it\May_Jun_2024.pdf
+NEW : D:\Sppu-questionpapers\it\sem-6\computer-network-and-security-it\endsem-may-jun-2024-pat2019-cnasi.pdf
+
+OLD : D:\Sppu-questionpapers\it\sem-6\computer-network-and-security-it\May_Jun_2025.pdf
+NEW : D:\Sppu-questionpapers\it\sem-6\computer-network-and-security-it\endsem-may-jun-2025-pat2019-cnasi.pdf
+
+OLD : D:\Sppu-questionpapers\it\sem-6\computer-network-and-security-it\Nov_Dec_2022.pdf
+NEW : D:\Sppu-questionpapers\it\sem-6\computer-network-and-security-it\endsem-nov-dec-2022-pat2019-cnasi.pdf
+
+OLD : D:\Sppu-questionpapers\it\sem-6\computer-network-and-security-it\Nov_Dec_2023.pdf
+NEW : D:\Sppu-questionpapers\it\sem-6\computer-network-and-security-it\endsem-nov-dec-2023-pat2019-cnasi.pdf
+
+OLD : D:\Sppu-questionpapers\it\sem-6\computer-network-and-security-it\Nov_Dec_2024.pdf
+NEW : D:\Sppu-questionpapers\it\sem-6\computer-network-and-security-it\endsem-nov-dec-2024-pat2019-cnasi.pdf
+
+OLD : D:\Sppu-questionpapers\it\sem-6\cyber-security-ele-ii-it\May_Jun_2022.pdf
+NEW : D:\Sppu-questionpapers\it\sem-6\cyber-security-ele-ii-it\endsem-may-jun-2022-pat2019-cseiii.pdf
+
+OLD : D:\Sppu-questionpapers\it\sem-6\data-science-and-big-data-analytics-it\Feb - 2023.pdf
+NEW : D:\Sppu-questionpapers\it\sem-6\data-science-and-big-data-analytics-it\insem-feb-2023-pat2019-dsabdai.pdf
+
+OLD : D:\Sppu-questionpapers\it\sem-6\data-science-and-big-data-analytics-it\March_2024.pdf
+NEW : D:\Sppu-questionpapers\it\sem-6\data-science-and-big-data-analytics-it\insem-march-2024-pat2019-dsabdai.pdf
+
+OLD : D:\Sppu-questionpapers\it\sem-6\data-science-and-big-data-analytics-it\May_Jun_2022.pdf
+NEW : D:\Sppu-questionpapers\it\sem-6\data-science-and-big-data-analytics-it\endsem-may-jun-2022-pat2019-dsabdai.pdf
+
+OLD : D:\Sppu-questionpapers\it\sem-6\data-science-and-big-data-analytics-it\May_Jun_2023.pdf
+NEW : D:\Sppu-questionpapers\it\sem-6\data-science-and-big-data-analytics-it\endsem-may-jun-2023-pat2019-dsabdai.pdf
+
+OLD : D:\Sppu-questionpapers\it\sem-6\data-science-and-big-data-analytics-it\May_Jun_2024.pdf
+NEW : D:\Sppu-questionpapers\it\sem-6\data-science-and-big-data-analytics-it\endsem-may-jun-2024-pat2019-dsabdai.pdf
+
+OLD : D:\Sppu-questionpapers\it\sem-6\data-science-and-big-data-analytics-it\May_Jun_2025.pdf
+NEW : D:\Sppu-questionpapers\it\sem-6\data-science-and-big-data-analytics-it\endsem-may-jun-2025-pat2019-dsabdai.pdf
+
+OLD : D:\Sppu-questionpapers\it\sem-6\data-science-and-big-data-analytics-it\Nov_Dec_2022.pdf
+NEW : D:\Sppu-questionpapers\it\sem-6\data-science-and-big-data-analytics-it\endsem-nov-dec-2022-pat2019-dsabdai.pdf
+
+OLD : D:\Sppu-questionpapers\it\sem-6\data-science-and-big-data-analytics-it\Nov_Dec_2023.pdf
+NEW : D:\Sppu-questionpapers\it\sem-6\data-science-and-big-data-analytics-it\endsem-nov-dec-2023-pat2019-dsabdai.pdf
+
+OLD : D:\Sppu-questionpapers\it\sem-6\data-science-and-big-data-analytics-it\Nov_Dec_2024.pdf
+NEW : D:\Sppu-questionpapers\it\sem-6\data-science-and-big-data-analytics-it\endsem-nov-dec-2024-pat2019-dsabdai.pdf
+
+OLD : D:\Sppu-questionpapers\it\sem-6\web-application-development-it\Feb - 2023.pdf
+NEW : D:\Sppu-questionpapers\it\sem-6\web-application-development-it\insem-feb-2023-pat2019-wadi.pdf
+
+OLD : D:\Sppu-questionpapers\it\sem-6\web-application-development-it\March_2024.pdf
+NEW : D:\Sppu-questionpapers\it\sem-6\web-application-development-it\insem-march-2024-pat2019-wadi.pdf
+
+OLD : D:\Sppu-questionpapers\it\sem-6\web-application-development-it\May_Jun_2022.pdf
+NEW : D:\Sppu-questionpapers\it\sem-6\web-application-development-it\endsem-may-jun-2022-pat2019-wadi.pdf
+
+OLD : D:\Sppu-questionpapers\it\sem-6\web-application-development-it\May_Jun_2023.pdf
+NEW : D:\Sppu-questionpapers\it\sem-6\web-application-development-it\endsem-may-jun-2023-pat2019-wadi.pdf
+
+OLD : D:\Sppu-questionpapers\it\sem-6\web-application-development-it\May_Jun_2024.pdf
+NEW : D:\Sppu-questionpapers\it\sem-6\web-application-development-it\endsem-may-jun-2024-pat2019-wadi.pdf
+
+OLD : D:\Sppu-questionpapers\it\sem-6\web-application-development-it\May_Jun_2025.pdf
+NEW : D:\Sppu-questionpapers\it\sem-6\web-application-development-it\endsem-may-jun-2025-pat2019-wadi.pdf
+
+OLD : D:\Sppu-questionpapers\it\sem-6\web-application-development-it\Nov_Dec_2022.pdf
+NEW : D:\Sppu-questionpapers\it\sem-6\web-application-development-it\endsem-nov-dec-2022-pat2019-wadi.pdf
+
+OLD : D:\Sppu-questionpapers\it\sem-6\web-application-development-it\Nov_Dec_2023.pdf
+NEW : D:\Sppu-questionpapers\it\sem-6\web-application-development-it\endsem-nov-dec-2023-pat2019-wadi.pdf
+
+OLD : D:\Sppu-questionpapers\it\sem-6\web-application-development-it\Nov_Dec_2024.pdf
+NEW : D:\Sppu-questionpapers\it\sem-6\web-application-development-it\endsem-nov-dec-2024-pat2019-wadi.pdf
+
+❌ FILES NOT RENAMED (REASONS)
+--------------------------------------------------------------------------------
+FILE : D:\Sppu-questionpapers\it\sem-6\cyber-security-ele-ii-it\Nov_Dec_2022.pdf
+ISSUE: pattern year
 
 ℹ️ FILES ALREADY CORRECTLY NAMED
 --------------------------------------------------------------------------------
-D:\Sppu-questionpapers\aids\sem-3\computer-graphics-aids\endsem-may-jun-2023-pat2019-cga.pdf
-D:\Sppu-questionpapers\aids\sem-3\computer-graphics-aids\endsem-may-jun-2024-pat2019-cga.pdf
-D:\Sppu-questionpapers\aids\sem-3\computer-graphics-aids\endsem-nov-dec-2023-pat2019-cga.pdf
-D:\Sppu-questionpapers\aids\sem-3\computer-graphics-aids\insem-oct-2023-pat2019-cga.pdf
-D:\Sppu-questionpapers\aids\sem-3\computer-graphics-aids\insem-sep-2024-pat2019-cga.pdf
-D:\Sppu-questionpapers\aids\sem-3\discrete-mathematics-aids\endsem-may-jun-2022-pat2019-dma.pdf
-D:\Sppu-questionpapers\aids\sem-3\discrete-mathematics-aids\endsem-may-jun-2023-pat2019-dma.pdf
-D:\Sppu-questionpapers\aids\sem-3\discrete-mathematics-aids\endsem-may-jun-2024-pat2019-dma.pdf
-D:\Sppu-questionpapers\aids\sem-3\discrete-mathematics-aids\endsem-nov-dec-2022-pat2019-dma.pdf
-D:\Sppu-questionpapers\aids\sem-3\discrete-mathematics-aids\endsem-nov-dec-2023-pat2019-dma.pdf
-D:\Sppu-questionpapers\aids\sem-3\discrete-mathematics-aids\insem-oct-2022-pat2019-dma.pdf
-D:\Sppu-questionpapers\aids\sem-3\discrete-mathematics-aids\insem-oct-2023-pat2019-dma.pdf
-D:\Sppu-questionpapers\aids\sem-3\discrete-mathematics-aids\insem-sep-2024-pat2019-dma.pdf
-D:\Sppu-questionpapers\aids\sem-3\fundamentals-of-data-structures-aids\endsem-may-jun-2023-pat2019-fodsa.pdf
-D:\Sppu-questionpapers\aids\sem-3\fundamentals-of-data-structures-aids\endsem-may-jun-2024-pat2019-fodsa.pdf
-D:\Sppu-questionpapers\aids\sem-3\fundamentals-of-data-structures-aids\endsem-nov-dec-2022-pat2019-fodsa.pdf
-D:\Sppu-questionpapers\aids\sem-3\fundamentals-of-data-structures-aids\endsem-nov-dec-2023-pat2019-fodsa.pdf
-D:\Sppu-questionpapers\aids\sem-3\fundamentals-of-data-structures-aids\insem-oct-2022-pat2019-fodsa.pdf
-D:\Sppu-questionpapers\aids\sem-3\fundamentals-of-data-structures-aids\insem-oct-2023-pat2019-fodsa.pdf
-D:\Sppu-questionpapers\aids\sem-3\fundamentals-of-data-structures-aids\insem-sep-2024-pat2019-fodsa.pdf
-D:\Sppu-questionpapers\aids\sem-3\object-oriented-programming-aids\endsem-may-jun-2023-pat2019-oopa.pdf
-D:\Sppu-questionpapers\aids\sem-3\object-oriented-programming-aids\endsem-nov-dec-2022-pat2019-oopa.pdf
-D:\Sppu-questionpapers\aids\sem-3\object-oriented-programming-aids\endsem-nov-dec-2023-pat2019-oopa.pdf
-D:\Sppu-questionpapers\aids\sem-3\object-oriented-programming-aids\insem-oct-2023-pat2019-oopa.pdf
-D:\Sppu-questionpapers\aids\sem-3\object-oriented-programming-aids\insem-sep-2024-pat2019-oopa.pdf
-D:\Sppu-questionpapers\aids\sem-3\operating-systems-aids\endsem-may-jun-2023-pat2019-osa.pdf
-D:\Sppu-questionpapers\aids\sem-3\operating-systems-aids\endsem-may-jun-2024-pat2019-osa.pdf
-D:\Sppu-questionpapers\aids\sem-3\operating-systems-aids\endsem-nov-dec-2022-pat2019-osa.pdf
-D:\Sppu-questionpapers\aids\sem-3\operating-systems-aids\endsem-nov-dec-2023-pat2019-osa.pdf
-D:\Sppu-questionpapers\aids\sem-3\operating-systems-aids\insem-oct-2022-pat2019-osa.pdf
-D:\Sppu-questionpapers\aids\sem-3\operating-systems-aids\insem-oct-2023-pat2019-osa.pdf
-D:\Sppu-questionpapers\aids\sem-3\operating-systems-aids\insem-sep-2024-pat2019-osa.pdf
-D:\Sppu-questionpapers\aids\sem-4\data-structures-and-algorithms-aids\endsem-may-jun-2023-pat2019-dsaaa.pdf
-D:\Sppu-questionpapers\aids\sem-4\data-structures-and-algorithms-aids\endsem-may-jun-2024-pat2019-dsaaa.pdf
-D:\Sppu-questionpapers\aids\sem-4\data-structures-and-algorithms-aids\endsem-nov-dec-2023-pat2019-dsaaa.pdf
-D:\Sppu-questionpapers\aids\sem-4\data-structures-and-algorithms-aids\insem-feb-2023-pat2019-dsaaa.pdf
-D:\Sppu-questionpapers\aids\sem-4\data-structures-and-algorithms-aids\insem-march-2024-pat2019-dsaaa.pdf
-D:\Sppu-questionpapers\aids\sem-4\internet-of-things-aids\endsem-may-jun-2022-pat2019-iota.pdf
-D:\Sppu-questionpapers\aids\sem-4\internet-of-things-aids\endsem-may-jun-2023-pat2019-iota.pdf
-D:\Sppu-questionpapers\aids\sem-4\internet-of-things-aids\endsem-may-jun-2024-pat2019-iota.pdf
-D:\Sppu-questionpapers\aids\sem-4\internet-of-things-aids\endsem-nov-dec-2023-pat2019-iota.pdf
-D:\Sppu-questionpapers\aids\sem-4\internet-of-things-aids\insem-feb-2023-pat2019-iota.pdf
-D:\Sppu-questionpapers\aids\sem-4\internet-of-things-aids\insem-march-2024-pat2019-iota.pdf
-D:\Sppu-questionpapers\aids\sem-4\management-information-systems-aids\endsem-may-jun-2022-pat2019-misa.pdf
-D:\Sppu-questionpapers\aids\sem-4\management-information-systems-aids\endsem-may-jun-2023-pat2019-misa.pdf
-D:\Sppu-questionpapers\aids\sem-4\management-information-systems-aids\endsem-may-jun-2024-pat2019-misa.pdf
-D:\Sppu-questionpapers\aids\sem-4\management-information-systems-aids\endsem-nov-dec-2022-pat2019-misa.pdf
-D:\Sppu-questionpapers\aids\sem-4\management-information-systems-aids\endsem-nov-dec-2023-pat2019-misa.pdf
-D:\Sppu-questionpapers\aids\sem-4\management-information-systems-aids\insem-feb-2023-pat2019-misa.pdf
-D:\Sppu-questionpapers\aids\sem-4\management-information-systems-aids\insem-march-2024-pat2019-misa.pdf
-D:\Sppu-questionpapers\aids\sem-4\software-engineering-aids\endsem-may-jun-2022-pat2019-sea.pdf
-D:\Sppu-questionpapers\aids\sem-4\software-engineering-aids\endsem-may-jun-2023-pat2019-sea.pdf
-D:\Sppu-questionpapers\aids\sem-4\software-engineering-aids\endsem-may-jun-2024-pat2019-sea.pdf
-D:\Sppu-questionpapers\aids\sem-4\software-engineering-aids\endsem-nov-dec-2022-pat2019-sea.pdf
-D:\Sppu-questionpapers\aids\sem-4\software-engineering-aids\endsem-nov-dec-2023-pat2019-sea.pdf
-D:\Sppu-questionpapers\aids\sem-4\software-engineering-aids\insem-feb-2023-pat2019-sea.pdf
-D:\Sppu-questionpapers\aids\sem-4\software-engineering-aids\insem-march-2024-pat2019-sea.pdf
-D:\Sppu-questionpapers\aids\sem-4\statistics-aids\endsem-may-jun-2022-pat2019-sa.pdf
-D:\Sppu-questionpapers\aids\sem-4\statistics-aids\endsem-may-jun-2023-pat2019-sa.pdf
-D:\Sppu-questionpapers\aids\sem-4\statistics-aids\endsem-may-jun-2024-pat2019-sa.pdf
-D:\Sppu-questionpapers\aids\sem-4\statistics-aids\endsem-nov-dec-2022-pat2019-sa.pdf
-D:\Sppu-questionpapers\aids\sem-4\statistics-aids\endsem-nov-dec-2023-pat2019-sa.pdf
-D:\Sppu-questionpapers\aids\sem-4\statistics-aids\insem-feb-2023-pat2019-sa.pdf
-D:\Sppu-questionpapers\aids\sem-4\statistics-aids\insem-march-2024-pat2019-sa.pdf
-D:\Sppu-questionpapers\aids\sem-5\artificial-intelligence-aids\endsem-may-jun-2023-pat2019-aia.pdf
-D:\Sppu-questionpapers\aids\sem-5\artificial-intelligence-aids\endsem-may-jun-2024-pat2019-aia.pdf
-D:\Sppu-questionpapers\aids\sem-5\artificial-intelligence-aids\endsem-may-jun-2025-pat2019-aia.pdf
-D:\Sppu-questionpapers\aids\sem-5\artificial-intelligence-aids\endsem-nov-dec-2022-pat2019-aia.pdf
-D:\Sppu-questionpapers\aids\sem-5\artificial-intelligence-aids\endsem-nov-dec-2023-pat2019-aia.pdf
-D:\Sppu-questionpapers\aids\sem-5\artificial-intelligence-aids\endsem-nov-dec-2024-pat2019-aia.pdf
-D:\Sppu-questionpapers\aids\sem-5\artificial-intelligence-aids\insem-august-2025-pat2019-aia.pdf
-D:\Sppu-questionpapers\aids\sem-5\artificial-intelligence-aids\insem-oct-2022-pat2019-aia.pdf
-D:\Sppu-questionpapers\aids\sem-5\artificial-intelligence-aids\insem-sep-2023-pat2019-aia.pdf
-D:\Sppu-questionpapers\aids\sem-5\artificial-intelligence-aids\insem-sep-2024-pat2019-aia.pdf
-D:\Sppu-questionpapers\aids\sem-5\computer-networks-aids\endsem-may-jun-2023-pat2019-cna.pdf
-D:\Sppu-questionpapers\aids\sem-5\computer-networks-aids\endsem-may-jun-2024-pat2019-cna.pdf
-D:\Sppu-questionpapers\aids\sem-5\computer-networks-aids\endsem-may-jun-2025-pat2019-cna.pdf
-D:\Sppu-questionpapers\aids\sem-5\computer-networks-aids\endsem-nov-dec-2022-pat2019-cna.pdf
-D:\Sppu-questionpapers\aids\sem-5\computer-networks-aids\endsem-nov-dec-2023-pat2019-cna.pdf
-D:\Sppu-questionpapers\aids\sem-5\computer-networks-aids\endsem-nov-dec-2024-pat2019-cna.pdf
-D:\Sppu-questionpapers\aids\sem-5\computer-networks-aids\insem-august-2025-pat2019-cna.pdf
-D:\Sppu-questionpapers\aids\sem-5\computer-networks-aids\insem-oct-2022-pat2019-cna.pdf
-D:\Sppu-questionpapers\aids\sem-5\computer-networks-aids\insem-sep-2023-pat2019-cna.pdf
-D:\Sppu-questionpapers\aids\sem-5\computer-networks-aids\insem-sep-2024-pat2019-cna.pdf
-D:\Sppu-questionpapers\aids\sem-5\database-management-system-aids\endsem-may-jun-2023-pat2019-dmsa.pdf
-D:\Sppu-questionpapers\aids\sem-5\database-management-system-aids\endsem-may-jun-2024-pat2019-dmsa.pdf
-D:\Sppu-questionpapers\aids\sem-5\database-management-system-aids\endsem-may-jun-2025-pat2019-dmsa.pdf
-D:\Sppu-questionpapers\aids\sem-5\database-management-system-aids\endsem-nov-dec-2022-pat2019-dmsa.pdf
-D:\Sppu-questionpapers\aids\sem-5\database-management-system-aids\endsem-nov-dec-2023-pat2019-dmsa.pdf
-D:\Sppu-questionpapers\aids\sem-5\database-management-system-aids\endsem-nov-dec-2024-pat2019-dmsa.pdf
-D:\Sppu-questionpapers\aids\sem-5\database-management-system-aids\insem-august-2025-pat2019-dmsa.pdf
-D:\Sppu-questionpapers\aids\sem-5\database-management-system-aids\insem-oct-2022-pat2019-dmsa.pdf
-D:\Sppu-questionpapers\aids\sem-5\database-management-system-aids\insem-sep-2023-pat2019-dmsa.pdf
-D:\Sppu-questionpapers\aids\sem-5\database-management-system-aids\insem-sep-2024-pat2019-dmsa.pdf
-D:\Sppu-questionpapers\aids\sem-5\human-computer-interface-ele-i-aids\endsem-may-jun-2023-pat2019-hcieia.pdf
-D:\Sppu-questionpapers\aids\sem-5\human-computer-interface-ele-i-aids\endsem-may-jun-2024-pat2019-hcieia.pdf
-D:\Sppu-questionpapers\aids\sem-5\human-computer-interface-ele-i-aids\endsem-may-jun-2025-pat2019-hcieia.pdf
-D:\Sppu-questionpapers\aids\sem-5\human-computer-interface-ele-i-aids\endsem-nov-dec-2022-pat2019-hcieia.pdf
-D:\Sppu-questionpapers\aids\sem-5\human-computer-interface-ele-i-aids\endsem-nov-dec-2023-pat2019-hcieia.pdf
-D:\Sppu-questionpapers\aids\sem-5\human-computer-interface-ele-i-aids\endsem-nov-dec-2024-pat2019-hcieia.pdf
-D:\Sppu-questionpapers\aids\sem-5\human-computer-interface-ele-i-aids\insem-august-2025-pat2019-hcieia.pdf
-D:\Sppu-questionpapers\aids\sem-5\human-computer-interface-ele-i-aids\insem-oct-2022-pat2019-hcieia.pdf
-D:\Sppu-questionpapers\aids\sem-5\human-computer-interface-ele-i-aids\insem-sep-2023-pat2019-hcieia.pdf
-D:\Sppu-questionpapers\aids\sem-5\human-computer-interface-ele-i-aids\insem-sep-2024-pat2019-hcieia.pdf
-D:\Sppu-questionpapers\aids\sem-5\pattern-recognition-ele-i-aids\endsem-nov-dec-2024-pat2019-preia.pdf
-D:\Sppu-questionpapers\aids\sem-5\pattern-recognition-ele-i-aids\insem-sep-2024-pat2019-preia.pdf
-D:\Sppu-questionpapers\aids\sem-5\web-technology-aids\endsem-may-jun-2023-pat2019-wta.pdf
-D:\Sppu-questionpapers\aids\sem-5\web-technology-aids\endsem-may-jun-2024-pat2019-wta.pdf
-D:\Sppu-questionpapers\aids\sem-5\web-technology-aids\endsem-may-jun-2025-pat2019-wta.pdf
-D:\Sppu-questionpapers\aids\sem-5\web-technology-aids\endsem-nov-dec-2022-pat2019-wta.pdf
-D:\Sppu-questionpapers\aids\sem-5\web-technology-aids\endsem-nov-dec-2023-pat2019-wta.pdf
-D:\Sppu-questionpapers\aids\sem-5\web-technology-aids\insem-august-2025-pat2019-wta.pdf
-D:\Sppu-questionpapers\aids\sem-5\web-technology-aids\insem-oct-2022-pat2019-wta.pdf
-D:\Sppu-questionpapers\aids\sem-5\web-technology-aids\insem-sep-2023-pat2019-wta.pdf
-D:\Sppu-questionpapers\aids\sem-5\web-technology-aids\insem-sep-2024-pat2019-wta.pdf
-D:\Sppu-questionpapers\aids\sem-6\artificial-neural-network-aids\endsem-may-jun-2023-pat2019-anna.pdf
-D:\Sppu-questionpapers\aids\sem-6\artificial-neural-network-aids\endsem-may-jun-2024-pat2019-anna.pdf
-D:\Sppu-questionpapers\aids\sem-6\artificial-neural-network-aids\endsem-may-jun-2025-pat2019-anna.pdf
-D:\Sppu-questionpapers\aids\sem-6\artificial-neural-network-aids\endsem-nov-dec-2023-pat2019-anna.pdf
-D:\Sppu-questionpapers\aids\sem-6\artificial-neural-network-aids\insem-feb-2023-pat2019-anna.pdf
-D:\Sppu-questionpapers\aids\sem-6\artificial-neural-network-aids\insem-march-2024-pat2019-anna.pdf
-D:\Sppu-questionpapers\aids\sem-6\artificial-neural-network-aids\insem-march-2025-pat2019-anna.pdf
-D:\Sppu-questionpapers\aids\sem-6\cloud-computing-ele-ii-aids\endsem-may-jun-2023-pat2019-cceiia.pdf
-D:\Sppu-questionpapers\aids\sem-6\cloud-computing-ele-ii-aids\endsem-may-jun-2024-pat2019-cceiia.pdf
-D:\Sppu-questionpapers\aids\sem-6\cloud-computing-ele-ii-aids\endsem-may-jun-2025-pat2019-cceiia.pdf
-D:\Sppu-questionpapers\aids\sem-6\cloud-computing-ele-ii-aids\endsem-nov-dec-2024-pat2019-cceiia.pdf
-D:\Sppu-questionpapers\aids\sem-6\cloud-computing-ele-ii-aids\insem-feb-2023-pat2019-cceiia.pdf
-D:\Sppu-questionpapers\aids\sem-6\cloud-computing-ele-ii-aids\insem-march-2024-pat2019-cceiia.pdf
-D:\Sppu-questionpapers\aids\sem-6\cloud-computing-ele-ii-aids\insem-march-2025-pat2019-cceiia.pdf
-D:\Sppu-questionpapers\aids\sem-6\cyber-security-aids\endsem-may-jun-2023-pat2019-csa.pdf
-D:\Sppu-questionpapers\aids\sem-6\cyber-security-aids\endsem-may-jun-2024-pat2019-csa.pdf
-D:\Sppu-questionpapers\aids\sem-6\cyber-security-aids\endsem-may-jun-2025-pat2019-csa.pdf
-D:\Sppu-questionpapers\aids\sem-6\cyber-security-aids\endsem-nov-dec-2024-pat2019-csa.pdf
-D:\Sppu-questionpapers\aids\sem-6\cyber-security-aids\insem-feb-2023-pat2019-csa.pdf
-D:\Sppu-questionpapers\aids\sem-6\cyber-security-aids\insem-march-2024-pat2019-csa.pdf
-D:\Sppu-questionpapers\aids\sem-6\cyber-security-aids\insem-march-2025-pat2019-csa.pdf
-D:\Sppu-questionpapers\aids\sem-6\cyber-security-aids\insem-sep-2024-pat2019-csa.pdf
-D:\Sppu-questionpapers\aids\sem-6\data-science-aids\endsem-may-jun-2023-pat2019-dsa.pdf
-D:\Sppu-questionpapers\aids\sem-6\data-science-aids\endsem-may-jun-2024-pat2019-dsa.pdf
-D:\Sppu-questionpapers\aids\sem-6\data-science-aids\endsem-may-jun-2025-pat2019-dsa.pdf
-D:\Sppu-questionpapers\aids\sem-6\data-science-aids\endsem-nov-dec-2024-pat2019-dsa.pdf
-D:\Sppu-questionpapers\aids\sem-6\data-science-aids\insem-feb-2023-pat2019-dsa.pdf
-D:\Sppu-questionpapers\aids\sem-6\data-science-aids\insem-march-2024-pat2019-dsa.pdf
-D:\Sppu-questionpapers\aids\sem-6\data-science-aids\insem-march-2025-pat2019-dsa.pdf
-D:\Sppu-questionpapers\aids\sem-6\natural-language-processing-ele-ii-aids\endsem-may-jun-2023-pat2019-nlpeiia.pdf
-D:\Sppu-questionpapers\aids\sem-6\natural-language-processing-ele-ii-aids\endsem-may-jun-2024-pat2019-nlpeiia.pdf
-D:\Sppu-questionpapers\aids\sem-6\natural-language-processing-ele-ii-aids\endsem-may-jun-2025-pat2019-nlpeiia.pdf
-D:\Sppu-questionpapers\aids\sem-6\natural-language-processing-ele-ii-aids\insem-feb-2023-pat2019-nlpeiia.pdf
-D:\Sppu-questionpapers\aids\sem-6\natural-language-processing-ele-ii-aids\insem-march-2024-pat2019-nlpeiia.pdf
-D:\Sppu-questionpapers\aids\sem-6\natural-language-processing-ele-ii-aids\insem-march-2025-pat2019-nlpeiia.pdf
-D:\Sppu-questionpapers\aids\sem-6\software-modeling-and-architecture-ele-ii-aids\endsem-may-jun-2023-pat2019-smaaeiia.pdf
-D:\Sppu-questionpapers\cse\sem-4\microprocessor-cse\endsem-may-jun-2022-pat2019-mc.pdf
-D:\Sppu-questionpapers\cse\sem-4\microprocessor-cse\endsem-may-jun-2023-pat2019-mc.pdf
-D:\Sppu-questionpapers\cse\sem-4\microprocessor-cse\endsem-may-jun-2024-pat2019-mc.pdf
-D:\Sppu-questionpapers\cse\sem-4\microprocessor-cse\endsem-may-jun-2025-pat2019-mc.pdf
-D:\Sppu-questionpapers\cse\sem-4\microprocessor-cse\endsem-nov-dec-2022-pat2019-mc.pdf
-D:\Sppu-questionpapers\cse\sem-4\microprocessor-cse\endsem-nov-dec-2023-pat2019-mc.pdf
-D:\Sppu-questionpapers\cse\sem-4\microprocessor-cse\endsem-nov-dec-2024-pat2019-mc.pdf
-D:\Sppu-questionpapers\cse\sem-4\microprocessor-cse\insem-feb-2023-pat2019-mc.pdf
-D:\Sppu-questionpapers\cse\sem-4\microprocessor-cse\insem-march-2024-pat2019-mc.pdf
-D:\Sppu-questionpapers\cse\sem-4\principles-of-programming-languages-cse\endsem-may-jun-2022-pat2019-poplc.pdf
-D:\Sppu-questionpapers\cse\sem-4\principles-of-programming-languages-cse\endsem-may-jun-2023-pat2019-poplc.pdf
-D:\Sppu-questionpapers\cse\sem-4\principles-of-programming-languages-cse\endsem-may-jun-2024-pat2019-poplc.pdf
-D:\Sppu-questionpapers\cse\sem-4\principles-of-programming-languages-cse\endsem-nov-dec-2022-pat2019-poplc.pdf
-D:\Sppu-questionpapers\cse\sem-4\principles-of-programming-languages-cse\endsem-nov-dec-2023-pat2019-poplc.pdf
-D:\Sppu-questionpapers\cse\sem-4\principles-of-programming-languages-cse\insem-feb-2023-pat2019-poplc.pdf
-D:\Sppu-questionpapers\cse\sem-4\principles-of-programming-languages-cse\insem-march-2024-pat2019-poplc.pdf
-D:\Sppu-questionpapers\cse\sem-4\principles-of-programming-languages-cse\insem-march-2025-pat2019-poplc.pdf
-D:\Sppu-questionpapers\cse\sem-5\computer-network-and-security-cse\endsem-may-jun-2022-pat2019-cnasc.pdf
-D:\Sppu-questionpapers\cse\sem-5\computer-network-and-security-cse\endsem-may-jun-2023-pat2019-cnasc.pdf
-D:\Sppu-questionpapers\cse\sem-5\computer-network-and-security-cse\endsem-may-jun-2024-pat2019-cnasc.pdf
-D:\Sppu-questionpapers\cse\sem-5\computer-network-and-security-cse\endsem-may-jun-2025-pat2019-cnasc.pdf
-D:\Sppu-questionpapers\cse\sem-5\computer-network-and-security-cse\endsem-nov-dec-2022-pat2019-cnasc.pdf
-D:\Sppu-questionpapers\cse\sem-5\computer-network-and-security-cse\endsem-nov-dec-2023-pat2019-cnasc.pdf
-D:\Sppu-questionpapers\cse\sem-5\computer-network-and-security-cse\endsem-nov-dec-2024-pat2019-cnasc.pdf
-D:\Sppu-questionpapers\cse\sem-5\computer-network-and-security-cse\insem-august-2025-pat2019-cnasc.pdf
-D:\Sppu-questionpapers\cse\sem-5\computer-network-and-security-cse\insem-oct-2022-pat2019-cnasc.pdf
-D:\Sppu-questionpapers\cse\sem-5\computer-network-and-security-cse\insem-sep-2023-pat2019-cnasc.pdf
-D:\Sppu-questionpapers\cse\sem-5\computer-network-and-security-cse\insem-sep-2024-pat2019-cnasc.pdf
-D:\Sppu-questionpapers\cse\sem-5\database-management-systems-cse\endsem-may-jun-2022-pat2019-dmsc.pdf
-D:\Sppu-questionpapers\cse\sem-5\database-management-systems-cse\endsem-may-jun-2023-pat2019-dmsc.pdf
-D:\Sppu-questionpapers\cse\sem-5\database-management-systems-cse\endsem-may-jun-2024-pat2019-dmsc.pdf
-D:\Sppu-questionpapers\cse\sem-5\database-management-systems-cse\endsem-may-jun-2025-pat2019-dmsc.pdf
-D:\Sppu-questionpapers\cse\sem-5\database-management-systems-cse\endsem-nov-dec-2022-pat2019-dmsc.pdf
-D:\Sppu-questionpapers\cse\sem-5\database-management-systems-cse\endsem-nov-dec-2023-pat2019-dmsc.pdf
-D:\Sppu-questionpapers\cse\sem-5\database-management-systems-cse\endsem-nov-dec-2024-pat2019-dmsc.pdf
-D:\Sppu-questionpapers\cse\sem-5\database-management-systems-cse\insem-august-2025-pat2019-dmsc.pdf
-D:\Sppu-questionpapers\cse\sem-5\database-management-systems-cse\insem-oct-2022-pat2019-dmsc.pdf
-D:\Sppu-questionpapers\cse\sem-5\database-management-systems-cse\insem-sep-2023-pat2019-dmsc.pdf
-D:\Sppu-questionpapers\cse\sem-5\database-management-systems-cse\insem-sep-2024-pat2019-dmsc.pdf
-D:\Sppu-questionpapers\cse\sem-5\human-computer-interface-ele-i-cse\endsem-may-jun-2024-pat2019-hcieic.pdf
-D:\Sppu-questionpapers\cse\sem-5\human-computer-interface-ele-i-cse\endsem-may-jun-2025-pat2019-hcieic.pdf
-D:\Sppu-questionpapers\cse\sem-5\human-computer-interface-ele-i-cse\endsem-nov-dec-2023-pat2019-hcieic.pdf
-D:\Sppu-questionpapers\cse\sem-5\human-computer-interface-ele-i-cse\endsem-nov-dec-2024-pat2019-hcieic.pdf
-D:\Sppu-questionpapers\cse\sem-5\human-computer-interface-ele-i-cse\insem-august-2025-pat2019-hcieic.pdf
-D:\Sppu-questionpapers\cse\sem-5\human-computer-interface-ele-i-cse\insem-sep-2024-pat2019-hcieic.pdf
-D:\Sppu-questionpapers\cse\sem-5\internet-of-things-and-embedded-systems-ele-i-cse\endsem-may-jun-2022-pat2019-iotaeseic.pdf
-D:\Sppu-questionpapers\cse\sem-5\internet-of-things-and-embedded-systems-ele-i-cse\endsem-may-jun-2023-pat2019-iotaeseic.pdf
-D:\Sppu-questionpapers\cse\sem-5\internet-of-things-and-embedded-systems-ele-i-cse\endsem-may-jun-2024-pat2019-iotaeseic.pdf
-D:\Sppu-questionpapers\cse\sem-5\internet-of-things-and-embedded-systems-ele-i-cse\endsem-may-jun-2025-pat2019-iotaeseic.pdf
-D:\Sppu-questionpapers\cse\sem-5\internet-of-things-and-embedded-systems-ele-i-cse\endsem-nov-dec-2022-pat2019-iotaeseic.pdf
-D:\Sppu-questionpapers\cse\sem-5\internet-of-things-and-embedded-systems-ele-i-cse\endsem-nov-dec-2023-pat2019-iotaeseic.pdf
-D:\Sppu-questionpapers\cse\sem-5\internet-of-things-and-embedded-systems-ele-i-cse\endsem-nov-dec-2024-pat2019-iotaeseic.pdf
-D:\Sppu-questionpapers\cse\sem-5\internet-of-things-and-embedded-systems-ele-i-cse\insem-august-2025-pat2019-iotaeseic.pdf
-D:\Sppu-questionpapers\cse\sem-5\internet-of-things-and-embedded-systems-ele-i-cse\insem-oct-2022-pat2019-iotaeseic.pdf
-D:\Sppu-questionpapers\cse\sem-5\internet-of-things-and-embedded-systems-ele-i-cse\insem-sep-2023-pat2019-iotaeseic.pdf
-D:\Sppu-questionpapers\cse\sem-5\internet-of-things-and-embedded-systems-ele-i-cse\insem-sep-2024-pat2019-iotaeseic.pdf
-D:\Sppu-questionpapers\cse\sem-5\software-project-management-ele-i-cse\endsem-may-jun-2022-pat2019-spmeic.pdf
-D:\Sppu-questionpapers\cse\sem-5\systems-programming-and-operating-system-cse\endsem-may-jun-2022-pat2019-spaosc.pdf
-D:\Sppu-questionpapers\cse\sem-5\systems-programming-and-operating-system-cse\endsem-may-jun-2023-pat2019-spaosc.pdf
-D:\Sppu-questionpapers\cse\sem-5\systems-programming-and-operating-system-cse\endsem-may-jun-2024-pat2019-spaosc.pdf
-D:\Sppu-questionpapers\cse\sem-5\systems-programming-and-operating-system-cse\endsem-may-jun-2025-pat2019-spaosc.pdf
-D:\Sppu-questionpapers\cse\sem-5\systems-programming-and-operating-system-cse\endsem-nov-dec-2022-pat2019-spaosc.pdf
-D:\Sppu-questionpapers\cse\sem-5\systems-programming-and-operating-system-cse\endsem-nov-dec-2023-pat2019-spaosc.pdf
-D:\Sppu-questionpapers\cse\sem-5\systems-programming-and-operating-system-cse\endsem-nov-dec-2024-pat2019-spaosc.pdf
-D:\Sppu-questionpapers\cse\sem-5\systems-programming-and-operating-system-cse\insem-august-2025-pat2019-spaosc.pdf
-D:\Sppu-questionpapers\cse\sem-5\systems-programming-and-operating-system-cse\insem-oct-2022-pat2019-spaosc.pdf
-D:\Sppu-questionpapers\cse\sem-5\systems-programming-and-operating-system-cse\insem-sep-2023-pat2019-spaosc.pdf
-D:\Sppu-questionpapers\cse\sem-5\systems-programming-and-operating-system-cse\insem-sep-2024-pat2019-spaosc.pdf
-D:\Sppu-questionpapers\cse\sem-5\theory-of-computation-cse\endsem-may-jun-2022-pat2019-tocc.pdf
-D:\Sppu-questionpapers\cse\sem-5\theory-of-computation-cse\endsem-may-jun-2023-pat2019-tocc.pdf
-D:\Sppu-questionpapers\cse\sem-5\theory-of-computation-cse\endsem-may-jun-2024-pat2019-tocc.pdf
-D:\Sppu-questionpapers\cse\sem-5\theory-of-computation-cse\endsem-may-jun-2025-pat2019-tocc.pdf
-D:\Sppu-questionpapers\cse\sem-5\theory-of-computation-cse\endsem-nov-dec-2022-pat2019-tocc.pdf
-D:\Sppu-questionpapers\cse\sem-5\theory-of-computation-cse\endsem-nov-dec-2023-pat2019-tocc.pdf
-D:\Sppu-questionpapers\cse\sem-5\theory-of-computation-cse\endsem-nov-dec-2024-pat2019-tocc.pdf
-D:\Sppu-questionpapers\cse\sem-5\theory-of-computation-cse\insem-august-2025-pat2019-tocc.pdf
-D:\Sppu-questionpapers\cse\sem-5\theory-of-computation-cse\insem-oct-2022-pat2019-tocc.pdf
-D:\Sppu-questionpapers\cse\sem-5\theory-of-computation-cse\insem-sep-2023-pat2019-tocc.pdf
-D:\Sppu-questionpapers\cse\sem-5\theory-of-computation-cse\insem-sep-2024-pat2019-tocc.pdf
-D:\Sppu-questionpapers\cse\sem-6\artificial-intelligence-cse\endsem-may-jun-2022-pat2019-aic.pdf
-D:\Sppu-questionpapers\cse\sem-6\artificial-intelligence-cse\endsem-may-jun-2023-pat2019-aic.pdf
-D:\Sppu-questionpapers\cse\sem-6\artificial-intelligence-cse\endsem-may-jun-2024-pat2019-aic.pdf
-D:\Sppu-questionpapers\cse\sem-6\artificial-intelligence-cse\endsem-may-jun-2025-pat2019-aic.pdf
-D:\Sppu-questionpapers\cse\sem-6\artificial-intelligence-cse\endsem-nov-dec-2022-pat2019-aic.pdf
-D:\Sppu-questionpapers\cse\sem-6\artificial-intelligence-cse\endsem-nov-dec-2023-pat2019-aic.pdf
-D:\Sppu-questionpapers\cse\sem-6\artificial-intelligence-cse\endsem-nov-dec-2024-pat2019-aic.pdf
-D:\Sppu-questionpapers\cse\sem-6\artificial-intelligence-cse\insem-feb-2023-pat2019-aic.pdf
-D:\Sppu-questionpapers\cse\sem-6\artificial-intelligence-cse\insem-march-2024-pat2019-aic.pdf
-D:\Sppu-questionpapers\cse\sem-6\augmented-and-virtual-reality-ele-ii-cse\endsem-nov-dec-2022-pat2019-aavreiic.pdf
-D:\Sppu-questionpapers\cse\sem-6\augmented-and-virtual-reality-ele-ii-cse\insem-august-2025-pat2019-aavreiic.pdf
-D:\Sppu-questionpapers\cse\sem-6\augmented-and-virtual-reality-ele-ii-cse\insem-oct-2022-pat2019-aavreiic.pdf
-D:\Sppu-questionpapers\cse\sem-6\augmented-and-virtual-reality-ele-ii-cse\insem-sep-2024-pat2019-aavreiic.pdf
-D:\Sppu-questionpapers\cse\sem-6\cloud-computing-cse\endsem-may-jun-2022-pat2019-ccc.pdf
-D:\Sppu-questionpapers\cse\sem-6\cloud-computing-cse\endsem-may-jun-2023-pat2019-ccc.pdf
-D:\Sppu-questionpapers\cse\sem-6\cloud-computing-cse\endsem-may-jun-2024-pat2019-ccc.pdf
-D:\Sppu-questionpapers\cse\sem-6\cloud-computing-cse\endsem-may-jun-2025-pat2019-ccc.pdf
-D:\Sppu-questionpapers\cse\sem-6\cloud-computing-cse\endsem-nov-dec-2022-pat2019-ccc.pdf
-D:\Sppu-questionpapers\cse\sem-6\cloud-computing-cse\endsem-nov-dec-2023-pat2019-ccc.pdf
-D:\Sppu-questionpapers\cse\sem-6\cloud-computing-cse\endsem-nov-dec-2024-pat2019-ccc.pdf
-D:\Sppu-questionpapers\cse\sem-6\cloud-computing-cse\insem-feb-2023-pat2019-ccc.pdf
-D:\Sppu-questionpapers\cse\sem-6\cloud-computing-cse\insem-march-2024-pat2019-ccc.pdf
-D:\Sppu-questionpapers\cse\sem-6\data-science-and-big-data-analytics-cse\endsem-may-jun-2022-pat2019-dsabdac.pdf
-D:\Sppu-questionpapers\cse\sem-6\data-science-and-big-data-analytics-cse\endsem-may-jun-2023-pat2019-dsabdac.pdf
-D:\Sppu-questionpapers\cse\sem-6\data-science-and-big-data-analytics-cse\endsem-may-jun-2024-pat2019-dsabdac.pdf
-D:\Sppu-questionpapers\cse\sem-6\data-science-and-big-data-analytics-cse\endsem-may-jun-2025-pat2019-dsabdac.pdf
-D:\Sppu-questionpapers\cse\sem-6\data-science-and-big-data-analytics-cse\endsem-nov-dec-2022-pat2019-dsabdac.pdf
-D:\Sppu-questionpapers\cse\sem-6\data-science-and-big-data-analytics-cse\endsem-nov-dec-2023-pat2019-dsabdac.pdf
-D:\Sppu-questionpapers\cse\sem-6\data-science-and-big-data-analytics-cse\endsem-nov-dec-2024-pat2019-dsabdac.pdf
-D:\Sppu-questionpapers\cse\sem-6\data-science-and-big-data-analytics-cse\insem-feb-2023-pat2019-dsabdac.pdf
-D:\Sppu-questionpapers\cse\sem-6\data-science-and-big-data-analytics-cse\insem-march-2024-pat2019-dsabdac.pdf
-D:\Sppu-questionpapers\cse\sem-6\information-security-ele-ii-cse\endsem-may-jun-2025-pat2019-iseiic.pdf
-D:\Sppu-questionpapers\cse\sem-6\software-modeling-and-architectures-ele-ii-cse\endsem-may-jun-2023-pat2019-smaaeiic.pdf
-D:\Sppu-questionpapers\cse\sem-6\web-technology-cse\endsem-may-jun-2022-pat2019-wtc.pdf
-D:\Sppu-questionpapers\cse\sem-6\web-technology-cse\endsem-may-jun-2023-pat2019-wtc.pdf
-D:\Sppu-questionpapers\cse\sem-6\web-technology-cse\endsem-may-jun-2024-pat2019-wtc.pdf
-D:\Sppu-questionpapers\cse\sem-6\web-technology-cse\endsem-may-jun-2025-pat2019-wtc.pdf
-D:\Sppu-questionpapers\cse\sem-6\web-technology-cse\endsem-nov-dec-2022-pat2019-wtc.pdf
-D:\Sppu-questionpapers\cse\sem-6\web-technology-cse\endsem-nov-dec-2023-pat2019-wtc.pdf
-D:\Sppu-questionpapers\cse\sem-6\web-technology-cse\endsem-nov-dec-2024-pat2019-wtc.pdf
-D:\Sppu-questionpapers\cse\sem-6\web-technology-cse\insem-feb-2023-pat2019-wtc.pdf
-D:\Sppu-questionpapers\cse\sem-6\web-technology-cse\insem-march-2024-pat2019-wtc.pdf
-D:\Sppu-questionpapers\fy\sem-1\basic-electrical-engineering-fy\endsem-may-jun-2022-pat2019-beef.pdf
-D:\Sppu-questionpapers\fy\sem-1\basic-electrical-engineering-fy\endsem-may-jun-2023-pat2019-beef.pdf
-D:\Sppu-questionpapers\fy\sem-1\basic-electrical-engineering-fy\endsem-may-jun-2024-pat2019-beef.pdf
-D:\Sppu-questionpapers\fy\sem-1\basic-electrical-engineering-fy\endsem-may-jun-2025-pat2019-beef.pdf
-D:\Sppu-questionpapers\fy\sem-1\basic-electrical-engineering-fy\endsem-nov-dec-2019-pat2019-beef.pdf
-D:\Sppu-questionpapers\fy\sem-1\basic-electrical-engineering-fy\endsem-nov-dec-2023-pat2019-beef.pdf
-D:\Sppu-questionpapers\fy\sem-1\basic-electrical-engineering-fy\endsem-nov-dec-2024-pat2019-beef.pdf
-D:\Sppu-questionpapers\fy\sem-1\basic-electrical-engineering-fy\insem-march-2020-pat2019-beef.pdf
-D:\Sppu-questionpapers\fy\sem-1\basic-electrical-engineering-fy\insem-march-2024-pat2019-beef.pdf
-D:\Sppu-questionpapers\fy\sem-1\basic-electrical-engineering-fy\insem-oct-2019-pat2019-beef.pdf
-D:\Sppu-questionpapers\fy\sem-1\basic-electrical-engineering-fy\insem-oct-2022-pat2019-beef.pdf
-D:\Sppu-questionpapers\fy\sem-1\basic-electrical-engineering-fy\insem-oct-2023-pat2019-beef.pdf
-D:\Sppu-questionpapers\fy\sem-1\basic-electrical-engineering-fy\insem-sep-2024-pat2019-beef.pdf
-D:\Sppu-questionpapers\fy\sem-1\engineering-mathematics-i-fy\endsem-may-jun-2022-pat2019-emif.pdf
-D:\Sppu-questionpapers\fy\sem-1\engineering-mathematics-i-fy\endsem-may-jun-2023-pat2019-emif.pdf
-D:\Sppu-questionpapers\fy\sem-1\engineering-mathematics-i-fy\endsem-may-jun-2024-pat2019-emif.pdf
-D:\Sppu-questionpapers\fy\sem-1\engineering-mathematics-i-fy\endsem-may-jun-2025-pat2019-emif.pdf
-D:\Sppu-questionpapers\fy\sem-1\engineering-mathematics-i-fy\endsem-nov-dec-2019-pat2019-emif.pdf
-D:\Sppu-questionpapers\fy\sem-1\engineering-mathematics-i-fy\endsem-nov-dec-2023-pat2019-emif.pdf
-D:\Sppu-questionpapers\fy\sem-1\engineering-mathematics-i-fy\endsem-nov-dec-2024-pat2019-emif.pdf
-D:\Sppu-questionpapers\fy\sem-1\engineering-mathematics-i-fy\insem-oct-2019-pat2019-emif.pdf
-D:\Sppu-questionpapers\fy\sem-1\engineering-mathematics-i-fy\insem-oct-2022-pat2019-emif.pdf
-D:\Sppu-questionpapers\fy\sem-1\engineering-mathematics-i-fy\insem-sep-2024-pat2019-emif.pdf
-D:\Sppu-questionpapers\fy\sem-1\engineering-mechanics-fy\endsem-may-jun-2022-pat2019-emf.pdf
-D:\Sppu-questionpapers\fy\sem-1\engineering-mechanics-fy\endsem-may-jun-2023-pat2019-emf.pdf
-D:\Sppu-questionpapers\fy\sem-1\engineering-mechanics-fy\endsem-may-jun-2024-pat2019-emf.pdf
-D:\Sppu-questionpapers\fy\sem-1\engineering-mechanics-fy\endsem-may-jun-2025-pat2019-emf.pdf
-D:\Sppu-questionpapers\fy\sem-1\engineering-mechanics-fy\endsem-nov-dec-2019-pat2019-emf.pdf
-D:\Sppu-questionpapers\fy\sem-1\engineering-mechanics-fy\endsem-nov-dec-2023-pat2019-emf.pdf
-D:\Sppu-questionpapers\fy\sem-1\engineering-mechanics-fy\endsem-nov-dec-2024-pat2019-emf.pdf
-D:\Sppu-questionpapers\fy\sem-1\engineering-mechanics-fy\insem-march-2020-pat2019-emf.pdf
-D:\Sppu-questionpapers\fy\sem-1\engineering-mechanics-fy\insem-march-2024-pat2019-emf.pdf
-D:\Sppu-questionpapers\fy\sem-1\engineering-mechanics-fy\insem-oct-2019-pat2019-emf.pdf
-D:\Sppu-questionpapers\fy\sem-1\engineering-mechanics-fy\insem-oct-2022-pat2019-emf.pdf
-D:\Sppu-questionpapers\fy\sem-1\engineering-mechanics-fy\insem-oct-2023-pat2019-emf.pdf
-D:\Sppu-questionpapers\fy\sem-1\engineering-mechanics-fy\insem-sep-2024-pat2019-emf.pdf
-D:\Sppu-questionpapers\fy\sem-1\engineering-physics-fy\endsem-may-jun-2022-pat2019-epf.pdf
-D:\Sppu-questionpapers\fy\sem-1\engineering-physics-fy\endsem-may-jun-2023-pat2019-epf.pdf
-D:\Sppu-questionpapers\fy\sem-1\engineering-physics-fy\endsem-may-jun-2024-pat2019-epf.pdf
-D:\Sppu-questionpapers\fy\sem-1\engineering-physics-fy\endsem-may-jun-2025-pat2019-epf.pdf
-D:\Sppu-questionpapers\fy\sem-1\engineering-physics-fy\endsem-nov-dec-2019-pat2019-epf.pdf
-D:\Sppu-questionpapers\fy\sem-1\engineering-physics-fy\endsem-nov-dec-2023-pat2019-epf.pdf
-D:\Sppu-questionpapers\fy\sem-1\engineering-physics-fy\endsem-nov-dec-2024-pat2019-epf.pdf
-D:\Sppu-questionpapers\fy\sem-1\engineering-physics-fy\insem-march-2020-pat2019-epf.pdf
-D:\Sppu-questionpapers\fy\sem-1\engineering-physics-fy\insem-march-2024-pat2019-epf.pdf
-D:\Sppu-questionpapers\fy\sem-1\engineering-physics-fy\insem-oct-2019-pat2019-epf.pdf
-D:\Sppu-questionpapers\fy\sem-1\engineering-physics-fy\insem-oct-2022-pat2019-epf.pdf
-D:\Sppu-questionpapers\fy\sem-1\engineering-physics-fy\insem-oct-2023-pat2019-epf.pdf
-D:\Sppu-questionpapers\fy\sem-1\engineering-physics-fy\insem-sep-2024-pat2019-epf.pdf
-D:\Sppu-questionpapers\fy\sem-1\programming-and-problem-solving-fy\endsem-may-jun-2022-pat2019-papsf.pdf
-D:\Sppu-questionpapers\fy\sem-1\programming-and-problem-solving-fy\endsem-may-jun-2023-pat2019-papsf.pdf
-D:\Sppu-questionpapers\fy\sem-1\programming-and-problem-solving-fy\endsem-may-jun-2024-pat2019-papsf.pdf
-D:\Sppu-questionpapers\fy\sem-1\programming-and-problem-solving-fy\endsem-may-jun-2025-pat2019-papsf.pdf
-D:\Sppu-questionpapers\fy\sem-1\programming-and-problem-solving-fy\endsem-nov-dec-2019-pat2019-papsf.pdf
-D:\Sppu-questionpapers\fy\sem-1\programming-and-problem-solving-fy\endsem-nov-dec-2023-pat2019-papsf.pdf
-D:\Sppu-questionpapers\fy\sem-1\programming-and-problem-solving-fy\endsem-nov-dec-2024-pat2019-papsf.pdf
-D:\Sppu-questionpapers\fy\sem-1\programming-and-problem-solving-fy\insem-march-2020-pat2019-papsf.pdf
-D:\Sppu-questionpapers\fy\sem-1\programming-and-problem-solving-fy\insem-march-2024-pat2019-papsf.pdf
-D:\Sppu-questionpapers\fy\sem-1\programming-and-problem-solving-fy\insem-oct-2019-pat2019-papsf.pdf
-D:\Sppu-questionpapers\fy\sem-1\programming-and-problem-solving-fy\insem-oct-2022-pat2019-papsf.pdf
-D:\Sppu-questionpapers\fy\sem-1\programming-and-problem-solving-fy\insem-oct-2023-pat2019-papsf.pdf
-D:\Sppu-questionpapers\fy\sem-1\programming-and-problem-solving-fy\insem-sep-2024-pat2019-papsf.pdf
-D:\Sppu-questionpapers\fy\sem-2\basic-electronics-engineering-fy\endsem-may-jun-2022-pat2019-beef.pdf
-D:\Sppu-questionpapers\fy\sem-2\basic-electronics-engineering-fy\endsem-may-jun-2023-pat2019-beef.pdf
-D:\Sppu-questionpapers\fy\sem-2\basic-electronics-engineering-fy\endsem-may-jun-2025-pat2019-beef.pdf
-D:\Sppu-questionpapers\fy\sem-2\basic-electronics-engineering-fy\endsem-nov-dec-2019-pat2019-beef.pdf
-D:\Sppu-questionpapers\fy\sem-2\basic-electronics-engineering-fy\endsem-nov-dec-2023-pat2019-beef.pdf
-D:\Sppu-questionpapers\fy\sem-2\basic-electronics-engineering-fy\endsem-nov-dec-2024-pat2019-beef.pdf
-D:\Sppu-questionpapers\fy\sem-2\basic-electronics-engineering-fy\insem-march-2020-pat2019-beef.pdf
-D:\Sppu-questionpapers\fy\sem-2\basic-electronics-engineering-fy\insem-march-2024-pat2019-beef.pdf
-D:\Sppu-questionpapers\fy\sem-2\basic-electronics-engineering-fy\insem-oct-2019-pat2019-beef.pdf
-D:\Sppu-questionpapers\fy\sem-2\basic-electronics-engineering-fy\insem-oct-2022-pat2019-beef.pdf
-D:\Sppu-questionpapers\fy\sem-2\basic-electronics-engineering-fy\insem-oct-2023-pat2019-beef.pdf
-D:\Sppu-questionpapers\fy\sem-2\basic-electronics-engineering-fy\insem-sep-2024-pat2019-beef.pdf
-D:\Sppu-questionpapers\fy\sem-2\engineering-chemistry-fy\endsem-may-jun-2022-pat2019-ecf.pdf
-D:\Sppu-questionpapers\fy\sem-2\engineering-chemistry-fy\endsem-may-jun-2023-pat2019-ecf.pdf
-D:\Sppu-questionpapers\fy\sem-2\engineering-chemistry-fy\endsem-may-jun-2024-pat2019-ecf.pdf
-D:\Sppu-questionpapers\fy\sem-2\engineering-chemistry-fy\endsem-may-jun-2025-pat2019-ecf.pdf
-D:\Sppu-questionpapers\fy\sem-2\engineering-chemistry-fy\endsem-nov-dec-2019-pat2019-ecf.pdf
-D:\Sppu-questionpapers\fy\sem-2\engineering-chemistry-fy\endsem-nov-dec-2023-pat2019-ecf.pdf
-D:\Sppu-questionpapers\fy\sem-2\engineering-chemistry-fy\endsem-nov-dec-2024-pat2019-ecf.pdf
-D:\Sppu-questionpapers\fy\sem-2\engineering-chemistry-fy\insem-march-2020-pat2019-ecf.pdf
-D:\Sppu-questionpapers\fy\sem-2\engineering-chemistry-fy\insem-march-2024-pat2019-ecf.pdf
-D:\Sppu-questionpapers\fy\sem-2\engineering-chemistry-fy\insem-oct-2019-pat2019-ecf.pdf
-D:\Sppu-questionpapers\fy\sem-2\engineering-chemistry-fy\insem-oct-2022-pat2019-ecf.pdf
-D:\Sppu-questionpapers\fy\sem-2\engineering-chemistry-fy\insem-oct-2023-pat2019-ecf.pdf
-D:\Sppu-questionpapers\fy\sem-2\engineering-chemistry-fy\insem-sep-2024-pat2019-ecf.pdf
-D:\Sppu-questionpapers\fy\sem-2\engineering-graphics-fy\endsem-may-jun-2022-pat2019-egf.pdf
-D:\Sppu-questionpapers\fy\sem-2\engineering-graphics-fy\endsem-may-jun-2023-pat2019-egf.pdf
-D:\Sppu-questionpapers\fy\sem-2\engineering-graphics-fy\endsem-may-jun-2024-pat2019-egf.pdf
-D:\Sppu-questionpapers\fy\sem-2\engineering-graphics-fy\endsem-may-jun-2025-pat2019-egf.pdf
-D:\Sppu-questionpapers\fy\sem-2\engineering-graphics-fy\endsem-nov-dec-2023-pat2019-egf.pdf
-D:\Sppu-questionpapers\fy\sem-2\engineering-graphics-fy\endsem-nov-dec-2024-pat2019-egf.pdf
-D:\Sppu-questionpapers\fy\sem-2\engineering-mathematics-ii-fy\endsem-may-jun-2022-pat2019-emiif.pdf
-D:\Sppu-questionpapers\fy\sem-2\engineering-mathematics-ii-fy\endsem-may-jun-2023-pat2019-emiif.pdf
-D:\Sppu-questionpapers\fy\sem-2\engineering-mathematics-ii-fy\endsem-may-jun-2024-pat2019-emiif.pdf
-D:\Sppu-questionpapers\fy\sem-2\engineering-mathematics-ii-fy\endsem-may-jun-2025-pat2019-emiif.pdf
-D:\Sppu-questionpapers\fy\sem-2\engineering-mathematics-ii-fy\endsem-nov-dec-2023-pat2019-emiif.pdf
-D:\Sppu-questionpapers\fy\sem-2\engineering-mathematics-ii-fy\endsem-nov-dec-2024-pat2019-emiif.pdf
-D:\Sppu-questionpapers\fy\sem-2\engineering-mathematics-ii-fy\insem-march-2020-pat2019-emiif.pdf
-D:\Sppu-questionpapers\fy\sem-2\engineering-mathematics-ii-fy\insem-march-2024-pat2019-emiif.pdf
-D:\Sppu-questionpapers\fy\sem-2\systems-in-mechanical-engineering-fy\endsem-may-jun-2022-pat2019-simef.pdf
-D:\Sppu-questionpapers\fy\sem-2\systems-in-mechanical-engineering-fy\endsem-may-jun-2023-pat2019-simef.pdf
-D:\Sppu-questionpapers\fy\sem-2\systems-in-mechanical-engineering-fy\endsem-may-jun-2024-pat2019-simef.pdf
-D:\Sppu-questionpapers\fy\sem-2\systems-in-mechanical-engineering-fy\endsem-may-jun-2025-pat2019-simef.pdf
-D:\Sppu-questionpapers\fy\sem-2\systems-in-mechanical-engineering-fy\endsem-nov-dec-2019-pat2019-simef.pdf
-D:\Sppu-questionpapers\fy\sem-2\systems-in-mechanical-engineering-fy\endsem-nov-dec-2023-pat2019-simef.pdf
-D:\Sppu-questionpapers\fy\sem-2\systems-in-mechanical-engineering-fy\endsem-nov-dec-2024-pat2019-simef.pdf
-D:\Sppu-questionpapers\fy\sem-2\systems-in-mechanical-engineering-fy\insem-oct-2019-pat2019-simef.pdf
-D:\Sppu-questionpapers\fy\sem-2\systems-in-mechanical-engineering-fy\insem-oct-2022-pat2019-simef.pdf
-D:\Sppu-questionpapers\fy\sem-2\systems-in-mechanical-engineering-fy\insem-oct-2023-pat2019-simef.pdf
-D:\Sppu-questionpapers\fy\sem-2\systems-in-mechanical-engineering-fy\insem-sep-2024-pat2019-simef.pdf
 D:\Sppu-questionpapers\it\sem-3\basics-of-computer-network-it\endsem-may-jun-2023-pat2019-bocni.pdf
 D:\Sppu-questionpapers\it\sem-3\basics-of-computer-network-it\endsem-may-jun-2024-pat2019-bocni.pdf
 D:\Sppu-questionpapers\it\sem-3\basics-of-computer-network-it\endsem-may-jun-2025-pat2019-bocni.pdf

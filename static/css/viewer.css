@@ -22,8 +22,8 @@
     --transition-speed: 0.15s;
     --shadow: 0 1px 3px rgba(0,0,0,0.2);
     --shadow-hover: 0 2px 6px rgba(0,0,0,0.3);
-    --header-height-desktop: 52px;
-    --header-height-mobile: 48px;
+    --header-height-desktop: 48px;
+    --header-height-mobile: 44px;
 }
 
 *, *::before, *::after {
@@ -57,18 +57,19 @@ header {
     flex-shrink: 0;
     box-shadow: 0 1px 3px rgba(0,0,0,0.3);
     z-index: 100;
-    gap: 16px;
+    gap: 14px;
 }
 
 .header-info, .header-center, .header-controls {
     display: flex;
     align-items: center;
-    gap: 12px;
+    gap: 10px;
     height: 100%;
 }
 
 .header-info {
     flex-shrink: 0;
+    min-width: 0;
 }
 
 .header-info h1 {
@@ -76,13 +77,17 @@ header {
     display: flex;
     align-items: center;
     height: 100%;
+    color: var(--primary-color);
+    font-size: 16px;
+    white-space: nowrap;
 }
 
 .header-center {
     flex: 1;
     justify-content: center;
-    gap: 20px;
+    gap: 16px;
     max-width: 600px;
+    min-width: 0;
 }
 
 .header-controls {
@@ -91,36 +96,40 @@ header {
 }
 
 .subject-badge {
-    background: none;
+    background: rgba(59, 130, 246, 0.1);
     color: var(--secondary-color);
     font-weight: 600;
-    font-size: 15px;
+    font-size: 14px;
     padding: 0 12px;
-    height: 36px;
+    height: 32px;
     display: flex;
     align-items: center;
     border-radius: var(--border-radius);
     letter-spacing: 0.02em;
     margin-left: 8px;
-    border: none;
+    border: 1px solid rgba(59, 130, 246, 0.2);
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
-    max-width: 220px;
+    max-width: 500px;
+    min-width: 0;
+    flex-shrink: 1;
+    title: attr(data-full-name);
+    cursor: help;
 }
 
 .control-group {
     display: flex;
     align-items: center;
     gap: 8px;
-    height: 36px;
+    height: 32px;
     flex-shrink: 0;
 }
 
 .control-group label {
-    color: var(--text-dark);
-    font-weight: 500;
-    font-size: 13px;
+    color: var(--primary-color);
+    font-weight: 600;
+    font-size: 12px;
     white-space: nowrap;
     flex-shrink: 0;
 }
@@ -128,7 +137,7 @@ header {
 .custom-dropdown {
     position: relative;
     min-width: 110px;
-    height: 36px;
+    height: 32px;
     user-select: none;
     z-index: 1;
 }
@@ -140,10 +149,10 @@ header {
 .dropdown-selected {
     background: rgba(255,255,255,0.06);
     color: var(--dropdown-text);
-    font-size: 13px;
+    font-size: 12px;
     font-weight: 500;
     padding: 0 12px;
-    height: 36px;
+    height: 32px;
     border-radius: var(--border-radius);
     border: 1px solid rgba(255,255,255,0.08);
     cursor: pointer;
@@ -242,9 +251,9 @@ header {
 
 button,
 .watermark-toggle button {
-    padding: 0 14px;
-    height: 36px;
-    font-size: 13px;
+    padding: 0 12px;
+    height: 32px;
+    font-size: 12px;
     font-weight: 500;
     border: none;
     border-radius: var(--border-radius);
@@ -254,26 +263,35 @@ button,
     box-shadow: var(--shadow);
     display: flex;
     align-items: center;
-    gap: 7px;
+    gap: 6px;
     transition: all var(--transition-speed) ease;
     flex-shrink: 0;
     white-space: nowrap;
 }
 
-button:hover {
+button:hover:not(:disabled):not(.disabled):not(.downloading) {
     background: #4a4a4a;
     box-shadow: var(--shadow-hover);
 }
 
-button:active {
+button:active:not(:disabled):not(.disabled):not(.downloading) {
     transform: scale(0.98);
+}
+
+button:disabled,
+button.disabled,
+button.downloading {
+    opacity: 0.5;
+    cursor: not-allowed;
+    background: #555;
+    box-shadow: none;
 }
 
 button.primary {
     background-color: var(--primary-color);
 }
 
-button.primary:hover {
+button.primary:hover:not(:disabled):not(.disabled):not(.downloading) {
     background-color: var(--primary-hover);
 }
 
@@ -281,7 +299,7 @@ button.back {
     background-color: var(--green-color);
 }
 
-button.back:hover {
+button.back:hover:not(:disabled):not(.disabled):not(.downloading) {
     background-color: var(--green-hover);
 }
 
@@ -289,23 +307,23 @@ button.download-btn {
     background-color: var(--green-color);
 }
 
-button.download-btn:hover {
+button.download-btn:hover:not(:disabled):not(.disabled):not(.downloading) {
     background-color: var(--green-hover);
 }
 
 .watermark-toggle {
     display: flex;
     align-items: center;
-    height: 36px;
+    height: 32px;
 }
 
 .watermark-toggle button {
     background: var(--watermark-color);
-    min-width: 36px;
-    height: 36px;
+    min-width: 32px;
+    height: 32px;
 }
 
-.watermark-toggle button:hover {
+.watermark-toggle button:hover:not(:disabled):not(.disabled):not(.downloading) {
     background: var(--watermark-hover);
 }
 
@@ -316,12 +334,12 @@ button.download-btn:hover {
 }
 
 .watermark-toggle .wm-label {
-    font-size: 13px;
+    font-size: 12px;
 }
 
 .icon {
-    width: 16px;
-    height: 16px;
+    width: 15px;
+    height: 15px;
     flex-shrink: 0;
 }
 
@@ -363,14 +381,14 @@ button.download-btn:hover {
     display: flex;
     align-items: center;
     gap: 10px;
-    padding: 6px 8px 6px 14px;
-    background: rgba(20, 20, 20, 0.92);
-    backdrop-filter: blur(12px);
-    -webkit-backdrop-filter: blur(12px);
-    border: 1px solid rgba(255, 255, 255, 0.1);
+    padding: 6px 14px;
+    background: rgba(30, 30, 30, 0.88);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    border: 1px solid rgba(59, 130, 246, 0.12);
     border-radius: 100px;
     box-shadow: 0 4px 16px rgba(0, 0, 0, 0.4);
-    transition: all 0.2s ease;
+    transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
     opacity: 0.9;
     z-index: 50;
     max-width: 90%;
@@ -379,50 +397,56 @@ button.download-btn:hover {
 .paper-selector:hover,
 .paper-selector:focus-within {
     opacity: 1;
-    box-shadow: 0 6px 24px rgba(0, 0, 0, 0.5);
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.5);
+    background: rgba(30, 30, 30, 0.94);
+    border-color: rgba(59, 130, 246, 0.25);
 }
 
 .paper-selector-label {
-    font-size: 11px;
-    font-weight: 600;
-    color: var(--text-dark);
+    font-size: 10px;
+    font-weight: 700;
+    color: var(--primary-color);
     text-transform: uppercase;
-    letter-spacing: 0.05em;
+    letter-spacing: 0.08em;
     white-space: nowrap;
     flex-shrink: 0;
+    opacity: 0.85;
 }
 
 .paper-selector .custom-dropdown {
     min-width: 160px;
     max-width: 280px;
-    height: 34px;
+    height: 32px;
 }
 
 .paper-selector .dropdown-selected {
-    background: transparent;
-    border: none;
-    padding: 0 10px;
-    height: 34px;
+    background: rgba(255,255,255,0.04);
+    border: 1px solid rgba(255,255,255,0.06);
+    padding: 0 12px;
+    height: 32px;
     font-size: 12px;
+    font-weight: 500;
+    border-radius: 100px;
+    transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .paper-selector .dropdown-selected:hover {
     background: rgba(255,255,255,0.08);
-    border-radius: 18px;
+    border-color: rgba(255,255,255,0.12);
 }
 
 .paper-dropdown .dropdown-options {
-    bottom: calc(100% + 10px);
+    bottom: calc(100% + 12px);
     top: auto;
     left: 50%;
     transform: translateX(-50%) translateY(8px);
     width: max-content;
-    min-width: 200px;
-    max-width: 360px;
+    min-width: 220px;
+    max-width: 380px;
     border-radius: 10px;
-    background: #252525;
-    border: 1px solid rgba(255,255,255,0.1);
-    box-shadow: 0 8px 32px rgba(0,0,0,0.5);
+    background: #292929;
+    border: 1px solid rgba(255,255,255,0.12);
+    box-shadow: 0 12px 40px rgba(0,0,0,0.6);
 }
 
 .paper-dropdown.open .dropdown-options {
@@ -576,32 +600,39 @@ button.download-btn:hover {
     display: flex;
     align-items: center;
     gap: 8px;
-    height: 36px;
+    height: 32px;
+}
+
+.exam-type-buttons label {
+    color: var(--primary-color);
+    font-weight: 600;
 }
 
 .exam-toggle-group {
     display: flex;
-    background: rgba(255,255,255,0.06);
-    border-radius: var(--border-radius);
-    padding: 2px;
-    gap: 2px;
-    height: 36px;
+    background: rgba(255,255,255,0.05);
+    border-radius: 8px;
+    padding: 3px;
+    gap: 3px;
+    height: 32px;
+    border: 1px solid rgba(255,255,255,0.08);
 }
 
 .exam-toggle-btn {
     padding: 0 14px;
-    height: 32px;
-    font-size: 12px;
+    height: 26px;
+    font-size: 11px;
     font-weight: 600;
     border: none;
-    border-radius: 4px;
+    border-radius: 6px;
     cursor: pointer;
     background: transparent;
     color: var(--text-dark);
-    transition: all var(--transition-speed) ease;
+    transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
     white-space: nowrap;
     box-shadow: none;
-    min-width: 72px;
+    min-width: 68px;
+    position: relative;
 }
 
 .exam-toggle-btn:hover:not(.active):not(.disabled) {
@@ -610,9 +641,16 @@ button.download-btn:hover {
 }
 
 .exam-toggle-btn.active {
-    background: var(--primary-color);
-    color: var(--text-light);
-    box-shadow: 0 1px 4px rgba(var(--primary-color-rgb), 0.3);
+    background: var(--primary-color) !important;
+    color: var(--text-light) !important;
+    box-shadow: 0 2px 8px rgba(var(--primary-color-rgb), 0.35);
+}
+
+.exam-toggle-btn.active:hover {
+    background: var(--primary-color) !important;
+    color: var(--text-light) !important;
+    box-shadow: 0 2px 8px rgba(var(--primary-color-rgb), 0.35);
+    cursor: default;
 }
 
 .exam-toggle-btn.disabled {
@@ -879,12 +917,12 @@ button.download-btn:hover {
     height: auto;
 }
 
-.download-zip-btn:hover {
+.download-zip-btn:hover:not(:disabled):not(.disabled):not(.downloading) {
     background: var(--green-hover);
     box-shadow: 0 2px 8px rgba(40, 167, 69, 0.4);
 }
 
-.download-zip-btn:active {
+.download-zip-btn:active:not(:disabled):not(.disabled):not(.downloading) {
     transform: scale(0.98);
 }
 
@@ -893,11 +931,14 @@ button.download-btn:hover {
     height: 16px;
 }
 
-.download-zip-btn.disabled {
+.download-zip-btn:disabled,
+.download-zip-btn.disabled,
+.download-zip-btn.downloading {
     opacity: 0.5;
     cursor: not-allowed;
     pointer-events: none;
-    background: #6b7280;
+    background: #555;
+    box-shadow: none;
 }
 
 @media (max-width: 1024px) {
@@ -916,40 +957,37 @@ button.download-btn:hover {
 
     .subject-badge {
         font-size: 14px;
-        max-width: 180px;
+        max-width: 220px;
     }
 }
 
 @media (max-width: 768px) {
     :root {
-        --header-height-mobile: 84px;
+        --header-height-mobile: 42px;
     }
 
     header {
-        flex-wrap: wrap;
-        height: auto;
+        height: var(--header-height-mobile);
         min-height: var(--header-height-mobile);
-        padding: 8px 10px;
+        padding: 6px 10px;
         gap: 8px;
+        flex-wrap: nowrap;
     }
 
     .header-info {
-        width: 100%;
-        justify-content: flex-start;
         gap: 8px;
-        height: 36px;
-        order: 1;
-    }
-
-    .header-info h1 {
-        height: auto;
         flex: 1;
         min-width: 0;
     }
 
+    .header-info h1 {
+        font-size: 15px;
+        min-width: auto;
+    }
+
     .subject-badge {
-        font-size: 13px;
-        height: 28px;
+        font-size: 12px;
+        height: 32px;
         padding: 0 10px;
         margin-left: 0;
         max-width: none;
@@ -958,24 +996,37 @@ button.download-btn:hover {
     }
 
     .header-center {
-        width: 100%;
-        flex: none;
-        justify-content: flex-start;
-        gap: 10px;
-        order: 2;
-        height: 36px;
+        display: none;
+    }
+
+    .header-controls {
+        gap: 8px;
+        flex-shrink: 0;
+    }
+
+    .control-group {
+        height: 32px;
+        gap: 6px;
+    }
+
+    .control-group label {
+        display: none;
+    }
+
+    /* Hide layout dropdown on mobile */
+    #pdf-count-dropdown {
+        display: none;
     }
 
     .exam-type-buttons {
-        order: -1;
-    }
-
-    .exam-type-buttons label {
-        font-size: 11px;
+        gap: 6px;
+        height: 32px;
     }
 
     .exam-toggle-group {
         height: 32px;
+        padding: 2px;
+        gap: 2px;
     }
 
     .exam-toggle-btn {
@@ -985,25 +1036,8 @@ button.download-btn:hover {
         min-width: 60px;
     }
 
-    .header-controls {
-        width: 100%;
-        justify-content: flex-end;
-        gap: 8px;
-        order: 3;
-        height: 36px;
-    }
-
-    .control-group {
-        height: 32px;
-        gap: 6px;
-    }
-
-    .control-group label {
-        font-size: 11px;
-    }
-
     .custom-dropdown {
-        min-width: 90px;
+        min-width: 0;
         height: 32px;
     }
 
@@ -1014,8 +1048,8 @@ button.download-btn:hover {
     }
 
     .dropdown-arrow {
-        width: 11px;
-        height: 11px;
+        width: 10px;
+        height: 10px;
         margin-left: 6px;
     }
 
@@ -1024,7 +1058,7 @@ button.download-btn:hover {
         height: 32px;
         font-size: 12px;
         padding: 0 10px;
-        gap: 6px;
+        gap: 5px;
     }
 
     .btn-text,
@@ -1038,8 +1072,8 @@ button.download-btn:hover {
     }
 
     .icon {
-        width: 16px;
-        height: 16px;
+        width: 15px;
+        height: 15px;
     }
 
     #pdf-container {
@@ -1049,25 +1083,28 @@ button.download-btn:hover {
 
     .paper-selector {
         bottom: 12px;
-        padding: 5px 7px 5px 12px;
+        padding: 5px 12px;
         gap: 8px;
         max-width: 92%;
+        border-radius: 100px;
     }
 
     .paper-selector-label {
-        font-size: 10px;
+        font-size: 9px;
+        letter-spacing: 0.06em;
     }
 
     .paper-selector .custom-dropdown {
         min-width: 140px;
-        max-width: 200px;
+        max-width: 220px;
         height: 30px;
     }
 
     .paper-selector .dropdown-selected {
         height: 30px;
-        padding: 0 9px;
+        padding: 0 12px;
         font-size: 11px;
+        border-radius: 100px;
     }
 
     .dropdown-option {
@@ -1159,29 +1196,36 @@ button.download-btn:hover {
 }
 
 @media (max-width: 480px) {
+    :root {
+        --header-height-mobile: 44px;
+    }
+
     header {
-        padding: 6px 8px;
-        gap: 6px;
-    }
-
-    .header-info {
-        height: 32px;
-        gap: 6px;
-    }
-
-    .subject-badge {
-        font-size: 12px;
-        height: 26px;
-        padding: 0 8px;
-    }
-
-    .header-center {
-        height: 32px;
+        padding: 6px 10px;
         gap: 8px;
     }
 
-    .exam-type-buttons label {
-        font-size: 10px;
+    .header-info {
+        gap: 6px;
+    }
+
+    .header-info h1 {
+        font-size: 14px;
+    }
+
+    .subject-badge {
+        font-size: 11px;
+        height: 30px;
+        padding: 0 8px;
+    }
+
+    .header-controls {
+        gap: 6px;
+    }
+
+    .exam-type-buttons {
+        gap: 5px;
+        height: 30px;
     }
 
     .exam-toggle-group {
@@ -1195,22 +1239,12 @@ button.download-btn:hover {
         min-width: 54px;
     }
 
-    .header-controls {
-        height: 32px;
-        gap: 6px;
-    }
-
     .control-group {
         height: 30px;
         gap: 5px;
     }
 
-    .control-group label {
-        font-size: 10px;
-    }
-
     .custom-dropdown {
-        min-width: 80px;
         height: 30px;
     }
 
@@ -1220,12 +1254,18 @@ button.download-btn:hover {
         padding: 0 8px;
     }
 
+    .dropdown-arrow {
+        width: 9px;
+        height: 9px;
+        margin-left: 5px;
+    }
+
     button,
     .watermark-toggle button {
         height: 30px;
         font-size: 11px;
         padding: 0 8px;
-        gap: 5px;
+        gap: 4px;
     }
 
     .watermark-toggle button {
@@ -1234,18 +1274,19 @@ button.download-btn:hover {
     }
 
     .icon {
-        width: 15px;
-        height: 15px;
+        width: 14px;
+        height: 14px;
     }
 
     .paper-selector {
         bottom: 10px;
-        padding: 4px 6px 4px 10px;
-        gap: 6px;
+        padding: 4px 10px;
+        gap: 7px;
+        border-radius: 100px;
     }
 
     .paper-selector-label {
-        font-size: 9px;
+        font-size: 8px;
     }
 
     .paper-selector .custom-dropdown {
@@ -1256,8 +1297,9 @@ button.download-btn:hover {
 
     .paper-selector .dropdown-selected {
         height: 28px;
-        font-size: 11px;
-        padding: 0 8px;
+        font-size: 10px;
+        padding: 0 10px;
+        border-radius: 100px;
     }
 
     .download-modal-header {
@@ -1301,23 +1343,11 @@ button.download-btn:hover {
 
 @media (max-width: 768px) and (orientation: landscape) {
     :root {
-        --header-height-mobile: 76px;
+        --header-height-mobile: 44px;
     }
 
     header {
         padding: 6px 10px;
-    }
-
-    .header-info,
-    .header-center,
-    .header-controls {
-        height: 32px;
-    }
-
-    .control-group,
-    button,
-    .watermark-toggle button {
-        height: 30px;
     }
 
     #pdf-container {

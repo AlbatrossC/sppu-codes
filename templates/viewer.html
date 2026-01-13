@@ -36,7 +36,7 @@
     <link href="{{ url_for('get_image', filename='favicon.ico') }}" rel="icon" fetchpriority="high" type="image/x-icon">
     <link href="/static/pdfjs/web/viewer.html" rel="preload" fetchpriority="high" as="document">
     <link href="/static/pdfjs/web/viewer.css" rel="preload" fetchpriority="high" as="style">
-    <link href="{{ url_for('static', filename='css/viewer.css') }}?v=3.0" rel="stylesheet">
+    <link href="{{ url_for('static', filename='css/viewer.css') }}?v=3.1" rel="stylesheet">
     <link href="/static/pdfjs/web/pdf.worker.js" rel="preload" fetchpriority="high" as="worker">
     <script src="{{ url_for('static', filename='js/analytics.js') }}?v=3.0" defer></script>
 
@@ -1351,6 +1351,48 @@
         } else {
             init();
         }
+
+        (function() {
+            'use strict';
+            
+            // Wait for DOM to be ready
+            function init() {
+                // Close paper selector dropdowns when an option is selected
+                document.addEventListener('click', function(e) {
+                    // Check if click is on a dropdown option inside paper selector
+                    var dropdownOption = e.target.closest('.paper-selector .dropdown-option');
+                    
+                    if (dropdownOption) {
+                        // Find the parent dropdown and close it
+                        var dropdown = dropdownOption.closest('.custom-dropdown');
+                        if (dropdown) {
+                            // Small delay to allow the selection to process
+                            setTimeout(function() {
+                                dropdown.classList.remove('open');
+                            }, 100);
+                        }
+                    }
+                });
+                
+                // Also close when clicking outside paper selector
+                document.addEventListener('click', function(e) {
+                    // Check if click is outside all paper selectors
+                    if (!e.target.closest('.paper-selector')) {
+                        // Close all paper selector dropdowns
+                        document.querySelectorAll('.paper-selector .custom-dropdown.open').forEach(function(dropdown) {
+                            dropdown.classList.remove('open');
+                        });
+                    }
+                });
+            }
+            
+            // Initialize when DOM is ready
+            if (document.readyState === 'loading') {
+                document.addEventListener('DOMContentLoaded', init);
+            } else {
+                init();
+            }
+        })();
     </script>
 </body>
 </html>

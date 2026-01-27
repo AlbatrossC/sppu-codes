@@ -1,5 +1,6 @@
 <!doctype html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=5,user-scalable=yes">
@@ -13,9 +14,11 @@
     <meta name="page-type" content="viewer">
     <meta name="googlebot" content="index, follow">
     <meta name="bingbot" content="index, follow">
-    <meta name="subject" content="{% if seo_data.subject_name %}{{ seo_data.subject_name }}{% else %}{{ subject_link.replace('-fy', '').replace('-aids', '').replace('-cse', '').replace('-', ' ').title() }}{% endif %} Question Papers">
+    <meta name="subject"
+        content="{% if seo_data.subject_name %}{{ seo_data.subject_name }}{% else %}{{ subject_link.replace('-fy', '').replace('-aids', '').replace('-cse', '').replace('-', ' ').title() }}{% endif %} Question Papers">
     <meta name="topic" content="Academic Question Papers, SPPU University Papers">
-    <meta name="summary" content="Download and view {% if seo_data.subject_name %}{{ seo_data.subject_name }}{% else %}{{ subject_link.replace('-fy', '').replace('-aids', '').replace('-cse', '').replace('-', ' ').title() }}{% endif %} question papers online. Access INSEM and ENDSEM papers with our PDF viewer.">
+    <meta name="summary"
+        content="Download and view {% if seo_data.subject_name %}{{ seo_data.subject_name }}{% else %}{{ subject_link.replace('-fy', '').replace('-aids', '').replace('-cse', '').replace('-', ' ').title() }}{% endif %} question papers online. Access INSEM and ENDSEM papers with our PDF viewer.">
 
     <link rel="canonical" href="https://sppucodes.vercel.app/question-papers/{{ subject_link }}">
 
@@ -41,7 +44,8 @@
     <script src="{{ url_for('static', filename='js/analytics.js') }}?v=3.0" defer></script>
 
     <!-- Set subject name variable with fallback -->
-    {% set display_name = seo_data.subject_name if seo_data.subject_name else subject_link.replace('-fy', '').replace('-aids', '').replace('-cse', '').replace('-', ' ').title() %}
+    {% set display_name = seo_data.subject_name if seo_data.subject_name else subject_link.replace('-fy',
+    '').replace('-aids', '').replace('-cse', '').replace('-', ' ').title() %}
 
     <!-- Fixed Breadcrumb Schema with Fallback -->
     <script type="application/ld+json">
@@ -180,10 +184,12 @@
     }
     </script>
 </head>
+
 <body>
     <div id="rotation-prompt" class="rotation-prompt" style="display: none;">
         <div class="rotation-content">
-            <svg class="rotation-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <svg class="rotation-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                stroke-linecap="round" stroke-linejoin="round">
                 <rect x="5" y="2" width="14" height="20" rx="2" ry="2"></rect>
                 <path d="M12 18h.01"></path>
             </svg>
@@ -194,16 +200,20 @@
 
     <div class="seo-content">
         <h1>{{ seo_data.subject_name }} Question Papers - SPPU University</h1>
-        <p>Access and download {{ seo_data.subject_name }} question papers from Savitribai Phule Pune University (SPPU). Our collection includes INSEM (Internal Semester) and ENDSEM (End Semester) exam papers.</p>
+        <p>Access and download {{ seo_data.subject_name }} question papers from Savitribai Phule Pune University (SPPU).
+            Our collection includes INSEM (Internal Semester) and ENDSEM (End Semester) exam papers.</p>
 
         <h2>Available {{ seo_data.subject_name }} Papers</h2>
-        <p>We offer {{ pdf_data_for_js | length }} question papers for {{ seo_data.subject_name }}, covering various exam patterns and years. All papers are in PDF format for easy viewing and download.</p>
+        <p>We offer {{ pdf_data_for_js | length }} question papers for {{ seo_data.subject_name }}, covering various
+            exam patterns and years. All papers are in PDF format for easy viewing and download.</p>
 
         <h3>INSEM Papers for {{ seo_data.subject_name }}</h3>
-        <p>Prepare for mid-term evaluations with {{ seo_data.subject_name }} INSEM papers, aligned with the SPPU exam pattern and syllabus.</p>
+        <p>Prepare for mid-term evaluations with {{ seo_data.subject_name }} INSEM papers, aligned with the SPPU exam
+            pattern and syllabus.</p>
 
         <h3>ENDSEM Papers for {{ seo_data.subject_name }}</h3>
-        <p>Access {{ seo_data.subject_name }} ENDSEM papers covering the entire syllabus, essential for final exam preparation.</p>
+        <p>Access {{ seo_data.subject_name }} ENDSEM papers covering the entire syllabus, essential for final exam
+            preparation.</p>
 
         <h2>Online PDF Viewer Features</h2>
         <p>Our PDF viewer enables you to:</p>
@@ -216,19 +226,27 @@
         </ul>
 
         <h2>About SPPU Codes</h2>
-        <p>SPPU Codes is your resource for SPPU academic materials. We provide easy access to question papers to help students excel.</p>
+        <p>SPPU Codes is your resource for SPPU academic materials. We provide easy access to question papers to help
+            students excel.</p>
 
         <h3>Study Materials for {{ seo_data.subject_name }}</h3>
-        <p>{{ seo_data.subject_name }} is a key subject in the SPPU curriculum. Our question paper collection helps students understand exam patterns, practice effectively, and improve academic performance.</p>
+        <p>{{ seo_data.subject_name }} is a key subject in the SPPU curriculum. Our question paper collection helps
+            students understand exam patterns, practice effectively, and improve academic performance.</p>
 
         <h2>Relevant Keywords & Topics</h2>
-        <p>Explore {{ seo_data.subject_name }} resources including SPPU question papers from Savitribai Phule Pune University. Find INSEM and ENDSEM papers for effective examination preparation. Our platform offers academic resources, a PDF viewer for online study, university question papers, and materials for semester examinations.</p>
+        <p>Explore {{ seo_data.subject_name }} resources including SPPU question papers from Savitribai Phule Pune
+            University. Find INSEM and ENDSEM papers for effective examination preparation. Our platform offers academic
+            resources, a PDF viewer for online study, university question papers, and materials for semester
+            examinations.</p>
     </div>
 
     <header>
         <div class="header-info">
             <button class="back" id="back-btn" aria-label="Go back to question papers list">
-                <svg class="icon" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>
+                <svg class="icon" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
+                    stroke-width="2" viewBox="0 0 24 24">
+                    <path d="M19 12H5M12 19l-7-7 7-7" />
+                </svg>
                 <span class="btn-text">Back</span>
             </button>
             <h1>
@@ -241,7 +259,10 @@
                 <div class="custom-dropdown" id="pdf-count-dropdown" data-value="1">
                     <div class="dropdown-selected">
                         <span class="dropdown-text">Single</span>
-                        <svg class="dropdown-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+                        <svg class="dropdown-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                            stroke-width="2">
+                            <polyline points="6 9 12 15 18 9" />
+                        </svg>
                     </div>
                     <div class="dropdown-options">
                         <div class="dropdown-option selected" data-value="1">Single</div>
@@ -254,24 +275,38 @@
             <div class="control-group exam-type-buttons">
                 <label>Exam:</label>
                 <div class="exam-toggle-group">
-                    <button type="button" class="exam-toggle-btn" data-value="insem">INSEM</button>
-                    <button type="button" class="exam-toggle-btn active" data-value="endsem">ENDSEM</button>
+                    <button type="button" class="exam-toggle-btn active" data-value="insem">INSEM</button>
+                    <button type="button" class="exam-toggle-btn" data-value="endsem">ENDSEM</button>
                 </div>
             </div>
         </div>
         <div class="header-controls">
             <div class="control-group watermark-toggle" id="watermark-control">
-                <button id="watermarkGlobalToggle" aria-pressed="false" title="Toggle watermark overlays" type="button" aria-label="Toggle watermark visibility">
-                    <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8S1 12 1 12z"></path><circle cx="12" cy="12" r="3"></circle></svg>
+                <button id="watermarkGlobalToggle" aria-pressed="false" title="Toggle watermark overlays" type="button"
+                    aria-label="Toggle watermark visibility">
+                    <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                        stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8S1 12 1 12z"></path>
+                        <circle cx="12" cy="12" r="3"></circle>
+                    </svg>
                     <span class="wm-label" id="watermarkGlobalToggleLabel">Hide watermark</span>
                 </button>
             </div>
             <button class="download-btn" id="download-btn" aria-label="Download papers">
-                <svg class="icon" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line></svg>
+                <svg class="icon" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
+                    stroke-width="2" viewBox="0 0 24 24">
+                    <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+                    <polyline points="7 10 12 15 17 10"></polyline>
+                    <line x1="12" y1="15" x2="12" y2="3"></line>
+                </svg>
                 <span class="btn-text">Download</span>
             </button>
             <button class="primary" id="fullscreen-btn" aria-label="Toggle fullscreen mode">
-                <svg class="icon" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24"><path d="M8 3H5a2 2 0 0 0-2 2v3m18 0V5a2 2 0 0 0-2-2h-3m0 18h3a2 2 0 0 0 2-2v-3M3 16v3a2 2 0 0 0 2 2h3"/></svg>
+                <svg class="icon" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
+                    stroke-width="2" viewBox="0 0 24 24">
+                    <path
+                        d="M8 3H5a2 2 0 0 0-2 2v3m18 0V5a2 2 0 0 0-2-2h-3m0 18h3a2 2 0 0 0 2-2v-3M3 16v3a2 2 0 0 0 2 2h3" />
+                </svg>
                 <span class="btn-text">Fullscreen</span>
             </button>
         </div>
@@ -283,7 +318,8 @@
         <div class="download-modal-content">
             <div class="download-modal-header">
                 <div class="download-header-content">
-                    <h2 class="download-modal-title">Download <span id="download-subject-name">{{ seo_data.subject_name }}</span> Papers</h2>
+                    <h2 class="download-modal-title">Download <span id="download-subject-name">{{ seo_data.subject_name
+                            }}</span> Papers</h2>
                     <!-- Download status container with progress bar -->
                     <div class="download-status-container" id="download-status-container" style="display: none;">
                         <div class="download-status-content">
@@ -296,7 +332,11 @@
                     </div>
                 </div>
                 <button class="download-modal-close" id="download-modal-close" aria-label="Close modal">
-                    <svg class="icon" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
+                    <svg class="icon" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
+                        stroke-width="2" viewBox="0 0 24 24">
+                        <line x1="18" y1="6" x2="6" y2="18"></line>
+                        <line x1="6" y1="6" x2="18" y2="18"></line>
+                    </svg>
                 </button>
             </div>
             <div class="download-modal-body">
@@ -308,7 +348,12 @@
                     <!-- lazy-load & invoke download script on click -->
                     <button type="button" class="download-zip-btn" id="download-insem-btn" data-download="insem"
                         onclick="(function(ev,btn){ ev&&ev.preventDefault&&ev.preventDefault(); if(!window.DownloadPaper){ var s=document.createElement('script'); s.src='/static/js/download-paper.js'; s.onload=function(){ window.DownloadPaper && window.DownloadPaper.handleClick(ev, btn); }; s.onerror=function(){ var el=document.getElementById('download-status'); if(el) el.textContent='Failed to load download helper.'; }; document.head.appendChild(s);} else { window.DownloadPaper.handleClick(ev, btn);} })(event, this);">
-                        <svg class="icon" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line></svg>
+                        <svg class="icon" fill="none" stroke="currentColor" stroke-linecap="round"
+                            stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24">
+                            <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+                            <polyline points="7 10 12 15 17 10"></polyline>
+                            <line x1="12" y1="15" x2="12" y2="3"></line>
+                        </svg>
                         <span>Download ZIP</span>
                     </button>
                 </div>
@@ -320,7 +365,12 @@
                     </div>
                     <button type="button" class="download-zip-btn" id="download-endsem-btn" data-download="endsem"
                         onclick="(function(ev,btn){ ev&&ev.preventDefault&&ev.preventDefault(); if(!window.DownloadPaper){ var s=document.createElement('script'); s.src='/static/js/download-paper.js'; s.onload=function(){ window.DownloadPaper && window.DownloadPaper.handleClick(ev, btn); }; s.onerror=function(){ var el=document.getElementById('download-status'); if(el) el.textContent='Failed to load download helper.'; }; document.head.appendChild(s);} else { window.DownloadPaper.handleClick(ev, btn);} })(event, this);">
-                        <svg class="icon" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line></svg>
+                        <svg class="icon" fill="none" stroke="currentColor" stroke-linecap="round"
+                            stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24">
+                            <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+                            <polyline points="7 10 12 15 17 10"></polyline>
+                            <line x1="12" y1="15" x2="12" y2="3"></line>
+                        </svg>
                         <span>Download ZIP</span>
                     </button>
                 </div>
@@ -332,7 +382,12 @@
                     </div>
                     <button type="button" class="download-zip-btn" id="download-all-btn" data-download="all"
                         onclick="(function(ev,btn){ ev&&ev.preventDefault&&ev.preventDefault(); if(!window.DownloadPaper){ var s=document.createElement('script'); s.src='/static/js/download-paper.js'; s.onload=function(){ window.DownloadPaper && window.DownloadPaper.handleClick(ev, btn); }; s.onerror=function(){ var el=document.getElementById('download-status'); if(el) el.textContent='Failed to load download helper.'; }; document.head.appendChild(s);} else { window.DownloadPaper.handleClick(ev, btn);} })(event, this);">
-                        <svg class="icon" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line></svg>
+                        <svg class="icon" fill="none" stroke="currentColor" stroke-linecap="round"
+                            stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24">
+                            <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+                            <polyline points="7 10 12 15 17 10"></polyline>
+                            <line x1="12" y1="15" x2="12" y2="3"></line>
+                        </svg>
                         <span>Download ZIP</span>
                     </button>
                 </div>
@@ -341,7 +396,41 @@
     </div>
 
     <div class="grid-1" id="pdf-container">
-        <div class="no-pdf-message">Loading PDFs...<div class="loader"></div></div>
+        <div class="no-pdf-message">Loading PDFs...<div class="loader"></div>
+        </div>
+    </div>
+
+    <!-- Mobile Control Bar -->
+    <div class="mobile-control-bar" id="mobile-control-bar">
+        <div class="mobile-control-group">
+            <label class="mobile-control-label">Exam:</label>
+            <div class="custom-dropdown mobile-exam-dropdown" id="mobile-exam-dropdown" data-value="insem">
+                <div class="dropdown-selected">
+                    <span class="dropdown-text">INSEM</span>
+                    <svg class="dropdown-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <polyline points="6 9 12 15 18 9" />
+                    </svg>
+                </div>
+                <div class="dropdown-options">
+                    <div class="dropdown-option selected" data-value="insem">INSEM</div>
+                    <div class="dropdown-option" data-value="endsem">ENDSEM</div>
+                </div>
+            </div>
+        </div>
+        <div class="mobile-control-group">
+            <label class="mobile-control-label">Paper:</label>
+            <div class="custom-dropdown mobile-paper-dropdown" id="mobile-paper-dropdown" data-value="0">
+                <div class="dropdown-selected">
+                    <span class="dropdown-text">Select Paper</span>
+                    <svg class="dropdown-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <polyline points="6 9 12 15 18 9" />
+                    </svg>
+                </div>
+                <div class="dropdown-options">
+                    <!-- Options populated dynamically -->
+                </div>
+            </div>
+        </div>
     </div>
 
     <script>
@@ -350,16 +439,16 @@
         // Logger utility with clean formatting
         var Logger = {
             prefix: '[PDF Viewer]',
-            info: function(msg, data) {
+            info: function (msg, data) {
                 console.log(this.prefix + ' ' + msg, data !== undefined ? data : '');
             },
-            warn: function(msg, data) {
+            warn: function (msg, data) {
                 console.warn(this.prefix + ' ' + msg, data !== undefined ? data : '');
             },
-            error: function(msg, data) {
+            error: function (msg, data) {
                 console.error(this.prefix + ' ' + msg, data !== undefined ? data : '');
             },
-            debug: function(msg, data) {
+            debug: function (msg, data) {
                 if (window.location.search.includes('debug=true')) {
                     console.log(this.prefix + ' [DEBUG] ' + msg, data !== undefined ? data : '');
                 }
@@ -372,31 +461,31 @@
         // Custom Dropdown Component with improved logic
         var CustomDropdown = {
             activeDropdown: null,
-            
-            init: function(element, onChange) {
+
+            init: function (element, onChange) {
                 var self = this;
                 var selected = element.querySelector('.dropdown-selected');
                 var options = element.querySelector('.dropdown-options');
                 var allOptions = element.querySelectorAll('.dropdown-option');
-                
-                element._getValue = function() {
+
+                element._getValue = function () {
                     return element.getAttribute('data-value');
                 };
-                
-                element._setValue = function(value, triggerChange) {
+
+                element._setValue = function (value, triggerChange) {
                     var option = element.querySelector('.dropdown-option[data-value="' + value + '"]');
                     if (option && !option.classList.contains('disabled')) {
                         element.setAttribute('data-value', value);
                         element.querySelector('.dropdown-text').textContent = option.textContent;
-                        allOptions.forEach(function(opt) { opt.classList.remove('selected'); });
+                        allOptions.forEach(function (opt) { opt.classList.remove('selected'); });
                         option.classList.add('selected');
                         if (triggerChange && onChange) {
                             onChange(value);
                         }
                     }
                 };
-                
-                element._setDisabled = function(value, disabled) {
+
+                element._setDisabled = function (value, disabled) {
                     var option = element.querySelector('.dropdown-option[data-value="' + value + '"]');
                     if (option) {
                         if (disabled) {
@@ -406,8 +495,8 @@
                         }
                     }
                 };
-                
-                selected.addEventListener('click', function(e) {
+
+                selected.addEventListener('click', function (e) {
                     e.stopPropagation();
                     var isOpen = element.classList.contains('open');
                     self.closeAll();
@@ -417,9 +506,9 @@
                         Logger.debug('Dropdown opened', element.id);
                     }
                 });
-                
-                allOptions.forEach(function(option) {
-                    option.addEventListener('click', function(e) {
+
+                allOptions.forEach(function (option) {
+                    option.addEventListener('click', function (e) {
                         e.stopPropagation();
                         if (option.classList.contains('disabled')) {
                             return;
@@ -428,24 +517,24 @@
                         element._setValue(value, true);
                         element.classList.remove('open');
                         self.activeDropdown = null;
-                        Logger.debug('Dropdown option selected', {dropdown: element.id, value: value});
+                        Logger.debug('Dropdown option selected', { dropdown: element.id, value: value });
                     });
                 });
-                
+
                 return element;
             },
-            
-            closeAll: function() {
-                document.querySelectorAll('.custom-dropdown.open').forEach(function(dd) {
+
+            closeAll: function () {
+                document.querySelectorAll('.custom-dropdown.open').forEach(function (dd) {
                     dd.classList.remove('open');
                 });
                 this.activeDropdown = null;
                 Logger.debug('All dropdowns closed');
             }
         };
-        
+
         // Close dropdowns when clicking anywhere outside
-        document.addEventListener('click', function(e) {
+        document.addEventListener('click', function (e) {
             if (!e.target.closest('.custom-dropdown')) {
                 CustomDropdown.closeAll();
             }
@@ -464,8 +553,14 @@
             downloadModal: document.getElementById('download-modal'),
             downloadModalOverlay: document.getElementById('download-modal-overlay'),
             downloadModalClose: document.getElementById('download-modal-close'),
-            downloadSubjectName: document.getElementById('download-subject-name')
+            downloadSubjectName: document.getElementById('download-subject-name'),
+            mobileControlBar: document.getElementById('mobile-control-bar'),
+            mobileExamDropdown: null,
+            mobilePaperDropdown: null
         };
+
+        // Single source of truth for default exam type
+        var DEFAULT_EXAM_TYPE = 'insem';
 
         var state = {
             pdfFiles: [],
@@ -479,28 +574,28 @@
             preloadComplete: false,
             watermarkHidden: false,
             currentLayout: '1',
-            currentExamType: 'endsem'
+            currentExamType: DEFAULT_EXAM_TYPE
         };
 
         // Enhanced Service Worker Manager with better caching
         var ServiceWorkerManager = {
-            register: function() {
+            register: function () {
                 var self = this;
                 if ('serviceWorker' in navigator) {
                     return navigator.serviceWorker.register('/sw.js')
-                        .then(function() {
+                        .then(function () {
                             return navigator.serviceWorker.ready;
                         })
-                        .then(function(registration) {
+                        .then(function (registration) {
                             state.serviceWorkerReady = true;
-                            navigator.serviceWorker.addEventListener('message', function(e) { 
-                                self.handleMessage(e); 
+                            navigator.serviceWorker.addEventListener('message', function (e) {
+                                self.handleMessage(e);
                             });
                             self.cleanCache();
                             Logger.info('Service Worker ready for offline caching');
                             return registration;
                         })
-                        .catch(function(error) {
+                        .catch(function (error) {
                             Logger.warn('Service Worker unavailable, PDFs will load from network');
                             return null;
                         });
@@ -509,7 +604,7 @@
                 return Promise.resolve(null);
             },
 
-            handleMessage: function(event) {
+            handleMessage: function (event) {
                 var type = event.data.type;
                 var data = event.data.data;
                 switch (type) {
@@ -526,7 +621,7 @@
                         Logger.warn('Failed to cache PDF: ' + data.fileName);
                         break;
                     case 'PDF_CACHE_CHECK':
-                        data.cachedUrls.forEach(function(url) {
+                        data.cachedUrls.forEach(function (url) {
                             state.cachedPdfs.add(url);
                         });
                         Logger.debug('Cache check complete', data.cachedUrls.length + ' PDFs cached');
@@ -538,40 +633,40 @@
                 }
             },
 
-            initiatePdfCaching: function(pdfUrls) {
+            initiatePdfCaching: function (pdfUrls) {
                 if (!state.serviceWorkerReady || pdfUrls.length === 0) {
                     return;
                 }
                 state.cacheProgress = { total: 0, completed: 0, failed: 0 };
                 Logger.info('Starting background cache for ' + pdfUrls.length + ' PDFs');
                 if (navigator.serviceWorker.controller) {
-                    navigator.serviceWorker.controller.postMessage({ 
-                        type: 'CACHE_PDFS', 
-                        urls: pdfUrls 
+                    navigator.serviceWorker.controller.postMessage({
+                        type: 'CACHE_PDFS',
+                        urls: pdfUrls
                     });
                 }
             },
 
-            checkCachedPdfs: function(pdfUrls) {
+            checkCachedPdfs: function (pdfUrls) {
                 if (!state.serviceWorkerReady) {
                     return Promise.resolve([]);
                 }
-                return new Promise(function(resolve) {
+                return new Promise(function (resolve) {
                     var messageChannel = new MessageChannel();
-                    messageChannel.port1.onmessage = function(event) {
+                    messageChannel.port1.onmessage = function (event) {
                         resolve(event.data.cachedUrls || []);
                     };
                     if (navigator.serviceWorker.controller) {
-                        navigator.serviceWorker.controller.postMessage({ 
-                            type: 'CHECK_CACHED_PDFS', 
-                            urls: pdfUrls 
+                        navigator.serviceWorker.controller.postMessage({
+                            type: 'CHECK_CACHED_PDFS',
+                            urls: pdfUrls
                         }, [messageChannel.port2]);
                     }
-                    setTimeout(function() { resolve([]); }, 1000);
+                    setTimeout(function () { resolve([]); }, 1000);
                 });
             },
 
-            cleanCache: function() {
+            cleanCache: function () {
                 if (state.serviceWorkerReady && navigator.serviceWorker.controller) {
                     navigator.serviceWorker.controller.postMessage({ type: 'CLEAN_CACHE' });
                     Logger.debug('Cache cleanup initiated');
@@ -585,17 +680,17 @@
             maxConcurrent: 3,
             activePreloads: 0,
 
-            preloadPdfViewer: function() {
+            preloadPdfViewer: function () {
                 if (state.preloadComplete) {
                     return Promise.resolve();
                 }
-                return new Promise(function(resolve) {
+                return new Promise(function (resolve) {
                     var preloadIframe = document.createElement('iframe');
                     preloadIframe.style.cssText = 'position:absolute;left:-9999px;width:1px;height:1px;opacity:0;pointer-events:none;';
                     preloadIframe.setAttribute('aria-hidden', 'true');
                     preloadIframe.src = state.pdfViewerBase;
-                    
-                    preloadIframe.onload = function() {
+
+                    preloadIframe.onload = function () {
                         state.preloadComplete = true;
                         Logger.info('PDF.js viewer preloaded');
                         if (preloadIframe.parentNode) {
@@ -603,17 +698,17 @@
                         }
                         resolve();
                     };
-                    
-                    preloadIframe.onerror = function() {
+
+                    preloadIframe.onerror = function () {
                         Logger.warn('PDF.js viewer preload failed');
                         if (preloadIframe.parentNode) {
                             preloadIframe.remove();
                         }
                         resolve();
                     };
-                    
+
                     document.body.appendChild(preloadIframe);
-                    setTimeout(function() {
+                    setTimeout(function () {
                         if (preloadIframe.parentNode) {
                             preloadIframe.remove();
                         }
@@ -622,17 +717,17 @@
                 });
             },
 
-            addToPreloadQueue: function(pdfUrl, priority) {
+            addToPreloadQueue: function (pdfUrl, priority) {
                 var self = this;
                 priority = priority || 1;
                 this.preloadQueue.push({ url: pdfUrl, priority: priority });
-                this.preloadQueue.sort(function(a, b) { 
-                    return b.priority - a.priority; 
+                this.preloadQueue.sort(function (a, b) {
+                    return b.priority - a.priority;
                 });
                 this.processQueue();
             },
 
-            processQueue: function() {
+            processQueue: function () {
                 var self = this;
                 if (this.activePreloads >= this.maxConcurrent || this.preloadQueue.length === 0) {
                     return;
@@ -640,13 +735,13 @@
                 var item = this.preloadQueue.shift();
                 this.activePreloads++;
                 fetch(item.url, { cache: 'default' })
-                    .then(function() {
+                    .then(function () {
                         Logger.debug('PDF preloaded', item.url.split('/').pop());
                     })
-                    .catch(function() {
+                    .catch(function () {
                         Logger.debug('PDF preload failed', item.url.split('/').pop());
                     })
-                    .finally(function() {
+                    .finally(function () {
                         self.activePreloads--;
                         self.processQueue();
                     });
@@ -655,12 +750,12 @@
 
         function debounce(func, wait) {
             var timeout;
-            return function() {
+            return function () {
                 var args = arguments;
                 var context = this;
                 clearTimeout(timeout);
-                timeout = setTimeout(function() { 
-                    func.apply(context, args); 
+                timeout = setTimeout(function () {
+                    func.apply(context, args);
                 }, wait);
             };
         }
@@ -668,7 +763,7 @@
         function formatPdfName(filename) {
             var name = filename.replace(/\.pdf$/i, '');
             var parts = name.split('-');
-            
+
             var year = '';
             var type = '';
             var months = [];
@@ -685,7 +780,7 @@
                 type = 'Insem';
             }
 
-            parts.forEach(function(part) {
+            parts.forEach(function (part) {
                 if (monthNames.includes(part.toLowerCase())) {
                     months.push(part.charAt(0).toUpperCase() + part.slice(1));
                 }
@@ -719,45 +814,45 @@
 
             var isCached = state.cachedPdfs.has(pdfUrl);
             var fileName = pdfUrl.split('/').pop();
-            
+
             Logger.debug('Loading PDF: ' + fileName + (isCached ? ' (from cache)' : ' (from network)'));
 
             return fetch(pdfUrl, { cache: isCached ? 'force-cache' : 'default' })
-                .then(function(response) {
+                .then(function (response) {
                     if (!response.ok) {
                         throw new Error('HTTP ' + response.status);
                     }
                     return response.blob();
                 })
-                .then(function(blob) {
+                .then(function (blob) {
                     var fileUrlToLoad = URL.createObjectURL(blob);
                     state.activeObjectURLs.set(iframe, fileUrlToLoad);
                     iframe.src = state.pdfViewerBase + '?file=' + encodeURIComponent(fileUrlToLoad);
-                    
-                    iframe.onload = function() {
+
+                    iframe.onload = function () {
                         if (loader && loader.parentNode) {
                             loader.remove();
                         }
                         Logger.debug('PDF loaded successfully: ' + fileName);
-                        
+
                         // Apply watermark state if needed
                         if (state.watermarkHidden) {
-                            setTimeout(function() {
+                            setTimeout(function () {
                                 WatermarkManager.sendCommandToIframe(iframe, 'remove');
                             }, 500);
                         }
                     };
-                    
-                    iframe.onerror = function() {
+
+                    iframe.onerror = function () {
                         showPdfError(iframe, loader, 'Error loading PDF viewer');
                         Logger.error('PDF viewer error for: ' + fileName);
                     };
                 })
-                .catch(function(error) {
+                .catch(function (error) {
                     if (retryCount < 2) {
                         Logger.warn('Retrying PDF load (' + (retryCount + 1) + '): ' + fileName);
-                        return new Promise(function(resolve) {
-                            setTimeout(function() {
+                        return new Promise(function (resolve) {
+                            setTimeout(function () {
                                 resolve(loadPdfIntoIframe(iframe, pdfUrl, loader, retryCount + 1));
                             }, 1000);
                         });
@@ -793,31 +888,31 @@
             DOM.subjectDisplay.textContent = subjectNameFromServer || "Subject";
         }
 
-        var filterPDFs = (function() {
+        var filterPDFs = (function () {
             var cache = new Map();
             var maxSize = 10;
-            
-            return function(examType) {
+
+            return function (examType) {
                 var key = examType.toLowerCase();
-                
+
                 if (cache.has(key)) {
                     var val = cache.get(key);
                     cache.delete(key);
                     cache.set(key, val);
-                    Logger.debug('Filter cache hit', {examType: examType, count: val.length});
+                    Logger.debug('Filter cache hit', { examType: examType, count: val.length });
                     return val;
                 }
-                
-                var result = state.pdfFiles.filter(function(file) {
+
+                var result = state.pdfFiles.filter(function (file) {
                     return file.originalFilename.toLowerCase().includes(key);
                 });
-                
+
                 if (cache.size >= maxSize) {
                     cache.delete(cache.keys().next().value);
                 }
                 cache.set(key, result);
-                
-                Logger.debug('Filter applied', {examType: examType, count: result.length});
+
+                Logger.debug('Filter applied', { examType: examType, count: result.length });
                 return result;
             };
         })();
@@ -829,26 +924,26 @@
             }
             state.isRendering = true;
 
-            state.renderQueue = state.renderQueue.then(function() {
-                return new Promise(function(resolve) {
+            state.renderQueue = state.renderQueue.then(function () {
+                return new Promise(function (resolve) {
                     var count = parseInt(DOM.pdfCountDropdown._getValue(), 10);
-                    var examType = document.querySelector('.exam-toggle-btn.active').getAttribute('data-value');
-                    
+                    // CRITICAL: Read exam type from state (single source of truth)
+                    var examType = state.currentExamType;
+
                     state.currentLayout = count.toString();
-                    state.currentExamType = examType;
-                    
+
                     // Reset watermark state on render
                     WatermarkManager.resetState();
-                    
+
                     var filteredData = filterPDFs(examType);
-                    
+
                     Logger.info('Rendering PDFs', {
                         layout: count,
                         examType: examType,
                         availablePdfs: filteredData.length
                     });
 
-                    DOM.pdfContainer.querySelectorAll('iframe').forEach(function(iframe) {
+                    DOM.pdfContainer.querySelectorAll('iframe').forEach(function (iframe) {
                         var oldObjectURL = state.activeObjectURLs.get(iframe);
                         if (oldObjectURL) {
                             URL.revokeObjectURL(oldObjectURL);
@@ -858,7 +953,7 @@
                     });
 
                     DOM.pdfContainer.className = 'grid-' + count;
-                    
+
                     if (!filteredData.length) {
                         DOM.pdfContainer.innerHTML = '<div class="no-pdf-message">No papers available for this filter.</div>';
                         state.isRendering = false;
@@ -874,7 +969,7 @@
                     for (var i = 0; i < count; i++) {
                         var div = document.createElement('div');
                         div.className = 'pdf-viewer';
-                        
+
                         if (i < maxRender) {
                             var loader = document.createElement('div');
                             loader.className = 'loader-container';
@@ -900,7 +995,7 @@
                     }
                     DOM.pdfContainer.appendChild(fragment);
                     state.isRendering = false;
-                    Logger.info('Render complete', {viewersCreated: maxRender});
+                    Logger.info('Render complete', { viewersCreated: maxRender });
                     resolve();
                 });
             });
@@ -917,26 +1012,26 @@
             var dropdown = document.createElement('div');
             dropdown.className = 'custom-dropdown paper-dropdown';
             dropdown.setAttribute('data-value', initialIndex);
-            
+
             var selectedDiv = document.createElement('div');
             selectedDiv.className = 'dropdown-selected';
             selectedDiv.innerHTML = '<span class="dropdown-text">' + data[initialIndex].date + '</span><svg class="dropdown-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>';
-            
+
             var optionsDiv = document.createElement('div');
             optionsDiv.className = 'dropdown-options';
-            
-            data.forEach(function(item, idx) {
+
+            data.forEach(function (item, idx) {
                 var option = document.createElement('div');
                 option.className = 'dropdown-option' + (idx === initialIndex ? ' selected' : '');
                 option.setAttribute('data-value', idx);
                 option.textContent = item.date;
                 optionsDiv.appendChild(option);
             });
-            
+
             dropdown.appendChild(selectedDiv);
             dropdown.appendChild(optionsDiv);
-            
-            CustomDropdown.init(dropdown, function(idx) {
+
+            CustomDropdown.init(dropdown, function (idx) {
                 idx = parseInt(idx, 10);
                 var pdfUrl = data[idx].link;
                 var viewerDiv = selectorContainer.closest('.pdf-viewer');
@@ -944,15 +1039,15 @@
                 if (!iframe) {
                     return;
                 }
-                
+
                 iframe.title = 'PDF Viewer ' + (parseInt(viewerId.split('-')[1]) + 1) + ' - ' + data[idx].originalFilename;
 
                 var loader = document.createElement('div');
                 loader.className = 'loader-container';
                 loader.innerHTML = '<div class="loader"></div>';
                 viewerDiv.insertBefore(loader, iframe);
-                
-                Logger.info('Paper changed', {viewer: viewerId, paper: data[idx].date});
+
+                Logger.info('Paper changed', { viewer: viewerId, paper: data[idx].date });
                 loadPdfIntoIframe(iframe, pdfUrl, loader);
             });
 
@@ -963,12 +1058,12 @@
 
         function toggleFullscreen() {
             if (document.fullscreenElement) {
-                document.exitFullscreen().catch(function(err) { 
-                    Logger.error('Error exiting fullscreen', err.message); 
+                document.exitFullscreen().catch(function (err) {
+                    Logger.error('Error exiting fullscreen', err.message);
                 });
             } else {
-                document.documentElement.requestFullscreen({ navigationUI: 'hide' }).catch(function(err) { 
-                    Logger.error('Error entering fullscreen', err.message); 
+                document.documentElement.requestFullscreen({ navigationUI: 'hide' }).catch(function (err) {
+                    Logger.error('Error entering fullscreen', err.message);
                 });
             }
         }
@@ -979,35 +1074,35 @@
                 '<svg class="icon" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24"><path d="M4 14h6m0 0v6m0-6l-7 7m17-11h-6m0 0V4m0 6l7-7"/></svg>' :
                 '<svg class="icon" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24"><path d="M8 3H5a2 2 0 0 0-2 2v3m18 0V5a2 2 0 0 0-2-2h-3"/></svg>';
             var text = isFullscreen ? 'Exit Fullscreen' : 'Fullscreen';
-            
+
             DOM.fullscreenBtn.innerHTML = icon + '<span class="btn-text">' + text + '</span>';
-            Logger.debug('Fullscreen toggled', {isFullscreen: isFullscreen});
+            Logger.debug('Fullscreen toggled', { isFullscreen: isFullscreen });
         }
 
         // Enhanced Watermark Manager with consistent state
         var WatermarkManager = {
-            sendCommandToIframe: function(iframe, cmd) {
+            sendCommandToIframe: function (iframe, cmd) {
                 try {
                     var cw = iframe.contentWindow;
                     if (!cw) {
                         return false;
                     }
-                    
+
                     if (typeof cw.removeWatermarkFull === 'function') {
                         if (cmd === 'remove') {
-                            try { 
-                                cw.removeWatermarkFull(); 
+                            try {
+                                cw.removeWatermarkFull();
                                 Logger.debug('Watermark removed via direct call');
                             } catch (e) {
                                 Logger.warn('Direct watermark removal failed', e.message);
                             }
                         } else if (cmd === 'restore') {
-                            try { 
-                                cw.location.reload(); 
+                            try {
+                                cw.location.reload();
                                 Logger.debug('Watermark restored via reload');
                             } catch (e) {
-                                try { 
-                                    cw.postMessage({type:'watermark', command:'restore'}, location.origin); 
+                                try {
+                                    cw.postMessage({ type: 'watermark', command: 'restore' }, location.origin);
                                 } catch (e2) {
                                     Logger.warn('Watermark restore failed', e2.message);
                                 }
@@ -1015,7 +1110,7 @@
                         }
                         return true;
                     }
-                    
+
                     try {
                         cw.postMessage({ type: 'watermark', command: cmd }, location.origin);
                         Logger.debug('Watermark command sent via postMessage', cmd);
@@ -1030,21 +1125,21 @@
                 }
             },
 
-            getAllViewerIframes: function() {
+            getAllViewerIframes: function () {
                 return Array.from(document.querySelectorAll('#pdf-container iframe'));
             },
 
-            applyToAll: function(cmd) {
+            applyToAll: function (cmd) {
                 var iframes = this.getAllViewerIframes();
-                Logger.info('Applying watermark command to all viewers', {command: cmd, count: iframes.length});
-                
-                iframes.forEach(function(iframe) {
+                Logger.info('Applying watermark command to all viewers', { command: cmd, count: iframes.length });
+
+                iframes.forEach(function (iframe) {
                     var ok = WatermarkManager.sendCommandToIframe(iframe, cmd);
                     if (!ok) {
-                        var handler = function() {
-                            try { 
-                                WatermarkManager.sendCommandToIframe(iframe, cmd); 
-                            } catch(e) {
+                        var handler = function () {
+                            try {
+                                WatermarkManager.sendCommandToIframe(iframe, cmd);
+                            } catch (e) {
                                 Logger.warn('Delayed watermark command failed', e.message);
                             }
                             iframe.removeEventListener('load', handler);
@@ -1054,14 +1149,14 @@
                 });
             },
 
-            setButtonState: function(hidden) {
+            setButtonState: function (hidden) {
                 if (!DOM.watermarkBtn) {
                     return;
                 }
-                
+
                 state.watermarkHidden = hidden;
                 DOM.watermarkBtn.setAttribute('aria-pressed', hidden ? 'true' : 'false');
-                
+
                 if (hidden) {
                     DOM.watermarkBtn.classList.add('active');
                     DOM.watermarkLabel.textContent = 'Show watermark';
@@ -1069,16 +1164,16 @@
                     DOM.watermarkBtn.classList.remove('active');
                     DOM.watermarkLabel.textContent = 'Hide watermark';
                 }
-                
-                Logger.info('Watermark state changed', {hidden: hidden});
+
+                Logger.info('Watermark state changed', { hidden: hidden });
             },
 
-            resetState: function() {
+            resetState: function () {
                 this.setButtonState(false);
                 Logger.debug('Watermark state reset to default');
             },
 
-            toggle: function() {
+            toggle: function () {
                 var pressed = DOM.watermarkBtn.getAttribute('aria-pressed') === 'true';
                 if (!pressed) {
                     this.setButtonState(true);
@@ -1103,7 +1198,7 @@
             if (DOM.downloadModal) {
                 DOM.downloadModal.classList.remove('active');
                 document.body.style.overflow = '';
-                
+
                 // Reset download status when modal closes
                 var statusContainer = document.getElementById('download-status-container');
                 var progressFill = document.getElementById('download-progress-fill');
@@ -1117,15 +1212,141 @@
                     percentage.textContent = '';
                     percentage.style.display = 'none';
                 }
-                
+
                 Logger.info('Download modal closed');
             }
         }
 
+        function updateMobilePaperDropdown() {
+            var dropdown = document.getElementById('mobile-paper-dropdown');
+            if (!dropdown) return;
+
+            var filteredData = filterPDFs(state.currentExamType);
+            var optionsDiv = dropdown.querySelector('.dropdown-options');
+            var textSpan = dropdown.querySelector('.dropdown-text');
+
+            if (!optionsDiv) return;
+
+            // Clear existing options
+            optionsDiv.innerHTML = '';
+
+            if (!filteredData || filteredData.length === 0) {
+                optionsDiv.innerHTML = '<div class="dropdown-option disabled">No papers available</div>';
+                if (textSpan) textSpan.textContent = 'No papers';
+                dropdown.setAttribute('data-value', '');
+                return;
+            }
+
+            // Add new options with click handlers
+            filteredData.forEach(function (item, idx) {
+                var option = document.createElement('div');
+                option.className = 'dropdown-option' + (idx === 0 ? ' selected' : '');
+                option.setAttribute('data-value', idx);
+                option.textContent = item.date;
+
+                // Add click handler for each option
+                option.addEventListener('click', function (e) {
+                    e.stopPropagation();
+                    if (option.classList.contains('disabled')) return;
+
+                    // Update selected state in dropdown
+                    optionsDiv.querySelectorAll('.dropdown-option').forEach(function (opt) {
+                        opt.classList.remove('selected');
+                    });
+                    option.classList.add('selected');
+                    dropdown.setAttribute('data-value', idx);
+                    if (textSpan) textSpan.textContent = item.date;
+
+                    // Close dropdown
+                    dropdown.classList.remove('open');
+
+                    // Load the selected paper
+                    var pdfUrl = filteredData[idx].link;
+                    var viewerDiv = document.querySelector('.pdf-viewer');
+                    if (!viewerDiv) return;
+
+                    var iframe = viewerDiv.querySelector('iframe');
+                    if (!iframe) return;
+
+                    iframe.title = 'PDF Viewer 1 - ' + filteredData[idx].originalFilename;
+
+                    var loader = document.createElement('div');
+                    loader.className = 'loader-container';
+                    loader.innerHTML = '<div class="loader"></div>';
+                    viewerDiv.insertBefore(loader, iframe);
+
+                    Logger.info('Mobile paper changed', { paper: filteredData[idx].date });
+                    loadPdfIntoIframe(iframe, pdfUrl, loader);
+                });
+
+                optionsDiv.appendChild(option);
+            });
+
+            // Set first paper as selected
+            dropdown.setAttribute('data-value', '0');
+            if (textSpan) {
+                textSpan.textContent = filteredData[0].date;
+            }
+
+            Logger.debug('Mobile paper dropdown updated', { count: filteredData.length });
+        }
+
+        function syncMobileExamDropdown() {
+            var dropdown = document.getElementById('mobile-exam-dropdown');
+            if (!dropdown) return;
+
+            var examType = state.currentExamType;
+            dropdown.setAttribute('data-value', examType);
+
+            var textSpan = dropdown.querySelector('.dropdown-text');
+            if (textSpan) {
+                textSpan.textContent = examType.toUpperCase();
+            }
+
+            // Update selected option
+            var options = dropdown.querySelectorAll('.dropdown-option');
+            options.forEach(function (opt) {
+                opt.classList.remove('selected');
+                if (opt.getAttribute('data-value') === examType) {
+                    opt.classList.add('selected');
+                }
+            });
+
+            Logger.debug('Mobile exam dropdown synced', { examType: examType });
+        }
+
+        // Unified function to apply exam type - single pipeline for all changes
+        function applyExamType(examType) {
+            // Update state (single source of truth)
+            state.currentExamType = examType;
+
+            // Sync desktop buttons
+            document.querySelectorAll('.exam-toggle-btn').forEach(function (btn) {
+                if (btn.getAttribute('data-value') === examType) {
+                    btn.classList.add('active');
+                } else {
+                    btn.classList.remove('active');
+                }
+            });
+
+            // Sync mobile dropdown
+            syncMobileExamDropdown();
+
+            // Render PDFs with new exam type
+            renderPDFs();
+
+            // Update mobile paper dropdown after render completes
+            setTimeout(function () {
+                updateMobilePaperDropdown();
+            }, 300);
+
+            Logger.info('Exam type applied', { examType: examType });
+        }
+
         function setupEventListeners() {
             var debouncedRender = debounce(renderPDFs, 250);
-            
-            var onLayoutChange = function(val) {
+
+            var onLayoutChange = function (val) {
                 if (window.IS_MOBILE_DEVICE && val === '2') {
                     checkOrientation();
                 }
@@ -1136,60 +1357,54 @@
                 document.getElementById('pdf-count-dropdown'),
                 onLayoutChange
             );
-            
+
             // Setup exam type toggle buttons
             var examToggleButtons = document.querySelectorAll('.exam-toggle-btn');
-            examToggleButtons.forEach(function(btn) {
-                btn.addEventListener('click', function() {
+            examToggleButtons.forEach(function (btn) {
+                btn.addEventListener('click', function () {
                     if (btn.classList.contains('disabled')) return;
-                    
-                    examToggleButtons.forEach(function(b) { 
-                        b.classList.remove('active'); 
-                    });
-                    btn.classList.add('active');
-                    
-                    state.currentExamType = btn.getAttribute('data-value');
-                    Logger.info('Exam type changed', {examType: state.currentExamType});
-                    debouncedRender();
+
+                    var examType = btn.getAttribute('data-value');
+                    applyExamType(examType);
                 });
             });
-            
+
             DOM.examTypeButtons = examToggleButtons;
-            
+
             DOM.fullscreenBtn.addEventListener('click', toggleFullscreen);
-            DOM.backBtn.addEventListener('click', function() { 
+            DOM.backBtn.addEventListener('click', function () {
                 Logger.info('Navigating back to question papers list');
-                window.location.href = '/question-papers'; 
+                window.location.href = '/question-papers';
             });
-            
+
             if (DOM.downloadBtn) {
                 DOM.downloadBtn.addEventListener('click', openDownloadModal);
             }
-            
+
             if (DOM.downloadModalOverlay) {
                 DOM.downloadModalOverlay.addEventListener('click', closeDownloadModal);
             }
-            
+
             if (DOM.downloadModalClose) {
                 DOM.downloadModalClose.addEventListener('click', closeDownloadModal);
             }
-            
+
             if (DOM.watermarkBtn) {
-                DOM.watermarkBtn.addEventListener('click', function() {
+                DOM.watermarkBtn.addEventListener('click', function () {
                     WatermarkManager.toggle();
                 });
             }
-            
+
             document.addEventListener('fullscreenchange', updateFullscreenButton);
-            
-            document.addEventListener('keydown', function(e) {
+
+            document.addEventListener('keydown', function (e) {
                 if (e.key === 'Escape') {
                     CustomDropdown.closeAll();
                     if (DOM.downloadModal && DOM.downloadModal.classList.contains('active')) {
                         closeDownloadModal();
                     } else if (document.fullscreenElement) {
-                        document.exitFullscreen().catch(function(err) { 
-                            Logger.error('Error exiting fullscreen on escape', err.message); 
+                        document.exitFullscreen().catch(function (err) {
+                            Logger.error('Error exiting fullscreen on escape', err.message);
                         });
                     }
                 }
@@ -1198,10 +1413,10 @@
             // Observe container for new iframes to apply watermark state
             var container = document.getElementById('pdf-container');
             if (container) {
-                var mo = new MutationObserver(function() {
+                var mo = new MutationObserver(function () {
                     try {
                         if (state.watermarkHidden) {
-                            setTimeout(function() {
+                            setTimeout(function () {
                                 WatermarkManager.applyToAll('remove');
                             }, 500);
                         }
@@ -1211,7 +1426,24 @@
                 });
                 mo.observe(container, { childList: true, subtree: true });
             }
-            
+
+            // Setup mobile control bar dropdowns
+            var mobileExamDropdownEl = document.getElementById('mobile-exam-dropdown');
+            if (mobileExamDropdownEl) {
+                DOM.mobileExamDropdown = CustomDropdown.init(mobileExamDropdownEl, function (examType) {
+                    // Use unified pipeline for all exam type changes
+                    applyExamType(examType);
+                });
+            }
+
+            var mobilePaperDropdownEl = document.getElementById('mobile-paper-dropdown');
+            if (mobilePaperDropdownEl) {
+                // Just initialize for open/close functionality - option clicks handled in updateMobilePaperDropdown
+                DOM.mobilePaperDropdown = CustomDropdown.init(mobilePaperDropdownEl, function () {
+                    // Options handle their own click events
+                });
+            }
+
             Logger.info('Event listeners initialized');
         }
 
@@ -1227,7 +1459,7 @@
 
         function init() {
             Logger.info('Initializing PDF Viewer...');
-            
+
             updateSubjectDisplay();
             setupEventListeners();
             PreloadManager.preloadPdfViewer();
@@ -1236,32 +1468,32 @@
                 Logger.info('Mobile device detected, adjusting layout options');
                 var layoutDropdown = document.getElementById('pdf-count-dropdown');
                 var options = layoutDropdown.querySelectorAll('.dropdown-option');
-                options.forEach(function(opt) {
+                options.forEach(function (opt) {
                     var val = opt.getAttribute('data-value');
                     if (val === '3' || val === '4') {
                         opt.style.display = 'none';
                     }
                 });
 
-                window.addEventListener('resize', debounce(function() {
+                window.addEventListener('resize', debounce(function () {
                     if (DOM.pdfCountDropdown && DOM.pdfCountDropdown._getValue() === '2') {
                         if (window.innerWidth > window.innerHeight) {
                             document.getElementById('rotation-prompt').style.display = 'none';
                         }
                     }
                 }, 100));
-                
-                document.getElementById('dismiss-rotation').addEventListener('click', function() {
+
+                document.getElementById('dismiss-rotation').addEventListener('click', function () {
                     document.getElementById('rotation-prompt').style.display = 'none';
                     Logger.debug('Rotation prompt dismissed');
                 });
             }
 
-            ServiceWorkerManager.register().then(function() {
+            ServiceWorkerManager.register().then(function () {
                 if (initialPdfDataFromServer && initialPdfDataFromServer.length > 0) {
                     state.pdfFiles = initialPdfDataFromServer
-                        .map(function(pdfObject) {
-                            if (!pdfObject || typeof pdfObject.filename !== 'string' || 
+                        .map(function (pdfObject) {
+                            if (!pdfObject || typeof pdfObject.filename !== 'string' ||
                                 typeof pdfObject.url !== 'string' || !isValidUrl(pdfObject.url)) {
                                 Logger.warn('Invalid PDF object', pdfObject);
                                 return null;
@@ -1272,14 +1504,14 @@
                                 originalFilename: pdfObject.filename
                             };
                         })
-                        .filter(function(item) { return item !== null; })
-                        .sort(function(a, b) { return b.date.localeCompare(a.date); });
+                        .filter(function (item) { return item !== null; })
+                        .sort(function (a, b) { return b.date.localeCompare(a.date); });
 
-                    var hasInsem = state.pdfFiles.some(function(file) { 
-                        return file.originalFilename.toLowerCase().includes('insem'); 
+                    var hasInsem = state.pdfFiles.some(function (file) {
+                        return file.originalFilename.toLowerCase().includes('insem');
                     });
-                    var hasEndsem = state.pdfFiles.some(function(file) { 
-                        return file.originalFilename.toLowerCase().includes('endsem'); 
+                    var hasEndsem = state.pdfFiles.some(function (file) {
+                        return file.originalFilename.toLowerCase().includes('endsem');
                     });
 
                     var insemBtn = document.querySelector('.exam-toggle-btn[data-value="insem"]');
@@ -1301,34 +1533,63 @@
                         }
                     }
 
-                    if (hasEndsem) {
-                        endsemBtn.classList.add('active');
-                        insemBtn.classList.remove('active');
-                        state.currentExamType = 'endsem';
+                    // Use DEFAULT_EXAM_TYPE if available, otherwise fallback to the other type
+                    var defaultHasPapers = (DEFAULT_EXAM_TYPE === 'insem' && hasInsem) ||
+                        (DEFAULT_EXAM_TYPE === 'endsem' && hasEndsem);
+
+                    var initialExamType;
+                    if (defaultHasPapers) {
+                        initialExamType = DEFAULT_EXAM_TYPE;
                     } else if (hasInsem) {
-                        insemBtn.classList.add('active');
-                        endsemBtn.classList.remove('active');
-                        state.currentExamType = 'insem';
+                        initialExamType = 'insem';
+                    } else if (hasEndsem) {
+                        initialExamType = 'endsem';
+                    } else {
+                        initialExamType = DEFAULT_EXAM_TYPE; // fallback even if no papers
                     }
 
-                    Logger.info('Loaded ' + state.pdfFiles.length + ' papers for ' + 
-                               (subjectNameFromServer || 'this subject'), {
+                    Logger.info('Loaded ' + state.pdfFiles.length + ' papers for ' +
+                        (subjectNameFromServer || 'this subject'), {
                         hasInsem: hasInsem,
                         hasEndsem: hasEndsem
                     });
 
-                    var pdfUrls = state.pdfFiles.map(function(file) { return file.link; });
-                    return ServiceWorkerManager.checkCachedPdfs(pdfUrls).then(function(cachedUrls) {
-                        cachedUrls.forEach(function(url) { state.cachedPdfs.add(url); });
-                        var uncachedUrls = pdfUrls.filter(function(url) { 
-                            return !state.cachedPdfs.has(url); 
+                    // Update mobile exam dropdown disabled states and sync
+                    var mobileExamDropdown = document.getElementById('mobile-exam-dropdown');
+                    if (mobileExamDropdown) {
+                        var insemOpt = mobileExamDropdown.querySelector('.dropdown-option[data-value="insem"]');
+                        var endsemOpt = mobileExamDropdown.querySelector('.dropdown-option[data-value="endsem"]');
+
+                        if (insemOpt) {
+                            if (!hasInsem) {
+                                insemOpt.classList.add('disabled');
+                            } else {
+                                insemOpt.classList.remove('disabled');
+                            }
+                        }
+                        if (endsemOpt) {
+                            if (!hasEndsem) {
+                                endsemOpt.classList.add('disabled');
+                            } else {
+                                endsemOpt.classList.remove('disabled');
+                            }
+                        }
+                    }
+
+                    var pdfUrls = state.pdfFiles.map(function (file) { return file.link; });
+                    return ServiceWorkerManager.checkCachedPdfs(pdfUrls).then(function (cachedUrls) {
+                        cachedUrls.forEach(function (url) { state.cachedPdfs.add(url); });
+                        var uncachedUrls = pdfUrls.filter(function (url) {
+                            return !state.cachedPdfs.has(url);
                         });
                         if (uncachedUrls.length > 0) {
                             ServiceWorkerManager.initiatePdfCaching(uncachedUrls);
                         } else if (cachedUrls.length > 0) {
                             Logger.info(cachedUrls.length + ' PDFs already cached');
                         }
-                        renderPDFs();
+
+                        // Apply exam type through unified pipeline (handles all UI sync + render)
+                        applyExamType(initialExamType);
                     });
                 } else {
                     DOM.pdfContainer.innerHTML = '<div class="no-pdf-message">No question papers found for this subject.</div>';
@@ -1338,9 +1599,9 @@
             });
         }
 
-        window.addEventListener('beforeunload', function() {
-            state.activeObjectURLs.forEach(function(url) { 
-                URL.revokeObjectURL(url); 
+        window.addEventListener('beforeunload', function () {
+            state.activeObjectURLs.forEach(function (url) {
+                URL.revokeObjectURL(url);
             });
             state.activeObjectURLs.clear();
             Logger.debug('Cleanup: Object URLs revoked');
@@ -1352,40 +1613,40 @@
             init();
         }
 
-        (function() {
+        (function () {
             'use strict';
-            
+
             // Wait for DOM to be ready
             function init() {
                 // Close paper selector dropdowns when an option is selected
-                document.addEventListener('click', function(e) {
+                document.addEventListener('click', function (e) {
                     // Check if click is on a dropdown option inside paper selector
                     var dropdownOption = e.target.closest('.paper-selector .dropdown-option');
-                    
+
                     if (dropdownOption) {
                         // Find the parent dropdown and close it
                         var dropdown = dropdownOption.closest('.custom-dropdown');
                         if (dropdown) {
                             // Small delay to allow the selection to process
-                            setTimeout(function() {
+                            setTimeout(function () {
                                 dropdown.classList.remove('open');
                             }, 100);
                         }
                     }
                 });
-                
+
                 // Also close when clicking outside paper selector
-                document.addEventListener('click', function(e) {
+                document.addEventListener('click', function (e) {
                     // Check if click is outside all paper selectors
                     if (!e.target.closest('.paper-selector')) {
                         // Close all paper selector dropdowns
-                        document.querySelectorAll('.paper-selector .custom-dropdown.open').forEach(function(dropdown) {
+                        document.querySelectorAll('.paper-selector .custom-dropdown.open').forEach(function (dropdown) {
                             dropdown.classList.remove('open');
                         });
                     }
                 });
             }
-            
+
             // Initialize when DOM is ready
             if (document.readyState === 'loading') {
                 document.addEventListener('DOMContentLoaded', init);
@@ -1395,4 +1656,5 @@
         })();
     </script>
 </body>
+
 </html>

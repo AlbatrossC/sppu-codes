@@ -20,13 +20,15 @@
     --dropdown-text: #f0f0f0;
     --border-radius: 6px;
     --transition-speed: 0.15s;
-    --shadow: 0 1px 3px rgba(0,0,0,0.2);
-    --shadow-hover: 0 2px 6px rgba(0,0,0,0.3);
+    --shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
+    --shadow-hover: 0 2px 6px rgba(0, 0, 0, 0.3);
     --header-height-desktop: 48px;
     --header-height-mobile: 44px;
 }
 
-*, *::before, *::after {
+*,
+*::before,
+*::after {
     box-sizing: border-box;
     margin: 0;
     padding: 0;
@@ -55,12 +57,14 @@ header {
     height: var(--header-height-desktop);
     min-height: var(--header-height-desktop);
     flex-shrink: 0;
-    box-shadow: 0 1px 3px rgba(0,0,0,0.3);
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
     z-index: 100;
     gap: 14px;
 }
 
-.header-info, .header-center, .header-controls {
+.header-info,
+.header-center,
+.header-controls {
     display: flex;
     align-items: center;
     gap: 10px;
@@ -147,14 +151,14 @@ header {
 }
 
 .dropdown-selected {
-    background: rgba(255,255,255,0.06);
+    background: rgba(255, 255, 255, 0.06);
     color: var(--dropdown-text);
     font-size: 12px;
     font-weight: 500;
     padding: 0 12px;
     height: 32px;
     border-radius: var(--border-radius);
-    border: 1px solid rgba(255,255,255,0.08);
+    border: 1px solid rgba(255, 255, 255, 0.08);
     cursor: pointer;
     display: flex;
     align-items: center;
@@ -164,8 +168,8 @@ header {
 
 .dropdown-selected:hover,
 .custom-dropdown.open .dropdown-selected {
-    background: rgba(255,255,255,0.1);
-    border-color: rgba(255,255,255,0.15);
+    background: rgba(255, 255, 255, 0.1);
+    border-color: rgba(255, 255, 255, 0.15);
 }
 
 .dropdown-text {
@@ -193,9 +197,9 @@ header {
     left: 0;
     right: 0;
     background: #2a2a2a;
-    border: 1px solid rgba(255,255,255,0.12);
+    border: 1px solid rgba(255, 255, 255, 0.12);
     border-radius: var(--border-radius);
-    box-shadow: 0 8px 24px rgba(0,0,0,0.4);
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.4);
     max-height: 240px;
     overflow-y: auto;
     z-index: 2000;
@@ -221,7 +225,7 @@ header {
 }
 
 .dropdown-option:hover {
-    background: rgba(255,255,255,0.08);
+    background: rgba(255, 255, 255, 0.08);
 }
 
 .dropdown-option.selected {
@@ -329,7 +333,7 @@ button.download-btn:hover:not(:disabled):not(.disabled):not(.downloading) {
 
 .watermark-toggle button.active,
 .watermark-toggle button[aria-pressed="true"] {
-    background: rgba(var(--watermark-color-rgb),0.2);
+    background: rgba(var(--watermark-color-rgb), 0.2);
     border: 1px solid var(--watermark-color);
 }
 
@@ -363,7 +367,7 @@ button.download-btn:hover:not(:disabled):not(.disabled):not(.downloading) {
     display: flex;
     flex-direction: column;
     overflow: hidden;
-    border: 1px solid rgba(255,255,255,0.05);
+    border: 1px solid rgba(255, 255, 255, 0.05);
 }
 
 .pdf-viewer iframe {
@@ -420,8 +424,8 @@ button.download-btn:hover:not(:disabled):not(.disabled):not(.downloading) {
 }
 
 .paper-selector .dropdown-selected {
-    background: rgba(255,255,255,0.04);
-    border: 1px solid rgba(255,255,255,0.06);
+    background: rgba(255, 255, 255, 0.04);
+    border: 1px solid rgba(255, 255, 255, 0.06);
     padding: 0 12px;
     height: 32px;
     font-size: 12px;
@@ -431,8 +435,8 @@ button.download-btn:hover:not(:disabled):not(.disabled):not(.downloading) {
 }
 
 .paper-selector .dropdown-selected:hover {
-    background: rgba(255,255,255,0.08);
-    border-color: rgba(255,255,255,0.12);
+    background: rgba(255, 255, 255, 0.08);
+    border-color: rgba(255, 255, 255, 0.12);
 }
 
 .paper-dropdown .dropdown-options {
@@ -445,8 +449,8 @@ button.download-btn:hover:not(:disabled):not(.disabled):not(.downloading) {
     max-width: 380px;
     border-radius: 10px;
     background: #292929;
-    border: 1px solid rgba(255,255,255,0.12);
-    box-shadow: 0 12px 40px rgba(0,0,0,0.6);
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    box-shadow: 0 12px 40px rgba(0, 0, 0, 0.6);
 }
 
 .paper-dropdown.open .dropdown-options {
@@ -467,34 +471,37 @@ button.download-btn:hover:not(:disabled):not(.disabled):not(.downloading) {
 .loader {
     width: 36px;
     height: 36px;
-    border: 3px solid rgba(255,255,255,0.1);
+    border: 3px solid rgba(255, 255, 255, 0.1);
     border-top: 3px solid var(--primary-color);
     border-radius: 50%;
     animation: spin 0.7s linear infinite;
 }
 
 @keyframes spin {
-    to { transform: rotate(360deg); }
+    to {
+        transform: rotate(360deg);
+    }
 }
 
-.grid-1 { 
-    grid-template-columns: 1fr; 
+.grid-1 {
+    grid-template-columns: 1fr;
 }
 
-.grid-2 { 
-    grid-template-columns: repeat(2, 1fr); 
+.grid-2 {
+    grid-template-columns: repeat(2, 1fr);
 }
 
-.grid-3 { 
-    grid-template-columns: repeat(3, 1fr); 
+.grid-3 {
+    grid-template-columns: repeat(3, 1fr);
 }
 
-.grid-4 { 
-    grid-template-columns: repeat(2, 1fr); 
-    grid-template-rows: repeat(2, 1fr); 
+.grid-4 {
+    grid-template-columns: repeat(2, 1fr);
+    grid-template-rows: repeat(2, 1fr);
 }
 
-.no-pdf-message, .no-more-papers {
+.no-pdf-message,
+.no-more-papers {
     text-align: center;
     font-weight: 500;
 }
@@ -518,9 +525,9 @@ button.download-btn:hover:not(:disabled):not(.disabled):not(.downloading) {
     padding: 16px;
     font-size: 13px;
     color: var(--text-dark);
-    background: rgba(255,255,255,0.02);
+    background: rgba(255, 255, 255, 0.02);
     border-radius: var(--border-radius);
-    border: 1px solid rgba(255,255,255,0.06);
+    border: 1px solid rgba(255, 255, 255, 0.06);
     margin: 10px;
     display: flex;
     align-items: center;
@@ -564,8 +571,16 @@ button.download-btn:hover:not(:disabled):not(.disabled):not(.downloading) {
 }
 
 @keyframes rotate-device {
-    0%, 100% { transform: rotate(0deg); }
-    30%, 70% { transform: rotate(90deg); }
+
+    0%,
+    100% {
+        transform: rotate(0deg);
+    }
+
+    30%,
+    70% {
+        transform: rotate(90deg);
+    }
 }
 
 .seo-content {
@@ -610,12 +625,12 @@ button.download-btn:hover:not(:disabled):not(.disabled):not(.downloading) {
 
 .exam-toggle-group {
     display: flex;
-    background: rgba(255,255,255,0.05);
+    background: rgba(255, 255, 255, 0.05);
     border-radius: 8px;
     padding: 3px;
     gap: 3px;
     height: 32px;
-    border: 1px solid rgba(255,255,255,0.08);
+    border: 1px solid rgba(255, 255, 255, 0.08);
 }
 
 .exam-toggle-btn {
@@ -636,7 +651,7 @@ button.download-btn:hover:not(:disabled):not(.disabled):not(.downloading) {
 }
 
 .exam-toggle-btn:hover:not(.active):not(.disabled) {
-    background: rgba(255,255,255,0.08);
+    background: rgba(255, 255, 255, 0.08);
     color: var(--dropdown-text);
 }
 
@@ -750,6 +765,7 @@ button.download-btn:hover:not(:disabled):not(.disabled):not(.downloading) {
         opacity: 0;
         transform: translateY(-8px);
     }
+
     to {
         opacity: 1;
         transform: translateY(0);
@@ -941,6 +957,97 @@ button.download-btn:hover:not(:disabled):not(.disabled):not(.downloading) {
     box-shadow: none;
 }
 
+/* Mobile Control Bar - Hidden by default, shown only on mobile */
+.mobile-control-bar {
+    display: none;
+    background: #1e1e1e;
+    padding: 12px 16px;
+    gap: 16px;
+    align-items: center;
+    justify-content: center;
+    border-top: 1px solid rgba(255, 255, 255, 0.08);
+    flex-shrink: 0;
+    z-index: 50;
+}
+
+.mobile-control-group {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    flex-shrink: 0;
+}
+
+.mobile-control-label {
+    color: var(--primary-color);
+    font-weight: 600;
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+    white-space: nowrap;
+    flex-shrink: 0;
+}
+
+.mobile-exam-dropdown,
+.mobile-paper-dropdown {
+    min-width: 110px;
+    height: 36px;
+}
+
+.mobile-exam-dropdown .dropdown-selected,
+.mobile-paper-dropdown .dropdown-selected {
+    height: 36px;
+    font-size: 12px;
+    padding: 0 12px;
+    background: rgba(255, 255, 255, 0.06);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 8px;
+}
+
+.mobile-exam-dropdown .dropdown-selected:hover,
+.mobile-paper-dropdown .dropdown-selected:hover,
+.mobile-exam-dropdown.open .dropdown-selected,
+.mobile-paper-dropdown.open .dropdown-selected {
+    background: rgba(255, 255, 255, 0.1);
+    border-color: rgba(59, 130, 246, 0.3);
+}
+
+.mobile-exam-dropdown .dropdown-options,
+.mobile-paper-dropdown .dropdown-options {
+    bottom: calc(100% + 6px);
+    top: auto;
+    left: 0;
+    right: auto;
+    min-width: 140px;
+    max-height: 200px;
+    border-radius: 8px;
+    background: #2a2a2a;
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.5);
+    transform: translateY(8px);
+}
+
+.mobile-exam-dropdown.open .dropdown-options,
+.mobile-paper-dropdown.open .dropdown-options {
+    transform: translateY(0);
+}
+
+.mobile-paper-dropdown {
+    min-width: 150px;
+    max-width: 200px;
+}
+
+.mobile-paper-dropdown .dropdown-options {
+    min-width: 180px;
+    max-width: 280px;
+}
+
+.mobile-exam-dropdown .dropdown-option.disabled,
+.mobile-paper-dropdown .dropdown-option.disabled {
+    opacity: 0.4;
+    cursor: not-allowed;
+    pointer-events: none;
+}
+
 @media (max-width: 1024px) {
     header {
         padding: 0 12px;
@@ -1018,6 +1125,16 @@ button.download-btn:hover:not(:disabled):not(.disabled):not(.downloading) {
         display: none;
     }
 
+    /* Hide header exam buttons on mobile - moved to bottom bar */
+    .header-center .exam-type-buttons {
+        display: none;
+    }
+
+    /* Show mobile control bar */
+    .mobile-control-bar {
+        display: flex;
+    }
+
     .exam-type-buttons {
         gap: 6px;
         height: 32px;
@@ -1077,16 +1194,13 @@ button.download-btn:hover:not(:disabled):not(.disabled):not(.downloading) {
     }
 
     #pdf-container {
-        height: calc(100vh - var(--header-height-mobile));
-        height: calc(100dvh - var(--header-height-mobile));
+        height: calc(100vh - var(--header-height-mobile) - 52px);
+        height: calc(100dvh - var(--header-height-mobile) - 52px);
     }
 
+    /* Hide in-viewer paper selector on mobile - using bottom bar instead */
     .paper-selector {
-        bottom: 12px;
-        padding: 5px 12px;
-        gap: 8px;
-        max-width: 92%;
-        border-radius: 100px;
+        display: none;
     }
 
     .paper-selector-label {
@@ -1278,11 +1392,9 @@ button.download-btn:hover:not(:disabled):not(.disabled):not(.downloading) {
         height: 14px;
     }
 
+    /* Paper selector stays hidden on mobile - using bottom bar */
     .paper-selector {
-        bottom: 10px;
-        padding: 4px 10px;
-        gap: 7px;
-        border-radius: 100px;
+        display: none;
     }
 
     .paper-selector-label {
@@ -1339,6 +1451,34 @@ button.download-btn:hover:not(:disabled):not(.disabled):not(.downloading) {
         padding: 10px 16px;
         font-size: 12px;
     }
+
+    /* Mobile control bar adjustments for small screens */
+    .mobile-control-bar {
+        padding: 10px 12px;
+        gap: 12px;
+    }
+
+    .mobile-control-label {
+        font-size: 10px;
+    }
+
+    .mobile-exam-dropdown,
+    .mobile-paper-dropdown {
+        min-width: 100px;
+        height: 32px;
+    }
+
+    .mobile-exam-dropdown .dropdown-selected,
+    .mobile-paper-dropdown .dropdown-selected {
+        height: 32px;
+        font-size: 11px;
+        padding: 0 10px;
+    }
+
+    .mobile-paper-dropdown {
+        min-width: 130px;
+        max-width: 160px;
+    }
 }
 
 @media (max-width: 768px) and (orientation: landscape) {
@@ -1351,12 +1491,13 @@ button.download-btn:hover:not(:disabled):not(.disabled):not(.downloading) {
     }
 
     #pdf-container {
-        height: calc(100vh - var(--header-height-mobile));
-        height: calc(100dvh - var(--header-height-mobile));
+        height: calc(100vh - var(--header-height-mobile) - 52px);
+        height: calc(100dvh - var(--header-height-mobile) - 52px);
     }
 }
 
 @media (prefers-reduced-motion: reduce) {
+
     *,
     *::before,
     *::after {
@@ -1371,11 +1512,13 @@ button.download-btn:hover:not(:disabled):not(.disabled):not(.downloading) {
 }
 
 @media print {
+
     header,
     .paper-selector,
     .rotation-prompt,
     .seo-content,
-    .download-modal {
+    .download-modal,
+    .mobile-control-bar {
         display: none !important;
     }
 

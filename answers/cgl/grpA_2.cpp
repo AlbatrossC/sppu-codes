@@ -1,111 +1,97 @@
-#include <iostream>
+/* 2. Write C++ program to implement Cohen Southerland line clipping algorithm. */
+
 #include <graphics.h>
 #include <conio.h>
+#include <math.h>
 
-using namespace std;
+#define xmin 150
+#define ymin 100
+#define xmax 450
+#define ymax 350
 
-class Point {
-public:
-    int x, y;
-    char code[4];
-};
+int regionCode(int x, int y)
+{
+    int code = 0;
+    if (y < ymin) code |= 1;
+    if (y > ymax) code |= 2;
+    if (x > xmax) code |= 4;
+    if (x < xmin) code |= 8;
+    return code;
+}
 
-class LineClipping {
-public:
-    void drawWindow();
-    void drawLine(Point p1, Point p2);
-    Point computeCode(Point p);
-    int checkVisibility(Point p1, Point p2);
-    Point calculateIntersection(Point p1, Point p2);
-};
+void cohenSutherlandClip(int *x1, int *y1, int *x2, int *y2)
+{
+    int c1 = regionCode(*x1, *y1);
+    int c2 = regionCode(*x2, *y2);
 
-int main() {
-    LineClipping lc;
+    while (c1 != 0 || c2 != 0)
+    {
+        if ((c1 & c2) != 0)
+            return;
+
+        int c, x, y;
+        float m = (float)(*y2 - *y1) / (*x2 - *x1);
+
+        c = (c1 != 0) ? c1 : c2;
+
+        if (c & 1)
+        {
+            y = ymin;
+            x = *x1 + (y - *y1) / m;
+        }
+        else if (c & 2)
+        {
+            y = ymax;
+            x = *x1 + (y - *y1) / m;
+        }
+        else if (c & 4)
+        {
+            x = xmax;
+            y = *y1 + m * (x - *x1);
+        }
+        else
+        {
+            x = xmin;
+            y = *y1 + m * (x - *x1);
+        }
+
+        if (c == c1)
+        {
+            *x1 = x;
+            *y1 = y;
+            c1 = regionCode(*x1, *y1);
+        }
+        else
+        {
+            *x2 = x;
+            *y2 = y;
+            c2 = regionCode(*x2, *y2);
+        }
+    }
+}
+
+int main()
+{
     int gd = DETECT, gm;
-    Point p1, p2;
-
-    cout << "Enter x1 and y1: ";
-    cin >> p1.x >> p1.y;
-    cout << "Enter x2 and y2: ";
-    cin >> p2.x >> p2.y;
+    int x1 = 100, y1 = 200;
+    int x2 = 500, y2 = 100;
 
     initgraph(&gd, &gm, "");
-    lc.drawWindow();
-    delay(2000);
-    
-    lc.drawLine(p1, p2);
-    delay(2000);
+
+    rectangle(xmin, ymin, xmax, ymax);
+    line(x1, y1, x2, y2);
+    outtextxy(140, 370, "PRESS ENTER TO CLIP THE LINE");
+
+    while (getch() != 13);
     cleardevice();
 
-    p1 = lc.computeCode(p1);
-    p2 = lc.computeCode(p2);
-    
-    int visibilityStatus = lc.checkVisibility(p1, p2);
-    delay(2000);
+    cohenSutherlandClip(&x1, &y1, &x2, &y2);
 
-    switch (visibilityStatus) {
-        case 0:
-            lc.drawWindow();
-            lc.drawLine(p1, p2);
-            break;
-        case 1:
-            lc.drawWindow();
-            break;
-        case 2:
-            lc.drawWindow();
-            lc.drawLine(lc.calculateIntersection(p1, p2), lc.calculateIntersection(p2, p1));
-            break;
-    }
+    rectangle(xmin, ymin, xmax, ymax);
+    line(x1, y1, x2, y2);
+    outtextxy(180, 370, "CLIPPED LINE DISPLAYED");
 
-    delay(2000);
+    getch();
     closegraph();
     return 0;
 }
-
-void LineClipping::drawWindow() {
-    rectangle(150, 100, 450, 350);
-}
-
-void LineClipping::drawLine(Point p1, Point p2) {
-    line(p1.x, p1.y, p2.x, p2.y);
-}
-
-Point LineClipping::computeCode(Point p) {
-    Point codedPoint;
-    codedPoint.code[0] = (p.y < 100) ? '1' : '0';
-    codedPoint.code[1] = (p.y > 350) ? '1' : '0';
-    codedPoint.code[2] = (p.x > 450) ? '1' : '0';
-    codedPoint.code[3] = (p.x < 150) ? '1' : '0';
-    codedPoint.x = p.x;
-    codedPoint.y = p.y;
-    return codedPoint;
-}
-
-int LineClipping::checkVisibility(Point p1, Point p2) {
-    for (int i = 0; i < 4; i++) {
-        if (p1.code[i] == '1' && p2.code[i] == '1') return 1;
-        if (p1.code[i] == '0' && p2.code[i] == '0') return 0;
-    }
-    return 2;
-}
-
-Point LineClipping::calculateIntersection(Point p1, Point p2) {
-    Point intersectedPoint;
-    float slope;
-
-    if (p1.code[3] == '1' || p1.code[2] == '1') {
-        intersectedPoint.x = (p1.code[3] == '1') ? 150 : 450;
-        slope = static_cast<float>(p2.y - p1.y) / (p2.x - p1.x);
-        intersectedPoint.y = p1.y + slope * (intersectedPoint.x - p1.x);
-    } else if (p1.code[0] == '1' || p1.code[1] == '1') {
-        intersectedPoint.y = (p1.code[0] == '1') ? 100 : 350;
-        slope = static_cast<float>(p2.y - p1.y) / (p2.x - p1.x);
-        intersectedPoint.x = p1.x + (intersectedPoint.y - p1.y) / slope;
-    }
-
-    for (int i = 0; i < 4; i++)
-        intersectedPoint.code[i] = p1.code[i];
-
-    return intersectedPoint;
-}
-    

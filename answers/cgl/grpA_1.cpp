@@ -1,83 +1,100 @@
+/* 1. Write C++ program to draw a concave polygon and fill it with desired color using scan fill algorithm. */
+
 #include <graphics.h>
-#include <iostream>
-#include <vector>
-#include <algorithm>
+#include <conio.h>
 
-using namespace std;
-
-struct Point {
+struct Point
+{
     int x, y;
 };
 
-void drawPolygon(const vector<Point>& points) {
-    int n = points.size();
-    for (int i = 0; i < n; i++) {
-        line(
-            points[i].x, points[i].y, 
-            points[(i + 1) % n].x, points[(i + 1) % n].y
-        );
+Point poly[6] = {
+    {200, 100},
+    {300, 150},
+    {250, 200},
+    {300, 250},
+    {200, 300},
+    {150, 200}
+};
+
+int n = 6;
+
+void drawPolygon()
+{
+    int i;
+    for (i = 0; i < n; i++)
+    {
+        line(poly[i].x, poly[i].y,
+             poly[(i + 1) % n].x, poly[(i + 1) % n].y);
     }
 }
 
-void scanlineFill(const vector<Point>& points, int fillColor) {
-    int n = points.size();
-    int yMin = INT_MAX, yMax = INT_MIN;
+void scanlineFill(int color)
+{
+    int i, j, y;
+    int yMin = poly[0].y, yMax = poly[0].y;
 
-    for (int i = 0; i < n; i++) {
-        yMin = min(yMin, points[i].y);
-        yMax = max(yMax, points[i].y);
+    for (i = 1; i < n; i++)
+    {
+        if (poly[i].y < yMin) yMin = poly[i].y;
+        if (poly[i].y > yMax) yMax = poly[i].y;
     }
 
-    for (int y = yMin; y <= yMax; y++) {
-        vector<int> intersections;
+    setcolor(color);
 
-        for (int i = 0; i < n; i++) {
-            int x1 = points[i].x, y1 = points[i].y;
-            int x2 = points[(i + 1) % n].x, y2 = points[(i + 1) % n].y;
+    for (y = yMin; y <= yMax; y++)
+    {
+        int interX[10];
+        int count = 0;
 
-            if (y1 > y2) {
-                swap(x1, x2);
-                swap(y1, y2);
+        for (i = 0; i < n; i++)
+        {
+            int x1 = poly[i].x;
+            int y1 = poly[i].y;
+            int x2 = poly[(i + 1) % n].x;
+            int y2 = poly[(i + 1) % n].y;
+
+            if (y1 > y2)
+            {
+                int tx = x1; x1 = x2; x2 = tx;
+                int ty = y1; y1 = y2; y2 = ty;
             }
 
-            if (y >= y1 && y < y2 && y2 != y1) {
-                int xIntersect = x1 + (y - y1) * (x2 - x1) / (y2 - y1);
-                intersections.push_back(xIntersect);
+            if (y >= y1 && y < y2)
+            {
+                int x = x1 + (y - y1) * (x2 - x1) / (y2 - y1);
+                interX[count++] = x;
             }
         }
 
-        sort(intersections.begin(), intersections.end());
-
-        for (size_t i = 0; i < intersections.size(); i += 2) {
-            if (i + 1 < intersections.size()) {
-                line(
-                    intersections[i], y, 
-                    intersections[i + 1], y
-                );
-                setcolor(fillColor);
+        for (i = 0; i < count - 1; i++)
+        {
+            for (j = i + 1; j < count; j++)
+            {
+                if (interX[i] > interX[j])
+                {
+                    int temp = interX[i];
+                    interX[i] = interX[j];
+                    interX[j] = temp;
+                }
             }
+        }
+
+        for (i = 0; i < count; i += 2)
+        {
+            line(interX[i], y, interX[i + 1], y);
         }
     }
 }
 
-int main() {
+int main()
+{
     int gd = DETECT, gm;
     initgraph(&gd, &gm, "");
 
-    int n;
-    cout << "Enter the number of vertices of the polygon: ";
-    cin >> n;
-
-    vector<Point> points(n);
-    for (int i = 0; i < n; i++) {
-        cout << "Enter x and y for point " << i + 1 << ": ";
-        cin >> points[i].x >> points[i].y;
-    }
-
     setcolor(WHITE);
-    drawPolygon(points);
-
-    scanlineFill(points, RED);
+    drawPolygon();
+    scanlineFill(RED);
 
     getch();
     closegraph();

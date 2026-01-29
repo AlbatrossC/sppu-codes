@@ -1,5 +1,5 @@
-/* 3. Write C++ program to draw the following pattern. 
-   Use DDA line and Bresenham’s circle drawing algorithm. 
+/* 3(b) Write C++ program to draw the following pattern.
+   Use DDA line and Bresenham’s circle drawing algorithm.
    Apply the concept of encapsulation. */
 
 #include <graphics.h>
@@ -15,17 +15,16 @@ public:
         int dy = y2 - y1;
         int steps = abs(dx) > abs(dy) ? abs(dx) : abs(dy);
 
-        float xInc = dx / (float)steps;
-        float yInc = dy / (float)steps;
-
         float x = x1;
         float y = y1;
+        float xi = dx / (float)steps;
+        float yi = dy / (float)steps;
 
         for (int i = 0; i <= steps; i++)
         {
             putpixel((int)x, (int)y, WHITE);
-            x += xInc;
-            y += yInc;
+            x += xi;
+            y += yi;
         }
     }
 
@@ -36,13 +35,13 @@ public:
 
         while (x <= y)
         {
-            plot(xc, yc, x, y);
+            drawPoints(xc, yc, x, y);
 
             if (d < 0)
-                d = d + 4 * x + 6;
+                d += 4 * x + 6;
             else
             {
-                d = d + 4 * (x - y) + 10;
+                d += 4 * (x - y) + 10;
                 y--;
             }
             x++;
@@ -50,7 +49,7 @@ public:
     }
 
 private:
-    void plot(int xc, int yc, int x, int y)
+    void drawPoints(int xc, int yc, int x, int y)
     {
         putpixel(xc + x, yc + y, WHITE);
         putpixel(xc - x, yc + y, WHITE);
@@ -71,12 +70,17 @@ int main()
     Draw d;
     int xc = 320, yc = 240;
 
-    d.circleBres(xc, yc, 120);
-    d.circleBres(xc, yc, 60);
+    d.lineDDA(160, 120, 480, 120);
+    d.lineDDA(480, 120, 480, 360);
+    d.lineDDA(480, 360, 160, 360);
+    d.lineDDA(160, 360, 160, 120);
 
-    d.lineDDA(xc, yc - 120, xc - 100, yc + 60);
-    d.lineDDA(xc - 100, yc + 60, xc + 100, yc + 60);
-    d.lineDDA(xc + 100, yc + 60, xc, yc - 120);
+    d.lineDDA(xc, 120, 480, yc);
+    d.lineDDA(480, yc, xc, 360);
+    d.lineDDA(xc, 360, 160, yc);
+    d.lineDDA(160, yc, xc, 120);
+
+    d.circleBres(xc, yc, 90);
 
     getch();
     closegraph();

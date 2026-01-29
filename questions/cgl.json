@@ -3,7 +3,21 @@
     "subject_code": "CGL",
     "subject_name": "Computer Graphics Laboratory",
     "description": "Explore Computer Graphics Laboratory programs and solutions with detailed explanations and code examples.",
-    "keywords": ["Computer Graphics", "C++", "OpenGL", "Algorithms", "Transformations", "Scan Fill", "Line Clipping", "Fractals"],
+    "keywords": [
+      "Computer Graphics",
+      "C++",
+      "OpenGL",
+      "Algorithms",
+      "Transformations",
+      "Scan Fill",
+      "Line Clipping",
+      "Fractals",
+      "DDA Algorithm",
+      "Bresenham Circle",
+      "Sutherland Hodgman",
+      "Koch Curve",
+      "Hilbert Curve"
+    ],
     "url": "https://sppucodes.vercel.app/cgl",
     "question_paper_url": "https://sppucodes.vercel.app/questionpapers/computer-graphics"
   },
@@ -14,53 +28,100 @@
       "id": "scan-fill",
       "question": "Write C++ program to draw a concave polygon and fill it with desired color using scan fill algorithm.",
       "subject_code": "cgl",
-      "file_name": ["grpA_1.cpp"], 
+      "file_name": [
+        "grpA_1.cpp"
+      ],
       "title": "Scan Fill Algorithm"
     },
     {
       "group": "A",
       "question_no": "2",
       "id": "cohen-sutherland",
-      "question": "Write a C++ program to implement the Cohen-Sutherland line clipping algorithm.",
+      "question": "Write C++ program to implement Cohen Sutherland line clipping algorithm.",
       "subject_code": "cgl",
-      "file_name": ["grpA_2.cpp"],
-      "title": "Cohen-Sutherland Line Clipping"
+      "file_name": [
+        "grpA_2.cpp"
+      ],
+      "title": "Cohen Sutherland Line Clipping"
     },
     {
       "group": "A",
       "question_no": "3a",
-      "id": "dda-bresenham",
-      "question": "Write a C++ program to draw the following pattern. Use DDA line and Bresenhams circle drawing algorithm. Apply the concept of encapsulation.",
+      "id": "dda-bresenham-3a",
+      "question": "Write C++ program to draw the following pattern. Use DDA line and Bresenham's circle drawing algorithm. Apply the concept of encapsulation.",
       "subject_code": "cgl",
-      "file_name": ["grpA_3a.cpp"],
-      "title": "DDA Line and Bresenhams Circle"
+      "file_name": [
+        "grpA_3a.cpp"
+      ],
+      "image": "/images/grpA_3a.webp",
+      "title": "DDA Line and Bresenham's Circle - Pattern A"
+    },
+    {
+      "group": "A",
+      "question_no": "3b",
+      "id": "dda-bresenham-3b",
+      "question": "Write C++ program to draw the following pattern. Use DDA line and Bresenham's circle drawing algorithm. Apply the concept of encapsulation.",
+      "subject_code": "cgl",
+      "file_name": [
+        "grpA_3b.cpp"
+      ],
+      "image": "/images/cgl_3b_pattern.png",
+      "title": "DDA Line and Bresenham's Circle - Pattern B"
     },
     {
       "group": "B",
       "question_no": "4a",
-      "id": "2d-transformations",
-      "question": "Write a C++ program to draw a 2-D object and perform the following basic transformations: Scaling, Translation, Rotation. Apply the concept of operator overloading.",
+      "id": "2d-transformations-4a",
+      "question": "Write C++ program to draw 2-D object and perform following basic transformations: 1. Scaling 2. Translation 3. Rotation. Apply the concept of operator overloading.",
       "subject_code": "cgl",
-      "file_name": ["grpB_4a.cpp"],
-      "title": "2D Transformations"
+      "file_name": [
+        "grpB_4a.cpp"
+      ],
+      "title": "2D Transformations - Basic Object"
+    },
+    {
+      "group": "B",
+      "question_no": "4b",
+      "id": "2d-transformations-4b",
+      "question": "Write C++ program to implement translation, rotation and scaling transformations on equilateral triangle and rhombus. Apply the concept of operator overloading.",
+      "subject_code": "cgl",
+      "file_name": [
+        "grpB_4b.cpp"
+      ],
+      "title": "2D Transformations - Triangle and Rhombus"
+    },
+    {
+      "group": "B",
+      "question_no": "5a",
+      "id": "snowflake-fractal",
+      "question": "Write C++ program to generate snowflake using concept of fractals.",
+      "subject_code": "cgl",
+      "file_name": [
+        "grpB_5a.cpp"
+      ],
+      "title": "Snowflake Fractal"
     },
     {
       "group": "B",
       "question_no": "5b",
       "id": "hilbert-curve",
-      "question": "Write a C++ program to generate a Hilbert curve using the concept of fractals.",
+      "question": "Write C++ program to generate Hilbert curve using concept of fractals.",
       "subject_code": "cgl",
-      "file_name": ["grpB_5b.cpp"],
-      "title": "Hilbert Curve"
+      "file_name": [
+        "grpB_5b.cpp"
+      ],
+      "title": "Hilbert Curve Fractal"
     },
     {
-      "group": "C",
-      "question_no": "6b",
-      "id": "3d-transformations",
-      "question": "Write C++ program to draw 3-D cube and perform following transformations on it using OpenGL: Scaling, Translation, Rotation about an axis (X/Y/Z).",
+      "group": "B",
+      "question_no": "5c",
+      "id": "koch-curve",
+      "question": "Write C++ program to generate fractal patterns by using Koch curves.",
       "subject_code": "cgl",
-      "file_name": ["grpC_6b.cpp"],
-      "title": "3D Transformations"
+      "file_name": [
+        "grpB_5c.cpp"
+      ],
+      "title": "Koch Curve Fractal"
     }
   ]
 }

@@ -515,12 +515,36 @@ def subject_page(subject_link, question_id=None):
         if not selected_question:
             abort(404)
 
+    # Base metadata
+    page_title = subject.get("subject_name", subject_link.upper())
+    page_description = subject.get("description", "")
+    base_url = subject.get("url", "")
+    page_url = base_url
+
+    if selected_question:
+        # Improve Title
+        q_title = selected_question.get("title")
+        if not q_title:
+             # Fallback to truncated question text if title missing
+             q_text = selected_question.get("question", "")
+             q_title = (q_text[:50] + '...') if len(q_text) > 50 else q_text
+        
+        page_title = f"{q_title} | {page_title}"
+
+        # Improve Description
+        q_full_text = selected_question.get("question", "")
+        page_description = f"Question {selected_question.get('question_no')}: {q_full_text[:160]}..."
+
+        # Improve Canonical URL
+        if base_url:
+            page_url = f"{base_url}/{selected_question.get('id')}"
+
     return render_template(
         "subject.html",
-        title=subject.get("subject_name", subject_link.upper()),
-        description=subject.get("description", ""),
+        title=page_title,
+        description=page_description,
         keywords=subject.get("keywords", []),
-        url=subject.get("url"),
+        url=page_url,
         subject_code=subject_link,
         subject_name=subject.get("subject_name"),
         question_paper_url=subject.get("question_paper_url"),

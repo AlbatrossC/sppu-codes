@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -15,7 +16,7 @@
     <script src="{{ url_for('static', filename='js/analytics.js') }}?v=3.0" defer></script>
     <link rel="icon" href="/images/favicon.ico" type="image/x-icon">
 
-    
+
     {% if question %}
     <script type="application/ld+json">
     {
@@ -81,145 +82,144 @@
     {% endif %}
 
     <style>
-    /* Desktop Side Rail Ads CSS */
-    .ads-container {
-        position: fixed;
-        top: 0;
-        height: 100vh;
-        width: 170px;
-        z-index: 100;
-        pointer-events: none;
-    }
-
-    .ads-container.left-ads {
-        left: 0;
-    }
-
-    .ads-container.right-ads {
-        right: 0;
-    }
-
-    .ad-rail {
-        position: sticky;
-        top: 80px;
-        height: calc(100vh - 80px);
-        width: 100%;
-        pointer-events: auto;
-        padding: 5px;
-        display: flex;
-        justify-content: center;
-        align-items: flex-start;
-        padding-top: 20px;
-    }
-
-    .ad-slot {
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        overflow: hidden;
-        position: relative;
-    }
-
-    .ad-slot.wide-skyscraper {
-        height: 600px;
-        width: 160px;
-    }
-
-    .mobile-ad-container {
-        position: fixed;
-        bottom: 0;
-        left: 0;
-        right: 0;
-        z-index: 1000;
-        background-color: var(--color-bg-secondary, #1e1e1e);
-        border-top: 1px solid var(--color-border, #333);
-        padding: 10px;
-        display: none;
-        justify-content: center;
-        align-items: center;
-    }
-
-    .mobile-ad-container .ad-slot {
-        height: 50px;
-        width: 300px;
-        max-width: 90vw;
-    }
-
-    @media (min-width: 1200px) {
-        body {
-            padding-left: 180px;
-            padding-right: 180px;
-        }
-        
+        /* Desktop Side Rail Ads CSS */
         .ads-container {
-            display: block;
+            position: fixed;
+            top: 0;
+            height: 100vh;
+            width: 170px;
+            z-index: 100;
+            pointer-events: none;
         }
-        
-        .mobile-ad-container {
-            display: none;
-        }
-    }
 
-    @media (max-width: 1199px) {
-        .ads-container {
-            display: none;
+        .ads-container.left-ads {
+            left: 0;
         }
-        
-        body {
-            padding-left: 0;
-            padding-right: 0;
-            padding-bottom: 80px;
+
+        .ads-container.right-ads {
+            right: 0;
         }
-        
-        .mobile-ad-container {
+
+        .ad-rail {
+            position: sticky;
+            top: 80px;
+            height: calc(100vh - 80px);
+            width: 100%;
+            pointer-events: auto;
+            padding: 5px;
             display: flex;
+            justify-content: center;
+            align-items: flex-start;
+            padding-top: 20px;
         }
-    }
 
-    .content {
-        max-width: 1200px;
-        margin: 0 auto;
-        padding: 1.5rem;
-    }
-
-    header {
-        width: 100%;
-        max-width: none;
-        margin: 0;
-        padding: 1rem;
-        box-sizing: border-box;
-    }
-
-    @media (min-width: 1200px) {
-        header {
-            margin-left: -180px;
-            margin-right: -180px;
-            width: calc(100% + 360px);
+        .ad-slot {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+            position: relative;
         }
-        
-        header > * {
+
+        .ad-slot.wide-skyscraper {
+            height: 600px;
+            width: 160px;
+        }
+
+        .mobile-ad-container {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            z-index: 1000;
+            background-color: var(--color-bg-secondary, #1e1e1e);
+            border-top: 1px solid var(--color-border, #333);
+            padding: 10px;
+            display: none;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .mobile-ad-container .ad-slot {
+            height: 50px;
+            width: 300px;
+            max-width: 90vw;
+        }
+
+        @media (min-width: 1200px) {
+            body {
+                padding-left: 180px;
+                padding-right: 180px;
+            }
+
+            .ads-container {
+                display: block;
+            }
+
+            .mobile-ad-container {
+                display: none;
+            }
+        }
+
+        @media (max-width: 1199px) {
+            .ads-container {
+                display: none;
+            }
+
+            body {
+                padding-left: 0;
+                padding-right: 0;
+                padding-bottom: 80px;
+            }
+
+            .mobile-ad-container {
+                display: flex;
+            }
+        }
+
+        .content {
             max-width: 1200px;
             margin: 0 auto;
-            padding: 0 1rem;
+            padding: 1.5rem;
         }
-    }
 
-    .adsbygoogle {
-        display: block !important;
-        background: transparent !important;
-        border: none !important;
-    }
+        header {
+            width: 100%;
+            max-width: none;
+            margin: 0;
+            padding: 1rem;
+            box-sizing: border-box;
+        }
+
+        @media (min-width: 1200px) {
+            header {
+                margin-left: -180px;
+                margin-right: -180px;
+                width: calc(100% + 360px);
+            }
+
+            header>* {
+                max-width: 1200px;
+                margin: 0 auto;
+                padding: 0 1rem;
+            }
+        }
+
+        .adsbygoogle {
+            display: block !important;
+            background: transparent !important;
+            border: none !important;
+        }
     </style>
 </head>
+
 <body>
     <!-- Left Side Desktop Ad Rail -->
     <div class="ads-container left-ads">
         <div class="ad-rail">
             <div class="ad-slot wide-skyscraper">
-                <ins class="adsbygoogle"
-                    style="display:inline-block;width:160px;height:600px"
-                    data-ad-client="ca-pub-6918638598461716"
-                    data-ad-slot="1223389585"></ins>
+                <ins class="adsbygoogle" style="display:inline-block;width:160px;height:600px"
+                    data-ad-client="ca-pub-6918638598461716" data-ad-slot="1223389585"></ins>
                 <script>
                     (adsbygoogle = window.adsbygoogle || []).push({});
                 </script>
@@ -230,10 +230,8 @@
     <div class="ads-container right-ads">
         <div class="ad-rail">
             <div class="ad-slot wide-skyscraper">
-                <ins class="adsbygoogle"
-                    style="display:inline-block;width:160px;height:600px"
-                    data-ad-client="ca-pub-6918638598461716"
-                    data-ad-slot="3985284299"></ins>
+                <ins class="adsbygoogle" style="display:inline-block;width:160px;height:600px"
+                    data-ad-client="ca-pub-6918638598461716" data-ad-slot="3985284299"></ins>
                 <script>
                     (adsbygoogle = window.adsbygoogle || []).push({});
                 </script>
@@ -243,10 +241,8 @@
 
     <div class="mobile-ad-container" id="mobileAdContainer">
         <div class="ad-slot">
-            <ins class="adsbygoogle"
-                style="display:inline-block;width:300px;height:50px"
-                data-ad-client="ca-pub-6918638598461716"
-                data-ad-slot="2408478746"></ins>
+            <ins class="adsbygoogle" style="display:inline-block;width:300px;height:50px"
+                data-ad-client="ca-pub-6918638598461716" data-ad-slot="2408478746"></ins>
             <script>
                 (adsbygoogle = window.adsbygoogle || []).push({});
             </script>
@@ -260,7 +256,7 @@
                     Home
                 </button>
             </div>
-            
+
             <div class="header-center">
                 <h3>
                     <a href="/{{ subject_code }}" class="subject-link">
@@ -268,21 +264,22 @@
                     </a>
                 </h3>
             </div>
-            
+
             <div class="header-right">
-                <button onclick="window.open('https://github.com/AlbatrossC/codes/tree/main/answers/{{ subject_code }}', '_blank')" 
-                        class="github-btn" 
-                        aria-label="View code repository on GitHub">
+                <button
+                    onclick="window.open('https://github.com/AlbatrossC/codes/tree/main/answers/{{ subject_code }}', '_blank')"
+                    class="github-btn" aria-label="View code repository on GitHub">
                     <svg class="github-icon" viewBox="0 0 16 16" width="16" height="16" aria-hidden="true">
-                        <path fill="currentColor" d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"></path>
+                        <path fill="currentColor"
+                            d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z">
+                        </path>
                     </svg>
                     <span>Answer Codes</span>
                 </button>
-                
+
                 {% if question_paper_url %}
-                <button onclick="location.href='{{ question_paper_url }}'" 
-                        class="qp-btn" 
-                        aria-label="View Question Papers">
+                <button onclick="location.href='{{ question_paper_url }}'" class="qp-btn"
+                    aria-label="View Question Papers">
                     Question Papers
                 </button>
                 {% endif %}
@@ -297,22 +294,30 @@
             <h1>
                 <strong>Q{{ question.question_no }}: </strong>{{ question.question }}
             </h1>
-            {% for file in question.file_name %}
-            <button class="view-code-btn"  
-                    onclick="loadAnswer('{{ subject_code }}', '{{ question.question_no }}', '{{ question.title }}', this, '{{ file }}', {{ loop.index }})">
-                View Code {{ loop.index }}
-            </button>
-            {% endfor %}
-            <div class="answer-box" id="answerBox{{ question.question_no }}">
-                <div class="modal-content">
-                    <h3 id="questionText{{ question.question_no }}"></h3>
-                    <pre id="codeContent{{ question.question_no }}"></pre>
-                </div>
-                <div class="copy-close-container">
-                    <button class="copy-btn" onclick="copyCode('codeContent{{ question.question_no }}')">Copy Code</button>
-                    <button class="close-btn" onclick="closeBox('answerBox{{ question.question_no }}')">Close</button>
-                </div>
+            {% if question.image %}
+            <div class="question-image-container">
+                <img src="{{ question.image }}" alt="{{ question.title }} - Question Reference Image"
+                    style="max-width: 100%; height: auto; margin: 10px 0; border-radius: 8px;">
             </div>
+            {% endif %}
+            {% for file in question.file_name %}
+            <button class="view-code-btn"
+                onclick="loadAnswer('{{ subject_code }}', '{{ question.question_no }}', '{{ question.title | replace("'", "\\'") }}', this, '{{ file }}', {{ loop.index }})">
+                {{ question.code_names[loop.index0] if question.code_names and loop.index0 < question.code_names|length
+                    else 'View Code ' ~ loop.index }} </button>
+                    {% endfor %}
+                    <div class="answer-box" id="answerBox{{ question.question_no }}">
+                        <div class="modal-content">
+                            <h3 id="questionText{{ question.question_no }}"></h3>
+                            <pre id="codeContent{{ question.question_no }}"></pre>
+                        </div>
+                        <div class="copy-close-container">
+                            <button class="copy-btn" onclick="copyCode('codeContent{{ question.question_no }}')">Copy
+                                Code</button>
+                            <button class="close-btn"
+                                onclick="closeBox('answerBox{{ question.question_no }}')">Close</button>
+                        </div>
+                    </div>
         </article>
 
         <div class="other-questions">
@@ -322,15 +327,15 @@
             </div>
             <ul class="questions-list">
                 {% for group_key in sorted_groups %}
-                    {% for q in groups[group_key] %}
-                        {% if q.id != question.id %}
-                        <li>
-                            <a href="/{{ subject_code }}/{{ q.id }}" class="question-link">
-                                <strong>Q{{ q.question_no }}: </strong>{{ q.question }}
-                            </a>
-                        </li>
-                        {% endif %}
-                    {% endfor %}
+                {% for q in groups[group_key] %}
+                {% if q.id != question.id %}
+                <li>
+                    <a href="/{{ subject_code }}/{{ q.id }}" class="question-link">
+                        <strong>Q{{ q.question_no }}: </strong>{{ q.question }}
+                    </a>
+                </li>
+                {% endif %}
+                {% endfor %}
                 {% endfor %}
             </ul>
         </div>
@@ -347,22 +352,30 @@
                     <strong>Q{{ question_item.question_no }}: </strong>{{ question_item.question }}
                 </a>
             </h1>
-            {% for file in question_item.file_name %}
-            <button class="view-code-btn" 
-                    onclick="loadAnswer('{{ subject_code }}', '{{ question_item.question_no }}', '{{ question_item.title }}', this, '{{ file }}', {{ loop.index }})">
-                View Code {{ loop.index }}
-            </button>
-            {% endfor %}
-            <div class="answer-box" id="answerBox{{ question_item.question_no }}">
-                <div class="modal-content">
-                    <h3 id="questionText{{ question_item.question_no }}"></h3>
-                    <pre id="codeContent{{ question_item.question_no }}"></pre>
-                </div>
-                <div class="copy-close-container">
-                    <button class="copy-btn" onclick="copyCode('codeContent{{ question_item.question_no }}')">Copy Code</button>
-                    <button class="close-btn" onclick="closeBox('answerBox{{ question_item.question_no }}')">Close</button>
-                </div>
+            {% if question_item.image %}
+            <div class="question-image-container">
+                <img src="{{ question_item.image }}" alt="{{ question_item.title }} - Question Reference Image"
+                    style="max-width: 100%; height: auto; margin: 10px 0; border-radius: 8px;">
             </div>
+            {% endif %}
+            {% for file in question_item.file_name %}
+            <button class="view-code-btn"
+                onclick="loadAnswer('{{ subject_code }}', '{{ question_item.question_no }}', '{{ question_item.title | replace("'", "\\'") }}', this, '{{ file }}', {{ loop.index }})">
+                {{ question_item.code_names[loop.index0] if question_item.code_names and loop.index0 <
+                    question_item.code_names|length else 'View Code ' ~ loop.index }} </button>
+                    {% endfor %}
+                    <div class="answer-box" id="answerBox{{ question_item.question_no }}">
+                        <div class="modal-content">
+                            <h3 id="questionText{{ question_item.question_no }}"></h3>
+                            <pre id="codeContent{{ question_item.question_no }}"></pre>
+                        </div>
+                        <div class="copy-close-container">
+                            <button class="copy-btn"
+                                onclick="copyCode('codeContent{{ question_item.question_no }}')">Copy Code</button>
+                            <button class="close-btn"
+                                onclick="closeBox('answerBox{{ question_item.question_no }}')">Close</button>
+                        </div>
+                    </div>
         </article>
         {% endfor %}
     </div>
@@ -370,15 +383,16 @@
     {% endif %}
 
     <script>
-    window.addEventListener('DOMContentLoaded', function() {
-        try {
-            (adsbygoogle = window.adsbygoogle || []).push({});
-            (adsbygoogle = window.adsbygoogle || []).push({});
-            (adsbygoogle = window.adsbygoogle || []).push({});
-        } catch (e) {
-            console.warn('AdSense initialization failed:', e);
-        }
-    });
+        window.addEventListener('DOMContentLoaded', function () {
+            try {
+                (adsbygoogle = window.adsbygoogle || []).push({});
+                (adsbygoogle = window.adsbygoogle || []).push({});
+                (adsbygoogle = window.adsbygoogle || []).push({});
+            } catch (e) {
+                console.warn('AdSense initialization failed:', e);
+            }
+        });
     </script>
 </body>
+
 </html>

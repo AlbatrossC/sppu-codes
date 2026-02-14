@@ -1,0 +1,51 @@
+{
+  "default": {
+    "subject_code": "ANN",
+    "subject_name": "Artificial Neural Network",
+    "description": "Explore Artificial Neural Network programs and solutions with detailed explanations and code examples.",
+    "keywords": [
+      "Artificial Neural Network",
+      "Python",
+      "Machine Learning",
+      "Deep Learning",
+      "Activation Functions",
+      "McCulloch-Pitts",
+      "Neural Networks",
+      "Perceptron",
+      "Backpropagation",
+      "TensorFlow",
+      "Keras"
+    ],
+    "url": "https://sppucodes.vercel.app/ann",
+    "question_paper_url": "https://sppucodes.vercel.app/questionpapers/artificial-neural-network-aids"
+  },
+  "questions": [
+    {
+      "group": "A",
+      "question_no": "1",
+      "id": "activation-functions",
+      "question": "Write a Python program to plot a few activation functions that are being used in neural networks.",
+      "subject_code": "ann",
+      "file_name": [
+        "activation-functions.py",
+        "activation-functions-easy.py"
+      ],
+      "code_names": [
+        "View Code",
+        "View Code (Easy)"
+      ],
+      "title": "Activation Functions Plot"
+    },
+    {
+      "group": "A",
+      "question_no": "2",
+      "id": "mcculloch-pitts-andnot",
+      "question": "Generate ANDNOT function using McCulloch-Pitts neural net by a python program.",
+      "subject_code": "ann",
+      "file_name": [
+        "mcculloch-pitts-andnot.py"
+      ],
+      "title": "McCulloch-Pitts ANDNOT Function"
+    }
+  ]
+}

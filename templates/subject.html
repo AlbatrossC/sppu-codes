@@ -7,9 +7,33 @@
     <title>{{ title }}</title>
     <meta name="description" content="{{ description }}">
     <meta name="keywords" content="{{ keywords | join(', ') }}">
+    <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1">
+    <meta name="author" content="SPPU Codes">
+    <meta name="language" content="English">
     <meta name="google-adsense-account" content="ca-pub-6918638598461716">
+
+    <!-- Open Graph -->
+    <meta property="og:type" content="{% if question %}article{% else %}website{% endif %}">
+    <meta property="og:title" content="{{ title }}">
+    <meta property="og:description" content="{{ description }}">
     <meta property="og:url" content="{{ url }}">
+    <meta property="og:site_name" content="SPPU Codes">
+    <meta property="og:image" content="https://sppucodes.vercel.app/images/logo.png">
+    <meta property="og:locale" content="en_IN">
+
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:title" content="{{ title }}">
+    <meta name="twitter:description" content="{{ description }}">
+    <meta name="twitter:image" content="https://sppucodes.vercel.app/images/logo.png">
+
     <link rel="canonical" href="{{ url }}">
+
+    <!-- Preload & Preconnect -->
+    <link rel="preload" href="/static/css/subjectlayout.css?v=2.0" as="style">
+    <link rel="preload" href="/static/css/answerbox.css?v=1.8" as="style">
+    <link rel="preconnect" href="https://pagead2.googlesyndication.com" crossorigin>
+
     <link rel="stylesheet" href="/static/css/answerbox.css?v=1.8">
     <link rel="stylesheet" href="/static/css/subjectlayout.css?v=2.0">
     <script src="/static/js/script.js" defer></script>
@@ -80,6 +104,36 @@
     }
     </script>
     {% endif %}
+
+    <!-- BreadcrumbList Structured Data -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "BreadcrumbList",
+        "itemListElement": [
+            {
+                "@type": "ListItem",
+                "position": 1,
+                "name": "Home",
+                "item": "https://sppucodes.vercel.app/"
+            },
+            {
+                "@type": "ListItem",
+                "position": 2,
+                "name": "{{ subject_name }}",
+                "item": "https://sppucodes.vercel.app/{{ subject_code }}"
+            }
+            {% if question %}
+            ,{
+                "@type": "ListItem",
+                "position": 3,
+                "name": "Q{{ question.question_no }}: {{ question.title or question.question[:50] }}",
+                "item": "{{ url }}"
+            }
+            {% endif %}
+        ]
+    }
+    </script>
 
     <style>
         /* Desktop Side Rail Ads CSS */

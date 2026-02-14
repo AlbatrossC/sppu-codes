@@ -5,6 +5,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=5,user-scalable=yes">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="theme-color" content="#1a1a2e">
+    <meta name="google-site-verification" content="s0ezZ-kg4bjZR6Jbt_-6H1Im5EDs61Rg5yWJr6BHXFY" />
+    <meta name="google-site-verification" content="EZ0Ro0zG4Hc7axgonIr9RZJdN0xW3cVTMueirY8hveA" />
     <title>{{ seo_data.title }}</title>
     <meta name="description" content="{{ seo_data.description }}">
     <meta name="keywords" content="{{ seo_data.keywords }}">
@@ -26,15 +29,22 @@
     <meta property="og:description" content="{{ seo_data.description }}">
     <meta property="og:url" content="https://sppucodes.vercel.app/question-papers/{{ subject_link }}">
     <meta property="og:image" content="https://sppucodes.vercel.app/images/logo.png">
-    <meta property="og:type" content="website">
+    <meta property="og:image:width" content="112">
+    <meta property="og:image:height" content="112">
+    <meta property="og:image:alt" content="{{ seo_data.title }}">
+    <meta property="og:type" content="article">
     <meta property="og:site_name" content="SPPU Codes">
-    <meta property="og:locale" content="en_US">
+    <meta property="og:locale" content="en_IN">
 
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:title" content="{{ seo_data.title }}">
     <meta name="twitter:description" content="{{ seo_data.description }}">
     <meta name="twitter:image" content="https://sppucodes.vercel.app/images/logo.png">
     <meta name="twitter:site" content="@sppucodes">
+
+    <!-- Preconnect to external domains -->
+    <link rel="preconnect" href="https://pagead2.googlesyndication.com" crossorigin>
+    <link rel="dns-prefetch" href="https://pagead2.googlesyndication.com">
 
     <link href="{{ url_for('get_image', filename='favicon.ico') }}" rel="icon" fetchpriority="high" type="image/x-icon">
     <link href="/static/pdfjs/web/viewer.html" rel="preload" fetchpriority="high" as="document">
@@ -83,7 +93,7 @@
         "name": "{{ seo_data.title }}",
         "description": "{{ seo_data.description }}",
         "url": "https://sppucodes.vercel.app/question-papers/{{ subject_link }}",
-        "inLanguage": "en-US",
+        "inLanguage": "en-IN",
         "isPartOf": {
             "@type": "WebSite",
             "name": "SPPU Codes",
@@ -115,7 +125,7 @@
                         "encodingFormat": "application/pdf",
                         "position": {{ loop.index }},
                         "datePublished": "2024-01-01",
-                        "inLanguage": "en-US",
+                        "inLanguage": "en-IN",
                         "about": {
                             "@type": "Thing",
                             "name": "{{ display_name }}",

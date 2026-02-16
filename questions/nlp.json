@@ -1,0 +1,36 @@
+{
+  "default": {
+    "subject_code": "NLP",
+    "subject_name": "Natural Language Processing",
+    "description": "Explore Natural Language Processing programs and solutions with detailed explanations and code examples.",
+    "keywords": [
+      "Natural Language Processing",
+      "Python",
+      "NLP",
+      "Text Processing",
+      "Tokenization",
+      "Stemming",
+      "Lemmatization",
+      "NLTK",
+      "spaCy",
+      "Regular Expressions",
+      "Text Analysis",
+      "Stopword Removal"
+    ],
+    "url": "https://sppucodes.vercel.app/nlp",
+    "question_paper_url": "https://sppucodes.vercel.app/questionpapers/natural-language-processing"
+  },
+  "questions": [
+    {
+      "group": "A",
+      "question_no": "2",
+      "id": "text-preprocessing",
+      "question": "To perform various preprocessing tasks in NLP: Perform various basic pre-processing tasks like tokenization, stemming, lemmatization, stopword removal etc. using inbuilt functions and using regular expressions.",
+      "subject_code": "nlp",
+      "file_name": [
+        "text-preprocessing.py"
+      ],
+      "title": "NLP Text Preprocessing"
+    }
+  ]
+}

@@ -1,0 +1,33 @@
+{
+  "default": {
+    "subject_code": "CS",
+    "subject_name": "Cyber Security",
+    "description": "Explore Cyber Security programs and solutions with detailed explanations and code examples.",
+    "keywords": [
+      "Cyber Security",
+      "Python",
+      "Cryptography",
+      "Diffie-Hellman",
+      "Key Exchange",
+      "Network Security",
+      "Encryption",
+      "Decryption",
+      "Information Security"
+    ],
+    "url": "https://sppucodes.vercel.app/cs",
+    "question_paper_url": "https://sppucodes.vercel.app/questionpapers/cyber-security-aids"
+  },
+  "questions": [
+    {
+      "group": "A",
+      "question_no": "3",
+      "id": "diffie-hellman-key-exchange",
+      "question": "Implementation of Diffie-Hellman key exchange.",
+      "subject_code": "cs",
+      "file_name": [
+        "diffie-hellman-key-exchange.py"
+      ],
+      "title": "Diffie-Hellman Key Exchange"
+    }
+  ]
+}

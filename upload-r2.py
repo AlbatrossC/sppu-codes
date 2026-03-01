@@ -105,7 +105,7 @@ BRANCHES = [b.strip() for b in branches_input.split(",") if b.strip()]
 # =========================
 # Output Folder
 # =========================
-OUTPUT_DIR = "question-papers-r2"
+OUTPUT_DIR = os.path.join("question-papers", "question-papers-r2")
 os.makedirs(OUTPUT_DIR, exist_ok=True)
 
 # =========================
@@ -152,12 +152,12 @@ for BRANCH in BRANCHES:
             if not subject_entry:
                 subject_entry = {
                     "subject_name": subject_link_to_name(subject_link),
-                    "pdf_urls": []
+                    "pdf_links": []
                 }
 
             existing_files = {
                 filename_from_url(url)
-                for url in subject_entry.get("pdf_urls", [])
+                for url in subject_entry.get("pdf_links", [])
                 if isinstance(url, str)
             }
 
@@ -174,10 +174,10 @@ for BRANCH in BRANCHES:
 
                 uploaded_url = upload_file(local_path, remote_path)
                 if uploaded_url:
-                    subject_entry["pdf_urls"].append(uploaded_url)
+                    subject_entry["pdf_links"].append(uploaded_url)
                     print(f"[Uploaded] {file}")
 
-            if subject_entry["pdf_urls"]:
+            if subject_entry["pdf_links"]:
                 branch_data[sem][subject_link] = subject_entry
 
     # Reorder & Save JSON

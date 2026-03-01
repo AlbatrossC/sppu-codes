@@ -1,10 +1,10 @@
 {
-    "branch_name": "First Year Engineering",
-    "branch_code": "F.E",
+    "branch_name": null,
+    "branch_code": null,
     "sem-1": {
         "basic-electrical-engineering-fy": {
             "subject_name": "Basic Electrical Engineering",
-            "pdf_urls": [
+            "pdf_links": [
                 "https://sppucodes.albatrossc.workers.dev/fy/sem-1/basic-electrical-engineering-fy/endsem-may-jun-2022-pat2019-beef.pdf",
                 "https://sppucodes.albatrossc.workers.dev/fy/sem-1/basic-electrical-engineering-fy/endsem-may-jun-2023-pat2019-beef.pdf",
                 "https://sppucodes.albatrossc.workers.dev/fy/sem-1/basic-electrical-engineering-fy/endsem-may-jun-2024-pat2019-beef.pdf",
@@ -22,7 +22,7 @@
         },
         "engineering-mathematics-i-fy": {
             "subject_name": "Engineering Mathematics I",
-            "pdf_urls": [
+            "pdf_links": [
                 "https://sppucodes.albatrossc.workers.dev/fy/sem-1/engineering-mathematics-i-fy/endsem-may-jun-2022-pat2019-emif.pdf",
                 "https://sppucodes.albatrossc.workers.dev/fy/sem-1/engineering-mathematics-i-fy/endsem-may-jun-2023-pat2019-emif.pdf",
                 "https://sppucodes.albatrossc.workers.dev/fy/sem-1/engineering-mathematics-i-fy/endsem-may-jun-2024-pat2019-emif.pdf",
@@ -37,7 +37,7 @@
         },
         "engineering-mechanics-fy": {
             "subject_name": "Engineering Mechanics",
-            "pdf_urls": [
+            "pdf_links": [
                 "https://sppucodes.albatrossc.workers.dev/fy/sem-1/engineering-mechanics-fy/endsem-may-jun-2022-pat2019-emf.pdf",
                 "https://sppucodes.albatrossc.workers.dev/fy/sem-1/engineering-mechanics-fy/endsem-may-jun-2023-pat2019-emf.pdf",
                 "https://sppucodes.albatrossc.workers.dev/fy/sem-1/engineering-mechanics-fy/endsem-may-jun-2024-pat2019-emf.pdf",
@@ -55,7 +55,7 @@
         },
         "engineering-physics-fy": {
             "subject_name": "Engineering Physics",
-            "pdf_urls": [
+            "pdf_links": [
                 "https://sppucodes.albatrossc.workers.dev/fy/sem-1/engineering-physics-fy/endsem-may-jun-2022-pat2019-epf.pdf",
                 "https://sppucodes.albatrossc.workers.dev/fy/sem-1/engineering-physics-fy/endsem-may-jun-2023-pat2019-epf.pdf",
                 "https://sppucodes.albatrossc.workers.dev/fy/sem-1/engineering-physics-fy/endsem-may-jun-2024-pat2019-epf.pdf",
@@ -73,7 +73,7 @@
         },
         "programming-and-problem-solving-fy": {
             "subject_name": "Programming And Problem Solving",
-            "pdf_urls": [
+            "pdf_links": [
                 "https://sppucodes.albatrossc.workers.dev/fy/sem-1/programming-and-problem-solving-fy/endsem-may-jun-2022-pat2019-papsf.pdf",
                 "https://sppucodes.albatrossc.workers.dev/fy/sem-1/programming-and-problem-solving-fy/endsem-may-jun-2023-pat2019-papsf.pdf",
                 "https://sppucodes.albatrossc.workers.dev/fy/sem-1/programming-and-problem-solving-fy/endsem-may-jun-2024-pat2019-papsf.pdf",
@@ -93,7 +93,7 @@
     "sem-2": {
         "basic-electronics-engineering-fy": {
             "subject_name": "Basic Electronics Engineering",
-            "pdf_urls": [
+            "pdf_links": [
                 "https://sppucodes.albatrossc.workers.dev/fy/sem-2/basic-electronics-engineering-fy/endsem-may-jun-2022-pat2019-beef.pdf",
                 "https://sppucodes.albatrossc.workers.dev/fy/sem-2/basic-electronics-engineering-fy/endsem-may-jun-2023-pat2019-beef.pdf",
                 "https://sppucodes.albatrossc.workers.dev/fy/sem-2/basic-electronics-engineering-fy/endsem-may-jun-2025-pat2019-beef.pdf",
@@ -110,7 +110,7 @@
         },
         "engineering-chemistry-fy": {
             "subject_name": "Engineering Chemistry",
-            "pdf_urls": [
+            "pdf_links": [
                 "https://sppucodes.albatrossc.workers.dev/fy/sem-2/engineering-chemistry-fy/endsem-may-jun-2022-pat2019-ecf.pdf",
                 "https://sppucodes.albatrossc.workers.dev/fy/sem-2/engineering-chemistry-fy/endsem-may-jun-2023-pat2019-ecf.pdf",
                 "https://sppucodes.albatrossc.workers.dev/fy/sem-2/engineering-chemistry-fy/endsem-may-jun-2024-pat2019-ecf.pdf",
@@ -128,7 +128,7 @@
         },
         "engineering-graphics-fy": {
             "subject_name": "Engineering Graphics",
-            "pdf_urls": [
+            "pdf_links": [
                 "https://sppucodes.albatrossc.workers.dev/fy/sem-2/engineering-graphics-fy/endsem-may-jun-2022-pat2019-egf.pdf",
                 "https://sppucodes.albatrossc.workers.dev/fy/sem-2/engineering-graphics-fy/endsem-may-jun-2023-pat2019-egf.pdf",
                 "https://sppucodes.albatrossc.workers.dev/fy/sem-2/engineering-graphics-fy/endsem-may-jun-2024-pat2019-egf.pdf",
@@ -139,7 +139,7 @@
         },
         "engineering-mathematics-ii-fy": {
             "subject_name": "Engineering Mathematics II",
-            "pdf_urls": [
+            "pdf_links": [
                 "https://sppucodes.albatrossc.workers.dev/fy/sem-2/engineering-mathematics-ii-fy/endsem-may-jun-2022-pat2019-emiif.pdf",
                 "https://sppucodes.albatrossc.workers.dev/fy/sem-2/engineering-mathematics-ii-fy/endsem-may-jun-2023-pat2019-emiif.pdf",
                 "https://sppucodes.albatrossc.workers.dev/fy/sem-2/engineering-mathematics-ii-fy/endsem-may-jun-2024-pat2019-emiif.pdf",
@@ -152,7 +152,7 @@
         },
         "systems-in-mechanical-engineering-fy": {
             "subject_name": "Systems In Mechanical Engineering",
-            "pdf_urls": [
+            "pdf_links": [
                 "https://sppucodes.albatrossc.workers.dev/fy/sem-2/systems-in-mechanical-engineering-fy/endsem-may-jun-2022-pat2019-simef.pdf",
                 "https://sppucodes.albatrossc.workers.dev/fy/sem-2/systems-in-mechanical-engineering-fy/endsem-may-jun-2023-pat2019-simef.pdf",
                 "https://sppucodes.albatrossc.workers.dev/fy/sem-2/systems-in-mechanical-engineering-fy/endsem-may-jun-2024-pat2019-simef.pdf",

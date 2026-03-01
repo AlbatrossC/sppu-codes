@@ -81,18 +81,13 @@ def filename_from_url(url: str) -> str:
 
 
 def reorder_branch_data(branch_data: dict) -> dict:
-    """
-    Ensures branch_name and branch_code are the first keys (in that order).
-    """
     ordered = {
         "branch_name": branch_data.get("branch_name"),
         "branch_code": branch_data.get("branch_code"),
     }
-
     for key in branch_data:
         if key not in ("branch_name", "branch_code"):
             ordered[key] = branch_data[key]
-
     return ordered
 
 
@@ -109,7 +104,7 @@ BRANCHES = [b.strip() for b in branches_input.split(",") if b.strip()]
 # =========================
 # Output Folder
 # =========================
-OUTPUT_DIR = "question-papers"
+OUTPUT_DIR = os.path.join("question-papers", "supabase")
 os.makedirs(OUTPUT_DIR, exist_ok=True)
 
 # =========================
@@ -122,18 +117,13 @@ for BRANCH in BRANCHES:
 
     output_json_path = os.path.join(OUTPUT_DIR, f"{BRANCH}.json")
 
-    # =========================
     # Load existing JSON (if any)
-    # =========================
     if os.path.exists(output_json_path):
         with open(output_json_path, "r", encoding="utf-8") as f:
             branch_data = json.load(f)
     else:
         branch_data = {}
 
-    # =========================
-    # Ensure branch_name & branch_code exist
-    # =========================
     if "branch_name" not in branch_data:
         branch_data["branch_name"] = None
 
@@ -189,9 +179,7 @@ for BRANCH in BRANCHES:
             if subject_entry["pdf_links"]:
                 branch_data[sem][subject_link] = subject_entry
 
-    # =========================
     # Reorder & Save JSON
-    # =========================
     branch_data = reorder_branch_data(branch_data)
 
     with open(output_json_path, "w", encoding="utf-8") as f:

@@ -1,10 +1,10 @@
 {
-    "branch_name": "Computer Science",
-    "branch_code": "CS",
+    "branch_name": null,
+    "branch_code": null,
     "sem-4": {
         "microprocessor-cse": {
             "subject_name": "Microprocessor",
-            "pdf_urls": [
+            "pdf_links": [
                 "https://sppucodes.albatrossc.workers.dev/cse/sem-4/microprocessor-cse/endsem-may-jun-2022-pat2019-mc.pdf",
                 "https://sppucodes.albatrossc.workers.dev/cse/sem-4/microprocessor-cse/endsem-may-jun-2023-pat2019-mc.pdf",
                 "https://sppucodes.albatrossc.workers.dev/cse/sem-4/microprocessor-cse/endsem-may-jun-2024-pat2019-mc.pdf",
@@ -18,7 +18,7 @@
         },
         "principles-of-programming-languages-cse": {
             "subject_name": "Principles Of Programming Languages",
-            "pdf_urls": [
+            "pdf_links": [
                 "https://sppucodes.albatrossc.workers.dev/cse/sem-4/principles-of-programming-languages-cse/endsem-may-jun-2022-pat2019-poplc.pdf",
                 "https://sppucodes.albatrossc.workers.dev/cse/sem-4/principles-of-programming-languages-cse/endsem-may-jun-2023-pat2019-poplc.pdf",
                 "https://sppucodes.albatrossc.workers.dev/cse/sem-4/principles-of-programming-languages-cse/endsem-may-jun-2024-pat2019-poplc.pdf",
@@ -33,7 +33,7 @@
     "sem-5": {
         "computer-network-and-security-cse": {
             "subject_name": "Computer Network And Security",
-            "pdf_urls": [
+            "pdf_links": [
                 "https://sppucodes.albatrossc.workers.dev/cse/sem-5/computer-network-and-security-cse/endsem-may-jun-2022-pat2019-cnasc.pdf",
                 "https://sppucodes.albatrossc.workers.dev/cse/sem-5/computer-network-and-security-cse/endsem-may-jun-2023-pat2019-cnasc.pdf",
                 "https://sppucodes.albatrossc.workers.dev/cse/sem-5/computer-network-and-security-cse/endsem-may-jun-2024-pat2019-cnasc.pdf",
@@ -49,7 +49,7 @@
         },
         "database-management-systems-cse": {
             "subject_name": "Database Management Systems",
-            "pdf_urls": [
+            "pdf_links": [
                 "https://sppucodes.albatrossc.workers.dev/cse/sem-5/database-management-systems-cse/endsem-may-jun-2022-pat2019-dmsc.pdf",
                 "https://sppucodes.albatrossc.workers.dev/cse/sem-5/database-management-systems-cse/endsem-may-jun-2023-pat2019-dmsc.pdf",
                 "https://sppucodes.albatrossc.workers.dev/cse/sem-5/database-management-systems-cse/endsem-may-jun-2024-pat2019-dmsc.pdf",
@@ -65,7 +65,7 @@
         },
         "human-computer-interface-ele-i-cse": {
             "subject_name": "Human Computer Interface Ele I",
-            "pdf_urls": [
+            "pdf_links": [
                 "https://sppucodes.albatrossc.workers.dev/cse/sem-5/human-computer-interface-ele-i-cse/endsem-may-jun-2024-pat2019-hcieic.pdf",
                 "https://sppucodes.albatrossc.workers.dev/cse/sem-5/human-computer-interface-ele-i-cse/endsem-may-jun-2025-pat2019-hcieic.pdf",
                 "https://sppucodes.albatrossc.workers.dev/cse/sem-5/human-computer-interface-ele-i-cse/endsem-nov-dec-2023-pat2019-hcieic.pdf",
@@ -76,7 +76,7 @@
         },
         "internet-of-things-and-embedded-systems-ele-i-cse": {
             "subject_name": "Internet Of Things And Embedded Systems Ele I",
-            "pdf_urls": [
+            "pdf_links": [
                 "https://sppucodes.albatrossc.workers.dev/cse/sem-5/internet-of-things-and-embedded-systems-ele-i-cse/endsem-may-jun-2022-pat2019-iotaeseic.pdf",
                 "https://sppucodes.albatrossc.workers.dev/cse/sem-5/internet-of-things-and-embedded-systems-ele-i-cse/endsem-may-jun-2023-pat2019-iotaeseic.pdf",
                 "https://sppucodes.albatrossc.workers.dev/cse/sem-5/internet-of-things-and-embedded-systems-ele-i-cse/endsem-may-jun-2024-pat2019-iotaeseic.pdf",
@@ -92,13 +92,13 @@
         },
         "software-project-management-ele-i-cse": {
             "subject_name": "Software Project Management Ele I",
-            "pdf_urls": [
+            "pdf_links": [
                 "https://sppucodes.albatrossc.workers.dev/cse/sem-5/software-project-management-ele-i-cse/endsem-may-jun-2022-pat2019-spmeic.pdf"
             ]
         },
         "systems-programming-and-operating-system-cse": {
             "subject_name": "Systems Programming And Operating System",
-            "pdf_urls": [
+            "pdf_links": [
                 "https://sppucodes.albatrossc.workers.dev/cse/sem-5/systems-programming-and-operating-system-cse/endsem-may-jun-2022-pat2019-spaosc.pdf",
                 "https://sppucodes.albatrossc.workers.dev/cse/sem-5/systems-programming-and-operating-system-cse/endsem-may-jun-2023-pat2019-spaosc.pdf",
                 "https://sppucodes.albatrossc.workers.dev/cse/sem-5/systems-programming-and-operating-system-cse/endsem-may-jun-2024-pat2019-spaosc.pdf",
@@ -114,7 +114,7 @@
         },
         "theory-of-computation-cse": {
             "subject_name": "Theory Of Computation",
-            "pdf_urls": [
+            "pdf_links": [
                 "https://sppucodes.albatrossc.workers.dev/cse/sem-5/theory-of-computation-cse/endsem-may-jun-2022-pat2019-tocc.pdf",
                 "https://sppucodes.albatrossc.workers.dev/cse/sem-5/theory-of-computation-cse/endsem-may-jun-2023-pat2019-tocc.pdf",
                 "https://sppucodes.albatrossc.workers.dev/cse/sem-5/theory-of-computation-cse/endsem-may-jun-2024-pat2019-tocc.pdf",
@@ -132,7 +132,7 @@
     "sem-6": {
         "artificial-intelligence-cse": {
             "subject_name": "Artificial Intelligence",
-            "pdf_urls": [
+            "pdf_links": [
                 "https://sppucodes.albatrossc.workers.dev/cse/sem-6/artificial-intelligence-cse/endsem-may-jun-2022-pat2019-aic.pdf",
                 "https://sppucodes.albatrossc.workers.dev/cse/sem-6/artificial-intelligence-cse/endsem-may-jun-2023-pat2019-aic.pdf",
                 "https://sppucodes.albatrossc.workers.dev/cse/sem-6/artificial-intelligence-cse/endsem-may-jun-2024-pat2019-aic.pdf",
@@ -146,7 +146,7 @@
         },
         "augmented-and-virtual-reality-ele-ii-cse": {
             "subject_name": "Augmented And Virtual Reality Ele II",
-            "pdf_urls": [
+            "pdf_links": [
                 "https://sppucodes.albatrossc.workers.dev/cse/sem-6/augmented-and-virtual-reality-ele-ii-cse/endsem-nov-dec-2022-pat2019-aavreiic.pdf",
                 "https://sppucodes.albatrossc.workers.dev/cse/sem-6/augmented-and-virtual-reality-ele-ii-cse/insem-august-2025-pat2019-aavreiic.pdf",
                 "https://sppucodes.albatrossc.workers.dev/cse/sem-6/augmented-and-virtual-reality-ele-ii-cse/insem-oct-2022-pat2019-aavreiic.pdf",
@@ -155,7 +155,7 @@
         },
         "cloud-computing-cse": {
             "subject_name": "Cloud Computing",
-            "pdf_urls": [
+            "pdf_links": [
                 "https://sppucodes.albatrossc.workers.dev/cse/sem-6/cloud-computing-cse/endsem-may-jun-2022-pat2019-ccc.pdf",
                 "https://sppucodes.albatrossc.workers.dev/cse/sem-6/cloud-computing-cse/endsem-may-jun-2023-pat2019-ccc.pdf",
                 "https://sppucodes.albatrossc.workers.dev/cse/sem-6/cloud-computing-cse/endsem-may-jun-2024-pat2019-ccc.pdf",
@@ -169,7 +169,7 @@
         },
         "data-science-and-big-data-analytics-cse": {
             "subject_name": "Data Science And Big Data Analytics",
-            "pdf_urls": [
+            "pdf_links": [
                 "https://sppucodes.albatrossc.workers.dev/cse/sem-6/data-science-and-big-data-analytics-cse/endsem-may-jun-2022-pat2019-dsabdac.pdf",
                 "https://sppucodes.albatrossc.workers.dev/cse/sem-6/data-science-and-big-data-analytics-cse/endsem-may-jun-2023-pat2019-dsabdac.pdf",
                 "https://sppucodes.albatrossc.workers.dev/cse/sem-6/data-science-and-big-data-analytics-cse/endsem-may-jun-2024-pat2019-dsabdac.pdf",
@@ -183,19 +183,19 @@
         },
         "information-security-ele-ii-cse": {
             "subject_name": "Information Security Ele II",
-            "pdf_urls": [
+            "pdf_links": [
                 "https://sppucodes.albatrossc.workers.dev/cse/sem-6/information-security-ele-ii-cse/endsem-may-jun-2025-pat2019-iseiic.pdf"
             ]
         },
         "software-modeling-and-architectures-ele-ii-cse": {
             "subject_name": "Software Modeling And Architectures Ele II",
-            "pdf_urls": [
+            "pdf_links": [
                 "https://sppucodes.albatrossc.workers.dev/cse/sem-6/software-modeling-and-architectures-ele-ii-cse/endsem-may-jun-2023-pat2019-smaaeiic.pdf"
             ]
         },
         "web-technology-cse": {
             "subject_name": "Web Technology",
-            "pdf_urls": [
+            "pdf_links": [
                 "https://sppucodes.albatrossc.workers.dev/cse/sem-6/web-technology-cse/endsem-may-jun-2022-pat2019-wtc.pdf",
                 "https://sppucodes.albatrossc.workers.dev/cse/sem-6/web-technology-cse/endsem-may-jun-2023-pat2019-wtc.pdf",
                 "https://sppucodes.albatrossc.workers.dev/cse/sem-6/web-technology-cse/endsem-may-jun-2024-pat2019-wtc.pdf",

@@ -1,10 +1,10 @@
 {
-    "branch_name": "Artificial Intelligence and Data Science",
-    "branch_code": "AI & DS",
+    "branch_name": null,
+    "branch_code": null,
     "sem-3": {
         "computer-graphics-aids": {
             "subject_name": "Computer Graphics",
-            "pdf_urls": [
+            "pdf_links": [
                 "https://sppucodes.albatrossc.workers.dev/aids/sem-3/computer-graphics-aids/endsem-may-jun-2023-pat2019-cga.pdf",
                 "https://sppucodes.albatrossc.workers.dev/aids/sem-3/computer-graphics-aids/endsem-may-jun-2024-pat2019-cga.pdf",
                 "https://sppucodes.albatrossc.workers.dev/aids/sem-3/computer-graphics-aids/endsem-nov-dec-2023-pat2019-cga.pdf",
@@ -14,7 +14,7 @@
         },
         "discrete-mathematics-aids": {
             "subject_name": "Discrete Mathematics",
-            "pdf_urls": [
+            "pdf_links": [
                 "https://sppucodes.albatrossc.workers.dev/aids/sem-3/discrete-mathematics-aids/endsem-may-jun-2022-pat2019-dma.pdf",
                 "https://sppucodes.albatrossc.workers.dev/aids/sem-3/discrete-mathematics-aids/endsem-may-jun-2023-pat2019-dma.pdf",
                 "https://sppucodes.albatrossc.workers.dev/aids/sem-3/discrete-mathematics-aids/endsem-may-jun-2024-pat2019-dma.pdf",
@@ -27,7 +27,7 @@
         },
         "fundamentals-of-data-structures-aids": {
             "subject_name": "Fundamentals Of Data Structures",
-            "pdf_urls": [
+            "pdf_links": [
                 "https://sppucodes.albatrossc.workers.dev/aids/sem-3/fundamentals-of-data-structures-aids/endsem-may-jun-2023-pat2019-fodsa.pdf",
                 "https://sppucodes.albatrossc.workers.dev/aids/sem-3/fundamentals-of-data-structures-aids/endsem-may-jun-2024-pat2019-fodsa.pdf",
                 "https://sppucodes.albatrossc.workers.dev/aids/sem-3/fundamentals-of-data-structures-aids/endsem-nov-dec-2022-pat2019-fodsa.pdf",
@@ -39,7 +39,7 @@
         },
         "object-oriented-programming-aids": {
             "subject_name": "Object Oriented Programming",
-            "pdf_urls": [
+            "pdf_links": [
                 "https://sppucodes.albatrossc.workers.dev/aids/sem-3/object-oriented-programming-aids/endsem-may-jun-2023-pat2019-oopa.pdf",
                 "https://sppucodes.albatrossc.workers.dev/aids/sem-3/object-oriented-programming-aids/endsem-nov-dec-2022-pat2019-oopa.pdf",
                 "https://sppucodes.albatrossc.workers.dev/aids/sem-3/object-oriented-programming-aids/endsem-nov-dec-2023-pat2019-oopa.pdf",
@@ -49,7 +49,7 @@
         },
         "operating-systems-aids": {
             "subject_name": "Operating Systems",
-            "pdf_urls": [
+            "pdf_links": [
                 "https://sppucodes.albatrossc.workers.dev/aids/sem-3/operating-systems-aids/endsem-may-jun-2023-pat2019-osa.pdf",
                 "https://sppucodes.albatrossc.workers.dev/aids/sem-3/operating-systems-aids/endsem-may-jun-2024-pat2019-osa.pdf",
                 "https://sppucodes.albatrossc.workers.dev/aids/sem-3/operating-systems-aids/endsem-nov-dec-2022-pat2019-osa.pdf",
@@ -63,7 +63,7 @@
     "sem-4": {
         "data-structures-and-algorithms-aids": {
             "subject_name": "Data Structures And Algorithms",
-            "pdf_urls": [
+            "pdf_links": [
                 "https://sppucodes.albatrossc.workers.dev/aids/sem-4/data-structures-and-algorithms-aids/endsem-may-jun-2023-pat2019-dsaaa.pdf",
                 "https://sppucodes.albatrossc.workers.dev/aids/sem-4/data-structures-and-algorithms-aids/endsem-may-jun-2024-pat2019-dsaaa.pdf",
                 "https://sppucodes.albatrossc.workers.dev/aids/sem-4/data-structures-and-algorithms-aids/endsem-nov-dec-2023-pat2019-dsaaa.pdf",
@@ -73,7 +73,7 @@
         },
         "internet-of-things-aids": {
             "subject_name": "Internet Of Things",
-            "pdf_urls": [
+            "pdf_links": [
                 "https://sppucodes.albatrossc.workers.dev/aids/sem-4/internet-of-things-aids/endsem-may-jun-2022-pat2019-iota.pdf",
                 "https://sppucodes.albatrossc.workers.dev/aids/sem-4/internet-of-things-aids/endsem-may-jun-2023-pat2019-iota.pdf",
                 "https://sppucodes.albatrossc.workers.dev/aids/sem-4/internet-of-things-aids/endsem-may-jun-2024-pat2019-iota.pdf",
@@ -84,7 +84,7 @@
         },
         "management-information-systems-aids": {
             "subject_name": "Management Information Systems",
-            "pdf_urls": [
+            "pdf_links": [
                 "https://sppucodes.albatrossc.workers.dev/aids/sem-4/management-information-systems-aids/endsem-may-jun-2022-pat2019-misa.pdf",
                 "https://sppucodes.albatrossc.workers.dev/aids/sem-4/management-information-systems-aids/endsem-may-jun-2023-pat2019-misa.pdf",
                 "https://sppucodes.albatrossc.workers.dev/aids/sem-4/management-information-systems-aids/endsem-may-jun-2024-pat2019-misa.pdf",
@@ -96,7 +96,7 @@
         },
         "software-engineering-aids": {
             "subject_name": "Software Engineering",
-            "pdf_urls": [
+            "pdf_links": [
                 "https://sppucodes.albatrossc.workers.dev/aids/sem-4/software-engineering-aids/endsem-may-jun-2022-pat2019-sea.pdf",
                 "https://sppucodes.albatrossc.workers.dev/aids/sem-4/software-engineering-aids/endsem-may-jun-2023-pat2019-sea.pdf",
                 "https://sppucodes.albatrossc.workers.dev/aids/sem-4/software-engineering-aids/endsem-may-jun-2024-pat2019-sea.pdf",
@@ -108,7 +108,7 @@
         },
         "statistics-aids": {
             "subject_name": "Statistics",
-            "pdf_urls": [
+            "pdf_links": [
                 "https://sppucodes.albatrossc.workers.dev/aids/sem-4/statistics-aids/endsem-may-jun-2022-pat2019-sa.pdf",
                 "https://sppucodes.albatrossc.workers.dev/aids/sem-4/statistics-aids/endsem-may-jun-2023-pat2019-sa.pdf",
                 "https://sppucodes.albatrossc.workers.dev/aids/sem-4/statistics-aids/endsem-may-jun-2024-pat2019-sa.pdf",
@@ -122,7 +122,7 @@
     "sem-5": {
         "artificial-intelligence-aids": {
             "subject_name": "Artificial Intelligence",
-            "pdf_urls": [
+            "pdf_links": [
                 "https://sppucodes.albatrossc.workers.dev/aids/sem-5/artificial-intelligence-aids/endsem-may-jun-2023-pat2019-aia.pdf",
                 "https://sppucodes.albatrossc.workers.dev/aids/sem-5/artificial-intelligence-aids/endsem-may-jun-2024-pat2019-aia.pdf",
                 "https://sppucodes.albatrossc.workers.dev/aids/sem-5/artificial-intelligence-aids/endsem-may-jun-2025-pat2019-aia.pdf",
@@ -137,7 +137,7 @@
         },
         "computer-networks-aids": {
             "subject_name": "Computer Networks",
-            "pdf_urls": [
+            "pdf_links": [
                 "https://sppucodes.albatrossc.workers.dev/aids/sem-5/computer-networks-aids/endsem-may-jun-2023-pat2019-cna.pdf",
                 "https://sppucodes.albatrossc.workers.dev/aids/sem-5/computer-networks-aids/endsem-may-jun-2024-pat2019-cna.pdf",
                 "https://sppucodes.albatrossc.workers.dev/aids/sem-5/computer-networks-aids/endsem-may-jun-2025-pat2019-cna.pdf",
@@ -152,7 +152,7 @@
         },
         "database-management-system-aids": {
             "subject_name": "Database Management System",
-            "pdf_urls": [
+            "pdf_links": [
                 "https://sppucodes.albatrossc.workers.dev/aids/sem-5/database-management-system-aids/endsem-may-jun-2023-pat2019-dmsa.pdf",
                 "https://sppucodes.albatrossc.workers.dev/aids/sem-5/database-management-system-aids/endsem-may-jun-2024-pat2019-dmsa.pdf",
                 "https://sppucodes.albatrossc.workers.dev/aids/sem-5/database-management-system-aids/endsem-may-jun-2025-pat2019-dmsa.pdf",
@@ -167,7 +167,7 @@
         },
         "human-computer-interface-ele-i-aids": {
             "subject_name": "Human Computer Interface Ele I",
-            "pdf_urls": [
+            "pdf_links": [
                 "https://sppucodes.albatrossc.workers.dev/aids/sem-5/human-computer-interface-ele-i-aids/endsem-may-jun-2023-pat2019-hcieia.pdf",
                 "https://sppucodes.albatrossc.workers.dev/aids/sem-5/human-computer-interface-ele-i-aids/endsem-may-jun-2024-pat2019-hcieia.pdf",
                 "https://sppucodes.albatrossc.workers.dev/aids/sem-5/human-computer-interface-ele-i-aids/endsem-may-jun-2025-pat2019-hcieia.pdf",
@@ -182,14 +182,14 @@
         },
         "pattern-recognition-ele-i-aids": {
             "subject_name": "Pattern Recognition Ele I",
-            "pdf_urls": [
+            "pdf_links": [
                 "https://sppucodes.albatrossc.workers.dev/aids/sem-5/pattern-recognition-ele-i-aids/endsem-nov-dec-2024-pat2019-preia.pdf",
                 "https://sppucodes.albatrossc.workers.dev/aids/sem-5/pattern-recognition-ele-i-aids/insem-sep-2024-pat2019-preia.pdf"
             ]
         },
         "web-technology-aids": {
             "subject_name": "Web Technology",
-            "pdf_urls": [
+            "pdf_links": [
                 "https://sppucodes.albatrossc.workers.dev/aids/sem-5/web-technology-aids/endsem-may-jun-2023-pat2019-wta.pdf",
                 "https://sppucodes.albatrossc.workers.dev/aids/sem-5/web-technology-aids/endsem-may-jun-2024-pat2019-wta.pdf",
                 "https://sppucodes.albatrossc.workers.dev/aids/sem-5/web-technology-aids/endsem-may-jun-2025-pat2019-wta.pdf",
@@ -205,7 +205,7 @@
     "sem-6": {
         "artificial-neural-network-aids": {
             "subject_name": "Artificial Neural Network",
-            "pdf_urls": [
+            "pdf_links": [
                 "https://sppucodes.albatrossc.workers.dev/aids/sem-6/artificial-neural-network-aids/endsem-may-jun-2023-pat2019-anna.pdf",
                 "https://sppucodes.albatrossc.workers.dev/aids/sem-6/artificial-neural-network-aids/endsem-may-jun-2024-pat2019-anna.pdf",
                 "https://sppucodes.albatrossc.workers.dev/aids/sem-6/artificial-neural-network-aids/endsem-may-jun-2025-pat2019-anna.pdf",
@@ -217,7 +217,7 @@
         },
         "cloud-computing-ele-ii-aids": {
             "subject_name": "Cloud Computing Ele II",
-            "pdf_urls": [
+            "pdf_links": [
                 "https://sppucodes.albatrossc.workers.dev/aids/sem-6/cloud-computing-ele-ii-aids/endsem-may-jun-2023-pat2019-cceiia.pdf",
                 "https://sppucodes.albatrossc.workers.dev/aids/sem-6/cloud-computing-ele-ii-aids/endsem-may-jun-2024-pat2019-cceiia.pdf",
                 "https://sppucodes.albatrossc.workers.dev/aids/sem-6/cloud-computing-ele-ii-aids/endsem-may-jun-2025-pat2019-cceiia.pdf",
@@ -229,7 +229,7 @@
         },
         "cyber-security-aids": {
             "subject_name": "Cyber Security",
-            "pdf_urls": [
+            "pdf_links": [
                 "https://sppucodes.albatrossc.workers.dev/aids/sem-6/cyber-security-aids/endsem-may-jun-2023-pat2019-csa.pdf",
                 "https://sppucodes.albatrossc.workers.dev/aids/sem-6/cyber-security-aids/endsem-may-jun-2024-pat2019-csa.pdf",
                 "https://sppucodes.albatrossc.workers.dev/aids/sem-6/cyber-security-aids/endsem-may-jun-2025-pat2019-csa.pdf",
@@ -242,7 +242,7 @@
         },
         "data-science-aids": {
             "subject_name": "Data Science",
-            "pdf_urls": [
+            "pdf_links": [
                 "https://sppucodes.albatrossc.workers.dev/aids/sem-6/data-science-aids/endsem-may-jun-2023-pat2019-dsa.pdf",
                 "https://sppucodes.albatrossc.workers.dev/aids/sem-6/data-science-aids/endsem-may-jun-2024-pat2019-dsa.pdf",
                 "https://sppucodes.albatrossc.workers.dev/aids/sem-6/data-science-aids/endsem-may-jun-2025-pat2019-dsa.pdf",
@@ -254,7 +254,7 @@
         },
         "natural-language-processing-ele-ii-aids": {
             "subject_name": "Natural Language Processing Ele II",
-            "pdf_urls": [
+            "pdf_links": [
                 "https://sppucodes.albatrossc.workers.dev/aids/sem-6/natural-language-processing-ele-ii-aids/endsem-may-jun-2023-pat2019-nlpeiia.pdf",
                 "https://sppucodes.albatrossc.workers.dev/aids/sem-6/natural-language-processing-ele-ii-aids/endsem-may-jun-2024-pat2019-nlpeiia.pdf",
                 "https://sppucodes.albatrossc.workers.dev/aids/sem-6/natural-language-processing-ele-ii-aids/endsem-may-jun-2025-pat2019-nlpeiia.pdf",
@@ -265,7 +265,7 @@
         },
         "software-modeling-and-architecture-ele-ii-aids": {
             "subject_name": "Software Modeling And Architecture Ele II",
-            "pdf_urls": [
+            "pdf_links": [
                 "https://sppucodes.albatrossc.workers.dev/aids/sem-6/software-modeling-and-architecture-ele-ii-aids/endsem-may-jun-2023-pat2019-smaaeiia.pdf"
             ]
         }

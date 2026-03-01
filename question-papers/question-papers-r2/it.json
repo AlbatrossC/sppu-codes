@@ -1,10 +1,10 @@
 {
-    "branch_name": "Information Technology",
-    "branch_code": "I.T",
+    "branch_name": null,
+    "branch_code": null,
     "sem-3": {
         "basics-of-computer-network-it": {
             "subject_name": "Basics Of Computer Network",
-            "pdf_urls": [
+            "pdf_links": [
                 "https://sppucodes.albatrossc.workers.dev/it/sem-3/basics-of-computer-network-it/endsem-may-jun-2023-pat2019-bocni.pdf",
                 "https://sppucodes.albatrossc.workers.dev/it/sem-3/basics-of-computer-network-it/endsem-may-jun-2024-pat2019-bocni.pdf",
                 "https://sppucodes.albatrossc.workers.dev/it/sem-3/basics-of-computer-network-it/endsem-may-jun-2025-pat2019-bocni.pdf",
@@ -18,7 +18,7 @@
         },
         "data-structures-and-algorithms-it": {
             "subject_name": "Data Structures And Algorithms",
-            "pdf_urls": [
+            "pdf_links": [
                 "https://sppucodes.albatrossc.workers.dev/it/sem-3/data-structures-and-algorithms-it/endsem-may-jun-2022-pat2019-dsaai.pdf",
                 "https://sppucodes.albatrossc.workers.dev/it/sem-3/data-structures-and-algorithms-it/endsem-may-jun-2023-pat2019-dsaai.pdf",
                 "https://sppucodes.albatrossc.workers.dev/it/sem-3/data-structures-and-algorithms-it/endsem-may-jun-2024-pat2019-dsaai.pdf",
@@ -33,7 +33,7 @@
         },
         "discrete-mathematics-it": {
             "subject_name": "Discrete Mathematics",
-            "pdf_urls": [
+            "pdf_links": [
                 "https://sppucodes.albatrossc.workers.dev/it/sem-3/discrete-mathematics-it/endsem-may-jun-2022-pat2019-dmi.pdf",
                 "https://sppucodes.albatrossc.workers.dev/it/sem-3/discrete-mathematics-it/endsem-may-jun-2023-pat2019-dmi.pdf",
                 "https://sppucodes.albatrossc.workers.dev/it/sem-3/discrete-mathematics-it/endsem-may-jun-2024-pat2019-dmi.pdf",
@@ -48,7 +48,7 @@
         },
         "logic-design-and-computer-oraganization-it": {
             "subject_name": "Logic Design And Computer Oraganization",
-            "pdf_urls": [
+            "pdf_links": [
                 "https://sppucodes.albatrossc.workers.dev/it/sem-3/logic-design-and-computer-oraganization-it/endsem-may-jun-2023-pat2019-ldacoi.pdf",
                 "https://sppucodes.albatrossc.workers.dev/it/sem-3/logic-design-and-computer-oraganization-it/endsem-may-jun-2024-pat2019-ldacoi.pdf",
                 "https://sppucodes.albatrossc.workers.dev/it/sem-3/logic-design-and-computer-oraganization-it/endsem-may-jun-2025-pat2019-ldacoi.pdf",
@@ -62,7 +62,7 @@
         },
         "object-oriented-programming-it": {
             "subject_name": "Object Oriented Programming",
-            "pdf_urls": [
+            "pdf_links": [
                 "https://sppucodes.albatrossc.workers.dev/it/sem-3/object-oriented-programming-it/endsem-may-jun-2023-pat2019-oopi.pdf",
                 "https://sppucodes.albatrossc.workers.dev/it/sem-3/object-oriented-programming-it/endsem-may-jun-2024-pat2019-oopi.pdf",
                 "https://sppucodes.albatrossc.workers.dev/it/sem-3/object-oriented-programming-it/endsem-may-jun-2025-pat2019-oopi.pdf",
@@ -78,7 +78,7 @@
     "sem-4": {
         "computer-graphics-it": {
             "subject_name": "Computer Graphics",
-            "pdf_urls": [
+            "pdf_links": [
                 "https://sppucodes.albatrossc.workers.dev/it/sem-4/computer-graphics-it/endsem-may-jun-2022-pat2019-cgi.pdf",
                 "https://sppucodes.albatrossc.workers.dev/it/sem-4/computer-graphics-it/endsem-may-jun-2023-pat2019-cgi.pdf",
                 "https://sppucodes.albatrossc.workers.dev/it/sem-4/computer-graphics-it/endsem-may-jun-2024-pat2019-cgi.pdf",
@@ -92,7 +92,7 @@
         },
         "database-management-system-it": {
             "subject_name": "Database Management System",
-            "pdf_urls": [
+            "pdf_links": [
                 "https://sppucodes.albatrossc.workers.dev/it/sem-4/database-management-system-it/endsem-may-jun-2022-pat2019-dmsi.pdf",
                 "https://sppucodes.albatrossc.workers.dev/it/sem-4/database-management-system-it/endsem-may-jun-2023-pat2019-dmsi.pdf",
                 "https://sppucodes.albatrossc.workers.dev/it/sem-4/database-management-system-it/endsem-may-jun-2024-pat2019-dmsi.pdf",
@@ -106,7 +106,7 @@
         },
         "engineering-mathematics-iii-it": {
             "subject_name": "Engineering Mathematics III",
-            "pdf_urls": [
+            "pdf_links": [
                 "https://sppucodes.albatrossc.workers.dev/it/sem-4/engineering-mathematics-iii-it/endsem-may-jun-2022-pat2019-emiiii.pdf",
                 "https://sppucodes.albatrossc.workers.dev/it/sem-4/engineering-mathematics-iii-it/endsem-may-jun-2023-pat2019-emiiii.pdf",
                 "https://sppucodes.albatrossc.workers.dev/it/sem-4/engineering-mathematics-iii-it/endsem-may-jun-2024-pat2019-emiiii.pdf",
@@ -120,7 +120,7 @@
         },
         "processor-architecture-it": {
             "subject_name": "Processor Architecture",
-            "pdf_urls": [
+            "pdf_links": [
                 "https://sppucodes.albatrossc.workers.dev/it/sem-4/processor-architecture-it/endsem-may-jun-2022-pat2019-pai.pdf",
                 "https://sppucodes.albatrossc.workers.dev/it/sem-4/processor-architecture-it/endsem-may-jun-2023-pat2019-pai.pdf",
                 "https://sppucodes.albatrossc.workers.dev/it/sem-4/processor-architecture-it/endsem-may-jun-2024-pat2019-pai.pdf",
@@ -134,7 +134,7 @@
         },
         "software-engineering-it": {
             "subject_name": "Software Engineering",
-            "pdf_urls": [
+            "pdf_links": [
                 "https://sppucodes.albatrossc.workers.dev/it/sem-4/software-engineering-it/endsem-may-jun-2022-pat2019-sei.pdf",
                 "https://sppucodes.albatrossc.workers.dev/it/sem-4/software-engineering-it/endsem-may-jun-2023-pat2019-sei.pdf",
                 "https://sppucodes.albatrossc.workers.dev/it/sem-4/software-engineering-it/endsem-may-jun-2024-pat2019-sei.pdf",
@@ -150,19 +150,19 @@
     "sem-5": {
         "advanced-database-and-management-system-ele-i-it": {
             "subject_name": "Advanced Database And Management System Ele I",
-            "pdf_urls": [
+            "pdf_links": [
                 "https://sppucodes.albatrossc.workers.dev/it/sem-5/advanced-database-and-management-system-ele-i-it/insem-august-2025-pat2019-adamseii.pdf"
             ]
         },
         "design-and-analysis-of-algorithms-ele-i-it": {
             "subject_name": "Design And Analysis Of Algorithms Ele I",
-            "pdf_urls": [
+            "pdf_links": [
                 "https://sppucodes.albatrossc.workers.dev/it/sem-5/design-and-analysis-of-algorithms-ele-i-it/endsem-may-jun-2022-pat2019-daaoaeii.pdf"
             ]
         },
         "human-compter-interaction-it": {
             "subject_name": "Human Compter Interaction",
-            "pdf_urls": [
+            "pdf_links": [
                 "https://sppucodes.albatrossc.workers.dev/it/sem-5/human-compter-interaction-it/endsem-may-jun-2023-pat2019-hcii.pdf",
                 "https://sppucodes.albatrossc.workers.dev/it/sem-5/human-compter-interaction-it/endsem-may-jun-2024-pat2019-hcii.pdf",
                 "https://sppucodes.albatrossc.workers.dev/it/sem-5/human-compter-interaction-it/endsem-may-jun-2025-pat2019-hcii.pdf",
@@ -177,7 +177,7 @@
         },
         "internet-of-things-ele-i-it": {
             "subject_name": "Internet Of Things Ele I",
-            "pdf_urls": [
+            "pdf_links": [
                 "https://sppucodes.albatrossc.workers.dev/it/sem-5/internet-of-things-ele-i-it/endsem-may-jun-2023-pat2019-ioteii.pdf",
                 "https://sppucodes.albatrossc.workers.dev/it/sem-5/internet-of-things-ele-i-it/endsem-may-jun-2024-pat2019-ioteii.pdf",
                 "https://sppucodes.albatrossc.workers.dev/it/sem-5/internet-of-things-ele-i-it/endsem-may-jun-2025-pat2019-ioteii.pdf",
@@ -191,7 +191,7 @@
         },
         "machine-learning-it": {
             "subject_name": "Machine Learning",
-            "pdf_urls": [
+            "pdf_links": [
                 "https://sppucodes.albatrossc.workers.dev/it/sem-5/machine-learning-it/endsem-may-jun-2023-pat2019-mli.pdf",
                 "https://sppucodes.albatrossc.workers.dev/it/sem-5/machine-learning-it/endsem-may-jun-2024-pat2019-mli.pdf",
                 "https://sppucodes.albatrossc.workers.dev/it/sem-5/machine-learning-it/endsem-may-jun-2025-pat2019-mli.pdf",
@@ -206,7 +206,7 @@
         },
         "operating-systems-it": {
             "subject_name": "Operating Systems",
-            "pdf_urls": [
+            "pdf_links": [
                 "https://sppucodes.albatrossc.workers.dev/it/sem-5/operating-systems-it/endsem-may-jun-2023-pat2019-osi.pdf",
                 "https://sppucodes.albatrossc.workers.dev/it/sem-5/operating-systems-it/endsem-may-jun-2024-pat2019-osi.pdf",
                 "https://sppucodes.albatrossc.workers.dev/it/sem-5/operating-systems-it/endsem-may-jun-2025-pat2019-osi.pdf",
@@ -221,7 +221,7 @@
         },
         "theory-of-computation-it": {
             "subject_name": "Theory Of Computation",
-            "pdf_urls": [
+            "pdf_links": [
                 "https://sppucodes.albatrossc.workers.dev/it/sem-5/theory-of-computation-it/endsem-may-jun-2023-pat2019-toci.pdf",
                 "https://sppucodes.albatrossc.workers.dev/it/sem-5/theory-of-computation-it/endsem-may-jun-2024-pat2019-toci.pdf",
                 "https://sppucodes.albatrossc.workers.dev/it/sem-5/theory-of-computation-it/endsem-may-jun-2025-pat2019-toci.pdf",
@@ -238,7 +238,7 @@
     "sem-6": {
         "cloud-computing-ele-ii-it": {
             "subject_name": "Cloud Computing Ele II",
-            "pdf_urls": [
+            "pdf_links": [
                 "https://sppucodes.albatrossc.workers.dev/it/sem-6/cloud-computing-ele-ii-it/endsem-may-jun-2022-pat2019-cceiii.pdf",
                 "https://sppucodes.albatrossc.workers.dev/it/sem-6/cloud-computing-ele-ii-it/endsem-may-jun-2023-pat2019-cceiii.pdf",
                 "https://sppucodes.albatrossc.workers.dev/it/sem-6/cloud-computing-ele-ii-it/endsem-may-jun-2024-pat2019-cceiii.pdf",
@@ -251,7 +251,7 @@
         },
         "computer-network-and-security-it": {
             "subject_name": "Computer Network And Security",
-            "pdf_urls": [
+            "pdf_links": [
                 "https://sppucodes.albatrossc.workers.dev/it/sem-6/computer-network-and-security-it/endsem-may-jun-2022-pat2019-cnasi.pdf",
                 "https://sppucodes.albatrossc.workers.dev/it/sem-6/computer-network-and-security-it/endsem-may-jun-2023-pat2019-cnasi.pdf",
                 "https://sppucodes.albatrossc.workers.dev/it/sem-6/computer-network-and-security-it/endsem-may-jun-2024-pat2019-cnasi.pdf",
@@ -265,14 +265,14 @@
         },
         "cyber-security-ele-ii-it": {
             "subject_name": "Cyber Security Ele II",
-            "pdf_urls": [
+            "pdf_links": [
                 "https://sppucodes.albatrossc.workers.dev/it/sem-6/cyber-security-ele-ii-it/endsem-may-jun-2022-pat2019-cseiii.pdf",
                 "https://sppucodes.albatrossc.workers.dev/it/sem-6/cyber-security-ele-ii-it/endsem-nov-dec-2022-pat2019-cseiii.pdf"
             ]
         },
         "data-science-and-big-data-analytics-it": {
             "subject_name": "Data Science And Big Data Analytics",
-            "pdf_urls": [
+            "pdf_links": [
                 "https://sppucodes.albatrossc.workers.dev/it/sem-6/data-science-and-big-data-analytics-it/endsem-may-jun-2022-pat2019-dsabdai.pdf",
                 "https://sppucodes.albatrossc.workers.dev/it/sem-6/data-science-and-big-data-analytics-it/endsem-may-jun-2023-pat2019-dsabdai.pdf",
                 "https://sppucodes.albatrossc.workers.dev/it/sem-6/data-science-and-big-data-analytics-it/endsem-may-jun-2024-pat2019-dsabdai.pdf",
@@ -286,7 +286,7 @@
         },
         "web-application-development-it": {
             "subject_name": "Web Application Development",
-            "pdf_urls": [
+            "pdf_links": [
                 "https://sppucodes.albatrossc.workers.dev/it/sem-6/web-application-development-it/endsem-may-jun-2022-pat2019-wadi.pdf",
                 "https://sppucodes.albatrossc.workers.dev/it/sem-6/web-application-development-it/endsem-may-jun-2023-pat2019-wadi.pdf",
                 "https://sppucodes.albatrossc.workers.dev/it/sem-6/web-application-development-it/endsem-may-jun-2024-pat2019-wadi.pdf",

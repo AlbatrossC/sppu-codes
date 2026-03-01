@@ -10,6 +10,7 @@ import requests
 from functools import lru_cache
 from urllib.parse import urlparse
 import glob
+import html as _html
 
 # ============================================================================
 # APPLICATION CONFIGURATION
@@ -23,10 +24,27 @@ QUESTIONS_DIR = os.path.join(BASE_DIR, "questions")
 ANSWERS_DIR = os.path.join(BASE_DIR, "answers")
 QUESTION_PAPERS_DIR = os.path.join(BASE_DIR, "question-papers")
 
+# ---------------------------------------------------------------------------
+# PDF_SOURCE controls which storage backend is used for question paper PDFs.
+# Accepted values: "r2"  (Cloudflare R2)  |  "supabase"
+# Switch by setting the environment variable PDF_SOURCE in your .env / host.
+# Both backends have identical filenames; only the base URL differs.
+# ---------------------------------------------------------------------------
+PDF_SOURCE = os.getenv("PDF_SOURCE", "r2").strip().lower()
+_VALID_PDF_SOURCES = {"r2", "supabase"}
+if PDF_SOURCE not in _VALID_PDF_SOURCES:
+    print(f"Warning: PDF_SOURCE='{PDF_SOURCE}' is invalid. Falling back to 'r2'.")
+    PDF_SOURCE = "r2"
+
+# Resolved paths for the two data folders inside question-papers/
+QP_PDF_DIR = os.path.join(QUESTION_PAPERS_DIR, f"question-papers-{PDF_SOURCE}")
+QP_SEO_DIR = os.path.join(QUESTION_PAPERS_DIR, "pyqs-seo")
+
+print(f"[PDF Source] Using '{PDF_SOURCE}' → {QP_PDF_DIR}")
+
 DATABASE_URL = os.getenv("DATABASE_URL")
 DISCORD_WEBHOOK_URL = os.getenv("DISCORD_WEBHOOK_URL")
 MAINTENANCE_MODE = os.getenv("MAINTENANCE_MODE", "false").lower() == "true"
-MAINTENANCE_BYPASS_IP = os.getenv("MAINTENANCE_BYPASS_IP")
 
 # ============================================================================
 # DATABASE OPERATIONS
@@ -208,31 +226,92 @@ def _build_discord_embed(notification_type, data):
 # QUESTION PAPERS MANAGEMENT
 # ============================================================================
 
+def _extract_semesters_from_data(data):
+    """
+    Extracts a {sem_key: subjects_dict} mapping from a branch JSON.
+
+    Supports two layouts:
+      - R2 layout:       Top-level keys like "sem-1", "sem-2", ...
+      - Supabase layout: Nested under a "sems" key → { "sem-1": {...}, ... }
+    """
+    # Supabase layout has a top-level "sems" dict
+    if "sems" in data and isinstance(data["sems"], dict):
+        return data["sems"]
+
+    # R2 layout: collect all top-level "sem-N" keys
+    return {
+        key: value
+        for key, value in data.items()
+        if key.startswith("sem-") and isinstance(value, dict)
+    }
+
+
+def _load_seo_index():
+    """
+    Loads the SEO data from pyqs-seo/ and returns a flat dict:
+      { subject_link: { "title": ..., "description": ..., "keywords": ... } }
+    """
+    seo_index = {}
+    if not os.path.exists(QP_SEO_DIR):
+        return seo_index
+
+    for file_path in glob.glob(os.path.join(QP_SEO_DIR, "*.json")):
+        try:
+            with open(file_path, "r", encoding="utf-8") as f:
+                data = json.load(f)
+        except Exception as e:
+            print(f"Warning: Could not read SEO file {file_path}: {e}")
+            continue
+
+        sems = _extract_semesters_from_data(data)
+        for sem_key, subjects in sems.items():
+            if not isinstance(subjects, dict):
+                continue
+            for subject_link, subject in subjects.items():
+                if isinstance(subject, dict) and "seo_data" in subject:
+                    seo_index[subject_link] = subject["seo_data"]
+
+    return seo_index
+
+
 @lru_cache(maxsize=1)
 def load_question_papers():
     """
-    Loads and caches question papers data from JSON files.
-    Normalizes subject data so subjects_index always stores a DICT.
+    Loads and caches question papers data from the active PDF source.
+
+    PDF links are read from  question-papers/question-papers-{PDF_SOURCE}/
+    SEO data  is merged from question-papers/pyqs-seo/
+
+    The PDF_SOURCE can be 'r2' (Cloudflare R2) or 'supabase', set via the
+    PDF_SOURCE environment variable (default: 'r2').
     """
 
     branches = []
     papers_list = []
     subjects_index = {}
 
-    if not os.path.exists(QUESTION_PAPERS_DIR):
+    if not os.path.exists(QP_PDF_DIR):
+        print(f"Warning: PDF source directory not found: {QP_PDF_DIR}")
         return {
             "branches": [],
             "question_papers_list": [],
             "subjects_index": {}
         }
 
-    for file_path in glob.glob(os.path.join(QUESTION_PAPERS_DIR, "*.json")):
+    # Build SEO lookup once (subject_link → seo_data dict)
+    seo_index = _load_seo_index()
+
+    for file_path in glob.glob(os.path.join(QP_PDF_DIR, "*.json")):
         branch_code = os.path.splitext(os.path.basename(file_path))[0]
 
-        with open(file_path, "r", encoding="utf-8") as f:
-            data = json.load(f)
+        try:
+            with open(file_path, "r", encoding="utf-8") as f:
+                data = json.load(f)
+        except Exception as e:
+            print(f"Warning: Could not read PDF source file {file_path}: {e}")
+            continue
 
-        branch_name = data.get("branch_name", branch_code)
+        branch_name = data.get("branch_name") or branch_code
 
         branch_entry = {
             "branch_name": branch_name,
@@ -240,25 +319,34 @@ def load_question_papers():
             "semesters": {}
         }
 
-        for key, value in data.items():
-            if not key.startswith("sem-") or not isinstance(value, dict):
+        sems = _extract_semesters_from_data(data)
+
+        for sem_key, subjects in sems.items():
+            if not isinstance(subjects, dict):
                 continue
 
-            sem_no = int(key.split("-")[-1])
+            try:
+                sem_no = int(sem_key.split("-")[-1])
+            except ValueError:
+                continue
+
             subjects_for_sem = []
 
-            for subject_link, subject in value.items():
+            for subject_link, subject in subjects.items():
                 if not isinstance(subject, dict):
                     continue
 
                 subject_name = subject.get("subject_name", subject_link)
+
+                # Merge SEO data: prefer pyqs-seo/ data; fall back to inline
+                seo_data = seo_index.get(subject_link) or subject.get("seo_data") or {}
 
                 # ----------------------------
                 # NORMALIZED SUBJECT OBJECT
                 # ----------------------------
                 subject_obj = {
                     "subject_name": subject_name,
-                    "seo_data": subject.get("seo_data", {}),
+                    "seo_data": seo_data,
                     "pdf_links": subject.get("pdf_links", []),
                     "branch_name": branch_name,
                     "branch_code": branch_code,
@@ -355,8 +443,6 @@ def load_answer_files(subject_link, files):
 def maintenance():
     """Handles maintenance mode."""
     if MAINTENANCE_MODE:
-        if MAINTENANCE_BYPASS_IP and request.remote_addr == MAINTENANCE_BYPASS_IP:
-            return
         if request.path.startswith("/static") or request.path.startswith("/images"):
             return
         return render_template("maintenance.html"), 503
@@ -464,13 +550,13 @@ def viewer_page(subject_link):
     )
 
     seo_data = {
-        "title": raw_seo.get("title") or fallback_title,
-        "description": raw_seo.get("description") or (
+        "title":       _html.unescape(raw_seo.get("title")       or fallback_title),
+        "description": _html.unescape(raw_seo.get("description") or (
             f"{subject_name} question papers for {branch_name} students of Savitribai Phule Pune University."
-        ),
-        "keywords": raw_seo.get("keywords") or (
+        )),
+        "keywords":    _html.unescape(raw_seo.get("keywords")    or (
             f"{subject_name}, {branch_name}, SPPU question papers"
-        )
+        ))
     }
 
     pdf_data = [
@@ -556,6 +642,74 @@ def subject_page(subject_link, question_id=None):
 # ============================================================================
 # API ROUTES
 # ============================================================================
+
+# Whitelist of allowed PDF host domains (prevents open-proxy abuse)
+_ALLOWED_PDF_HOSTS = {
+    "sppucodes.albatrossc.workers.dev",          # Cloudflare R2 Worker
+    "zauiiivigqoifsvtqhnt.supabase.co",          # Supabase Storage
+}
+
+@app.route("/api/pdf-proxy")
+def pdf_proxy():
+    """
+    Server-side proxy for question paper PDFs.
+
+    Fetches the PDF from R2 / Supabase and streams it back to the browser
+    with CORS headers so it works from any origin (localhost, Vercel, etc.).
+
+    Query params:
+      url  – the full PDF URL to fetch (must be from an allowed host)
+    """
+    from flask import Response, stream_with_context
+    from urllib.parse import urlparse as _urlparse
+
+    pdf_url = request.args.get("url", "").strip()
+    if not pdf_url:
+        return jsonify({"error": "Missing 'url' parameter"}), 400
+
+    try:
+        parsed = _urlparse(pdf_url)
+    except Exception:
+        return jsonify({"error": "Invalid URL"}), 400
+
+    if parsed.netloc not in _ALLOWED_PDF_HOSTS:
+        return jsonify({"error": "Domain not allowed"}), 403
+
+    if not parsed.path.lower().endswith(".pdf"):
+        return jsonify({"error": "Only PDF files are allowed"}), 400
+
+    try:
+        upstream = requests.get(
+            pdf_url,
+            timeout=30,
+            stream=True,
+            headers={"User-Agent": "SPPU-Codes/1.0"},
+        )
+        upstream.raise_for_status()
+    except requests.exceptions.RequestException as e:
+        app.logger.warning(f"pdf_proxy fetch error for {pdf_url}: {e}")
+        return jsonify({"error": "Failed to fetch PDF"}), 502
+
+    def generate():
+        for chunk in upstream.iter_content(chunk_size=8192):
+            if chunk:
+                yield chunk
+
+    response = Response(
+        stream_with_context(generate()),
+        status=upstream.status_code,
+        content_type=upstream.headers.get("Content-Type", "application/pdf"),
+    )
+    response.headers["Access-Control-Allow-Origin"] = "*"
+    response.headers["Cache-Control"] = "public, max-age=86400"  # cache 24h
+    response.headers["X-Content-Type-Options"] = "nosniff"
+
+    content_length = upstream.headers.get("Content-Length")
+    if content_length:
+        response.headers["Content-Length"] = content_length
+
+    return response
+
 
 @app.route("/api/question-papers/list")
 def question_papers_list():

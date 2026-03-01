@@ -5,7 +5,14 @@
       "src": "app.py",
       "use": "@vercel/python",
       "config": {
-        "runtime": "python3.9"
+        "runtime": "python3.9",
+        "includeFiles": [
+          "question-papers/**",
+          "questions/**",
+          "answers/**",
+          "templates/**",
+          "images/**"
+        ]
       }
     },
     {
@@ -17,13 +24,17 @@
     {
       "src": "^/questionpapers$",
       "status": 301,
-      "headers": { "Location": "/question-papers" },
+      "headers": {
+        "Location": "/question-papers"
+      },
       "continue": false
     },
     {
       "src": "^/questionpapers/(.+)$",
       "status": 301,
-      "headers": { "Location": "/question-papers/$1" },
+      "headers": {
+        "Location": "/question-papers/$1"
+      },
       "continue": false
     },
     {
@@ -33,7 +44,11 @@
     {
       "src": "/(.*)",
       "dest": "app.py",
-      "methods": ["GET", "POST", "OPTIONS"]
+      "methods": [
+        "GET",
+        "POST",
+        "OPTIONS"
+      ]
     }
   ]
 }

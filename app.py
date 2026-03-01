@@ -248,20 +248,33 @@ def _extract_semesters_from_data(data):
 
 def _load_seo_index():
     """
-    Loads the SEO data from pyqs-seo/ and returns a flat dict:
-      { subject_link: { "title": ..., "description": ..., "keywords": ... } }
+    Loads the SEO data from pyqs-seo/ and returns two dicts:
+      seo_index    : { subject_link: { title, description, keywords } }
+      branch_meta  : { branch_code: { branch_name, branch_code } }
+
+    branch_meta is used as a fallback when the PDF source JSONs have
+    null/empty branch_name fields (e.g. all R2 JSONs have null names).
     """
     seo_index = {}
+    branch_meta = {}
+
     if not os.path.exists(QP_SEO_DIR):
-        return seo_index
+        return seo_index, branch_meta
 
     for file_path in glob.glob(os.path.join(QP_SEO_DIR, "*.json")):
+        branch_code = os.path.splitext(os.path.basename(file_path))[0]
         try:
             with open(file_path, "r", encoding="utf-8") as f:
                 data = json.load(f)
         except Exception as e:
             print(f"Warning: Could not read SEO file {file_path}: {e}")
             continue
+
+        # Capture full branch name from the SEO file
+        branch_meta[branch_code] = {
+            "branch_name": data.get("branch_name") or branch_code,
+            "branch_code": data.get("branch_code") or branch_code,
+        }
 
         sems = _extract_semesters_from_data(data)
         for sem_key, subjects in sems.items():
@@ -271,7 +284,7 @@ def _load_seo_index():
                 if isinstance(subject, dict) and "seo_data" in subject:
                     seo_index[subject_link] = subject["seo_data"]
 
-    return seo_index
+    return seo_index, branch_meta
 
 
 @lru_cache(maxsize=1)
@@ -298,8 +311,10 @@ def load_question_papers():
             "subjects_index": {}
         }
 
-    # Build SEO lookup once (subject_link → seo_data dict)
-    seo_index = _load_seo_index()
+    # Build SEO lookup once;
+    # seo_index   : subject_link → seo_data dict
+    # branch_meta : branch_code → { branch_name, branch_code } (from pyqs-seo/)
+    seo_index, branch_meta = _load_seo_index()
 
     for file_path in glob.glob(os.path.join(QP_PDF_DIR, "*.json")):
         branch_code = os.path.splitext(os.path.basename(file_path))[0]
@@ -311,7 +326,12 @@ def load_question_papers():
             print(f"Warning: Could not read PDF source file {file_path}: {e}")
             continue
 
-        branch_name = data.get("branch_name") or branch_code
+        # Full branch name: PDF source JSON first, then pyqs-seo fallback, then filename
+        branch_name = (
+            data.get("branch_name")
+            or branch_meta.get(branch_code, {}).get("branch_name")
+            or branch_code
+        )
 
         branch_entry = {
             "branch_name": branch_name,

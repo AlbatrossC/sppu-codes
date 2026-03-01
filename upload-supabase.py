@@ -109,7 +109,7 @@ BRANCHES = [b.strip() for b in branches_input.split(",") if b.strip()]
 # =========================
 # Output Folder
 # =========================
-OUTPUT_DIR = "question-papers-supabase"
+OUTPUT_DIR = "question-papers"
 os.makedirs(OUTPUT_DIR, exist_ok=True)
 
 # =========================
@@ -161,11 +161,6 @@ for BRANCH in BRANCHES:
             if not subject_entry:
                 subject_entry = {
                     "subject_name": subject_link_to_name(subject_link),
-                    "seo_data": {
-                        "title": None,
-                        "description": None,
-                        "keywords": None
-                    },
                     "pdf_links": []
                 }
 

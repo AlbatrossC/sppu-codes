@@ -417,7 +417,15 @@ def load_subject_data(subject_link):
         return None
     
     with open(json_path, "r", encoding="utf-8") as f:
-        return json.load(f)
+        data = json.load(f)
+
+    # Backward compatibility: normalize legacy "/n" line breaks to real newlines.
+    for q in data.get("questions", []):
+        question_text = q.get("question")
+        if isinstance(question_text, str):
+            q["question"] = question_text.replace("/n", "\n")
+
+    return data
 
 
 def get_question_by_id(questions, question_id):

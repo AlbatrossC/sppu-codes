@@ -345,9 +345,7 @@
     <div class="group">
         <h3>Group {{ question.group }}</h3>
         <article class="question-item" id="{{ question.id }}">
-            <h1>
-                <strong>Q{{ question.question_no }}: </strong>{{ question.question }}
-            </h1>
+            <h1 style="white-space: pre-line;"><strong>Q{{ question.question_no }}: </strong>{{ question.question }}</h1>
             {% if question.image %}
             <div class="question-image-container">
                 <img src="{{ question.image }}" alt="{{ question.title }} - Question Reference Image"
@@ -401,11 +399,7 @@
 
         {% for question_item in groups[group_key] %}
         <article class="question-item" id="{{ question_item.id }}">
-            <h1>
-                <a href="/{{ subject_code }}/{{ question_item.id }}" class="question-link">
-                    <strong>Q{{ question_item.question_no }}: </strong>{{ question_item.question }}
-                </a>
-            </h1>
+            <h1 style="white-space: pre-line;"><a href="/{{ subject_code }}/{{ question_item.id }}" class="question-link"><strong>Q{{ question_item.question_no }}: </strong>{{ question_item.question }}</a></h1>
             {% if question_item.image %}
             <div class="question-image-container">
                 <img src="{{ question_item.image }}" alt="{{ question_item.title }} - Question Reference Image"

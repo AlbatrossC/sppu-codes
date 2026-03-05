@@ -1,0 +1,11 @@
+Student_ID,Name,Gender,Age,Class,Major,GPA,Test_Score,Attendance
+101,Amit,Male,18,Freshman,Science,3.2,78,85
+102,Priya,Female,19,Sophomore,Arts,3.8,88,90
+103,Rahul,Male,20,Junior,Engineering,2.9,65,80
+104,Sneha,Female,21,Senior,Business,3.5,90,95
+105,Karan,Male,,Junior,Engineering,3.7,85,88
+106,Neha,Female,19,Freshman,Science,3.1,72,
+107,Arjun,Male,22,Senior,Business,4.5,95,92
+108,Pooja,Female,20,Sophomore,Arts,2.5,60,70
+109,Rohit,Male,23,Junior,Engineering,3.0,70,75
+110,Simran,Female,18,Freshman,Science,3.4,82,89

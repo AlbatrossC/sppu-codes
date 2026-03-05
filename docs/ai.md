@@ -10,7 +10,7 @@ Keywords: Artificial Intelligence, DFS, BFS, A*, Alpha-Beta Pruning, Constraint 
 
 ### 🌐 [Visit Subject Website](https://sppucodes.vercel.app/ai)
 
-### 📄 [View Question Papers](https://sppucodes.vercel.app/questionpapers/artificial-intelligence)
+### 📄 [View Question Papers](https://sppucodes.vercel.app/questionpapers/artificial-intelligence-aids)
 
 ---
 

@@ -10,7 +10,7 @@ Keywords: Data Structures, Algorithms, Python, C++, Hash Tables, Trees, Graphs, 
 
 ### 🌐 [Visit Subject Website](https://sppucodes.vercel.app/dsal)
 
-### 📄 [View Question Papers](https://sppucodes.vercel.app/questionpapers/data-structure-and-algorithm)
+### 📄 [View Question Papers](https://sppucodes.vercel.app/questionpapers/data-structures-and-algorithms)
 
 ---
 

@@ -118,7 +118,6 @@ header {
     max-width: 500px;
     min-width: 0;
     flex-shrink: 1;
-    title: attr(data-full-name);
     cursor: help;
 }
 
@@ -237,7 +236,6 @@ header {
 .dropdown-option.disabled {
     opacity: 0.4;
     cursor: not-allowed;
-    pointer-events: none;
 }
 
 .dropdown-options::-webkit-scrollbar {
@@ -386,15 +384,13 @@ button.download-btn:hover:not(:disabled):not(.disabled):not(.downloading) {
     align-items: center;
     gap: 10px;
     padding: 6px 14px;
-    background: rgba(30, 30, 30, 0.88);
-    backdrop-filter: blur(16px);
-    -webkit-backdrop-filter: blur(16px);
-    border: 1px solid rgba(59, 130, 246, 0.12);
+    background: #2a2a2a;
+    border: 1px solid rgba(255, 255, 255, 0.1);
     border-radius: 100px;
-    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.4);
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.5);
     transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
-    opacity: 0.9;
-    z-index: 50;
+    opacity: 1;
+    z-index: 100;
     max-width: 90%;
 }
 
@@ -515,6 +511,81 @@ button.download-btn:hover:not(:disabled):not(.disabled):not(.downloading) {
     align-items: center;
     justify-content: center;
     gap: 14px;
+    height: 100%;
+    width: 100%;
+}
+
+/* Inline empty state when no papers found for selected type */
+.empty-state {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+    height: 100%;
+    width: 100%;
+    padding: 24px;
+    text-align: center;
+}
+
+.empty-state-icon {
+    width: 56px;
+    height: 56px;
+    color: #555;
+    margin-bottom: 4px;
+}
+
+.empty-state-icon svg {
+    width: 100%;
+    height: 100%;
+}
+
+.empty-state-title {
+    font-size: 17px;
+    font-weight: 600;
+    color: #ccc;
+    margin: 0;
+}
+
+.empty-state-desc {
+    font-size: 13px;
+    color: #666;
+    margin: 0;
+    max-width: 280px;
+    line-height: 1.5;
+}
+
+.empty-state-switch-btn {
+    margin-top: 8px;
+    padding: 8px 20px;
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--text-light);
+    background: #333;
+    border: 1px solid #444;
+    border-radius: var(--border-radius);
+    cursor: pointer;
+    transition: background var(--transition-speed) ease, border-color var(--transition-speed) ease;
+    height: auto;
+    box-shadow: none;
+}
+
+.empty-state-switch-btn:hover {
+    background: #3d3d3d;
+    border-color: #555;
+    box-shadow: none;
+    transform: none;
+}
+
+@media (max-width: 768px) {
+    .empty-state-title {
+        font-size: 15px;
+    }
+
+    .empty-state-icon {
+        width: 44px;
+        height: 44px;
+    }
 }
 
 .no-pdf-message.error-message {
@@ -671,8 +742,8 @@ button.download-btn:hover:not(:disabled):not(.disabled):not(.downloading) {
 .exam-toggle-btn.disabled {
     opacity: 0.3;
     cursor: not-allowed;
-    pointer-events: none;
 }
+
 
 .download-modal {
     position: fixed;

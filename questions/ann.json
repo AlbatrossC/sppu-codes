@@ -13,8 +13,8 @@
       "Neural Networks",
       "Perceptron",
       "Backpropagation",
-      "TensorFlow",
-      "Keras"
+      "Hopfield Network",
+      "BAM"
     ],
     "url": "https://sppucodes.vercel.app/ann",
     "question_paper_url": "https://sppucodes.vercel.app/questionpapers/artificial-neural-network-aids"
@@ -22,13 +22,13 @@
   "questions": [
     {
       "group": "A",
-      "question_no": "1",
+      "question_no": "A1",
       "id": "activation-functions",
       "question": "Write a Python program to plot a few activation functions that are being used in neural networks.",
       "subject_code": "ann",
       "file_name": [
-        "activation-functions.py",
-        "activation-functions-easy.py"
+        "A1_activation-functions.py",
+        "A1_activation-functions-easy.py"
       ],
       "code_names": [
         "View Code",
@@ -38,14 +38,91 @@
     },
     {
       "group": "A",
-      "question_no": "2",
+      "question_no": "A2",
       "id": "mcculloch-pitts-andnot",
       "question": "Generate ANDNOT function using McCulloch-Pitts neural net by a python program.",
       "subject_code": "ann",
       "file_name": [
-        "mcculloch-pitts-andnot.py"
+        "A2_mcculloch-pitts-andnot.py"
       ],
       "title": "McCulloch-Pitts ANDNOT Function"
+    },
+    {
+      "group": "A",
+      "question_no": "A3",
+      "id": "perceptron-even-odd",
+      "question": "Write a Python program to design a perceptron for even and odd numbers.",
+      "subject_code": "ann",
+      "file_name": [
+        "A3_perceptron_even_odd.py"
+      ],
+      "title": "Perceptron for Even and Odd Numbers"
+    },
+    {
+      "group": "A",
+      "question_no": "A4",
+      "id": "perceptron-decision-regions",
+      "question": "Write a Python program to implement a perceptron and plot the decision regions.",
+      "subject_code": "ann",
+      "file_name": [
+        "A4_perceptron_decision_regions.py"
+      ],
+      "title": "Perceptron Decision Regions"
+    },
+    {
+      "group": "A",
+      "question_no": "A5",
+      "id": "bam-bidirectional-memory",
+      "question": "Write a Python program to simulate Bidirectional Associative Memory (BAM).",
+      "subject_code": "ann",
+      "file_name": [
+        "A5_bam_bidirectional_memory.py"
+      ],
+      "title": "Bidirectional Associative Memory"
+    },
+    {
+      "group": "A",
+      "question_no": "A7",
+      "id": "ann-forward-backprop",
+      "question": "Write a Python program to implement artificial neural network for forward propagation and back propagation.",
+      "subject_code": "ann",
+      "file_name": [
+        "A7_ann_forward_backprop.py"
+      ],
+      "title": "ANN Forward and Back Propagation"
+    },
+    {
+      "group": "B",
+      "question_no": "B1",
+      "id": "xor-backpropagation",
+      "question": "Write a Python program to implement XOR using back propagation algorithm.",
+      "subject_code": "ann",
+      "file_name": [
+        "B1_xor_backpropagation.py"
+      ],
+      "title": "XOR Using Back Propagation"
+    },
+    {
+      "group": "B",
+      "question_no": "B3",
+      "id": "feedforward-backprop-nn",
+      "question": "Write a Python program to simulate a feed forward neural network using back propagation algorithm.",
+      "subject_code": "ann",
+      "file_name": [
+        "B3_feedforward_backprop_nn.py"
+      ],
+      "title": "Feed Forward Neural Network Using Back Propagation"
+    },
+    {
+      "group": "B",
+      "question_no": "B4",
+      "id": "hopfield-network",
+      "question": "Write a Python program to simulate Hopfield network.",
+      "subject_code": "ann",
+      "file_name": [
+        "B4_hopfield_network.py"
+      ],
+      "title": "Hopfield Network"
     }
   ]
 }

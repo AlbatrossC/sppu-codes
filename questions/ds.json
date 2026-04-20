@@ -137,6 +137,24 @@
       "subject_code": "ds",
       "file_name": ["10_data_visualization_3.py"],
       "question": "Data Visualization III\nDownload the Iris flower dataset or any other dataset into a DataFrame. (e.g., https://archive.ics.uci.edu/ml/datasets/Iris). Scan the dataset and give the inference as:\n1. List down the features and their types (e.g., numeric, nominal) available in the dataset.\n2. Create a histogram for each feature in the dataset to illustrate the feature distributions.\n3. Create a boxplot for each feature in the dataset.\n4. Compare distributions and identify outliers."
+    },
+    {
+      "group": "B",
+      "question_no": "2",
+      "id": "mapreduce-log-processing",
+      "title": "Log Processing using MapReduce",
+      "subject_code": "ds",
+      "file_name": ["11_log_mapreduce.py"],
+      "question": "Design a distributed application using MapReduce which processes a log file of a system."
+    },
+    {
+      "group": "B",
+      "question_no": "3",
+      "id": "scala-apache-spark",
+      "title": "Apache Spark Framework in SCALA",
+      "subject_code": "ds",
+      "file_name": ["13_simple_spark.py"],
+      "question": "Write a simple program in SCALA using Apache Spark framework"
     }
   ]
 }

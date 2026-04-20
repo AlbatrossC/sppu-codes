@@ -141,6 +141,52 @@
         "image2.jpg"
       ],
       "title": "CNN Object Detection"
+    },
+    {
+      "group": "C",
+      "question_no": "C1",
+      "id": "neural-network-evaluation",
+      "question": "1. How to Train a Neural Network with TensorFlow/Pytorch and evaluation of logistic regression using tensorflow",
+      "subject_code": "ann",
+      "file_name": [
+        "C1_neural_network.ipynb"
+      ],
+      "code_names": [
+        "View Notebook"
+      ],
+      "title": "Neural Network Training"
+    },
+    {
+      "group": "C",
+      "question_no": "C2",
+      "id": "cnn-implementation",
+      "question": "2. TensorFlow/Pytorch implementation of CNN",
+      "subject_code": "ann",
+      "file_name": [
+        "C2_CNN_tensorflow.ipynb",
+        "horse.jpg"
+      ],
+      "code_names": [
+        "View Notebook",
+        "horse.jpg"
+      ],
+      "title": "CNN Implementation"
+    },
+    {
+      "group": "C",
+      "question_no": "C4",
+      "id": "mnist-char-detect",
+      "question": "4. MNIST Handwritten Character Detection using PyTorch, Keras and Tensorflow",
+      "subject_code": "ann",
+      "file_name": [
+        "C4_MNIST_char_detect.ipynb",
+        "test.jpg"
+      ],
+      "code_names": [
+        "View Notebook",
+        "test.jpg"
+      ],
+      "title": "MNIST Character Detection"
     }
   ]
 }

@@ -320,7 +320,98 @@ async function loadAnswer(subject, questionNo, title, button, fileName, fileInde
         
         Logger.debug(`Response received: ${trimmedText.length} characters`);
 
-        codeContent.textContent = trimmedText;
+        const ext = fileName.split('.').pop().toLowerCase();
+        let mediaContainer = answerBox.querySelector('.media-content');
+        if (!mediaContainer) {
+            mediaContainer = document.createElement('div');
+            mediaContainer.className = 'media-content';
+            mediaContainer.style.width = '100%';
+            mediaContainer.style.marginTop = '15px';
+            codeContent.parentElement.appendChild(mediaContainer);
+        }
+
+        const rawUrl = `/raw-answers/${subject}/${fileName}`;
+
+        codeContent.style.display = 'none';
+        mediaContainer.style.display = 'none';
+        mediaContainer.innerHTML = '';
+        
+        const copyBtn = answerBox.querySelector('.copy-btn');
+        if (copyBtn) copyBtn.style.display = 'flex'; // show by default
+
+        const downloadBtn = answerBox.querySelector('.download-btn');
+        if (downloadBtn) {
+            downloadBtn.onclick = () => downloadFile(rawUrl, fileName);
+            downloadBtn.style.display = 'flex';
+        }
+
+        if (['pdf'].includes(ext)) {
+            mediaContainer.style.display = 'block';
+            mediaContainer.innerHTML = `<iframe src="${rawUrl}" width="100%" height="600px" style="border:none; border-radius:8px; background: white;"></iframe>`;
+            if (copyBtn) copyBtn.style.display = 'none';
+            codeContent.textContent = '';
+        } else if (['jpg', 'jpeg', 'png', 'gif', 'svg', 'webp'].includes(ext)) {
+            mediaContainer.style.display = 'block';
+            mediaContainer.innerHTML = `<div class="answer-image-container"><img src="${rawUrl}" alt="Answer Image" class="answer-image"></div>`;
+            if (copyBtn) copyBtn.style.display = 'none';
+            codeContent.textContent = '';
+        } else if (ext === 'md') {
+            if (typeof marked !== 'undefined') {
+                mediaContainer.style.display = 'block';
+                mediaContainer.innerHTML = `<div class="markdown-body">${marked.parse(trimmedText)}</div>`;
+                codeContent.textContent = trimmedText;
+            } else {
+                codeContent.style.display = 'block';
+                codeContent.textContent = trimmedText;
+            }
+        } else if (ext === 'ipynb') {
+            try {
+                const ipynb = JSON.parse(trimmedText);
+                let html = '<div class="ipynb-notebook">';
+                for (const cell of ipynb.cells) {
+                    const source = Array.isArray(cell.source) ? cell.source.join('') : cell.source;
+                    if (cell.cell_type === 'markdown') {
+                        html += `<div class="ipynb-markdown markdown-body">${typeof marked !== 'undefined' ? marked.parse(source) : '<pre>'+source+'</pre>'}</div>`;
+                    } else if (cell.cell_type === 'code') {
+                        let cellId = 'cell-' + Math.random().toString(36).substr(2, 9);
+                        html += `<div class="ipynb-code-container">`;
+                        html += `<div class="ipynb-cell-header"><span>Code Cell [In]</span><button class="cell-copy-btn" onclick="copyCell('${cellId}', this)">Copy</button></div>`;
+                        html += `<div class="ipynb-code"><pre id="${cellId}">${source.replace(/</g, "&lt;").replace(/>/g, "&gt;")}</pre></div>`;
+                        if (cell.outputs && cell.outputs.length > 0) {
+                            html += `<div class="ipynb-outputs">`;
+                            for (const output of cell.outputs) {
+                                if (output.text) {
+                                    const outText = Array.isArray(output.text) ? output.text.join('') : output.text;
+                                    html += `<pre class="ipynb-output-text">${outText.replace(/</g, "&lt;").replace(/>/g, "&gt;")}</pre>`;
+                                } else if (output.data) {
+                                    if (output.data["image/png"]) {
+                                        const outImg = Array.isArray(output.data["image/png"]) ? output.data["image/png"].join('') : output.data["image/png"];
+                                        html += `<img src="data:image/png;base64,${outImg}" class="ipynb-output-image">`;
+                                    }
+                                    if (output.data["text/plain"]) {
+                                        const outText = Array.isArray(output.data["text/plain"]) ? output.data["text/plain"].join('') : output.data["text/plain"];
+                                        html += `<pre class="ipynb-output-text">${outText.replace(/</g, "&lt;").replace(/>/g, "&gt;")}</pre>`;
+                                    }
+                                }
+                            }
+                            html += `</div>`;
+                        }
+                        html += `</div>`;
+                    }
+                }
+                html += '</div>';
+                mediaContainer.style.display = 'block';
+                mediaContainer.innerHTML = html;
+                codeContent.textContent = trimmedText; 
+            } catch (e) {
+                codeContent.style.display = 'block';
+                codeContent.textContent = trimmedText;
+            }
+        } else {
+            codeContent.style.display = 'block';
+            codeContent.textContent = trimmedText;
+        }
+
         codeContent.classList.remove('loading');
         
         // Cache the result
@@ -360,7 +451,7 @@ function copyCode(elementId) {
         return;
     }
 
-    const text = codeElement.innerText;
+    const text = codeElement.innerText || codeElement.textContent;
     const answerBox = codeElement.closest('.answer-box');
     
     if (!answerBox) {
@@ -419,6 +510,68 @@ function copyCode(elementId) {
         .finally(() => {
             Logger.groupEnd();
         });
+}
+
+// =============================================================================
+// Copy Cell Function (Jupyter Notebooks)
+// =============================================================================
+function copyCell(elementId, btn) {
+    Logger.group('Copy Cell (Jupyter)');
+    const codeElement = document.getElementById(elementId);
+    if (!codeElement) {
+        Logger.error(`Element not found: ${elementId}`);
+        Logger.groupEnd();
+        return;
+    }
+    const text = codeElement.innerText || codeElement.textContent;
+    navigator.clipboard.writeText(text).then(() => {
+        Logger.info('Cell copied to clipboard');
+        const originalText = btn.textContent;
+        btn.textContent = 'Copied!';
+        btn.style.color = '#fff';
+        btn.style.backgroundColor = '#238636';
+        btn.style.borderColor = '#238636';
+        setTimeout(() => {
+            btn.textContent = originalText;
+            btn.style.color = '';
+            btn.style.backgroundColor = '';
+            btn.style.borderColor = '';
+        }, CONFIG.COPY_FEEDBACK_DURATION || 2000);
+    }).catch(err => {
+        Logger.error("Failed to copy cell:", err);
+        alert("Copy failed. Please select text manually.");
+    }).finally(() => {
+        Logger.groupEnd();
+    });
+}
+
+// =============================================================================
+// Download File Function
+// =============================================================================
+async function downloadFile(url, fileName) {
+    Logger.group('Download File');
+    Logger.info(`Downloading from: ${url}`);
+    
+    try {
+        const response = await fetch(url);
+        if (!response.ok) throw new Error('Network response was not ok');
+        const blob = await response.blob();
+        const blobUrl = window.URL.createObjectURL(blob);
+        const a = document.createElement('a');
+        a.style.display = 'none';
+        a.href = blobUrl;
+        a.download = fileName;
+        document.body.appendChild(a);
+        a.click();
+        window.URL.revokeObjectURL(blobUrl);
+        document.body.removeChild(a);
+        Logger.info('File downloaded successfully');
+    } catch (error) {
+        Logger.error('Download failed', error);
+        alert('Failed to download the file. Please try again.');
+    } finally {
+        Logger.groupEnd();
+    }
 }
 
 // =============================================================================

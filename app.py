@@ -458,8 +458,15 @@ def load_answer_files(subject_link, files):
         if not os.path.exists(path):
             return None, f"File missing: {fname}"
         
-        with open(path, "r", encoding="utf-8") as f:
-            contents.append((fname, f.read().strip()))
+        ext = fname.split('.')[-1].lower() if '.' in fname else ''
+        if ext in ['pdf', 'jpg', 'jpeg', 'png', 'gif', 'svg', 'webp']:
+            contents.append((fname, "[Binary File - Use Raw Route]"))
+        else:
+            try:
+                with open(path, "r", encoding="utf-8") as f:
+                    contents.append((fname, f.read().strip()))
+            except UnicodeDecodeError:
+                contents.append((fname, "[Binary or Unsupported Text Format]"))
     
     return contents, None
 
@@ -670,6 +677,14 @@ def subject_page(subject_link, question_id=None):
 # ============================================================================
 # API ROUTES
 # ============================================================================
+
+@app.route("/raw-answers/<subject_link>/<path:filename>")
+def raw_answer_file(subject_link, filename):
+    subject_dir = os.path.join(ANSWERS_DIR, subject_link)
+    if not os.path.exists(os.path.join(subject_dir, filename)):
+        abort(404)
+    return send_from_directory(subject_dir, filename)
+
 
 # Whitelist of allowed PDF host domains (prevents open-proxy abuse)
 _ALLOWED_PDF_HOSTS = {

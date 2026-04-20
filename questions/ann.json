@@ -123,6 +123,24 @@
         "B4_hopfield_network.py"
       ],
       "title": "Hopfield Network"
+    },
+    {
+      "group": "B",
+      "question_no": "B5",
+      "id": "cnn-object-detect",
+      "question": "5. Write Python program to implement CNN object detection. Discuss numerous performance evaluation metrics for evaluating the object detecting algorithms' performance",
+      "subject_code": "ann",
+      "file_name": [
+        "B5_CNN_obj_detect.ipynb",
+        "image1.jpg",
+        "image2.jpg"
+      ],
+      "code_names": [
+        "View Notebook",
+        "image1.jpg",
+        "image2.jpg"
+      ],
+      "title": "CNN Object Detection"
     }
   ]
 }

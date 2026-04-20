@@ -289,36 +289,36 @@ async function loadAnswer(subject, questionNo, title, button, fileName, fileInde
     button.disabled = true;
     Logger.debug('Button disabled, loading state set');
 
-    // Check cache first
-    if (CONFIG.CACHE_ENABLED && AnswerCache.has(cacheKey)) {
-        const cachedContent = AnswerCache.get(cacheKey);
-        codeContent.textContent = cachedContent;
-        codeContent.classList.remove('loading');
-        button.disabled = false;
-        
-        const loadTime = (performance.now() - startTime).toFixed(2);
-        Logger.info(`Answer loaded from cache in ${loadTime}ms`);
-        Logger.groupEnd();
-        return;
-    }
-
-    // Fetch from API
-    const apiUrl = `/api/${subject}/${questionNo}?no_question=1&split=${fileIndex}`;
-    Logger.debug(`Fetching from API: ${apiUrl}`);
+    let trimmedText = '';
 
     try {
-        const response = await fetch(apiUrl);
-        
-        Logger.debug(`Response status: ${response.status} ${response.statusText}`);
+        // Check cache first
+        if (CONFIG.CACHE_ENABLED && AnswerCache.has(cacheKey)) {
+            trimmedText = AnswerCache.get(cacheKey);
+            Logger.info(`Answer fetched from cache`);
+        } else {
+            // Fetch from API
+            const apiUrl = `/api/${subject}/${questionNo}?no_question=1&split=${fileIndex}`;
+            Logger.debug(`Fetching from API: ${apiUrl}`);
 
-        if (!response.ok) {
-            throw new Error(`HTTP ${response.status}: ${response.statusText}`);
+            const response = await fetch(apiUrl);
+            
+            Logger.debug(`Response status: ${response.status} ${response.statusText}`);
+
+            if (!response.ok) {
+                throw new Error(`HTTP ${response.status}: ${response.statusText}`);
+            }
+
+            const text = await response.text();
+            trimmedText = text.trim();
+            
+            Logger.debug(`Response received: ${trimmedText.length} characters`);
+            
+            // Cache the result
+            if (CONFIG.CACHE_ENABLED) {
+                AnswerCache.set(cacheKey, trimmedText);
+            }
         }
-
-        const text = await response.text();
-        const trimmedText = text.trim();
-        
-        Logger.debug(`Response received: ${trimmedText.length} characters`);
 
         const ext = fileName.split('.').pop().toLowerCase();
         let mediaContainer = answerBox.querySelector('.media-content');
@@ -382,7 +382,7 @@ async function loadAnswer(subject, questionNo, title, button, fileName, fileInde
                             for (const output of cell.outputs) {
                                 if (output.text) {
                                     const outText = Array.isArray(output.text) ? output.text.join('') : output.text;
-                                    html += `<pre class="ipynb-output-text">${outText.replace(/</g, "&lt;").replace(/>/g, "&gt;")}</pre>`;
+                                    html += `<pre class="ipynb-output-text">${outText.replace(/\x1b\[[0-9;]*[a-zA-Z]/g, "").replace(/</g, "&lt;").replace(/>/g, "&gt;")}</pre>`;
                                 } else if (output.data) {
                                     if (output.data["image/png"]) {
                                         const outImg = Array.isArray(output.data["image/png"]) ? output.data["image/png"].join('') : output.data["image/png"];
@@ -390,7 +390,7 @@ async function loadAnswer(subject, questionNo, title, button, fileName, fileInde
                                     }
                                     if (output.data["text/plain"]) {
                                         const outText = Array.isArray(output.data["text/plain"]) ? output.data["text/plain"].join('') : output.data["text/plain"];
-                                        html += `<pre class="ipynb-output-text">${outText.replace(/</g, "&lt;").replace(/>/g, "&gt;")}</pre>`;
+                                        html += `<pre class="ipynb-output-text">${outText.replace(/\x1b\[[0-9;]*[a-zA-Z]/g, "").replace(/</g, "&lt;").replace(/>/g, "&gt;")}</pre>`;
                                     }
                                 }
                             }
@@ -414,10 +414,7 @@ async function loadAnswer(subject, questionNo, title, button, fileName, fileInde
 
         codeContent.classList.remove('loading');
         
-        // Cache the result
-        if (CONFIG.CACHE_ENABLED) {
-            AnswerCache.set(cacheKey, trimmedText);
-        }
+
 
         const loadTime = (performance.now() - startTime).toFixed(2);
         Logger.info(`Answer loaded successfully in ${loadTime}ms`);

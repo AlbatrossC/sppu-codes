@@ -72,6 +72,12 @@ def robots():
 def sitemap():
     return send_from_directory(BASE_DIR, "sitemap.xml")
 
+@main_bp.route("/sw.js")
+def service_worker():
+    response = send_from_directory(BASE_DIR, "sw.js")
+    response.headers['Cache-Control'] = 'no-cache'
+    return response
+
 @main_bp.route("/sitemap")
 def sitemap_html():
     return render_template("sitemap.html")

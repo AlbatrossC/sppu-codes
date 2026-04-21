@@ -82,14 +82,23 @@ def pdf_proxy():
     if not parsed.path.lower().endswith(".pdf"):
         return jsonify({"error": "Only PDF files are allowed"}), 400
 
+    headers = {"User-Agent": "SPPU-Codes/1.0"}
+    range_header = request.headers.get("Range")
+    if range_header:
+        headers["Range"] = range_header
+
     try:
         upstream = requests.get(
             pdf_url,
             timeout=30,
             stream=True,
-            headers={"User-Agent": "SPPU-Codes/1.0"},
+            headers=headers,
         )
         upstream.raise_for_status()
+    except requests.exceptions.HTTPError as e:
+        if upstream.status_code != 206:
+            current_app.logger.warning(f"pdf_proxy fetch error for {pdf_url}: {e}")
+            return jsonify({"error": "Failed to fetch PDF"}), 502
     except requests.exceptions.RequestException as e:
         current_app.logger.warning(f"pdf_proxy fetch error for {pdf_url}: {e}")
         return jsonify({"error": "Failed to fetch PDF"}), 502
@@ -107,10 +116,13 @@ def pdf_proxy():
     response.headers["Access-Control-Allow-Origin"] = "*"
     response.headers["Cache-Control"] = "public, max-age=86400"
     response.headers["X-Content-Type-Options"] = "nosniff"
+    response.headers["Accept-Ranges"] = "bytes"
 
-    content_length = upstream.headers.get("Content-Length")
-    if content_length:
-        response.headers["Content-Length"] = content_length
+    # Forward essential headers for byte-range requests
+    for header_name in ["Content-Length", "Content-Range", "Accept-Ranges"]:
+        header_val = upstream.headers.get(header_name)
+        if header_val:
+            response.headers[header_name] = header_val
 
     return response
 

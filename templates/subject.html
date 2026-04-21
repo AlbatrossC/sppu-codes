@@ -136,134 +136,7 @@
     </script>
 
     <style>
-        /* Desktop Side Rail Ads CSS */
-        .ads-container {
-            position: fixed;
-            top: 0;
-            height: 100vh;
-            width: 170px;
-            z-index: 100;
-            pointer-events: none;
-        }
 
-        .ads-container.left-ads {
-            left: 0;
-        }
-
-        .ads-container.right-ads {
-            right: 0;
-        }
-
-        .ad-rail {
-            position: sticky;
-            top: 80px;
-            height: calc(100vh - 80px);
-            width: 100%;
-            pointer-events: auto;
-            padding: 5px;
-            display: flex;
-            justify-content: center;
-            align-items: flex-start;
-            padding-top: 20px;
-        }
-
-        .ad-slot {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            overflow: hidden;
-            position: relative;
-        }
-
-        .ad-slot.wide-skyscraper {
-            height: 600px;
-            width: 160px;
-        }
-
-        .mobile-ad-container {
-            position: fixed;
-            bottom: 0;
-            left: 0;
-            right: 0;
-            z-index: 1000;
-            background-color: var(--color-bg-secondary, #1e1e1e);
-            border-top: 1px solid var(--color-border, #333);
-            padding: 10px;
-            display: none;
-            justify-content: center;
-            align-items: center;
-        }
-
-        .mobile-ad-container .ad-slot {
-            height: 50px;
-            width: 300px;
-            max-width: 90vw;
-        }
-
-        @media (min-width: 1200px) {
-            body {
-                padding-left: 180px;
-                padding-right: 180px;
-            }
-
-            .ads-container {
-                display: block;
-            }
-
-            .mobile-ad-container {
-                display: none;
-            }
-        }
-
-        @media (max-width: 1199px) {
-            .ads-container {
-                display: none;
-            }
-
-            body {
-                padding-left: 0;
-                padding-right: 0;
-                padding-bottom: 80px;
-            }
-
-            .mobile-ad-container {
-                display: flex;
-            }
-        }
-
-        .content {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 1.5rem;
-        }
-
-        header {
-            width: 100%;
-            max-width: none;
-            margin: 0;
-            padding: 1rem;
-            box-sizing: border-box;
-        }
-
-        @media (min-width: 1200px) {
-            header {
-                margin-left: -180px;
-                margin-right: -180px;
-                width: calc(100% + 360px);
-            }
-
-            header>* {
-                max-width: 1200px;
-                margin: 0 auto;
-                padding: 0 1rem;
-            }
-        }
-
-        .adsbygoogle {
-            display: block !important;
-            background: transparent !important;
-            border: none !important;
-        }
     </style>
 </head>
 
@@ -358,19 +231,7 @@
                 {{ question.code_names[loop.index0] if question.code_names and loop.index0 < question.code_names|length
                     else 'View Code ' ~ loop.index }} </button>
                     {% endfor %}
-                    <div class="answer-box" id="answerBox{{ question.question_no }}">
-                        <div class="modal-content">
-                            <h3 id="questionText{{ question.question_no }}"></h3>
-                            <pre id="codeContent{{ question.question_no }}"></pre>
-                        </div>
-                        <div class="copy-close-container">
-                            <button class="download-btn" id="downloadBtn{{ question.question_no }}">Download</button>
-                            <button class="copy-btn" onclick="copyCode('codeContent{{ question.question_no }}')">Copy
-                                Code</button>
-                            <button class="close-btn"
-                                onclick="closeBox('answerBox{{ question.question_no }}')">Close</button>
-                        </div>
-                    </div>
+
         </article>
 
         <div class="other-questions">
@@ -413,24 +274,25 @@
                 {{ question_item.code_names[loop.index0] if question_item.code_names and loop.index0 <
                     question_item.code_names|length else 'View Code ' ~ loop.index }} </button>
                     {% endfor %}
-                    <div class="answer-box" id="answerBox{{ question_item.question_no }}">
-                        <div class="modal-content">
-                            <h3 id="questionText{{ question_item.question_no }}"></h3>
-                            <pre id="codeContent{{ question_item.question_no }}"></pre>
-                        </div>
-                        <div class="copy-close-container">
-                            <button class="download-btn" id="downloadBtn{{ question_item.question_no }}">Download</button>
-                            <button class="copy-btn"
-                                onclick="copyCode('codeContent{{ question_item.question_no }}')">Copy Code</button>
-                            <button class="close-btn"
-                                onclick="closeBox('answerBox{{ question_item.question_no }}')">Close</button>
-                        </div>
-                    </div>
+
         </article>
         {% endfor %}
     </div>
     {% endfor %}
     {% endif %}
+
+    <!-- Global Answer Box Modal (Re-used for all questions) -->
+    <div class="answer-box" id="globalAnswerBox">
+        <div class="modal-content">
+            <h3 id="globalQuestionText"></h3>
+            <pre id="globalCodeContent"></pre>
+        </div>
+        <div class="copy-close-container">
+            <button class="download-btn" id="globalDownloadBtn">Download</button>
+            <button class="copy-btn" onclick="copyCode('globalCodeContent')">Copy Code</button>
+            <button class="close-btn" onclick="closeBox('globalAnswerBox')">Close</button>
+        </div>
+    </div>
 
     <script>
         window.addEventListener('DOMContentLoaded', function () {

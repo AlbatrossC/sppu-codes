@@ -25,27 +25,6 @@ console.log(`
             ⠀
     `);
 
-// Google Analytics
-(function () {
-    function loadGTM() {
-        const script = document.createElement('script');
-        script.src = 'https://www.googletagmanager.com/gtag/js?id=G-1R5FFVKTF8';
-        script.async = true;
-        script.onload = function () {
-            window.dataLayer = window.dataLayer || [];
-            function gtag() { window.dataLayer.push(arguments); }
-            gtag('js', new Date());
-            gtag('config', 'G-1R5FFVKTF8');
-        };
-        document.head.appendChild(script);
-    }
-
-    if (document.readyState === 'complete') {
-        loadGTM();
-    } else {
-        window.addEventListener('load', loadGTM);
-    }
-})();
 
 // Search Functionality
 document.addEventListener('DOMContentLoaded', function () {

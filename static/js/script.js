@@ -57,31 +57,10 @@ const Logger = {
 };
 
 // =============================================================================
-// Google Tag Manager + Fonts (Deferred Loading)
+// Fonts (Deferred Loading)
 // =============================================================================
 (function initializeExternalResources() {
     Logger.info('Initializing external resources');
-    
-    function loadGTM() {
-        Logger.debug('Loading Google Tag Manager');
-        const script = document.createElement('script');
-        script.src = 'https://www.googletagmanager.com/gtag/js?id=G-1R5FFVKTF8';
-        script.async = true;
-
-        script.onload = function() {
-            window.dataLayer = window.dataLayer || [];
-            function gtag() { window.dataLayer.push(arguments); }
-            gtag('js', new Date());
-            gtag('config', 'G-1R5FFVKTF8');
-            Logger.info('Google Tag Manager loaded successfully');
-        };
-
-        script.onerror = function() {
-            Logger.error('Failed to load Google Tag Manager');
-        };
-
-        document.head.appendChild(script);
-    }
 
     function loadGoogleFonts() {
         Logger.debug('Loading Google Fonts');
@@ -100,7 +79,6 @@ const Logger = {
         document.head.appendChild(link);
     }
 
-    setTimeout(loadGTM, CONFIG.GTM_DELAY);
     document.addEventListener('DOMContentLoaded', loadGoogleFonts);
 })();
 
@@ -255,26 +233,19 @@ async function loadAnswer(subject, questionNo, title, button, fileName, fileInde
     const startTime = performance.now();
     const cacheKey = AnswerCache.generateKey(subject, questionNo, fileIndex);
 
-    // Find the question item and answer box
-    const questionItem = button.closest('.question-item');
-    if (!questionItem) {
-        Logger.error('Question item not found in DOM');
-        Logger.groupEnd();
-        return;
-    }
-
-    const answerBox = questionItem.querySelector('.answer-box');
+    // Find the global answer box
+    const answerBox = document.getElementById('globalAnswerBox');
     if (!answerBox) {
-        Logger.error('Answer box not found in question item');
+        Logger.error('Global answer box not found in DOM');
         Logger.groupEnd();
         return;
     }
 
-    const questionTitle = answerBox.querySelector('h3');
-    const codeContent = answerBox.querySelector('pre');
+    const questionTitle = document.getElementById('globalQuestionText');
+    const codeContent = document.getElementById('globalCodeContent');
 
     if (!questionTitle || !codeContent) {
-        Logger.error('Question title or code content element not found');
+        Logger.error('Question title or code content element not found in global answer box');
         Logger.groupEnd();
         return;
     }

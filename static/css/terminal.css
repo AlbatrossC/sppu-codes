@@ -1,5 +1,4 @@
-/* Import better fonts */
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Fira+Code:wght@400;500&display=swap');
+/* Fonts loaded via fonts.css (self-hosted) */
 
 .terminal-api-float {
     position: fixed;
@@ -201,7 +200,7 @@
     min-height: 300px;
     font-size: 16px;
     line-height: 1.6;
-    font-family: 'Fira Code', 'Consolas', 'Monaco', 'Courier New', monospace;
+    font-family: 'JetBrains Mono', 'Consolas', 'Monaco', 'Courier New', monospace;
     font-weight: 400;
     overflow-x: auto;
 }
@@ -244,7 +243,7 @@
     color: #cccccc;
     margin-top: 10px;
     white-space: pre-wrap;
-    font-family: 'Fira Code', 'Consolas', 'Monaco', 'Courier New', monospace;
+    font-family: 'JetBrains Mono', 'Consolas', 'Monaco', 'Courier New', monospace;
     line-height: 1.5;
     font-weight: 400;
 }
@@ -254,7 +253,7 @@
     padding: 16px;
     border-radius: 6px;
     border: 1px solid #333;
-    font-family: 'Fira Code', 'Consolas', 'Monaco', 'Courier New', monospace;
+    font-family: 'JetBrains Mono', 'Consolas', 'Monaco', 'Courier New', monospace;
     color: #dcdcaa;
     font-size: 14px;
     margin: 15px 0;
@@ -274,7 +273,7 @@
 }
 
 .note-box code {
-    font-family: 'Fira Code', 'Consolas', 'Monaco', 'Courier New', monospace;
+    font-family: 'JetBrains Mono', 'Consolas', 'Monaco', 'Courier New', monospace;
     font-size: 13px;
     font-weight: 400;
 }

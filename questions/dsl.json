@@ -1,11 +1,11 @@
-{
+﻿{
   "default": {
     "subject_code": "DSL",
     "subject_name": "Data Structures Laboratory",
     "description": "Explore Data Structures Laboratory programs and solutions with detailed explanations and code examples.",
     "keywords": ["Data Structures", "Python", "C++", "Algorithms", "Sorting", "Searching", "Linked Lists", "Stacks", "Queues"],
     "url": "https://sppucodes.vercel.app/dsl",
-    "question_paper_url":"https://sppucodes.vercel.app/questionpapers/fundamentals-of-data-structures"
+    "question_paper_url":"https://sppucodes.vercel.app/question-papers/fundamentals-of-data-structures"
   },
   "questions": [
     {
@@ -102,7 +102,7 @@
       "group": "D",
       "question_no": "25",
       "id": "palindrome-check",
-      "question": "A palindrome is a string of characters that‘s the same forward and backward. Write a C++ program with functions: a) To print original string followed by reversed string using stack b) To check whether given string is palindrome or not.",
+      "question": "A palindrome is a string of characters thatâ€˜s the same forward and backward. Write a C++ program with functions: a) To print original string followed by reversed string using stack b) To check whether given string is palindrome or not.",
       "subject_code": "dsl",
       "file_name": ["grpD_25.cpp"],
       "title": "Palindrome Check"

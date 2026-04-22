@@ -1,4 +1,4 @@
-{
+﻿{
   "default": {
     "subject_code": "CS",
     "subject_name": "Cyber Security",
@@ -15,7 +15,7 @@
       "Information Security"
     ],
     "url": "https://sppucodes.vercel.app/cs",
-    "question_paper_url": "https://sppucodes.vercel.app/questionpapers/cyber-security-aids"
+    "question_paper_url": "https://sppucodes.vercel.app/question-papers/cyber-security-aids"
   },
   "questions": [
     {

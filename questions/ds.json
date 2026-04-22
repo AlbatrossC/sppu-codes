@@ -1,4 +1,4 @@
-{
+﻿{
   "default": {
     "subject_code": "DS",
     "subject_name": "Data Science Laboratory",
@@ -23,7 +23,7 @@
       "Matplotlib"
     ],
     "url": "https://sppucodes.vercel.app/ds",
-    "question_paper_url": "https://sppucodes.vercel.app/questionpapers/data-science-aids"
+    "question_paper_url": "https://sppucodes.vercel.app/question-papers/data-science-aids"
   },
   "questions": [
     {

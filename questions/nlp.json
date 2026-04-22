@@ -1,4 +1,4 @@
-{
+﻿{
   "default": {
     "subject_code": "NLP",
     "subject_name": "Natural Language Processing",
@@ -18,7 +18,7 @@
       "Stopword Removal"
     ],
     "url": "https://sppucodes.vercel.app/nlp",
-    "question_paper_url": "https://sppucodes.vercel.app/questionpapers/natural-language-processing"
+    "question_paper_url": "https://sppucodes.vercel.app/question-papers/natural-language-processing"
   },
   "questions": [
     {

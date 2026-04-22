@@ -1,18 +1,18 @@
-{
+﻿{
   "default": {
     "subject_code": "DSAL",
     "subject_name": "Data Structures and Algorithms Laboratory",
     "description": "Explore Data Structures and Algorithms Laboratory programs and solutions with detailed explanations and code examples.",
     "keywords": ["Data Structures", "Algorithms", "Python", "C++", "Hash Tables", "Trees", "Graphs", "DFS", "BFS"],
     "url": "https://sppucodes.vercel.app/dsal",
-    "question_paper_url":"https://sppucodes.vercel.app/questionpapers/data-structures-and-algorithms"
+    "question_paper_url":"https://sppucodes.vercel.app/question-papers/data-structures-and-algorithms"
   },
   "questions": [
     {
       "group": "A",
       "question_no": "1",
       "id": "telephone-book",
-      "question": "Consider telephone book database of N clients. Make use of a hash table implementation to quickly look up client’s telephone number. Make use of two collision handling techniques and compare them using number of comparisons required to find a set of telephone numbers.",
+      "question": "Consider telephone book database of N clients. Make use of a hash table implementation to quickly look up clientâ€™s telephone number. Make use of two collision handling techniques and compare them using number of comparisons required to find a set of telephone numbers.",
       "subject_code": "dsal",
       "file_name": ["1_telephonebook.py"],
       "title": "Telephone Book Hash Table"

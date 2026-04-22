@@ -29,15 +29,15 @@
 
     <link rel="canonical" href="{{ url }}">
 
-    <!-- Preload & Preconnect -->
-    <link rel="preload" href="/static/css/subjectlayout.css?v=2.0" as="style">
-    <link rel="preload" href="/static/css/answerbox.css?v=1.8" as="style">
-    <link rel="preconnect" href="https://pagead2.googlesyndication.com" crossorigin>
+    <!-- Preload critical CSS -->
+    <link rel="preload" href="{{ url_for('static', filename='css/subjectlayout.css') }}?v=2.1" as="style">
+    <link rel="preload" href="{{ url_for('static', filename='css/answerbox.css') }}?v=1.9" as="style">
+    <link rel="preload" href="{{ url_for('static', filename='css/fonts.css') }}?v=1.0" as="style">
 
-    <link rel="stylesheet" href="/static/css/answerbox.css?v=1.8">
-    <link rel="stylesheet" href="/static/css/subjectlayout.css?v=2.0">
-    <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js" defer></script>
-    <script src="/static/js/script.js" defer></script>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/fonts.css') }}?v=1.0">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/answerbox.css') }}?v=1.9">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/subjectlayout.css') }}?v=2.1">
+    <script src="{{ url_for('static', filename='js/script.js') }}?v=2.0" defer></script>
     <script src="{{ url_for('static', filename='js/analytics.js') }}?v=3.0" defer></script>
     <link rel="icon" href="/images/favicon.ico" type="image/x-icon">
 
@@ -135,9 +135,7 @@
     }
     </script>
 
-    <style>
 
-    </style>
 </head>
 
 <body>
@@ -261,7 +259,7 @@
 
         {% for question_item in groups[group_key] %}
         <article class="question-item" id="{{ question_item.id }}">
-            <h1 style="white-space: pre-line;"><a href="/{{ subject_code }}/{{ question_item.id }}" class="question-link"><strong>Q{{ question_item.question_no }}: </strong>{{ question_item.question }}</a></h1>
+            <h2 class="question-heading"><a href="/{{ subject_code }}/{{ question_item.id }}" class="question-link"><strong>Q{{ question_item.question_no }}: </strong>{{ question_item.question }}</a></h2>
             {% if question_item.image %}
             <div class="question-image-container">
                 <img src="{{ question_item.image }}" alt="{{ question_item.title }} - Question Reference Image"

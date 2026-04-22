@@ -1,4 +1,4 @@
-{
+﻿{
   "default": {
     "subject_code": "CGL",
     "subject_name": "Computer Graphics Laboratory",
@@ -19,7 +19,7 @@
       "Hilbert Curve"
     ],
     "url": "https://sppucodes.vercel.app/cgl",
-    "question_paper_url": "https://sppucodes.vercel.app/questionpapers/computer-graphics-aids"
+    "question_paper_url": "https://sppucodes.vercel.app/question-papers/computer-graphics-aids"
   },
   "questions": [
     {

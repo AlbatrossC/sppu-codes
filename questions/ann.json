@@ -1,4 +1,4 @@
-{
+﻿{
   "default": {
     "subject_code": "ANN",
     "subject_name": "Artificial Neural Network",
@@ -17,7 +17,7 @@
       "BAM"
     ],
     "url": "https://sppucodes.vercel.app/ann",
-    "question_paper_url": "https://sppucodes.vercel.app/questionpapers/artificial-neural-network-aids"
+    "question_paper_url": "https://sppucodes.vercel.app/question-papers/artificial-neural-network-aids"
   },
   "questions": [
     {
@@ -190,3 +190,4 @@
     }
   ]
 }
+

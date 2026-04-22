@@ -17,7 +17,6 @@
     overflow: hidden;
     animation: modalFadeIn 0.4s cubic-bezier(0.23, 1, 0.32, 1);
     transition: all 0.3s ease;
-    will-change: transform, opacity, width, left;
 }
 
 /* Answer Box in Split View */
@@ -32,7 +31,6 @@
     margin-right: 10px;
     box-shadow: 0 10px 30px rgba(0, 0, 0, 0.7);
     transition: all 0.3s ease;
-    will-change: transform, opacity, width, left;
 }
 
 /* Modal Backdrop */
@@ -47,7 +45,6 @@
     z-index: 999;
     animation: backdropFadeIn 0.4s ease-out;
     transition: opacity 0.3s ease;
-    will-change: opacity;
 }
 
 /* Keyframes for Modal Fade In */
@@ -111,7 +108,7 @@
     background-color: #121212;
     border-radius: 8px;
     padding: 24px;
-    font-family: 'Fira Code', 'JetBrains Mono', 'Source Code Pro', monospace;
+    font-family: 'JetBrains Mono', 'Source Code Pro', monospace;
     font-size: 16px;
     line-height: 1.7;
     color: #F0F0F0;
@@ -120,7 +117,6 @@
     width: 100%;
     position: relative;
     transition: box-shadow 0.3s ease, border-color 0.3s ease;
-    will-change: box-shadow, border-color;
 }
 
 .answer-box pre:hover {
@@ -211,7 +207,6 @@
     font-weight: 500;
     transition: all 0.3s ease;
     min-height: 36px;
-    will-change: transform, box-shadow, background-color;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -484,7 +479,7 @@
     background-color: transparent;
     border-radius: 0;
     color: #d4d4d4;
-    font-family: 'Fira Code', 'JetBrains Mono', 'Source Code Pro', monospace;
+    font-family: 'JetBrains Mono', 'Source Code Pro', monospace;
 }
 
 /* Blockquotes */
@@ -626,7 +621,7 @@
     padding: 0;
     border: none;
     box-shadow: none !important;
-    font-family: 'Fira Code', 'JetBrains Mono', 'Source Code Pro', monospace;
+    font-family: 'JetBrains Mono', 'Source Code Pro', monospace;
     background: transparent !important;
     color: #f0f0f0;
 }
@@ -644,7 +639,7 @@
     padding: 0;
     border: none;
     box-shadow: none !important;
-    font-family: 'Fira Code', monospace;
+    font-family: 'JetBrains Mono', monospace;
     background: transparent !important;
 }
 

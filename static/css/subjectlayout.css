@@ -122,8 +122,13 @@ header {
     justify-content: flex-end;
 }
 
-/* Button Base Styles */
-.btn-base {
+/* Button Base Styles — shared by all buttons */
+.home-btn,
+.github-btn,
+.qp-btn,
+.view-code-btn,
+.download-code-btn,
+.see-all-btn {
     padding: 0.625rem 1rem;
     border: none;
     border-radius: var(--radius-sm);
@@ -143,12 +148,6 @@ header {
     background-color: var(--color-accent-green);
     color: #fff;
     padding: 0.625rem 1.25rem;
-    border: none;
-    border-radius: var(--radius-sm);
-    cursor: pointer;
-    font-size: 0.875rem;
-    font-weight: 500;
-    transition: background-color 0.2s ease;
 }
 
 .home-btn:hover {
@@ -159,16 +158,7 @@ header {
 .github-btn {
     background-color: var(--color-github);
     color: #fff;
-    padding: 0.625rem 1rem;
     border: 2px solid #444;
-    border-radius: var(--radius-sm);
-    cursor: pointer;
-    font-size: 0.875rem;
-    font-weight: 500;
-    transition: all 0.2s ease;
-    display: inline-flex;
-    align-items: center;
-    gap: 0.5rem;
 }
 
 .github-btn:hover {
@@ -177,23 +167,10 @@ header {
     transform: translateY(-1px);
 }
 
-.github-icon {
-    width: 16px;
-    height: 16px;
-    flex-shrink: 0;
-}
-
 /* Question Papers Button */
 .qp-btn {
     background-color: var(--color-accent-red);
     color: #fff;
-    padding: 0.625rem 1rem;
-    border: none;
-    border-radius: var(--radius-sm);
-    cursor: pointer;
-    font-size: 0.875rem;
-    font-weight: 500;
-    transition: background-color 0.2s ease;
 }
 
 .qp-btn:hover {
@@ -236,20 +213,11 @@ a:hover {
 
 /* View Code Button */
 .view-code-btn {
-    display: inline-block;
-    padding: 0.625rem 1rem;
     border: 2px solid var(--color-accent-blue);
-    border-radius: var(--radius-sm);
     background-color: transparent;
     color: var(--color-accent-blue);
-    font-size: 0.875rem;
-    font-weight: 500;
-    text-decoration: none;
-    transition: all 0.2s ease;
-    outline: none;
     position: relative;
     overflow: hidden;
-    cursor: pointer;
     margin-right: var(--space-xs);
     margin-bottom: var(--space-xs);
 }
@@ -260,20 +228,11 @@ a:hover {
 }
 
 .download-code-btn {
-    display: inline-block;
-    padding: 0.625rem 1rem;
     border: 2px solid var(--color-accent-green);
-    border-radius: var(--radius-sm);
     background-color: transparent;
     color: var(--color-accent-green);
-    font-size: 0.875rem;
-    font-weight: 500;
-    text-decoration: none;
-    transition: all 0.2s ease;
-    outline: none;
     position: relative;
     overflow: hidden;
-    cursor: pointer;
     margin-right: var(--space-xs);
     margin-bottom: var(--space-xs);
 }
@@ -284,17 +243,10 @@ a:hover {
 }
 
 .see-all-btn {
-    display: inline-block;
     padding: 0.625rem 1.25rem;
     background-color: transparent;
     color: var(--color-accent-blue);
-    text-decoration: none;
     border: 2px solid var(--color-accent-blue);
-    border-radius: var(--radius-sm);
-    font-weight: 500;
-    font-size: 0.875rem;
-    transition: all 0.2s ease;
-    white-space: nowrap;
 }
 
 .see-all-btn:hover {
@@ -312,7 +264,8 @@ a:hover {
     box-shadow: var(--shadow-sm);
 }
 
-.question-item h1 {
+.question-item h1,
+.question-item .question-heading {
     font-size: 1.1rem;
     color: var(--color-text-primary);
     margin-bottom: 0.9375rem;
@@ -320,9 +273,11 @@ a:hover {
     display: block;
     line-height: 1.5;
     cursor: pointer;
+    white-space: pre-line;
 }
 
-.question-item h1:hover {
+.question-item h1:hover,
+.question-item .question-heading:hover {
     color: var(--color-accent-blue);
 }
 

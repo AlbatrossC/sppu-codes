@@ -19,7 +19,8 @@ def subject_page(subject_link, question_id=None):
 
     subject = data.get("default", {})
     questions = data.get("questions", [])
-    groups, sorted_groups = organize_questions_by_group(questions)
+    groups = data.get("processed_groups", {})
+    sorted_groups = data.get("sorted_groups", [])
 
     selected_question = None
     if question_id:

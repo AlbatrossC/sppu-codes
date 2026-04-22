@@ -56,44 +56,7 @@ const Logger = {
     }
 };
 
-// =============================================================================
-// Fonts (Deferred Loading)
-// =============================================================================
-(function initializeExternalResources() {
-    Logger.info('Initializing external resources');
 
-    function loadGoogleFonts() {
-        Logger.debug('Loading Google Fonts');
-        const link = document.createElement('link');
-        link.rel = 'stylesheet';
-        link.href = 'https://fonts.googleapis.com/css2?family=Fira+Code&display=swap';
-        
-        link.onload = function() {
-            Logger.info('Google Fonts loaded successfully');
-        };
-        
-        link.onerror = function() {
-            Logger.warn('Failed to load Google Fonts');
-        };
-        
-        document.head.appendChild(link);
-    }
-
-    document.addEventListener('DOMContentLoaded', loadGoogleFonts);
-})();
-
-// =============================================================================
-// Modal Backdrop Creation
-// =============================================================================
-(function createModalBackdrop() {
-    Logger.debug('Creating modal backdrop');
-    const backdrop = document.createElement('div');
-    backdrop.className = 'modal-backdrop';
-    backdrop.setAttribute('role', 'presentation');
-    backdrop.setAttribute('aria-hidden', 'true');
-    document.body.appendChild(backdrop);
-    Logger.info('Modal backdrop created');
-})();
 
 // =============================================================================
 // Answer Cache Management
@@ -167,7 +130,6 @@ const ModalManager = {
     _backdrop: null,
     
     init() {
-        this._backdrop = document.querySelector('.modal-backdrop');
         Logger.debug('Modal manager initialized');
     },
     
@@ -175,6 +137,14 @@ const ModalManager = {
         if (!answerBox) {
             Logger.error('Cannot show modal: answerBox is null or undefined');
             return false;
+        }
+        
+        if (!this._backdrop) {
+            this._backdrop = document.createElement('div');
+            this._backdrop.className = 'modal-backdrop';
+            this._backdrop.setAttribute('role', 'presentation');
+            this._backdrop.setAttribute('aria-hidden', 'true');
+            document.body.appendChild(this._backdrop);
         }
         
         this._activeModal = answerBox;
@@ -292,6 +262,20 @@ async function loadAnswer(subject, questionNo, title, button, fileName, fileInde
         }
 
         const ext = fileName.split('.').pop().toLowerCase();
+
+        if (ext === 'md' || ext === 'ipynb') {
+            if (typeof marked === 'undefined') {
+                Logger.info('Lazy loading marked.js');
+                await new Promise((resolve, reject) => {
+                    const s = document.createElement('script');
+                    s.src = 'https://cdn.jsdelivr.net/npm/marked/marked.min.js';
+                    s.onload = resolve;
+                    s.onerror = reject;
+                    document.head.appendChild(s);
+                });
+            }
+        }
+
         let mediaContainer = answerBox.querySelector('.media-content');
         if (!mediaContainer) {
             mediaContainer = document.createElement('div');
@@ -393,11 +377,9 @@ async function loadAnswer(subject, questionNo, title, button, fileName, fileInde
     } catch (error) {
         Logger.error('Failed to load answer', error);
         codeContent.textContent = `Error: Failed to load answer.\n\nDetails: ${error.message}\n\nPlease try again or check the GitHub repository.`;
+        codeContent.style.display = 'block';
         codeContent.classList.remove('loading');
         codeContent.classList.add('error');
-        
-        // Show user-friendly alert
-        alert(`Failed to load answer: ${error.message}\n\nPlease try again or visit the GitHub repository.`);
     } finally {
         button.disabled = false;
         Logger.debug('Button re-enabled');
@@ -585,17 +567,17 @@ function closeBox(boxId) {
 // =============================================================================
 // Performance Monitoring (Development)
 // =============================================================================
-if (window.performance && window.performance.timing) {
+if (window.PerformanceNavigationTiming) {
     window.addEventListener('load', () => {
         setTimeout(() => {
-            const perfData = window.performance.timing;
-            const pageLoadTime = perfData.loadEventEnd - perfData.navigationStart;
-            const domReadyTime = perfData.domContentLoadedEventEnd - perfData.navigationStart;
-            
-            Logger.group('Performance Metrics');
-            Logger.info(`Page load time: ${pageLoadTime}ms`);
-            Logger.info(`DOM ready time: ${domReadyTime}ms`);
-            Logger.groupEnd();
+            const entries = performance.getEntriesByType('navigation');
+            if (entries.length > 0) {
+                const entry = entries[0];
+                Logger.group('Performance Metrics');
+                Logger.info(`Page load time: ${Math.round(entry.loadEventEnd)}ms`);
+                Logger.info(`DOM ready time: ${Math.round(entry.domContentLoadedEventEnd)}ms`);
+                Logger.groupEnd();
+            }
         }, 0);
     });
 }

@@ -162,6 +162,7 @@ def load_question_papers():
     }
 
 
+@lru_cache(maxsize=64)
 def load_subject_data(subject_link):
     """Loads subject data from JSON file."""
     json_path = os.path.join(QUESTIONS_DIR, f"{subject_link}.json")
@@ -171,10 +172,16 @@ def load_subject_data(subject_link):
     with open(json_path, "r", encoding="utf-8") as f:
         data = json.load(f)
 
-    for q in data.get("questions", []):
+    questions = data.get("questions", [])
+    groups = {}
+    for q in questions:
         question_text = q.get("question")
         if isinstance(question_text, str):
             q["question"] = question_text.replace("/n", "\n")
+        groups.setdefault(q.get("group", ""), []).append(q)
+
+    data["processed_groups"] = groups
+    data["sorted_groups"] = sorted(groups.keys())
 
     return data
 
@@ -197,8 +204,9 @@ def organize_questions_by_group(questions):
     return groups, sorted(groups.keys())
 
 
+@lru_cache(maxsize=256)
 def load_answer_files(subject_link, files):
-    """Loads answer files for a question."""
+    """Loads answer files for a question. 'files' must be a tuple to be hashable."""
     subject_dir = os.path.join(ANSWERS_DIR, subject_link)
     if not os.path.exists(subject_dir):
         return None, "Answer directory missing"

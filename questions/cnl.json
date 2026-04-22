@@ -1,11 +1,11 @@
-{
+﻿{
   "default": {
     "subject_code": "CN",
     "subject_name": "Computer Networks",
     "description": "Explore Computer Networks lab assignments with LAN/WAN setup, subnetting, routing protocols, socket programming, and real-world simulations using Packet Tracer and Wireshark.",
     "keywords": ["LAN", "WAN", "Packet Tracer", "Wired Network", "Wireless Network", "Subnetting", "Routing Protocols", "Distance Vector", "Link State", "TCP", "UDP", "File Transfer", "Sockets", "Wireshark"],
     "url": "https://sppucodes.vercel.app/cnl",
-    "question_paper_url": "https://sppucodes.vercel.app/questionpapers/computer-networks"
+    "question_paper_url": "https://sppucodes.vercel.app/question-papers/computer-networks"
   },
   "questions": [
     {
@@ -66,7 +66,7 @@
       "group": "B",
       "question_no": "9",
       "id": "udp-file-transfer",
-      "question": "Write a program using UDP Sockets to enable file transfer (Script, Text, Audio, and Video – one file each) between two machines.",
+      "question": "Write a program using UDP Sockets to enable file transfer (Script, Text, Audio, and Video â€“ one file each) between two machines.",
       "subject_code": "cn",
       "file_name": ["9_upd_file_transfer.txt"],
       "title": "UDP Socket Programming for File Transfer"

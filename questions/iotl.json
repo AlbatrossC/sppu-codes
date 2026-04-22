@@ -1,11 +1,11 @@
-{
+﻿{
   "default": {
     "subject_code": "IoTLRAW",
     "subject_name": "Internet of Things",
     "description": "Explore IoT lab programs and solutions with detailed explanations and code examples.",
     "keywords": ["IoT", "Internet of Things", "Arduino", "Embedded Systems", "Sensors", "Microcontrollers"],
     "url": "https://sppucodes.vercel.app/iotl",
-    "question_paper_url":"https://sppucodes.vercel.app/questionpapers/internet-of-things"
+    "question_paper_url":"https://sppucodes.vercel.app/question-papers/internet-of-things"
   },
   "questions": [
     {

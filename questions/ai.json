@@ -1,11 +1,11 @@
-{
+﻿{
   "default": {
     "subject_code": "AI",
     "subject_name": "Artificial Intelligence Laboratory",
     "description": "Explore Artificial Intelligence lab assignments focusing on graph traversal, heuristic search algorithms, game tree strategies, constraint satisfaction problems, and greedy algorithms for optimization.",
     "keywords": ["Artificial Intelligence", "DFS", "BFS", "A*", "Alpha-Beta Pruning", "Constraint Satisfaction", "Backtracking", "Branch and Bound", "Greedy Algorithms", "Graph Search", "N-Queens", "Game Search", "Optimization"],
     "url": "https://sppucodes.vercel.app/ai",
-    "question_paper_url": "https://sppucodes.vercel.app/questionpapers/artificial-intelligence-aids"
+    "question_paper_url": "https://sppucodes.vercel.app/question-papers/artificial-intelligence-aids"
   },
   "questions": [
     {
@@ -64,3 +64,4 @@
     }
   ]
 }
+

@@ -1,11 +1,11 @@
-{
+﻿{
   "default": {
     "subject_code": "OOP",
     "subject_name": "Object-Oriented Programming",
     "description": "SPPU Codes: Object-Oriented Programming (OOP) exercises for SPPU students. Learn C++ programming concepts like operator overloading, inheritance, file handling, STL, and more.",
     "keywords": ["C++", "OOP", "SPPU Codes", "programming exercises", "operator overloading", "inheritance", "STL", "file handling"],
     "url": "https://sppucodes.vercel.app/oop",
-    "question_paper_url": "https://sppucodes.vercel.app/questionpapers/object-oriented-programming"  
+    "question_paper_url": "https://sppucodes.vercel.app/question-papers/object-oriented-programming"  
   },
   "questions": [
     {

@@ -174,7 +174,7 @@ def answer_api(subject_link, question_no):
         except ValueError:
             return "Invalid split parameter", 400, {"Content-Type": "text/plain"}
 
-    contents, error = load_answer_files(subject_link, files)
+    contents, error = load_answer_files(subject_link, tuple(files))
     if error:
         return error, 404, {"Content-Type": "text/plain"}
 

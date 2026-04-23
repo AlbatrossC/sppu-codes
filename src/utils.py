@@ -169,7 +169,7 @@ def load_subject_data(subject_link):
     if not os.path.exists(json_path):
         return None
     
-    with open(json_path, "r", encoding="utf-8") as f:
+    with open(json_path, "r", encoding="utf-8-sig") as f:
         data = json.load(f)
 
     questions = data.get("questions", [])
@@ -182,6 +182,10 @@ def load_subject_data(subject_link):
 
     data["processed_groups"] = groups
     data["sorted_groups"] = sorted(groups.keys())
+    data["_q_index"] = {
+        str(q.get("question_no")): q
+        for q in questions
+    }
 
     return data
 
@@ -205,26 +209,41 @@ def organize_questions_by_group(questions):
 
 
 @lru_cache(maxsize=256)
+def _read_answer_file(filepath):
+    ext = filepath.split('.')[-1].lower() if '.' in filepath else ''
+    if ext in ['pdf', 'jpg', 'jpeg', 'png', 'gif', 'svg', 'webp']:
+        return "[Binary File - Use Raw Route]"
+
+    try:
+        with open(filepath, "r", encoding="utf-8") as f:
+            return f.read().strip()
+    except UnicodeDecodeError:
+        return "[Binary or Unsupported Text Format]"
+
+
+@lru_cache(maxsize=256)
 def load_answer_files(subject_link, files):
     """Loads answer files for a question. 'files' must be a tuple to be hashable."""
     subject_dir = os.path.join(ANSWERS_DIR, subject_link)
     if not os.path.exists(subject_dir):
         return None, "Answer directory missing"
-    
+
     contents = []
     for fname in files:
         path = os.path.join(subject_dir, fname)
         if not os.path.exists(path):
             return None, f"File missing: {fname}"
-        
-        ext = fname.split('.')[-1].lower() if '.' in fname else ''
-        if ext in ['pdf', 'jpg', 'jpeg', 'png', 'gif', 'svg', 'webp']:
-            contents.append((fname, "[Binary File - Use Raw Route]"))
-        else:
-            try:
-                with open(path, "r", encoding="utf-8") as f:
-                    contents.append((fname, f.read().strip()))
-            except UnicodeDecodeError:
-                contents.append((fname, "[Binary or Unsupported Text Format]"))
-    
+
+        contents.append((fname, _read_answer_file(path)))
+
     return contents, None
+
+
+def preload_subject_cache():
+    """Warm the subject cache during app startup."""
+    if not os.path.exists(QUESTIONS_DIR):
+        return
+
+    for filename in os.listdir(QUESTIONS_DIR):
+        if filename.endswith(".json"):
+            load_subject_data(filename[:-5])

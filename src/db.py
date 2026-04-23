@@ -43,6 +43,16 @@ def init_db():
                         created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
                     );
                 """)
+                cur.execute("""
+                    CREATE TABLE IF NOT EXISTS api_requests (
+                        id BIGSERIAL PRIMARY KEY,
+                        subject_link VARCHAR(100) NOT NULL,
+                        question_no VARCHAR(50) NOT NULL,
+                        ip_address VARCHAR(100),
+                        user_agent TEXT,
+                        created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+                    );
+                """)
         print("Database initialized successfully.")
     except Exception as e:
         print(f"Error initializing database: {e}")
@@ -87,6 +97,30 @@ def save_contact(name, email, message):
         return True
     except Exception as e:
         print(f"Contact Error: {e}")
+        return False
+    finally:
+        conn.close()
+
+
+def save_api_request(subject_link, question_no, ip_address, user_agent):
+    """Saves an API request log entry."""
+    conn = get_db_connection()
+    if not conn:
+        return False
+
+    try:
+        with conn:
+            with conn.cursor() as cur:
+                cur.execute(
+                    """
+                    INSERT INTO api_requests (subject_link, question_no, ip_address, user_agent)
+                    VALUES (%s, %s, %s, %s)
+                    """,
+                    (subject_link, str(question_no), ip_address, user_agent),
+                )
+        return True
+    except Exception as e:
+        print(f"API log error: {e}")
         return False
     finally:
         conn.close()

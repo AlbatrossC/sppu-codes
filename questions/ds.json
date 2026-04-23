@@ -1,4 +1,4 @@
-﻿{
+{
   "default": {
     "subject_code": "DS",
     "subject_name": "Data Science Laboratory",
@@ -23,7 +23,7 @@
       "Matplotlib"
     ],
     "url": "https://sppucodes.vercel.app/ds",
-    "question_paper_url": "https://sppucodes.vercel.app/question-papers/data-science-aids"
+    "question_paper_url": "https://sppucodes.vercel.app/questionpapers/data-science-aids"
   },
   "questions": [
     {
@@ -140,21 +140,75 @@
     },
     {
       "group": "B",
-      "question_no": "2",
+      "question_no": "11",
       "id": "mapreduce-log-processing",
       "title": "Log Processing using MapReduce",
       "subject_code": "ds",
-      "file_name": ["11_log_mapreduce.py"],
+      "file_name": [
+        "11_setup.md",
+        "11_run.md"
+      ],
+      "code_names": [
+        "View Setup Guide",
+        "View Run Guide"
+      ],
       "question": "Design a distributed application using MapReduce which processes a log file of a system."
     },
     {
       "group": "B",
-      "question_no": "3",
+      "question_no": "13",
       "id": "scala-apache-spark",
       "title": "Apache Spark Framework in SCALA",
       "subject_code": "ds",
-      "file_name": ["13_simple_spark.py"],
+      "file_name": [
+        "13_spark.md"
+      ],
+      "code_names": [
+        "View Setup Guide"
+      ],
       "question": "Write a simple program in SCALA using Apache Spark framework"
+    },
+    {
+      "group": "Mini Project",
+      "question_no": "MP2",
+      "id": "mini-project-tweet-classification",
+      "title": "Tweet Sentiment Classification",
+      "subject_code": "ds",
+      "file_name": [
+        "mini_project_tweet.py"
+      ],
+      "code_names": [
+        "View Python Code"
+      ],
+      "question": "Mini Project II\nUse the following dataset and classify tweets into positive and negative tweets.\nDataset: https://www.kaggle.com/ruchi798/data-science-tweets"
+    },
+    {
+      "group": "Mini Project",
+      "question_no": "MP3",
+      "id": "mini-project-movie-recommendation",
+      "title": "Movie Recommendation Model",
+      "subject_code": "ds",
+      "file_name": [
+        "mini_project_movies.py"
+      ],
+      "code_names": [
+        "View Python Code"
+      ],
+      "question": "Mini Project III\nDevelop a movie recommendation model using the scikit-learn library in Python.\nDataset: https://github.com/rashida048/Some-NLP-Projects/blob/master/movie_dataset.csv"
+    },
+    {
+      "group": "Mini Project",
+      "question_no": "MP4",
+      "id": "mini-project-covid-vaccine",
+      "title": "COVID Vaccine Statewise Analytics",
+      "subject_code": "ds",
+      "file_name": [
+        "mini_project_covid_vaccine_statewise.py"
+      ],
+      "code_names": [
+        "View Python Code"
+      ],
+      "question": "Mini Project IV\nUse the following covid_vaccine_statewise.csv dataset and perform the following analytics on the given dataset.\nDataset: https://www.kaggle.com/sudalairajkumar/covid19-inindia?select=covid_vaccine_statewise.csv\n\na. Describe the dataset.\nb. Number of persons statewise vaccinated for first dose in India.\nc. Number of persons statewise vaccinated for second dose in India.\nd. Number of Males vaccinated.\ne. Number of Females vaccinated."
     }
   ]
 }

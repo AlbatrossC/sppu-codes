@@ -3,9 +3,13 @@ from werkzeug.exceptions import HTTPException
 
 def create_app():
     from .config import SECRET_KEY, MAINTENANCE_MODE
+    from .async_logger import api_logger
+    from .utils import preload_subject_cache
 
     app = Flask(__name__, template_folder='../templates', static_folder='../static')
     app.secret_key = SECRET_KEY
+    api_logger.start()
+    preload_subject_cache()
 
     # Context processors and before_request handlers
     @app.before_request

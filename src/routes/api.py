@@ -1,17 +1,72 @@
 from flask import Blueprint, jsonify, request, send_from_directory, abort, current_app, Response, stream_with_context
 import os
 import requests
+from functools import lru_cache
 from urllib.parse import urlparse
 from ..config import ANSWERS_DIR, QUESTIONS_DIR, DISCORD_WEBHOOK_URL
+from ..async_logger import api_logger
 from ..notifications import send_discord_notification
 from ..utils import (
     load_question_papers,
     load_subject_data,
-    get_question_by_number,
     load_answer_files
 )
 
 api_bp = Blueprint('api', __name__, url_prefix='/api')
+
+
+@lru_cache(maxsize=1)
+def _available_subjects_text():
+    output = ["No question found", "", "Available subjects:", ""]
+
+    if os.path.exists(QUESTIONS_DIR):
+        for filename in sorted(os.listdir(QUESTIONS_DIR)):
+            if filename.endswith(".json"):
+                code = filename[:-5]
+                data = load_subject_data(code)
+                full_name = data.get("default", {}).get("subject_name", code.upper()) if data else code.upper()
+                output.append(f"{code} --> {full_name}")
+                output.append("")
+
+    return "\n".join(output).strip()
+
+
+@lru_cache(maxsize=256)
+def _cached_answer(subject_link, question_no):
+    data = load_subject_data(subject_link)
+    if not data:
+        return None, None, 404
+
+    question = data["_q_index"].get(str(question_no))
+    if not question:
+        return None, None, 404
+
+    files = tuple(question.get("file_name", []))
+    if not files:
+        return question, None, 404
+
+    contents, error = load_answer_files(subject_link, files)
+    if error:
+        return question, error, 404
+
+    return question, contents, 200
+
+
+def _question_not_found_text(subject_link, questions):
+    output = ["No question found", "", f"Available questions for subject: {subject_link}", ""]
+
+    for q in questions:
+        q_no = q.get("question_no", "N/A")
+        q_text = q.get("question", "").strip()
+        output.append(f"{q_no} --> {q_text}")
+        output.append("")
+
+    return "\n".join(output).strip()
+
+
+def _is_terminal_request(request):
+    return len(request.args) == 0
+
 
 @api_bp.route("/question-papers/list")
 def question_papers_list():
@@ -131,52 +186,34 @@ def answer_api(subject_link, question_no):
     data = load_subject_data(subject_link)
 
     if not data:
-        output = ["No question found", "", "Available subjects:", ""]
+        return _available_subjects_text(), 404, {"Content-Type": "text/plain; charset=utf-8"}
 
-        if os.path.exists(QUESTIONS_DIR):
-            for f in sorted(os.listdir(QUESTIONS_DIR)):
-                if f.endswith(".json"):
-                    code = f[:-5]
-                    d = load_subject_data(code)
-                    full_name = d.get("default", {}).get("subject_name", code.upper()) if d else code.upper()
-                    output.append(f"{code} --> {full_name}")
-                    output.append("")
-
-        return "\n".join(output).strip(), 404, {"Content-Type": "text/plain; charset=utf-8"}
-
-    questions = data.get("questions", [])
-    question = get_question_by_number(questions, question_no)
-
+    question = data["_q_index"].get(str(question_no))
     if not question:
-        output = ["No question found", "", f"Available questions for subject: {subject_link}", ""]
-
-        for q in questions:
-            q_no = q.get("question_no", "N/A")
-            q_text = q.get("question", "").strip()
-            output.append(f"{q_no} --> {q_text}")
-            output.append("")
-
-        return "\n".join(output).strip(), 404, {"Content-Type": "text/plain; charset=utf-8"}
-
-    files = question.get("file_name", [])
-    if not files:
-        return "No answer files", 404, {"Content-Type": "text/plain"}
+        return _question_not_found_text(subject_link, data.get("questions", [])), 404, {"Content-Type": "text/plain; charset=utf-8"}
 
     no_question = request.args.get("no_question") == "1"
     split = request.args.get("split")
+    cached_question, cached_contents, status = _cached_answer(subject_link, question_no)
+
+    if status == 404:
+        if cached_question is None:
+            return _question_not_found_text(subject_link, data.get("questions", [])), 404, {"Content-Type": "text/plain; charset=utf-8"}
+        if isinstance(cached_contents, str):
+            return cached_contents, 404, {"Content-Type": "text/plain; charset=utf-8"}
+        return "No answer files", 404, {"Content-Type": "text/plain; charset=utf-8"}
+
+    question = cached_question
+    contents = list(cached_contents)
 
     if split:
         try:
             index = int(split) - 1
-            if index < 0 or index >= len(files):
+            if index < 0 or index >= len(contents):
                 return "Invalid split index", 400, {"Content-Type": "text/plain"}
-            files = [files[index]]
+            contents = [contents[index]]
         except ValueError:
             return "Invalid split parameter", 400, {"Content-Type": "text/plain"}
-
-    contents, error = load_answer_files(subject_link, tuple(files))
-    if error:
-        return error, 404, {"Content-Type": "text/plain"}
 
     output = []
     if not no_question:
@@ -191,7 +228,20 @@ def answer_api(subject_link, question_no):
         output.append(content)
         output.append("")
 
-    return "\n".join(output).strip(), 200, {"Content-Type": "text/plain; charset=utf-8"}
+    response_text = "\n".join(output).strip()
+
+    if _is_terminal_request(request):
+        api_logger.log_api_request(
+            subject_link,
+            question_no,
+            request.remote_addr,
+            request.headers.get("User-Agent", "")
+        )
+
+    return response_text, 200, {
+        "Content-Type": "text/plain; charset=utf-8",
+        "Cache-Control": "public, max-age=3600"
+    }
 
 raw_api_bp = Blueprint('raw_api', __name__)
 

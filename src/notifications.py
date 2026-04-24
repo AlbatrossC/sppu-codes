@@ -40,8 +40,9 @@ def _build_discord_embed(notification_type, data):
             "color": 5763719,
             "fields": [
                 {"name": "Contributor Name", "value": data.get("name", "Anonymous"), "inline": True},
+                {"name": "Email", "value": data.get("email", "Not provided"), "inline": True},
                 {"name": "Subject", "value": data.get("subject"), "inline": True},
-                {"name": "Branch/Year", "value": f"{data.get('branch')} - {data.get('year')}", "inline": False}
+                {"name": "Code Length", "value": str(data.get("code_length", 0)), "inline": True}
             ],
             "footer": {"text": "Check database for full code"}
         }
@@ -57,24 +58,6 @@ def _build_discord_embed(notification_type, data):
                 {"name": "Email", "value": data.get("email"), "inline": True},
                 {"name": "Message Snippet", "value": message_snippet, "inline": False}
             ]
-        }
-    
-    elif notification_type == "download":
-        user_agent = data.get("user_agent", "")
-        ua_snippet = (user_agent[:200] + '...') if len(user_agent) > 200 else user_agent
-        return {
-            "title": "ZIP Download",
-            "color": 3447003,
-            "fields": [
-                {"name": "Subject", "value": data.get("subject_name", data.get("subject_link", "Unknown")), "inline": True},
-                {"name": "Subject Link", "value": data.get("subject_link", "unknown"), "inline": True},
-                {"name": "Exam Type", "value": data.get("exam_type", "all"), "inline": True},
-                {"name": "Files In ZIP", "value": str(data.get("file_count", 0)), "inline": True},
-                {"name": "Success", "value": "Yes" if data.get("success", True) else "No", "inline": True},
-                {"name": "From IP", "value": data.get("ip", "unknown"), "inline": False},
-                {"name": "User Agent (truncated)", "value": ua_snippet, "inline": False}
-            ],
-            "footer": {"text": "No file or repo URLs included"}
         }
     
     return None

@@ -1,4 +1,5 @@
 from flask import Flask, render_template, request, redirect
+from flask_compress import Compress
 from werkzeug.exceptions import HTTPException
 
 def create_app():
@@ -8,6 +9,7 @@ def create_app():
 
     app = Flask(__name__, template_folder='../templates', static_folder='../static')
     app.secret_key = SECRET_KEY
+    Compress(app)
     api_logger.start()
     preload_subject_cache()
 
@@ -26,6 +28,13 @@ def create_app():
             return redirect("/question-papers", code=301)
         if path.startswith("/questionpapers/"):
             return redirect("/question-papers" + path[len("/questionpapers"):], code=301)
+
+    @app.after_request
+    def add_asset_cache_headers(response):
+        path = request.path
+        if path.startswith("/static/fonts/"):
+            response.headers["Cache-Control"] = "public, max-age=31536000, immutable"
+        return response
 
     # Register error handlers
     @app.errorhandler(404)

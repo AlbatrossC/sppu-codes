@@ -285,27 +285,31 @@
 					resetStatus();
 				}, 3000);
 
-				// --- NEW: send optional server-side Discord notification (no URLs included) ---
 				(function fireNotify() {
 					try {
-						const notifyPayload = {
-							subject_link: subject_link,
-							subject_name: subjectName,
-							exam_type: examType,
-							file_count: downloaded,
-							success: true
-						};
-						// fire-and-forget; don't block UX
-						fetch('/api/notify-download', {
-							method: 'POST',
-							headers: { 'Content-Type': 'application/json' },
-							body: JSON.stringify(notifyPayload)
-						}).catch(function(e){ console.warn('notify-download failed', e); });
+						const ctx = window.paperDownloadContext || {};
+						const fingerprintPromise = ctx.fingerprintPromise || Promise.resolve('fp-anon');
+						Promise.resolve(fingerprintPromise)
+							.then(function (fingerprintId) {
+								return fetch('/api/notify-download', {
+									method: 'POST',
+									headers: { 'Content-Type': 'application/json' },
+									body: JSON.stringify({
+										fingerprint_id: fingerprintId,
+										subject_link: subject_link,
+										subject_name: subjectName,
+										exam_type: examType,
+										file_count: downloaded
+									})
+								});
+							})
+							.catch(function (e) {
+								console.warn('notify-download failed', e);
+							});
 					} catch (e) {
 						console.warn('notify-download error', e);
 					}
 				})();
-				// --- END notify ---
 			} catch (err) {
 				console.error(err);
 				setStatus("Failed to create ZIP file. Please try again.", "error", 0);

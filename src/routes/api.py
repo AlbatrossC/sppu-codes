@@ -1,11 +1,10 @@
-from flask import Blueprint, jsonify, request, send_from_directory, abort, current_app, Response, stream_with_context
+from flask import Blueprint, jsonify, request, send_from_directory, abort, current_app, Response, stream_with_context, make_response
 import os
 import requests
 from functools import lru_cache
 from urllib.parse import urlparse
-from ..config import ANSWERS_DIR, QUESTIONS_DIR, DISCORD_WEBHOOK_URL
-from ..async_logger import api_logger
-from ..notifications import send_discord_notification
+from ..config import ANSWERS_DIR, QUESTIONS_DIR
+from ..async_logger import api_logger, log_paper_download_async
 from ..utils import (
     load_question_papers,
     load_subject_data,
@@ -13,6 +12,13 @@ from ..utils import (
 )
 
 api_bp = Blueprint('api', __name__, url_prefix='/api')
+API_CACHE_CONTROL = "public, s-maxage=3600, stale-while-revalidate=86400"
+
+
+@api_bp.after_request
+def add_api_cache_headers(response):
+    response.headers["Cache-Control"] = API_CACHE_CONTROL
+    return response
 
 
 @lru_cache(maxsize=1)
@@ -64,8 +70,17 @@ def _question_not_found_text(subject_link, questions):
     return "\n".join(output).strip()
 
 
-def _is_terminal_request(request):
-    return len(request.args) == 0
+def is_terminal_request(request):
+    return (
+        "no_question" not in request.args and
+        "split" not in request.args
+    )
+
+
+def _text_response(body, status_code):
+    response = make_response(body, status_code)
+    response.headers["Content-Type"] = "text/plain; charset=utf-8"
+    return response
 
 
 @api_bp.route("/question-papers/list")
@@ -92,24 +107,19 @@ def subjects_search():
 
 @api_bp.route("/notify-download", methods=["POST"])
 def notify_download():
-    """Receives download event from client and forwards to Discord."""
-    if not DISCORD_WEBHOOK_URL:
-        return ("", 204)
-
+    """Receives paper download events from client and stores lightweight analytics."""
     try:
         payload = request.get_json(silent=True)
         if not payload:
             return jsonify({"error": "invalid json"}), 400
 
-        send_discord_notification("download", {
-            "subject_link": payload.get("subject_link"),
-            "subject_name": payload.get("subject_name"),
-            "exam_type": payload.get("exam_type"),
-            "file_count": int(payload.get("file_count") or 0),
-            "success": bool(payload.get("success", True)),
-            "user_agent": request.headers.get("User-Agent", "")[:1000],
-            "ip": request.remote_addr or "unknown"
-        })
+        fingerprint_id = (payload.get("fingerprint_id") or "").strip()[:255]
+        subject_link = (payload.get("subject_link") or payload.get("subject") or "").strip()[:100]
+
+        if not fingerprint_id or not subject_link:
+            return jsonify({"error": "missing fingerprint_id or subject"}), 400
+
+        log_paper_download_async(fingerprint_id, subject_link)
         return jsonify({"ok": True}), 200
     except Exception:
         current_app.logger.exception("notify_download error")
@@ -169,7 +179,6 @@ def pdf_proxy():
         content_type=upstream.headers.get("Content-Type", "application/pdf"),
     )
     response.headers["Access-Control-Allow-Origin"] = "*"
-    response.headers["Cache-Control"] = "public, max-age=86400"
     response.headers["X-Content-Type-Options"] = "nosniff"
     response.headers["Accept-Ranges"] = "bytes"
 
@@ -183,14 +192,19 @@ def pdf_proxy():
 
 @api_bp.route("/<subject_link>/<question_no>")
 def answer_api(subject_link, question_no):
+    terminal_request = is_terminal_request(request)
     data = load_subject_data(subject_link)
 
     if not data:
-        return _available_subjects_text(), 404, {"Content-Type": "text/plain; charset=utf-8"}
+        if terminal_request:
+            api_logger.log_api_request(subject_link, question_no, "not_found")
+        return _text_response(_available_subjects_text(), 404)
 
     question = data["_q_index"].get(str(question_no))
     if not question:
-        return _question_not_found_text(subject_link, data.get("questions", [])), 404, {"Content-Type": "text/plain; charset=utf-8"}
+        if terminal_request:
+            api_logger.log_api_request(subject_link, question_no, "not_found")
+        return _text_response(_question_not_found_text(subject_link, data.get("questions", [])), 404)
 
     no_question = request.args.get("no_question") == "1"
     split = request.args.get("split")
@@ -198,10 +212,16 @@ def answer_api(subject_link, question_no):
 
     if status == 404:
         if cached_question is None:
-            return _question_not_found_text(subject_link, data.get("questions", [])), 404, {"Content-Type": "text/plain; charset=utf-8"}
+            if terminal_request:
+                api_logger.log_api_request(subject_link, question_no, "not_found")
+            return _text_response(_question_not_found_text(subject_link, data.get("questions", [])), 404)
         if isinstance(cached_contents, str):
-            return cached_contents, 404, {"Content-Type": "text/plain; charset=utf-8"}
-        return "No answer files", 404, {"Content-Type": "text/plain; charset=utf-8"}
+            if terminal_request:
+                api_logger.log_api_request(subject_link, question_no, "not_found")
+            return _text_response(cached_contents, 404)
+        if terminal_request:
+            api_logger.log_api_request(subject_link, question_no, "not_found")
+        return _text_response("No answer files", 404)
 
     question = cached_question
     contents = list(cached_contents)
@@ -210,10 +230,10 @@ def answer_api(subject_link, question_no):
         try:
             index = int(split) - 1
             if index < 0 or index >= len(contents):
-                return "Invalid split index", 400, {"Content-Type": "text/plain"}
+                return _text_response("Invalid split index", 400)
             contents = [contents[index]]
         except ValueError:
-            return "Invalid split parameter", 400, {"Content-Type": "text/plain"}
+            return _text_response("Invalid split parameter", 400)
 
     output = []
     if not no_question:
@@ -230,18 +250,10 @@ def answer_api(subject_link, question_no):
 
     response_text = "\n".join(output).strip()
 
-    if _is_terminal_request(request):
-        api_logger.log_api_request(
-            subject_link,
-            question_no,
-            request.remote_addr,
-            request.headers.get("User-Agent", "")
-        )
-
-    return response_text, 200, {
-        "Content-Type": "text/plain; charset=utf-8",
-        "Cache-Control": "public, max-age=3600"
-    }
+    response = _text_response(response_text, 200)
+    if terminal_request:
+        api_logger.log_api_request(subject_link, question_no, "success")
+    return response
 
 raw_api_bp = Blueprint('raw_api', __name__)
 
@@ -250,4 +262,6 @@ def raw_answer_file(subject_link, filename):
     subject_dir = os.path.join(ANSWERS_DIR, subject_link)
     if not os.path.exists(os.path.join(subject_dir, filename)):
         abort(404)
-    return send_from_directory(subject_dir, filename)
+    response = send_from_directory(subject_dir, filename)
+    response.headers["Cache-Control"] = "public, max-age=86400, immutable"
+    return response

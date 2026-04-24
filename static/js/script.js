@@ -2,7 +2,6 @@
 // Configuration & Constants
 // =============================================================================
 const CONFIG = {
-    GTM_DELAY: 3000,
     COPY_FEEDBACK_DURATION: 3000,
     CACHE_ENABLED: true,
     LOG_LEVEL: 'info' // 'debug', 'info', 'warn', 'error'
@@ -62,7 +61,7 @@ const Logger = {
 // Answer Cache Management
 // =============================================================================
 const AnswerCache = {
-    _cache: new Map(),
+    _storage: window.sessionStorage,
     _stats: {
         hits: 0,
         misses: 0,
@@ -73,16 +72,17 @@ const AnswerCache = {
         return `${subject}-${questionNo}-${fileIndex}`;
     },
     
-    has(key) {
-        return this._cache.has(key);
-    },
-    
     get(key) {
         this._stats.total++;
-        if (this._cache.has(key)) {
-            this._stats.hits++;
-            Logger.debug(`Cache HIT for key: ${key}`);
-            return this._cache.get(key);
+        try {
+            const value = this._storage.getItem(key);
+            if (value !== null) {
+                this._stats.hits++;
+                Logger.debug(`Cache HIT for key: ${key}`);
+                return value;
+            }
+        } catch (error) {
+            Logger.warn('Cache read failed', error);
         }
         this._stats.misses++;
         Logger.debug(`Cache MISS for key: ${key}`);
@@ -90,23 +90,36 @@ const AnswerCache = {
     },
     
     set(key, value) {
-        this._cache.set(key, value);
-        Logger.debug(`Cache SET for key: ${key}, size: ${value.length} chars`);
+        try {
+            this._storage.setItem(key, value);
+            Logger.debug(`Cache SET for key: ${key}, size: ${value.length} chars`);
+        } catch (error) {
+            Logger.warn('Cache write failed', error);
+        }
     },
     
     clear() {
-        const size = this._cache.size;
-        this._cache.clear();
-        Logger.info(`Cache cleared, removed ${size} entries`);
+        try {
+            this._storage.clear();
+            Logger.info('Session cache cleared');
+        } catch (error) {
+            Logger.warn('Cache clear failed', error);
+        }
     },
     
     getStats() {
+        let size = 0;
+        try {
+            size = this._storage.length;
+        } catch (error) {
+            Logger.warn('Cache stats unavailable', error);
+        }
         return {
             ...this._stats,
             hitRate: this._stats.total > 0 
                 ? (this._stats.hits / this._stats.total * 100).toFixed(2) + '%'
                 : '0%',
-            size: this._cache.size
+            size: size
         };
     },
     
@@ -121,6 +134,106 @@ const AnswerCache = {
         Logger.groupEnd();
     }
 };
+
+const ActiveRequests = {
+    _requests: new Map(),
+
+    get(key) {
+        return this._requests.get(key) || null;
+    },
+
+    set(key, promise) {
+        this._requests.set(key, promise);
+        return promise;
+    },
+
+    delete(key) {
+        this._requests.delete(key);
+    }
+};
+
+const PrefetchManager = {
+    _questionMeta: Array.isArray(window.subjectQuestionPrefetchMap) ? window.subjectQuestionPrefetchMap : [],
+    _prefetchedQuestions: new Set(),
+
+    prefetchNext(subject, currentQuestionNo) {
+        const currentIndex = this._questionMeta.findIndex((item) => String(item) === String(currentQuestionNo));
+        if (currentIndex === -1 || currentIndex >= this._questionMeta.length - 1) {
+            return;
+        }
+
+        const nextQuestionNo = String(this._questionMeta[currentIndex + 1]);
+        if (this._prefetchedQuestions.has(nextQuestionNo)) {
+            return;
+        }
+        this._prefetchedQuestions.add(nextQuestionNo);
+
+        fetchAnswerText(subject, nextQuestionNo, 1).catch((error) => {
+            Logger.debug('Prefetch skipped after fetch error', error);
+        });
+    }
+};
+
+async function loadMarkedIfNeeded() {
+    if (typeof marked !== 'undefined') {
+        return;
+    }
+
+    Logger.info('marked.js not ready yet, loading on demand');
+    await new Promise((resolve, reject) => {
+        const existing = document.querySelector('script[data-marked-loader="true"]');
+        if (existing) {
+            existing.addEventListener('load', resolve, { once: true });
+            existing.addEventListener('error', reject, { once: true });
+            return;
+        }
+
+        const s = document.createElement('script');
+        s.src = 'https://cdn.jsdelivr.net/npm/marked/marked.min.js';
+        s.dataset.markedLoader = 'true';
+        s.onload = resolve;
+        s.onerror = reject;
+        document.head.appendChild(s);
+    });
+}
+
+async function fetchAnswerText(subject, questionNo, fileIndex) {
+    const cacheKey = AnswerCache.generateKey(subject, questionNo, fileIndex);
+    const cachedValue = CONFIG.CACHE_ENABLED ? AnswerCache.get(cacheKey) : null;
+    if (cachedValue !== null) {
+        return cachedValue;
+    }
+
+    const activeRequest = ActiveRequests.get(cacheKey);
+    if (activeRequest) {
+        Logger.debug(`Skipping duplicate request for key: ${cacheKey}`);
+        return activeRequest;
+    }
+
+    const apiUrl = `/api/${subject}/${questionNo}?no_question=1&split=${fileIndex}`;
+    Logger.debug(`Fetching from API: ${apiUrl}`);
+
+    const requestPromise = fetch(apiUrl)
+        .then((response) => {
+            Logger.debug(`Response status: ${response.status} ${response.statusText}`);
+            if (!response.ok) {
+                throw new Error(`HTTP ${response.status}: ${response.statusText}`);
+            }
+            return response.text();
+        })
+        .then((text) => {
+            const trimmedText = text.trim();
+            if (CONFIG.CACHE_ENABLED) {
+                AnswerCache.set(cacheKey, trimmedText);
+            }
+            return trimmedText;
+        })
+        .finally(() => {
+            ActiveRequests.delete(cacheKey);
+        });
+
+    return ActiveRequests.set(cacheKey, requestPromise);
+}
 
 // =============================================================================
 // Modal Management
@@ -201,7 +314,6 @@ async function loadAnswer(subject, questionNo, title, button, fileName, fileInde
     Logger.info(`Subject: ${subject}, Question: ${questionNo}, File: ${fileName}, Index: ${fileIndex}`);
     
     const startTime = performance.now();
-    const cacheKey = AnswerCache.generateKey(subject, questionNo, fileIndex);
 
     // Find the global answer box
     const answerBox = document.getElementById('globalAnswerBox');
@@ -233,47 +345,13 @@ async function loadAnswer(subject, questionNo, title, button, fileName, fileInde
     let trimmedText = '';
 
     try {
-        // Check cache first
-        if (CONFIG.CACHE_ENABLED && AnswerCache.has(cacheKey)) {
-            trimmedText = AnswerCache.get(cacheKey);
-            Logger.info(`Answer fetched from cache`);
-        } else {
-            // Fetch from API
-            const apiUrl = `/api/${subject}/${questionNo}?no_question=1&split=${fileIndex}`;
-            Logger.debug(`Fetching from API: ${apiUrl}`);
-
-            const response = await fetch(apiUrl);
-            
-            Logger.debug(`Response status: ${response.status} ${response.statusText}`);
-
-            if (!response.ok) {
-                throw new Error(`HTTP ${response.status}: ${response.statusText}`);
-            }
-
-            const text = await response.text();
-            trimmedText = text.trim();
-            
-            Logger.debug(`Response received: ${trimmedText.length} characters`);
-            
-            // Cache the result
-            if (CONFIG.CACHE_ENABLED) {
-                AnswerCache.set(cacheKey, trimmedText);
-            }
-        }
+        trimmedText = await fetchAnswerText(subject, questionNo, fileIndex);
+        Logger.debug(`Response received: ${trimmedText.length} characters`);
 
         const ext = fileName.split('.').pop().toLowerCase();
 
         if (ext === 'md' || ext === 'ipynb') {
-            if (typeof marked === 'undefined') {
-                Logger.info('Lazy loading marked.js');
-                await new Promise((resolve, reject) => {
-                    const s = document.createElement('script');
-                    s.src = 'https://cdn.jsdelivr.net/npm/marked/marked.min.js';
-                    s.onload = resolve;
-                    s.onerror = reject;
-                    document.head.appendChild(s);
-                });
-            }
+            await loadMarkedIfNeeded();
         }
 
         let mediaContainer = answerBox.querySelector('.media-content');
@@ -296,8 +374,9 @@ async function loadAnswer(subject, questionNo, title, button, fileName, fileInde
 
         const downloadBtn = answerBox.querySelector('.download-btn');
         if (downloadBtn) {
-            downloadBtn.onclick = () => downloadFile(rawUrl, fileName);
-            downloadBtn.style.display = 'flex';
+            downloadBtn.href = rawUrl;
+            downloadBtn.setAttribute('download', fileName);
+            downloadBtn.style.display = 'inline-flex';
         }
 
         if (['pdf'].includes(ext)) {
@@ -368,6 +447,7 @@ async function loadAnswer(subject, questionNo, title, button, fileName, fileInde
         }
 
         codeContent.classList.remove('loading');
+        PrefetchManager.prefetchNext(subject, questionNo);
         
 
 
@@ -493,35 +573,6 @@ function copyCell(elementId, btn) {
     }).finally(() => {
         Logger.groupEnd();
     });
-}
-
-// =============================================================================
-// Download File Function
-// =============================================================================
-async function downloadFile(url, fileName) {
-    Logger.group('Download File');
-    Logger.info(`Downloading from: ${url}`);
-    
-    try {
-        const response = await fetch(url);
-        if (!response.ok) throw new Error('Network response was not ok');
-        const blob = await response.blob();
-        const blobUrl = window.URL.createObjectURL(blob);
-        const a = document.createElement('a');
-        a.style.display = 'none';
-        a.href = blobUrl;
-        a.download = fileName;
-        document.body.appendChild(a);
-        a.click();
-        window.URL.revokeObjectURL(blobUrl);
-        document.body.removeChild(a);
-        Logger.info('File downloaded successfully');
-    } catch (error) {
-        Logger.error('Download failed', error);
-        alert('Failed to download the file. Please try again.');
-    } finally {
-        Logger.groupEnd();
-    }
 }
 
 // =============================================================================

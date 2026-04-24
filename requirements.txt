@@ -1,4 +1,6 @@
 Flask==3.1.0
+flask-compress
 gunicorn
 psycopg2-binary
 requests
+python-dotenv

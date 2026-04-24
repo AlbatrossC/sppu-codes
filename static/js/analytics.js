@@ -1,89 +1,59 @@
-/**
- * Central Analytics & Ad Loader (AdSense-safe)
- * - Loads Clarity & Vercel everywhere
- * - Loads AdSense only when allowed
- * - NEVER controls ad frequency, timing, or formats
- */
-
 (function () {
   'use strict';
 
-  /* ==============================
-     CONFIG
-  ============================== */
   const ADSENSE_CLIENT = 'ca-pub-6918638598461716';
-  const CLARITY_ID = 'qnqi8o9y94';
-
-  /* ==============================
-     PAGE DETECTION (READ-ONLY)
-  ============================== */
   const path = window.location.pathname;
-
-  const isViewerPage =
-    path.startsWith('/question-papers/') &&
-    path !== '/question-papers';
-
-  const isSubjectPage =
-    /^\/[^\/]+\/?$/.test(path) &&
-    !['/', '/submit', '/contact', '/question-papers', '/sitemap'].includes(path);
-
+  const hostname = window.location.hostname;
   const isNoAdPage =
     ['/submit', '/contact'].includes(path);
-
-  /* Subject pages have manual <ins> ads */
   const hasManualAds =
     document.querySelector('ins.adsbygoogle') !== null;
+  const canLoadVercelInsights =
+    hostname !== 'localhost' &&
+    hostname !== '127.0.0.1';
 
-  /* ==============================
-     ANALYTICS (ALWAYS SAFE)
-  ============================== */
-  initGTM();
-  initClarity();
-  initVercel();
+  if (canLoadVercelInsights) {
+    initVercel();
+  }
 
-  /* ==============================
-     ADSENSE (SAFE GATE)
-  ============================== */
   if (isNoAdPage) {
     log('Ads disabled (no-ad page)');
     return;
   }
 
-  if (hasManualAds) {
-    log('Manual ads detected (subject page)');
+  deferNonCritical(function () {
+    if (hasManualAds) {
+      log('Manual ads detected (subject page)');
+      loadAdSenseBase(initializeManualAds);
+      return;
+    }
+
+    log('Loading lightweight analytics and ads');
     loadAdSenseBase();
-    return;
+  });
+
+  function deferNonCritical(callback) {
+    function runWhenIdle() {
+      if ('requestIdleCallback' in window) {
+        window.requestIdleCallback(callback, { timeout: 3000 });
+      } else {
+        window.setTimeout(callback, 1500);
+      }
+    }
+
+    if (document.readyState === 'complete') {
+      runWhenIdle();
+      return;
+    }
+
+    window.addEventListener('load', runWhenIdle, { once: true });
   }
 
-  if (isViewerPage) {
-    log('Viewer page → allow vignette/anchor via AdSense UI');
-    loadAdSenseBase();
-    return;
-  }
-
-  // Normal pages
-  log('Normal page → auto ads allowed');
-  loadAdSenseBase();
-
-  /* ==============================
-     FUNCTIONS
-  ============================== */
-
-  function initGTM() {
-    (function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
-    new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
-    j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
-    'https://www.googletagmanager.com/gtag/js?id='+i+dl;f.parentNode.insertBefore(j,f);
-    })(window,document,'script','dataLayer','G-1R5FFVKTF8');
-    
-    window.dataLayer = window.dataLayer || [];
-    function gtag() { window.dataLayer.push(arguments); }
-    gtag('js', new Date());
-    gtag('config', 'G-1R5FFVKTF8');
-  }
-
-  function loadAdSenseBase() {
-    if (window.__ADSENSE_LOADED__) return;
+  function loadAdSenseBase(onReady) {
+    if (window.__ADSENSE_LOADED__) {
+      if (typeof onReady === 'function') onReady();
+      return;
+    }
 
     window.__ADSENSE_LOADED__ = true;
 
@@ -93,23 +63,17 @@
       'https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=' +
       ADSENSE_CLIENT;
     s.crossOrigin = 'anonymous';
+    if (typeof onReady === 'function') {
+      s.addEventListener('load', onReady, { once: true });
+    }
 
     document.head.appendChild(s);
   }
 
-  function initClarity() {
-    (function (c, l, a, r, i, t, y) {
-      c[a] =
-        c[a] ||
-        function () {
-          (c[a].q = c[a].q || []).push(arguments);
-        };
-      t = l.createElement(r);
-      t.async = 1;
-      t.src = 'https://www.clarity.ms/tag/' + i;
-      y = l.getElementsByTagName(r)[0];
-      y.parentNode.insertBefore(t, y);
-    })(window, document, 'clarity', 'script', CLARITY_ID);
+  function initializeManualAds() {
+    if (typeof window.__initManualAds === 'function') {
+      window.__initManualAds();
+    }
   }
 
   function initVercel() {

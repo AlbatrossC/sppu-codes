@@ -14,19 +14,17 @@ def index():
 def submit_code():
     if request.method == "POST":
         name = request.form.get("name", "Anonymous")
-        year = request.form.get("year")
-        branch = request.form.get("branch")
+        email = request.form.get("email", "").strip()
         subject = request.form.get("subject")
-        question = request.form.get("question")
-        answer = request.form.get("answer")
+        answer = request.form.get("answer") or request.form.get("code")
 
-        if save_submission(name, year, branch, subject, question, answer):
+        if save_submission(name, email, subject, answer):
             flash("Your code has been submitted successfully! It will be reviewed shortly.", "success")
             send_discord_notification("submit", {
                 "name": name,
-                "year": year,
-                "branch": branch,
-                "subject": subject
+                "email": email or "Not provided",
+                "subject": subject,
+                "code_length": len(answer or "")
             })
         else:
             flash("An error occurred while saving your submission. Please try again.", "error")

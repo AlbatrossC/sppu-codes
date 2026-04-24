@@ -1,4 +1,7 @@
 import os
+from dotenv import load_dotenv
+
+load_dotenv()
 
 BASE_DIR = os.path.abspath(os.path.join(os.path.dirname(__file__), '..'))
 QUESTIONS_DIR = os.path.join(BASE_DIR, "questions")
@@ -17,6 +20,6 @@ QP_SEO_DIR = os.path.join(QUESTION_PAPERS_DIR, "pyqs-seo")
 DATABASE_URL = os.getenv("DATABASE_URL")
 DISCORD_WEBHOOK_URL = os.getenv("DISCORD_WEBHOOK_URL")
 MAINTENANCE_MODE = os.getenv("MAINTENANCE_MODE", "false").lower() == "true"
-SECRET_KEY = os.getenv("SECRET_KEY", "karltos")
+SECRET_KEY = os.getenv("SECRET_KEY") or os.getenv("FLASK_SECRET_KEY", "karltos")
 
 print(f"[PDF Source] Using '{PDF_SOURCE}' -> {QP_PDF_DIR}")

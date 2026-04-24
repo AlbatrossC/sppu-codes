@@ -1,48 +1,40 @@
-import queue
 import threading
 
-from .db import save_api_request
+from .db import save_api_request, save_paper_download
+
+
+def _run_in_background(target, *args):
+    thread = threading.Thread(target=target, args=args, daemon=True)
+    thread.start()
+    return True
+
+
+def log_api_request_async(subject_link, question_no, status):
+    def task():
+        try:
+            save_api_request(subject_link, question_no, status)
+        except Exception:
+            pass
+
+    return _run_in_background(task)
+
+
+def log_paper_download_async(fingerprint_id, subject):
+    def task():
+        try:
+            save_paper_download(fingerprint_id, subject)
+        except Exception:
+            pass
+
+    return _run_in_background(task)
 
 
 class AsyncAPILogger:
-    def __init__(self, maxsize=1000):
-        self._queue = queue.Queue(maxsize=maxsize)
-        self._thread = None
-        self._lock = threading.Lock()
-
     def start(self):
-        if self._thread and self._thread.is_alive():
-            return
+        return None
 
-        with self._lock:
-            if self._thread and self._thread.is_alive():
-                return
-
-            self._thread = threading.Thread(
-                target=self._worker,
-                name="api-request-logger",
-                daemon=True,
-            )
-            self._thread.start()
-
-    def log_api_request(self, subject_link, question_no, ip_address, user_agent):
-        try:
-            self._queue.put_nowait(
-                (subject_link, str(question_no), ip_address or "", user_agent or "")
-            )
-        except queue.Full:
-            return False
-        return True
-
-    def _worker(self):
-        while True:
-            item = self._queue.get()
-            try:
-                save_api_request(*item)
-            except Exception as exc:
-                print(f"Async API logger error: {exc}")
-            finally:
-                self._queue.task_done()
+    def log_api_request(self, subject_link, question_no, status):
+        return log_api_request_async(subject_link, question_no, status)
 
 
 api_logger = AsyncAPILogger()

@@ -1,5 +1,9 @@
+import os
 import psycopg2
-from .config import DATABASE_URL
+from .config import BASE_DIR, DATABASE_URL
+
+
+SCHEMA_PATH = os.path.join(BASE_DIR, "schema.sql")
 
 def get_db_connection():
     """Establishes a connection to the PostgreSQL database."""
@@ -20,39 +24,31 @@ def init_db():
         return
 
     try:
+        with open(SCHEMA_PATH, "r", encoding="utf-8") as schema_file:
+            schema_sql = schema_file.read()
+
         with conn:
             with conn.cursor() as cur:
-                cur.execute("""
-                    CREATE TABLE IF NOT EXISTS submissions (
-                        id SERIAL PRIMARY KEY,
-                        name VARCHAR(100),
-                        year VARCHAR(10),
-                        branch VARCHAR(50),
-                        subject VARCHAR(200),
-                        question TEXT,
-                        answer TEXT,
-                        created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
-                    );
-                """)
-                cur.execute("""
-                    CREATE TABLE IF NOT EXISTS contacts (
-                        id SERIAL PRIMARY KEY,
-                        name VARCHAR(100),
-                        email VARCHAR(150),
-                        message TEXT,
-                        created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
-                    );
-                """)
-                cur.execute("""
-                    CREATE TABLE IF NOT EXISTS api_requests (
-                        id BIGSERIAL PRIMARY KEY,
-                        subject_link VARCHAR(100) NOT NULL,
-                        question_no VARCHAR(50) NOT NULL,
-                        ip_address VARCHAR(100),
-                        user_agent TEXT,
-                        created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
-                    );
-                """)
+                cur.execute(schema_sql)
+                cur.execute(
+                    """
+                    ALTER TABLE paper_downloads
+                    ADD COLUMN IF NOT EXISTS download_count INTEGER
+                    """
+                )
+                cur.execute(
+                    """
+                    UPDATE paper_downloads
+                    SET download_count = 1
+                    WHERE download_count IS NULL
+                    """
+                )
+                cur.execute(
+                    """
+                    ALTER TABLE paper_downloads
+                    ALTER COLUMN download_count SET NOT NULL
+                    """
+                )
         print("Database initialized successfully.")
     except Exception as e:
         print(f"Error initializing database: {e}")
@@ -60,7 +56,7 @@ def init_db():
         conn.close()
 
 
-def save_submission(name, year, branch, subject, question, answer):
+def save_submission(name, email, subject, code):
     """Saves a code submission to the database."""
     conn = get_db_connection()
     if not conn:
@@ -70,8 +66,11 @@ def save_submission(name, year, branch, subject, question, answer):
         with conn:
             with conn.cursor() as cur:
                 cur.execute(
-                    "INSERT INTO submissions (name, year, branch, subject, question, answer) VALUES (%s, %s, %s, %s, %s, %s)",
-                    (name, year, branch, subject, question, answer)
+                    """
+                    INSERT INTO code_submissions (name, email, subject, code)
+                    VALUES (%s, %s, %s, %s)
+                    """,
+                    (name, email, subject, code)
                 )
         return True
     except Exception as e:
@@ -91,7 +90,10 @@ def save_contact(name, email, message):
         with conn:
             with conn.cursor() as cur:
                 cur.execute(
-                    "INSERT INTO contacts (name, email, message) VALUES (%s, %s, %s)",
+                    """
+                    INSERT INTO contact_messages (name, email, message)
+                    VALUES (%s, %s, %s)
+                    """,
                     (name, email, message)
                 )
         return True
@@ -102,7 +104,7 @@ def save_contact(name, email, message):
         conn.close()
 
 
-def save_api_request(subject_link, question_no, ip_address, user_agent):
+def save_api_request(subject_link, question_no, status):
     """Saves an API request log entry."""
     conn = get_db_connection()
     if not conn:
@@ -113,14 +115,43 @@ def save_api_request(subject_link, question_no, ip_address, user_agent):
             with conn.cursor() as cur:
                 cur.execute(
                     """
-                    INSERT INTO api_requests (subject_link, question_no, ip_address, user_agent)
-                    VALUES (%s, %s, %s, %s)
+                    INSERT INTO api_requests (subject, question_no, status)
+                    VALUES (%s, %s, %s)
                     """,
-                    (subject_link, str(question_no), ip_address, user_agent),
+                    (subject_link, str(question_no), status),
                 )
         return True
     except Exception as e:
         print(f"API log error: {e}")
+        return False
+    finally:
+        conn.close()
+
+
+def save_paper_download(fingerprint_id, subject):
+    """Saves a paper download log entry."""
+    conn = get_db_connection()
+    if not conn:
+        return False
+
+    try:
+        with conn:
+            with conn.cursor() as cur:
+                cur.execute(
+                    """
+                    INSERT INTO paper_downloads (fingerprint_id, subject, download_count)
+                    SELECT
+                        %s,
+                        %s,
+                        COALESCE(MAX(download_count), 0) + 1
+                    FROM paper_downloads
+                    WHERE fingerprint_id = %s
+                    """,
+                    (fingerprint_id, subject, fingerprint_id),
+                )
+        return True
+    except Exception as e:
+        print(f"Paper download log error: {e}")
         return False
     finally:
         conn.close()

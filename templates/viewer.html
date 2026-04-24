@@ -24,6 +24,7 @@
         content="Download and view {% if seo_data.subject_name %}{{ seo_data.subject_name }}{% else %}{{ subject_link.replace('-fy', '').replace('-aids', '').replace('-cse', '').replace('-', ' ').title() }}{% endif %} question papers online. Access INSEM and ENDSEM papers with our PDF viewer.">
 
     <link rel="canonical" href="https://sppucodes.vercel.app/question-papers/{{ subject_link }}">
+    <link rel="preload" href="https://openfpcdn.io/fingerprintjs/v4" as="script">
 
     <meta property="og:title" content="{{ seo_data.title | safe }}">
     <meta property="og:description" content="{{ seo_data.description | safe }}">
@@ -48,6 +49,7 @@
 
     <link href="/images/favicon.ico" rel="icon" fetchpriority="high" type="image/x-icon">
     <link href="{{ url_for('static', filename='css/viewer.css') }}?v=3.1" rel="stylesheet">
+    <script src="https://openfpcdn.io/fingerprintjs/v4" defer></script>
     <script src="{{ url_for('static', filename='js/analytics.js') }}?v=3.0" defer></script>
 
     <!-- Set subject name variable with fallback -->
@@ -465,6 +467,47 @@
 
         var initialPdfDataFromServer = {{ pdf_data_for_js | tojson | safe }};
         var subjectNameFromServer = {{ (seo_data.subject_name or subject_name) | tojson | safe }};
+        var subjectLinkFromServer = {{ subject_link | tojson | safe }};
+
+        window.paperDownloadContext = {
+            subjectLink: subjectLinkFromServer,
+            subjectName: subjectNameFromServer,
+            fingerprintPromise: (async function () {
+                async function waitForFingerprintJs() {
+                    for (var attempt = 0; attempt < 20; attempt++) {
+                        if (window.FingerprintJS && typeof window.FingerprintJS.load === 'function') {
+                            return true;
+                        }
+                        await new Promise(function (resolve) { setTimeout(resolve, 100); });
+                    }
+                    return false;
+                }
+
+                try {
+                    if (await waitForFingerprintJs()) {
+                        var fp = await window.FingerprintJS.load();
+                        var result = await fp.get();
+                        return result.visitorId;
+                    }
+                } catch (error) {
+                    console.warn('FingerprintJS unavailable, using fallback fingerprint.', error);
+                }
+
+                try {
+                    var fallbackKey = 'paper-download-fingerprint';
+                    var cachedFallback = window.localStorage.getItem(fallbackKey);
+                    if (cachedFallback) {
+                        return cachedFallback;
+                    }
+                    var generated = 'fp-' + Math.random().toString(36).slice(2) + Date.now().toString(36);
+                    window.localStorage.setItem(fallbackKey, generated);
+                    return generated;
+                } catch (storageError) {
+                    console.warn('Fingerprint fallback storage failed.', storageError);
+                    return 'fp-anon';
+                }
+            })()
+        };
 
         // Custom Dropdown Component with improved logic
         var CustomDropdown = {

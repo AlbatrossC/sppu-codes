@@ -33,10 +33,13 @@
     <link rel="preload" href="{{ url_for('static', filename='css/subjectlayout.css') }}?v=2.1" as="style">
     <link rel="preload" href="{{ url_for('static', filename='css/answerbox.css') }}?v=1.9" as="style">
     <link rel="preload" href="{{ url_for('static', filename='css/fonts.css') }}?v=1.0" as="style">
+    <link rel="preload" href="/static/fonts/JetBrainsMono-Regular.woff2" as="font" type="font/woff2" crossorigin>
+    <link rel="preload" href="https://cdn.jsdelivr.net/npm/marked/marked.min.js" as="script">
 
     <link rel="stylesheet" href="{{ url_for('static', filename='css/fonts.css') }}?v=1.0">
     <link rel="stylesheet" href="{{ url_for('static', filename='css/answerbox.css') }}?v=1.9">
     <link rel="stylesheet" href="{{ url_for('static', filename='css/subjectlayout.css') }}?v=2.1">
+    <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js" defer></script>
     <script src="{{ url_for('static', filename='js/script.js') }}?v=2.0" defer></script>
     <script src="{{ url_for('static', filename='js/analytics.js') }}?v=3.0" defer></script>
     <link rel="icon" href="/images/favicon.ico" type="image/x-icon">
@@ -145,9 +148,6 @@
             <div class="ad-slot wide-skyscraper">
                 <ins class="adsbygoogle" style="display:inline-block;width:160px;height:600px"
                     data-ad-client="ca-pub-6918638598461716" data-ad-slot="1223389585"></ins>
-                <script>
-                    (adsbygoogle = window.adsbygoogle || []).push({});
-                </script>
             </div>
         </div>
     </div>
@@ -157,9 +157,6 @@
             <div class="ad-slot wide-skyscraper">
                 <ins class="adsbygoogle" style="display:inline-block;width:160px;height:600px"
                     data-ad-client="ca-pub-6918638598461716" data-ad-slot="3985284299"></ins>
-                <script>
-                    (adsbygoogle = window.adsbygoogle || []).push({});
-                </script>
             </div>
         </div>
     </div>
@@ -168,9 +165,6 @@
         <div class="ad-slot">
             <ins class="adsbygoogle" style="display:inline-block;width:300px;height:50px"
                 data-ad-client="ca-pub-6918638598461716" data-ad-slot="2408478746"></ins>
-            <script>
-                (adsbygoogle = window.adsbygoogle || []).push({});
-            </script>
         </div>
     </div>
 
@@ -286,22 +280,30 @@
             <pre id="globalCodeContent"></pre>
         </div>
         <div class="copy-close-container">
-            <button class="download-btn" id="globalDownloadBtn">Download</button>
+            <a class="download-btn" id="globalDownloadBtn" href="#" download>Download</a>
             <button class="copy-btn" onclick="copyCode('globalCodeContent')">Copy Code</button>
             <button class="close-btn" onclick="closeBox('globalAnswerBox')">Close</button>
         </div>
     </div>
 
     <script>
-        window.addEventListener('DOMContentLoaded', function () {
-            try {
-                (adsbygoogle = window.adsbygoogle || []).push({});
-                (adsbygoogle = window.adsbygoogle || []).push({});
-                (adsbygoogle = window.adsbygoogle || []).push({});
-            } catch (e) {
-                console.warn('AdSense initialization failed:', e);
+        window.subjectQuestionPrefetchMap = {{ question_prefetch_map | tojson | safe }};
+        window.__initManualAds = (function () {
+            let initialized = false;
+            return function () {
+                if (initialized) {
+                    return;
+                }
+                initialized = true;
+                try {
+                    document.querySelectorAll('ins.adsbygoogle').forEach(function () {
+                        (window.adsbygoogle = window.adsbygoogle || []).push({});
+                    });
+                } catch (e) {
+                    console.warn('AdSense initialization failed:', e);
+                }
             }
-        });
+        })();
     </script>
 </body>
 

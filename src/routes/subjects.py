@@ -21,6 +21,10 @@ def subject_page(subject_link, question_id=None):
     questions = data.get("questions", [])
     groups = data.get("processed_groups", {})
     sorted_groups = data.get("sorted_groups", [])
+    question_prefetch_map = [
+        str(question_item.get("question_no"))
+        for question_item in questions
+    ]
 
     selected_question = None
     if question_id:
@@ -57,5 +61,6 @@ def subject_page(subject_link, question_id=None):
         question_paper_url=subject.get("question_paper_url"),
         groups=groups,
         sorted_groups=sorted_groups,
-        question=selected_question
+        question=selected_question,
+        question_prefetch_map=question_prefetch_map
     )

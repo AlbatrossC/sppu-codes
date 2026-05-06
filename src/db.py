@@ -78,7 +78,6 @@ def _init_db_once():
     """Creates necessary tables if they don't exist."""
     conn = get_db_connection()
     if not conn:
-        print("Warning: DATABASE_URL not set. Schema auto-migration skipped.")
         return False
 
     try:

@@ -49,8 +49,6 @@
 
     <link href="/images/favicon.ico" rel="icon" fetchpriority="high" type="image/x-icon">
     <link href="{{ url_for('static', filename='css/viewer.css') }}?v=3.1" rel="stylesheet">
-    <meta name="google-analytics-id" content="{{ google_analytics_id }}">
-    <meta name="microsoft-clarity-id" content="{{ microsoft_clarity_id }}">
     <script src="https://openfpcdn.io/fingerprintjs/v4" defer></script>
     <script src="{{ url_for('static', filename='js/analytics.js') }}?v=3.0" defer></script>
 
@@ -619,27 +617,29 @@
         };
 
         // Single source of truth for default exam type
-        var DEFAULT_EXAM_TYPE = 'insem';
+        var DEFAULT_EXAM_TYPE = {{ default_exam_type | tojson | safe }};
 
         var state = {
             pdfFiles: [],
             isRendering: false,
             activeObjectURLs: new Map(),
+            inflightPdfRequests: new Map(),
             renderQueue: Promise.resolve(),
             pdfViewerBase: '/static/pdfjs/web/viewer.html',
             serviceWorkerReady: false,
             cachedPdfs: new Set(),
-            cacheProgress: { total: 0, completed: 0, failed: 0 },
             preloadComplete: false,
             watermarkHidden: false,
             currentLayout: '1',
-            currentExamType: DEFAULT_EXAM_TYPE
+            currentExamType: DEFAULT_EXAM_TYPE,
+            activeRenderToken: 0,
+            iframeLoadTokens: new WeakMap(),
+            nextIframeLoadToken: 0
         };
 
-        // Enhanced Service Worker Manager with better caching
+        // Service worker keeps static viewer assets warm; PDF bodies are cached separately.
         var ServiceWorkerManager = {
             register: function () {
-                var self = this;
                 if ('serviceWorker' in navigator) {
                     return navigator.serviceWorker.register('/sw.js')
                         .then(function () {
@@ -647,10 +647,6 @@
                         })
                         .then(function (registration) {
                             state.serviceWorkerReady = true;
-                            navigator.serviceWorker.addEventListener('message', function (e) {
-                                self.handleMessage(e);
-                            });
-                            self.cleanCache();
                             Logger.info('Service Worker ready for offline caching');
                             return registration;
                         })
@@ -662,116 +658,172 @@
                 Logger.warn('Service Worker not supported in this browser');
                 return Promise.resolve(null);
             },
+        };
 
-            handleMessage: function (event) {
-                var type = event.data.type;
-                var data = event.data.data;
-                switch (type) {
-                    case 'PDF_DOWNLOAD_START':
-                        state.cacheProgress.total++;
-                        break;
-                    case 'PDF_DOWNLOAD_COMPLETE':
-                        state.cachedPdfs.add(data.url);
-                        state.cacheProgress.completed++;
-                        Logger.debug('PDF cached successfully', data.fileName);
-                        break;
-                    case 'PDF_DOWNLOAD_ERROR':
-                        state.cacheProgress.failed++;
-                        Logger.warn('Failed to cache PDF: ' + data.fileName);
-                        break;
-                    case 'PDF_CACHE_CHECK':
-                        data.cachedUrls.forEach(function (url) {
-                            state.cachedPdfs.add(url);
-                        });
-                        Logger.debug('Cache check complete', data.cachedUrls.length + ' PDFs cached');
-                        break;
-                }
-                var cp = state.cacheProgress;
-                if (cp.completed + cp.failed === cp.total && cp.total > 0) {
-                    Logger.info('Cache complete: ' + cp.completed + ' cached, ' + cp.failed + ' failed out of ' + cp.total + ' PDFs');
-                }
+        var PdfCacheManager = {
+            cacheName: 'sppu-pdf-runtime-v1',
+
+            isSupported: function () {
+                return typeof window.caches !== 'undefined';
             },
 
-            initiatePdfCaching: function (pdfUrls) {
-                if (!state.serviceWorkerReady || pdfUrls.length === 0) {
-                    return;
+            openCache: function () {
+                if (!this.isSupported()) {
+                    return Promise.resolve(null);
                 }
-                state.cacheProgress = { total: 0, completed: 0, failed: 0 };
-                Logger.info('Starting background cache for ' + pdfUrls.length + ' PDFs');
-                if (navigator.serviceWorker.controller) {
-                    navigator.serviceWorker.controller.postMessage({
-                        type: 'CACHE_PDFS',
-                        urls: pdfUrls
-                    });
-                }
+                return caches.open(this.cacheName);
             },
 
-            checkCachedPdfs: function (pdfUrls) {
-                if (!state.serviceWorkerReady) {
+            hydrateCacheState: function (pdfUrls) {
+                var self = this;
+                if (!self.isSupported() || !pdfUrls.length) {
                     return Promise.resolve([]);
                 }
-                return new Promise(function (resolve) {
-                    var messageChannel = new MessageChannel();
-                    messageChannel.port1.onmessage = function (event) {
-                        resolve(event.data.cachedUrls || []);
-                    };
-                    if (navigator.serviceWorker.controller) {
-                        navigator.serviceWorker.controller.postMessage({
-                            type: 'CHECK_CACHED_PDFS',
-                            urls: pdfUrls
-                        }, [messageChannel.port2]);
+
+                return self.openCache().then(function (cache) {
+                    if (!cache) {
+                        return [];
                     }
-                    setTimeout(function () { resolve([]); }, 1000);
+                    return Promise.all(pdfUrls.map(function (url) {
+                        return cache.match(url).then(function (response) {
+                            if (response && response.ok) {
+                                state.cachedPdfs.add(url);
+                                return url;
+                            }
+                            return null;
+                        }).catch(function () {
+                            return null;
+                        });
+                    }));
+                }).then(function (hits) {
+                    var cachedUrls = hits.filter(Boolean);
+                    Logger.debug('Hydrated PDF cache state', { cached: cachedUrls.length });
+                    return cachedUrls;
                 });
             },
 
-            cleanCache: function () {
-                if (state.serviceWorkerReady && navigator.serviceWorker.controller) {
-                    navigator.serviceWorker.controller.postMessage({ type: 'CLEAN_CACHE' });
-                    Logger.debug('Cache cleanup initiated');
+            getCachedResponse: function (pdfUrl) {
+                return this.openCache().then(function (cache) {
+                    if (!cache) {
+                        return null;
+                    }
+                    return cache.match(pdfUrl);
+                });
+            },
+
+            fetchResponse: function (pdfUrl, options) {
+                var self = this;
+                options = options || {};
+                if (state.inflightPdfRequests.has(pdfUrl)) {
+                    return state.inflightPdfRequests.get(pdfUrl).then(function (response) {
+                        return response.clone();
+                    });
                 }
+
+                var requestPromise = self.getCachedResponse(pdfUrl).then(function (cachedResponse) {
+                    if (cachedResponse && cachedResponse.ok) {
+                        state.cachedPdfs.add(pdfUrl);
+                        Logger.debug('PDF cache hit', pdfUrl.split('/').pop());
+                        return cachedResponse;
+                    }
+
+                    Logger.debug('Fetching PDF from network', pdfUrl.split('/').pop());
+                    return fetch(pdfUrl, { cache: 'no-store' }).then(function (response) {
+                        if (!response.ok) {
+                            throw new Error('HTTP ' + response.status);
+                        }
+                        if (self.isSupported() && !options.skipCache) {
+                            self.openCache().then(function (cache) {
+                                if (cache) {
+                                    cache.put(pdfUrl, response.clone()).catch(function (error) {
+                                        Logger.warn('Failed to persist PDF cache', error);
+                                    });
+                                }
+                            });
+                        }
+                        state.cachedPdfs.add(pdfUrl);
+                        return response;
+                    });
+                }).finally(function () {
+                    state.inflightPdfRequests.delete(pdfUrl);
+                });
+
+                state.inflightPdfRequests.set(pdfUrl, requestPromise);
+                return requestPromise.then(function (response) {
+                    return response.clone();
+                });
+            },
+
+            fetchBlobUrl: function (pdfUrl) {
+                return this.fetchResponse(pdfUrl).then(function (response) {
+                    return response.blob();
+                }).then(function (blob) {
+                    return URL.createObjectURL(blob);
+                });
+            },
+
+            warmPdf: function (pdfUrl) {
+                return this.fetchResponse(pdfUrl).then(function () {
+                    Logger.debug('Background cached PDF', pdfUrl.split('/').pop());
+                }).catch(function (error) {
+                    Logger.warn('Background PDF cache failed', {
+                        file: pdfUrl.split('/').pop(),
+                        message: error && error.message ? error.message : error
+                    });
+                });
             }
         };
 
-        // Enhanced Preload Manager
+        // Preload viewer shell and queue background PDF work one-by-one.
         var PreloadManager = {
-            preloadQueue: [],
-            maxConcurrent: 3,
-            activePreloads: 0,
+            viewerAssetUrls: [
+                '/static/pdfjs/web/viewer.html',
+                '/static/pdfjs/web/viewer.css',
+                '/static/pdfjs/web/viewer.mjs',
+                '/static/pdfjs/build/pdf.mjs',
+                '/static/pdfjs/build/pdf.worker.mjs'
+            ],
 
             preloadPdfViewer: function () {
-                state.preloadComplete = true;
-                return Promise.resolve();
-            },
-
-            addToPreloadQueue: function (pdfUrl, priority) {
-                var self = this;
-                priority = priority || 1;
-                this.preloadQueue.push({ url: pdfUrl, priority: priority });
-                this.preloadQueue.sort(function (a, b) {
-                    return b.priority - a.priority;
-                });
-                this.processQueue();
-            },
-
-            processQueue: function () {
-                var self = this;
-                if (this.activePreloads >= this.maxConcurrent || this.preloadQueue.length === 0) {
-                    return;
+                if (state.preloadComplete) {
+                    return Promise.resolve();
                 }
-                var item = this.preloadQueue.shift();
-                this.activePreloads++;
-                fetch(item.url, { cache: 'default' })
-                    .then(function () {
-                        Logger.debug('PDF preloaded', item.url.split('/').pop());
-                    })
-                    .catch(function () {
-                        Logger.debug('PDF preload failed', item.url.split('/').pop());
-                    })
-                    .finally(function () {
-                        self.activePreloads--;
-                        self.processQueue();
+                state.preloadComplete = true;
+
+                return Promise.allSettled(this.viewerAssetUrls.map(function (assetUrl) {
+                    return fetch(assetUrl, { cache: 'force-cache' });
+                })).then(function () {
+                    Logger.debug('PDF.js viewer assets preloaded');
+                });
+            },
+
+            queueSequentialLoads: function (visibleEntries, backgroundUrls, renderToken, firstLoadPromise) {
+                var sequence = firstLoadPromise || Promise.resolve();
+
+                visibleEntries.forEach(function (entry) {
+                    sequence = sequence.then(function () {
+                        if (renderToken !== state.activeRenderToken) {
+                            return;
+                        }
+                        return loadPdfIntoIframe(entry.iframe, entry.pdfUrl, entry.loader, 0, {
+                            renderToken: renderToken
+                        });
                     });
+                });
+
+                backgroundUrls.forEach(function (pdfUrl) {
+                    sequence = sequence.then(function () {
+                        if (renderToken !== state.activeRenderToken) {
+                            return;
+                        }
+                        return PdfCacheManager.warmPdf(pdfUrl);
+                    });
+                });
+
+                sequence.catch(function (error) {
+                    Logger.warn('Background PDF sequence interrupted', error);
+                });
+                return sequence;
             }
         };
 
@@ -825,8 +877,13 @@
             return result.join(' ');
         }
 
-        function loadPdfIntoIframe(iframe, pdfUrl, loader, retryCount) {
+        function loadPdfIntoIframe(iframe, pdfUrl, loader, retryCount, options) {
             retryCount = retryCount || 0;
+            options = options || {};
+            var renderToken = typeof options.renderToken === 'number' ? options.renderToken : state.activeRenderToken;
+            state.nextIframeLoadToken++;
+            var iframeLoadToken = state.nextIframeLoadToken;
+            state.iframeLoadTokens.set(iframe, iframeLoadToken);
             var oldObjectURL = state.activeObjectURLs.get(iframe);
             if (oldObjectURL) {
                 URL.revokeObjectURL(oldObjectURL);
@@ -839,53 +896,76 @@
                 return Promise.resolve();
             }
 
-            var isCached = state.cachedPdfs.has(pdfUrl);
             var fileName = pdfUrl.split('/').pop();
 
-            Logger.debug('Loading PDF: ' + fileName + (isCached ? ' (from cache)' : ' (from network)'));
+            Logger.debug('Loading PDF: ' + fileName + (state.cachedPdfs.has(pdfUrl) ? ' (from cache)' : ' (from network)'));
 
-            return fetch(pdfUrl, { cache: isCached ? 'force-cache' : 'default' })
-                .then(function (response) {
-                    if (!response.ok) {
-                        throw new Error('HTTP ' + response.status);
+            return PdfCacheManager.fetchBlobUrl(pdfUrl)
+                .then(function (fileUrlToLoad) {
+                    if (
+                        renderToken !== state.activeRenderToken ||
+                        !iframe.isConnected ||
+                        state.iframeLoadTokens.get(iframe) !== iframeLoadToken
+                    ) {
+                        URL.revokeObjectURL(fileUrlToLoad);
+                        return false;
                     }
-                    return response.blob();
-                })
-                .then(function (blob) {
-                    var fileUrlToLoad = URL.createObjectURL(blob);
+
                     state.activeObjectURLs.set(iframe, fileUrlToLoad);
-                    iframe.src = state.pdfViewerBase + '?file=' + encodeURIComponent(fileUrlToLoad);
+                    var viewerUrl = state.pdfViewerBase + '?file=' + encodeURIComponent(fileUrlToLoad);
 
-                    iframe.onload = function () {
-                        if (loader && loader.parentNode) {
-                            loader.remove();
+                    return new Promise(function (resolve, reject) {
+                        var settled = false;
+
+                        function finish(success) {
+                            if (settled) {
+                                return;
+                            }
+                            settled = true;
+                            resolve(success);
                         }
-                        Logger.debug('PDF loaded successfully: ' + fileName);
 
-                        // Apply watermark state if needed
-                        if (state.watermarkHidden) {
-                            setTimeout(function () {
-                                WatermarkManager.sendCommandToIframe(iframe, 'remove');
-                            }, 500);
-                        }
-                    };
+                        iframe.onload = function () {
+                            if (state.iframeLoadTokens.get(iframe) !== iframeLoadToken) {
+                                finish(false);
+                                return;
+                            }
+                            if (loader && loader.parentNode) {
+                                loader.remove();
+                            }
+                            Logger.debug('PDF loaded successfully: ' + fileName);
 
-                    iframe.onerror = function () {
-                        showPdfError(iframe, loader, 'Error loading PDF viewer');
-                        Logger.error('PDF viewer error for: ' + fileName);
-                    };
+                            if (state.watermarkHidden) {
+                                setTimeout(function () {
+                                    WatermarkManager.sendCommandToIframe(iframe, 'remove');
+                                }, 500);
+                            }
+                            finish(true);
+                        };
+
+                        iframe.onerror = function () {
+                            if (state.iframeLoadTokens.get(iframe) !== iframeLoadToken) {
+                                finish(false);
+                                return;
+                            }
+                            reject(new Error('PDF viewer load error'));
+                        };
+
+                        iframe.src = viewerUrl;
+                    });
                 })
                 .catch(function (error) {
                     if (retryCount < 2) {
                         Logger.warn('Retrying PDF load (' + (retryCount + 1) + '): ' + fileName);
                         return new Promise(function (resolve) {
                             setTimeout(function () {
-                                resolve(loadPdfIntoIframe(iframe, pdfUrl, loader, retryCount + 1));
+                                resolve(loadPdfIntoIframe(iframe, pdfUrl, loader, retryCount + 1, options));
                             }, 1000);
                         });
                     }
                     showPdfError(iframe, loader, 'Error loading PDF. Please check your network connection.');
                     Logger.error('Failed to load PDF after ' + (retryCount + 1) + ' attempts: ' + fileName);
+                    return false;
                 });
         }
 
@@ -954,6 +1034,8 @@
                 return;
             }
             state.isRendering = true;
+            state.activeRenderToken++;
+            var renderToken = state.activeRenderToken;
 
             state.renderQueue = state.renderQueue.then(function () {
                 return new Promise(function (resolve) {
@@ -1021,6 +1103,7 @@
                     DOM.pdfContainer.innerHTML = '';
                     var fragment = document.createDocumentFragment();
                     var maxRender = Math.min(count, filteredData.length);
+                    var visibleEntries = [];
 
                     for (var i = 0; i < count; i++) {
                         var div = document.createElement('div');
@@ -1039,7 +1122,12 @@
                             iframe.title = 'PDF Viewer ' + (i + 1) + ' - ' + filteredData[i].originalFilename;
                             iframe.setAttribute('data-viewer-index', i);
                             div.appendChild(iframe);
-                            loadPdfIntoIframe(iframe, filteredData[i].link, loader);
+                            visibleEntries.push({
+                                iframe: iframe,
+                                loader: loader,
+                                pdfUrl: filteredData[i].link,
+                                originalFilename: filteredData[i].originalFilename
+                            });
 
                         } else {
                             div.innerHTML = '<div class="no-more-papers">No additional paper for this slot.</div>';
@@ -1047,6 +1135,24 @@
                         fragment.appendChild(div);
                     }
                     DOM.pdfContainer.appendChild(fragment);
+                    if (visibleEntries.length > 0) {
+                        var firstLoadPromise = loadPdfIntoIframe(
+                            visibleEntries[0].iframe,
+                            visibleEntries[0].pdfUrl,
+                            visibleEntries[0].loader,
+                            0,
+                            { renderToken: renderToken }
+                        );
+                        var backgroundUrls = filteredData.slice(maxRender).map(function (file) {
+                            return file.link;
+                        });
+                        PreloadManager.queueSequentialLoads(
+                            visibleEntries.slice(1),
+                            backgroundUrls,
+                            renderToken,
+                            firstLoadPromise
+                        );
+                    }
                     state.isRendering = false;
                     Logger.info('Render complete', { viewersCreated: maxRender });
                     resolve();
@@ -1095,6 +1201,10 @@
 
                 iframe.title = 'PDF Viewer ' + (parseInt(viewerId.split('-')[1]) + 1) + ' - ' + data[idx].originalFilename;
 
+                var existingLoader = viewerDiv.querySelector('.loader-container');
+                if (existingLoader) {
+                    existingLoader.remove();
+                }
                 var loader = document.createElement('div');
                 loader.className = 'loader-container';
                 loader.innerHTML = '<div class="loader"></div>';
@@ -1323,6 +1433,10 @@
 
                     iframe.title = 'PDF Viewer 1 - ' + filteredData[idx].originalFilename;
 
+                    var existingLoader = viewerDiv.querySelector('.loader-container');
+                    if (existingLoader) {
+                        existingLoader.remove();
+                    }
                     var loader = document.createElement('div');
                     loader.className = 'loader-container';
                     loader.innerHTML = '<div class="loader"></div>';
@@ -1641,20 +1755,14 @@
                     }
 
                     var pdfUrls = state.pdfFiles.map(function (file) { return file.link; });
-                    return ServiceWorkerManager.checkCachedPdfs(pdfUrls).then(function (cachedUrls) {
-                        cachedUrls.forEach(function (url) { state.cachedPdfs.add(url); });
-                        var uncachedUrls = pdfUrls.filter(function (url) {
-                            return !state.cachedPdfs.has(url);
-                        });
-                        if (uncachedUrls.length > 0) {
-                            ServiceWorkerManager.initiatePdfCaching(uncachedUrls);
-                        } else if (cachedUrls.length > 0) {
+                    PdfCacheManager.hydrateCacheState(pdfUrls).then(function (cachedUrls) {
+                        if (cachedUrls.length > 0) {
                             Logger.info(cachedUrls.length + ' PDFs already cached');
                         }
-
-                        // Apply exam type through unified pipeline (handles all UI sync + render)
-                        applyExamType(initialExamType);
                     });
+
+                    // Apply exam type immediately so first PDF starts loading without waiting on cache inspection.
+                    applyExamType(initialExamType);
                 } else {
                     DOM.pdfContainer.innerHTML = '<div class="no-pdf-message">No question papers found for this subject.</div>';
                     DOM.subjectDisplay.textContent = subjectNameFromServer || 'No Subject';

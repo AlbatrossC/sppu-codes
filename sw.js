@@ -1,4 +1,11 @@
-const CACHE_NAME = 'sppu-codes-cache-v1';
+const CACHE_NAME = 'sppu-codes-static-v2';
+
+function isStaticAsset(url) {
+    return (
+        url.pathname.startsWith('/static/') ||
+        url.pathname.startsWith('/images/')
+    );
+}
 
 self.addEventListener('install', event => {
     self.skipWaiting();
@@ -20,49 +27,56 @@ self.addEventListener('activate', event => {
 
 self.addEventListener('fetch', event => {
     if (event.request.method !== 'GET') return;
+    if (event.request.headers.has('range')) return;
 
-    // Cache-first strategy for static assets and PDFs
+    const url = new URL(event.request.url);
+    if (!isStaticAsset(url)) {
+        return;
+    }
+
     event.respondWith(
-        caches.match(event.request).then(cachedResponse => {
-            if (cachedResponse) {
-                return cachedResponse; // Return from cache
-            }
-            return fetch(event.request).then(networkResponse => {
-                // Determine if we should cache this response implicitly
-                const url = new URL(event.request.url);
-                if (
-                    url.pathname.startsWith('/static/') || 
-                    url.pathname.startsWith('/images/') ||
-                    url.pathname.includes('/pdfjs/') 
-                ) {
-                    const responseClone = networkResponse.clone();
-                    caches.open(CACHE_NAME).then(cache => {
+        caches.open(CACHE_NAME).then(cache => {
+            return cache.match(event.request).then(cachedResponse => {
+                const networkFetch = fetch(event.request).then(networkResponse => {
+                    if (networkResponse && networkResponse.ok) {
+                        const responseClone = networkResponse.clone();
                         cache.put(event.request, responseClone);
-                    });
+                    }
+                    return networkResponse;
+                });
+
+                if (cachedResponse) {
+                    event.waitUntil(
+                        networkFetch.catch(() => undefined)
+                    );
+                    return cachedResponse;
                 }
-                return networkResponse;
+
+                return networkFetch;
             });
         }).catch(() => {
-            // Offline fallback could go here
+            return fetch(event.request);
         })
     );
 });
 
 self.addEventListener('message', event => {
-    if (event.data && event.data.type === 'CACHE_PDFS') {
-        const urls = event.data.urls;
-        event.waitUntil(
-            caches.open(CACHE_NAME).then(cache => {
+    if (!event.data || event.data.type !== 'CLEAR_STATIC_CACHE') {
+        return;
+    }
+
+    event.waitUntil(
+        caches.open(CACHE_NAME).then(cache => {
+            return cache.keys().then(requests => {
                 return Promise.all(
-                    urls.map(url => {
-                        return fetch(url).then(response => {
-                            if (response.ok) {
-                                return cache.put(url, response);
-                            }
-                        }).catch(err => console.error('SW manual cache error:', err));
+                    requests.map(request => {
+                        const url = new URL(request.url);
+                        if (isStaticAsset(url)) {
+                            return cache.delete(request);
+                        }
                     })
                 );
-            })
-        );
-    }
+            });
+        })
+    );
 });

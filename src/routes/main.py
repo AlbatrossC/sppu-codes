@@ -10,6 +10,16 @@ main_bp = Blueprint('main', __name__)
 def _is_ajax_request():
     return request.headers.get("X-Requested-With") == "XMLHttpRequest"
 
+
+def _notification_request_context():
+    forwarded_for = request.headers.get("X-Forwarded-For", "")
+    ip_address = forwarded_for.split(",")[0].strip() if forwarded_for else (request.remote_addr or "Unknown")
+    return {
+        "ip_address": ip_address,
+        "source_url": request.url,
+        "user_agent": request.headers.get("User-Agent", "Unknown")
+    }
+
 @main_bp.route("/")
 def index():
     return render_template("index.html")
@@ -30,7 +40,8 @@ def submit_code():
                 "email": email or "Not provided",
                 "subject": subject,
                 "question": question,
-                "code_length": len(answer or "")
+                "code_length": len(answer or ""),
+                **_notification_request_context()
             })
         else:
             flash("An error occurred while saving your submission. Please try again.", "error")
@@ -52,7 +63,8 @@ def contact_us():
             send_discord_notification_async("contact", {
                 "name": name,
                 "email": email,
-                "message": message
+                "message": message,
+                **_notification_request_context()
             })
             if _is_ajax_request():
                 return jsonify({"ok": True, "message": success_message}), 200
@@ -69,7 +81,7 @@ def contact_us():
 # Static files and SEO
 @main_bp.route("/images/<filename>")
 def get_image(filename):
-    images_dir = os.path.join(BASE_DIR, "images")
+    images_dir = os.path.join(BASE_DIR, "static", "images")
     if not os.path.exists(os.path.join(images_dir, filename)):
         abort(404)
     return send_from_directory(images_dir, filename)

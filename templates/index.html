@@ -4,7 +4,7 @@
 <head>
     <!-- Preload critical assets -->
     <link rel="preload" href="static/css/index.css?v=2.6" as="style">
-    <link rel="preload" href="images/logo.webp" as="image">
+    <link rel="preload" href="/images/logo.webp" as="image">
 
     <meta name="google-site-verification" content="s0ezZ-kg4bjZR6Jbt_-6H1Im5EDs61Rg5yWJr6BHXFY" />
     <meta name="google-site-verification" content="EZ0Ro0zG4Hc7axgonIr9RZJdN0xW3cVTMueirY8hveA" />
@@ -42,8 +42,6 @@
     <link rel="stylesheet" href="{{ url_for('static', filename='css/terminal.css', v='1.1') }}" media="all">
 
     <link rel="icon" href="/images/favicon.ico" type="image/x-icon">
-    <meta name="google-analytics-id" content="{{ google_analytics_id }}">
-    <meta name="microsoft-clarity-id" content="{{ microsoft_clarity_id }}">
     <script src="{{ url_for('static', filename='js/analytics.js') }}?v=3.0" defer></script>
 
     <!-- Structured Data -->
@@ -97,7 +95,7 @@
         <header>
             <div class="header__container">
                 <a href="/" class="logo-link" aria-label="SPPU Codes Home">
-                    <img src="images/logo.webp" alt="SPPU Codes Logo" width="40" height="40" fetchpriority="high">
+                    <img src="/images/logo.webp" alt="SPPU Codes Logo" width="40" height="40" fetchpriority="high">
                     <h1>SPPU Codes</h1>
                 </a>
 

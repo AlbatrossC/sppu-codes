@@ -2,14 +2,8 @@
   'use strict';
 
   const ADSENSE_CLIENT = 'ca-pub-6918638598461716';
-  const DEFAULT_GOOGLE_ANALYTICS_ID = 'G-1R5FFVKTF8';
-  const DEFAULT_CLARITY_PROJECT_ID = 'qnqi8o9y94';
-  const googleAnalyticsId =
-    document.querySelector('meta[name="google-analytics-id"]')?.content?.trim() ||
-    DEFAULT_GOOGLE_ANALYTICS_ID;
-  const clarityProjectId =
-    document.querySelector('meta[name="microsoft-clarity-id"]')?.content?.trim() ||
-    DEFAULT_CLARITY_PROJECT_ID;
+  const GOOGLE_ANALYTICS_ID = 'G-1R5FFVKTF8';
+  const CLARITY_PROJECT_ID = 'qnqi8o9y94';
   const path = window.location.pathname;
   const hostname = window.location.hostname;
   const isNoAdPage =
@@ -24,12 +18,12 @@
     initVercel();
   }
 
-  if (googleAnalyticsId && canLoadVercelInsights) {
-    initGoogleAnalytics(googleAnalyticsId);
+  if (GOOGLE_ANALYTICS_ID && canLoadVercelInsights) {
+    initGoogleAnalytics(GOOGLE_ANALYTICS_ID);
   }
 
-  if (clarityProjectId && canLoadVercelInsights) {
-    initClarity(clarityProjectId);
+  if (CLARITY_PROJECT_ID && canLoadVercelInsights) {
+    initClarity(CLARITY_PROJECT_ID);
   }
 
   if (isNoAdPage) {

@@ -1,8 +1,28 @@
 import requests
-import threading
+from concurrent.futures import ThreadPoolExecutor
+from datetime import datetime, timezone
 from .config import DISCORD_WEBHOOK_URL
 
 _http = requests.Session()
+_executor = ThreadPoolExecutor(max_workers=2, thread_name_prefix="discord-notify")
+
+
+def _safe_text(value, fallback, limit):
+    text = (value or fallback or "").strip()
+    if not text:
+        text = fallback
+    if len(text) > limit:
+        return text[:limit - 3] + "..."
+    return text
+
+
+def _safe_field(name, value, inline=True, limit=1024):
+    return {
+        "name": name,
+        "value": _safe_text(value, "Not provided", limit),
+        "inline": inline
+    }
+
 
 def send_discord_notification(notification_type, data):
     """Sends a formatted embed message to Discord."""
@@ -14,18 +34,21 @@ def send_discord_notification(notification_type, data):
     if not embed:
         return
 
-    payload = {"embeds": [embed]}
+    payload = {
+        "username": "SPPU Codes",
+        "embeds": [embed]
+    }
     headers = {
         "Content-Type": "application/json",
-        "User-Agent": "SPPU-Codes-Bot/1.0 (Vercel; +https://yourwebsite.com)"
+        "User-Agent": "SPPU-Codes-Bot/1.0 (Vercel; +https://sppucodes.in)"
     }
 
     try:
         response = _http.post(
-            DISCORD_WEBHOOK_URL, 
-            json=payload, 
-            headers=headers, 
-            timeout=2
+            DISCORD_WEBHOOK_URL,
+            json=payload,
+            headers=headers,
+            timeout=5
         )
         response.raise_for_status()
         print(f"Discord notification sent successfully. Status: {response.status_code}")
@@ -36,44 +59,47 @@ def send_discord_notification(notification_type, data):
 
 
 def send_discord_notification_async(notification_type, data):
-    thread = threading.Thread(
-        target=send_discord_notification,
-        args=(notification_type, data),
-        daemon=True,
-    )
-    thread.start()
+    _executor.submit(send_discord_notification, notification_type, data)
     return True
 
 
 def _build_discord_embed(notification_type, data):
     """Builds the appropriate Discord embed based on notification type."""
+    timestamp = datetime.now(timezone.utc).isoformat()
+
     if notification_type == "submit":
-        question = data.get("question", "")
-        question_snippet = (question[:200] + "...") if len(question) > 200 else (question or "Not provided")
         return {
             "title": "New Code Submission",
             "color": 5763719,
+            "timestamp": timestamp,
+            "description": "A new answer submission was received from the website.",
             "fields": [
-                {"name": "Contributor Name", "value": data.get("name", "Anonymous"), "inline": True},
-                {"name": "Email", "value": data.get("email", "Not provided"), "inline": True},
-                {"name": "Subject", "value": data.get("subject"), "inline": True},
-                {"name": "Question", "value": question_snippet, "inline": False},
-                {"name": "Code Length", "value": str(data.get("code_length", 0)), "inline": True}
+                _safe_field("Contributor", data.get("name"), True),
+                _safe_field("Subject", data.get("subject"), True),
+                _safe_field("Email", data.get("email"), False),
+                _safe_field("Question", data.get("question"), False, 300),
+                _safe_field("Code Length", str(data.get("code_length", 0)), True),
+                _safe_field("IP", data.get("ip_address"), True),
+                _safe_field("Source", data.get("source_url"), False),
+                _safe_field("User-Agent", data.get("user_agent"), False)
             ],
-            "footer": {"text": "Check database for full code"}
+            "footer": {"text": "Check the database for the full submission"}
         }
-    
-    elif notification_type == "contact":
-        message = data.get("message", "")
-        message_snippet = (message[:200] + '...') if len(message) > 200 else message
+
+    if notification_type == "contact":
         return {
             "title": "New Contact Query",
             "color": 15158332,
+            "timestamp": timestamp,
+            "description": "A new contact form message was received.",
             "fields": [
-                {"name": "From", "value": data.get("name"), "inline": True},
-                {"name": "Email", "value": data.get("email"), "inline": True},
-                {"name": "Message Snippet", "value": message_snippet, "inline": False}
+                _safe_field("From", data.get("name"), True),
+                _safe_field("Email", data.get("email"), True),
+                _safe_field("Message", data.get("message"), False, 500),
+                _safe_field("IP", data.get("ip_address"), True),
+                _safe_field("Source", data.get("source_url"), False),
+                _safe_field("User-Agent", data.get("user_agent"), False)
             ]
         }
-    
+
     return None

@@ -13,6 +13,7 @@ from ..utils import (
 
 api_bp = Blueprint('api', __name__, url_prefix='/api')
 API_CACHE_CONTROL = "public, s-maxage=3600, stale-while-revalidate=86400"
+_pdf_http = requests.Session()
 
 
 @api_bp.after_request
@@ -153,7 +154,7 @@ def pdf_proxy():
         headers["Range"] = range_header
 
     try:
-        upstream = requests.get(
+        upstream = _pdf_http.get(
             pdf_url,
             timeout=30,
             stream=True,
@@ -181,9 +182,10 @@ def pdf_proxy():
     response.headers["Access-Control-Allow-Origin"] = "*"
     response.headers["X-Content-Type-Options"] = "nosniff"
     response.headers["Accept-Ranges"] = "bytes"
+    response.headers["Cache-Control"] = "public, max-age=86400, stale-while-revalidate=604800"
 
     # Forward essential headers for byte-range requests
-    for header_name in ["Content-Length", "Content-Range", "Accept-Ranges"]:
+    for header_name in ["Content-Length", "Content-Range", "Accept-Ranges", "ETag", "Last-Modified"]:
         header_val = upstream.headers.get(header_name)
         if header_val:
             response.headers[header_name] = header_val

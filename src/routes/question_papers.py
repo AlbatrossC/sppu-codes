@@ -2,6 +2,7 @@ from flask import Blueprint, render_template, abort
 from urllib.parse import urlparse
 import html as _html
 import os
+from ..config import DEFAULT_EXAM_TYPE
 from ..utils import load_question_papers
 
 question_papers_bp = Blueprint('question_papers', __name__)
@@ -53,5 +54,6 @@ def viewer_page(subject_link):
         subject_name=subject_name,
         subject_link=subject_link,
         pdf_data_for_js=pdf_data,
-        seo_data=seo_data
+        seo_data=seo_data,
+        default_exam_type=DEFAULT_EXAM_TYPE
     )

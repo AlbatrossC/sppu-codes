@@ -9,7 +9,7 @@ ANSWERS_DIR = os.path.join(BASE_DIR, "answers")
 QUESTION_PAPERS_DIR = os.path.join(BASE_DIR, "question-papers")
 
 PDF_SOURCE = os.getenv("PDF_SOURCE", "r2").strip().lower()
-_VALID_PDF_SOURCES = {"r2"}
+_VALID_PDF_SOURCES = {"r2", "supabase"}
 if PDF_SOURCE not in _VALID_PDF_SOURCES:
     print(f"Warning: PDF_SOURCE='{PDF_SOURCE}' is invalid. Falling back to 'r2'.")
     PDF_SOURCE = "r2"

@@ -1,39 +1,40 @@
--- Schema definitions for Cloudflare D1 (pending migration)
--- These table definitions are ready for D1 SQL dialect.
--- Note: D1 uses SQLite-compatible syntax; BIGSERIAL should be changed to INTEGER PRIMARY KEY AUTOINCREMENT.
+-- Schema reference for Cloudflare D1 (migrated from Supabase PostgreSQL)
+-- Deployed via: wrangler d1 execute sppucodes-db --remote --file=schema.sql
+-- D1 uses SQLite-compatible syntax — INTEGER PRIMARY KEY AUTOINCREMENT, TEXT, no VARCHAR/TIMESTAMP.
 
 CREATE TABLE IF NOT EXISTS code_submissions (
-    id BIGSERIAL PRIMARY KEY,
-    name VARCHAR(100) NOT NULL,
-    email VARCHAR(150),
-    subject VARCHAR(200) NOT NULL,
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    name TEXT NOT NULL,
+    email TEXT,
+    subject TEXT NOT NULL,
     question TEXT,
     code TEXT NOT NULL,
-    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+    created_at TEXT DEFAULT (datetime('now'))
 );
 
 CREATE TABLE IF NOT EXISTS contact_messages (
-    id BIGSERIAL PRIMARY KEY,
-    name VARCHAR(100) NOT NULL,
-    email VARCHAR(150) NOT NULL,
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    name TEXT NOT NULL,
+    email TEXT NOT NULL,
     message TEXT NOT NULL,
-    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+    created_at TEXT DEFAULT (datetime('now'))
 );
 
 CREATE TABLE IF NOT EXISTS api_requests (
-    id BIGSERIAL PRIMARY KEY,
-    subject VARCHAR(100) NOT NULL,
-    question_no VARCHAR(50) NOT NULL,
-    status VARCHAR(20) NOT NULL CHECK (status IN ('success', 'not_found')),
-    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    subject TEXT NOT NULL,
+    question_no TEXT NOT NULL,
+    status TEXT NOT NULL CHECK (status IN ('success', 'not_found')),
+    created_at TEXT DEFAULT (datetime('now'))
 );
 
 CREATE TABLE IF NOT EXISTS paper_downloads (
-    id BIGSERIAL PRIMARY KEY,
-    fingerprint_id VARCHAR(255) NOT NULL,
-    subject VARCHAR(100) NOT NULL,
-    download_count INTEGER NOT NULL,
-    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    fingerprint_id TEXT NOT NULL,
+    subject TEXT NOT NULL,
+    download_count INTEGER NOT NULL DEFAULT 1,
+    created_at TEXT DEFAULT (datetime('now')),
+    UNIQUE(fingerprint_id, subject)
 );
 
 CREATE INDEX IF NOT EXISTS idx_code_submissions_created_at

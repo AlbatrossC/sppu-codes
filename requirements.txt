@@ -3,3 +3,6 @@ flask-compress
 gunicorn
 requests
 python-dotenv
+rich
+markdown
+nbformat

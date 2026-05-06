@@ -10,6 +10,7 @@ from ..utils import (
     load_subject_data,
     load_answer_files
 )
+from ..terminal_beautify import beautify_terminal_output
 
 api_bp = Blueprint('api', __name__, url_prefix='/api')
 API_CACHE_CONTROL = "public, s-maxage=3600, stale-while-revalidate=86400"
@@ -194,6 +195,8 @@ def pdf_proxy():
 
 @api_bp.route("/<subject_link>/<question_no>")
 def answer_api(subject_link, question_no):
+    subject_link = subject_link.lower()
+    question_no = question_no.upper()
     terminal_request = is_terminal_request(request)
     data = load_subject_data(subject_link)
 
@@ -236,6 +239,14 @@ def answer_api(subject_link, question_no):
             contents = [contents[index]]
         except ValueError:
             return _text_response("Invalid split parameter", 400)
+
+    if terminal_request:
+        question_text = question["question"].strip() if not no_question else None
+        beautified = beautify_terminal_output(contents, question_text)
+        if beautified is not None:
+            response = _text_response(beautified, 200)
+            api_logger.log_api_request(subject_link, question_no, "success")
+            return response
 
     output = []
     if not no_question:

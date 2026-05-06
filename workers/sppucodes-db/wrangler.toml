@@ -1,0 +1,11 @@
+# wrangler.toml — Cloudflare Worker + D1 configuration
+name = "sppucodes-db"
+main = "src/index.ts"
+compatibility_date = "2024-12-01"
+
+[[d1_databases]]
+binding = "DB"
+database_name = "sppucodes-db"
+database_id = "dbde5970-e4f6-4594-8c76-4d6f96a2c363"
+
+# DB_API_KEY is set via `wrangler secret put DB_API_KEY` — do NOT add to [vars]

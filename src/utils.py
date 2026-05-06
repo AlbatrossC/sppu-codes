@@ -10,7 +10,7 @@ def _extract_semesters_from_data(data):
 
     Supports two layouts:
       - R2 layout:       Top-level keys like "sem-1", "sem-2", ...
-      - Supabase layout: Nested under a "sems" key → { "sem-1": {...}, ... }
+      - Nested layout: Nested under a "sems" key → { "sem-1": {...}, ... }
     """
     if "sems" in data and isinstance(data["sems"], dict):
         return data["sems"]

@@ -1,9 +1,29 @@
-# WTF is this folder!!! why does it exists. It is fcking irritating!!! AHHHHHHHHHHHH!!!
+# IDE / Editor
 .vscode/
 
-
+# Python
 __pycache__/
 *.pyc
 
+# Environment
 .env
 
+# Node / Worker artifacts
+node_modules/
+.nyc_output/
+dist/
+build/
+.wrangler/
+*.tsbuildinfo
+
+# OS
+.DS_Store
+Thumbs.db
+Desktop.ini
+
+# Logs
+*.log
+npm-debug.log*
+
+# Coverage
+coverage/

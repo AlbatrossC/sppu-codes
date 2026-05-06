@@ -1,3 +1,7 @@
+-- Schema definitions for Cloudflare D1 (pending migration)
+-- These table definitions are ready for D1 SQL dialect.
+-- Note: D1 uses SQLite-compatible syntax; BIGSERIAL should be changed to INTEGER PRIMARY KEY AUTOINCREMENT.
+
 CREATE TABLE IF NOT EXISTS code_submissions (
     id BIGSERIAL PRIMARY KEY,
     name VARCHAR(100) NOT NULL,
@@ -43,36 +47,3 @@ ON api_requests (subject, question_no, created_at DESC);
 
 CREATE INDEX IF NOT EXISTS idx_paper_downloads_subject
 ON paper_downloads (subject, created_at DESC);
-
-ALTER TABLE code_submissions ENABLE ROW LEVEL SECURITY;
-ALTER TABLE contact_messages ENABLE ROW LEVEL SECURITY;
-ALTER TABLE api_requests ENABLE ROW LEVEL SECURITY;
-ALTER TABLE paper_downloads ENABLE ROW LEVEL SECURITY;
-
-DROP POLICY IF EXISTS code_submissions_insert_anon ON code_submissions;
-CREATE POLICY code_submissions_insert_anon
-ON code_submissions
-FOR INSERT
-TO public
-WITH CHECK (true);
-
-DROP POLICY IF EXISTS contact_messages_insert_anon ON contact_messages;
-CREATE POLICY contact_messages_insert_anon
-ON contact_messages
-FOR INSERT
-TO public
-WITH CHECK (true);
-
-DROP POLICY IF EXISTS api_requests_insert_anon ON api_requests;
-CREATE POLICY api_requests_insert_anon
-ON api_requests
-FOR INSERT
-TO public
-WITH CHECK (true);
-
-DROP POLICY IF EXISTS paper_downloads_insert_anon ON paper_downloads;
-CREATE POLICY paper_downloads_insert_anon
-ON paper_downloads
-FOR INSERT
-TO public
-WITH CHECK (true);

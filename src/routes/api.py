@@ -128,7 +128,7 @@ def notify_download():
 
 _ALLOWED_PDF_HOSTS = {
     "sppucodes.albatrossc.workers.dev",
-    "zauiiivigqoifsvtqhnt.supabase.co",
+    # TODO: Add Cloudflare D1 Worker domain when ready
 }
 
 @api_bp.route("/pdf-proxy")

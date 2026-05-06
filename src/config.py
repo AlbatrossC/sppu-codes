@@ -9,7 +9,7 @@ ANSWERS_DIR = os.path.join(BASE_DIR, "answers")
 QUESTION_PAPERS_DIR = os.path.join(BASE_DIR, "question-papers")
 
 PDF_SOURCE = os.getenv("PDF_SOURCE", "r2").strip().lower()
-_VALID_PDF_SOURCES = {"r2", "supabase"}
+_VALID_PDF_SOURCES = {"r2"}
 if PDF_SOURCE not in _VALID_PDF_SOURCES:
     print(f"Warning: PDF_SOURCE='{PDF_SOURCE}' is invalid. Falling back to 'r2'.")
     PDF_SOURCE = "r2"
@@ -17,10 +17,10 @@ if PDF_SOURCE not in _VALID_PDF_SOURCES:
 QP_PDF_DIR = os.path.join(QUESTION_PAPERS_DIR, f"question-papers-{PDF_SOURCE}")
 QP_SEO_DIR = os.path.join(QUESTION_PAPERS_DIR, "pyqs-seo")
 
-DATABASE_URL = os.getenv("DATABASE_URL")
+# Cloudflare D1 Worker DB
+CF_WORKER_DB_URL = os.getenv("CF_WORKER_DB_URL", "").strip().rstrip("/")
+DB_API_KEY = os.getenv("DB_API_KEY", "").strip()
 DISCORD_WEBHOOK_URL = os.getenv("DISCORD_WEBHOOK_URL")
-SUPABASE_URL = os.getenv("SUPABASE_URL", "").strip().rstrip("/")
-SUPABASE_KEY = os.getenv("SUPABASE_KEY", "").strip()
 MAINTENANCE_MODE = os.getenv("MAINTENANCE_MODE", "false").lower() == "true"
 SECRET_KEY = os.getenv("SECRET_KEY") or os.getenv("FLASK_SECRET_KEY", "karltos")
 

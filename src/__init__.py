@@ -3,15 +3,24 @@ from flask_compress import Compress
 from werkzeug.exceptions import HTTPException
 
 def create_app():
-    from .config import SECRET_KEY, MAINTENANCE_MODE
+    from .config import SECRET_KEY, MAINTENANCE_MODE, MICROSOFT_CLARITY_ID, GOOGLE_ANALYTICS_ID
     from .async_logger import api_logger
+    from .db import init_db
     from .utils import preload_subject_cache
 
     app = Flask(__name__, template_folder='../templates', static_folder='../static')
     app.secret_key = SECRET_KEY
     Compress(app)
+    init_db()
     api_logger.start()
     preload_subject_cache()
+
+    @app.context_processor
+    def inject_app_config():
+        return {
+            "microsoft_clarity_id": MICROSOFT_CLARITY_ID,
+            "google_analytics_id": GOOGLE_ANALYTICS_ID,
+        }
 
     # Context processors and before_request handlers
     @app.before_request

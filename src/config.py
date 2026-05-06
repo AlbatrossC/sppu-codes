@@ -19,6 +19,10 @@ QP_SEO_DIR = os.path.join(QUESTION_PAPERS_DIR, "pyqs-seo")
 
 DATABASE_URL = os.getenv("DATABASE_URL")
 DISCORD_WEBHOOK_URL = os.getenv("DISCORD_WEBHOOK_URL")
+MICROSOFT_CLARITY_ID = os.getenv("MICROSOFT_CLARITY_ID", "").strip()
+GOOGLE_ANALYTICS_ID = os.getenv("GOOGLE_ANALYTICS_ID", "").strip()
+SUPABASE_URL = os.getenv("SUPABASE_URL", "").strip().rstrip("/")
+SUPABASE_KEY = os.getenv("SUPABASE_KEY", "").strip()
 MAINTENANCE_MODE = os.getenv("MAINTENANCE_MODE", "false").lower() == "true"
 SECRET_KEY = os.getenv("SECRET_KEY") or os.getenv("FLASK_SECRET_KEY", "karltos")
 

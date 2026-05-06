@@ -1,10 +1,14 @@
-from flask import Blueprint, render_template, request, redirect, flash, url_for, send_from_directory, abort
+from flask import Blueprint, render_template, request, redirect, flash, url_for, send_from_directory, abort, jsonify
 import os
 from ..db import save_submission, save_contact
-from ..notifications import send_discord_notification
+from ..notifications import send_discord_notification_async
 from ..config import BASE_DIR
 
 main_bp = Blueprint('main', __name__)
+
+
+def _is_ajax_request():
+    return request.headers.get("X-Requested-With") == "XMLHttpRequest"
 
 @main_bp.route("/")
 def index():
@@ -16,14 +20,16 @@ def submit_code():
         name = request.form.get("name", "Anonymous")
         email = request.form.get("email", "").strip()
         subject = request.form.get("subject")
+        question = request.form.get("question", "").strip()
         answer = request.form.get("answer") or request.form.get("code")
 
-        if save_submission(name, email, subject, answer):
+        if save_submission(name, email, subject, question, answer):
             flash("Your code has been submitted successfully! It will be reviewed shortly.", "success")
-            send_discord_notification("submit", {
+            send_discord_notification_async("submit", {
                 "name": name,
                 "email": email or "Not provided",
                 "subject": subject,
+                "question": question,
                 "code_length": len(answer or "")
             })
         else:
@@ -41,14 +47,20 @@ def contact_us():
         message = request.form.get("message")
 
         if save_contact(name, email, message):
-            flash("Your message has been sent successfully!", "success")
-            send_discord_notification("contact", {
+            success_message = "Your message has been sent successfully!"
+            flash(success_message, "success")
+            send_discord_notification_async("contact", {
                 "name": name,
                 "email": email,
                 "message": message
             })
+            if _is_ajax_request():
+                return jsonify({"ok": True, "message": success_message}), 200
         else:
-            flash("An error occurred. Please try again.", "error")
+            error_message = "An error occurred. Please try again."
+            flash(error_message, "error")
+            if _is_ajax_request():
+                return jsonify({"ok": False, "message": error_message}), 500
 
         return redirect(url_for('main.contact_us'))
 

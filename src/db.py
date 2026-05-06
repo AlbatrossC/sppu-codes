@@ -1,7 +1,8 @@
-# DB operations delegated to Cloudflare Worker → Cloudflare D1
-# All calls are fire-and-forget — the caller gets an immediate response
-# while the actual DB insert happens in a background thread.
-import threading
+# DB operations delegated to Cloudflare Worker → Cloudflare D1.
+# The Worker does ctx.waitUntil() so it responds with {ok:true} before
+# the D1 insert finishes. We call it synchronously here — no threading —
+# because Vercel's serverless runtime kills background threads on response.
+# The HTTP round-trip is ~100ms, negligible for form submissions.
 import requests
 from .config import CF_WORKER_DB_URL, DB_API_KEY
 
@@ -9,25 +10,22 @@ _http = requests.Session()
 
 
 def _db_post(endpoint, payload):
-    """Fire-and-forget POST to the sppucodes-db Worker."""
+    """POST to the sppucodes-db Worker. Silently ignores failures."""
     if not CF_WORKER_DB_URL or not DB_API_KEY:
         return
 
-    def _send():
-        try:
-            _http.post(
-                f"{CF_WORKER_DB_URL}{endpoint}",
-                json=payload,
-                headers={
-                    "Content-Type": "application/json",
-                    "X-API-Key": DB_API_KEY,
-                },
-                timeout=3,
-            )
-        except Exception:
-            pass  # Worker unreachable — silently ignore to keep app fast
-
-    threading.Thread(target=_send, daemon=True).start()
+    try:
+        _http.post(
+            f"{CF_WORKER_DB_URL}{endpoint}",
+            json=payload,
+            headers={
+                "Content-Type": "application/json",
+                "X-API-Key": DB_API_KEY,
+            },
+            timeout=2,
+        )
+    except Exception:
+        pass  # Worker unreachable — silently ignore to keep app fast
 
 
 def init_db():

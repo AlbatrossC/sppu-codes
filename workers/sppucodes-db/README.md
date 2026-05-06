@@ -165,6 +165,15 @@ _db_post("/api/download", {"fingerprint_id": fid, "subject": subj})
 
 See [schema.sql](./schema.sql) — SQLite-compatible D1 schema with 4 tables, indexes, and an upsert for download tracking.
 
+## Quick Test Queries
+
+```bash
+npx wrangler d1 execute sppucodes-db --remote --command="SELECT id, name, email, subject, question, created_at FROM code_submissions ORDER BY id DESC LIMIT 20"
+npx wrangler d1 execute sppucodes-db --remote --command="SELECT id, name, email, message, created_at FROM contact_messages ORDER BY id DESC LIMIT 20"
+npx wrangler d1 execute sppucodes-db --remote --command="SELECT id, subject, question_no, status, created_at FROM api_requests ORDER BY id DESC LIMIT 20"
+npx wrangler d1 execute sppucodes-db --remote --command="SELECT id, fingerprint_id, subject, download_count, created_at FROM paper_downloads ORDER BY id DESC LIMIT 20"
+```
+
 ## Security
 
 - `DB_API_KEY` is stored as a **Cloudflare Secret** — never committed to git

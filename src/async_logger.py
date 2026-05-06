@@ -1,32 +1,24 @@
-import threading
-
+# Calls db.save_*() directly — no threading.
+# db.py makes a synchronous HTTP call to the Cloudflare Worker (~100ms),
+# so threading was removed because Vercel's serverless runtime kills
+# background threads when the response is sent.
 from .db import save_api_request, save_paper_download
 
 
-def _run_in_background(target, *args):
-    thread = threading.Thread(target=target, args=args, daemon=True)
-    thread.start()
+def log_api_request_async(subject_link, question_no, status):
+    try:
+        save_api_request(subject_link, question_no, status)
+    except Exception:
+        pass
     return True
 
 
-def log_api_request_async(subject_link, question_no, status):
-    def task():
-        try:
-            save_api_request(subject_link, question_no, status)
-        except Exception:
-            pass
-
-    return _run_in_background(task)
-
-
 def log_paper_download_async(fingerprint_id, subject):
-    def task():
-        try:
-            save_paper_download(fingerprint_id, subject)
-        except Exception:
-            pass
-
-    return _run_in_background(task)
+    try:
+        save_paper_download(fingerprint_id, subject)
+    except Exception:
+        pass
+    return True
 
 
 class AsyncAPILogger:

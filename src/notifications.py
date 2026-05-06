@@ -1,10 +1,11 @@
+# Discord webhook calls are synchronous — threading was removed because
+# Vercel's serverless runtime kills background threads after the response.
+# The timeout is short (3s) to avoid blocking the user experience.
 import requests
-from concurrent.futures import ThreadPoolExecutor
 from datetime import datetime, timezone
 from .config import DISCORD_WEBHOOK_URL
 
 _http = requests.Session()
-_executor = ThreadPoolExecutor(max_workers=2, thread_name_prefix="discord-notify")
 
 
 def _safe_text(value, fallback, limit):
@@ -25,9 +26,7 @@ def _safe_field(name, value, inline=True, limit=1024):
 
 
 def send_discord_notification(notification_type, data):
-    """Sends a formatted embed message to Discord."""
     if not DISCORD_WEBHOOK_URL:
-        print("Discord Webhook URL not set.")
         return
 
     embed = _build_discord_embed(notification_type, data)
@@ -48,23 +47,19 @@ def send_discord_notification(notification_type, data):
             DISCORD_WEBHOOK_URL,
             json=payload,
             headers=headers,
-            timeout=5
+            timeout=3,
         )
         response.raise_for_status()
-        print(f"Discord notification sent successfully. Status: {response.status_code}")
-    except requests.exceptions.RequestException as e:
-        print(f"Failed to send Discord notification: {e}")
-        if hasattr(e, 'response') and e.response is not None:
-            print(f"Discord Response: {e.response.text}")
+    except requests.exceptions.RequestException:
+        pass
 
 
 def send_discord_notification_async(notification_type, data):
-    _executor.submit(send_discord_notification, notification_type, data)
+    send_discord_notification(notification_type, data)
     return True
 
 
 def _build_discord_embed(notification_type, data):
-    """Builds the appropriate Discord embed based on notification type."""
     timestamp = datetime.now(timezone.utc).isoformat()
 
     if notification_type == "submit":

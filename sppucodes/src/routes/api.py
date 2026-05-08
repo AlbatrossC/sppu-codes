@@ -1,0 +1,176 @@
+import os
+from functools import lru_cache
+
+from flask import Blueprint, abort, jsonify, make_response, request, send_from_directory
+
+from ..async_logger import api_logger
+from ..config import ANSWERS_DIR, QUESTIONS_DIR
+from ..terminal_beautify import beautify_terminal_output
+from ..utils import load_answer_files, load_subject_data
+
+api_bp = Blueprint("api", __name__, url_prefix="/api")
+raw_api_bp = Blueprint("raw_api", __name__)
+API_CACHE_CONTROL = "public, s-maxage=3600, stale-while-revalidate=86400"
+
+
+@api_bp.after_request
+def add_api_cache_headers(response):
+    response.headers["Cache-Control"] = API_CACHE_CONTROL
+    return response
+
+
+@lru_cache(maxsize=1)
+def _available_subjects_text():
+    output = ["No question found", "", "Available subjects:", ""]
+
+    if os.path.exists(QUESTIONS_DIR):
+        for filename in sorted(os.listdir(QUESTIONS_DIR)):
+            if filename.endswith(".json"):
+                code = filename[:-5]
+                data = load_subject_data(code)
+                full_name = data.get("default", {}).get("subject_name", code.upper()) if data else code.upper()
+                output.append(f"{code} --> {full_name}")
+                output.append("")
+
+    return "\n".join(output).strip()
+
+
+@lru_cache(maxsize=256)
+def _cached_answer(subject_link, question_no):
+    data = load_subject_data(subject_link)
+    if not data:
+        return None, None, 404
+
+    question = data["_q_index"].get(str(question_no))
+    if not question:
+        return None, None, 404
+
+    files = tuple(question.get("file_name", []))
+    if not files:
+        return question, None, 404
+
+    contents, error = load_answer_files(subject_link, files)
+    if error:
+        return question, error, 404
+
+    return question, contents, 200
+
+
+def _question_not_found_text(subject_link, questions):
+    output = ["No question found", "", f"Available questions for subject: {subject_link}", ""]
+    for question in questions:
+        q_no = question.get("question_no", "N/A")
+        q_text = question.get("question", "").strip()
+        output.append(f"{q_no} --> {q_text}")
+        output.append("")
+    return "\n".join(output).strip()
+
+
+def is_terminal_request(req):
+    return "no_question" not in req.args and "split" not in req.args
+
+
+def _text_response(body, status_code):
+    response = make_response(body, status_code)
+    response.headers["Content-Type"] = "text/plain; charset=utf-8"
+    return response
+
+
+@api_bp.route("/subjects/search")
+def subjects_search():
+    subjects = []
+    if os.path.exists(QUESTIONS_DIR):
+        for file_name in os.listdir(QUESTIONS_DIR):
+            if file_name.endswith(".json"):
+                subject_link = file_name[:-5]
+                data = load_subject_data(subject_link)
+                subject_name = data.get("default", {}).get("subject_name", subject_link) if data else subject_link
+                subjects.append({
+                    "subject_link": subject_link,
+                    "subject_name": subject_name,
+                })
+    return jsonify(subjects)
+
+
+@api_bp.route("/<subject_link>/<question_no>")
+def answer_api(subject_link, question_no):
+    subject_link = subject_link.lower()
+    question_no = question_no.upper()
+    terminal_request = is_terminal_request(request)
+    data = load_subject_data(subject_link)
+
+    if not data:
+        if terminal_request:
+            api_logger.log_api_request(subject_link, question_no, "not_found")
+        return _text_response(_available_subjects_text(), 404)
+
+    question = data["_q_index"].get(str(question_no))
+    if not question:
+        if terminal_request:
+            api_logger.log_api_request(subject_link, question_no, "not_found")
+        return _text_response(_question_not_found_text(subject_link, data.get("questions", [])), 404)
+
+    no_question = request.args.get("no_question") == "1"
+    split = request.args.get("split")
+    cached_question, cached_contents, status = _cached_answer(subject_link, question_no)
+
+    if status == 404:
+        if cached_question is None:
+            if terminal_request:
+                api_logger.log_api_request(subject_link, question_no, "not_found")
+            return _text_response(_question_not_found_text(subject_link, data.get("questions", [])), 404)
+        if isinstance(cached_contents, str):
+            if terminal_request:
+                api_logger.log_api_request(subject_link, question_no, "not_found")
+            return _text_response(cached_contents, 404)
+        if terminal_request:
+            api_logger.log_api_request(subject_link, question_no, "not_found")
+        return _text_response("No answer files", 404)
+
+    question = cached_question
+    contents = list(cached_contents)
+
+    if split:
+        try:
+            index = int(split) - 1
+            if index < 0 or index >= len(contents):
+                return _text_response("Invalid split index", 400)
+            contents = [contents[index]]
+        except ValueError:
+            return _text_response("Invalid split parameter", 400)
+
+    if terminal_request:
+        question_text = question["question"].strip() if not no_question else None
+        beautified = beautify_terminal_output(contents, question_text)
+        if beautified is not None:
+            response = _text_response(beautified, 200)
+            api_logger.log_api_request(subject_link, question_no, "success")
+            return response
+
+    output = []
+    if not no_question:
+        output.append(question["question"].strip())
+        output.append("")
+
+    for filename, content in contents:
+        if not split:
+            output.append("-" * 40)
+            output.append(f"File: {filename}")
+            output.append("-" * 40)
+        output.append(content)
+        output.append("")
+
+    response = _text_response("\n".join(output).strip(), 200)
+    if terminal_request:
+        api_logger.log_api_request(subject_link, question_no, "success")
+    return response
+
+
+@raw_api_bp.route("/raw-answers/<subject_link>/<path:filename>")
+def raw_answer_file(subject_link, filename):
+    subject_dir = os.path.join(ANSWERS_DIR, subject_link)
+    if not os.path.exists(os.path.join(subject_dir, filename)):
+        abort(404)
+    response = send_from_directory(subject_dir, filename)
+    response.headers["Cache-Control"] = "public, max-age=86400, immutable"
+    return response

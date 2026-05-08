@@ -1,0 +1,33 @@
+{
+  "version": 2,
+  "builds": [
+    {
+      "src": "app.py",
+      "use": "@vercel/python",
+      "config": {
+        "runtime": "python3.9",
+        "includeFiles": [
+          "question-papers/**",
+          "templates/**",
+          "static/**",
+          "images/**",
+          "robots.txt",
+          "sitemap.xml",
+          "ads.txt",
+          "3fae365259364fc18250c434fb1477f0.txt"
+        ]
+      }
+    }
+  ],
+  "routes": [
+    {
+      "src": "/(.*)",
+      "dest": "app.py",
+      "methods": [
+        "GET",
+        "POST",
+        "OPTIONS"
+      ]
+    }
+  ]
+}

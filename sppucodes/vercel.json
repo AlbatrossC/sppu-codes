@@ -1,0 +1,42 @@
+{
+  "version": 2,
+  "builds": [
+    {
+      "src": "app.py",
+      "use": "@vercel/python",
+      "config": {
+        "runtime": "python3.9",
+        "includeFiles": [
+          "questions/**",
+          "answers/**",
+          "templates/**",
+          "static/**",
+          "robots.txt",
+          "sitemap.xml",
+          "sw.js",
+          "ads.txt",
+          "3fae365259364fc18250c434fb1477f0.txt"
+        ]
+      }
+    },
+    {
+      "src": "static/**",
+      "use": "@vercel/static"
+    }
+  ],
+  "routes": [
+    {
+      "src": "/static/(.*)",
+      "dest": "/static/$1"
+    },
+    {
+      "src": "/(.*)",
+      "dest": "app.py",
+      "methods": [
+        "GET",
+        "POST",
+        "OPTIONS"
+      ]
+    }
+  ]
+}

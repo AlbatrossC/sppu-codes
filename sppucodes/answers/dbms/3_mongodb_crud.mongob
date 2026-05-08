@@ -1,0 +1,81 @@
+// Create and switch to database
+use studentDB;
+
+// Create collection
+db.createCollection("students");
+
+// ------------------- CREATE -------------------
+
+// Insert one document
+db.students.insertOne({
+    name: "Alice",
+    age: 21,
+    course: "Computer Science"
+});
+
+// Insert multiple documents
+db.students.insertMany([
+    { name: "Bob", age: 22, course: "Mathematics" },
+    { name: "Charlie", age: 23, course: "Physics" },
+    { name: "David", age: 20, course: "Computer Science" },
+    { name: "Eva", age: 22, course: "Mathematics" }
+]);
+
+// ------------------- READ -------------------
+
+// Show all student records
+db.students.find();
+
+// Find all students aged 22
+db.students.find({ age: 22 });
+
+// Find students in Computer Science and age > 20
+db.students.find({ course: "Computer Science", age: { $gt: 20 } });
+
+// ------------------- UPDATE -------------------
+
+// Update one student's age
+db.students.updateOne(
+    { name: "Alice" },
+    { $set: { age: 22 } }
+);
+
+// Update all Mathematics students to Applied Mathematics
+db.students.updateMany(
+    { course: "Mathematics" },
+    { $set: { course: "Applied Mathematics" } }
+);
+
+// ------------------- DELETE -------------------
+
+// Delete one student
+db.students.deleteOne({ name: "Bob" });
+
+// Delete all students older than 22
+db.students.deleteMany({ age: { $gt: 22 } });
+
+// ------------------- LOGICAL OPERATIONS -------------------
+
+// 1. $and -> Students in Computer Science AND older than 20
+db.students.find({
+    $and: [
+        { course: "Computer Science" },
+        { age: { $gt: 20 } }
+    ]
+});
+
+// 2. $or -> Students aged less than 22 OR studying Physics
+db.students.find({
+    $or: [
+        { age: { $lt: 22 } },
+        { course: "Physics" }
+    ]
+});
+
+// 3. $nor -> Students NOT in Mathematics NOR age = 22
+db.students.find({
+    $nor: [
+        { course: "Mathematics" },
+        { age: 22 }
+    ]
+});

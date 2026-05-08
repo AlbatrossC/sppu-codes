@@ -1,0 +1,85 @@
+UDP File Transfer (Same Device or Network)
+This program transfers files using UDP sockets.
+Can work on the same device (localhost) or between devices on the same network.
+
+Files Required
+
+receiver.py - UDP Server (receives files)
+sender.py - UDP Client (sends files)
+
+-----------------------------------------------
+receiver.py:
+
+import socket
+import os
+
+server = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
+server.bind(("0.0.0.0", 5001))
+print("[+] UDP Server listening on port 5001")
+
+os.makedirs("received_files", exist_ok=True)
+
+# Receive filename
+data, addr = server.recvfrom(4096)
+filename = data.decode()
+print(f"Receiving: {filename} from {addr}")
+
+# Receive file data
+with open(f"received_files/{filename}", "wb") as f:
+    while True:
+        data, addr = server.recvfrom(4096)
+        if data == b"EOF":
+            break
+        f.write(data)
+
+print(f"Saved: {filename}")
+
+-------------------------------------------------------
+sender.py
+
+import socket
+import os
+
+server_ip = "127.0.0.1"     # Use "127.0.0.1" for same device, or receiver's IP for network
+server_port = 5001
+filepath = r"C:\Users\YourName\Desktop\dog.jpeg" 
+
+client = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
+
+if not os.path.isfile(filepath):
+    print(f"[-] File '{filepath}' does not exist.")
+else:
+    filename = os.path.basename(filepath)
+    client.sendto(filename.encode(), (server_ip, server_port))
+    
+    with open(filepath, "rb") as f:
+        while (chunk := f.read(4096)):
+            client.sendto(chunk, (server_ip, server_port))
+    
+    client.sendto(b"EOF", (server_ip, server_port))
+    print(f"File '{filename}' sent to {server_ip}:{server_port}")
+
+-----------------------------------------------------------------------
+How to Run
+For SAME DEVICE (localhost):
+Set server_ip = "127.0.0.1" in sender.py
+Terminal 1:
+python receiver.py
+Terminal 2:
+python sender.py
+
+For DIFFERENT DEVICES (network):
+Step 1: Find Receiver's IP Address
+On Windows:
+ipconfig
+Look for IPv4 Address (e.g., 192.168.1.5)
+
+Step 2: Update sender.py
+Change server_ip = "127.0.0.1" to receiver's actual IP (e.g., "192.168.1.5")
+Update filepath with your file path using raw string: r"C:\path\to\file.jpg"
+
+Step 3: Start Receiver (Terminal 1)
+python receiver.py
+Step 4: Run Sender (Terminal 2)
+python sender.py
+Files are saved in the received_files/ directory on the receiver's machine.

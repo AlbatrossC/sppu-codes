@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SPPU Codes | Error</title>
+    <meta name="robots" content="noindex, follow">
+    <link rel="icon" href="/images/favicon.ico" type="image/x-icon">
+    <script src="{{ url_for('static', filename='js/analytics.js') }}?v=3.0" defer></script>
+    <style>
+        body { margin: 0; font-family: Arial, sans-serif; background: #0f172a; color: #e2e8f0; }
+        .wrap { max-width: 900px; margin: 0 auto; padding: 40px 20px 72px; }
+        .hero { text-align: center; margin-bottom: 32px; }
+        .code { font-size: 64px; font-weight: 700; color: #60a5fa; }
+        .actions { display: flex; gap: 12px; justify-content: center; flex-wrap: wrap; margin-top: 20px; }
+        .btn { padding: 12px 16px; border-radius: 10px; text-decoration: none; font-weight: 600; }
+        .btn-primary { background: #2563eb; color: white; }
+        .btn-secondary { background: #1e293b; color: #e2e8f0; border: 1px solid #334155; }
+        .panel { background: #111827; border: 1px solid #1f2937; border-radius: 16px; padding: 24px; }
+        .search { width: 100%; box-sizing: border-box; padding: 14px; border-radius: 10px; border: 1px solid #334155; background: #0f172a; color: #e2e8f0; margin: 16px 0; }
+        .result { display: block; padding: 14px; border-radius: 10px; text-decoration: none; color: inherit; background: #0f172a; border: 1px solid #1f2937; margin-bottom: 10px; }
+        .meta { color: #93c5fd; font-size: 12px; text-transform: uppercase; letter-spacing: .08em; }
+    </style>
+</head>
+<body>
+    <div class="wrap">
+        <div class="hero">
+            <div class="code">{{ error_code or 404 }}</div>
+            <h1>That page is not on the codes site</h1>
+            <p>If you were looking for question papers, they now live on a separate site.</p>
+            <div class="actions">
+                <a class="btn btn-primary" href="/">Go to SPPU Codes</a>
+                <a class="btn btn-secondary" href="https://sppupyqs.vercel.app/">Go to Question Papers</a>
+            </div>
+        </div>
+        <div class="panel">
+            <h2>Browse code subjects</h2>
+            <input id="subject-search" class="search" type="text" placeholder="Search code subjects...">
+            <div id="results"></div>
+        </div>
+    </div>
+    <script>
+        const searchEl = document.getElementById('subject-search');
+        const resultsEl = document.getElementById('results');
+        let subjects = [];
+
+        function render(list) {
+            if (!list.length) {
+                resultsEl.innerHTML = '<p>No matching code subjects found.</p>';
+                return;
+            }
+            resultsEl.innerHTML = list.map(item => `
+                <a class="result" href="/${item.subject_link}">
+                    <div class="meta">${item.subject_link.toUpperCase()}</div>
+                    <div>${item.subject_name}</div>
+                </a>
+            `).join('');
+        }
+
+        fetch('/api/subjects/search').then(r => r.json()).then(data => {
+            subjects = Array.isArray(data) ? data : [];
+            render(subjects);
+        }).catch(() => {
+            resultsEl.innerHTML = '<p>Could not load subjects right now.</p>';
+        });
+
+        searchEl.addEventListener('input', () => {
+            const q = searchEl.value.toLowerCase().trim();
+            if (!q) return render(subjects);
+            render(subjects.filter(item =>
+                (item.subject_link || '').toLowerCase().includes(q) ||
+                (item.subject_name || '').toLowerCase().includes(q)
+            ));
+        });
+    </script>
+</body>
+</html>

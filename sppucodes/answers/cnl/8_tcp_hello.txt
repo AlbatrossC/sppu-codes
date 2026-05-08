@@ -1,0 +1,129 @@
+8) TCP Client-Server Communication (Text & File Transfer)
+
+Files:
+- server.cpp (TCP Server)
+- client.cpp (TCP Client)
+
+## SERVER (server.cpp):
+
+#include <iostream>
+#include <fstream>
+#include <winsock2.h>
+
+#pragma comment(lib, "ws2_32.lib") // Winsock library
+
+int main() {
+    WSADATA wsa;
+    WSAStartup(MAKEWORD(2, 2), &wsa);
+
+    SOCKET serverSocket = socket(AF_INET, SOCK_STREAM, 0);
+
+    sockaddr_in serverAddr;
+    serverAddr.sin_family = AF_INET;
+    serverAddr.sin_addr.s_addr = INADDR_ANY;
+    serverAddr.sin_port = htons(8080);
+
+    bind(serverSocket, (sockaddr*)&serverAddr, sizeof(serverAddr));
+    listen(serverSocket, 5);
+
+    std::cout << "Waiting for client...\n";
+    SOCKET clientSocket = accept(serverSocket, nullptr, nullptr);
+
+    char option[10] = {0};
+    recv(clientSocket, option, sizeof(option), 0);
+
+    if (strcmp(option, "MSG") == 0) {
+        char buffer[1024] = {0};
+        recv(clientSocket, buffer, sizeof(buffer), 0);
+        std::cout << "Message from client: " << buffer << std::endl;
+    } else if (strcmp(option, "FILE") == 0) {
+        char filename[256] = {0};
+        recv(clientSocket, filename, sizeof(filename), 0);
+
+        std::ofstream outFile(filename, std::ios::binary);
+        char buffer[1024];
+        int bytesReceived;
+
+        while ((bytesReceived = recv(clientSocket, buffer, sizeof(buffer), 0)) > 0) {
+            outFile.write(buffer, bytesReceived);
+            if (bytesReceived < sizeof(buffer)) break;
+        }
+
+        outFile.close();
+        std::cout << "File received: " << filename << std::endl;
+    }
+
+    closesocket(clientSocket);
+    closesocket(serverSocket);
+    WSACleanup();
+    return 0;
+}
+
+Terminal Commands:
+1) g++ server.cpp -o server -lws2_32
+2) .\server.exe
+
+## CLIENT (client.cpp):
+
+#include <iostream>
+#include <fstream>
+#include <winsock2.h>
+
+#pragma comment(lib, "ws2_32.lib") // Winsock library
+
+int main() {
+    WSADATA wsa;
+    WSAStartup(MAKEWORD(2, 2), &wsa);
+
+    SOCKET clientSocket = socket(AF_INET, SOCK_STREAM, 0);
+
+    sockaddr_in serverAddr;
+    serverAddr.sin_family = AF_INET;
+    serverAddr.sin_addr.s_addr = inet_addr("127.0.0.1");
+    serverAddr.sin_port = htons(8080);
+
+    connect(clientSocket, (sockaddr*)&serverAddr, sizeof(serverAddr));
+
+    int choice;
+    std::cout << "Send (1) Message or (2) File? ";
+    std::cin >> choice;
+    std::cin.ignore();
+
+    if (choice == 1) {
+        const char* option = "MSG";
+        send(clientSocket, option, strlen(option), 0);
+
+        std::string message;
+        std::cout << "Enter message: ";
+        std::getline(std::cin, message);
+        send(clientSocket, message.c_str(), message.size(), 0);
+    } else if (choice == 2) {
+        const char* option = "FILE";
+        send(clientSocket, option, strlen(option), 0);
+
+        std::string filepath;
+        std::cout << "Enter file path: ";
+        std::getline(std::cin, filepath);
+
+        std::string filename = filepath.substr(filepath.find_last_of("\\/") + 1);
+        send(clientSocket, filename.c_str(), filename.size(), 0);
+
+        std::ifstream inFile(filepath, std::ios::binary);
+        char buffer[1024];
+        while (!inFile.eof()) {
+            inFile.read(buffer, sizeof(buffer));
+            send(clientSocket, buffer, inFile.gcount(), 0);
+        }
+
+        inFile.close();
+        std::cout << "File sent: " << filename << std::endl;
+    }
+
+    closesocket(clientSocket);
+    WSACleanup();
+    return 0;
+}
+
+Terminal Commands:
+1) g++ client.cpp -o client -lws2_32
+2) .\client.exe

@@ -1,0 +1,134 @@
+Download Ready-Made Project:
+You can download the pre-configured DHCP topology here:
+https://raw.githubusercontent.com/AlbatrossC/sppu-codes/main/answers/cnl/15_dhcp_server.pkt
+
+JUST OPEN THIS FILE IN CISCO PACKET TRACER and the configuration is ready to use!
+
+
+Manual Configuration Steps
+================================================================================
+
+STEP 1: Create the Network Topology
+================================================================================
+
+Drag and drop devices from the Device List (bottom section):
+- End Devices → PC: Add 5-6 PCs
+- Network Devices → Switches → 2960: Add 1 Switch
+- End Devices → Server: Add 1 Server
+
+Your workspace should have:
+- 1 Server (left side)
+- 1 Switch (center)
+- 5-6 PCs (right side)
+
+================================================================================
+
+STEP 2: Connect All Devices
+================================================================================
+
+Click the Automatically Choose Connection Type (lightning bolt icon) and connect devices.
+
+From   | To      
+-------|--------
+Server | Switch  
+PC0    | Switch  
+PC1    | Switch  
+PC2    | Switch  
+PC3    | Switch  
+PC4    | Switch  
+
+Note: If the switch runs out of ports, you need to add modules:
+1. Click on the Switch → Click Physical tab
+2. Turn OFF the power button
+3. Drag PT-SWITCH-NM-1CFE or PT-SWITCH-NM-1FFE modules to empty slots
+4. Turn ON the power button
+5. Now connect remaining devices
+
+Wait for all connection lights to turn GREEN (may take 30 seconds).
+
+================================================================================
+
+STEP 3: Configure DHCP Server
+================================================================================
+
+3.1 Configure Server IP Address
+--------------------------------
+1. Click on Server → Desktop tab → IP Configuration
+2. Enter the following:
+   - IP Address: 10.0.0.1
+   - Subnet Mask: 255.0.0.0
+
+3.2 Enable DHCP Service
+-----------------------
+1. Stay on Desktop tab → Click Services
+2. Click DHCP from the left menu
+3. Configure the following:
+   - Default Gateway: 10.0.0.1
+4. Click Save
+5. Ensure Service is set to ON
+
+================================================================================
+
+STEP 4: Configure PCs to Use DHCP
+================================================================================
+
+Click on each PC → Desktop tab → IP Configuration
+
+1. Select DHCP (instead of Static)
+2. Wait 5-10 seconds
+3. The PC will automatically receive:
+   - IP Address: 10.0.0.X (assigned by DHCP server)
+   - Subnet Mask: 255.0.0.0
+   - Default Gateway: 10.0.0.1
+
+Repeat for all PCs.
+
+Expected IP Assignments:
+Device | IP Address | Subnet Mask | Default Gateway
+-------|------------|-------------|----------------
+Server | 10.0.0.1   | 255.0.0.0   | N/A            
+PC0    | 10.0.0.2   | 255.0.0.0   | 10.0.0.1       
+PC1    | 10.0.0.3   | 255.0.0.0   | 10.0.0.1       
+PC2    | 10.0.0.4   | 255.0.0.0   | 10.0.0.1       
+PC3    | 10.0.0.5   | 255.0.0.0   | 10.0.0.1       
+PC4    | 10.0.0.6   | 255.0.0.0   | 10.0.0.1       
+
+================================================================================
+
+STEP 5: Testing Connectivity
+================================================================================
+
+Method 1: Using Ping Command
+-----------------------------
+1. Click on PC0 → Desktop → Command Prompt
+2. Type: ping 10.0.0.3 (to ping PC1)
+3. Press Enter
+4. You should see: Reply from 10.0.0.3: bytes=32 time<1ms TTL=128
+5. Test connectivity between other PCs
+
+Method 2: Using Simple PDU
+---------------------------
+1. Click the Add Simple PDU icon (envelope/message icon) on the right toolbar
+2. Click on PC0 (source)
+3. Click on PC2 (destination)
+4. Watch the packet animation
+5. If successful, you'll see green checkmarks indicating successful delivery
+
+Try testing:
+- PC0 to PC1
+- PC1 to PC3
+- PC2 to PC4
+- Any PC to Server
+
+================================================================================
+
+What is DHCP?
+================================================================================
+
+DHCP stands for Dynamic Host Configuration Protocol
+
+Purpose:
+- Automatically assigns IP addresses to devices on a network
+- Eliminates manual IP configuration
+- Prevents IP address conflicts
+================================================================================

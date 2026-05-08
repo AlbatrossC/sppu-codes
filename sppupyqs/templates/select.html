@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <!-- Preload critical assets -->
+    <link rel="preload" href="/static/css/select.css?v=2.3" as="style">
+    <link rel="preload" href="/images/logo.png" as="image">
+
+    <meta name="google-site-verification" content="s0ezZ-kg4bjZR6Jbt_-6H1Im5EDs61Rg5yWJr6BHXFY" />
+    <meta name="google-site-verification" content="EZ0Ro0zG4Hc7axgonIr9RZJdN0xW3cVTMueirY8hveA" />
+    <meta name="google-adsense-account" content="ca-pub-6918638598461716">
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SPPU PYQs - Previous Year Question Papers</title>
+    <meta name="description"
+        content="SPPU PYQs - Access SPPU Previous Year Exam Papers by branch and semester. Free question papers for Savitribai Phule Pune University students.">
+    <meta name="keywords"
+        content="SPPU, question papers, previous year papers, engineering branches, Pune University, SPPU PYQs, SPPU exam papers">
+
+    <meta property="og:title" content="SPPU PYQs - Previous Year Question Papers">
+    <meta property="og:description"
+        content="Complete collection of SPPU previous year question papers for all engineering branches.">
+    <meta property="og:image" content="{{ site_url }}/images/logo.png">
+    <meta property="og:url" content="{{ site_url }}/">
+    <meta property="og:type" content="website">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="SPPU PYQs - Engineering Question Papers">
+    <meta name="twitter:description"
+        content="Access SPPU previous year question papers for all engineering branches and semesters.">
+    <meta name="twitter:image" content="{{ site_url }}/images/logo.png">
+
+    <link rel="canonical" href="{{ site_url }}/">
+    <meta name="robots" content="index, follow, max-image-preview:large">
+    <meta name="author" content="SPPU PYQs Team">
+    <meta name="language" content="English">
+
+    <!-- CSS -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/select.css', v='2.3') }}" media="all">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/header.css', v='2.6') }}" media="all">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/footer.css', v='1.0') }}" media="all">
+
+    <link href="/images/logo.png" rel="icon" fetchpriority="high" type="image/png">
+    <script src="{{ url_for('static', filename='js/analytics.js') }}?v=3.0" defer></script>
+
+    <!-- Structured Data -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "WebSite",
+        "name": "SPPU PYQs",
+        "alternateName": ["SPPU Question Papers", "SPPU Previous Year Papers"],
+        "url": "{{ site_url }}/",
+        "description": "Comprehensive collection of SPPU previous year question papers for engineering students.",
+        "potentialAction": {
+            "@type": "SearchAction",
+            "target": "{{ site_url }}/?q={search_term_string}",
+            "query-input": "required name=search_term_string"
+        },
+        "publisher": {
+            "@type": "Organization",
+            "name": "SPPU PYQs",
+            "logo": {
+                "@type": "ImageObject",
+                "url": "{{ site_url }}/images/logo.png",
+                "width": 112,
+                "height": 112
+            },
+            "sameAs": [
+                "https://github.com/AlbatrossC/sppu-platform"
+            ]
+        },
+        "about": {
+            "@type": "EducationalOrganization",
+            "name": "Savitribai Phule Pune University",
+            "url": "https://www.unipune.ac.in/"
+        },
+        "areaServed": {
+            "@type": "City",
+            "name": "Pune",
+            "address": {
+                "@type": "PostalAddress",
+                "addressLocality": "Pune",
+                "addressRegion": "MH",
+                "addressCountry": "IN"
+            }
+        }
+    }
+    </script>
+</head>
+
+<body>
+    <div class="content">
+        <header>
+            <div class="header__container">
+                <a href="/" class="logo-link" aria-label="SPPU Question Papers Home">
+                    <img src="/images/logo.png" alt="SPPU PYQs Logo" width="40" height="40" fetchpriority="high">
+                    <h1>SPPU PYQs</h1>
+                </a>
+
+                <div class="header__mobile-actions">
+                    <button class="mobile-search-toggle" aria-label="Show Search" tabindex="0">
+                        <span class="search-icon-svg">
+                            <svg width="22" height="22" viewBox="0 0 24 24" fill="none">
+                                <circle cx="11" cy="11" r="7" stroke="currentColor" stroke-width="2" />
+                                <line x1="16.4142" y1="16" x2="21" y2="20.5858" stroke="currentColor" stroke-width="2"
+                                    stroke-linecap="round" />
+                            </svg>
+                        </span>
+                    </button>
+                    <button class="mobile-menu-toggle" aria-label="Toggle Mobile Menu">
+                        <span class="menu-icon"></span>
+                    </button>
+                </div>
+
+                <div class="search-container" id="searchContainer">
+                    <div class="search-wrapper">
+                        <input type="text" id="paper-search" placeholder="Search subjects..."
+                            aria-label="Search Question Papers" autocomplete="off">
+                        <div class="search-dropdown" id="searchDropdown"></div>
+                    </div>
+                </div>
+
+                <nav class="header__actions" aria-label="Main navigation">
+                    <a href="https://sppucodes.vercel.app/" class="sppucodes-button">
+                    <img src="/images/logo.png" alt="Logo" width="24" height="24">
+                        <span>Sppucodes</span>
+                    </a>
+                </nav>
+            </div>
+
+            <!-- Mobile Menu -->
+            <nav class="mobile-menu" id="mobileMenu" aria-label="Mobile navigation">
+                <button class="mobile-menu__close" id="closeMenuBtn" aria-label="Close Menu">&times;</button>
+                <a href="https://sppucodes.vercel.app/" class="sppucodes-button">
+                    <img src="/images/logo.png" alt="Logo" width="24" height="24">
+                    <span>Sppucodes</span>
+                </a>
+                <a href="/contact" class="contact-button">Contact</a>
+                <a href="https://github.com/AlbatrossC/sppu-platform" class="github-button" target="_blank"
+                    rel="noopener noreferrer" aria-label="View source on GitHub">
+                    <svg viewBox="0 0 16 16" width="18" height="18" fill="currentColor" aria-hidden="true"
+                        focusable="false" style="margin-right:8px;">
+                        <path
+                            d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.13 0 0 .67-.21 2.2.82A7.65 7.65 0 018 3.45c.68.003 1.36.092 2 .27 1.53-1.03 2.2-.82 2.2-.82.44 1.11.16 1.93.08 2.13.51.56.82 1.28.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.19 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z">
+                        </path>
+                    </svg>
+                    <span>Source</span>
+                </a>
+            </nav>
+        </header>
+
+        <main>
+            <!-- Breadcrumb Navigation -->
+            <div class="breadcrumb-container">
+                <div class="breadcrumb" id="breadcrumb">
+                    <span class="breadcrumb-item active">Branches</span>
+                </div>
+            </div>
+
+            <!-- Branch Selection -->
+            <section aria-labelledby="branches-heading" id="branches" class="nav-level active">
+                <h2 id="branches-heading" class="semester-heading">Select Your Branch</h2>
+                <div class="group">
+                    <ul class="branch-list">
+                        {% for branch in organized_data.keys() %}
+                        <li>
+                            <a href="#" onclick="showSemesters('{{ branch }}'); return false;" title="{{ branch }}">
+                                <span class="branch-name">{{ branch }}</span>
+                            </a>
+                        </li>
+                        {% endfor %}
+                    </ul>
+                </div>
+            </section>
+
+            <!-- Semester & Subject Navigation -->
+            {% for branch, semesters in organized_data.items() %}
+            <section aria-labelledby="{{ branch | replace(' ', '_') }}-sems-heading" id="{{ branch | replace(' ', '_') }}-sems" class="nav-level">
+                <h2 id="{{ branch | replace(' ', '_') }}-sems-heading" class="semester-heading">{{ branch }} &mdash; Select Semester</h2>
+                <div class="group">
+                    <ul class="semester-list">
+                        {% for sem in semesters.keys() %}
+                        <li>
+                            <a href="#" onclick="showSubjects('{{ branch }}', '{{ sem }}'); return false;" title="{{ sem }}">
+                                <span class="sem-full">{{ sem }}</span>
+                            </a>
+                        </li>
+                        {% endfor %}
+                    </ul>
+                </div>
+            </section>
+
+            {% for sem, subjects in semesters.items() %}
+            <section aria-labelledby="{{ branch | replace(' ', '_') }}-{{ sem | replace(' ', '_') }}-subjects-heading" id="{{ branch | replace(' ', '_') }}-{{ sem | replace(' ', '_') }}-subjects" class="nav-level" loading="lazy">
+                <h2 id="{{ branch | replace(' ', '_') }}-{{ sem | replace(' ', '_') }}-subjects-heading" class="semester-heading">{{ branch }} &mdash; {{ sem }}</h2>
+                <div class="group">
+                    <ul class="subject-list">
+                        {% for subject in subjects %}
+                        {% set words = subject.subject_name.split() %}
+                        {% set abbr = words | map('first') | join('') | upper %}
+                        <li>
+                            <h3>
+                                <a href="/{{ subject.subject_link }}" title="{{ subject.subject_name }} Question Papers">
+                                    <span class="full-name">{{ subject.subject_name }}</span>
+                                </a>
+                            </h3>
+                        </li>
+                        {% endfor %}
+                    </ul>
+                </div>
+            </section>
+            {% endfor %}
+            {% endfor %}
+        </main>
+    </div>
+
+    <footer class="footer">
+        <div class="footer__content">
+            <div class="footer__love">Made with ❤️ for SPPU students</div>
+            <div class="footer__creator">
+                Created by <a href="https://github.com/AlbatrossC" target="_blank" rel="noopener noreferrer">Soham Jadhav</a>
+            </div>
+            <div class="footer__links">
+                <a href="https://github.com/AlbatrossC/sppu-platform" target="_blank" rel="noopener noreferrer">View Source</a>
+                <span class="footer__separator">|</span>
+                <a href="/contact">Contact</a>
+            </div>
+        </div>
+    </footer>
+
+    <script src="{{ url_for('static', filename='js/select.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/mobile-menu.js') }}"></script>
+</body>
+</html>

@@ -1,0 +1,310 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ title }}</title>
+    <meta name="description" content="{{ description }}">
+    <meta name="keywords" content="{{ keywords | join(', ') }}">
+    <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1">
+    <meta name="author" content="SPPU Codes">
+    <meta name="language" content="English">
+    <meta name="google-adsense-account" content="ca-pub-6918638598461716">
+
+    <!-- Open Graph -->
+    <meta property="og:type" content="{% if question %}article{% else %}website{% endif %}">
+    <meta property="og:title" content="{{ title }}">
+    <meta property="og:description" content="{{ description }}">
+    <meta property="og:url" content="{{ url }}">
+    <meta property="og:site_name" content="SPPU Codes">
+    <meta property="og:image" content="https://sppucodes.vercel.app/images/logo.png">
+    <meta property="og:locale" content="en_IN">
+
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:title" content="{{ title }}">
+    <meta name="twitter:description" content="{{ description }}">
+    <meta name="twitter:image" content="https://sppucodes.vercel.app/images/logo.png">
+
+    <link rel="canonical" href="{{ url }}">
+
+    <!-- Preload critical CSS -->
+    <link rel="preload" href="{{ url_for('static', filename='css/subjectlayout.css') }}?v=2.1" as="style">
+    <link rel="preload" href="{{ url_for('static', filename='css/answerbox.css') }}?v=1.9" as="style">
+    <link rel="preload" href="{{ url_for('static', filename='css/fonts.css') }}?v=1.0" as="style">
+    <link rel="preload" href="/static/fonts/JetBrainsMono-Regular.woff2" as="font" type="font/woff2" crossorigin>
+    <link rel="preload" href="https://cdn.jsdelivr.net/npm/marked/marked.min.js" as="script">
+
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/fonts.css') }}?v=1.0">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/answerbox.css') }}?v=1.9">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/subjectlayout.css') }}?v=2.1">
+    <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js" defer></script>
+    <script src="{{ url_for('static', filename='js/script.js') }}?v=2.0" defer></script>
+    <script src="{{ url_for('static', filename='js/analytics.js') }}?v=3.0" defer></script>
+    <link rel="icon" href="/images/favicon.ico" type="image/x-icon">
+
+    {% if question %}
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@graph": [
+            {
+                "@type": "QAPage",
+                "mainEntity": {
+                    "@type": "Question",
+                    "name": "Q{{ question.question_no }}: {{ question.question | escape }}",
+                    "text": "Q{{ question.question_no }}: {{ question.question | escape }}",
+                    "answerCount": {{ question.file_name | length if question.file_name is iterable else 1 }},
+                    "acceptedAnswer": [
+                        {% for f_name in question.file_name %}
+                        {
+                            "@type": "Answer",
+                            "text": "Code file: {{ f_name }} for question: {{ question.question | escape }}",
+                            "author": "Sppu Codes",
+                            "url": "sppucodes.vercel.app/{{ subject_code }}/{{ question.id }}#file={{ f_name | urlencode }}"
+                        }{% if not loop.last %},{% endif %}
+                        {% endfor %}
+                    ]
+                }
+            },
+            {
+                "@type": "WebPage",
+                "name": "{{ title }}",
+                "description": "{{ description }}",
+                "url": "{{ url }}",
+                "keywords": "{{ keywords | join(', ') }}"
+            }
+        ]
+    }
+    </script>
+    {% else %}
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "FAQPage",
+        "mainEntity": [
+            {% for group in sorted_groups %}
+                {% set outer_loop = loop %}
+                {% for question_item in groups[group] %}
+                {
+                    "@type": "Question",
+                    "name": "Q{{ question_item.question_no }}: {{ question_item.question | escape }}",
+                    "acceptedAnswer": [
+                        {% for f_name in question_item.file_name %}
+                        {
+                            "@type": "Answer",
+                            "text": "Code file: {{ f_name }} for question: {{ question_item.question | escape }}",
+                            "author": "Sppu Codes",
+                            "url": "sppucodes.vercel.app/{{ subject_code }}/{{ question_item.id }}#file={{ f_name | urlencode }}"
+                        }{% if not loop.last %},{% endif %}
+                        {% endfor %}
+                    ]
+                }{% if not (loop.last and outer_loop.last) %},{% endif %}
+                {% endfor %}
+            {% endfor %}
+        ]
+    }
+    </script>
+    {% endif %}
+
+    <!-- BreadcrumbList Structured Data -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "BreadcrumbList",
+        "itemListElement": [
+            {
+                "@type": "ListItem",
+                "position": 1,
+                "name": "Home",
+                "item": "https://sppucodes.vercel.app/"
+            },
+            {
+                "@type": "ListItem",
+                "position": 2,
+                "name": "{{ subject_name }}",
+                "item": "https://sppucodes.vercel.app/{{ subject_code }}"
+            }
+            {% if question %}
+            ,{
+                "@type": "ListItem",
+                "position": 3,
+                "name": "Q{{ question.question_no }}: {{ question.title or question.question[:50] }}",
+                "item": "{{ url }}"
+            }
+            {% endif %}
+        ]
+    }
+    </script>
+
+
+</head>
+
+<body>
+    <!-- Left Side Desktop Ad Rail -->
+    <div class="ads-container left-ads">
+        <div class="ad-rail">
+            <div class="ad-slot wide-skyscraper">
+                <ins class="adsbygoogle" style="display:inline-block;width:160px;height:600px"
+                    data-ad-client="ca-pub-6918638598461716" data-ad-slot="1223389585"></ins>
+            </div>
+        </div>
+    </div>
+
+    <div class="ads-container right-ads">
+        <div class="ad-rail">
+            <div class="ad-slot wide-skyscraper">
+                <ins class="adsbygoogle" style="display:inline-block;width:160px;height:600px"
+                    data-ad-client="ca-pub-6918638598461716" data-ad-slot="3985284299"></ins>
+            </div>
+        </div>
+    </div>
+
+    <div class="mobile-ad-container" id="mobileAdContainer">
+        <div class="ad-slot">
+            <ins class="adsbygoogle" style="display:inline-block;width:300px;height:50px"
+                data-ad-client="ca-pub-6918638598461716" data-ad-slot="2408478746"></ins>
+        </div>
+    </div>
+
+    <header>
+        <div class="header-content">
+            <div class="header-left">
+                <button onclick="location.href='/'" class="home-btn" aria-label="Go to home page">
+                    Home
+                </button>
+            </div>
+
+            <div class="header-center">
+                <h3>
+                    <a href="/{{ subject_code }}" class="subject-link">
+                        {{ subject_name }} ({{ subject_code }}) Codes
+                    </a>
+                </h3>
+            </div>
+
+            <div class="header-right">
+                <button
+                    onclick="window.open('https://github.com/AlbatrossC/codes/tree/main/answers/{{ subject_code }}', '_blank')"
+                    class="github-btn" aria-label="View code repository on GitHub">
+                    <svg class="github-icon" viewBox="0 0 16 16" width="16" height="16" aria-hidden="true">
+                        <path fill="currentColor"
+                            d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z">
+                        </path>
+                    </svg>
+                    <span>Answer Codes</span>
+                </button>
+
+                {% if question_paper_url %}
+                <button onclick="location.href='{{ question_paper_url }}'" class="qp-btn"
+                    aria-label="View Question Papers">
+                    Question Papers
+                </button>
+                {% endif %}
+            </div>
+        </div>
+    </header>
+
+    {% if question %}
+    <div class="group">
+        <h3>Group {{ question.group }}</h3>
+        <article class="question-item" id="{{ question.id }}">
+            <h1 style="white-space: pre-line;"><strong>Q{{ question.question_no }}: </strong>{{ question.question }}</h1>
+            {% if question.image %}
+            <div class="question-image-container">
+                <img src="{{ question.image }}" alt="{{ question.title }} - Question Reference Image"
+                    style="max-width: 100%; height: auto; margin: 10px 0; border-radius: 8px;">
+            </div>
+            {% endif %}
+            {% for file in question.file_name %}
+            <button class="view-code-btn"
+                onclick="loadAnswer('{{ subject_code }}', '{{ question.question_no }}', '{{ question.title | replace("'", "\\'") }}', this, '{{ file }}', {{ loop.index }})">
+                {{ question.code_names[loop.index0] if question.code_names and loop.index0 < question.code_names|length
+                    else 'View Code ' ~ loop.index }} </button>
+                    {% endfor %}
+
+        </article>
+
+        <div class="other-questions">
+            <div class="other-questions-header">
+                <h3>Other Questions in {{ subject_name }}</h3>
+                <a href="/{{ subject_code }}" class="see-all-btn">See All Available Questions</a>
+            </div>
+            <ul class="questions-list">
+                {% for group_key in sorted_groups %}
+                {% for q in groups[group_key] %}
+                {% if q.id != question.id %}
+                <li>
+                    <a href="/{{ subject_code }}/{{ q.id }}" class="question-link">
+                        <strong>Q{{ q.question_no }}: </strong>{{ q.question }}
+                    </a>
+                </li>
+                {% endif %}
+                {% endfor %}
+                {% endfor %}
+            </ul>
+        </div>
+    </div>
+    {% else %}
+    {% for group_key in sorted_groups %}
+    <div class="group">
+        <h3>Group {{ group_key }}</h3>
+
+        {% for question_item in groups[group_key] %}
+        <article class="question-item" id="{{ question_item.id }}">
+            <h2 class="question-heading"><a href="/{{ subject_code }}/{{ question_item.id }}" class="question-link"><strong>Q{{ question_item.question_no }}: </strong>{{ question_item.question }}</a></h2>
+            {% if question_item.image %}
+            <div class="question-image-container">
+                <img src="{{ question_item.image }}" alt="{{ question_item.title }} - Question Reference Image"
+                    style="max-width: 100%; height: auto; margin: 10px 0; border-radius: 8px;">
+            </div>
+            {% endif %}
+            {% for file in question_item.file_name %}
+            <button class="view-code-btn"
+                onclick="loadAnswer('{{ subject_code }}', '{{ question_item.question_no }}', '{{ question_item.title | replace("'", "\\'") }}', this, '{{ file }}', {{ loop.index }})">
+                {{ question_item.code_names[loop.index0] if question_item.code_names and loop.index0 <
+                    question_item.code_names|length else 'View Code ' ~ loop.index }} </button>
+                    {% endfor %}
+
+        </article>
+        {% endfor %}
+    </div>
+    {% endfor %}
+    {% endif %}
+
+    <!-- Global Answer Box Modal (Re-used for all questions) -->
+    <div class="answer-box" id="globalAnswerBox">
+        <div class="modal-content">
+            <h3 id="globalQuestionText"></h3>
+            <pre id="globalCodeContent"></pre>
+        </div>
+        <div class="copy-close-container">
+            <a class="download-btn" id="globalDownloadBtn" href="#" download>Download</a>
+            <button class="copy-btn" onclick="copyCode('globalCodeContent')">Copy Code</button>
+            <button class="close-btn" onclick="closeBox('globalAnswerBox')">Close</button>
+        </div>
+    </div>
+
+    <script>
+        window.subjectQuestionPrefetchMap = {{ question_prefetch_map | tojson | safe }};
+        window.__initManualAds = (function () {
+            let initialized = false;
+            return function () {
+                if (initialized) {
+                    return;
+                }
+                initialized = true;
+                try {
+                    document.querySelectorAll('ins.adsbygoogle').forEach(function () {
+                        (window.adsbygoogle = window.adsbygoogle || []).push({});
+                    });
+                } catch (e) {
+                    console.warn('AdSense initialization failed:', e);
+                }
+            }
+        })();
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,71 @@
+7a) TCP Client-Server Communication (Ubuntu/Linux)
+
+Files:
+- server.cpp (TCP Server)
+- client.cpp (TCP Client)
+
+-----------------------------------------------------------------
+SERVER (server.cpp):
+
+#include <iostream>
+#include <unistd.h>
+#include <arpa/inet.h>
+using namespace std;
+
+int main() {
+    int serverSocket = socket(AF_INET, SOCK_STREAM, 0);
+
+    sockaddr_in serverAddr{};
+    serverAddr.sin_family = AF_INET;
+    serverAddr.sin_addr.s_addr = INADDR_ANY;
+    serverAddr.sin_port = htons(8080);
+
+    bind(serverSocket, (sockaddr*)&serverAddr, sizeof(serverAddr));
+    listen(serverSocket, 1);
+
+    cout << "Waiting for client..." << endl;
+    int clientSocket = accept(serverSocket, nullptr, nullptr);
+
+    char buffer[1024] = {0};
+    read(clientSocket, buffer, sizeof(buffer));
+    cout << "Message from client: " << buffer << endl;
+
+    close(clientSocket);
+    close(serverSocket);
+    return 0;
+}
+
+
+-----------------------------------------------------------------
+CLIENT (client.cpp):
+
+#include <iostream>
+#include <unistd.h>
+#include <arpa/inet.h>
+using namespace std;
+
+int main() {
+    int clientSocket = socket(AF_INET, SOCK_STREAM, 0);
+
+    sockaddr_in serverAddr{};
+    serverAddr.sin_family = AF_INET;
+    serverAddr.sin_addr.s_addr = inet_addr("127.0.0.1");
+    serverAddr.sin_port = htons(8080);
+
+    connect(clientSocket, (sockaddr*)&serverAddr, sizeof(serverAddr));
+
+    string message = "Hello, server!";
+    send(clientSocket, message.c_str(), message.size(), 0);
+
+    close(clientSocket);
+    return 0;
+}
+
+--------------------------------------------------------------------
+Terminal Command (Ubuntu):
+1) g++ server.cpp -o server
+2) ./server
+
+Terminal Command (Ubuntu):
+1) g++ client.cpp -o client
+2) ./client

@@ -12,7 +12,7 @@
     <meta name="language" content="English">
     <meta name="google-adsense-account" content="ca-pub-6918638598461716">
 
-    <meta property="og:type" content="website">
+    <meta property="og:type" content="article">
     <meta property="og:title" content="{{ title }}">
     <meta property="og:description" content="{{ description }}">
     <meta property="og:url" content="{{ url }}">
@@ -36,6 +36,7 @@
     <link rel="stylesheet" href="{{ url_for('static', filename='css/fonts.css') }}?v=1.0">
     <link rel="stylesheet" href="{{ url_for('static', filename='css/answerbox.css') }}?v=1.9">
     <link rel="stylesheet" href="{{ url_for('static', filename='css/subjectlayout.css') }}?v=2.1">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/ssr-answer.css') }}?v=1.0">
     <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js" defer></script>
     <script src="{{ url_for('static', filename='js/script.js') }}?v=2.0" defer></script>
     <script src="{{ url_for('static', filename='js/analytics.js') }}?v=3.0" defer></script>
@@ -46,9 +47,29 @@
         "@context": "https://schema.org",
         "@graph": [
             {
-                "@type": "CollectionPage",
-                "name": "{{ title }}",
+                "@type": "TechArticle",
+                "headline": "{{ question.title or (question.question[:50] + '...') }}",
                 "description": "{{ description }}",
+                "about": "{{ subject_name }} - {{ question.question | escape }}",
+                "proficiencyLevel": "Beginner",
+                "url": "{{ url }}"
+            },
+            {
+                "@type": "SoftwareSourceCode",
+                "name": "{{ question.title or ('Q' + question.question_no|string) }}",
+                "description": "{{ question.question | escape }}",
+                {% if answer_files and answer_files|length > 0 %}
+                    {% set pri = answer_files[0] %}
+                    {% if pri.type == 'code' %}
+                "programmingLanguage": "{{ get_ext(pri.filename) | upper }}",
+                    {% elif pri.type == 'notebook' %}
+                "programmingLanguage": "Python",
+                    {% elif pri.type == 'markdown' %}
+                "programmingLanguage": "Markdown",
+                    {% endif %}
+                {% endif %}
+                "codeSampleType": "full",
+                "text": "{{ question.question | escape }}",
                 "url": "{{ url }}"
             },
             {
@@ -57,26 +78,6 @@
                 "description": "{{ description }}",
                 "url": "{{ url }}",
                 "keywords": "{{ keywords | join(', ') }}"
-            },
-            {
-                "@type": "ItemList",
-                "itemListElement": [
-                    {% set item_index = namespace(value=1) %}
-                    {% set first = namespace(done=False) %}
-                    {% for group_key in sorted_groups %}
-                        {% for q in groups[group_key] %}
-                        {% if first.done %},{% endif %}
-                        {% set first.done = True %}
-                        {
-                            "@type": "ListItem",
-                            "position": {{ item_index.value }},
-                            "name": "Q{{ q.question_no }}: {{ q.title or q.question[:50] }}",
-                            "url": "{{ url }}/{{ q.id }}"
-                        }
-                        {% set item_index.value = item_index.value + 1 %}
-                        {% endfor %}
-                    {% endfor %}
-                ]
             },
             {
                 "@type": "BreadcrumbList",
@@ -91,10 +92,33 @@
                         "@type": "ListItem",
                         "position": 2,
                         "name": "{{ subject_name }}",
+                        "item": "https://sppucodes.vercel.app/{{ subject_code }}"
+                    },
+                    {
+                        "@type": "ListItem",
+                        "position": 3,
+                        "name": "Q{{ question.question_no }}: {{ question.title or question.question[:50] }}",
                         "item": "{{ url }}"
                     }
                 ]
             }
+            {% if question.faq_data %}
+            ,{
+                "@type": "FAQPage",
+                "mainEntity": [
+                    {% for faq in question.faq_data %}
+                    {
+                        "@type": "Question",
+                        "name": "{{ faq.question | escape }}",
+                        "acceptedAnswer": {
+                            "@type": "Answer",
+                            "text": "{{ faq.answer | escape }}"
+                        }
+                    }{% if not loop.last %},{% endif %}
+                    {% endfor %}
+                ]
+            }
+            {% endif %}
         ]
     }
     </script>
@@ -164,30 +188,103 @@
         </div>
     </header>
 
-    {% for group_key in sorted_groups %}
     <div class="group">
-        <h3>Group {{ group_key }}</h3>
-
-        {% for question_item in groups[group_key] %}
-        <article class="question-item" id="{{ question_item.id }}">
-            <h2 class="question-heading"><a href="/{{ subject_code }}/{{ question_item.id }}" class="question-link"><strong>Q{{ question_item.question_no }}: </strong>{{ question_item.question }}</a></h2>
-            {% if question_item.image %}
+        <h3>Group {{ question.group }}</h3>
+        <article class="question-item" id="{{ question.id }}">
+            <h1 style="white-space: pre-line;"><strong>Q{{ question.question_no }}: </strong>{{ question.question }}</h1>
+            {% if question.image %}
             <div class="question-image-container">
-                <img src="{{ question_item.image }}" alt="{{ question_item.title }} - Question Reference Image"
+                <img src="{{ question.image }}" alt="{{ question.title }} - Question Reference Image"
                     style="max-width: 100%; height: auto; margin: 10px 0; border-radius: 8px;">
             </div>
             {% endif %}
-            {% for file in question_item.file_name %}
-            <button class="view-code-btn"
-                onclick="loadAnswer('{{ subject_code }}', '{{ question_item.question_no }}', '{{ question_item.title | replace("'", "\\'") }}', this, '{{ file }}', {{ loop.index }})">
-                {{ question_item.code_names[loop.index0] if question_item.code_names and loop.index0 <
-                    question_item.code_names|length else 'View Code ' ~ loop.index }}
-            </button>
-            {% endfor %}
         </article>
-        {% endfor %}
+
+        {% if answer_files and answer_files|length > 0 %}
+        <section class="ssr-answer-section">
+            <div class="explanation-block">
+                <h2>{{ question.title or ('Q' + question.question_no|string) }}</h2>
+                <p>Solution and implementation for <strong>Q{{ question.question_no }}</strong> from {{ subject_name }} ({{ subject_code }}).</p>
+            </div>
+
+            {% for af in answer_files %}
+            <div class="ssr-file-block">
+                <div class="ssr-file-header">
+                    <span class="ssr-file-name">{{ af.filename }}</span>
+                    <button class="view-code-btn"
+                        onclick="loadAnswer('{{ subject_code }}', '{{ question.question_no }}', '{{ question.title | replace("'", "\\'") }}', this, '{{ af.filename }}', {{ loop.index }})">
+                        {% if af.type == 'image' %}View Image{% elif af.type == 'pdf' %}View PDF{% else %}Open in Modal{% endif %}
+                    </button>
+                    <a class="download-btn" href="{{ af.raw_url }}" download="{{ af.filename }}">Download</a>
+                </div>
+
+                {% if af.type == 'code' %}
+                <pre><code class="{{ af.language_class }}">{{ af.content }}</code></pre>
+
+                {% elif af.type == 'markdown' %}
+                <div class="markdown-body">
+                    {{ af.content | safe }}
+                </div>
+
+                {% elif af.type == 'notebook' %}
+                <div class="ipynb-body">
+                    {{ af.content | safe }}
+                </div>
+
+                {% elif af.type == 'image' %}
+                <div class="answer-image-container">
+                    <img src="{{ af.content }}" alt="Answer image: {{ af.filename }}" class="answer-image">
+                </div>
+
+                {% elif af.type == 'pdf' %}
+                <div class="pdf-preview-section">
+                    <p>PDF document: <strong>{{ af.filename }}</strong></p>
+                    <div class="pdf-actions">
+                        <a href="{{ af.raw_url }}" class="view-code-btn" target="_blank" rel="noopener">View PDF</a>
+                        <a href="{{ af.raw_url }}" class="download-btn" download="{{ af.filename }}">Download PDF</a>
+                    </div>
+                </div>
+
+                {% else %}
+                <pre><code class="language-plaintext">{{ af.content }}</code></pre>
+                {% endif %}
+            </div>
+            {% endfor %}
+        </section>
+        {% endif %}
+
+        {% if question.faq_data %}
+        <section class="faq-section">
+            <h2>Frequently Asked Questions</h2>
+            {% for faq in question.faq_data %}
+            <div class="faq-item">
+                <h3>{{ faq.question }}</h3>
+                <p>{{ faq.answer }}</p>
+            </div>
+            {% endfor %}
+        </section>
+        {% endif %}
+
+        <div class="other-questions">
+            <div class="other-questions-header">
+                <h3>Other Questions in {{ subject_name }}</h3>
+                <a href="/{{ subject_code }}" class="see-all-btn">See All Available Questions</a>
+            </div>
+            <ul class="questions-list">
+                {% for group_key in sorted_groups %}
+                {% for q in groups[group_key] %}
+                {% if q.id != question.id %}
+                <li>
+                    <a href="/{{ subject_code }}/{{ q.id }}" class="question-link">
+                        <strong>Q{{ q.question_no }}: </strong>{{ q.question }}
+                    </a>
+                </li>
+                {% endif %}
+                {% endfor %}
+                {% endfor %}
+            </ul>
+        </div>
     </div>
-    {% endfor %}
 
     <div class="answer-box" id="globalAnswerBox">
         <div class="modal-content">

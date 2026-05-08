@@ -2,7 +2,7 @@
   "default": {
     "subject_code": "DSL",
     "subject_name": "Data Structures Laboratory",
-    "description": "Explore Data Structures Laboratory programs and solutions with detailed explanations and code examples.",
+    "description": "Data Structures Laboratory (DSL) programs and solutions for SPPU students. Learn Python and C++ implementations of fundamental data structures including arrays, linked lists, stacks, and queues. Covers searching algorithms like linear, binary, and Fibonacci search, sorting algorithms including selection, bubble, insertion, shell, and radix sort. Complete code with step-by-step explanations for all assignments.",
     "keywords": [
       "Data Structures",
       "Python",

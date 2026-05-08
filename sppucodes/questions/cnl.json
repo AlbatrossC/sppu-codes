@@ -2,7 +2,7 @@
   "default": {
     "subject_code": "CN",
     "subject_name": "Computer Networks",
-    "description": "Explore Computer Networks lab assignments with LAN/WAN setup, subnetting, routing protocols, socket programming, and real-world simulations using Packet Tracer and Wireshark.",
+    "description": "Computer Networks Laboratory (CNL) programs and solutions for SPPU students. Learn network configuration with Packet Tracer including LAN/WAN setup, subnetting calculations, routing protocols like RIP and Distance Vector. Master socket programming with TCP and UDP clients/servers in C/C++/Python, file transfer protocols, DNS lookup implementation, DHCP server configuration, and SSL protocol analysis using Wireshark. Complete code and configuration guides.",
     "keywords": [
       "LAN",
       "WAN",

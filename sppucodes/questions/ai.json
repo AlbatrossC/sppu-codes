@@ -2,7 +2,7 @@
   "default": {
     "subject_code": "AI",
     "subject_name": "Artificial Intelligence Laboratory",
-    "description": "Explore Artificial Intelligence lab assignments focusing on graph traversal, heuristic search algorithms, game tree strategies, constraint satisfaction problems, and greedy algorithms for optimization.",
+    "description": "Artificial Intelligence (AI) laboratory programs and solutions for SPPU students. Learn fundamental AI algorithms including DFS and BFS graph traversal, A* heuristic search, Alpha-Beta pruning for game trees, constraint satisfaction problems with N-Queens and graph coloring using backtracking and branch-and-bound, plus greedy algorithms for optimization. Complete Python and C++ implementations with detailed explanations.",
     "keywords": [
       "Artificial Intelligence",
       "DFS",

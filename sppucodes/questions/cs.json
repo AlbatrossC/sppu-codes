@@ -2,7 +2,7 @@
   "default": {
     "subject_code": "CS",
     "subject_name": "Cyber Security",
-    "description": "Explore Cyber Security programs and solutions with detailed explanations and code examples.",
+    "description": "Cyber Security lab programs and solutions for SPPU students. Covers cryptography implementations, Diffie-Hellman key exchange algorithms, encryption and decryption techniques, network security protocols, and information security concepts. Complete Python implementations with detailed explanations for secure communication and cryptographic systems.",
     "keywords": [
       "Cyber Security",
       "Python",

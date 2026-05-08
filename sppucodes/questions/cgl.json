@@ -2,7 +2,7 @@
   "default": {
     "subject_code": "CGL",
     "subject_name": "Computer Graphics Laboratory",
-    "description": "Explore Computer Graphics Laboratory programs and solutions with detailed explanations and code examples.",
+    "description": "Complete Computer Graphics Laboratory (CGL) programs and solutions for SPPU students. Learn OpenGL programming with C++ including scan fill algorithms, Cohen-Sutherland line clipping, DDA and Bresenham algorithms, 2D transformations, fractals generation including Koch curve, Hilbert curve, and snowflake patterns. Step-by-step code explanations for all graphics algorithms and transformations.",
     "keywords": [
       "Computer Graphics",
       "C++",

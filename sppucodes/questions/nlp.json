@@ -2,7 +2,7 @@
   "default": {
     "subject_code": "NLP",
     "subject_name": "Natural Language Processing",
-    "description": "Explore Natural Language Processing programs and solutions with detailed explanations and code examples.",
+    "description": "Natural Language Processing (NLP) lab programs and solutions for SPPU students. Learn text preprocessing techniques including tokenization, stemming, lemmatization, stopword removal, and POS tagging using NLTK and spaCy. Implement regular expressions for pattern matching, text analysis, and document processing. Complete Python implementations with detailed explanations for text mining and linguistic analysis.",
     "keywords": [
       "Natural Language Processing",
       "Python",

@@ -1,8 +1,9 @@
-from flask import Blueprint, render_template, request, redirect, flash, url_for, send_from_directory, abort, jsonify
+from flask import Blueprint, render_template, request, redirect, flash, url_for, send_from_directory, abort, jsonify, make_response
 import os
 from ..db import save_submission, save_contact
 from ..notifications import send_discord_notification_async
-from ..config import BASE_DIR
+from ..config import BASE_DIR, SITE_URL, QUESTIONS_DIR
+from ..utils import load_subject_data
 
 main_bp = Blueprint('main', __name__)
 
@@ -92,7 +93,71 @@ def robots():
 
 @main_bp.route("/sitemap.xml")
 def sitemap():
-    return send_from_directory(BASE_DIR, "sitemap.xml")
+    """Generate dynamic XML sitemap with all subjects and questions."""
+    urls = []
+    
+    # Home page - highest priority
+    urls.append({
+        "loc": f"{SITE_URL}/",
+        "priority": "1.0",
+        "changefreq": "weekly"
+    })
+    
+    # Static pages
+    urls.append({
+        "loc": f"{SITE_URL}/submit",
+        "priority": "0.8",
+        "changefreq": "monthly"
+    })
+    urls.append({
+        "loc": f"{SITE_URL}/contact",
+        "priority": "0.8",
+        "changefreq": "monthly"
+    })
+    
+    # Get all subject JSON files
+    if os.path.exists(QUESTIONS_DIR):
+        for filename in os.listdir(QUESTIONS_DIR):
+            if filename.endswith(".json"):
+                subject_code = filename[:-5]  # Remove .json extension
+                subject_data = load_subject_data(subject_code)
+                
+                if subject_data:
+                    # Subject listing page - high priority
+                    urls.append({
+                        "loc": f"{SITE_URL}/{subject_code}",
+                        "priority": "0.9",
+                        "changefreq": "weekly"
+                    })
+                    
+                    # Individual question pages - top priority
+                    questions = subject_data.get("questions", [])
+                    for question in questions:
+                        question_id = question.get("id")
+                        if question_id:
+                            urls.append({
+                                "loc": f"{SITE_URL}/{subject_code}/{question_id}",
+                                "priority": "1.0",
+                                "changefreq": "monthly"
+                            })
+    
+    # Build XML
+    xml_lines = ['<?xml version="1.0" encoding="UTF-8"?>']
+    xml_lines.append('<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">')
+    
+    for url in urls:
+        xml_lines.append("  <url>")
+        xml_lines.append(f"    <loc>{url['loc']}</loc>")
+        xml_lines.append(f"    <lastmod>2026-05-09</lastmod>")
+        xml_lines.append(f"    <priority>{url['priority']}</priority>")
+        xml_lines.append(f"    <changefreq>{url['changefreq']}</changefreq>")
+        xml_lines.append("  </url>")
+    
+    xml_lines.append("</urlset>")
+    
+    response = make_response("\n".join(xml_lines))
+    response.headers["Content-Type"] = "application/xml"
+    return response
 
 @main_bp.route("/sw.js")
 def service_worker():

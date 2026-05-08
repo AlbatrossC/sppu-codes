@@ -2,7 +2,7 @@
   "default": {
     "subject_code": "DSAL",
     "subject_name": "Data Structures and Algorithms Laboratory",
-    "description": "Explore Data Structures and Algorithms Laboratory programs and solutions with detailed explanations and code examples.",
+    "description": "Comprehensive Data Structures and Algorithms Laboratory (DSAL) programs for SPPU students. Covers hash tables with collision handling, set ADT implementations, tree structures including binary search trees, AVL trees, threaded binary trees, optimal BST, and graph algorithms with DFS and BFS. Also includes heap operations and sequential file handling. Complete C++ and Python code with detailed explanations.",
     "keywords": [
       "Data Structures",
       "Algorithms",

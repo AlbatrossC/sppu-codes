@@ -2,7 +2,7 @@
   "default": {
     "subject_code": "DBMS",
     "subject_name": "Database Management System",
-    "description": "Explore Database Management System lab assignments with SQL queries, MongoDB operations, PL/SQL programming, data import/export, and database connectivity using front-end tools.",
+    "description": "Database Management System (DBMS) laboratory programs and solutions for SPPU students. Master SQL programming with DDL and DML operations, joins, subqueries, and views. Learn MongoDB for NoSQL including CRUD operations, aggregation, indexing, and Map-Reduce. PL/SQL programming covers cursors, exception handling, triggers, and stored procedures. Also includes data import/export techniques and database connectivity with Python. Complete code examples with explanations.",
     "keywords": [
       "SQL",
       "DDL",

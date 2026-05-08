@@ -2,7 +2,7 @@
   "default": {
     "subject_code": "ANN",
     "subject_name": "Artificial Neural Network",
-    "description": "Explore Artificial Neural Network programs and solutions with detailed explanations and code examples.",
+    "description": "Access comprehensive Artificial Neural Network (ANN) lab programs and solutions for SPPU students. Features activation functions, McCulloch-Pitts neurons, perceptrons, backpropagation, Hopfield networks, BAM, CNN implementations, and neural network training with TensorFlow and PyTorch. Complete Python code with detailed explanations for machine learning and deep learning assignments.",
     "keywords": [
       "Artificial Neural Network",
       "Python",

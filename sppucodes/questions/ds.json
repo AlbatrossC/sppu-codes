@@ -2,7 +2,7 @@
   "default": {
     "subject_code": "DS",
     "subject_name": "Data Science Laboratory",
-    "description": "Explore Data Science lab assignments focusing on data wrangling, preprocessing, descriptive statistics, data analytics, text analytics, and data visualization using Python.",
+    "description": "Data Science (DS) laboratory programs and solutions for SPPU students. Learn data wrangling and preprocessing with Pandas, descriptive statistics, data visualization with Matplotlib and Seaborn. Covers machine learning algorithms including linear regression, logistic regression, and Naive Bayes classification. Text analytics with NLTK for tokenization and sentiment analysis. Apache Spark with Scala for big data processing and MapReduce operations. Complete Python implementations with real datasets.",
     "keywords": [
       "Data Science",
       "Data Wrangling",

@@ -2,7 +2,7 @@
   "default": {
     "subject_code": "IoTLRAW",
     "subject_name": "Internet of Things",
-    "description": "Explore IoT lab programs and solutions with detailed explanations and code examples.",
+    "description": "Internet of Things (IoT) laboratory programs and solutions for SPPU students. Arduino programming for LED control, sensor interfacing with temperature sensors, IR obstacle detection, piezo elements, and RGB LED color control. Learn embedded systems programming with C++ for Arduino boards, serial communication, and real-time sensor data visualization. Complete code examples with circuit explanations.",
     "keywords": [
       "IoT",
       "Internet of Things",

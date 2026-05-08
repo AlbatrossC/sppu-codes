@@ -2,7 +2,7 @@
   "default": {
     "subject_code": "OOP",
     "subject_name": "Object-Oriented Programming",
-    "description": "SPPU Codes: Object-Oriented Programming (OOP) exercises for SPPU students. Learn C++ programming concepts like operator overloading, inheritance, file handling, STL, and more.",
+    "description": "Object-Oriented Programming (OOP) laboratory programs and solutions for SPPU students. Master C++ concepts including classes and objects, constructor types, operator overloading, inheritance, polymorphism, file handling, function templates, and Standard Template Library (STL) with vectors and maps. Complete working code with detailed explanations for all OOP principles and design patterns.",
     "keywords": [
       "C++",
       "OOP",

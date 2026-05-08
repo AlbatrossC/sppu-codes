@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>{{ title }}</title>
+    <title>{{ question.question }} | SPPU Codes</title>
     <meta name="description" content="{{ description }}">
     <meta name="keywords" content="{{ keywords | join(', ') }}">
     <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1">
@@ -61,7 +61,22 @@
                 {% if answer_files and answer_files|length > 0 %}
                     {% set pri = answer_files[0] %}
                     {% if pri.type == 'code' %}
-                "programmingLanguage": "{{ get_ext(pri.filename) | upper }}",
+                        {% set ext = get_ext(pri.filename) | lower %}
+                        {% if ext == 'py' %}
+                "programmingLanguage": "Python",
+                        {% elif ext == 'cpp' or ext == 'c++' %}
+                "programmingLanguage": "C++",
+                        {% elif ext == 'c' %}
+                "programmingLanguage": "C",
+                        {% elif ext == 'java' %}
+                "programmingLanguage": "Java",
+                        {% elif ext == 'js' %}
+                "programmingLanguage": "JavaScript",
+                        {% elif ext == 'sql' %}
+                "programmingLanguage": "SQL",
+                        {% else %}
+                "programmingLanguage": "{{ ext | upper }}",
+                        {% endif %}
                     {% elif pri.type == 'notebook' %}
                 "programmingLanguage": "Python",
                     {% elif pri.type == 'markdown' %}
@@ -69,7 +84,7 @@
                     {% endif %}
                 {% endif %}
                 "codeSampleType": "full",
-                "text": "{{ question.question | escape }}",
+                "text": "Complete implementation with source code, algorithm explanation, and step-by-step solution for {{ question.title or ('Q' + question.question_no|string) }} in {{ subject_name }}.",
                 "url": "{{ url }}"
             },
             {
@@ -320,3 +335,4 @@
 </body>
 
 </html>
+

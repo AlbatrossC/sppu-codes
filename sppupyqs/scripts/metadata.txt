@@ -1,0 +1,4597 @@
+
+[2026-05-09 12:03:26] Pipeline started.
+[2026-05-09 12:03:30] Configuration error: At least one Gemini API key is required.
+[2026-05-09 12:03:30]
+
+Processed: 0
+Skipped: 0
+Failed: 0
+Remaining: 150
+Gemini failures: 0
+OCR usage: 0
+
+Current:
+Branch: -
+Semester: -
+Subject: -
+
+[2026-05-09 12:04:01] Pipeline started.
+[2026-05-09 12:04:02] Configuration error: At least one Gemini API key is required.
+[2026-05-09 12:04:02]
+
+Processed: 0
+Skipped: 0
+Failed: 0
+Remaining: 563
+Gemini failures: 0
+OCR usage: 0
+
+Current:
+Branch: -
+Semester: -
+Subject: -
+
+[2026-05-09 12:04:34] Pipeline started.
+[2026-05-09 12:04:35] Configuration error: At least one Gemini API key is required.
+[2026-05-09 12:04:35]
+
+Processed: 0
+Skipped: 0
+Failed: 0
+Remaining: 150
+Gemini failures: 0
+OCR usage: 0
+
+Current:
+Branch: -
+Semester: -
+Subject: -
+
+[2026-05-09 12:05:10] Pipeline started.
+[2026-05-09 12:05:10] Configuration error: At least one Gemini API key is required.
+[2026-05-09 12:05:10]
+
+Processed: 0
+Skipped: 0
+Failed: 0
+Remaining: 150
+Gemini failures: 0
+OCR usage: 0
+
+Current:
+Branch: -
+Semester: -
+Subject: -
+
+[2026-05-09 12:06:55] Pipeline started.
+[2026-05-09 12:07:11] Processed PDF: https://sppucodes.albatrossc.workers.dev/aids/sem-3/computer-graphics-aids/endsem-may-jun-2023-pat2019-cga.pdf
+[2026-05-09 12:07:11]
+
+Processed: 1
+Skipped: 0
+Failed: 0
+Remaining: 149
+Gemini failures: 0
+OCR usage: 0
+
+Current:
+Branch: aids
+Semester: sem-3
+Subject: computer-graphics-aids
+
+[2026-05-09 12:07:18] Processed PDF: https://sppucodes.albatrossc.workers.dev/aids/sem-3/computer-graphics-aids/endsem-may-jun-2024-pat2019-cga.pdf
+[2026-05-09 12:07:18]
+
+Processed: 2
+Skipped: 0
+Failed: 0
+Remaining: 148
+Gemini failures: 0
+OCR usage: 0
+
+Current:
+Branch: aids
+Semester: sem-3
+Subject: computer-graphics-aids
+
+[2026-05-09 12:07:27] Processed PDF: https://sppucodes.albatrossc.workers.dev/aids/sem-3/computer-graphics-aids/endsem-nov-dec-2023-pat2019-cga.pdf
+[2026-05-09 12:07:27]
+
+Processed: 3
+Skipped: 0
+Failed: 0
+Remaining: 147
+Gemini failures: 0
+OCR usage: 0
+
+Current:
+Branch: aids
+Semester: sem-3
+Subject: computer-graphics-aids
+
+[2026-05-09 12:07:32] Processed PDF: https://sppucodes.albatrossc.workers.dev/aids/sem-3/computer-graphics-aids/insem-oct-2023-pat2019-cga.pdf
+[2026-05-09 12:07:32]
+
+Processed: 4
+Skipped: 0
+Failed: 0
+Remaining: 146
+Gemini failures: 0
+OCR usage: 0
+
+Current:
+Branch: aids
+Semester: sem-3
+Subject: computer-graphics-aids
+
+[2026-05-09 12:07:42] Processed PDF: https://sppucodes.albatrossc.workers.dev/aids/sem-3/computer-graphics-aids/insem-sep-2024-pat2019-cga.pdf
+[2026-05-09 12:07:42]
+
+Processed: 5
+Skipped: 0
+Failed: 0
+Remaining: 145
+Gemini failures: 0
+OCR usage: 0
+
+Current:
+Branch: aids
+Semester: sem-3
+Subject: computer-graphics-aids
+
+[2026-05-09 12:08:01] Processed PDF: https://sppucodes.albatrossc.workers.dev/aids/sem-3/discrete-mathematics-aids/endsem-may-jun-2022-pat2019-dma.pdf
+[2026-05-09 12:08:01]
+
+Processed: 6
+Skipped: 0
+Failed: 0
+Remaining: 144
+Gemini failures: 0
+OCR usage: 0
+
+Current:
+Branch: aids
+Semester: sem-3
+Subject: discrete-mathematics-aids
+
+[2026-05-09 12:08:10] Processed PDF: https://sppucodes.albatrossc.workers.dev/aids/sem-3/discrete-mathematics-aids/endsem-may-jun-2023-pat2019-dma.pdf
+[2026-05-09 12:08:10]
+
+Processed: 7
+Skipped: 0
+Failed: 0
+Remaining: 143
+Gemini failures: 0
+OCR usage: 0
+
+Current:
+Branch: aids
+Semester: sem-3
+Subject: discrete-mathematics-aids
+
+[2026-05-09 12:08:18] Processed PDF: https://sppucodes.albatrossc.workers.dev/aids/sem-3/discrete-mathematics-aids/endsem-may-jun-2024-pat2019-dma.pdf
+[2026-05-09 12:08:18]
+
+Processed: 8
+Skipped: 0
+Failed: 0
+Remaining: 142
+Gemini failures: 0
+OCR usage: 0
+
+Current:
+Branch: aids
+Semester: sem-3
+Subject: discrete-mathematics-aids
+
+[2026-05-09 12:08:25] Processed PDF: https://sppucodes.albatrossc.workers.dev/aids/sem-3/discrete-mathematics-aids/endsem-nov-dec-2022-pat2019-dma.pdf
+[2026-05-09 12:08:25]
+
+Processed: 9
+Skipped: 0
+Failed: 0
+Remaining: 141
+Gemini failures: 0
+OCR usage: 0
+
+Current:
+Branch: aids
+Semester: sem-3
+Subject: discrete-mathematics-aids
+
+[2026-05-09 12:08:38] Processed PDF: https://sppucodes.albatrossc.workers.dev/aids/sem-3/discrete-mathematics-aids/endsem-nov-dec-2023-pat2019-dma.pdf
+[2026-05-09 12:08:38]
+
+Processed: 10
+Skipped: 0
+Failed: 0
+Remaining: 140
+Gemini failures: 0
+OCR usage: 0
+
+Current:
+Branch: aids
+Semester: sem-3
+Subject: discrete-mathematics-aids
+
+[2026-05-09 12:08:48] Processed PDF: https://sppucodes.albatrossc.workers.dev/aids/sem-3/discrete-mathematics-aids/insem-oct-2022-pat2019-dma.pdf
+[2026-05-09 12:08:48]
+
+Processed: 11
+Skipped: 0
+Failed: 0
+Remaining: 139
+Gemini failures: 0
+OCR usage: 0
+
+Current:
+Branch: aids
+Semester: sem-3
+Subject: discrete-mathematics-aids
+
+[2026-05-09 12:09:02] Processed PDF: https://sppucodes.albatrossc.workers.dev/aids/sem-3/discrete-mathematics-aids/insem-oct-2023-pat2019-dma.pdf
+[2026-05-09 12:09:02]
+
+Processed: 12
+Skipped: 0
+Failed: 0
+Remaining: 138
+Gemini failures: 0
+OCR usage: 0
+
+Current:
+Branch: aids
+Semester: sem-3
+Subject: discrete-mathematics-aids
+
+[2026-05-09 12:09:10] Processed PDF: https://sppucodes.albatrossc.workers.dev/aids/sem-3/discrete-mathematics-aids/insem-sep-2024-pat2019-dma.pdf
+[2026-05-09 12:09:10]
+
+Processed: 13
+Skipped: 0
+Failed: 0
+Remaining: 137
+Gemini failures: 0
+OCR usage: 0
+
+Current:
+Branch: aids
+Semester: sem-3
+Subject: discrete-mathematics-aids
+
+[2026-05-09 12:09:16] Processed PDF: https://sppucodes.albatrossc.workers.dev/aids/sem-3/fundamentals-of-data-structures-aids/endsem-may-jun-2023-pat2019-fodsa.pdf
+[2026-05-09 12:09:16]
+
+Processed: 14
+Skipped: 0
+Failed: 0
+Remaining: 136
+Gemini failures: 0
+OCR usage: 0
+
+Current:
+Branch: aids
+Semester: sem-3
+Subject: fundamentals-of-data-structures-aids
+
+[2026-05-09 12:09:30] Processed PDF: https://sppucodes.albatrossc.workers.dev/aids/sem-3/fundamentals-of-data-structures-aids/endsem-may-jun-2024-pat2019-fodsa.pdf
+[2026-05-09 12:09:30]
+
+Processed: 15
+Skipped: 0
+Failed: 0
+Remaining: 135
+Gemini failures: 0
+OCR usage: 0
+
+Current:
+Branch: aids
+Semester: sem-3
+Subject: fundamentals-of-data-structures-aids
+
+[2026-05-09 12:09:43] Processed PDF: https://sppucodes.albatrossc.workers.dev/aids/sem-3/fundamentals-of-data-structures-aids/endsem-nov-dec-2022-pat2019-fodsa.pdf
+[2026-05-09 12:09:43]
+
+Processed: 16
+Skipped: 0
+Failed: 0
+Remaining: 134
+Gemini failures: 0
+OCR usage: 0
+
+Current:
+Branch: aids
+Semester: sem-3
+Subject: fundamentals-of-data-structures-aids
+
+[2026-05-09 12:09:56] Processed PDF: https://sppucodes.albatrossc.workers.dev/aids/sem-3/fundamentals-of-data-structures-aids/endsem-nov-dec-2023-pat2019-fodsa.pdf
+[2026-05-09 12:09:56]
+
+Processed: 17
+Skipped: 0
+Failed: 0
+Remaining: 133
+Gemini failures: 0
+OCR usage: 0
+
+Current:
+Branch: aids
+Semester: sem-3
+Subject: fundamentals-of-data-structures-aids
+
+[2026-05-09 12:10:10] Processed PDF: https://sppucodes.albatrossc.workers.dev/aids/sem-3/fundamentals-of-data-structures-aids/insem-oct-2022-pat2019-fodsa.pdf
+[2026-05-09 12:10:10]
+
+Processed: 18
+Skipped: 0
+Failed: 0
+Remaining: 132
+Gemini failures: 0
+OCR usage: 0
+
+Current:
+Branch: aids
+Semester: sem-3
+Subject: fundamentals-of-data-structures-aids
+
+[2026-05-09 12:10:24] Processed PDF: https://sppucodes.albatrossc.workers.dev/aids/sem-3/fundamentals-of-data-structures-aids/insem-oct-2023-pat2019-fodsa.pdf
+[2026-05-09 12:10:24]
+
+Processed: 19
+Skipped: 0
+Failed: 0
+Remaining: 131
+Gemini failures: 0
+OCR usage: 0
+
+Current:
+Branch: aids
+Semester: sem-3
+Subject: fundamentals-of-data-structures-aids
+
+[2026-05-09 12:10:37] Processed PDF: https://sppucodes.albatrossc.workers.dev/aids/sem-3/fundamentals-of-data-structures-aids/insem-sep-2024-pat2019-fodsa.pdf
+[2026-05-09 12:10:37]
+
+Processed: 20
+Skipped: 0
+Failed: 0
+Remaining: 130
+Gemini failures: 0
+OCR usage: 0
+
+Current:
+Branch: aids
+Semester: sem-3
+Subject: fundamentals-of-data-structures-aids
+
+[2026-05-09 12:11:15] Processed PDF: https://sppucodes.albatrossc.workers.dev/aids/sem-3/object-oriented-programming-aids/endsem-may-jun-2023-pat2019-oopa.pdf
+[2026-05-09 12:11:15]
+
+Processed: 21
+Skipped: 0
+Failed: 0
+Remaining: 129
+Gemini failures: 0
+OCR usage: 0
+
+Current:
+Branch: aids
+Semester: sem-3
+Subject: object-oriented-programming-aids
+
+[2026-05-09 12:11:23] Processed PDF: https://sppucodes.albatrossc.workers.dev/aids/sem-3/object-oriented-programming-aids/endsem-nov-dec-2022-pat2019-oopa.pdf
+[2026-05-09 12:11:23]
+
+Processed: 22
+Skipped: 0
+Failed: 0
+Remaining: 128
+Gemini failures: 0
+OCR usage: 0
+
+Current:
+Branch: aids
+Semester: sem-3
+Subject: object-oriented-programming-aids
+
+[2026-05-09 12:11:35] Processed PDF: https://sppucodes.albatrossc.workers.dev/aids/sem-3/object-oriented-programming-aids/endsem-nov-dec-2023-pat2019-oopa.pdf
+[2026-05-09 12:11:35]
+
+Processed: 23
+Skipped: 0
+Failed: 0
+Remaining: 127
+Gemini failures: 0
+OCR usage: 0
+
+Current:
+Branch: aids
+Semester: sem-3
+Subject: object-oriented-programming-aids
+
+[2026-05-09 12:11:40] Processed PDF: https://sppucodes.albatrossc.workers.dev/aids/sem-3/object-oriented-programming-aids/insem-oct-2023-pat2019-oopa.pdf
+[2026-05-09 12:11:40]
+
+Processed: 24
+Skipped: 0
+Failed: 0
+Remaining: 126
+Gemini failures: 0
+OCR usage: 0
+
+Current:
+Branch: aids
+Semester: sem-3
+Subject: object-oriented-programming-aids
+
+[2026-05-09 12:11:50] Processed PDF: https://sppucodes.albatrossc.workers.dev/aids/sem-3/object-oriented-programming-aids/insem-sep-2024-pat2019-oopa.pdf
+[2026-05-09 12:11:50]
+
+Processed: 25
+Skipped: 0
+Failed: 0
+Remaining: 125
+Gemini failures: 0
+OCR usage: 0
+
+Current:
+Branch: aids
+Semester: sem-3
+Subject: object-oriented-programming-aids
+
+[2026-05-09 12:12:07] Processed PDF: https://sppucodes.albatrossc.workers.dev/aids/sem-3/operating-systems-aids/endsem-may-jun-2023-pat2019-osa.pdf
+[2026-05-09 12:12:07]
+
+Processed: 26
+Skipped: 0
+Failed: 0
+Remaining: 124
+Gemini failures: 0
+OCR usage: 0
+
+Current:
+Branch: aids
+Semester: sem-3
+Subject: operating-systems-aids
+
+[2026-05-09 12:12:18] Processed PDF: https://sppucodes.albatrossc.workers.dev/aids/sem-3/operating-systems-aids/endsem-may-jun-2024-pat2019-osa.pdf
+[2026-05-09 12:12:18]
+
+Processed: 27
+Skipped: 0
+Failed: 0
+Remaining: 123
+Gemini failures: 0
+OCR usage: 0
+
+Current:
+Branch: aids
+Semester: sem-3
+Subject: operating-systems-aids
+
+[2026-05-09 12:12:26] Processed PDF: https://sppucodes.albatrossc.workers.dev/aids/sem-3/operating-systems-aids/endsem-nov-dec-2022-pat2019-osa.pdf
+[2026-05-09 12:12:26]
+
+Processed: 28
+Skipped: 0
+Failed: 0
+Remaining: 122
+Gemini failures: 0
+OCR usage: 0
+
+Current:
+Branch: aids
+Semester: sem-3
+Subject: operating-systems-aids
+
+[2026-05-09 12:12:36] Processed PDF: https://sppucodes.albatrossc.workers.dev/aids/sem-3/operating-systems-aids/endsem-nov-dec-2023-pat2019-osa.pdf
+[2026-05-09 12:12:36]
+
+Processed: 29
+Skipped: 0
+Failed: 0
+Remaining: 121
+Gemini failures: 0
+OCR usage: 0
+
+Current:
+Branch: aids
+Semester: sem-3
+Subject: operating-systems-aids
+
+[2026-05-09 12:12:44] Processed PDF: https://sppucodes.albatrossc.workers.dev/aids/sem-3/operating-systems-aids/insem-oct-2022-pat2019-osa.pdf
+[2026-05-09 12:12:44]
+
+Processed: 30
+Skipped: 0
+Failed: 0
+Remaining: 120
+Gemini failures: 0
+OCR usage: 0
+
+Current:
+Branch: aids
+Semester: sem-3
+Subject: operating-systems-aids
+
+[2026-05-09 12:12:53] Processed PDF: https://sppucodes.albatrossc.workers.dev/aids/sem-3/operating-systems-aids/insem-oct-2023-pat2019-osa.pdf
+[2026-05-09 12:12:53]
+
+Processed: 31
+Skipped: 0
+Failed: 0
+Remaining: 119
+Gemini failures: 0
+OCR usage: 0
+
+Current:
+Branch: aids
+Semester: sem-3
+Subject: operating-systems-aids
+
+[2026-05-09 12:12:59] Processed PDF: https://sppucodes.albatrossc.workers.dev/aids/sem-3/operating-systems-aids/insem-sep-2024-pat2019-osa.pdf
+[2026-05-09 12:12:59]
+
+Processed: 32
+Skipped: 0
+Failed: 0
+Remaining: 118
+Gemini failures: 0
+OCR usage: 0
+
+Current:
+Branch: aids
+Semester: sem-3
+Subject: operating-systems-aids
+
+[2026-05-09 12:13:09] Processed PDF: https://sppucodes.albatrossc.workers.dev/aids/sem-4/data-structures-and-algorithms-aids/endsem-may-jun-2023-pat2019-dsaaa.pdf
+[2026-05-09 12:13:09]
+
+Processed: 33
+Skipped: 0
+Failed: 0
+Remaining: 117
+Gemini failures: 0
+OCR usage: 0
+
+Current:
+Branch: aids
+Semester: sem-4
+Subject: data-structures-and-algorithms-aids
+
+[2026-05-09 12:13:17] Processed PDF: https://sppucodes.albatrossc.workers.dev/aids/sem-4/data-structures-and-algorithms-aids/endsem-may-jun-2024-pat2019-dsaaa.pdf
+[2026-05-09 12:13:17]
+
+Processed: 34
+Skipped: 0
+Failed: 0
+Remaining: 116
+Gemini failures: 0
+OCR usage: 0
+
+Current:
+Branch: aids
+Semester: sem-4
+Subject: data-structures-and-algorithms-aids
+
+[2026-05-09 12:13:24] Processed PDF: https://sppucodes.albatrossc.workers.dev/aids/sem-4/data-structures-and-algorithms-aids/endsem-nov-dec-2023-pat2019-dsaaa.pdf
+[2026-05-09 12:13:24]
+
+Processed: 35
+Skipped: 0
+Failed: 0
+Remaining: 115
+Gemini failures: 0
+OCR usage: 0
+
+Current:
+Branch: aids
+Semester: sem-4
+Subject: data-structures-and-algorithms-aids
+
+[2026-05-09 12:13:29] Processed PDF: https://sppucodes.albatrossc.workers.dev/aids/sem-4/data-structures-and-algorithms-aids/insem-feb-2023-pat2019-dsaaa.pdf
+[2026-05-09 12:13:29]
+
+Processed: 36
+Skipped: 0
+Failed: 0
+Remaining: 114
+Gemini failures: 0
+OCR usage: 0
+
+Current:
+Branch: aids
+Semester: sem-4
+Subject: data-structures-and-algorithms-aids
+
+[2026-05-09 12:13:36] Processed PDF: https://sppucodes.albatrossc.workers.dev/aids/sem-4/data-structures-and-algorithms-aids/insem-march-2024-pat2019-dsaaa.pdf
+[2026-05-09 12:13:36]
+
+Processed: 37
+Skipped: 0
+Failed: 0
+Remaining: 113
+Gemini failures: 0
+OCR usage: 0
+
+Current:
+Branch: aids
+Semester: sem-4
+Subject: data-structures-and-algorithms-aids
+
+[2026-05-09 12:13:48] Processed PDF: https://sppucodes.albatrossc.workers.dev/aids/sem-4/internet-of-things-aids/endsem-may-jun-2022-pat2019-iota.pdf
+[2026-05-09 12:13:48]
+
+Processed: 38
+Skipped: 0
+Failed: 0
+Remaining: 112
+Gemini failures: 0
+OCR usage: 0
+
+Current:
+Branch: aids
+Semester: sem-4
+Subject: internet-of-things-aids
+
+[2026-05-09 12:13:53] Processed PDF: https://sppucodes.albatrossc.workers.dev/aids/sem-4/internet-of-things-aids/endsem-may-jun-2023-pat2019-iota.pdf
+[2026-05-09 12:13:53]
+
+Processed: 39
+Skipped: 0
+Failed: 0
+Remaining: 111
+Gemini failures: 0
+OCR usage: 0
+
+Current:
+Branch: aids
+Semester: sem-4
+Subject: internet-of-things-aids
+
+[2026-05-09 12:14:07] Processed PDF: https://sppucodes.albatrossc.workers.dev/aids/sem-4/internet-of-things-aids/endsem-may-jun-2024-pat2019-iota.pdf
+[2026-05-09 12:14:07]
+
+Processed: 40
+Skipped: 0
+Failed: 0
+Remaining: 110
+Gemini failures: 0
+OCR usage: 0
+
+Current:
+Branch: aids
+Semester: sem-4
+Subject: internet-of-things-aids
+
+[2026-05-09 12:14:14] Processed PDF: https://sppucodes.albatrossc.workers.dev/aids/sem-4/internet-of-things-aids/endsem-nov-dec-2023-pat2019-iota.pdf
+[2026-05-09 12:14:14]
+
+Processed: 41
+Skipped: 0
+Failed: 0
+Remaining: 109
+Gemini failures: 0
+OCR usage: 0
+
+Current:
+Branch: aids
+Semester: sem-4
+Subject: internet-of-things-aids
+
+[2026-05-09 12:14:28] Processed PDF: https://sppucodes.albatrossc.workers.dev/aids/sem-4/internet-of-things-aids/insem-feb-2023-pat2019-iota.pdf
+[2026-05-09 12:14:28]
+
+Processed: 42
+Skipped: 0
+Failed: 0
+Remaining: 108
+Gemini failures: 0
+OCR usage: 0
+
+Current:
+Branch: aids
+Semester: sem-4
+Subject: internet-of-things-aids
+
+[2026-05-09 12:14:39] Processed PDF: https://sppucodes.albatrossc.workers.dev/aids/sem-4/internet-of-things-aids/insem-march-2024-pat2019-iota.pdf
+[2026-05-09 12:14:39]
+
+Processed: 43
+Skipped: 0
+Failed: 0
+Remaining: 107
+Gemini failures: 0
+OCR usage: 0
+
+Current:
+Branch: aids
+Semester: sem-4
+Subject: internet-of-things-aids
+
+[2026-05-09 12:14:54] Processed PDF: https://sppucodes.albatrossc.workers.dev/aids/sem-4/management-information-systems-aids/endsem-may-jun-2022-pat2019-misa.pdf
+[2026-05-09 12:14:54]
+
+Processed: 44
+Skipped: 0
+Failed: 0
+Remaining: 106
+Gemini failures: 0
+OCR usage: 0
+
+Current:
+Branch: aids
+Semester: sem-4
+Subject: management-information-systems-aids
+
+[2026-05-09 12:15:00] Processed PDF: https://sppucodes.albatrossc.workers.dev/aids/sem-4/management-information-systems-aids/endsem-may-jun-2023-pat2019-misa.pdf
+[2026-05-09 12:15:00]
+
+Processed: 45
+Skipped: 0
+Failed: 0
+Remaining: 105
+Gemini failures: 0
+OCR usage: 0
+
+Current:
+Branch: aids
+Semester: sem-4
+Subject: management-information-systems-aids
+
+[2026-05-09 12:15:10] Processed PDF: https://sppucodes.albatrossc.workers.dev/aids/sem-4/management-information-systems-aids/endsem-may-jun-2024-pat2019-misa.pdf
+[2026-05-09 12:15:10]
+
+Processed: 46
+Skipped: 0
+Failed: 0
+Remaining: 104
+Gemini failures: 0
+OCR usage: 0
+
+Current:
+Branch: aids
+Semester: sem-4
+Subject: management-information-systems-aids
+
+[2026-05-09 12:15:23] Processed PDF: https://sppucodes.albatrossc.workers.dev/aids/sem-4/management-information-systems-aids/endsem-nov-dec-2022-pat2019-misa.pdf
+[2026-05-09 12:15:23]
+
+Processed: 47
+Skipped: 0
+Failed: 0
+Remaining: 103
+Gemini failures: 0
+OCR usage: 0
+
+Current:
+Branch: aids
+Semester: sem-4
+Subject: management-information-systems-aids
+
+[2026-05-09 12:15:36] Processed PDF: https://sppucodes.albatrossc.workers.dev/aids/sem-4/management-information-systems-aids/endsem-nov-dec-2023-pat2019-misa.pdf
+[2026-05-09 12:15:36]
+
+Processed: 48
+Skipped: 0
+Failed: 0
+Remaining: 102
+Gemini failures: 0
+OCR usage: 0
+
+Current:
+Branch: aids
+Semester: sem-4
+Subject: management-information-systems-aids
+
+[2026-05-09 12:15:44] Processed PDF: https://sppucodes.albatrossc.workers.dev/aids/sem-4/management-information-systems-aids/insem-feb-2023-pat2019-misa.pdf
+[2026-05-09 12:15:44]
+
+Processed: 49
+Skipped: 0
+Failed: 0
+Remaining: 101
+Gemini failures: 0
+OCR usage: 0
+
+Current:
+Branch: aids
+Semester: sem-4
+Subject: management-information-systems-aids
+
+[2026-05-09 12:15:55] Processed PDF: https://sppucodes.albatrossc.workers.dev/aids/sem-4/management-information-systems-aids/insem-march-2024-pat2019-misa.pdf
+[2026-05-09 12:15:55]
+
+Processed: 50
+Skipped: 0
+Failed: 0
+Remaining: 100
+Gemini failures: 0
+OCR usage: 0
+
+Current:
+Branch: aids
+Semester: sem-4
+Subject: management-information-systems-aids
+
+[2026-05-09 12:16:09] Processed PDF: https://sppucodes.albatrossc.workers.dev/aids/sem-4/software-engineering-aids/endsem-may-jun-2022-pat2019-sea.pdf
+[2026-05-09 12:16:09]
+
+Processed: 51
+Skipped: 0
+Failed: 0
+Remaining: 99
+Gemini failures: 0
+OCR usage: 0
+
+Current:
+Branch: aids
+Semester: sem-4
+Subject: software-engineering-aids
+
+[2026-05-09 12:16:17] Processed PDF: https://sppucodes.albatrossc.workers.dev/aids/sem-4/software-engineering-aids/endsem-may-jun-2023-pat2019-sea.pdf
+[2026-05-09 12:16:17]
+
+Processed: 52
+Skipped: 0
+Failed: 0
+Remaining: 98
+Gemini failures: 0
+OCR usage: 0
+
+Current:
+Branch: aids
+Semester: sem-4
+Subject: software-engineering-aids
+
+[2026-05-09 12:16:33] Processed PDF: https://sppucodes.albatrossc.workers.dev/aids/sem-4/software-engineering-aids/endsem-may-jun-2024-pat2019-sea.pdf
+[2026-05-09 12:16:33]
+
+Processed: 53
+Skipped: 0
+Failed: 0
+Remaining: 97
+Gemini failures: 0
+OCR usage: 0
+
+Current:
+Branch: aids
+Semester: sem-4
+Subject: software-engineering-aids
+
+[2026-05-09 12:16:49] Processed PDF: https://sppucodes.albatrossc.workers.dev/aids/sem-4/software-engineering-aids/endsem-nov-dec-2022-pat2019-sea.pdf
+[2026-05-09 12:16:49]
+
+Processed: 54
+Skipped: 0
+Failed: 0
+Remaining: 96
+Gemini failures: 0
+OCR usage: 0
+
+Current:
+Branch: aids
+Semester: sem-4
+Subject: software-engineering-aids
+
+[2026-05-09 12:16:56] Processed PDF: https://sppucodes.albatrossc.workers.dev/aids/sem-4/software-engineering-aids/endsem-nov-dec-2023-pat2019-sea.pdf
+[2026-05-09 12:16:56]
+
+Processed: 55
+Skipped: 0
+Failed: 0
+Remaining: 95
+Gemini failures: 0
+OCR usage: 0
+
+Current:
+Branch: aids
+Semester: sem-4
+Subject: software-engineering-aids
+
+[2026-05-09 12:17:01] Processed PDF: https://sppucodes.albatrossc.workers.dev/aids/sem-4/software-engineering-aids/insem-feb-2023-pat2019-sea.pdf
+[2026-05-09 12:17:01]
+
+Processed: 56
+Skipped: 0
+Failed: 0
+Remaining: 94
+Gemini failures: 0
+OCR usage: 0
+
+Current:
+Branch: aids
+Semester: sem-4
+Subject: software-engineering-aids
+
+[2026-05-09 12:17:13] Processed PDF: https://sppucodes.albatrossc.workers.dev/aids/sem-4/software-engineering-aids/insem-march-2024-pat2019-sea.pdf
+[2026-05-09 12:17:13]
+
+Processed: 57
+Skipped: 0
+Failed: 0
+Remaining: 93
+Gemini failures: 0
+OCR usage: 0
+
+Current:
+Branch: aids
+Semester: sem-4
+Subject: software-engineering-aids
+
+[2026-05-09 12:17:30] Processed PDF: https://sppucodes.albatrossc.workers.dev/aids/sem-4/statistics-aids/endsem-may-jun-2022-pat2019-sa.pdf
+[2026-05-09 12:17:30]
+
+Processed: 58
+Skipped: 0
+Failed: 0
+Remaining: 92
+Gemini failures: 0
+OCR usage: 0
+
+Current:
+Branch: aids
+Semester: sem-4
+Subject: statistics-aids
+
+[2026-05-09 12:17:54] Processed PDF: https://sppucodes.albatrossc.workers.dev/aids/sem-4/statistics-aids/endsem-may-jun-2023-pat2019-sa.pdf
+[2026-05-09 12:17:54]
+
+Processed: 59
+Skipped: 0
+Failed: 0
+Remaining: 91
+Gemini failures: 0
+OCR usage: 0
+
+Current:
+Branch: aids
+Semester: sem-4
+Subject: statistics-aids
+
+[2026-05-09 12:18:10] Processed PDF: https://sppucodes.albatrossc.workers.dev/aids/sem-4/statistics-aids/endsem-may-jun-2024-pat2019-sa.pdf
+[2026-05-09 12:18:10]
+
+Processed: 60
+Skipped: 0
+Failed: 0
+Remaining: 90
+Gemini failures: 0
+OCR usage: 0
+
+Current:
+Branch: aids
+Semester: sem-4
+Subject: statistics-aids
+
+[2026-05-09 12:18:31] Processed PDF: https://sppucodes.albatrossc.workers.dev/aids/sem-4/statistics-aids/endsem-nov-dec-2022-pat2019-sa.pdf
+[2026-05-09 12:18:31]
+
+Processed: 61
+Skipped: 0
+Failed: 0
+Remaining: 89
+Gemini failures: 0
+OCR usage: 0
+
+Current:
+Branch: aids
+Semester: sem-4
+Subject: statistics-aids
+
+[2026-05-09 12:19:20] Processed PDF: https://sppucodes.albatrossc.workers.dev/aids/sem-4/statistics-aids/endsem-nov-dec-2023-pat2019-sa.pdf
+[2026-05-09 12:19:20]
+
+Processed: 62
+Skipped: 0
+Failed: 0
+Remaining: 88
+Gemini failures: 0
+OCR usage: 0
+
+Current:
+Branch: aids
+Semester: sem-4
+Subject: statistics-aids
+
+[2026-05-09 12:19:34] Processed PDF: https://sppucodes.albatrossc.workers.dev/aids/sem-4/statistics-aids/insem-feb-2023-pat2019-sa.pdf
+[2026-05-09 12:19:34]
+
+Processed: 63
+Skipped: 0
+Failed: 0
+Remaining: 87
+Gemini failures: 0
+OCR usage: 0
+
+Current:
+Branch: aids
+Semester: sem-4
+Subject: statistics-aids
+
+[2026-05-09 12:19:47] Processed PDF: https://sppucodes.albatrossc.workers.dev/aids/sem-4/statistics-aids/insem-march-2024-pat2019-sa.pdf
+[2026-05-09 12:19:47]
+
+Processed: 64
+Skipped: 0
+Failed: 0
+Remaining: 86
+Gemini failures: 0
+OCR usage: 0
+
+Current:
+Branch: aids
+Semester: sem-4
+Subject: statistics-aids
+
+[2026-05-09 12:20:05] Processed PDF: https://sppucodes.albatrossc.workers.dev/aids/sem-5/artificial-intelligence-aids/endsem-may-jun-2023-pat2019-aia.pdf
+[2026-05-09 12:20:05]
+
+Processed: 65
+Skipped: 0
+Failed: 0
+Remaining: 85
+Gemini failures: 0
+OCR usage: 0
+
+Current:
+Branch: aids
+Semester: sem-5
+Subject: artificial-intelligence-aids
+
+[2026-05-09 12:20:16] Processed PDF: https://sppucodes.albatrossc.workers.dev/aids/sem-5/artificial-intelligence-aids/endsem-may-jun-2024-pat2019-aia.pdf
+[2026-05-09 12:20:16]
+
+Processed: 66
+Skipped: 0
+Failed: 0
+Remaining: 84
+Gemini failures: 0
+OCR usage: 0
+
+Current:
+Branch: aids
+Semester: sem-5
+Subject: artificial-intelligence-aids
+
+[2026-05-09 12:20:42] Processed PDF: https://sppucodes.albatrossc.workers.dev/aids/sem-5/artificial-intelligence-aids/endsem-may-jun-2025-pat2019-aia.pdf
+[2026-05-09 12:20:42]
+
+Processed: 67
+Skipped: 0
+Failed: 0
+Remaining: 83
+Gemini failures: 0
+OCR usage: 0
+
+Current:
+Branch: aids
+Semester: sem-5
+Subject: artificial-intelligence-aids
+
+[2026-05-09 12:20:47] Processed PDF: https://sppucodes.albatrossc.workers.dev/aids/sem-5/artificial-intelligence-aids/endsem-nov-dec-2022-pat2019-aia.pdf
+[2026-05-09 12:20:47]
+
+Processed: 68
+Skipped: 0
+Failed: 0
+Remaining: 82
+Gemini failures: 0
+OCR usage: 0
+
+Current:
+Branch: aids
+Semester: sem-5
+Subject: artificial-intelligence-aids
+
+[2026-05-09 12:20:53] Processed PDF: https://sppucodes.albatrossc.workers.dev/aids/sem-5/artificial-intelligence-aids/endsem-nov-dec-2023-pat2019-aia.pdf
+[2026-05-09 12:20:53]
+
+Processed: 69
+Skipped: 0
+Failed: 0
+Remaining: 81
+Gemini failures: 0
+OCR usage: 0
+
+Current:
+Branch: aids
+Semester: sem-5
+Subject: artificial-intelligence-aids
+
+[2026-05-09 12:21:06] Processed PDF: https://sppucodes.albatrossc.workers.dev/aids/sem-5/artificial-intelligence-aids/endsem-nov-dec-2024-pat2019-aia.pdf
+[2026-05-09 12:21:06]
+
+Processed: 70
+Skipped: 0
+Failed: 0
+Remaining: 80
+Gemini failures: 0
+OCR usage: 0
+
+Current:
+Branch: aids
+Semester: sem-5
+Subject: artificial-intelligence-aids
+
+[2026-05-09 12:21:09] Processed PDF: https://sppucodes.albatrossc.workers.dev/aids/sem-5/artificial-intelligence-aids/insem-august-2025-pat2019-aia.pdf
+[2026-05-09 12:21:09]
+
+Processed: 71
+Skipped: 0
+Failed: 0
+Remaining: 79
+Gemini failures: 0
+OCR usage: 0
+
+Current:
+Branch: aids
+Semester: sem-5
+Subject: artificial-intelligence-aids
+
+[2026-05-09 12:21:12] Processed PDF: https://sppucodes.albatrossc.workers.dev/aids/sem-5/artificial-intelligence-aids/insem-oct-2022-pat2019-aia.pdf
+[2026-05-09 12:21:12]
+
+Processed: 72
+Skipped: 0
+Failed: 0
+Remaining: 78
+Gemini failures: 0
+OCR usage: 0
+
+Current:
+Branch: aids
+Semester: sem-5
+Subject: artificial-intelligence-aids
+
+[2026-05-09 12:21:15] Processed PDF: https://sppucodes.albatrossc.workers.dev/aids/sem-5/artificial-intelligence-aids/insem-sep-2023-pat2019-aia.pdf
+[2026-05-09 12:21:15]
+
+Processed: 73
+Skipped: 0
+Failed: 0
+Remaining: 77
+Gemini failures: 0
+OCR usage: 0
+
+Current:
+Branch: aids
+Semester: sem-5
+Subject: artificial-intelligence-aids
+
+[2026-05-09 12:21:18] Processed PDF: https://sppucodes.albatrossc.workers.dev/aids/sem-5/artificial-intelligence-aids/insem-sep-2024-pat2019-aia.pdf
+[2026-05-09 12:21:18]
+
+Processed: 74
+Skipped: 0
+Failed: 0
+Remaining: 76
+Gemini failures: 0
+OCR usage: 0
+
+Current:
+Branch: aids
+Semester: sem-5
+Subject: artificial-intelligence-aids
+
+[2026-05-09 12:21:22] Processed PDF: https://sppucodes.albatrossc.workers.dev/aids/sem-5/computer-networks-aids/endsem-may-jun-2023-pat2019-cna.pdf
+[2026-05-09 12:21:22]
+
+Processed: 75
+Skipped: 0
+Failed: 0
+Remaining: 75
+Gemini failures: 0
+OCR usage: 0
+
+Current:
+Branch: aids
+Semester: sem-5
+Subject: computer-networks-aids
+
+[2026-05-09 12:21:26] Processed PDF: https://sppucodes.albatrossc.workers.dev/aids/sem-5/computer-networks-aids/endsem-may-jun-2024-pat2019-cna.pdf
+[2026-05-09 12:21:26]
+
+Processed: 76
+Skipped: 0
+Failed: 0
+Remaining: 74
+Gemini failures: 0
+OCR usage: 0
+
+Current:
+Branch: aids
+Semester: sem-5
+Subject: computer-networks-aids
+
+[2026-05-09 12:21:31] Processed PDF: https://sppucodes.albatrossc.workers.dev/aids/sem-5/computer-networks-aids/endsem-may-jun-2025-pat2019-cna.pdf
+[2026-05-09 12:21:31]
+
+Processed: 77
+Skipped: 0
+Failed: 0
+Remaining: 73
+Gemini failures: 0
+OCR usage: 0
+
+Current:
+Branch: aids
+Semester: sem-5
+Subject: computer-networks-aids
+
+[2026-05-09 12:21:34] Processed PDF: https://sppucodes.albatrossc.workers.dev/aids/sem-5/computer-networks-aids/endsem-nov-dec-2022-pat2019-cna.pdf
+[2026-05-09 12:21:34]
+
+Processed: 78
+Skipped: 0
+Failed: 0
+Remaining: 72
+Gemini failures: 0
+OCR usage: 0
+
+Current:
+Branch: aids
+Semester: sem-5
+Subject: computer-networks-aids
+
+[2026-05-09 12:21:46] Processed PDF: https://sppucodes.albatrossc.workers.dev/aids/sem-5/computer-networks-aids/endsem-nov-dec-2023-pat2019-cna.pdf
+[2026-05-09 12:21:46]
+
+Processed: 79
+Skipped: 0
+Failed: 0
+Remaining: 71
+Gemini failures: 0
+OCR usage: 0
+
+Current:
+Branch: aids
+Semester: sem-5
+Subject: computer-networks-aids
+
+[2026-05-09 12:21:50] Processed PDF: https://sppucodes.albatrossc.workers.dev/aids/sem-5/computer-networks-aids/endsem-nov-dec-2024-pat2019-cna.pdf
+[2026-05-09 12:21:50]
+
+Processed: 80
+Skipped: 0
+Failed: 0
+Remaining: 70
+Gemini failures: 0
+OCR usage: 0
+
+Current:
+Branch: aids
+Semester: sem-5
+Subject: computer-networks-aids
+
+[2026-05-09 12:21:53] Processed PDF: https://sppucodes.albatrossc.workers.dev/aids/sem-5/computer-networks-aids/insem-august-2025-pat2019-cna.pdf
+[2026-05-09 12:21:53]
+
+Processed: 81
+Skipped: 0
+Failed: 0
+Remaining: 69
+Gemini failures: 0
+OCR usage: 0
+
+Current:
+Branch: aids
+Semester: sem-5
+Subject: computer-networks-aids
+
+[2026-05-09 12:21:57] Processed PDF: https://sppucodes.albatrossc.workers.dev/aids/sem-5/computer-networks-aids/insem-oct-2022-pat2019-cna.pdf
+[2026-05-09 12:21:57]
+
+Processed: 82
+Skipped: 0
+Failed: 0
+Remaining: 68
+Gemini failures: 0
+OCR usage: 0
+
+Current:
+Branch: aids
+Semester: sem-5
+Subject: computer-networks-aids
+
+[2026-05-09 12:22:00] Processed PDF: https://sppucodes.albatrossc.workers.dev/aids/sem-5/computer-networks-aids/insem-sep-2023-pat2019-cna.pdf
+[2026-05-09 12:22:00]
+
+Processed: 83
+Skipped: 0
+Failed: 0
+Remaining: 67
+Gemini failures: 0
+OCR usage: 0
+
+Current:
+Branch: aids
+Semester: sem-5
+Subject: computer-networks-aids
+
+[2026-05-09 12:22:03] Processed PDF: https://sppucodes.albatrossc.workers.dev/aids/sem-5/computer-networks-aids/insem-sep-2024-pat2019-cna.pdf
+[2026-05-09 12:22:03]
+
+Processed: 84
+Skipped: 0
+Failed: 0
+Remaining: 66
+Gemini failures: 0
+OCR usage: 0
+
+Current:
+Branch: aids
+Semester: sem-5
+Subject: computer-networks-aids
+
+[2026-05-09 12:22:08] Processed PDF: https://sppucodes.albatrossc.workers.dev/aids/sem-5/database-management-system-aids/endsem-may-jun-2023-pat2019-dmsa.pdf
+[2026-05-09 12:22:08]
+
+Processed: 85
+Skipped: 0
+Failed: 0
+Remaining: 65
+Gemini failures: 0
+OCR usage: 0
+
+Current:
+Branch: aids
+Semester: sem-5
+Subject: database-management-system-aids
+
+[2026-05-09 12:22:12] Processed PDF: https://sppucodes.albatrossc.workers.dev/aids/sem-5/database-management-system-aids/endsem-may-jun-2024-pat2019-dmsa.pdf
+[2026-05-09 12:22:12]
+
+Processed: 86
+Skipped: 0
+Failed: 0
+Remaining: 64
+Gemini failures: 0
+OCR usage: 0
+
+Current:
+Branch: aids
+Semester: sem-5
+Subject: database-management-system-aids
+
+[2026-05-09 12:22:16] Processed PDF: https://sppucodes.albatrossc.workers.dev/aids/sem-5/database-management-system-aids/endsem-may-jun-2025-pat2019-dmsa.pdf
+[2026-05-09 12:22:16]
+
+Processed: 87
+Skipped: 0
+Failed: 0
+Remaining: 63
+Gemini failures: 0
+OCR usage: 0
+
+Current:
+Branch: aids
+Semester: sem-5
+Subject: database-management-system-aids
+
+[2026-05-09 12:22:21] Processed PDF: https://sppucodes.albatrossc.workers.dev/aids/sem-5/database-management-system-aids/endsem-nov-dec-2022-pat2019-dmsa.pdf
+[2026-05-09 12:22:21]
+
+Processed: 88
+Skipped: 0
+Failed: 0
+Remaining: 62
+Gemini failures: 0
+OCR usage: 0
+
+Current:
+Branch: aids
+Semester: sem-5
+Subject: database-management-system-aids
+
+[2026-05-09 12:22:25] Processed PDF: https://sppucodes.albatrossc.workers.dev/aids/sem-5/database-management-system-aids/endsem-nov-dec-2023-pat2019-dmsa.pdf
+[2026-05-09 12:22:25]
+
+Processed: 89
+Skipped: 0
+Failed: 0
+Remaining: 61
+Gemini failures: 0
+OCR usage: 0
+
+Current:
+Branch: aids
+Semester: sem-5
+Subject: database-management-system-aids
+
+[2026-05-09 12:22:30] Processed PDF: https://sppucodes.albatrossc.workers.dev/aids/sem-5/database-management-system-aids/endsem-nov-dec-2024-pat2019-dmsa.pdf
+[2026-05-09 12:22:30]
+
+Processed: 90
+Skipped: 0
+Failed: 0
+Remaining: 60
+Gemini failures: 0
+OCR usage: 0
+
+Current:
+Branch: aids
+Semester: sem-5
+Subject: database-management-system-aids
+
+[2026-05-09 12:22:35] Processed PDF: https://sppucodes.albatrossc.workers.dev/aids/sem-5/database-management-system-aids/insem-august-2025-pat2019-dmsa.pdf
+[2026-05-09 12:22:35]
+
+Processed: 91
+Skipped: 0
+Failed: 0
+Remaining: 59
+Gemini failures: 0
+OCR usage: 0
+
+Current:
+Branch: aids
+Semester: sem-5
+Subject: database-management-system-aids
+
+[2026-05-09 12:23:36] Processed PDF: https://sppucodes.albatrossc.workers.dev/aids/sem-5/database-management-system-aids/insem-oct-2022-pat2019-dmsa.pdf
+[2026-05-09 12:23:36]
+
+Processed: 92
+Skipped: 0
+Failed: 0
+Remaining: 58
+Gemini failures: 0
+OCR usage: 0
+
+Current:
+Branch: aids
+Semester: sem-5
+Subject: database-management-system-aids
+
+[2026-05-09 12:23:44] Processed PDF: https://sppucodes.albatrossc.workers.dev/aids/sem-5/database-management-system-aids/insem-sep-2023-pat2019-dmsa.pdf
+[2026-05-09 12:23:44]
+
+Processed: 93
+Skipped: 0
+Failed: 0
+Remaining: 57
+Gemini failures: 0
+OCR usage: 0
+
+Current:
+Branch: aids
+Semester: sem-5
+Subject: database-management-system-aids
+
+[2026-05-09 12:24:19] Processed PDF: https://sppucodes.albatrossc.workers.dev/aids/sem-5/database-management-system-aids/insem-sep-2024-pat2019-dmsa.pdf
+[2026-05-09 12:24:19]
+
+Processed: 94
+Skipped: 0
+Failed: 0
+Remaining: 56
+Gemini failures: 0
+OCR usage: 0
+
+Current:
+Branch: aids
+Semester: sem-5
+Subject: database-management-system-aids
+
+[2026-05-09 12:25:19] PDF failure for https://sppucodes.albatrossc.workers.dev/aids/sem-5/human-computer-interface-ele-i-aids/endsem-may-jun-2023-pat2019-hcieia.pdf: HTTPSConnectionPool(host='sppucodes.albatrossc.workers.dev', port=443): Read timed out. (read timeout=60)
+[2026-05-09 12:25:19]
+
+Processed: 94
+Skipped: 0
+Failed: 1
+Remaining: 55
+Gemini failures: 0
+OCR usage: 0
+
+Current:
+Branch: aids
+Semester: sem-5
+Subject: human-computer-interface-ele-i-aids
+
+[2026-05-09 12:25:40] Processed PDF: https://sppucodes.albatrossc.workers.dev/aids/sem-5/human-computer-interface-ele-i-aids/endsem-may-jun-2024-pat2019-hcieia.pdf
+[2026-05-09 12:25:40]
+
+Processed: 95
+Skipped: 0
+Failed: 1
+Remaining: 54
+Gemini failures: 0
+OCR usage: 0
+
+Current:
+Branch: aids
+Semester: sem-5
+Subject: human-computer-interface-ele-i-aids
+
+[2026-05-09 12:25:53] Processed PDF: https://sppucodes.albatrossc.workers.dev/aids/sem-5/human-computer-interface-ele-i-aids/endsem-may-jun-2025-pat2019-hcieia.pdf
+[2026-05-09 12:25:53]
+
+Processed: 96
+Skipped: 0
+Failed: 1
+Remaining: 53
+Gemini failures: 0
+OCR usage: 0
+
+Current:
+Branch: aids
+Semester: sem-5
+Subject: human-computer-interface-ele-i-aids
+
+[2026-05-09 12:26:08] Processed PDF: https://sppucodes.albatrossc.workers.dev/aids/sem-5/human-computer-interface-ele-i-aids/endsem-nov-dec-2022-pat2019-hcieia.pdf
+[2026-05-09 12:26:08]
+
+Processed: 97
+Skipped: 0
+Failed: 1
+Remaining: 52
+Gemini failures: 0
+OCR usage: 0
+
+Current:
+Branch: aids
+Semester: sem-5
+Subject: human-computer-interface-ele-i-aids
+
+[2026-05-09 12:26:22] Processed PDF: https://sppucodes.albatrossc.workers.dev/aids/sem-5/human-computer-interface-ele-i-aids/endsem-nov-dec-2023-pat2019-hcieia.pdf
+[2026-05-09 12:26:22]
+
+Processed: 98
+Skipped: 0
+Failed: 1
+Remaining: 51
+Gemini failures: 0
+OCR usage: 0
+
+Current:
+Branch: aids
+Semester: sem-5
+Subject: human-computer-interface-ele-i-aids
+
+[2026-05-09 12:26:37] Processed PDF: https://sppucodes.albatrossc.workers.dev/aids/sem-5/human-computer-interface-ele-i-aids/endsem-nov-dec-2024-pat2019-hcieia.pdf
+[2026-05-09 12:26:37]
+
+Processed: 99
+Skipped: 0
+Failed: 1
+Remaining: 50
+Gemini failures: 0
+OCR usage: 0
+
+Current:
+Branch: aids
+Semester: sem-5
+Subject: human-computer-interface-ele-i-aids
+
+[2026-05-09 12:26:49] Processed PDF: https://sppucodes.albatrossc.workers.dev/aids/sem-5/human-computer-interface-ele-i-aids/insem-august-2025-pat2019-hcieia.pdf
+[2026-05-09 12:26:49]
+
+Processed: 100
+Skipped: 0
+Failed: 1
+Remaining: 49
+Gemini failures: 0
+OCR usage: 0
+
+Current:
+Branch: aids
+Semester: sem-5
+Subject: human-computer-interface-ele-i-aids
+
+[2026-05-09 12:27:04] Processed PDF: https://sppucodes.albatrossc.workers.dev/aids/sem-5/human-computer-interface-ele-i-aids/insem-oct-2022-pat2019-hcieia.pdf
+[2026-05-09 12:27:04]
+
+Processed: 101
+Skipped: 0
+Failed: 1
+Remaining: 48
+Gemini failures: 0
+OCR usage: 0
+
+Current:
+Branch: aids
+Semester: sem-5
+Subject: human-computer-interface-ele-i-aids
+
+[2026-05-09 12:27:13] Processed PDF: https://sppucodes.albatrossc.workers.dev/aids/sem-5/human-computer-interface-ele-i-aids/insem-sep-2023-pat2019-hcieia.pdf
+[2026-05-09 12:27:13]
+
+Processed: 102
+Skipped: 0
+Failed: 1
+Remaining: 47
+Gemini failures: 0
+OCR usage: 0
+
+Current:
+Branch: aids
+Semester: sem-5
+Subject: human-computer-interface-ele-i-aids
+
+[2026-05-09 12:27:23] Processed PDF: https://sppucodes.albatrossc.workers.dev/aids/sem-5/human-computer-interface-ele-i-aids/insem-sep-2024-pat2019-hcieia.pdf
+[2026-05-09 12:27:23]
+
+Processed: 103
+Skipped: 0
+Failed: 1
+Remaining: 46
+Gemini failures: 0
+OCR usage: 0
+
+Current:
+Branch: aids
+Semester: sem-5
+Subject: human-computer-interface-ele-i-aids
+
+[2026-05-09 12:27:41] Processed PDF: https://sppucodes.albatrossc.workers.dev/aids/sem-5/pattern-recognition-ele-i-aids/endsem-nov-dec-2024-pat2019-preia.pdf
+[2026-05-09 12:27:41]
+
+Processed: 104
+Skipped: 0
+Failed: 1
+Remaining: 45
+Gemini failures: 0
+OCR usage: 0
+
+Current:
+Branch: aids
+Semester: sem-5
+Subject: pattern-recognition-ele-i-aids
+
+[2026-05-09 12:27:52] Processed PDF: https://sppucodes.albatrossc.workers.dev/aids/sem-5/pattern-recognition-ele-i-aids/insem-sep-2024-pat2019-preia.pdf
+[2026-05-09 12:27:52]
+
+Processed: 105
+Skipped: 0
+Failed: 1
+Remaining: 44
+Gemini failures: 0
+OCR usage: 0
+
+Current:
+Branch: aids
+Semester: sem-5
+Subject: pattern-recognition-ele-i-aids
+
+[2026-05-09 12:28:11] Processed PDF: https://sppucodes.albatrossc.workers.dev/aids/sem-5/web-technology-aids/endsem-may-jun-2023-pat2019-wta.pdf
+[2026-05-09 12:28:11]
+
+Processed: 106
+Skipped: 0
+Failed: 1
+Remaining: 43
+Gemini failures: 0
+OCR usage: 0
+
+Current:
+Branch: aids
+Semester: sem-5
+Subject: web-technology-aids
+
+[2026-05-09 12:28:17] Processed PDF: https://sppucodes.albatrossc.workers.dev/aids/sem-5/web-technology-aids/endsem-may-jun-2024-pat2019-wta.pdf
+[2026-05-09 12:28:17]
+
+Processed: 107
+Skipped: 0
+Failed: 1
+Remaining: 42
+Gemini failures: 0
+OCR usage: 0
+
+Current:
+Branch: aids
+Semester: sem-5
+Subject: web-technology-aids
+
+[2026-05-09 12:28:29] Processed PDF: https://sppucodes.albatrossc.workers.dev/aids/sem-5/web-technology-aids/endsem-may-jun-2025-pat2019-wta.pdf
+[2026-05-09 12:28:29]
+
+Processed: 108
+Skipped: 0
+Failed: 1
+Remaining: 41
+Gemini failures: 0
+OCR usage: 0
+
+Current:
+Branch: aids
+Semester: sem-5
+Subject: web-technology-aids
+
+[2026-05-09 12:28:43] Processed PDF: https://sppucodes.albatrossc.workers.dev/aids/sem-5/web-technology-aids/endsem-nov-dec-2022-pat2019-wta.pdf
+[2026-05-09 12:28:43]
+
+Processed: 109
+Skipped: 0
+Failed: 1
+Remaining: 40
+Gemini failures: 0
+OCR usage: 0
+
+Current:
+Branch: aids
+Semester: sem-5
+Subject: web-technology-aids
+
+[2026-05-09 12:28:56] Processed PDF: https://sppucodes.albatrossc.workers.dev/aids/sem-5/web-technology-aids/endsem-nov-dec-2023-pat2019-wta.pdf
+[2026-05-09 12:28:56]
+
+Processed: 110
+Skipped: 0
+Failed: 1
+Remaining: 39
+Gemini failures: 0
+OCR usage: 0
+
+Current:
+Branch: aids
+Semester: sem-5
+Subject: web-technology-aids
+
+[2026-05-09 12:29:12] Processed PDF: https://sppucodes.albatrossc.workers.dev/aids/sem-5/web-technology-aids/insem-august-2025-pat2019-wta.pdf
+[2026-05-09 12:29:12]
+
+Processed: 111
+Skipped: 0
+Failed: 1
+Remaining: 38
+Gemini failures: 0
+OCR usage: 0
+
+Current:
+Branch: aids
+Semester: sem-5
+Subject: web-technology-aids
+
+[2026-05-09 12:29:26] Processed PDF: https://sppucodes.albatrossc.workers.dev/aids/sem-5/web-technology-aids/insem-oct-2022-pat2019-wta.pdf
+[2026-05-09 12:29:26]
+
+Processed: 112
+Skipped: 0
+Failed: 1
+Remaining: 37
+Gemini failures: 0
+OCR usage: 0
+
+Current:
+Branch: aids
+Semester: sem-5
+Subject: web-technology-aids
+
+[2026-05-09 12:29:37] Processed PDF: https://sppucodes.albatrossc.workers.dev/aids/sem-5/web-technology-aids/insem-sep-2023-pat2019-wta.pdf
+[2026-05-09 12:29:37]
+
+Processed: 113
+Skipped: 0
+Failed: 1
+Remaining: 36
+Gemini failures: 0
+OCR usage: 0
+
+Current:
+Branch: aids
+Semester: sem-5
+Subject: web-technology-aids
+
+[2026-05-09 12:29:43] Processed PDF: https://sppucodes.albatrossc.workers.dev/aids/sem-5/web-technology-aids/insem-sep-2024-pat2019-wta.pdf
+[2026-05-09 12:29:43]
+
+Processed: 114
+Skipped: 0
+Failed: 1
+Remaining: 35
+Gemini failures: 0
+OCR usage: 0
+
+Current:
+Branch: aids
+Semester: sem-5
+Subject: web-technology-aids
+
+[2026-05-09 12:29:53] Processed PDF: https://sppucodes.albatrossc.workers.dev/aids/sem-6/artificial-neural-network-aids/endsem-may-jun-2023-pat2019-anna.pdf
+[2026-05-09 12:29:53]
+
+Processed: 115
+Skipped: 0
+Failed: 1
+Remaining: 34
+Gemini failures: 0
+OCR usage: 0
+
+Current:
+Branch: aids
+Semester: sem-6
+Subject: artificial-neural-network-aids
+
+[2026-05-09 12:30:04] Processed PDF: https://sppucodes.albatrossc.workers.dev/aids/sem-6/artificial-neural-network-aids/endsem-may-jun-2024-pat2019-anna.pdf
+[2026-05-09 12:30:04]
+
+Processed: 116
+Skipped: 0
+Failed: 1
+Remaining: 33
+Gemini failures: 0
+OCR usage: 0
+
+Current:
+Branch: aids
+Semester: sem-6
+Subject: artificial-neural-network-aids
+
+[2026-05-09 12:30:09] Processed PDF: https://sppucodes.albatrossc.workers.dev/aids/sem-6/artificial-neural-network-aids/endsem-may-jun-2025-pat2019-anna.pdf
+[2026-05-09 12:30:09]
+
+Processed: 117
+Skipped: 0
+Failed: 1
+Remaining: 32
+Gemini failures: 0
+OCR usage: 0
+
+Current:
+Branch: aids
+Semester: sem-6
+Subject: artificial-neural-network-aids
+
+[2026-05-09 12:30:16] Processed PDF: https://sppucodes.albatrossc.workers.dev/aids/sem-6/artificial-neural-network-aids/endsem-nov-dec-2023-pat2019-anna.pdf
+[2026-05-09 12:30:16]
+
+Processed: 118
+Skipped: 0
+Failed: 1
+Remaining: 31
+Gemini failures: 0
+OCR usage: 0
+
+Current:
+Branch: aids
+Semester: sem-6
+Subject: artificial-neural-network-aids
+
+[2026-05-09 12:30:28] Processed PDF: https://sppucodes.albatrossc.workers.dev/aids/sem-6/artificial-neural-network-aids/insem-feb-2023-pat2019-anna.pdf
+[2026-05-09 12:30:28]
+
+Processed: 119
+Skipped: 0
+Failed: 1
+Remaining: 30
+Gemini failures: 0
+OCR usage: 0
+
+Current:
+Branch: aids
+Semester: sem-6
+Subject: artificial-neural-network-aids
+
+[2026-05-09 12:30:47] Processed PDF: https://sppucodes.albatrossc.workers.dev/aids/sem-6/artificial-neural-network-aids/insem-march-2024-pat2019-anna.pdf
+[2026-05-09 12:30:47]
+
+Processed: 120
+Skipped: 0
+Failed: 1
+Remaining: 29
+Gemini failures: 0
+OCR usage: 0
+
+Current:
+Branch: aids
+Semester: sem-6
+Subject: artificial-neural-network-aids
+
+[2026-05-09 12:30:58] Processed PDF: https://sppucodes.albatrossc.workers.dev/aids/sem-6/artificial-neural-network-aids/insem-march-2025-pat2019-anna.pdf
+[2026-05-09 12:30:58]
+
+Processed: 121
+Skipped: 0
+Failed: 1
+Remaining: 28
+Gemini failures: 0
+OCR usage: 0
+
+Current:
+Branch: aids
+Semester: sem-6
+Subject: artificial-neural-network-aids
+
+[2026-05-09 12:31:07] Processed PDF: https://sppucodes.albatrossc.workers.dev/aids/sem-6/cloud-computing-ele-ii-aids/endsem-may-jun-2023-pat2019-cceiia.pdf
+[2026-05-09 12:31:07]
+
+Processed: 122
+Skipped: 0
+Failed: 1
+Remaining: 27
+Gemini failures: 0
+OCR usage: 0
+
+Current:
+Branch: aids
+Semester: sem-6
+Subject: cloud-computing-ele-ii-aids
+
+[2026-05-09 12:31:13] Processed PDF: https://sppucodes.albatrossc.workers.dev/aids/sem-6/cloud-computing-ele-ii-aids/endsem-may-jun-2024-pat2019-cceiia.pdf
+[2026-05-09 12:31:13]
+
+Processed: 123
+Skipped: 0
+Failed: 1
+Remaining: 26
+Gemini failures: 0
+OCR usage: 0
+
+Current:
+Branch: aids
+Semester: sem-6
+Subject: cloud-computing-ele-ii-aids
+
+[2026-05-09 12:31:25] Processed PDF: https://sppucodes.albatrossc.workers.dev/aids/sem-6/cloud-computing-ele-ii-aids/endsem-may-jun-2025-pat2019-cceiia.pdf
+[2026-05-09 12:31:25]
+
+Processed: 124
+Skipped: 0
+Failed: 1
+Remaining: 25
+Gemini failures: 0
+OCR usage: 0
+
+Current:
+Branch: aids
+Semester: sem-6
+Subject: cloud-computing-ele-ii-aids
+
+[2026-05-09 12:31:37] Processed PDF: https://sppucodes.albatrossc.workers.dev/aids/sem-6/cloud-computing-ele-ii-aids/endsem-nov-dec-2024-pat2019-cceiia.pdf
+[2026-05-09 12:31:37]
+
+Processed: 125
+Skipped: 0
+Failed: 1
+Remaining: 24
+Gemini failures: 0
+OCR usage: 0
+
+Current:
+Branch: aids
+Semester: sem-6
+Subject: cloud-computing-ele-ii-aids
+
+[2026-05-09 12:31:58] Processed PDF: https://sppucodes.albatrossc.workers.dev/aids/sem-6/cloud-computing-ele-ii-aids/insem-feb-2023-pat2019-cceiia.pdf
+[2026-05-09 12:31:58]
+
+Processed: 126
+Skipped: 0
+Failed: 1
+Remaining: 23
+Gemini failures: 0
+OCR usage: 0
+
+Current:
+Branch: aids
+Semester: sem-6
+Subject: cloud-computing-ele-ii-aids
+
+[2026-05-09 12:32:06] Processed PDF: https://sppucodes.albatrossc.workers.dev/aids/sem-6/cloud-computing-ele-ii-aids/insem-march-2024-pat2019-cceiia.pdf
+[2026-05-09 12:32:06]
+
+Processed: 127
+Skipped: 0
+Failed: 1
+Remaining: 22
+Gemini failures: 0
+OCR usage: 0
+
+Current:
+Branch: aids
+Semester: sem-6
+Subject: cloud-computing-ele-ii-aids
+
+[2026-05-09 12:32:19] Processed PDF: https://sppucodes.albatrossc.workers.dev/aids/sem-6/cloud-computing-ele-ii-aids/insem-march-2025-pat2019-cceiia.pdf
+[2026-05-09 12:32:19]
+
+Processed: 128
+Skipped: 0
+Failed: 1
+Remaining: 21
+Gemini failures: 0
+OCR usage: 0
+
+Current:
+Branch: aids
+Semester: sem-6
+Subject: cloud-computing-ele-ii-aids
+
+[2026-05-09 12:32:28] Processed PDF: https://sppucodes.albatrossc.workers.dev/aids/sem-6/cyber-security-aids/endsem-may-jun-2023-pat2019-csa.pdf
+[2026-05-09 12:32:28]
+
+Processed: 129
+Skipped: 0
+Failed: 1
+Remaining: 20
+Gemini failures: 0
+OCR usage: 0
+
+Current:
+Branch: aids
+Semester: sem-6
+Subject: cyber-security-aids
+
+[2026-05-09 12:32:37] Processed PDF: https://sppucodes.albatrossc.workers.dev/aids/sem-6/cyber-security-aids/endsem-may-jun-2024-pat2019-csa.pdf
+[2026-05-09 12:32:37]
+
+Processed: 130
+Skipped: 0
+Failed: 1
+Remaining: 19
+Gemini failures: 0
+OCR usage: 0
+
+Current:
+Branch: aids
+Semester: sem-6
+Subject: cyber-security-aids
+
+[2026-05-09 12:32:44] Processed PDF: https://sppucodes.albatrossc.workers.dev/aids/sem-6/cyber-security-aids/endsem-may-jun-2025-pat2019-csa.pdf
+[2026-05-09 12:32:44]
+
+Processed: 131
+Skipped: 0
+Failed: 1
+Remaining: 18
+Gemini failures: 0
+OCR usage: 0
+
+Current:
+Branch: aids
+Semester: sem-6
+Subject: cyber-security-aids
+
+[2026-05-09 12:32:50] Processed PDF: https://sppucodes.albatrossc.workers.dev/aids/sem-6/cyber-security-aids/endsem-nov-dec-2024-pat2019-csa.pdf
+[2026-05-09 12:32:50]
+
+Processed: 132
+Skipped: 0
+Failed: 1
+Remaining: 17
+Gemini failures: 0
+OCR usage: 0
+
+Current:
+Branch: aids
+Semester: sem-6
+Subject: cyber-security-aids
+
+[2026-05-09 12:32:55] Processed PDF: https://sppucodes.albatrossc.workers.dev/aids/sem-6/cyber-security-aids/insem-feb-2023-pat2019-csa.pdf
+[2026-05-09 12:32:55]
+
+Processed: 133
+Skipped: 0
+Failed: 1
+Remaining: 16
+Gemini failures: 0
+OCR usage: 0
+
+Current:
+Branch: aids
+Semester: sem-6
+Subject: cyber-security-aids
+
+[2026-05-09 12:33:04] Processed PDF: https://sppucodes.albatrossc.workers.dev/aids/sem-6/cyber-security-aids/insem-march-2024-pat2019-csa.pdf
+[2026-05-09 12:33:04]
+
+Processed: 134
+Skipped: 0
+Failed: 1
+Remaining: 15
+Gemini failures: 0
+OCR usage: 0
+
+Current:
+Branch: aids
+Semester: sem-6
+Subject: cyber-security-aids
+
+[2026-05-09 12:33:09] Processed PDF: https://sppucodes.albatrossc.workers.dev/aids/sem-6/cyber-security-aids/insem-march-2025-pat2019-csa.pdf
+[2026-05-09 12:33:09]
+
+Processed: 135
+Skipped: 0
+Failed: 1
+Remaining: 14
+Gemini failures: 0
+OCR usage: 0
+
+Current:
+Branch: aids
+Semester: sem-6
+Subject: cyber-security-aids
+
+[2026-05-09 12:33:18] Processed PDF: https://sppucodes.albatrossc.workers.dev/aids/sem-6/data-science-aids/endsem-may-jun-2023-pat2019-dsa.pdf
+[2026-05-09 12:33:18]
+
+Processed: 136
+Skipped: 0
+Failed: 1
+Remaining: 13
+Gemini failures: 0
+OCR usage: 0
+
+Current:
+Branch: aids
+Semester: sem-6
+Subject: data-science-aids
+
+[2026-05-09 12:33:22] Processed PDF: https://sppucodes.albatrossc.workers.dev/aids/sem-6/data-science-aids/endsem-may-jun-2024-pat2019-dsa.pdf
+[2026-05-09 12:33:22]
+
+Processed: 137
+Skipped: 0
+Failed: 1
+Remaining: 12
+Gemini failures: 0
+OCR usage: 0
+
+Current:
+Branch: aids
+Semester: sem-6
+Subject: data-science-aids
+
+[2026-05-09 12:33:38] Processed PDF: https://sppucodes.albatrossc.workers.dev/aids/sem-6/data-science-aids/endsem-may-jun-2025-pat2019-dsa.pdf
+[2026-05-09 12:33:38]
+
+Processed: 138
+Skipped: 0
+Failed: 1
+Remaining: 11
+Gemini failures: 0
+OCR usage: 0
+
+Current:
+Branch: aids
+Semester: sem-6
+Subject: data-science-aids
+
+[2026-05-09 12:33:45] Processed PDF: https://sppucodes.albatrossc.workers.dev/aids/sem-6/data-science-aids/endsem-nov-dec-2024-pat2019-dsa.pdf
+[2026-05-09 12:33:45]
+
+Processed: 139
+Skipped: 0
+Failed: 1
+Remaining: 10
+Gemini failures: 0
+OCR usage: 0
+
+Current:
+Branch: aids
+Semester: sem-6
+Subject: data-science-aids
+
+[2026-05-09 12:34:06] Processed PDF: https://sppucodes.albatrossc.workers.dev/aids/sem-6/data-science-aids/insem-feb-2023-pat2019-dsa.pdf
+[2026-05-09 12:34:06]
+
+Processed: 140
+Skipped: 0
+Failed: 1
+Remaining: 9
+Gemini failures: 0
+OCR usage: 0
+
+Current:
+Branch: aids
+Semester: sem-6
+Subject: data-science-aids
+
+[2026-05-09 12:34:14] Processed PDF: https://sppucodes.albatrossc.workers.dev/aids/sem-6/data-science-aids/insem-march-2024-pat2019-dsa.pdf
+[2026-05-09 12:34:14]
+
+Processed: 141
+Skipped: 0
+Failed: 1
+Remaining: 8
+Gemini failures: 0
+OCR usage: 0
+
+Current:
+Branch: aids
+Semester: sem-6
+Subject: data-science-aids
+
+[2026-05-09 12:34:24] Processed PDF: https://sppucodes.albatrossc.workers.dev/aids/sem-6/data-science-aids/insem-march-2025-pat2019-dsa.pdf
+[2026-05-09 12:34:24]
+
+Processed: 142
+Skipped: 0
+Failed: 1
+Remaining: 7
+Gemini failures: 0
+OCR usage: 0
+
+Current:
+Branch: aids
+Semester: sem-6
+Subject: data-science-aids
+
+[2026-05-09 12:34:30] Processed PDF: https://sppucodes.albatrossc.workers.dev/aids/sem-6/natural-language-processing-ele-ii-aids/endsem-may-jun-2023-pat2019-nlpeiia.pdf
+[2026-05-09 12:34:30]
+
+Processed: 143
+Skipped: 0
+Failed: 1
+Remaining: 6
+Gemini failures: 0
+OCR usage: 0
+
+Current:
+Branch: aids
+Semester: sem-6
+Subject: natural-language-processing-ele-ii-aids
+
+[2026-05-09 12:34:38] Processed PDF: https://sppucodes.albatrossc.workers.dev/aids/sem-6/natural-language-processing-ele-ii-aids/endsem-may-jun-2024-pat2019-nlpeiia.pdf
+[2026-05-09 12:34:38]
+
+Processed: 144
+Skipped: 0
+Failed: 1
+Remaining: 5
+Gemini failures: 0
+OCR usage: 0
+
+Current:
+Branch: aids
+Semester: sem-6
+Subject: natural-language-processing-ele-ii-aids
+
+[2026-05-09 12:34:52] Processed PDF: https://sppucodes.albatrossc.workers.dev/aids/sem-6/natural-language-processing-ele-ii-aids/endsem-may-jun-2025-pat2019-nlpeiia.pdf
+[2026-05-09 12:34:52]
+
+Processed: 145
+Skipped: 0
+Failed: 1
+Remaining: 4
+Gemini failures: 0
+OCR usage: 0
+
+Current:
+Branch: aids
+Semester: sem-6
+Subject: natural-language-processing-ele-ii-aids
+
+[2026-05-09 12:35:05] Processed PDF: https://sppucodes.albatrossc.workers.dev/aids/sem-6/natural-language-processing-ele-ii-aids/insem-feb-2023-pat2019-nlpeiia.pdf
+[2026-05-09 12:35:05]
+
+Processed: 146
+Skipped: 0
+Failed: 1
+Remaining: 3
+Gemini failures: 0
+OCR usage: 0
+
+Current:
+Branch: aids
+Semester: sem-6
+Subject: natural-language-processing-ele-ii-aids
+
+[2026-05-09 12:35:12] Processed PDF: https://sppucodes.albatrossc.workers.dev/aids/sem-6/natural-language-processing-ele-ii-aids/insem-march-2024-pat2019-nlpeiia.pdf
+[2026-05-09 12:35:12]
+
+Processed: 147
+Skipped: 0
+Failed: 1
+Remaining: 2
+Gemini failures: 0
+OCR usage: 0
+
+Current:
+Branch: aids
+Semester: sem-6
+Subject: natural-language-processing-ele-ii-aids
+
+[2026-05-09 12:35:19] Processed PDF: https://sppucodes.albatrossc.workers.dev/aids/sem-6/natural-language-processing-ele-ii-aids/insem-march-2025-pat2019-nlpeiia.pdf
+[2026-05-09 12:35:19]
+
+Processed: 148
+Skipped: 0
+Failed: 1
+Remaining: 1
+Gemini failures: 0
+OCR usage: 0
+
+Current:
+Branch: aids
+Semester: sem-6
+Subject: natural-language-processing-ele-ii-aids
+
+[2026-05-09 12:35:27] Processed PDF: https://sppucodes.albatrossc.workers.dev/aids/sem-6/software-modeling-and-architecture-ele-ii-aids/endsem-may-jun-2023-pat2019-smaaeiia.pdf
+[2026-05-09 12:35:27]
+
+Processed: 149
+Skipped: 0
+Failed: 1
+Remaining: 0
+Gemini failures: 0
+OCR usage: 0
+
+Current:
+Branch: aids
+Semester: sem-6
+Subject: software-modeling-and-architecture-ele-ii-aids
+
+[2026-05-09 12:35:27] Pipeline completed.
+[2026-05-09 12:35:27]
+
+Processed: 149
+Skipped: 0
+Failed: 1
+Remaining: 0
+Gemini failures: 0
+OCR usage: 0
+
+Current:
+Branch: aids
+Semester: sem-6
+Subject: software-modeling-and-architecture-ele-ii-aids
+
+[2026-05-09 12:45:23] Pipeline started.
+[2026-05-09 12:45:23] Skipped existing PDF: https://sppucodes.albatrossc.workers.dev/aids/sem-3/computer-graphics-aids/endsem-may-jun-2023-pat2019-cga.pdf
+[2026-05-09 12:45:23]
+
+Processed: 0
+Skipped: 1
+Failed: 0
+Remaining: 149
+Gemini failures: 0
+OCR usage: 0
+
+Current:
+Branch: aids
+Semester: sem-3
+Subject: computer-graphics-aids
+
+[2026-05-09 12:45:23] Skipped existing PDF: https://sppucodes.albatrossc.workers.dev/aids/sem-3/computer-graphics-aids/endsem-may-jun-2024-pat2019-cga.pdf
+[2026-05-09 12:45:23]
+
+Processed: 0
+Skipped: 2
+Failed: 0
+Remaining: 148
+Gemini failures: 0
+OCR usage: 0
+
+Current:
+Branch: aids
+Semester: sem-3
+Subject: computer-graphics-aids
+
+[2026-05-09 12:45:23] Skipped existing PDF: https://sppucodes.albatrossc.workers.dev/aids/sem-3/computer-graphics-aids/endsem-nov-dec-2023-pat2019-cga.pdf
+[2026-05-09 12:45:23]
+
+Processed: 0
+Skipped: 3
+Failed: 0
+Remaining: 147
+Gemini failures: 0
+OCR usage: 0
+
+Current:
+Branch: aids
+Semester: sem-3
+Subject: computer-graphics-aids
+
+[2026-05-09 12:45:23] Skipped existing PDF: https://sppucodes.albatrossc.workers.dev/aids/sem-3/computer-graphics-aids/insem-oct-2023-pat2019-cga.pdf
+[2026-05-09 12:45:23]
+
+Processed: 0
+Skipped: 4
+Failed: 0
+Remaining: 146
+Gemini failures: 0
+OCR usage: 0
+
+Current:
+Branch: aids
+Semester: sem-3
+Subject: computer-graphics-aids
+
+[2026-05-09 12:45:23] Skipped existing PDF: https://sppucodes.albatrossc.workers.dev/aids/sem-3/computer-graphics-aids/insem-sep-2024-pat2019-cga.pdf
+[2026-05-09 12:45:23]
+
+Processed: 0
+Skipped: 5
+Failed: 0
+Remaining: 145
+Gemini failures: 0
+OCR usage: 0
+
+Current:
+Branch: aids
+Semester: sem-3
+Subject: computer-graphics-aids
+
+[2026-05-09 12:45:23] Skipped existing PDF: https://sppucodes.albatrossc.workers.dev/aids/sem-3/discrete-mathematics-aids/endsem-may-jun-2022-pat2019-dma.pdf
+[2026-05-09 12:45:23]
+
+Processed: 0
+Skipped: 6
+Failed: 0
+Remaining: 144
+Gemini failures: 0
+OCR usage: 0
+
+Current:
+Branch: aids
+Semester: sem-3
+Subject: discrete-mathematics-aids
+
+[2026-05-09 12:45:23] Skipped existing PDF: https://sppucodes.albatrossc.workers.dev/aids/sem-3/discrete-mathematics-aids/endsem-may-jun-2023-pat2019-dma.pdf
+[2026-05-09 12:45:23]
+
+Processed: 0
+Skipped: 7
+Failed: 0
+Remaining: 143
+Gemini failures: 0
+OCR usage: 0
+
+Current:
+Branch: aids
+Semester: sem-3
+Subject: discrete-mathematics-aids
+
+[2026-05-09 12:45:23] Skipped existing PDF: https://sppucodes.albatrossc.workers.dev/aids/sem-3/discrete-mathematics-aids/endsem-may-jun-2024-pat2019-dma.pdf
+[2026-05-09 12:45:23]
+
+Processed: 0
+Skipped: 8
+Failed: 0
+Remaining: 142
+Gemini failures: 0
+OCR usage: 0
+
+Current:
+Branch: aids
+Semester: sem-3
+Subject: discrete-mathematics-aids
+
+[2026-05-09 12:45:23] Skipped existing PDF: https://sppucodes.albatrossc.workers.dev/aids/sem-3/discrete-mathematics-aids/endsem-nov-dec-2022-pat2019-dma.pdf
+[2026-05-09 12:45:23]
+
+Processed: 0
+Skipped: 9
+Failed: 0
+Remaining: 141
+Gemini failures: 0
+OCR usage: 0
+
+Current:
+Branch: aids
+Semester: sem-3
+Subject: discrete-mathematics-aids
+
+[2026-05-09 12:45:23] Skipped existing PDF: https://sppucodes.albatrossc.workers.dev/aids/sem-3/discrete-mathematics-aids/endsem-nov-dec-2023-pat2019-dma.pdf
+[2026-05-09 12:45:23]
+
+Processed: 0
+Skipped: 10
+Failed: 0
+Remaining: 140
+Gemini failures: 0
+OCR usage: 0
+
+Current:
+Branch: aids
+Semester: sem-3
+Subject: discrete-mathematics-aids
+
+[2026-05-09 12:45:23] Skipped existing PDF: https://sppucodes.albatrossc.workers.dev/aids/sem-3/discrete-mathematics-aids/insem-oct-2022-pat2019-dma.pdf
+[2026-05-09 12:45:23]
+
+Processed: 0
+Skipped: 11
+Failed: 0
+Remaining: 139
+Gemini failures: 0
+OCR usage: 0
+
+Current:
+Branch: aids
+Semester: sem-3
+Subject: discrete-mathematics-aids
+
+[2026-05-09 12:45:23] Skipped existing PDF: https://sppucodes.albatrossc.workers.dev/aids/sem-3/discrete-mathematics-aids/insem-oct-2023-pat2019-dma.pdf
+[2026-05-09 12:45:23]
+
+Processed: 0
+Skipped: 12
+Failed: 0
+Remaining: 138
+Gemini failures: 0
+OCR usage: 0
+
+Current:
+Branch: aids
+Semester: sem-3
+Subject: discrete-mathematics-aids
+
+[2026-05-09 12:45:23] Skipped existing PDF: https://sppucodes.albatrossc.workers.dev/aids/sem-3/discrete-mathematics-aids/insem-sep-2024-pat2019-dma.pdf
+[2026-05-09 12:45:23]
+
+Processed: 0
+Skipped: 13
+Failed: 0
+Remaining: 137
+Gemini failures: 0
+OCR usage: 0
+
+Current:
+Branch: aids
+Semester: sem-3
+Subject: discrete-mathematics-aids
+
+[2026-05-09 12:45:23] Skipped existing PDF: https://sppucodes.albatrossc.workers.dev/aids/sem-3/fundamentals-of-data-structures-aids/endsem-may-jun-2023-pat2019-fodsa.pdf
+[2026-05-09 12:45:23]
+
+Processed: 0
+Skipped: 14
+Failed: 0
+Remaining: 136
+Gemini failures: 0
+OCR usage: 0
+
+Current:
+Branch: aids
+Semester: sem-3
+Subject: fundamentals-of-data-structures-aids
+
+[2026-05-09 12:45:23] Skipped existing PDF: https://sppucodes.albatrossc.workers.dev/aids/sem-3/fundamentals-of-data-structures-aids/endsem-may-jun-2024-pat2019-fodsa.pdf
+[2026-05-09 12:45:23]
+
+Processed: 0
+Skipped: 15
+Failed: 0
+Remaining: 135
+Gemini failures: 0
+OCR usage: 0
+
+Current:
+Branch: aids
+Semester: sem-3
+Subject: fundamentals-of-data-structures-aids
+
+[2026-05-09 12:45:23] Skipped existing PDF: https://sppucodes.albatrossc.workers.dev/aids/sem-3/fundamentals-of-data-structures-aids/endsem-nov-dec-2022-pat2019-fodsa.pdf
+[2026-05-09 12:45:23]
+
+Processed: 0
+Skipped: 16
+Failed: 0
+Remaining: 134
+Gemini failures: 0
+OCR usage: 0
+
+Current:
+Branch: aids
+Semester: sem-3
+Subject: fundamentals-of-data-structures-aids
+
+[2026-05-09 12:45:23] Skipped existing PDF: https://sppucodes.albatrossc.workers.dev/aids/sem-3/fundamentals-of-data-structures-aids/endsem-nov-dec-2023-pat2019-fodsa.pdf
+[2026-05-09 12:45:23]
+
+Processed: 0
+Skipped: 17
+Failed: 0
+Remaining: 133
+Gemini failures: 0
+OCR usage: 0
+
+Current:
+Branch: aids
+Semester: sem-3
+Subject: fundamentals-of-data-structures-aids
+
+[2026-05-09 12:45:23] Skipped existing PDF: https://sppucodes.albatrossc.workers.dev/aids/sem-3/fundamentals-of-data-structures-aids/insem-oct-2022-pat2019-fodsa.pdf
+[2026-05-09 12:45:23]
+
+Processed: 0
+Skipped: 18
+Failed: 0
+Remaining: 132
+Gemini failures: 0
+OCR usage: 0
+
+Current:
+Branch: aids
+Semester: sem-3
+Subject: fundamentals-of-data-structures-aids
+
+[2026-05-09 12:45:23] Skipped existing PDF: https://sppucodes.albatrossc.workers.dev/aids/sem-3/fundamentals-of-data-structures-aids/insem-oct-2023-pat2019-fodsa.pdf
+[2026-05-09 12:45:23]
+
+Processed: 0
+Skipped: 19
+Failed: 0
+Remaining: 131
+Gemini failures: 0
+OCR usage: 0
+
+Current:
+Branch: aids
+Semester: sem-3
+Subject: fundamentals-of-data-structures-aids
+
+[2026-05-09 12:45:23] Skipped existing PDF: https://sppucodes.albatrossc.workers.dev/aids/sem-3/fundamentals-of-data-structures-aids/insem-sep-2024-pat2019-fodsa.pdf
+[2026-05-09 12:45:23]
+
+Processed: 0
+Skipped: 20
+Failed: 0
+Remaining: 130
+Gemini failures: 0
+OCR usage: 0
+
+Current:
+Branch: aids
+Semester: sem-3
+Subject: fundamentals-of-data-structures-aids
+
+[2026-05-09 12:45:23] Skipped existing PDF: https://sppucodes.albatrossc.workers.dev/aids/sem-3/object-oriented-programming-aids/endsem-may-jun-2023-pat2019-oopa.pdf
+[2026-05-09 12:45:23]
+
+Processed: 0
+Skipped: 21
+Failed: 0
+Remaining: 129
+Gemini failures: 0
+OCR usage: 0
+
+Current:
+Branch: aids
+Semester: sem-3
+Subject: object-oriented-programming-aids
+
+[2026-05-09 12:45:23] Skipped existing PDF: https://sppucodes.albatrossc.workers.dev/aids/sem-3/object-oriented-programming-aids/endsem-nov-dec-2022-pat2019-oopa.pdf
+[2026-05-09 12:45:23]
+
+Processed: 0
+Skipped: 22
+Failed: 0
+Remaining: 128
+Gemini failures: 0
+OCR usage: 0
+
+Current:
+Branch: aids
+Semester: sem-3
+Subject: object-oriented-programming-aids
+
+[2026-05-09 12:45:23] Skipped existing PDF: https://sppucodes.albatrossc.workers.dev/aids/sem-3/object-oriented-programming-aids/endsem-nov-dec-2023-pat2019-oopa.pdf
+[2026-05-09 12:45:23]
+
+Processed: 0
+Skipped: 23
+Failed: 0
+Remaining: 127
+Gemini failures: 0
+OCR usage: 0
+
+Current:
+Branch: aids
+Semester: sem-3
+Subject: object-oriented-programming-aids
+
+[2026-05-09 12:45:23] Skipped existing PDF: https://sppucodes.albatrossc.workers.dev/aids/sem-3/object-oriented-programming-aids/insem-oct-2023-pat2019-oopa.pdf
+[2026-05-09 12:45:23]
+
+Processed: 0
+Skipped: 24
+Failed: 0
+Remaining: 126
+Gemini failures: 0
+OCR usage: 0
+
+Current:
+Branch: aids
+Semester: sem-3
+Subject: object-oriented-programming-aids
+
+[2026-05-09 12:45:23] Skipped existing PDF: https://sppucodes.albatrossc.workers.dev/aids/sem-3/object-oriented-programming-aids/insem-sep-2024-pat2019-oopa.pdf
+[2026-05-09 12:45:23]
+
+Processed: 0
+Skipped: 25
+Failed: 0
+Remaining: 125
+Gemini failures: 0
+OCR usage: 0
+
+Current:
+Branch: aids
+Semester: sem-3
+Subject: object-oriented-programming-aids
+
+[2026-05-09 12:45:23] Skipped existing PDF: https://sppucodes.albatrossc.workers.dev/aids/sem-3/operating-systems-aids/endsem-may-jun-2023-pat2019-osa.pdf
+[2026-05-09 12:45:23]
+
+Processed: 0
+Skipped: 26
+Failed: 0
+Remaining: 124
+Gemini failures: 0
+OCR usage: 0
+
+Current:
+Branch: aids
+Semester: sem-3
+Subject: operating-systems-aids
+
+[2026-05-09 12:45:23] Skipped existing PDF: https://sppucodes.albatrossc.workers.dev/aids/sem-3/operating-systems-aids/endsem-may-jun-2024-pat2019-osa.pdf
+[2026-05-09 12:45:23]
+
+Processed: 0
+Skipped: 27
+Failed: 0
+Remaining: 123
+Gemini failures: 0
+OCR usage: 0
+
+Current:
+Branch: aids
+Semester: sem-3
+Subject: operating-systems-aids
+
+[2026-05-09 12:45:23] Skipped existing PDF: https://sppucodes.albatrossc.workers.dev/aids/sem-3/operating-systems-aids/endsem-nov-dec-2022-pat2019-osa.pdf
+[2026-05-09 12:45:23]
+
+Processed: 0
+Skipped: 28
+Failed: 0
+Remaining: 122
+Gemini failures: 0
+OCR usage: 0
+
+Current:
+Branch: aids
+Semester: sem-3
+Subject: operating-systems-aids
+
+[2026-05-09 12:45:23] Skipped existing PDF: https://sppucodes.albatrossc.workers.dev/aids/sem-3/operating-systems-aids/endsem-nov-dec-2023-pat2019-osa.pdf
+[2026-05-09 12:45:23]
+
+Processed: 0
+Skipped: 29
+Failed: 0
+Remaining: 121
+Gemini failures: 0
+OCR usage: 0
+
+Current:
+Branch: aids
+Semester: sem-3
+Subject: operating-systems-aids
+
+[2026-05-09 12:45:23] Skipped existing PDF: https://sppucodes.albatrossc.workers.dev/aids/sem-3/operating-systems-aids/insem-oct-2022-pat2019-osa.pdf
+[2026-05-09 12:45:23]
+
+Processed: 0
+Skipped: 30
+Failed: 0
+Remaining: 120
+Gemini failures: 0
+OCR usage: 0
+
+Current:
+Branch: aids
+Semester: sem-3
+Subject: operating-systems-aids
+
+[2026-05-09 12:45:23] Skipped existing PDF: https://sppucodes.albatrossc.workers.dev/aids/sem-3/operating-systems-aids/insem-oct-2023-pat2019-osa.pdf
+[2026-05-09 12:45:23]
+
+Processed: 0
+Skipped: 31
+Failed: 0
+Remaining: 119
+Gemini failures: 0
+OCR usage: 0
+
+Current:
+Branch: aids
+Semester: sem-3
+Subject: operating-systems-aids
+
+[2026-05-09 12:45:23] Skipped existing PDF: https://sppucodes.albatrossc.workers.dev/aids/sem-3/operating-systems-aids/insem-sep-2024-pat2019-osa.pdf
+[2026-05-09 12:45:23]
+
+Processed: 0
+Skipped: 32
+Failed: 0
+Remaining: 118
+Gemini failures: 0
+OCR usage: 0
+
+Current:
+Branch: aids
+Semester: sem-3
+Subject: operating-systems-aids
+
+[2026-05-09 12:45:23] Skipped existing PDF: https://sppucodes.albatrossc.workers.dev/aids/sem-4/data-structures-and-algorithms-aids/endsem-may-jun-2023-pat2019-dsaaa.pdf
+[2026-05-09 12:45:23]
+
+Processed: 0
+Skipped: 33
+Failed: 0
+Remaining: 117
+Gemini failures: 0
+OCR usage: 0
+
+Current:
+Branch: aids
+Semester: sem-4
+Subject: data-structures-and-algorithms-aids
+
+[2026-05-09 12:45:23] Skipped existing PDF: https://sppucodes.albatrossc.workers.dev/aids/sem-4/data-structures-and-algorithms-aids/endsem-may-jun-2024-pat2019-dsaaa.pdf
+[2026-05-09 12:45:23]
+
+Processed: 0
+Skipped: 34
+Failed: 0
+Remaining: 116
+Gemini failures: 0
+OCR usage: 0
+
+Current:
+Branch: aids
+Semester: sem-4
+Subject: data-structures-and-algorithms-aids
+
+[2026-05-09 12:45:23] Skipped existing PDF: https://sppucodes.albatrossc.workers.dev/aids/sem-4/data-structures-and-algorithms-aids/endsem-nov-dec-2023-pat2019-dsaaa.pdf
+[2026-05-09 12:45:23]
+
+Processed: 0
+Skipped: 35
+Failed: 0
+Remaining: 115
+Gemini failures: 0
+OCR usage: 0
+
+Current:
+Branch: aids
+Semester: sem-4
+Subject: data-structures-and-algorithms-aids
+
+[2026-05-09 12:45:23] Skipped existing PDF: https://sppucodes.albatrossc.workers.dev/aids/sem-4/data-structures-and-algorithms-aids/insem-feb-2023-pat2019-dsaaa.pdf
+[2026-05-09 12:45:23]
+
+Processed: 0
+Skipped: 36
+Failed: 0
+Remaining: 114
+Gemini failures: 0
+OCR usage: 0
+
+Current:
+Branch: aids
+Semester: sem-4
+Subject: data-structures-and-algorithms-aids
+
+[2026-05-09 12:45:23] Skipped existing PDF: https://sppucodes.albatrossc.workers.dev/aids/sem-4/data-structures-and-algorithms-aids/insem-march-2024-pat2019-dsaaa.pdf
+[2026-05-09 12:45:23]
+
+Processed: 0
+Skipped: 37
+Failed: 0
+Remaining: 113
+Gemini failures: 0
+OCR usage: 0
+
+Current:
+Branch: aids
+Semester: sem-4
+Subject: data-structures-and-algorithms-aids
+
+[2026-05-09 12:45:23] Skipped existing PDF: https://sppucodes.albatrossc.workers.dev/aids/sem-4/internet-of-things-aids/endsem-may-jun-2022-pat2019-iota.pdf
+[2026-05-09 12:45:23]
+
+Processed: 0
+Skipped: 38
+Failed: 0
+Remaining: 112
+Gemini failures: 0
+OCR usage: 0
+
+Current:
+Branch: aids
+Semester: sem-4
+Subject: internet-of-things-aids
+
+[2026-05-09 12:45:23] Skipped existing PDF: https://sppucodes.albatrossc.workers.dev/aids/sem-4/internet-of-things-aids/endsem-may-jun-2023-pat2019-iota.pdf
+[2026-05-09 12:45:23]
+
+Processed: 0
+Skipped: 39
+Failed: 0
+Remaining: 111
+Gemini failures: 0
+OCR usage: 0
+
+Current:
+Branch: aids
+Semester: sem-4
+Subject: internet-of-things-aids
+
+[2026-05-09 12:45:23] Skipped existing PDF: https://sppucodes.albatrossc.workers.dev/aids/sem-4/internet-of-things-aids/endsem-may-jun-2024-pat2019-iota.pdf
+[2026-05-09 12:45:23]
+
+Processed: 0
+Skipped: 40
+Failed: 0
+Remaining: 110
+Gemini failures: 0
+OCR usage: 0
+
+Current:
+Branch: aids
+Semester: sem-4
+Subject: internet-of-things-aids
+
+[2026-05-09 12:45:23] Skipped existing PDF: https://sppucodes.albatrossc.workers.dev/aids/sem-4/internet-of-things-aids/endsem-nov-dec-2023-pat2019-iota.pdf
+[2026-05-09 12:45:23]
+
+Processed: 0
+Skipped: 41
+Failed: 0
+Remaining: 109
+Gemini failures: 0
+OCR usage: 0
+
+Current:
+Branch: aids
+Semester: sem-4
+Subject: internet-of-things-aids
+
+[2026-05-09 12:45:23] Skipped existing PDF: https://sppucodes.albatrossc.workers.dev/aids/sem-4/internet-of-things-aids/insem-feb-2023-pat2019-iota.pdf
+[2026-05-09 12:45:23]
+
+Processed: 0
+Skipped: 42
+Failed: 0
+Remaining: 108
+Gemini failures: 0
+OCR usage: 0
+
+Current:
+Branch: aids
+Semester: sem-4
+Subject: internet-of-things-aids
+
+[2026-05-09 12:45:23] Skipped existing PDF: https://sppucodes.albatrossc.workers.dev/aids/sem-4/internet-of-things-aids/insem-march-2024-pat2019-iota.pdf
+[2026-05-09 12:45:23]
+
+Processed: 0
+Skipped: 43
+Failed: 0
+Remaining: 107
+Gemini failures: 0
+OCR usage: 0
+
+Current:
+Branch: aids
+Semester: sem-4
+Subject: internet-of-things-aids
+
+[2026-05-09 12:45:23] Skipped existing PDF: https://sppucodes.albatrossc.workers.dev/aids/sem-4/management-information-systems-aids/endsem-may-jun-2022-pat2019-misa.pdf
+[2026-05-09 12:45:23]
+
+Processed: 0
+Skipped: 44
+Failed: 0
+Remaining: 106
+Gemini failures: 0
+OCR usage: 0
+
+Current:
+Branch: aids
+Semester: sem-4
+Subject: management-information-systems-aids
+
+[2026-05-09 12:45:23] Skipped existing PDF: https://sppucodes.albatrossc.workers.dev/aids/sem-4/management-information-systems-aids/endsem-may-jun-2023-pat2019-misa.pdf
+[2026-05-09 12:45:23]
+
+Processed: 0
+Skipped: 45
+Failed: 0
+Remaining: 105
+Gemini failures: 0
+OCR usage: 0
+
+Current:
+Branch: aids
+Semester: sem-4
+Subject: management-information-systems-aids
+
+[2026-05-09 12:45:23] Skipped existing PDF: https://sppucodes.albatrossc.workers.dev/aids/sem-4/management-information-systems-aids/endsem-may-jun-2024-pat2019-misa.pdf
+[2026-05-09 12:45:23]
+
+Processed: 0
+Skipped: 46
+Failed: 0
+Remaining: 104
+Gemini failures: 0
+OCR usage: 0
+
+Current:
+Branch: aids
+Semester: sem-4
+Subject: management-information-systems-aids
+
+[2026-05-09 12:45:23] Skipped existing PDF: https://sppucodes.albatrossc.workers.dev/aids/sem-4/management-information-systems-aids/endsem-nov-dec-2022-pat2019-misa.pdf
+[2026-05-09 12:45:23]
+
+Processed: 0
+Skipped: 47
+Failed: 0
+Remaining: 103
+Gemini failures: 0
+OCR usage: 0
+
+Current:
+Branch: aids
+Semester: sem-4
+Subject: management-information-systems-aids
+
+[2026-05-09 12:45:23] Skipped existing PDF: https://sppucodes.albatrossc.workers.dev/aids/sem-4/management-information-systems-aids/endsem-nov-dec-2023-pat2019-misa.pdf
+[2026-05-09 12:45:23]
+
+Processed: 0
+Skipped: 48
+Failed: 0
+Remaining: 102
+Gemini failures: 0
+OCR usage: 0
+
+Current:
+Branch: aids
+Semester: sem-4
+Subject: management-information-systems-aids
+
+[2026-05-09 12:45:23] Skipped existing PDF: https://sppucodes.albatrossc.workers.dev/aids/sem-4/management-information-systems-aids/insem-feb-2023-pat2019-misa.pdf
+[2026-05-09 12:45:23]
+
+Processed: 0
+Skipped: 49
+Failed: 0
+Remaining: 101
+Gemini failures: 0
+OCR usage: 0
+
+Current:
+Branch: aids
+Semester: sem-4
+Subject: management-information-systems-aids
+
+[2026-05-09 12:45:23] Skipped existing PDF: https://sppucodes.albatrossc.workers.dev/aids/sem-4/management-information-systems-aids/insem-march-2024-pat2019-misa.pdf
+[2026-05-09 12:45:23]
+
+Processed: 0
+Skipped: 50
+Failed: 0
+Remaining: 100
+Gemini failures: 0
+OCR usage: 0
+
+Current:
+Branch: aids
+Semester: sem-4
+Subject: management-information-systems-aids
+
+[2026-05-09 12:45:23] Skipped existing PDF: https://sppucodes.albatrossc.workers.dev/aids/sem-4/software-engineering-aids/endsem-may-jun-2022-pat2019-sea.pdf
+[2026-05-09 12:45:23]
+
+Processed: 0
+Skipped: 51
+Failed: 0
+Remaining: 99
+Gemini failures: 0
+OCR usage: 0
+
+Current:
+Branch: aids
+Semester: sem-4
+Subject: software-engineering-aids
+
+[2026-05-09 12:45:23] Skipped existing PDF: https://sppucodes.albatrossc.workers.dev/aids/sem-4/software-engineering-aids/endsem-may-jun-2023-pat2019-sea.pdf
+[2026-05-09 12:45:23]
+
+Processed: 0
+Skipped: 52
+Failed: 0
+Remaining: 98
+Gemini failures: 0
+OCR usage: 0
+
+Current:
+Branch: aids
+Semester: sem-4
+Subject: software-engineering-aids
+
+[2026-05-09 12:45:23] Skipped existing PDF: https://sppucodes.albatrossc.workers.dev/aids/sem-4/software-engineering-aids/endsem-may-jun-2024-pat2019-sea.pdf
+[2026-05-09 12:45:23]
+
+Processed: 0
+Skipped: 53
+Failed: 0
+Remaining: 97
+Gemini failures: 0
+OCR usage: 0
+
+Current:
+Branch: aids
+Semester: sem-4
+Subject: software-engineering-aids
+
+[2026-05-09 12:45:23] Skipped existing PDF: https://sppucodes.albatrossc.workers.dev/aids/sem-4/software-engineering-aids/endsem-nov-dec-2022-pat2019-sea.pdf
+[2026-05-09 12:45:23]
+
+Processed: 0
+Skipped: 54
+Failed: 0
+Remaining: 96
+Gemini failures: 0
+OCR usage: 0
+
+Current:
+Branch: aids
+Semester: sem-4
+Subject: software-engineering-aids
+
+[2026-05-09 12:45:23] Skipped existing PDF: https://sppucodes.albatrossc.workers.dev/aids/sem-4/software-engineering-aids/endsem-nov-dec-2023-pat2019-sea.pdf
+[2026-05-09 12:45:23]
+
+Processed: 0
+Skipped: 55
+Failed: 0
+Remaining: 95
+Gemini failures: 0
+OCR usage: 0
+
+Current:
+Branch: aids
+Semester: sem-4
+Subject: software-engineering-aids
+
+[2026-05-09 12:45:23] Skipped existing PDF: https://sppucodes.albatrossc.workers.dev/aids/sem-4/software-engineering-aids/insem-feb-2023-pat2019-sea.pdf
+[2026-05-09 12:45:23]
+
+Processed: 0
+Skipped: 56
+Failed: 0
+Remaining: 94
+Gemini failures: 0
+OCR usage: 0
+
+Current:
+Branch: aids
+Semester: sem-4
+Subject: software-engineering-aids
+
+[2026-05-09 12:45:23] Skipped existing PDF: https://sppucodes.albatrossc.workers.dev/aids/sem-4/software-engineering-aids/insem-march-2024-pat2019-sea.pdf
+[2026-05-09 12:45:23]
+
+Processed: 0
+Skipped: 57
+Failed: 0
+Remaining: 93
+Gemini failures: 0
+OCR usage: 0
+
+Current:
+Branch: aids
+Semester: sem-4
+Subject: software-engineering-aids
+
+[2026-05-09 12:45:23] Skipped existing PDF: https://sppucodes.albatrossc.workers.dev/aids/sem-4/statistics-aids/endsem-may-jun-2022-pat2019-sa.pdf
+[2026-05-09 12:45:23]
+
+Processed: 0
+Skipped: 58
+Failed: 0
+Remaining: 92
+Gemini failures: 0
+OCR usage: 0
+
+Current:
+Branch: aids
+Semester: sem-4
+Subject: statistics-aids
+
+[2026-05-09 12:45:23] Skipped existing PDF: https://sppucodes.albatrossc.workers.dev/aids/sem-4/statistics-aids/endsem-may-jun-2023-pat2019-sa.pdf
+[2026-05-09 12:45:23]
+
+Processed: 0
+Skipped: 59
+Failed: 0
+Remaining: 91
+Gemini failures: 0
+OCR usage: 0
+
+Current:
+Branch: aids
+Semester: sem-4
+Subject: statistics-aids
+
+[2026-05-09 12:45:23] Skipped existing PDF: https://sppucodes.albatrossc.workers.dev/aids/sem-4/statistics-aids/endsem-may-jun-2024-pat2019-sa.pdf
+[2026-05-09 12:45:23]
+
+Processed: 0
+Skipped: 60
+Failed: 0
+Remaining: 90
+Gemini failures: 0
+OCR usage: 0
+
+Current:
+Branch: aids
+Semester: sem-4
+Subject: statistics-aids
+
+[2026-05-09 12:45:23] Skipped existing PDF: https://sppucodes.albatrossc.workers.dev/aids/sem-4/statistics-aids/endsem-nov-dec-2022-pat2019-sa.pdf
+[2026-05-09 12:45:23]
+
+Processed: 0
+Skipped: 61
+Failed: 0
+Remaining: 89
+Gemini failures: 0
+OCR usage: 0
+
+Current:
+Branch: aids
+Semester: sem-4
+Subject: statistics-aids
+
+[2026-05-09 12:45:23] Skipped existing PDF: https://sppucodes.albatrossc.workers.dev/aids/sem-4/statistics-aids/endsem-nov-dec-2023-pat2019-sa.pdf
+[2026-05-09 12:45:23]
+
+Processed: 0
+Skipped: 62
+Failed: 0
+Remaining: 88
+Gemini failures: 0
+OCR usage: 0
+
+Current:
+Branch: aids
+Semester: sem-4
+Subject: statistics-aids
+
+[2026-05-09 12:45:23] Skipped existing PDF: https://sppucodes.albatrossc.workers.dev/aids/sem-4/statistics-aids/insem-feb-2023-pat2019-sa.pdf
+[2026-05-09 12:45:23]
+
+Processed: 0
+Skipped: 63
+Failed: 0
+Remaining: 87
+Gemini failures: 0
+OCR usage: 0
+
+Current:
+Branch: aids
+Semester: sem-4
+Subject: statistics-aids
+
+[2026-05-09 12:45:23] Skipped existing PDF: https://sppucodes.albatrossc.workers.dev/aids/sem-4/statistics-aids/insem-march-2024-pat2019-sa.pdf
+[2026-05-09 12:45:23]
+
+Processed: 0
+Skipped: 64
+Failed: 0
+Remaining: 86
+Gemini failures: 0
+OCR usage: 0
+
+Current:
+Branch: aids
+Semester: sem-4
+Subject: statistics-aids
+
+[2026-05-09 12:45:23] Skipped existing PDF: https://sppucodes.albatrossc.workers.dev/aids/sem-5/artificial-intelligence-aids/endsem-may-jun-2023-pat2019-aia.pdf
+[2026-05-09 12:45:23]
+
+Processed: 0
+Skipped: 65
+Failed: 0
+Remaining: 85
+Gemini failures: 0
+OCR usage: 0
+
+Current:
+Branch: aids
+Semester: sem-5
+Subject: artificial-intelligence-aids
+
+[2026-05-09 12:45:23] Skipped existing PDF: https://sppucodes.albatrossc.workers.dev/aids/sem-5/artificial-intelligence-aids/endsem-may-jun-2024-pat2019-aia.pdf
+[2026-05-09 12:45:23]
+
+Processed: 0
+Skipped: 66
+Failed: 0
+Remaining: 84
+Gemini failures: 0
+OCR usage: 0
+
+Current:
+Branch: aids
+Semester: sem-5
+Subject: artificial-intelligence-aids
+
+[2026-05-09 12:45:23] Skipped existing PDF: https://sppucodes.albatrossc.workers.dev/aids/sem-5/artificial-intelligence-aids/endsem-may-jun-2025-pat2019-aia.pdf
+[2026-05-09 12:45:23]
+
+Processed: 0
+Skipped: 67
+Failed: 0
+Remaining: 83
+Gemini failures: 0
+OCR usage: 0
+
+Current:
+Branch: aids
+Semester: sem-5
+Subject: artificial-intelligence-aids
+
+[2026-05-09 12:45:23] Skipped existing PDF: https://sppucodes.albatrossc.workers.dev/aids/sem-5/artificial-intelligence-aids/endsem-nov-dec-2022-pat2019-aia.pdf
+[2026-05-09 12:45:23]
+
+Processed: 0
+Skipped: 68
+Failed: 0
+Remaining: 82
+Gemini failures: 0
+OCR usage: 0
+
+Current:
+Branch: aids
+Semester: sem-5
+Subject: artificial-intelligence-aids
+
+[2026-05-09 12:45:23] Skipped existing PDF: https://sppucodes.albatrossc.workers.dev/aids/sem-5/artificial-intelligence-aids/endsem-nov-dec-2023-pat2019-aia.pdf
+[2026-05-09 12:45:23]
+
+Processed: 0
+Skipped: 69
+Failed: 0
+Remaining: 81
+Gemini failures: 0
+OCR usage: 0
+
+Current:
+Branch: aids
+Semester: sem-5
+Subject: artificial-intelligence-aids
+
+[2026-05-09 12:45:23] Skipped existing PDF: https://sppucodes.albatrossc.workers.dev/aids/sem-5/artificial-intelligence-aids/endsem-nov-dec-2024-pat2019-aia.pdf
+[2026-05-09 12:45:23]
+
+Processed: 0
+Skipped: 70
+Failed: 0
+Remaining: 80
+Gemini failures: 0
+OCR usage: 0
+
+Current:
+Branch: aids
+Semester: sem-5
+Subject: artificial-intelligence-aids
+
+[2026-05-09 12:45:23] Skipped existing PDF: https://sppucodes.albatrossc.workers.dev/aids/sem-5/artificial-intelligence-aids/insem-august-2025-pat2019-aia.pdf
+[2026-05-09 12:45:23]
+
+Processed: 0
+Skipped: 71
+Failed: 0
+Remaining: 79
+Gemini failures: 0
+OCR usage: 0
+
+Current:
+Branch: aids
+Semester: sem-5
+Subject: artificial-intelligence-aids
+
+[2026-05-09 12:45:23] Skipped existing PDF: https://sppucodes.albatrossc.workers.dev/aids/sem-5/artificial-intelligence-aids/insem-oct-2022-pat2019-aia.pdf
+[2026-05-09 12:45:23]
+
+Processed: 0
+Skipped: 72
+Failed: 0
+Remaining: 78
+Gemini failures: 0
+OCR usage: 0
+
+Current:
+Branch: aids
+Semester: sem-5
+Subject: artificial-intelligence-aids
+
+[2026-05-09 12:45:23] Skipped existing PDF: https://sppucodes.albatrossc.workers.dev/aids/sem-5/artificial-intelligence-aids/insem-sep-2023-pat2019-aia.pdf
+[2026-05-09 12:45:23]
+
+Processed: 0
+Skipped: 73
+Failed: 0
+Remaining: 77
+Gemini failures: 0
+OCR usage: 0
+
+Current:
+Branch: aids
+Semester: sem-5
+Subject: artificial-intelligence-aids
+
+[2026-05-09 12:45:23] Skipped existing PDF: https://sppucodes.albatrossc.workers.dev/aids/sem-5/artificial-intelligence-aids/insem-sep-2024-pat2019-aia.pdf
+[2026-05-09 12:45:23]
+
+Processed: 0
+Skipped: 74
+Failed: 0
+Remaining: 76
+Gemini failures: 0
+OCR usage: 0
+
+Current:
+Branch: aids
+Semester: sem-5
+Subject: artificial-intelligence-aids
+
+[2026-05-09 12:45:23] Skipped existing PDF: https://sppucodes.albatrossc.workers.dev/aids/sem-5/computer-networks-aids/endsem-may-jun-2023-pat2019-cna.pdf
+[2026-05-09 12:45:23]
+
+Processed: 0
+Skipped: 75
+Failed: 0
+Remaining: 75
+Gemini failures: 0
+OCR usage: 0
+
+Current:
+Branch: aids
+Semester: sem-5
+Subject: computer-networks-aids
+
+[2026-05-09 12:45:23] Skipped existing PDF: https://sppucodes.albatrossc.workers.dev/aids/sem-5/computer-networks-aids/endsem-may-jun-2024-pat2019-cna.pdf
+[2026-05-09 12:45:23]
+
+Processed: 0
+Skipped: 76
+Failed: 0
+Remaining: 74
+Gemini failures: 0
+OCR usage: 0
+
+Current:
+Branch: aids
+Semester: sem-5
+Subject: computer-networks-aids
+
+[2026-05-09 12:45:23] Skipped existing PDF: https://sppucodes.albatrossc.workers.dev/aids/sem-5/computer-networks-aids/endsem-may-jun-2025-pat2019-cna.pdf
+[2026-05-09 12:45:23]
+
+Processed: 0
+Skipped: 77
+Failed: 0
+Remaining: 73
+Gemini failures: 0
+OCR usage: 0
+
+Current:
+Branch: aids
+Semester: sem-5
+Subject: computer-networks-aids
+
+[2026-05-09 12:45:23] Skipped existing PDF: https://sppucodes.albatrossc.workers.dev/aids/sem-5/computer-networks-aids/endsem-nov-dec-2022-pat2019-cna.pdf
+[2026-05-09 12:45:23]
+
+Processed: 0
+Skipped: 78
+Failed: 0
+Remaining: 72
+Gemini failures: 0
+OCR usage: 0
+
+Current:
+Branch: aids
+Semester: sem-5
+Subject: computer-networks-aids
+
+[2026-05-09 12:45:23] Skipped existing PDF: https://sppucodes.albatrossc.workers.dev/aids/sem-5/computer-networks-aids/endsem-nov-dec-2023-pat2019-cna.pdf
+[2026-05-09 12:45:23]
+
+Processed: 0
+Skipped: 79
+Failed: 0
+Remaining: 71
+Gemini failures: 0
+OCR usage: 0
+
+Current:
+Branch: aids
+Semester: sem-5
+Subject: computer-networks-aids
+
+[2026-05-09 12:45:23] Skipped existing PDF: https://sppucodes.albatrossc.workers.dev/aids/sem-5/computer-networks-aids/endsem-nov-dec-2024-pat2019-cna.pdf
+[2026-05-09 12:45:23]
+
+Processed: 0
+Skipped: 80
+Failed: 0
+Remaining: 70
+Gemini failures: 0
+OCR usage: 0
+
+Current:
+Branch: aids
+Semester: sem-5
+Subject: computer-networks-aids
+
+[2026-05-09 12:45:23] Skipped existing PDF: https://sppucodes.albatrossc.workers.dev/aids/sem-5/computer-networks-aids/insem-august-2025-pat2019-cna.pdf
+[2026-05-09 12:45:23]
+
+Processed: 0
+Skipped: 81
+Failed: 0
+Remaining: 69
+Gemini failures: 0
+OCR usage: 0
+
+Current:
+Branch: aids
+Semester: sem-5
+Subject: computer-networks-aids
+
+[2026-05-09 12:45:23] Skipped existing PDF: https://sppucodes.albatrossc.workers.dev/aids/sem-5/computer-networks-aids/insem-oct-2022-pat2019-cna.pdf
+[2026-05-09 12:45:23]
+
+Processed: 0
+Skipped: 82
+Failed: 0
+Remaining: 68
+Gemini failures: 0
+OCR usage: 0
+
+Current:
+Branch: aids
+Semester: sem-5
+Subject: computer-networks-aids
+
+[2026-05-09 12:45:23] Skipped existing PDF: https://sppucodes.albatrossc.workers.dev/aids/sem-5/computer-networks-aids/insem-sep-2023-pat2019-cna.pdf
+[2026-05-09 12:45:23]
+
+Processed: 0
+Skipped: 83
+Failed: 0
+Remaining: 67
+Gemini failures: 0
+OCR usage: 0
+
+Current:
+Branch: aids
+Semester: sem-5
+Subject: computer-networks-aids
+
+[2026-05-09 12:45:23] Skipped existing PDF: https://sppucodes.albatrossc.workers.dev/aids/sem-5/computer-networks-aids/insem-sep-2024-pat2019-cna.pdf
+[2026-05-09 12:45:23]
+
+Processed: 0
+Skipped: 84
+Failed: 0
+Remaining: 66
+Gemini failures: 0
+OCR usage: 0
+
+Current:
+Branch: aids
+Semester: sem-5
+Subject: computer-networks-aids
+
+[2026-05-09 12:45:23] Skipped existing PDF: https://sppucodes.albatrossc.workers.dev/aids/sem-5/database-management-system-aids/endsem-may-jun-2023-pat2019-dmsa.pdf
+[2026-05-09 12:45:23]
+
+Processed: 0
+Skipped: 85
+Failed: 0
+Remaining: 65
+Gemini failures: 0
+OCR usage: 0
+
+Current:
+Branch: aids
+Semester: sem-5
+Subject: database-management-system-aids
+
+[2026-05-09 12:45:23] Skipped existing PDF: https://sppucodes.albatrossc.workers.dev/aids/sem-5/database-management-system-aids/endsem-may-jun-2024-pat2019-dmsa.pdf
+[2026-05-09 12:45:23]
+
+Processed: 0
+Skipped: 86
+Failed: 0
+Remaining: 64
+Gemini failures: 0
+OCR usage: 0
+
+Current:
+Branch: aids
+Semester: sem-5
+Subject: database-management-system-aids
+
+[2026-05-09 12:45:23] Skipped existing PDF: https://sppucodes.albatrossc.workers.dev/aids/sem-5/database-management-system-aids/endsem-may-jun-2025-pat2019-dmsa.pdf
+[2026-05-09 12:45:23]
+
+Processed: 0
+Skipped: 87
+Failed: 0
+Remaining: 63
+Gemini failures: 0
+OCR usage: 0
+
+Current:
+Branch: aids
+Semester: sem-5
+Subject: database-management-system-aids
+
+[2026-05-09 12:45:23] Skipped existing PDF: https://sppucodes.albatrossc.workers.dev/aids/sem-5/database-management-system-aids/endsem-nov-dec-2022-pat2019-dmsa.pdf
+[2026-05-09 12:45:23]
+
+Processed: 0
+Skipped: 88
+Failed: 0
+Remaining: 62
+Gemini failures: 0
+OCR usage: 0
+
+Current:
+Branch: aids
+Semester: sem-5
+Subject: database-management-system-aids
+
+[2026-05-09 12:45:23] Skipped existing PDF: https://sppucodes.albatrossc.workers.dev/aids/sem-5/database-management-system-aids/endsem-nov-dec-2023-pat2019-dmsa.pdf
+[2026-05-09 12:45:23]
+
+Processed: 0
+Skipped: 89
+Failed: 0
+Remaining: 61
+Gemini failures: 0
+OCR usage: 0
+
+Current:
+Branch: aids
+Semester: sem-5
+Subject: database-management-system-aids
+
+[2026-05-09 12:45:23] Skipped existing PDF: https://sppucodes.albatrossc.workers.dev/aids/sem-5/database-management-system-aids/endsem-nov-dec-2024-pat2019-dmsa.pdf
+[2026-05-09 12:45:23]
+
+Processed: 0
+Skipped: 90
+Failed: 0
+Remaining: 60
+Gemini failures: 0
+OCR usage: 0
+
+Current:
+Branch: aids
+Semester: sem-5
+Subject: database-management-system-aids
+
+[2026-05-09 12:45:23] Skipped existing PDF: https://sppucodes.albatrossc.workers.dev/aids/sem-5/database-management-system-aids/insem-august-2025-pat2019-dmsa.pdf
+[2026-05-09 12:45:23]
+
+Processed: 0
+Skipped: 91
+Failed: 0
+Remaining: 59
+Gemini failures: 0
+OCR usage: 0
+
+Current:
+Branch: aids
+Semester: sem-5
+Subject: database-management-system-aids
+
+[2026-05-09 12:45:23] Skipped existing PDF: https://sppucodes.albatrossc.workers.dev/aids/sem-5/database-management-system-aids/insem-oct-2022-pat2019-dmsa.pdf
+[2026-05-09 12:45:23]
+
+Processed: 0
+Skipped: 92
+Failed: 0
+Remaining: 58
+Gemini failures: 0
+OCR usage: 0
+
+Current:
+Branch: aids
+Semester: sem-5
+Subject: database-management-system-aids
+
+[2026-05-09 12:45:23] Skipped existing PDF: https://sppucodes.albatrossc.workers.dev/aids/sem-5/database-management-system-aids/insem-sep-2023-pat2019-dmsa.pdf
+[2026-05-09 12:45:23]
+
+Processed: 0
+Skipped: 93
+Failed: 0
+Remaining: 57
+Gemini failures: 0
+OCR usage: 0
+
+Current:
+Branch: aids
+Semester: sem-5
+Subject: database-management-system-aids
+
+[2026-05-09 12:45:23] Skipped existing PDF: https://sppucodes.albatrossc.workers.dev/aids/sem-5/database-management-system-aids/insem-sep-2024-pat2019-dmsa.pdf
+[2026-05-09 12:45:23]
+
+Processed: 0
+Skipped: 94
+Failed: 0
+Remaining: 56
+Gemini failures: 0
+OCR usage: 0
+
+Current:
+Branch: aids
+Semester: sem-5
+Subject: database-management-system-aids
+
+[2026-05-09 12:45:36] Processed PDF: https://sppucodes.albatrossc.workers.dev/aids/sem-5/human-computer-interface-ele-i-aids/endsem-may-jun-2023-pat2019-hcieia.pdf
+[2026-05-09 12:45:36]
+
+Processed: 1
+Skipped: 94
+Failed: 0
+Remaining: 55
+Gemini failures: 0
+OCR usage: 0
+
+Current:
+Branch: aids
+Semester: sem-5
+Subject: human-computer-interface-ele-i-aids
+
+[2026-05-09 12:45:36] Skipped existing PDF: https://sppucodes.albatrossc.workers.dev/aids/sem-5/human-computer-interface-ele-i-aids/endsem-may-jun-2024-pat2019-hcieia.pdf
+[2026-05-09 12:45:36]
+
+Processed: 1
+Skipped: 95
+Failed: 0
+Remaining: 54
+Gemini failures: 0
+OCR usage: 0
+
+Current:
+Branch: aids
+Semester: sem-5
+Subject: human-computer-interface-ele-i-aids
+
+[2026-05-09 12:45:36] Skipped existing PDF: https://sppucodes.albatrossc.workers.dev/aids/sem-5/human-computer-interface-ele-i-aids/endsem-may-jun-2025-pat2019-hcieia.pdf
+[2026-05-09 12:45:36]
+
+Processed: 1
+Skipped: 96
+Failed: 0
+Remaining: 53
+Gemini failures: 0
+OCR usage: 0
+
+Current:
+Branch: aids
+Semester: sem-5
+Subject: human-computer-interface-ele-i-aids
+
+[2026-05-09 12:45:36] Skipped existing PDF: https://sppucodes.albatrossc.workers.dev/aids/sem-5/human-computer-interface-ele-i-aids/endsem-nov-dec-2022-pat2019-hcieia.pdf
+[2026-05-09 12:45:36]
+
+Processed: 1
+Skipped: 97
+Failed: 0
+Remaining: 52
+Gemini failures: 0
+OCR usage: 0
+
+Current:
+Branch: aids
+Semester: sem-5
+Subject: human-computer-interface-ele-i-aids
+
+[2026-05-09 12:45:36] Skipped existing PDF: https://sppucodes.albatrossc.workers.dev/aids/sem-5/human-computer-interface-ele-i-aids/endsem-nov-dec-2023-pat2019-hcieia.pdf
+[2026-05-09 12:45:36]
+
+Processed: 1
+Skipped: 98
+Failed: 0
+Remaining: 51
+Gemini failures: 0
+OCR usage: 0
+
+Current:
+Branch: aids
+Semester: sem-5
+Subject: human-computer-interface-ele-i-aids
+
+[2026-05-09 12:45:36] Skipped existing PDF: https://sppucodes.albatrossc.workers.dev/aids/sem-5/human-computer-interface-ele-i-aids/endsem-nov-dec-2024-pat2019-hcieia.pdf
+[2026-05-09 12:45:36]
+
+Processed: 1
+Skipped: 99
+Failed: 0
+Remaining: 50
+Gemini failures: 0
+OCR usage: 0
+
+Current:
+Branch: aids
+Semester: sem-5
+Subject: human-computer-interface-ele-i-aids
+
+[2026-05-09 12:45:36] Skipped existing PDF: https://sppucodes.albatrossc.workers.dev/aids/sem-5/human-computer-interface-ele-i-aids/insem-august-2025-pat2019-hcieia.pdf
+[2026-05-09 12:45:36]
+
+Processed: 1
+Skipped: 100
+Failed: 0
+Remaining: 49
+Gemini failures: 0
+OCR usage: 0
+
+Current:
+Branch: aids
+Semester: sem-5
+Subject: human-computer-interface-ele-i-aids
+
+[2026-05-09 12:45:36] Skipped existing PDF: https://sppucodes.albatrossc.workers.dev/aids/sem-5/human-computer-interface-ele-i-aids/insem-oct-2022-pat2019-hcieia.pdf
+[2026-05-09 12:45:36]
+
+Processed: 1
+Skipped: 101
+Failed: 0
+Remaining: 48
+Gemini failures: 0
+OCR usage: 0
+
+Current:
+Branch: aids
+Semester: sem-5
+Subject: human-computer-interface-ele-i-aids
+
+[2026-05-09 12:45:36] Skipped existing PDF: https://sppucodes.albatrossc.workers.dev/aids/sem-5/human-computer-interface-ele-i-aids/insem-sep-2023-pat2019-hcieia.pdf
+[2026-05-09 12:45:36]
+
+Processed: 1
+Skipped: 102
+Failed: 0
+Remaining: 47
+Gemini failures: 0
+OCR usage: 0
+
+Current:
+Branch: aids
+Semester: sem-5
+Subject: human-computer-interface-ele-i-aids
+
+[2026-05-09 12:45:36] Skipped existing PDF: https://sppucodes.albatrossc.workers.dev/aids/sem-5/human-computer-interface-ele-i-aids/insem-sep-2024-pat2019-hcieia.pdf
+[2026-05-09 12:45:36]
+
+Processed: 1
+Skipped: 103
+Failed: 0
+Remaining: 46
+Gemini failures: 0
+OCR usage: 0
+
+Current:
+Branch: aids
+Semester: sem-5
+Subject: human-computer-interface-ele-i-aids
+
+[2026-05-09 12:45:36] Skipped existing PDF: https://sppucodes.albatrossc.workers.dev/aids/sem-5/pattern-recognition-ele-i-aids/endsem-nov-dec-2024-pat2019-preia.pdf
+[2026-05-09 12:45:36]
+
+Processed: 1
+Skipped: 104
+Failed: 0
+Remaining: 45
+Gemini failures: 0
+OCR usage: 0
+
+Current:
+Branch: aids
+Semester: sem-5
+Subject: pattern-recognition-ele-i-aids
+
+[2026-05-09 12:45:36] Skipped existing PDF: https://sppucodes.albatrossc.workers.dev/aids/sem-5/pattern-recognition-ele-i-aids/insem-sep-2024-pat2019-preia.pdf
+[2026-05-09 12:45:36]
+
+Processed: 1
+Skipped: 105
+Failed: 0
+Remaining: 44
+Gemini failures: 0
+OCR usage: 0
+
+Current:
+Branch: aids
+Semester: sem-5
+Subject: pattern-recognition-ele-i-aids
+
+[2026-05-09 12:45:36] Skipped existing PDF: https://sppucodes.albatrossc.workers.dev/aids/sem-5/web-technology-aids/endsem-may-jun-2023-pat2019-wta.pdf
+[2026-05-09 12:45:36]
+
+Processed: 1
+Skipped: 106
+Failed: 0
+Remaining: 43
+Gemini failures: 0
+OCR usage: 0
+
+Current:
+Branch: aids
+Semester: sem-5
+Subject: web-technology-aids
+
+[2026-05-09 12:45:36] Skipped existing PDF: https://sppucodes.albatrossc.workers.dev/aids/sem-5/web-technology-aids/endsem-may-jun-2024-pat2019-wta.pdf
+[2026-05-09 12:45:36]
+
+Processed: 1
+Skipped: 107
+Failed: 0
+Remaining: 42
+Gemini failures: 0
+OCR usage: 0
+
+Current:
+Branch: aids
+Semester: sem-5
+Subject: web-technology-aids
+
+[2026-05-09 12:45:36] Skipped existing PDF: https://sppucodes.albatrossc.workers.dev/aids/sem-5/web-technology-aids/endsem-may-jun-2025-pat2019-wta.pdf
+[2026-05-09 12:45:36]
+
+Processed: 1
+Skipped: 108
+Failed: 0
+Remaining: 41
+Gemini failures: 0
+OCR usage: 0
+
+Current:
+Branch: aids
+Semester: sem-5
+Subject: web-technology-aids
+
+[2026-05-09 12:45:36] Skipped existing PDF: https://sppucodes.albatrossc.workers.dev/aids/sem-5/web-technology-aids/endsem-nov-dec-2022-pat2019-wta.pdf
+[2026-05-09 12:45:36]
+
+Processed: 1
+Skipped: 109
+Failed: 0
+Remaining: 40
+Gemini failures: 0
+OCR usage: 0
+
+Current:
+Branch: aids
+Semester: sem-5
+Subject: web-technology-aids
+
+[2026-05-09 12:45:36] Skipped existing PDF: https://sppucodes.albatrossc.workers.dev/aids/sem-5/web-technology-aids/endsem-nov-dec-2023-pat2019-wta.pdf
+[2026-05-09 12:45:36]
+
+Processed: 1
+Skipped: 110
+Failed: 0
+Remaining: 39
+Gemini failures: 0
+OCR usage: 0
+
+Current:
+Branch: aids
+Semester: sem-5
+Subject: web-technology-aids
+
+[2026-05-09 12:45:36] Skipped existing PDF: https://sppucodes.albatrossc.workers.dev/aids/sem-5/web-technology-aids/insem-august-2025-pat2019-wta.pdf
+[2026-05-09 12:45:36]
+
+Processed: 1
+Skipped: 111
+Failed: 0
+Remaining: 38
+Gemini failures: 0
+OCR usage: 0
+
+Current:
+Branch: aids
+Semester: sem-5
+Subject: web-technology-aids
+
+[2026-05-09 12:45:36] Skipped existing PDF: https://sppucodes.albatrossc.workers.dev/aids/sem-5/web-technology-aids/insem-oct-2022-pat2019-wta.pdf
+[2026-05-09 12:45:36]
+
+Processed: 1
+Skipped: 112
+Failed: 0
+Remaining: 37
+Gemini failures: 0
+OCR usage: 0
+
+Current:
+Branch: aids
+Semester: sem-5
+Subject: web-technology-aids
+
+[2026-05-09 12:45:36] Skipped existing PDF: https://sppucodes.albatrossc.workers.dev/aids/sem-5/web-technology-aids/insem-sep-2023-pat2019-wta.pdf
+[2026-05-09 12:45:36]
+
+Processed: 1
+Skipped: 113
+Failed: 0
+Remaining: 36
+Gemini failures: 0
+OCR usage: 0
+
+Current:
+Branch: aids
+Semester: sem-5
+Subject: web-technology-aids
+
+[2026-05-09 12:45:36] Skipped existing PDF: https://sppucodes.albatrossc.workers.dev/aids/sem-5/web-technology-aids/insem-sep-2024-pat2019-wta.pdf
+[2026-05-09 12:45:36]
+
+Processed: 1
+Skipped: 114
+Failed: 0
+Remaining: 35
+Gemini failures: 0
+OCR usage: 0
+
+Current:
+Branch: aids
+Semester: sem-5
+Subject: web-technology-aids
+
+[2026-05-09 12:45:36] Skipped existing PDF: https://sppucodes.albatrossc.workers.dev/aids/sem-6/artificial-neural-network-aids/endsem-may-jun-2023-pat2019-anna.pdf
+[2026-05-09 12:45:36]
+
+Processed: 1
+Skipped: 115
+Failed: 0
+Remaining: 34
+Gemini failures: 0
+OCR usage: 0
+
+Current:
+Branch: aids
+Semester: sem-6
+Subject: artificial-neural-network-aids
+
+[2026-05-09 12:45:36] Skipped existing PDF: https://sppucodes.albatrossc.workers.dev/aids/sem-6/artificial-neural-network-aids/endsem-may-jun-2024-pat2019-anna.pdf
+[2026-05-09 12:45:36]
+
+Processed: 1
+Skipped: 116
+Failed: 0
+Remaining: 33
+Gemini failures: 0
+OCR usage: 0
+
+Current:
+Branch: aids
+Semester: sem-6
+Subject: artificial-neural-network-aids
+
+[2026-05-09 12:45:36] Skipped existing PDF: https://sppucodes.albatrossc.workers.dev/aids/sem-6/artificial-neural-network-aids/endsem-may-jun-2025-pat2019-anna.pdf
+[2026-05-09 12:45:36]
+
+Processed: 1
+Skipped: 117
+Failed: 0
+Remaining: 32
+Gemini failures: 0
+OCR usage: 0
+
+Current:
+Branch: aids
+Semester: sem-6
+Subject: artificial-neural-network-aids
+
+[2026-05-09 12:45:36] Skipped existing PDF: https://sppucodes.albatrossc.workers.dev/aids/sem-6/artificial-neural-network-aids/endsem-nov-dec-2023-pat2019-anna.pdf
+[2026-05-09 12:45:36]
+
+Processed: 1
+Skipped: 118
+Failed: 0
+Remaining: 31
+Gemini failures: 0
+OCR usage: 0
+
+Current:
+Branch: aids
+Semester: sem-6
+Subject: artificial-neural-network-aids
+
+[2026-05-09 12:45:36] Skipped existing PDF: https://sppucodes.albatrossc.workers.dev/aids/sem-6/artificial-neural-network-aids/insem-feb-2023-pat2019-anna.pdf
+[2026-05-09 12:45:36]
+
+Processed: 1
+Skipped: 119
+Failed: 0
+Remaining: 30
+Gemini failures: 0
+OCR usage: 0
+
+Current:
+Branch: aids
+Semester: sem-6
+Subject: artificial-neural-network-aids
+
+[2026-05-09 12:45:36] Skipped existing PDF: https://sppucodes.albatrossc.workers.dev/aids/sem-6/artificial-neural-network-aids/insem-march-2024-pat2019-anna.pdf
+[2026-05-09 12:45:36]
+
+Processed: 1
+Skipped: 120
+Failed: 0
+Remaining: 29
+Gemini failures: 0
+OCR usage: 0
+
+Current:
+Branch: aids
+Semester: sem-6
+Subject: artificial-neural-network-aids
+
+[2026-05-09 12:45:36] Skipped existing PDF: https://sppucodes.albatrossc.workers.dev/aids/sem-6/artificial-neural-network-aids/insem-march-2025-pat2019-anna.pdf
+[2026-05-09 12:45:36]
+
+Processed: 1
+Skipped: 121
+Failed: 0
+Remaining: 28
+Gemini failures: 0
+OCR usage: 0
+
+Current:
+Branch: aids
+Semester: sem-6
+Subject: artificial-neural-network-aids
+
+[2026-05-09 12:45:36] Skipped existing PDF: https://sppucodes.albatrossc.workers.dev/aids/sem-6/cloud-computing-ele-ii-aids/endsem-may-jun-2023-pat2019-cceiia.pdf
+[2026-05-09 12:45:36]
+
+Processed: 1
+Skipped: 122
+Failed: 0
+Remaining: 27
+Gemini failures: 0
+OCR usage: 0
+
+Current:
+Branch: aids
+Semester: sem-6
+Subject: cloud-computing-ele-ii-aids
+
+[2026-05-09 12:45:36] Skipped existing PDF: https://sppucodes.albatrossc.workers.dev/aids/sem-6/cloud-computing-ele-ii-aids/endsem-may-jun-2024-pat2019-cceiia.pdf
+[2026-05-09 12:45:36]
+
+Processed: 1
+Skipped: 123
+Failed: 0
+Remaining: 26
+Gemini failures: 0
+OCR usage: 0
+
+Current:
+Branch: aids
+Semester: sem-6
+Subject: cloud-computing-ele-ii-aids
+
+[2026-05-09 12:45:36] Skipped existing PDF: https://sppucodes.albatrossc.workers.dev/aids/sem-6/cloud-computing-ele-ii-aids/endsem-may-jun-2025-pat2019-cceiia.pdf
+[2026-05-09 12:45:36]
+
+Processed: 1
+Skipped: 124
+Failed: 0
+Remaining: 25
+Gemini failures: 0
+OCR usage: 0
+
+Current:
+Branch: aids
+Semester: sem-6
+Subject: cloud-computing-ele-ii-aids
+
+[2026-05-09 12:45:36] Skipped existing PDF: https://sppucodes.albatrossc.workers.dev/aids/sem-6/cloud-computing-ele-ii-aids/endsem-nov-dec-2024-pat2019-cceiia.pdf
+[2026-05-09 12:45:36]
+
+Processed: 1
+Skipped: 125
+Failed: 0
+Remaining: 24
+Gemini failures: 0
+OCR usage: 0
+
+Current:
+Branch: aids
+Semester: sem-6
+Subject: cloud-computing-ele-ii-aids
+
+[2026-05-09 12:45:36] Skipped existing PDF: https://sppucodes.albatrossc.workers.dev/aids/sem-6/cloud-computing-ele-ii-aids/insem-feb-2023-pat2019-cceiia.pdf
+[2026-05-09 12:45:36]
+
+Processed: 1
+Skipped: 126
+Failed: 0
+Remaining: 23
+Gemini failures: 0
+OCR usage: 0
+
+Current:
+Branch: aids
+Semester: sem-6
+Subject: cloud-computing-ele-ii-aids
+
+[2026-05-09 12:45:36] Skipped existing PDF: https://sppucodes.albatrossc.workers.dev/aids/sem-6/cloud-computing-ele-ii-aids/insem-march-2024-pat2019-cceiia.pdf
+[2026-05-09 12:45:36]
+
+Processed: 1
+Skipped: 127
+Failed: 0
+Remaining: 22
+Gemini failures: 0
+OCR usage: 0
+
+Current:
+Branch: aids
+Semester: sem-6
+Subject: cloud-computing-ele-ii-aids
+
+[2026-05-09 12:45:36] Skipped existing PDF: https://sppucodes.albatrossc.workers.dev/aids/sem-6/cloud-computing-ele-ii-aids/insem-march-2025-pat2019-cceiia.pdf
+[2026-05-09 12:45:36]
+
+Processed: 1
+Skipped: 128
+Failed: 0
+Remaining: 21
+Gemini failures: 0
+OCR usage: 0
+
+Current:
+Branch: aids
+Semester: sem-6
+Subject: cloud-computing-ele-ii-aids
+
+[2026-05-09 12:45:36] Skipped existing PDF: https://sppucodes.albatrossc.workers.dev/aids/sem-6/cyber-security-aids/endsem-may-jun-2023-pat2019-csa.pdf
+[2026-05-09 12:45:36]
+
+Processed: 1
+Skipped: 129
+Failed: 0
+Remaining: 20
+Gemini failures: 0
+OCR usage: 0
+
+Current:
+Branch: aids
+Semester: sem-6
+Subject: cyber-security-aids
+
+[2026-05-09 12:45:36] Skipped existing PDF: https://sppucodes.albatrossc.workers.dev/aids/sem-6/cyber-security-aids/endsem-may-jun-2024-pat2019-csa.pdf
+[2026-05-09 12:45:36]
+
+Processed: 1
+Skipped: 130
+Failed: 0
+Remaining: 19
+Gemini failures: 0
+OCR usage: 0
+
+Current:
+Branch: aids
+Semester: sem-6
+Subject: cyber-security-aids
+
+[2026-05-09 12:45:36] Skipped existing PDF: https://sppucodes.albatrossc.workers.dev/aids/sem-6/cyber-security-aids/endsem-may-jun-2025-pat2019-csa.pdf
+[2026-05-09 12:45:36]
+
+Processed: 1
+Skipped: 131
+Failed: 0
+Remaining: 18
+Gemini failures: 0
+OCR usage: 0
+
+Current:
+Branch: aids
+Semester: sem-6
+Subject: cyber-security-aids
+
+[2026-05-09 12:45:36] Skipped existing PDF: https://sppucodes.albatrossc.workers.dev/aids/sem-6/cyber-security-aids/endsem-nov-dec-2024-pat2019-csa.pdf
+[2026-05-09 12:45:36]
+
+Processed: 1
+Skipped: 132
+Failed: 0
+Remaining: 17
+Gemini failures: 0
+OCR usage: 0
+
+Current:
+Branch: aids
+Semester: sem-6
+Subject: cyber-security-aids
+
+[2026-05-09 12:45:36] Skipped existing PDF: https://sppucodes.albatrossc.workers.dev/aids/sem-6/cyber-security-aids/insem-feb-2023-pat2019-csa.pdf
+[2026-05-09 12:45:36]
+
+Processed: 1
+Skipped: 133
+Failed: 0
+Remaining: 16
+Gemini failures: 0
+OCR usage: 0
+
+Current:
+Branch: aids
+Semester: sem-6
+Subject: cyber-security-aids
+
+[2026-05-09 12:45:36] Skipped existing PDF: https://sppucodes.albatrossc.workers.dev/aids/sem-6/cyber-security-aids/insem-march-2024-pat2019-csa.pdf
+[2026-05-09 12:45:36]
+
+Processed: 1
+Skipped: 134
+Failed: 0
+Remaining: 15
+Gemini failures: 0
+OCR usage: 0
+
+Current:
+Branch: aids
+Semester: sem-6
+Subject: cyber-security-aids
+
+[2026-05-09 12:45:36] Skipped existing PDF: https://sppucodes.albatrossc.workers.dev/aids/sem-6/cyber-security-aids/insem-march-2025-pat2019-csa.pdf
+[2026-05-09 12:45:36]
+
+Processed: 1
+Skipped: 135
+Failed: 0
+Remaining: 14
+Gemini failures: 0
+OCR usage: 0
+
+Current:
+Branch: aids
+Semester: sem-6
+Subject: cyber-security-aids
+
+[2026-05-09 12:45:36] Skipped existing PDF: https://sppucodes.albatrossc.workers.dev/aids/sem-6/data-science-aids/endsem-may-jun-2023-pat2019-dsa.pdf
+[2026-05-09 12:45:36]
+
+Processed: 1
+Skipped: 136
+Failed: 0
+Remaining: 13
+Gemini failures: 0
+OCR usage: 0
+
+Current:
+Branch: aids
+Semester: sem-6
+Subject: data-science-aids
+
+[2026-05-09 12:45:36] Skipped existing PDF: https://sppucodes.albatrossc.workers.dev/aids/sem-6/data-science-aids/endsem-may-jun-2024-pat2019-dsa.pdf
+[2026-05-09 12:45:36]
+
+Processed: 1
+Skipped: 137
+Failed: 0
+Remaining: 12
+Gemini failures: 0
+OCR usage: 0
+
+Current:
+Branch: aids
+Semester: sem-6
+Subject: data-science-aids
+
+[2026-05-09 12:45:36] Skipped existing PDF: https://sppucodes.albatrossc.workers.dev/aids/sem-6/data-science-aids/endsem-may-jun-2025-pat2019-dsa.pdf
+[2026-05-09 12:45:36]
+
+Processed: 1
+Skipped: 138
+Failed: 0
+Remaining: 11
+Gemini failures: 0
+OCR usage: 0
+
+Current:
+Branch: aids
+Semester: sem-6
+Subject: data-science-aids
+
+[2026-05-09 12:45:36] Skipped existing PDF: https://sppucodes.albatrossc.workers.dev/aids/sem-6/data-science-aids/endsem-nov-dec-2024-pat2019-dsa.pdf
+[2026-05-09 12:45:36]
+
+Processed: 1
+Skipped: 139
+Failed: 0
+Remaining: 10
+Gemini failures: 0
+OCR usage: 0
+
+Current:
+Branch: aids
+Semester: sem-6
+Subject: data-science-aids
+
+[2026-05-09 12:45:36] Skipped existing PDF: https://sppucodes.albatrossc.workers.dev/aids/sem-6/data-science-aids/insem-feb-2023-pat2019-dsa.pdf
+[2026-05-09 12:45:36]
+
+Processed: 1
+Skipped: 140
+Failed: 0
+Remaining: 9
+Gemini failures: 0
+OCR usage: 0
+
+Current:
+Branch: aids
+Semester: sem-6
+Subject: data-science-aids
+
+[2026-05-09 12:45:36] Skipped existing PDF: https://sppucodes.albatrossc.workers.dev/aids/sem-6/data-science-aids/insem-march-2024-pat2019-dsa.pdf
+[2026-05-09 12:45:36]
+
+Processed: 1
+Skipped: 141
+Failed: 0
+Remaining: 8
+Gemini failures: 0
+OCR usage: 0
+
+Current:
+Branch: aids
+Semester: sem-6
+Subject: data-science-aids
+
+[2026-05-09 12:45:36] Skipped existing PDF: https://sppucodes.albatrossc.workers.dev/aids/sem-6/data-science-aids/insem-march-2025-pat2019-dsa.pdf
+[2026-05-09 12:45:36]
+
+Processed: 1
+Skipped: 142
+Failed: 0
+Remaining: 7
+Gemini failures: 0
+OCR usage: 0
+
+Current:
+Branch: aids
+Semester: sem-6
+Subject: data-science-aids
+
+[2026-05-09 12:45:36] Skipped existing PDF: https://sppucodes.albatrossc.workers.dev/aids/sem-6/natural-language-processing-ele-ii-aids/endsem-may-jun-2023-pat2019-nlpeiia.pdf
+[2026-05-09 12:45:36]
+
+Processed: 1
+Skipped: 143
+Failed: 0
+Remaining: 6
+Gemini failures: 0
+OCR usage: 0
+
+Current:
+Branch: aids
+Semester: sem-6
+Subject: natural-language-processing-ele-ii-aids
+
+[2026-05-09 12:45:36] Skipped existing PDF: https://sppucodes.albatrossc.workers.dev/aids/sem-6/natural-language-processing-ele-ii-aids/endsem-may-jun-2024-pat2019-nlpeiia.pdf
+[2026-05-09 12:45:36]
+
+Processed: 1
+Skipped: 144
+Failed: 0
+Remaining: 5
+Gemini failures: 0
+OCR usage: 0
+
+Current:
+Branch: aids
+Semester: sem-6
+Subject: natural-language-processing-ele-ii-aids
+
+[2026-05-09 12:45:36] Skipped existing PDF: https://sppucodes.albatrossc.workers.dev/aids/sem-6/natural-language-processing-ele-ii-aids/endsem-may-jun-2025-pat2019-nlpeiia.pdf
+[2026-05-09 12:45:36]
+
+Processed: 1
+Skipped: 145
+Failed: 0
+Remaining: 4
+Gemini failures: 0
+OCR usage: 0
+
+Current:
+Branch: aids
+Semester: sem-6
+Subject: natural-language-processing-ele-ii-aids
+
+[2026-05-09 12:45:36] Skipped existing PDF: https://sppucodes.albatrossc.workers.dev/aids/sem-6/natural-language-processing-ele-ii-aids/insem-feb-2023-pat2019-nlpeiia.pdf
+[2026-05-09 12:45:36]
+
+Processed: 1
+Skipped: 146
+Failed: 0
+Remaining: 3
+Gemini failures: 0
+OCR usage: 0
+
+Current:
+Branch: aids
+Semester: sem-6
+Subject: natural-language-processing-ele-ii-aids
+
+[2026-05-09 12:45:36] Skipped existing PDF: https://sppucodes.albatrossc.workers.dev/aids/sem-6/natural-language-processing-ele-ii-aids/insem-march-2024-pat2019-nlpeiia.pdf
+[2026-05-09 12:45:36]
+
+Processed: 1
+Skipped: 147
+Failed: 0
+Remaining: 2
+Gemini failures: 0
+OCR usage: 0
+
+Current:
+Branch: aids
+Semester: sem-6
+Subject: natural-language-processing-ele-ii-aids
+
+[2026-05-09 12:45:36] Skipped existing PDF: https://sppucodes.albatrossc.workers.dev/aids/sem-6/natural-language-processing-ele-ii-aids/insem-march-2025-pat2019-nlpeiia.pdf
+[2026-05-09 12:45:36]
+
+Processed: 1
+Skipped: 148
+Failed: 0
+Remaining: 1
+Gemini failures: 0
+OCR usage: 0
+
+Current:
+Branch: aids
+Semester: sem-6
+Subject: natural-language-processing-ele-ii-aids
+
+[2026-05-09 12:45:36] Skipped existing PDF: https://sppucodes.albatrossc.workers.dev/aids/sem-6/software-modeling-and-architecture-ele-ii-aids/endsem-may-jun-2023-pat2019-smaaeiia.pdf
+[2026-05-09 12:45:36]
+
+Processed: 1
+Skipped: 149
+Failed: 0
+Remaining: 0
+Gemini failures: 0
+OCR usage: 0
+
+Current:
+Branch: aids
+Semester: sem-6
+Subject: software-modeling-and-architecture-ele-ii-aids
+
+[2026-05-09 12:45:36] Pipeline completed.
+[2026-05-09 12:45:36]
+
+Processed: 1
+Skipped: 149
+Failed: 0
+Remaining: 0
+Gemini failures: 0
+OCR usage: 0
+
+Current:
+Branch: aids
+Semester: sem-6
+Subject: software-modeling-and-architecture-ele-ii-aids
+

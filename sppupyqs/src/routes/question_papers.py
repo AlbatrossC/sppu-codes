@@ -4,7 +4,7 @@ from urllib.parse import urlparse
 
 from flask import Blueprint, abort, render_template
 
-from ..config import CODES_SITE_URL, DEFAULT_EXAM_TYPE, SITE_URL
+from ..config import CODES_SITE_URL, DEFAULT_EXAM_TYPE, QUESTION_ANSWER_WORKER_URL, SITE_URL
 from ..utils import load_question_papers
 
 question_papers_bp = Blueprint("question_papers", __name__)
@@ -49,19 +49,38 @@ def viewer_page(subject_link):
         "subject_name": subject_name,
     }
 
+    subject_papers = subject.get("papers", [])
     pdf_data = [
-        {"filename": os.path.basename(urlparse(url).path), "url": url}
-        for url in subject.get("pdf_links", [])
-        if isinstance(url, str)
+        {
+            "filename": paper.get("filename") or os.path.basename(urlparse(paper.get("pdf_url", "")).path),
+            "originalFilename": paper.get("filename") or os.path.basename(urlparse(paper.get("pdf_url", "")).path),
+            "url": paper.get("pdf_url"),
+            "link": paper.get("pdf_url"),
+            "date": paper.get("paper_label") or "Paper",
+            "paperId": paper.get("pdf_id"),
+            "examType": paper.get("exam_type", "unknown"),
+        }
+        for paper in subject_papers
+        if isinstance(paper, dict) and paper.get("pdf_url")
     ]
+
+    initial_paper = next(
+        (paper for paper in subject_papers if paper.get("exam_type") == DEFAULT_EXAM_TYPE),
+        subject_papers[0] if subject_papers else None,
+    )
 
     return render_template(
         "viewer.html",
         subject_name=subject_name,
+        branch_name=branch_name,
         subject_link=subject_link,
         pdf_data_for_js=pdf_data,
+        subject_papers=subject_papers,
+        subject_semester_key=subject.get("semester_key", ""),
+        initial_questions_paper_id=(initial_paper or {}).get("pdf_id", ""),
         seo_data=seo_data,
         default_exam_type=DEFAULT_EXAM_TYPE,
+        question_answer_worker_url=QUESTION_ANSWER_WORKER_URL,
         site_url=SITE_URL,
         codes_site_url=CODES_SITE_URL,
         site_name="SPPU PYQs",

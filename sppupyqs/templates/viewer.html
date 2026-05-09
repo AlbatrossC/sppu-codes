@@ -48,7 +48,7 @@
     <link rel="dns-prefetch" href="https://pagead2.googlesyndication.com">
 
     <link href="/images/logo.png" rel="icon" fetchpriority="high" type="image/png">
-    <link href="{{ url_for('static', filename='css/viewer.css') }}?v=3.1" rel="stylesheet">
+    <link href="{{ url_for('static', filename='css/viewer.css') }}?v=5.0" rel="stylesheet">
     <script src="https://openfpcdn.io/fingerprintjs/v4/iife.min.js" defer></script>
     <script src="{{ url_for('static', filename='js/analytics.js') }}?v=3.0" defer></script>
 
@@ -300,6 +300,17 @@
                     <span class="wm-label" id="watermarkGlobalToggleLabel">Hide watermark</span>
                 </button>
             </div>
+            <button class="questions-btn" id="questions-btn" aria-label="View structured questions">
+                <svg class="icon" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
+                    stroke-width="2" viewBox="0 0 24 24">
+                    <path d="M9 5H4a2 2 0 0 0-2 2v10a2 2 0 0 0 2 2h5"></path>
+                    <path d="M15 5h5a2 2 0 0 1 2 2v10a2 2 0 0 1-2 2h-5"></path>
+                    <path d="M9 8h6"></path>
+                    <path d="M9 12h6"></path>
+                    <path d="M9 16h6"></path>
+                </svg>
+                <span class="btn-text">View Questions</span>
+            </button>
             <button class="download-btn" id="download-btn" aria-label="Download papers">
                 <svg class="icon" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
                     stroke-width="2" viewBox="0 0 24 24">
@@ -404,6 +415,146 @@
         </div>
     </div>
 
+    <div class="questions-modal" id="questions-modal">
+        <div class="questions-modal-overlay" id="questions-modal-overlay"></div>
+        <div class="questions-modal-content" role="dialog" aria-modal="true" aria-label="Questions">
+            <div class="questions-modal-header">
+                <div class="questions-modal-header-spacer"></div>
+                <button class="download-modal-close" id="questions-modal-close" aria-label="Close questions modal">
+                    <svg class="icon" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
+                        stroke-width="2" viewBox="0 0 24 24">
+                        <line x1="18" y1="6" x2="6" y2="18"></line>
+                        <line x1="6" y1="6" x2="18" y2="18"></line>
+                    </svg>
+                </button>
+            </div>
+            <div class="questions-modal-toolbar">
+                <div class="questions-tabs" role="tablist" aria-label="Question content tabs">
+                    <button type="button" class="questions-tab active" data-tab="questions" role="tab" aria-selected="true">Questions</button>
+                    <button type="button" class="questions-tab" data-tab="metadata" role="tab" aria-selected="false">Metadata</button>
+                </div>
+                <div class="questions-paper-picker">
+                    <label class="questions-picker-label" for="questions-paper-dropdown">Paper</label>
+                    <div class="custom-dropdown questions-paper-dropdown" id="questions-paper-dropdown"
+                        data-value="{{ initial_questions_paper_id }}">
+                        <div class="dropdown-selected">
+                            <span class="dropdown-text">
+                                {% set initial_label = namespace(value='Select Paper') %}
+                                {% for paper in subject_papers %}
+                                    {% if paper.pdf_id == initial_questions_paper_id %}
+                                        {% set initial_label.value = paper.paper_label %}
+                                    {% endif %}
+                                {% endfor %}
+                                {{ initial_label.value }}
+                            </span>
+                            <svg class="dropdown-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                stroke-width="2">
+                                <polyline points="6 9 12 15 18 9" />
+                            </svg>
+                        </div>
+                        <div class="dropdown-options">
+                            {% for paper in subject_papers %}
+                            <div class="dropdown-option {% if paper.pdf_id == initial_questions_paper_id %}selected{% endif %}"
+                                data-value="{{ paper.pdf_id }}">{{ paper.paper_label }}</div>
+                            {% endfor %}
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="questions-modal-body">
+                <div class="questions-modal-layout">
+                    <div class="questions-paper-panels" id="questions-paper-panels">
+                    {% for paper in subject_papers %}
+                    <section class="questions-paper-panel {% if paper.pdf_id == initial_questions_paper_id %}active{% endif %}"
+                        data-paper-id="{{ paper.pdf_id }}" data-exam-type="{{ paper.exam_type }}">
+                        <div class="questions-panel active" data-tab-panel="questions">
+                            {% if paper.questions %}
+                            <div class="question-card-list">
+                                {% for question in paper.questions %}
+                                <article class="question-card">
+                                    <div class="question-card-top">
+                                        <div class="question-card-meta">
+                                            <span class="question-meta-inline">
+                                                <span class="question-number">{{ question.question_number }}</span>
+                                            {% if question.subquestion %}
+                                                <span class="question-meta-separator">&middot;</span>
+                                                <span class="question-subquestion">{{ question.subquestion }}</span>
+                                            {% endif %}
+                                            {% if question.marks is not none and question.marks != '' %}
+                                                <span class="question-meta-separator">&middot;</span>
+                                                <span class="question-marks">{{ question.marks }} Marks</span>
+                                            {% endif %}
+                                            </span>
+                                        </div>
+                                        <button type="button" class="generate-answer-btn"
+                                            data-question-id="{{ question.question_id }}"
+                                            data-pdf-id="{{ paper.pdf_id }}"
+                                            data-pdf-url="{{ paper.pdf_url }}"
+                                            data-subject-slug="{{ subject_link }}"
+                                            data-subject-name="{{ seo_data.subject_name }}"
+                                            data-semester="{{ subject_semester_key }}"
+                                            data-branch="{{ subject_link.split('-')[-1] }}"
+                                            data-question-number="{{ question.question_number }}"
+                                            data-subquestion="{{ question.subquestion }}"
+                                            data-marks="{{ question.marks }}"
+                                            data-paper-label="{{ paper.paper_label }}"
+                                            data-question-text="{{ question.question_text }}">Generate Answer</button>
+                                    </div>
+                                    <p class="question-card-text">{{ question.question_text }}</p>
+                                </article>
+                                {% endfor %}
+                            </div>
+                            {% else %}
+                            <div class="questions-empty-state">
+                                <h3>Structured questions are not available for this paper yet.</h3>
+                                <p>The PDF is still available in the viewer and download flow, but this paper has not been extracted into question cards yet.</p>
+                            </div>
+                            {% endif %}
+                        </div>
+                        <div class="questions-panel" data-tab-panel="metadata">
+                            {% set meta = paper.metadata or {} %}
+                            <div class="metadata-table-wrap">
+                                <table class="metadata-table">
+                                    <tbody>
+                                        <tr><th>Subject Name</th><td>{{ seo_data.subject_name }}</td></tr>
+                                        <tr><th>Semester</th><td>{{ meta.get('semester') or subject_semester_key or 'N/A' }}</td></tr>
+                                        <tr><th>Pattern Year</th><td>{{ meta.get('pattern_year') or 'N/A' }}</td></tr>
+                                        <tr><th>Subject Code</th><td>{{ meta.get('subject_code') or 'N/A' }}</td></tr>
+                                        <tr><th>Max Marks</th><td>{{ meta.get('max_marks') or 'N/A' }}</td></tr>
+                                        <tr><th>Total Questions</th><td>{{ meta.get('total_questions') or paper.question_count or 'N/A' }}</td></tr>
+                                        <tr><th>Duration</th><td>{{ meta.get('duration') or 'N/A' }}</td></tr>
+                                        <tr><th>Paper Number</th><td>{{ meta.get('paper_number') or 'N/A' }}</td></tr>
+                                        <tr><th>Academic Year</th><td>{{ meta.get('academic_year') or 'N/A' }}</td></tr>
+                                        <tr><th>Branch Name</th><td>{{ meta.get('branch_name') or branch_name }}</td></tr>
+                                        <tr><th>Exam Type</th><td>{{ paper.exam_type | upper }}</td></tr>
+                                        <tr><th>Exam Session</th><td>{{ paper.paper_label }}</td></tr>
+                                        <tr class="metadata-watermark-row"><th>Watermark</th><td>{{ meta.get('watermark_text') or 'SPPU PYQs Hub - sppupyqs.codes' }}</td></tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </section>
+                    {% endfor %}
+                    </div>
+                    <section class="answer-panel" id="answer-panel" aria-live="polite">
+                        <div class="answer-panel-header">
+                            <div>
+                                <h3 id="answer-panel-title">Answer</h3>
+                                <p id="answer-panel-subtitle">Select any question and generate a focused exam-style answer.</p>
+                            </div>
+                            <div class="answer-panel-actions">
+                                <button type="button" class="answer-panel-action" id="answer-cancel-btn">Cancel</button>
+                                <button type="button" class="answer-panel-action" id="answer-reset-btn">Clear</button>
+                            </div>
+                        </div>
+                        <div class="answer-panel-status" id="answer-panel-status">Answers appear here inside the same modal.</div>
+                        <div class="answer-panel-body markdown-answer" id="answer-panel-body"></div>
+                    </section>
+                </div>
+            </div>
+        </div>
+    </div>
+
     <div class="grid-1" id="pdf-container">
         <div class="no-pdf-message">Loading PDFs...<div class="loader"></div>
         </div>
@@ -442,6 +593,14 @@
         </div>
     </div>
 
+    <script id="question-modal-data" type="application/json">{{ {
+        "subjectLink": subject_link,
+        "subjectName": seo_data.subject_name,
+        "papers": subject_papers,
+        "initialPaperId": initial_questions_paper_id,
+        "workerUrl": question_answer_worker_url
+    } | tojson | safe }}</script>
+
     <script>
         'use strict';
 
@@ -467,6 +626,18 @@
         var initialPdfDataFromServer = {{ pdf_data_for_js | tojson | safe }};
         var subjectNameFromServer = {{ (seo_data.subject_name or subject_name) | tojson | safe }};
         var subjectLinkFromServer = {{ subject_link | tojson | safe }};
+        var questionModalDataFromServer = (function () {
+            var node = document.getElementById('question-modal-data');
+            if (!node) {
+                return { papers: [], initialPaperId: '', workerUrl: '' };
+            }
+            try {
+                return JSON.parse(node.textContent);
+            } catch (error) {
+                console.error('[PDF Viewer] Failed to parse question modal data', error);
+                return { papers: [], initialPaperId: '', workerUrl: '' };
+            }
+        })();
 
         window.paperDownloadContext = {
             subjectLink: subjectLinkFromServer,
@@ -610,6 +781,20 @@
             downloadModalOverlay: document.getElementById('download-modal-overlay'),
             downloadModalClose: document.getElementById('download-modal-close'),
             downloadSubjectName: document.getElementById('download-subject-name'),
+            questionsBtn: document.getElementById('questions-btn'),
+            questionsModal: document.getElementById('questions-modal'),
+            questionsModalOverlay: document.getElementById('questions-modal-overlay'),
+            questionsModalClose: document.getElementById('questions-modal-close'),
+            questionsPaperDropdown: null,
+            questionsTabs: document.querySelectorAll('.questions-tab'),
+            questionsPaperPanels: document.getElementById('questions-paper-panels'),
+            answerPanel: document.getElementById('answer-panel'),
+            answerPanelTitle: document.getElementById('answer-panel-title'),
+            answerPanelSubtitle: document.getElementById('answer-panel-subtitle'),
+            answerPanelStatus: document.getElementById('answer-panel-status'),
+            answerPanelBody: document.getElementById('answer-panel-body'),
+            answerCloseBtn: document.getElementById('answer-close-btn'),
+            answerCancelBtn: document.getElementById('answer-cancel-btn'),
             mobileControlBar: document.getElementById('mobile-control-bar'),
             mobileExamDropdown: null,
             mobilePaperDropdown: null
@@ -633,7 +818,12 @@
             currentExamType: DEFAULT_EXAM_TYPE,
             activeRenderToken: 0,
             iframeLoadTokens: new WeakMap(),
-            nextIframeLoadToken: 0
+            nextIframeLoadToken: 0,
+            currentQuestionsPaperId: questionModalDataFromServer.initialPaperId || '',
+            currentQuestionsTab: 'questions',
+            answerAbortController: null,
+            answerIsStreaming: false,
+            questionAnswerWorkerUrl: questionModalDataFromServer.workerUrl || ''
         };
 
         // Service worker keeps static viewer assets warm; PDF bodies are cached separately.
@@ -1379,6 +1569,289 @@
             }
         }
 
+        function setQuestionsTab(tabName) {
+            state.currentQuestionsTab = tabName === 'metadata' ? 'metadata' : 'questions';
+
+            DOM.questionsTabs.forEach(function (tabButton) {
+                var isActive = tabButton.getAttribute('data-tab') === state.currentQuestionsTab;
+                tabButton.classList.toggle('active', isActive);
+                tabButton.setAttribute('aria-selected', isActive ? 'true' : 'false');
+            });
+
+            document.querySelectorAll('.questions-paper-panel').forEach(function (panel) {
+                panel.querySelectorAll('.questions-panel').forEach(function (tabPanel) {
+                    var isActive = tabPanel.getAttribute('data-tab-panel') === state.currentQuestionsTab;
+                    tabPanel.classList.toggle('active', isActive);
+                });
+            });
+        }
+
+        function setQuestionsPaper(paperId) {
+            state.currentQuestionsPaperId = paperId || state.currentQuestionsPaperId;
+
+            document.querySelectorAll('.questions-paper-panel').forEach(function (panel) {
+                var isActive = panel.getAttribute('data-paper-id') === state.currentQuestionsPaperId;
+                panel.classList.toggle('active', isActive);
+            });
+        }
+
+        function openQuestionsModal() {
+            if (!DOM.questionsModal) {
+                return;
+            }
+            DOM.questionsModal.classList.add('active');
+            document.body.style.overflow = 'hidden';
+            setQuestionsPaper(state.currentQuestionsPaperId);
+            setQuestionsTab(state.currentQuestionsTab);
+            Logger.info('Questions modal opened', { paperId: state.currentQuestionsPaperId });
+        }
+
+        function closeQuestionsModal() {
+            if (!DOM.questionsModal) {
+                return;
+            }
+            DOM.questionsModal.classList.remove('active');
+            document.body.style.overflow = '';
+            Logger.info('Questions modal closed');
+        }
+
+        function escapeHtml(value) {
+            return String(value || '')
+                .replace(/&/g, '&amp;')
+                .replace(/</g, '&lt;')
+                .replace(/>/g, '&gt;')
+                .replace(/"/g, '&quot;')
+                .replace(/'/g, '&#39;');
+        }
+
+        function renderMarkdown(markdown) {
+            var escaped = escapeHtml(markdown || '');
+            var lines = escaped.split(/\r?\n/);
+            var html = [];
+            var inList = false;
+
+            function closeList() {
+                if (inList) {
+                    html.push('</ul>');
+                    inList = false;
+                }
+            }
+
+            lines.forEach(function (line) {
+                var trimmed = line.trim();
+                if (!trimmed) {
+                    closeList();
+                    return;
+                }
+
+                if (/^###\s+/.test(trimmed)) {
+                    closeList();
+                    html.push('<h3>' + trimmed.replace(/^###\s+/, '') + '</h3>');
+                    return;
+                }
+
+                if (/^##\s+/.test(trimmed)) {
+                    closeList();
+                    html.push('<h2>' + trimmed.replace(/^##\s+/, '') + '</h2>');
+                    return;
+                }
+
+                if (/^#\s+/.test(trimmed)) {
+                    closeList();
+                    html.push('<h1>' + trimmed.replace(/^#\s+/, '') + '</h1>');
+                    return;
+                }
+
+                if (/^[-*]\s+/.test(trimmed)) {
+                    if (!inList) {
+                        html.push('<ul>');
+                        inList = true;
+                    }
+                    html.push('<li>' + trimmed.replace(/^[-*]\s+/, '') + '</li>');
+                    return;
+                }
+
+                closeList();
+                html.push('<p>' + trimmed + '</p>');
+            });
+
+            closeList();
+            return html.join('');
+        }
+
+        function setAnswerPanelState(options) {
+            options = options || {};
+            if (options.title !== undefined && DOM.answerPanelTitle) {
+                DOM.answerPanelTitle.textContent = options.title;
+            }
+            if (options.subtitle !== undefined && DOM.answerPanelSubtitle) {
+                DOM.answerPanelSubtitle.textContent = options.subtitle;
+            }
+            if (options.status !== undefined && DOM.answerPanelStatus) {
+                DOM.answerPanelStatus.textContent = options.status;
+            }
+            if (options.markdown !== undefined && DOM.answerPanelBody) {
+                DOM.answerPanelBody.innerHTML = renderMarkdown(options.markdown);
+            }
+            if (options.open && DOM.answerPanel) {
+                DOM.answerPanel.classList.add('visible');
+                DOM.answerPanel.removeAttribute('hidden');
+            }
+        }
+
+        function stopAnswerStreaming() {
+            if (state.answerAbortController) {
+                state.answerAbortController.abort();
+                state.answerAbortController = null;
+            }
+            state.answerIsStreaming = false;
+            if (DOM.answerCancelBtn) {
+                DOM.answerCancelBtn.disabled = true;
+            }
+        }
+
+        function closeAnswerPanel() {
+            stopAnswerStreaming();
+            if (DOM.answerPanel) {
+                DOM.answerPanel.classList.remove('visible');
+            }
+        }
+
+        function streamAnswerForQuestion(button) {
+            if (!button) {
+                return;
+            }
+
+            if (!state.questionAnswerWorkerUrl) {
+                setAnswerPanelState({
+                    open: true,
+                    title: 'AI Answer',
+                    subtitle: 'Worker configuration required',
+                    status: 'Set QUESTION_ANSWER_WORKER_URL in the Flask app environment to enable answer generation.',
+                    markdown: ''
+                });
+                return;
+            }
+
+            stopAnswerStreaming();
+
+            var payload = {
+                questionId: button.getAttribute('data-question-id'),
+                pdfId: button.getAttribute('data-pdf-id'),
+                pdfUrl: button.getAttribute('data-pdf-url'),
+                subjectSlug: button.getAttribute('data-subject-slug'),
+                subjectName: button.getAttribute('data-subject-name'),
+                semester: button.getAttribute('data-semester'),
+                branch: button.getAttribute('data-branch'),
+                questionNumber: button.getAttribute('data-question-number'),
+                subquestion: button.getAttribute('data-subquestion'),
+                marks: button.getAttribute('data-marks'),
+                paperLabel: button.getAttribute('data-paper-label'),
+                questionText: button.getAttribute('data-question-text')
+            };
+
+            var answerTitle = payload.questionNumber + (payload.subquestion ? ' (' + payload.subquestion + ')' : '');
+            var controller = new AbortController();
+            var markdown = '';
+
+            state.answerAbortController = controller;
+            state.answerIsStreaming = true;
+
+            if (DOM.answerCancelBtn) {
+                DOM.answerCancelBtn.disabled = false;
+            }
+
+            document.querySelectorAll('.generate-answer-btn').forEach(function (node) {
+                node.disabled = false;
+                node.textContent = 'Generate Answer';
+            });
+            button.disabled = true;
+            button.textContent = 'Generating...';
+
+            setAnswerPanelState({
+                open: true,
+                title: answerTitle,
+                subtitle: payload.paperLabel || 'Runtime-generated answer',
+                status: 'Contacting answer worker and starting live stream...',
+                markdown: ''
+            });
+
+            fetch(state.questionAnswerWorkerUrl.replace(/\/$/, '') + '/api/answers/stream', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify(payload),
+                signal: controller.signal
+            }).then(function (response) {
+                if (!response.ok) {
+                    throw new Error('Worker returned HTTP ' + response.status);
+                }
+                if (!response.body) {
+                    throw new Error('Streaming is not supported in this browser.');
+                }
+
+                setAnswerPanelState({
+                    status: response.headers.get('X-Answer-Cache') === 'HIT'
+                        ? 'Served from cached answer. Rendering stream...'
+                        : 'Generating answer with live stream...'
+                });
+
+                var reader = response.body.getReader();
+                var decoder = new TextDecoder();
+
+                function pump() {
+                    return reader.read().then(function (result) {
+                        if (result.done) {
+                            state.answerIsStreaming = false;
+                            state.answerAbortController = null;
+                            button.disabled = false;
+                            button.textContent = 'Generate Answer';
+                            if (DOM.answerCancelBtn) {
+                                DOM.answerCancelBtn.disabled = true;
+                            }
+                            setAnswerPanelState({ status: 'Answer ready.' });
+                            return;
+                        }
+
+                        markdown += decoder.decode(result.value, { stream: true });
+                        setAnswerPanelState({
+                            status: 'Streaming answer...',
+                            markdown: markdown
+                        });
+                        return pump();
+                    });
+                }
+
+                return pump();
+            }).catch(function (error) {
+                button.disabled = false;
+                button.textContent = 'Generate Answer';
+
+                if (error && error.name === 'AbortError') {
+                    setAnswerPanelState({
+                        status: 'Answer generation cancelled.',
+                        markdown: markdown
+                    });
+                    return;
+                }
+
+                setAnswerPanelState({
+                    status: 'Unable to generate answer right now.',
+                    markdown: markdown || ('- Error: ' + (error && error.message ? error.message : error))
+                });
+            }).finally(function () {
+                state.answerIsStreaming = false;
+                state.answerAbortController = null;
+                if (DOM.answerCancelBtn) {
+                    DOM.answerCancelBtn.disabled = true;
+                }
+                document.querySelectorAll('.generate-answer-btn').forEach(function (node) {
+                    if (node !== button) {
+                        node.disabled = false;
+                    }
+                });
+            });
+        }
+
         function updateMobilePaperDropdown() {
             var dropdown = document.getElementById('mobile-paper-dropdown');
             if (!dropdown) return;
@@ -1526,6 +1999,19 @@
                 onLayoutChange
             );
 
+            var questionsPaperDropdownEl = document.getElementById('questions-paper-dropdown');
+            if (questionsPaperDropdownEl) {
+                DOM.questionsPaperDropdown = CustomDropdown.init(questionsPaperDropdownEl, function (paperId) {
+                    setQuestionsPaper(paperId);
+                });
+            }
+
+            DOM.questionsTabs.forEach(function (tabButton) {
+                tabButton.addEventListener('click', function () {
+                    setQuestionsTab(tabButton.getAttribute('data-tab'));
+                });
+            });
+
             // Setup exam type toggle buttons — disabled buttons still switch to that
             // type so the inline empty state is shown instead of a popup
             var examToggleButtons = document.querySelectorAll('.exam-toggle-btn');
@@ -1548,6 +2034,10 @@
                 DOM.downloadBtn.addEventListener('click', openDownloadModal);
             }
 
+            if (DOM.questionsBtn) {
+                DOM.questionsBtn.addEventListener('click', openQuestionsModal);
+            }
+
             if (DOM.downloadModalOverlay) {
                 DOM.downloadModalOverlay.addEventListener('click', closeDownloadModal);
             }
@@ -1556,9 +2046,36 @@
                 DOM.downloadModalClose.addEventListener('click', closeDownloadModal);
             }
 
+            if (DOM.questionsModalOverlay) {
+                DOM.questionsModalOverlay.addEventListener('click', closeQuestionsModal);
+            }
+
+            if (DOM.questionsModalClose) {
+                DOM.questionsModalClose.addEventListener('click', closeQuestionsModal);
+            }
+
             if (DOM.watermarkBtn) {
                 DOM.watermarkBtn.addEventListener('click', function () {
                     WatermarkManager.toggle();
+                });
+            }
+
+            if (DOM.answerCloseBtn) {
+                DOM.answerCloseBtn.addEventListener('click', closeAnswerPanel);
+            }
+
+            if (DOM.answerCancelBtn) {
+                DOM.answerCancelBtn.addEventListener('click', stopAnswerStreaming);
+                DOM.answerCancelBtn.disabled = true;
+            }
+
+            if (DOM.questionsPaperPanels) {
+                DOM.questionsPaperPanels.addEventListener('click', function (event) {
+                    var trigger = event.target.closest('.generate-answer-btn');
+                    if (!trigger) {
+                        return;
+                    }
+                    streamAnswerForQuestion(trigger);
                 });
             }
 
@@ -1569,6 +2086,10 @@
                     CustomDropdown.closeAll();
                     if (DOM.downloadModal && DOM.downloadModal.classList.contains('active')) {
                         closeDownloadModal();
+                    } else if (DOM.questionsModal && DOM.questionsModal.classList.contains('active')) {
+                        closeQuestionsModal();
+                    } else if (DOM.answerPanel && !DOM.answerPanel.hidden) {
+                        closeAnswerPanel();
                     } else if (document.fullscreenElement) {
                         document.exitFullscreen().catch(function (err) {
                             Logger.error('Error exiting fullscreen on escape', err.message);
@@ -1638,6 +2159,14 @@
 
             updateSubjectDisplay();
             setupEventListeners();
+            if (!state.currentQuestionsPaperId && questionModalDataFromServer.papers && questionModalDataFromServer.papers.length) {
+                state.currentQuestionsPaperId = questionModalDataFromServer.papers[0].pdf_id || '';
+            }
+            if (DOM.questionsPaperDropdown && state.currentQuestionsPaperId) {
+                DOM.questionsPaperDropdown._setValue(state.currentQuestionsPaperId, false);
+            }
+            setQuestionsPaper(state.currentQuestionsPaperId);
+            setQuestionsTab(state.currentQuestionsTab);
             PreloadManager.preloadPdfViewer();
 
             if (window.IS_MOBILE_DEVICE) {
@@ -1675,10 +2204,11 @@
                                 return null;
                             }
                             return {
-                                date: formatPdfName(pdfObject.filename),
+                                date: pdfObject.date || formatPdfName(pdfObject.filename),
                                 link: proxyPdfUrl(pdfObject.url),
                                 originalUrl: pdfObject.url,
-                                originalFilename: pdfObject.filename
+                                originalFilename: pdfObject.filename,
+                                paperId: pdfObject.paperId || ''
                             };
                         })
                         .filter(function (item) { return item !== null; })

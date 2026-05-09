@@ -18,9 +18,11 @@ if PDF_SOURCE not in _VALID_PDF_SOURCES:
 
 QP_PDF_DIR = os.path.join(QUESTION_PAPERS_DIR, f"question-papers-{PDF_SOURCE}")
 QP_SEO_DIR = os.path.join(QUESTION_PAPERS_DIR, "pyqs-seo")
+QP_METADATA_DIR = os.path.join(BASE_DIR, "pyqs-metadata")
 
 CF_WORKER_DB_URL = os.getenv("CF_WORKER_DB_URL", "").strip().rstrip("/")
 DB_API_KEY = os.getenv("DB_API_KEY", "").strip()
+QUESTION_ANSWER_WORKER_URL = os.getenv("QUESTION_ANSWER_WORKER_URL", "").strip().rstrip("/")
 DISCORD_WEBHOOK_URL = os.getenv("DISCORD_WEBHOOK_URL")
 MAINTENANCE_MODE = os.getenv("MAINTENANCE_MODE", "false").lower() == "true"
 SECRET_KEY = os.getenv("SECRET_KEY") or os.getenv("FLASK_SECRET_KEY", "karltos")

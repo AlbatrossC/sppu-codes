@@ -1,0 +1,17 @@
+name = "question-answers"
+main = "src/index.ts"
+compatibility_date = "2024-12-01"
+
+[[d1_databases]]
+binding = "DB"
+database_name = "question-answers-db"
+database_id = "a5480070-df39-4be3-9602-599914a7d523"
+
+[vars]
+GROQ_MODEL = "llama-3.3-70b-versatile"
+PROMPT_VERSION = "2026-05-09-v1"
+ALLOWED_ORIGIN = "*"
+
+[observability.logs]
+enabled = true
+invocation_logs = true

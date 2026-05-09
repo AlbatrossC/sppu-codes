@@ -1,0 +1,21 @@
+{
+  "name": "question-answers",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Cloudflare Worker for SPPU PYQ answer generation with Groq streaming and D1 caching",
+  "scripts": {
+    "deploy": "wrangler deploy",
+    "dev": "wrangler dev",
+    "dev:remote": "wrangler dev --remote",
+    "db:create": "wrangler d1 create question-answers-db",
+    "db:execute": "wrangler d1 execute question-answers-db --file=schema.sql",
+    "db:migrate": "wrangler d1 execute question-answers-db --command=\"SELECT name FROM sqlite_master WHERE type='table' ORDER BY name\"",
+    "typecheck": "tsc --noEmit",
+    "secret:groq": "wrangler secret put GROQ_API_KEY"
+  },
+  "devDependencies": {
+    "@cloudflare/workers-types": "^4.20241201.0",
+    "typescript": "^5.7.0",
+    "wrangler": "^3.91.0"
+  }
+}

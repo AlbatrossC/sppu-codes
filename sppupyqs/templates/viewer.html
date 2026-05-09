@@ -538,17 +538,34 @@
                     </div>
                     <section class="answer-panel" id="answer-panel" aria-live="polite">
                         <div class="answer-panel-header">
-                            <div>
+                            <div class="answer-panel-title-wrap">
                                 <h3 id="answer-panel-title">Answer</h3>
-                                <p id="answer-panel-subtitle">Select any question and generate a focused exam-style answer.</p>
+                                <span class="answer-panel-meta" id="answer-panel-meta"></span>
                             </div>
-                            <div class="answer-panel-actions">
-                                <button type="button" class="answer-panel-action" id="answer-cancel-btn">Cancel</button>
-                                <button type="button" class="answer-panel-action" id="answer-reset-btn">Clear</button>
+                            <button type="button" class="answer-panel-close" id="answer-close-btn" aria-label="Close answer panel">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <path d="M18 6L6 18M6 6l12 12"/>
+                                </svg>
+                            </button>
+                        </div>
+                        <div class="answer-panel-body markdown-answer" id="answer-panel-body">
+                            <div class="answer-panel-empty" id="answer-panel-empty">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" class="empty-icon">
+                                    <path d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/>
+                                </svg>
+                                <p>Select a question to generate an answer</p>
                             </div>
                         </div>
-                        <div class="answer-panel-status" id="answer-panel-status">Answers appear here inside the same modal.</div>
-                        <div class="answer-panel-body markdown-answer" id="answer-panel-body"></div>
+                        <div class="answer-panel-summary" id="answer-panel-summary" style="display:none;">
+                            <div class="answer-panel-summary-content">
+                                <span class="summary-label">Key Points</span>
+                                <div class="answer-panel-summary-text" id="answer-panel-summary-text"></div>
+                            </div>
+                        </div>
+                        <div class="answer-panel-loading" id="answer-panel-loading" style="display:none;">
+                            <div class="loading-spinner"></div>
+                            <span>Generating answer...</span>
+                        </div>
                     </section>
                 </div>
             </div>
@@ -790,11 +807,13 @@
             questionsPaperPanels: document.getElementById('questions-paper-panels'),
             answerPanel: document.getElementById('answer-panel'),
             answerPanelTitle: document.getElementById('answer-panel-title'),
-            answerPanelSubtitle: document.getElementById('answer-panel-subtitle'),
-            answerPanelStatus: document.getElementById('answer-panel-status'),
             answerPanelBody: document.getElementById('answer-panel-body'),
+            answerPanelSummary: document.getElementById('answer-panel-summary'),
+            answerPanelSummaryText: document.getElementById('answer-panel-summary-text'),
+            answerPanelMeta: document.getElementById('answer-panel-meta'),
+            answerPanelEmpty: document.getElementById('answer-panel-empty'),
+            answerPanelLoading: document.getElementById('answer-panel-loading'),
             answerCloseBtn: document.getElementById('answer-close-btn'),
-            answerCancelBtn: document.getElementById('answer-cancel-btn'),
             mobileControlBar: document.getElementById('mobile-control-bar'),
             mobileExamDropdown: null,
             mobilePaperDropdown: null
@@ -1624,16 +1643,46 @@
                 .replace(/'/g, '&#39;');
         }
 
+        function parseAnswerAndSummary(raw) {
+            var answerMatch = raw.match(/<answer>([\s\S]*?)<\/answer>/);
+            var summaryMatch = raw.match(/<summary>([\s\S]*?)<\/summary>/);
+            if (!answerMatch && !summaryMatch) {
+                var answerOpen = raw.indexOf('<answer>');
+                if (answerOpen !== -1) {
+                    var afterTag = raw.slice(answerOpen + 8);
+                    var summaryOpen = afterTag.indexOf('<summary>');
+                    if (summaryOpen !== -1) {
+                        return { answer: afterTag.slice(0, summaryOpen).trim(), summary: '' };
+                    }
+                    return { answer: afterTag.trim(), summary: '' };
+                }
+                return { answer: raw.trim(), summary: '' };
+            }
+            return {
+                answer: answerMatch ? answerMatch[1].trim() : '',
+                summary: summaryMatch ? summaryMatch[1].trim() : ''
+            };
+        }
+
+        function applyInlineMarkdown(text) {
+            var escaped = escapeHtml(text);
+            escaped = escaped.replace(/\*\*(.+?)\*\*/g, '<strong>$1</strong>');
+            escaped = escaped.replace(/\*(.+?)\*/g, '<em>$1</em>');
+            escaped = escaped.replace(/`([^`]+)`/g, '<code>$1</code>');
+            return escaped;
+        }
+
         function renderMarkdown(markdown) {
-            var escaped = escapeHtml(markdown || '');
-            var lines = escaped.split(/\r?\n/);
+            var lines = (markdown || '').split(/\r?\n/);
             var html = [];
             var inList = false;
+            var listType = '';
 
             function closeList() {
                 if (inList) {
-                    html.push('</ul>');
+                    html.push(listType === 'ol' ? '</ol>' : '</ul>');
                     inList = false;
+                    listType = '';
                 }
             }
 
@@ -1644,21 +1693,11 @@
                     return;
                 }
 
-                if (/^###\s+/.test(trimmed)) {
+                if (/^#{1,6}\s+/.test(trimmed)) {
                     closeList();
-                    html.push('<h3>' + trimmed.replace(/^###\s+/, '') + '</h3>');
-                    return;
-                }
-
-                if (/^##\s+/.test(trimmed)) {
-                    closeList();
-                    html.push('<h2>' + trimmed.replace(/^##\s+/, '') + '</h2>');
-                    return;
-                }
-
-                if (/^#\s+/.test(trimmed)) {
-                    closeList();
-                    html.push('<h1>' + trimmed.replace(/^#\s+/, '') + '</h1>');
+                    var level = trimmed.match(/^(#{1,6})/)[1].length;
+                    var headingText = trimmed.replace(/^#{1,6}\s+/, '');
+                    html.push('<h' + level + '>' + applyInlineMarkdown(headingText) + '</h' + level + '>');
                     return;
                 }
 
@@ -1666,32 +1705,77 @@
                     if (!inList) {
                         html.push('<ul>');
                         inList = true;
+                        listType = 'ul';
                     }
-                    html.push('<li>' + trimmed.replace(/^[-*]\s+/, '') + '</li>');
+                    html.push('<li>' + applyInlineMarkdown(trimmed.replace(/^[-*]\s+/, '')) + '</li>');
+                    return;
+                }
+
+                if (/^\d+\.\s+/.test(trimmed)) {
+                    if (!inList || listType !== 'ol') {
+                        closeList();
+                        html.push('<ol>');
+                        inList = true;
+                        listType = 'ol';
+                    }
+                    html.push('<li>' + applyInlineMarkdown(trimmed.replace(/^\d+\.\s+/, '')) + '</li>');
                     return;
                 }
 
                 closeList();
-                html.push('<p>' + trimmed + '</p>');
+                html.push('<p>' + applyInlineMarkdown(trimmed) + '</p>');
             });
 
             closeList();
             return html.join('');
         }
 
+        function renderSummary(summaryText) {
+            if (!summaryText) return '';
+            var withKeywords = summaryText.replace(/<b>([\s\S]*?)<\/b>/g, '<b class="summary-keyword">$1</b>');
+            return withKeywords
+                .replace(/&/g, '&amp;')
+                .replace(/</g, '&lt;')
+                .replace(/>/g, '&gt;')
+                .replace(/&lt;b class="summary-keyword"&gt;/g, '<b class="summary-keyword">')
+                .replace(/&lt;\/b&gt;/g, '</b>');
+        }
+
         function setAnswerPanelState(options) {
             options = options || {};
+            
             if (options.title !== undefined && DOM.answerPanelTitle) {
                 DOM.answerPanelTitle.textContent = options.title;
             }
-            if (options.subtitle !== undefined && DOM.answerPanelSubtitle) {
-                DOM.answerPanelSubtitle.textContent = options.subtitle;
+            if (options.meta !== undefined && DOM.answerPanelMeta) {
+                DOM.answerPanelMeta.textContent = options.meta;
+                DOM.answerPanelMeta.style.display = options.meta ? '' : 'none';
             }
-            if (options.status !== undefined && DOM.answerPanelStatus) {
-                DOM.answerPanelStatus.textContent = options.status;
+            if (options.loading !== undefined) {
+                if (DOM.answerPanelLoading) {
+                    DOM.answerPanelLoading.style.display = options.loading ? '' : 'none';
+                }
+                if (DOM.answerPanelEmpty) {
+                    DOM.answerPanelEmpty.style.display = options.loading ? 'none' : '';
+                }
             }
-            if (options.markdown !== undefined && DOM.answerPanelBody) {
-                DOM.answerPanelBody.innerHTML = renderMarkdown(options.markdown);
+            if (options.markdown !== undefined) {
+                var parsed = parseAnswerAndSummary(options.markdown);
+                if (DOM.answerPanelBody) {
+                    if (parsed.answer) {
+                        DOM.answerPanelBody.innerHTML = renderMarkdown(parsed.answer);
+                    } else if (!options.loading) {
+                        DOM.answerPanelBody.innerHTML = DOM.answerPanelEmpty ? DOM.answerPanelEmpty.outerHTML : '';
+                    }
+                }
+                if (DOM.answerPanelSummary && DOM.answerPanelSummaryText) {
+                    if (parsed.summary) {
+                        DOM.answerPanelSummaryText.innerHTML = renderSummary(parsed.summary);
+                        DOM.answerPanelSummary.style.display = '';
+                    } else {
+                        DOM.answerPanelSummary.style.display = 'none';
+                    }
+                }
             }
             if (options.open && DOM.answerPanel) {
                 DOM.answerPanel.classList.add('visible');
@@ -1705,9 +1789,6 @@
                 state.answerAbortController = null;
             }
             state.answerIsStreaming = false;
-            if (DOM.answerCancelBtn) {
-                DOM.answerCancelBtn.disabled = true;
-            }
         }
 
         function closeAnswerPanel() {
@@ -1715,20 +1796,25 @@
             if (DOM.answerPanel) {
                 DOM.answerPanel.classList.remove('visible');
             }
+            setTimeout(function() {
+                setAnswerPanelState({
+                    title: 'Answer',
+                    meta: '',
+                    markdown: '',
+                    loading: false
+                });
+            }, 300);
         }
 
         function streamAnswerForQuestion(button) {
-            if (!button) {
-                return;
-            }
+            if (!button) return;
 
             if (!state.questionAnswerWorkerUrl) {
                 setAnswerPanelState({
                     open: true,
-                    title: 'AI Answer',
-                    subtitle: 'Worker configuration required',
-                    status: 'Set QUESTION_ANSWER_WORKER_URL in the Flask app environment to enable answer generation.',
-                    markdown: ''
+                    title: 'Configuration Error',
+                    meta: '',
+                    markdown: 'Worker URL not configured. Please contact support.'
                 });
                 return;
             }
@@ -1750,29 +1836,27 @@
                 questionText: button.getAttribute('data-question-text')
             };
 
-            var answerTitle = payload.questionNumber + (payload.subquestion ? ' (' + payload.subquestion + ')' : '');
+            var answerTitle = 'Q' + payload.questionNumber + (payload.subquestion ? payload.subquestion : '');
             var controller = new AbortController();
             var markdown = '';
 
             state.answerAbortController = controller;
             state.answerIsStreaming = true;
 
-            if (DOM.answerCancelBtn) {
-                DOM.answerCancelBtn.disabled = false;
-            }
-
             document.querySelectorAll('.generate-answer-btn').forEach(function (node) {
                 node.disabled = false;
+                node.classList.remove('generating');
                 node.textContent = 'Generate Answer';
             });
             button.disabled = true;
+            button.classList.add('generating');
             button.textContent = 'Generating...';
 
             setAnswerPanelState({
                 open: true,
                 title: answerTitle,
-                subtitle: payload.paperLabel || 'Runtime-generated answer',
-                status: 'Contacting answer worker and starting live stream...',
+                meta: payload.marks ? payload.marks + ' marks' : '',
+                loading: true,
                 markdown: ''
             });
 
@@ -1782,18 +1866,8 @@
                 body: JSON.stringify(payload),
                 signal: controller.signal
             }).then(function (response) {
-                if (!response.ok) {
-                    throw new Error('Worker returned HTTP ' + response.status);
-                }
-                if (!response.body) {
-                    throw new Error('Streaming is not supported in this browser.');
-                }
-
-                setAnswerPanelState({
-                    status: response.headers.get('X-Answer-Cache') === 'HIT'
-                        ? 'Served from cached answer. Rendering stream...'
-                        : 'Generating answer with live stream...'
-                });
+                if (!response.ok) throw new Error('HTTP ' + response.status);
+                if (!response.body) throw new Error('Streaming not supported');
 
                 var reader = response.body.getReader();
                 var decoder = new TextDecoder();
@@ -1804,19 +1878,14 @@
                             state.answerIsStreaming = false;
                             state.answerAbortController = null;
                             button.disabled = false;
+                            button.classList.remove('generating');
                             button.textContent = 'Generate Answer';
-                            if (DOM.answerCancelBtn) {
-                                DOM.answerCancelBtn.disabled = true;
-                            }
-                            setAnswerPanelState({ status: 'Answer ready.' });
+                            setAnswerPanelState({ loading: false, markdown: markdown });
                             return;
                         }
 
                         markdown += decoder.decode(result.value, { stream: true });
-                        setAnswerPanelState({
-                            status: 'Streaming answer...',
-                            markdown: markdown
-                        });
+                        setAnswerPanelState({ loading: true, markdown: markdown });
                         return pump();
                     });
                 }
@@ -1824,30 +1893,23 @@
                 return pump();
             }).catch(function (error) {
                 button.disabled = false;
+                button.classList.remove('generating');
                 button.textContent = 'Generate Answer';
 
                 if (error && error.name === 'AbortError') {
-                    setAnswerPanelState({
-                        status: 'Answer generation cancelled.',
-                        markdown: markdown
-                    });
+                    setAnswerPanelState({ loading: false, markdown: markdown });
                     return;
                 }
 
                 setAnswerPanelState({
-                    status: 'Unable to generate answer right now.',
-                    markdown: markdown || ('- Error: ' + (error && error.message ? error.message : error))
+                    loading: false,
+                    markdown: markdown || 'Error: ' + (error && error.message ? error.message : 'Failed to generate answer')
                 });
             }).finally(function () {
                 state.answerIsStreaming = false;
                 state.answerAbortController = null;
-                if (DOM.answerCancelBtn) {
-                    DOM.answerCancelBtn.disabled = true;
-                }
                 document.querySelectorAll('.generate-answer-btn').forEach(function (node) {
-                    if (node !== button) {
-                        node.disabled = false;
-                    }
+                    if (node !== button) node.disabled = false;
                 });
             });
         }
@@ -2062,11 +2124,6 @@
 
             if (DOM.answerCloseBtn) {
                 DOM.answerCloseBtn.addEventListener('click', closeAnswerPanel);
-            }
-
-            if (DOM.answerCancelBtn) {
-                DOM.answerCancelBtn.addEventListener('click', stopAnswerStreaming);
-                DOM.answerCancelBtn.disabled = true;
             }
 
             if (DOM.questionsPaperPanels) {

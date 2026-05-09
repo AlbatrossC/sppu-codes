@@ -1,8 +1,8 @@
 export const ANSWER_API_PATH = "/api/answers/stream";
 export const DEFAULT_GROQ_MODEL = "llama-3.3-70b-versatile";
-export const DEFAULT_PROMPT_VERSION = "2026-05-09-v1";
+export const DEFAULT_PROMPT_VERSION = "2026-05-09-v2";
 export const DEFAULT_ALLOWED_ORIGIN = "*";
-export const MAX_ANSWER_TOKENS = 900;
+export const MAX_ANSWER_TOKENS = 1200;
 export const TEMPERATURE = 0.35;
 export const STATUS_COMPLETE = "complete";
 export const STATUS_FAILED = "failed";

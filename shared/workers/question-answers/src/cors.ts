@@ -1,5 +1,5 @@
-import { DEFAULT_ALLOWED_ORIGIN } from "../constants/config";
-import type { Env } from "../types/env";
+import { DEFAULT_ALLOWED_ORIGIN } from "./config";
+import type { Env } from "./env";
 
 export function buildCorsHeaders(env: Env): Record<string, string> {
   return {

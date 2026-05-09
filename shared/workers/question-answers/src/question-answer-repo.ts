@@ -2,8 +2,8 @@ import {
   STATUS_COMPLETE,
   STATUS_FAILED,
   STATUS_GENERATING
-} from "../constants/config";
-import type { AnswerRequestPayload, QuestionAnswerRow } from "../types/env";
+} from "./config";
+import type { AnswerRequestPayload, QuestionAnswerRow } from "./env";
 
 export async function findByQuestionId(db: D1Database, questionId: string): Promise<QuestionAnswerRow | null> {
   const result = await db

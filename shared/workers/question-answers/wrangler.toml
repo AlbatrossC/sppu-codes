@@ -9,7 +9,7 @@ database_id = "a5480070-df39-4be3-9602-599914a7d523"
 
 [vars]
 GROQ_MODEL = "llama-3.3-70b-versatile"
-PROMPT_VERSION = "2026-05-09-v1"
+PROMPT_VERSION = "2026-05-09-v2"
 ALLOWED_ORIGIN = "*"
 
 [observability.logs]

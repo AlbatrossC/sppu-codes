@@ -1,6 +1,6 @@
-import { handleAnswerStream, matchesAnswerRoute } from "./routes/answer";
-import type { Env } from "./types/env";
-import { createOptionsResponse } from "./utils/cors";
+import { handleAnswerStream, matchesAnswerRoute } from "./answer-route";
+import type { Env } from "./env";
+import { createOptionsResponse } from "./cors";
 
 export default {
   async fetch(request: Request, env: Env, ctx: ExecutionContext): Promise<Response> {

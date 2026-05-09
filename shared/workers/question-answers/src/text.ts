@@ -1,5 +1,5 @@
-import { buildCorsHeaders } from "../utils/cors";
-import type { Env } from "../types/env";
+import { buildCorsHeaders } from "./cors";
+import type { Env } from "./env";
 
 export function textStreamResponse(env: Env, stream: ReadableStream<Uint8Array>, headers?: Record<string, string>): Response {
   return new Response(stream, {

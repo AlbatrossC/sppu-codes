@@ -2,8 +2,8 @@ import {
   DEFAULT_GROQ_MODEL,
   MAX_ANSWER_TOKENS,
   TEMPERATURE
-} from "../constants/config";
-import type { Env } from "../types/env";
+} from "./config";
+import type { Env } from "./env";
 
 interface StreamGroqAnswerParams {
   env: Env;

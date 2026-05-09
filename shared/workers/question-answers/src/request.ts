@@ -1,4 +1,4 @@
-import type { AnswerRequestPayload } from "../types/env";
+import type { AnswerRequestPayload } from "./env";
 
 function sanitize(value: unknown, maxLength: number): string {
   return String(value || "").trim().slice(0, maxLength);

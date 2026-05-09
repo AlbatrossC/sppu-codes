@@ -2,22 +2,22 @@ import {
   ANSWER_API_PATH,
   DEFAULT_PROMPT_VERSION,
   STATUS_COMPLETE
-} from "../constants/config";
+} from "./config";
 import {
   findByQuestionId,
   markGenerating,
   recordCacheHit,
   saveCompleted,
   saveFailure
-} from "../db/question-answer-repo";
-import { buildAnswerPrompt } from "../prompts/answer-prompt";
-import { streamGroqAnswer } from "../services/groq";
-import { streamTextValue, textStreamResponse } from "../streaming/text";
-import type { AnswerRequestPayload, Env } from "../types/env";
-import { sha256Hex } from "../utils/hash";
-import { readJson } from "../utils/json";
-import { normalizeAnswerRequest } from "../utils/request";
-import { buildCorsHeaders } from "../utils/cors";
+} from "./question-answer-repo";
+import { buildAnswerPrompt } from "./answer-prompt";
+import { streamGroqAnswer } from "./groq";
+import { streamTextValue, textStreamResponse } from "./text";
+import type { AnswerRequestPayload, Env } from "./env";
+import { sha256Hex } from "./hash";
+import { readJson } from "./json";
+import { normalizeAnswerRequest } from "./request";
+import { buildCorsHeaders } from "./cors";
 
 function jsonError(env: Env, message: string, status: number): Response {
   return new Response(JSON.stringify({ error: message }), {

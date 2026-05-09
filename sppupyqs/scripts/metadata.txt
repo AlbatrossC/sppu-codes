@@ -4595,3 +4595,1834 @@ Branch: aids
 Semester: sem-6
 Subject: software-modeling-and-architecture-ele-ii-aids
 
+[2026-05-09 13:57:06] Pipeline started.
+[2026-05-09 13:57:16] Processed PDF: https://sppucodes.albatrossc.workers.dev/cse/sem-4/microprocessor-cse/endsem-may-jun-2022-pat2019-mc.pdf
+[2026-05-09 13:57:16]
+
+Processed: 1
+Skipped: 0
+Failed: 0
+Remaining: 120
+Gemini failures: 0
+OCR usage: 0
+
+Current:
+Branch: cse
+Semester: sem-4
+Subject: microprocessor-cse
+
+[2026-05-09 13:57:24] Processed PDF: https://sppucodes.albatrossc.workers.dev/cse/sem-4/microprocessor-cse/endsem-may-jun-2023-pat2019-mc.pdf
+[2026-05-09 13:57:24]
+
+Processed: 2
+Skipped: 0
+Failed: 0
+Remaining: 119
+Gemini failures: 0
+OCR usage: 0
+
+Current:
+Branch: cse
+Semester: sem-4
+Subject: microprocessor-cse
+
+[2026-05-09 13:57:32] Processed PDF: https://sppucodes.albatrossc.workers.dev/cse/sem-4/microprocessor-cse/endsem-may-jun-2024-pat2019-mc.pdf
+[2026-05-09 13:57:32]
+
+Processed: 3
+Skipped: 0
+Failed: 0
+Remaining: 118
+Gemini failures: 0
+OCR usage: 0
+
+Current:
+Branch: cse
+Semester: sem-4
+Subject: microprocessor-cse
+
+[2026-05-09 13:57:41] Processed PDF: https://sppucodes.albatrossc.workers.dev/cse/sem-4/microprocessor-cse/endsem-may-jun-2025-pat2019-mc.pdf
+[2026-05-09 13:57:41]
+
+Processed: 4
+Skipped: 0
+Failed: 0
+Remaining: 117
+Gemini failures: 0
+OCR usage: 0
+
+Current:
+Branch: cse
+Semester: sem-4
+Subject: microprocessor-cse
+
+[2026-05-09 13:57:53] Processed PDF: https://sppucodes.albatrossc.workers.dev/cse/sem-4/microprocessor-cse/endsem-nov-dec-2022-pat2019-mc.pdf
+[2026-05-09 13:57:53]
+
+Processed: 5
+Skipped: 0
+Failed: 0
+Remaining: 116
+Gemini failures: 0
+OCR usage: 0
+
+Current:
+Branch: cse
+Semester: sem-4
+Subject: microprocessor-cse
+
+[2026-05-09 13:58:07] Processed PDF: https://sppucodes.albatrossc.workers.dev/cse/sem-4/microprocessor-cse/endsem-nov-dec-2023-pat2019-mc.pdf
+[2026-05-09 13:58:07]
+
+Processed: 6
+Skipped: 0
+Failed: 0
+Remaining: 115
+Gemini failures: 0
+OCR usage: 0
+
+Current:
+Branch: cse
+Semester: sem-4
+Subject: microprocessor-cse
+
+[2026-05-09 13:58:31] Processed PDF: https://sppucodes.albatrossc.workers.dev/cse/sem-4/microprocessor-cse/endsem-nov-dec-2024-pat2019-mc.pdf
+[2026-05-09 13:58:31]
+
+Processed: 7
+Skipped: 0
+Failed: 0
+Remaining: 114
+Gemini failures: 0
+OCR usage: 0
+
+Current:
+Branch: cse
+Semester: sem-4
+Subject: microprocessor-cse
+
+[2026-05-09 13:59:02] Processed PDF: https://sppucodes.albatrossc.workers.dev/cse/sem-4/microprocessor-cse/insem-feb-2023-pat2019-mc.pdf
+[2026-05-09 13:59:02]
+
+Processed: 8
+Skipped: 0
+Failed: 0
+Remaining: 113
+Gemini failures: 0
+OCR usage: 0
+
+Current:
+Branch: cse
+Semester: sem-4
+Subject: microprocessor-cse
+
+[2026-05-09 13:59:22] Processed PDF: https://sppucodes.albatrossc.workers.dev/cse/sem-4/microprocessor-cse/insem-march-2024-pat2019-mc.pdf
+[2026-05-09 13:59:22]
+
+Processed: 9
+Skipped: 0
+Failed: 0
+Remaining: 112
+Gemini failures: 0
+OCR usage: 0
+
+Current:
+Branch: cse
+Semester: sem-4
+Subject: microprocessor-cse
+
+[2026-05-09 13:59:34] Processed PDF: https://sppucodes.albatrossc.workers.dev/cse/sem-4/principles-of-programming-languages-cse/endsem-may-jun-2022-pat2019-poplc.pdf
+[2026-05-09 13:59:34]
+
+Processed: 10
+Skipped: 0
+Failed: 0
+Remaining: 111
+Gemini failures: 0
+OCR usage: 0
+
+Current:
+Branch: cse
+Semester: sem-4
+Subject: principles-of-programming-languages-cse
+
+[2026-05-09 13:59:45] Processed PDF: https://sppucodes.albatrossc.workers.dev/cse/sem-4/principles-of-programming-languages-cse/endsem-may-jun-2023-pat2019-poplc.pdf
+[2026-05-09 13:59:45]
+
+Processed: 11
+Skipped: 0
+Failed: 0
+Remaining: 110
+Gemini failures: 0
+OCR usage: 0
+
+Current:
+Branch: cse
+Semester: sem-4
+Subject: principles-of-programming-languages-cse
+
+[2026-05-09 13:59:54] Processed PDF: https://sppucodes.albatrossc.workers.dev/cse/sem-4/principles-of-programming-languages-cse/endsem-may-jun-2024-pat2019-poplc.pdf
+[2026-05-09 13:59:54]
+
+Processed: 12
+Skipped: 0
+Failed: 0
+Remaining: 109
+Gemini failures: 0
+OCR usage: 0
+
+Current:
+Branch: cse
+Semester: sem-4
+Subject: principles-of-programming-languages-cse
+
+[2026-05-09 14:00:08] Processed PDF: https://sppucodes.albatrossc.workers.dev/cse/sem-4/principles-of-programming-languages-cse/endsem-nov-dec-2022-pat2019-poplc.pdf
+[2026-05-09 14:00:08]
+
+Processed: 13
+Skipped: 0
+Failed: 0
+Remaining: 108
+Gemini failures: 0
+OCR usage: 0
+
+Current:
+Branch: cse
+Semester: sem-4
+Subject: principles-of-programming-languages-cse
+
+[2026-05-09 14:00:28] Processed PDF: https://sppucodes.albatrossc.workers.dev/cse/sem-4/principles-of-programming-languages-cse/endsem-nov-dec-2023-pat2019-poplc.pdf
+[2026-05-09 14:00:28]
+
+Processed: 14
+Skipped: 0
+Failed: 0
+Remaining: 107
+Gemini failures: 0
+OCR usage: 0
+
+Current:
+Branch: cse
+Semester: sem-4
+Subject: principles-of-programming-languages-cse
+
+[2026-05-09 14:00:39] Processed PDF: https://sppucodes.albatrossc.workers.dev/cse/sem-4/principles-of-programming-languages-cse/insem-feb-2023-pat2019-poplc.pdf
+[2026-05-09 14:00:39]
+
+Processed: 15
+Skipped: 0
+Failed: 0
+Remaining: 106
+Gemini failures: 0
+OCR usage: 0
+
+Current:
+Branch: cse
+Semester: sem-4
+Subject: principles-of-programming-languages-cse
+
+[2026-05-09 14:00:45] Processed PDF: https://sppucodes.albatrossc.workers.dev/cse/sem-4/principles-of-programming-languages-cse/insem-march-2024-pat2019-poplc.pdf
+[2026-05-09 14:00:45]
+
+Processed: 16
+Skipped: 0
+Failed: 0
+Remaining: 105
+Gemini failures: 0
+OCR usage: 0
+
+Current:
+Branch: cse
+Semester: sem-4
+Subject: principles-of-programming-languages-cse
+
+[2026-05-09 14:00:51] Processed PDF: https://sppucodes.albatrossc.workers.dev/cse/sem-4/principles-of-programming-languages-cse/insem-march-2025-pat2019-poplc.pdf
+[2026-05-09 14:00:51]
+
+Processed: 17
+Skipped: 0
+Failed: 0
+Remaining: 104
+Gemini failures: 0
+OCR usage: 0
+
+Current:
+Branch: cse
+Semester: sem-4
+Subject: principles-of-programming-languages-cse
+
+[2026-05-09 14:01:14] Processed PDF: https://sppucodes.albatrossc.workers.dev/cse/sem-5/computer-network-and-security-cse/endsem-may-jun-2022-pat2019-cnasc.pdf
+[2026-05-09 14:01:14]
+
+Processed: 18
+Skipped: 0
+Failed: 0
+Remaining: 103
+Gemini failures: 0
+OCR usage: 0
+
+Current:
+Branch: cse
+Semester: sem-5
+Subject: computer-network-and-security-cse
+
+[2026-05-09 14:01:25] Processed PDF: https://sppucodes.albatrossc.workers.dev/cse/sem-5/computer-network-and-security-cse/endsem-may-jun-2023-pat2019-cnasc.pdf
+[2026-05-09 14:01:25]
+
+Processed: 19
+Skipped: 0
+Failed: 0
+Remaining: 102
+Gemini failures: 0
+OCR usage: 0
+
+Current:
+Branch: cse
+Semester: sem-5
+Subject: computer-network-and-security-cse
+
+[2026-05-09 14:01:38] Processed PDF: https://sppucodes.albatrossc.workers.dev/cse/sem-5/computer-network-and-security-cse/endsem-may-jun-2024-pat2019-cnasc.pdf
+[2026-05-09 14:01:38]
+
+Processed: 20
+Skipped: 0
+Failed: 0
+Remaining: 101
+Gemini failures: 0
+OCR usage: 0
+
+Current:
+Branch: cse
+Semester: sem-5
+Subject: computer-network-and-security-cse
+
+[2026-05-09 14:01:50] Processed PDF: https://sppucodes.albatrossc.workers.dev/cse/sem-5/computer-network-and-security-cse/endsem-may-jun-2025-pat2019-cnasc.pdf
+[2026-05-09 14:01:50]
+
+Processed: 21
+Skipped: 0
+Failed: 0
+Remaining: 100
+Gemini failures: 0
+OCR usage: 0
+
+Current:
+Branch: cse
+Semester: sem-5
+Subject: computer-network-and-security-cse
+
+[2026-05-09 14:02:01] Processed PDF: https://sppucodes.albatrossc.workers.dev/cse/sem-5/computer-network-and-security-cse/endsem-nov-dec-2022-pat2019-cnasc.pdf
+[2026-05-09 14:02:01]
+
+Processed: 22
+Skipped: 0
+Failed: 0
+Remaining: 99
+Gemini failures: 0
+OCR usage: 0
+
+Current:
+Branch: cse
+Semester: sem-5
+Subject: computer-network-and-security-cse
+
+[2026-05-09 14:02:07] Processed PDF: https://sppucodes.albatrossc.workers.dev/cse/sem-5/computer-network-and-security-cse/endsem-nov-dec-2023-pat2019-cnasc.pdf
+[2026-05-09 14:02:07]
+
+Processed: 23
+Skipped: 0
+Failed: 0
+Remaining: 98
+Gemini failures: 0
+OCR usage: 0
+
+Current:
+Branch: cse
+Semester: sem-5
+Subject: computer-network-and-security-cse
+
+[2026-05-09 14:02:21] Processed PDF: https://sppucodes.albatrossc.workers.dev/cse/sem-5/computer-network-and-security-cse/endsem-nov-dec-2024-pat2019-cnasc.pdf
+[2026-05-09 14:02:21]
+
+Processed: 24
+Skipped: 0
+Failed: 0
+Remaining: 97
+Gemini failures: 0
+OCR usage: 0
+
+Current:
+Branch: cse
+Semester: sem-5
+Subject: computer-network-and-security-cse
+
+[2026-05-09 14:02:27] Processed PDF: https://sppucodes.albatrossc.workers.dev/cse/sem-5/computer-network-and-security-cse/insem-august-2025-pat2019-cnasc.pdf
+[2026-05-09 14:02:27]
+
+Processed: 25
+Skipped: 0
+Failed: 0
+Remaining: 96
+Gemini failures: 0
+OCR usage: 0
+
+Current:
+Branch: cse
+Semester: sem-5
+Subject: computer-network-and-security-cse
+
+[2026-05-09 14:02:34] Processed PDF: https://sppucodes.albatrossc.workers.dev/cse/sem-5/computer-network-and-security-cse/insem-oct-2022-pat2019-cnasc.pdf
+[2026-05-09 14:02:34]
+
+Processed: 26
+Skipped: 0
+Failed: 0
+Remaining: 95
+Gemini failures: 0
+OCR usage: 0
+
+Current:
+Branch: cse
+Semester: sem-5
+Subject: computer-network-and-security-cse
+
+[2026-05-09 14:02:46] Processed PDF: https://sppucodes.albatrossc.workers.dev/cse/sem-5/computer-network-and-security-cse/insem-sep-2023-pat2019-cnasc.pdf
+[2026-05-09 14:02:46]
+
+Processed: 27
+Skipped: 0
+Failed: 0
+Remaining: 94
+Gemini failures: 0
+OCR usage: 0
+
+Current:
+Branch: cse
+Semester: sem-5
+Subject: computer-network-and-security-cse
+
+[2026-05-09 14:02:55] Processed PDF: https://sppucodes.albatrossc.workers.dev/cse/sem-5/computer-network-and-security-cse/insem-sep-2024-pat2019-cnasc.pdf
+[2026-05-09 14:02:55]
+
+Processed: 28
+Skipped: 0
+Failed: 0
+Remaining: 93
+Gemini failures: 0
+OCR usage: 0
+
+Current:
+Branch: cse
+Semester: sem-5
+Subject: computer-network-and-security-cse
+
+[2026-05-09 14:03:00] Processed PDF: https://sppucodes.albatrossc.workers.dev/cse/sem-5/database-management-systems-cse/endsem-may-jun-2022-pat2019-dmsc.pdf
+[2026-05-09 14:03:00]
+
+Processed: 29
+Skipped: 0
+Failed: 0
+Remaining: 92
+Gemini failures: 0
+OCR usage: 0
+
+Current:
+Branch: cse
+Semester: sem-5
+Subject: database-management-systems-cse
+
+[2026-05-09 14:03:12] Processed PDF: https://sppucodes.albatrossc.workers.dev/cse/sem-5/database-management-systems-cse/endsem-may-jun-2023-pat2019-dmsc.pdf
+[2026-05-09 14:03:12]
+
+Processed: 30
+Skipped: 0
+Failed: 0
+Remaining: 91
+Gemini failures: 0
+OCR usage: 0
+
+Current:
+Branch: cse
+Semester: sem-5
+Subject: database-management-systems-cse
+
+[2026-05-09 14:03:18] Processed PDF: https://sppucodes.albatrossc.workers.dev/cse/sem-5/database-management-systems-cse/endsem-may-jun-2024-pat2019-dmsc.pdf
+[2026-05-09 14:03:18]
+
+Processed: 31
+Skipped: 0
+Failed: 0
+Remaining: 90
+Gemini failures: 0
+OCR usage: 0
+
+Current:
+Branch: cse
+Semester: sem-5
+Subject: database-management-systems-cse
+
+[2026-05-09 14:03:24] Processed PDF: https://sppucodes.albatrossc.workers.dev/cse/sem-5/database-management-systems-cse/endsem-may-jun-2025-pat2019-dmsc.pdf
+[2026-05-09 14:03:24]
+
+Processed: 32
+Skipped: 0
+Failed: 0
+Remaining: 89
+Gemini failures: 0
+OCR usage: 0
+
+Current:
+Branch: cse
+Semester: sem-5
+Subject: database-management-systems-cse
+
+[2026-05-09 14:03:30] Processed PDF: https://sppucodes.albatrossc.workers.dev/cse/sem-5/database-management-systems-cse/endsem-nov-dec-2022-pat2019-dmsc.pdf
+[2026-05-09 14:03:30]
+
+Processed: 33
+Skipped: 0
+Failed: 0
+Remaining: 88
+Gemini failures: 0
+OCR usage: 0
+
+Current:
+Branch: cse
+Semester: sem-5
+Subject: database-management-systems-cse
+
+[2026-05-09 14:03:43] Processed PDF: https://sppucodes.albatrossc.workers.dev/cse/sem-5/database-management-systems-cse/endsem-nov-dec-2023-pat2019-dmsc.pdf
+[2026-05-09 14:03:43]
+
+Processed: 34
+Skipped: 0
+Failed: 0
+Remaining: 87
+Gemini failures: 0
+OCR usage: 0
+
+Current:
+Branch: cse
+Semester: sem-5
+Subject: database-management-systems-cse
+
+[2026-05-09 14:03:57] Processed PDF: https://sppucodes.albatrossc.workers.dev/cse/sem-5/database-management-systems-cse/endsem-nov-dec-2024-pat2019-dmsc.pdf
+[2026-05-09 14:03:57]
+
+Processed: 35
+Skipped: 0
+Failed: 0
+Remaining: 86
+Gemini failures: 0
+OCR usage: 0
+
+Current:
+Branch: cse
+Semester: sem-5
+Subject: database-management-systems-cse
+
+[2026-05-09 14:04:04] Processed PDF: https://sppucodes.albatrossc.workers.dev/cse/sem-5/database-management-systems-cse/insem-august-2025-pat2019-dmsc.pdf
+[2026-05-09 14:04:04]
+
+Processed: 36
+Skipped: 0
+Failed: 0
+Remaining: 85
+Gemini failures: 0
+OCR usage: 0
+
+Current:
+Branch: cse
+Semester: sem-5
+Subject: database-management-systems-cse
+
+[2026-05-09 14:10:57] Processed PDF: https://sppucodes.albatrossc.workers.dev/cse/sem-5/database-management-systems-cse/insem-oct-2022-pat2019-dmsc.pdf
+[2026-05-09 14:10:57]
+
+Processed: 37
+Skipped: 0
+Failed: 0
+Remaining: 84
+Gemini failures: 0
+OCR usage: 0
+
+Current:
+Branch: cse
+Semester: sem-5
+Subject: database-management-systems-cse
+
+[2026-05-09 14:11:09] Processed PDF: https://sppucodes.albatrossc.workers.dev/cse/sem-5/database-management-systems-cse/insem-sep-2023-pat2019-dmsc.pdf
+[2026-05-09 14:11:09]
+
+Processed: 38
+Skipped: 0
+Failed: 0
+Remaining: 83
+Gemini failures: 0
+OCR usage: 0
+
+Current:
+Branch: cse
+Semester: sem-5
+Subject: database-management-systems-cse
+
+[2026-05-09 14:11:26] Processed PDF: https://sppucodes.albatrossc.workers.dev/cse/sem-5/database-management-systems-cse/insem-sep-2024-pat2019-dmsc.pdf
+[2026-05-09 14:11:26]
+
+Processed: 39
+Skipped: 0
+Failed: 0
+Remaining: 82
+Gemini failures: 0
+OCR usage: 0
+
+Current:
+Branch: cse
+Semester: sem-5
+Subject: database-management-systems-cse
+
+[2026-05-09 14:11:37] Processed PDF: https://sppucodes.albatrossc.workers.dev/cse/sem-5/human-computer-interface-ele-i-cse/endsem-may-jun-2024-pat2019-hcieic.pdf
+[2026-05-09 14:11:37]
+
+Processed: 40
+Skipped: 0
+Failed: 0
+Remaining: 81
+Gemini failures: 0
+OCR usage: 0
+
+Current:
+Branch: cse
+Semester: sem-5
+Subject: human-computer-interface-ele-i-cse
+
+[2026-05-09 14:11:44] Processed PDF: https://sppucodes.albatrossc.workers.dev/cse/sem-5/human-computer-interface-ele-i-cse/endsem-may-jun-2025-pat2019-hcieic.pdf
+[2026-05-09 14:11:44]
+
+Processed: 41
+Skipped: 0
+Failed: 0
+Remaining: 80
+Gemini failures: 0
+OCR usage: 0
+
+Current:
+Branch: cse
+Semester: sem-5
+Subject: human-computer-interface-ele-i-cse
+
+[2026-05-09 14:11:52] Processed PDF: https://sppucodes.albatrossc.workers.dev/cse/sem-5/human-computer-interface-ele-i-cse/endsem-nov-dec-2023-pat2019-hcieic.pdf
+[2026-05-09 14:11:52]
+
+Processed: 42
+Skipped: 0
+Failed: 0
+Remaining: 79
+Gemini failures: 0
+OCR usage: 0
+
+Current:
+Branch: cse
+Semester: sem-5
+Subject: human-computer-interface-ele-i-cse
+
+[2026-05-09 14:12:03] Processed PDF: https://sppucodes.albatrossc.workers.dev/cse/sem-5/human-computer-interface-ele-i-cse/endsem-nov-dec-2024-pat2019-hcieic.pdf
+[2026-05-09 14:12:03]
+
+Processed: 43
+Skipped: 0
+Failed: 0
+Remaining: 78
+Gemini failures: 0
+OCR usage: 0
+
+Current:
+Branch: cse
+Semester: sem-5
+Subject: human-computer-interface-ele-i-cse
+
+[2026-05-09 14:12:11] Processed PDF: https://sppucodes.albatrossc.workers.dev/cse/sem-5/human-computer-interface-ele-i-cse/insem-august-2025-pat2019-hcieic.pdf
+[2026-05-09 14:12:11]
+
+Processed: 44
+Skipped: 0
+Failed: 0
+Remaining: 77
+Gemini failures: 0
+OCR usage: 0
+
+Current:
+Branch: cse
+Semester: sem-5
+Subject: human-computer-interface-ele-i-cse
+
+[2026-05-09 14:12:19] Processed PDF: https://sppucodes.albatrossc.workers.dev/cse/sem-5/human-computer-interface-ele-i-cse/insem-sep-2024-pat2019-hcieic.pdf
+[2026-05-09 14:12:19]
+
+Processed: 45
+Skipped: 0
+Failed: 0
+Remaining: 76
+Gemini failures: 0
+OCR usage: 0
+
+Current:
+Branch: cse
+Semester: sem-5
+Subject: human-computer-interface-ele-i-cse
+
+[2026-05-09 14:12:25] Processed PDF: https://sppucodes.albatrossc.workers.dev/cse/sem-5/internet-of-things-and-embedded-systems-ele-i-cse/endsem-may-jun-2022-pat2019-iotaeseic.pdf
+[2026-05-09 14:12:25]
+
+Processed: 46
+Skipped: 0
+Failed: 0
+Remaining: 75
+Gemini failures: 0
+OCR usage: 0
+
+Current:
+Branch: cse
+Semester: sem-5
+Subject: internet-of-things-and-embedded-systems-ele-i-cse
+
+[2026-05-09 14:12:39] Processed PDF: https://sppucodes.albatrossc.workers.dev/cse/sem-5/internet-of-things-and-embedded-systems-ele-i-cse/endsem-may-jun-2023-pat2019-iotaeseic.pdf
+[2026-05-09 14:12:39]
+
+Processed: 47
+Skipped: 0
+Failed: 0
+Remaining: 74
+Gemini failures: 0
+OCR usage: 0
+
+Current:
+Branch: cse
+Semester: sem-5
+Subject: internet-of-things-and-embedded-systems-ele-i-cse
+
+[2026-05-09 14:12:46] Processed PDF: https://sppucodes.albatrossc.workers.dev/cse/sem-5/internet-of-things-and-embedded-systems-ele-i-cse/endsem-may-jun-2024-pat2019-iotaeseic.pdf
+[2026-05-09 14:12:46]
+
+Processed: 48
+Skipped: 0
+Failed: 0
+Remaining: 73
+Gemini failures: 0
+OCR usage: 0
+
+Current:
+Branch: cse
+Semester: sem-5
+Subject: internet-of-things-and-embedded-systems-ele-i-cse
+
+[2026-05-09 14:12:58] Processed PDF: https://sppucodes.albatrossc.workers.dev/cse/sem-5/internet-of-things-and-embedded-systems-ele-i-cse/endsem-may-jun-2025-pat2019-iotaeseic.pdf
+[2026-05-09 14:12:58]
+
+Processed: 49
+Skipped: 0
+Failed: 0
+Remaining: 72
+Gemini failures: 0
+OCR usage: 0
+
+Current:
+Branch: cse
+Semester: sem-5
+Subject: internet-of-things-and-embedded-systems-ele-i-cse
+
+[2026-05-09 14:13:10] Processed PDF: https://sppucodes.albatrossc.workers.dev/cse/sem-5/internet-of-things-and-embedded-systems-ele-i-cse/endsem-nov-dec-2022-pat2019-iotaeseic.pdf
+[2026-05-09 14:13:10]
+
+Processed: 50
+Skipped: 0
+Failed: 0
+Remaining: 71
+Gemini failures: 0
+OCR usage: 0
+
+Current:
+Branch: cse
+Semester: sem-5
+Subject: internet-of-things-and-embedded-systems-ele-i-cse
+
+[2026-05-09 14:13:20] Processed PDF: https://sppucodes.albatrossc.workers.dev/cse/sem-5/internet-of-things-and-embedded-systems-ele-i-cse/endsem-nov-dec-2023-pat2019-iotaeseic.pdf
+[2026-05-09 14:13:20]
+
+Processed: 51
+Skipped: 0
+Failed: 0
+Remaining: 70
+Gemini failures: 0
+OCR usage: 0
+
+Current:
+Branch: cse
+Semester: sem-5
+Subject: internet-of-things-and-embedded-systems-ele-i-cse
+
+[2026-05-09 14:13:31] Processed PDF: https://sppucodes.albatrossc.workers.dev/cse/sem-5/internet-of-things-and-embedded-systems-ele-i-cse/endsem-nov-dec-2024-pat2019-iotaeseic.pdf
+[2026-05-09 14:13:31]
+
+Processed: 52
+Skipped: 0
+Failed: 0
+Remaining: 69
+Gemini failures: 0
+OCR usage: 0
+
+Current:
+Branch: cse
+Semester: sem-5
+Subject: internet-of-things-and-embedded-systems-ele-i-cse
+
+[2026-05-09 14:13:43] Processed PDF: https://sppucodes.albatrossc.workers.dev/cse/sem-5/internet-of-things-and-embedded-systems-ele-i-cse/insem-august-2025-pat2019-iotaeseic.pdf
+[2026-05-09 14:13:43]
+
+Processed: 53
+Skipped: 0
+Failed: 0
+Remaining: 68
+Gemini failures: 0
+OCR usage: 0
+
+Current:
+Branch: cse
+Semester: sem-5
+Subject: internet-of-things-and-embedded-systems-ele-i-cse
+
+[2026-05-09 14:13:51] Processed PDF: https://sppucodes.albatrossc.workers.dev/cse/sem-5/internet-of-things-and-embedded-systems-ele-i-cse/insem-oct-2022-pat2019-iotaeseic.pdf
+[2026-05-09 14:13:51]
+
+Processed: 54
+Skipped: 0
+Failed: 0
+Remaining: 67
+Gemini failures: 0
+OCR usage: 0
+
+Current:
+Branch: cse
+Semester: sem-5
+Subject: internet-of-things-and-embedded-systems-ele-i-cse
+
+[2026-05-09 14:14:00] Processed PDF: https://sppucodes.albatrossc.workers.dev/cse/sem-5/internet-of-things-and-embedded-systems-ele-i-cse/insem-sep-2023-pat2019-iotaeseic.pdf
+[2026-05-09 14:14:00]
+
+Processed: 55
+Skipped: 0
+Failed: 0
+Remaining: 66
+Gemini failures: 0
+OCR usage: 0
+
+Current:
+Branch: cse
+Semester: sem-5
+Subject: internet-of-things-and-embedded-systems-ele-i-cse
+
+[2026-05-09 14:14:12] Processed PDF: https://sppucodes.albatrossc.workers.dev/cse/sem-5/internet-of-things-and-embedded-systems-ele-i-cse/insem-sep-2024-pat2019-iotaeseic.pdf
+[2026-05-09 14:14:12]
+
+Processed: 56
+Skipped: 0
+Failed: 0
+Remaining: 65
+Gemini failures: 0
+OCR usage: 0
+
+Current:
+Branch: cse
+Semester: sem-5
+Subject: internet-of-things-and-embedded-systems-ele-i-cse
+
+[2026-05-09 14:14:24] Processed PDF: https://sppucodes.albatrossc.workers.dev/cse/sem-5/software-project-management-ele-i-cse/endsem-may-jun-2022-pat2019-spmeic.pdf
+[2026-05-09 14:14:24]
+
+Processed: 57
+Skipped: 0
+Failed: 0
+Remaining: 64
+Gemini failures: 0
+OCR usage: 0
+
+Current:
+Branch: cse
+Semester: sem-5
+Subject: software-project-management-ele-i-cse
+
+[2026-05-09 14:14:34] Processed PDF: https://sppucodes.albatrossc.workers.dev/cse/sem-5/systems-programming-and-operating-system-cse/endsem-may-jun-2022-pat2019-spaosc.pdf
+[2026-05-09 14:14:34]
+
+Processed: 58
+Skipped: 0
+Failed: 0
+Remaining: 63
+Gemini failures: 0
+OCR usage: 0
+
+Current:
+Branch: cse
+Semester: sem-5
+Subject: systems-programming-and-operating-system-cse
+
+[2026-05-09 14:14:45] Processed PDF: https://sppucodes.albatrossc.workers.dev/cse/sem-5/systems-programming-and-operating-system-cse/endsem-may-jun-2023-pat2019-spaosc.pdf
+[2026-05-09 14:14:45]
+
+Processed: 59
+Skipped: 0
+Failed: 0
+Remaining: 62
+Gemini failures: 0
+OCR usage: 0
+
+Current:
+Branch: cse
+Semester: sem-5
+Subject: systems-programming-and-operating-system-cse
+
+[2026-05-09 14:14:56] Processed PDF: https://sppucodes.albatrossc.workers.dev/cse/sem-5/systems-programming-and-operating-system-cse/endsem-may-jun-2024-pat2019-spaosc.pdf
+[2026-05-09 14:14:56]
+
+Processed: 60
+Skipped: 0
+Failed: 0
+Remaining: 61
+Gemini failures: 0
+OCR usage: 0
+
+Current:
+Branch: cse
+Semester: sem-5
+Subject: systems-programming-and-operating-system-cse
+
+[2026-05-09 14:15:03] Processed PDF: https://sppucodes.albatrossc.workers.dev/cse/sem-5/systems-programming-and-operating-system-cse/endsem-may-jun-2025-pat2019-spaosc.pdf
+[2026-05-09 14:15:03]
+
+Processed: 61
+Skipped: 0
+Failed: 0
+Remaining: 60
+Gemini failures: 0
+OCR usage: 0
+
+Current:
+Branch: cse
+Semester: sem-5
+Subject: systems-programming-and-operating-system-cse
+
+[2026-05-09 14:15:16] Processed PDF: https://sppucodes.albatrossc.workers.dev/cse/sem-5/systems-programming-and-operating-system-cse/endsem-nov-dec-2022-pat2019-spaosc.pdf
+[2026-05-09 14:15:16]
+
+Processed: 62
+Skipped: 0
+Failed: 0
+Remaining: 59
+Gemini failures: 0
+OCR usage: 0
+
+Current:
+Branch: cse
+Semester: sem-5
+Subject: systems-programming-and-operating-system-cse
+
+[2026-05-09 14:15:21] Processed PDF: https://sppucodes.albatrossc.workers.dev/cse/sem-5/systems-programming-and-operating-system-cse/endsem-nov-dec-2023-pat2019-spaosc.pdf
+[2026-05-09 14:15:21]
+
+Processed: 63
+Skipped: 0
+Failed: 0
+Remaining: 58
+Gemini failures: 0
+OCR usage: 0
+
+Current:
+Branch: cse
+Semester: sem-5
+Subject: systems-programming-and-operating-system-cse
+
+[2026-05-09 14:15:33] Processed PDF: https://sppucodes.albatrossc.workers.dev/cse/sem-5/systems-programming-and-operating-system-cse/endsem-nov-dec-2024-pat2019-spaosc.pdf
+[2026-05-09 14:15:33]
+
+Processed: 64
+Skipped: 0
+Failed: 0
+Remaining: 57
+Gemini failures: 0
+OCR usage: 0
+
+Current:
+Branch: cse
+Semester: sem-5
+Subject: systems-programming-and-operating-system-cse
+
+[2026-05-09 14:15:39] Processed PDF: https://sppucodes.albatrossc.workers.dev/cse/sem-5/systems-programming-and-operating-system-cse/insem-august-2025-pat2019-spaosc.pdf
+[2026-05-09 14:15:39]
+
+Processed: 65
+Skipped: 0
+Failed: 0
+Remaining: 56
+Gemini failures: 0
+OCR usage: 0
+
+Current:
+Branch: cse
+Semester: sem-5
+Subject: systems-programming-and-operating-system-cse
+
+[2026-05-09 14:15:48] Processed PDF: https://sppucodes.albatrossc.workers.dev/cse/sem-5/systems-programming-and-operating-system-cse/insem-oct-2022-pat2019-spaosc.pdf
+[2026-05-09 14:15:48]
+
+Processed: 66
+Skipped: 0
+Failed: 0
+Remaining: 55
+Gemini failures: 0
+OCR usage: 0
+
+Current:
+Branch: cse
+Semester: sem-5
+Subject: systems-programming-and-operating-system-cse
+
+[2026-05-09 14:16:00] Processed PDF: https://sppucodes.albatrossc.workers.dev/cse/sem-5/systems-programming-and-operating-system-cse/insem-sep-2023-pat2019-spaosc.pdf
+[2026-05-09 14:16:00]
+
+Processed: 67
+Skipped: 0
+Failed: 0
+Remaining: 54
+Gemini failures: 0
+OCR usage: 0
+
+Current:
+Branch: cse
+Semester: sem-5
+Subject: systems-programming-and-operating-system-cse
+
+[2026-05-09 14:16:09] Processed PDF: https://sppucodes.albatrossc.workers.dev/cse/sem-5/systems-programming-and-operating-system-cse/insem-sep-2024-pat2019-spaosc.pdf
+[2026-05-09 14:16:09]
+
+Processed: 68
+Skipped: 0
+Failed: 0
+Remaining: 53
+Gemini failures: 0
+OCR usage: 0
+
+Current:
+Branch: cse
+Semester: sem-5
+Subject: systems-programming-and-operating-system-cse
+
+[2026-05-09 14:16:20] Processed PDF: https://sppucodes.albatrossc.workers.dev/cse/sem-5/theory-of-computation-cse/endsem-may-jun-2022-pat2019-tocc.pdf
+[2026-05-09 14:16:20]
+
+Processed: 69
+Skipped: 0
+Failed: 0
+Remaining: 52
+Gemini failures: 0
+OCR usage: 0
+
+Current:
+Branch: cse
+Semester: sem-5
+Subject: theory-of-computation-cse
+
+[2026-05-09 14:16:31] Processed PDF: https://sppucodes.albatrossc.workers.dev/cse/sem-5/theory-of-computation-cse/endsem-may-jun-2023-pat2019-tocc.pdf
+[2026-05-09 14:16:31]
+
+Processed: 70
+Skipped: 0
+Failed: 0
+Remaining: 51
+Gemini failures: 0
+OCR usage: 0
+
+Current:
+Branch: cse
+Semester: sem-5
+Subject: theory-of-computation-cse
+
+[2026-05-09 14:16:46] Processed PDF: https://sppucodes.albatrossc.workers.dev/cse/sem-5/theory-of-computation-cse/endsem-may-jun-2024-pat2019-tocc.pdf
+[2026-05-09 14:16:46]
+
+Processed: 71
+Skipped: 0
+Failed: 0
+Remaining: 50
+Gemini failures: 0
+OCR usage: 0
+
+Current:
+Branch: cse
+Semester: sem-5
+Subject: theory-of-computation-cse
+
+[2026-05-09 14:16:58] Processed PDF: https://sppucodes.albatrossc.workers.dev/cse/sem-5/theory-of-computation-cse/endsem-may-jun-2025-pat2019-tocc.pdf
+[2026-05-09 14:16:58]
+
+Processed: 72
+Skipped: 0
+Failed: 0
+Remaining: 49
+Gemini failures: 0
+OCR usage: 0
+
+Current:
+Branch: cse
+Semester: sem-5
+Subject: theory-of-computation-cse
+
+[2026-05-09 14:17:25] Processed PDF: https://sppucodes.albatrossc.workers.dev/cse/sem-5/theory-of-computation-cse/endsem-nov-dec-2022-pat2019-tocc.pdf
+[2026-05-09 14:17:25]
+
+Processed: 73
+Skipped: 0
+Failed: 0
+Remaining: 48
+Gemini failures: 0
+OCR usage: 0
+
+Current:
+Branch: cse
+Semester: sem-5
+Subject: theory-of-computation-cse
+
+[2026-05-09 14:17:42] Processed PDF: https://sppucodes.albatrossc.workers.dev/cse/sem-5/theory-of-computation-cse/endsem-nov-dec-2023-pat2019-tocc.pdf
+[2026-05-09 14:17:42]
+
+Processed: 74
+Skipped: 0
+Failed: 0
+Remaining: 47
+Gemini failures: 0
+OCR usage: 0
+
+Current:
+Branch: cse
+Semester: sem-5
+Subject: theory-of-computation-cse
+
+[2026-05-09 14:17:53] Processed PDF: https://sppucodes.albatrossc.workers.dev/cse/sem-5/theory-of-computation-cse/endsem-nov-dec-2024-pat2019-tocc.pdf
+[2026-05-09 14:17:53]
+
+Processed: 75
+Skipped: 0
+Failed: 0
+Remaining: 46
+Gemini failures: 0
+OCR usage: 0
+
+Current:
+Branch: cse
+Semester: sem-5
+Subject: theory-of-computation-cse
+
+[2026-05-09 14:18:04] Processed PDF: https://sppucodes.albatrossc.workers.dev/cse/sem-5/theory-of-computation-cse/insem-august-2025-pat2019-tocc.pdf
+[2026-05-09 14:18:04]
+
+Processed: 76
+Skipped: 0
+Failed: 0
+Remaining: 45
+Gemini failures: 0
+OCR usage: 0
+
+Current:
+Branch: cse
+Semester: sem-5
+Subject: theory-of-computation-cse
+
+[2026-05-09 14:18:13] Processed PDF: https://sppucodes.albatrossc.workers.dev/cse/sem-5/theory-of-computation-cse/insem-oct-2022-pat2019-tocc.pdf
+[2026-05-09 14:18:13]
+
+Processed: 77
+Skipped: 0
+Failed: 0
+Remaining: 44
+Gemini failures: 0
+OCR usage: 0
+
+Current:
+Branch: cse
+Semester: sem-5
+Subject: theory-of-computation-cse
+
+[2026-05-09 14:18:21] Processed PDF: https://sppucodes.albatrossc.workers.dev/cse/sem-5/theory-of-computation-cse/insem-sep-2023-pat2019-tocc.pdf
+[2026-05-09 14:18:21]
+
+Processed: 78
+Skipped: 0
+Failed: 0
+Remaining: 43
+Gemini failures: 0
+OCR usage: 0
+
+Current:
+Branch: cse
+Semester: sem-5
+Subject: theory-of-computation-cse
+
+[2026-05-09 14:18:30] Processed PDF: https://sppucodes.albatrossc.workers.dev/cse/sem-5/theory-of-computation-cse/insem-sep-2024-pat2019-tocc.pdf
+[2026-05-09 14:18:30]
+
+Processed: 79
+Skipped: 0
+Failed: 0
+Remaining: 42
+Gemini failures: 0
+OCR usage: 0
+
+Current:
+Branch: cse
+Semester: sem-5
+Subject: theory-of-computation-cse
+
+[2026-05-09 14:18:38] Processed PDF: https://sppucodes.albatrossc.workers.dev/cse/sem-6/artificial-intelligence-cse/endsem-may-jun-2022-pat2019-aic.pdf
+[2026-05-09 14:18:38]
+
+Processed: 80
+Skipped: 0
+Failed: 0
+Remaining: 41
+Gemini failures: 0
+OCR usage: 0
+
+Current:
+Branch: cse
+Semester: sem-6
+Subject: artificial-intelligence-cse
+
+[2026-05-09 14:18:49] Processed PDF: https://sppucodes.albatrossc.workers.dev/cse/sem-6/artificial-intelligence-cse/endsem-may-jun-2023-pat2019-aic.pdf
+[2026-05-09 14:18:49]
+
+Processed: 81
+Skipped: 0
+Failed: 0
+Remaining: 40
+Gemini failures: 0
+OCR usage: 0
+
+Current:
+Branch: cse
+Semester: sem-6
+Subject: artificial-intelligence-cse
+
+[2026-05-09 14:19:00] Processed PDF: https://sppucodes.albatrossc.workers.dev/cse/sem-6/artificial-intelligence-cse/endsem-may-jun-2024-pat2019-aic.pdf
+[2026-05-09 14:19:00]
+
+Processed: 82
+Skipped: 0
+Failed: 0
+Remaining: 39
+Gemini failures: 0
+OCR usage: 0
+
+Current:
+Branch: cse
+Semester: sem-6
+Subject: artificial-intelligence-cse
+
+[2026-05-09 14:19:14] Processed PDF: https://sppucodes.albatrossc.workers.dev/cse/sem-6/artificial-intelligence-cse/endsem-may-jun-2025-pat2019-aic.pdf
+[2026-05-09 14:19:14]
+
+Processed: 83
+Skipped: 0
+Failed: 0
+Remaining: 38
+Gemini failures: 0
+OCR usage: 0
+
+Current:
+Branch: cse
+Semester: sem-6
+Subject: artificial-intelligence-cse
+
+[2026-05-09 14:19:25] Processed PDF: https://sppucodes.albatrossc.workers.dev/cse/sem-6/artificial-intelligence-cse/endsem-nov-dec-2022-pat2019-aic.pdf
+[2026-05-09 14:19:25]
+
+Processed: 84
+Skipped: 0
+Failed: 0
+Remaining: 37
+Gemini failures: 0
+OCR usage: 0
+
+Current:
+Branch: cse
+Semester: sem-6
+Subject: artificial-intelligence-cse
+
+[2026-05-09 14:19:33] Processed PDF: https://sppucodes.albatrossc.workers.dev/cse/sem-6/artificial-intelligence-cse/endsem-nov-dec-2023-pat2019-aic.pdf
+[2026-05-09 14:19:33]
+
+Processed: 85
+Skipped: 0
+Failed: 0
+Remaining: 36
+Gemini failures: 0
+OCR usage: 0
+
+Current:
+Branch: cse
+Semester: sem-6
+Subject: artificial-intelligence-cse
+
+[2026-05-09 14:19:41] Processed PDF: https://sppucodes.albatrossc.workers.dev/cse/sem-6/artificial-intelligence-cse/endsem-nov-dec-2024-pat2019-aic.pdf
+[2026-05-09 14:19:41]
+
+Processed: 86
+Skipped: 0
+Failed: 0
+Remaining: 35
+Gemini failures: 0
+OCR usage: 0
+
+Current:
+Branch: cse
+Semester: sem-6
+Subject: artificial-intelligence-cse
+
+[2026-05-09 14:19:52] Processed PDF: https://sppucodes.albatrossc.workers.dev/cse/sem-6/artificial-intelligence-cse/insem-feb-2023-pat2019-aic.pdf
+[2026-05-09 14:19:52]
+
+Processed: 87
+Skipped: 0
+Failed: 0
+Remaining: 34
+Gemini failures: 0
+OCR usage: 0
+
+Current:
+Branch: cse
+Semester: sem-6
+Subject: artificial-intelligence-cse
+
+[2026-05-09 14:20:00] Processed PDF: https://sppucodes.albatrossc.workers.dev/cse/sem-6/artificial-intelligence-cse/insem-march-2024-pat2019-aic.pdf
+[2026-05-09 14:20:00]
+
+Processed: 88
+Skipped: 0
+Failed: 0
+Remaining: 33
+Gemini failures: 0
+OCR usage: 0
+
+Current:
+Branch: cse
+Semester: sem-6
+Subject: artificial-intelligence-cse
+
+[2026-05-09 14:20:09] Processed PDF: https://sppucodes.albatrossc.workers.dev/cse/sem-6/augmented-and-virtual-reality-ele-ii-cse/endsem-nov-dec-2022-pat2019-aavreiic.pdf
+[2026-05-09 14:20:09]
+
+Processed: 89
+Skipped: 0
+Failed: 0
+Remaining: 32
+Gemini failures: 0
+OCR usage: 0
+
+Current:
+Branch: cse
+Semester: sem-6
+Subject: augmented-and-virtual-reality-ele-ii-cse
+
+[2026-05-09 14:20:20] Processed PDF: https://sppucodes.albatrossc.workers.dev/cse/sem-6/augmented-and-virtual-reality-ele-ii-cse/insem-august-2025-pat2019-aavreiic.pdf
+[2026-05-09 14:20:20]
+
+Processed: 90
+Skipped: 0
+Failed: 0
+Remaining: 31
+Gemini failures: 0
+OCR usage: 0
+
+Current:
+Branch: cse
+Semester: sem-6
+Subject: augmented-and-virtual-reality-ele-ii-cse
+
+[2026-05-09 14:20:44] Processed PDF: https://sppucodes.albatrossc.workers.dev/cse/sem-6/augmented-and-virtual-reality-ele-ii-cse/insem-oct-2022-pat2019-aavreiic.pdf
+[2026-05-09 14:20:44]
+
+Processed: 91
+Skipped: 0
+Failed: 0
+Remaining: 30
+Gemini failures: 0
+OCR usage: 0
+
+Current:
+Branch: cse
+Semester: sem-6
+Subject: augmented-and-virtual-reality-ele-ii-cse
+
+[2026-05-09 14:20:59] Processed PDF: https://sppucodes.albatrossc.workers.dev/cse/sem-6/augmented-and-virtual-reality-ele-ii-cse/insem-sep-2024-pat2019-aavreiic.pdf
+[2026-05-09 14:20:59]
+
+Processed: 92
+Skipped: 0
+Failed: 0
+Remaining: 29
+Gemini failures: 0
+OCR usage: 0
+
+Current:
+Branch: cse
+Semester: sem-6
+Subject: augmented-and-virtual-reality-ele-ii-cse
+
+[2026-05-09 14:21:05] Processed PDF: https://sppucodes.albatrossc.workers.dev/cse/sem-6/cloud-computing-cse/endsem-may-jun-2022-pat2019-ccc.pdf
+[2026-05-09 14:21:05]
+
+Processed: 93
+Skipped: 0
+Failed: 0
+Remaining: 28
+Gemini failures: 0
+OCR usage: 0
+
+Current:
+Branch: cse
+Semester: sem-6
+Subject: cloud-computing-cse
+
+[2026-05-09 14:21:12] Processed PDF: https://sppucodes.albatrossc.workers.dev/cse/sem-6/cloud-computing-cse/endsem-may-jun-2023-pat2019-ccc.pdf
+[2026-05-09 14:21:12]
+
+Processed: 94
+Skipped: 0
+Failed: 0
+Remaining: 27
+Gemini failures: 0
+OCR usage: 0
+
+Current:
+Branch: cse
+Semester: sem-6
+Subject: cloud-computing-cse
+
+[2026-05-09 14:21:31] Processed PDF: https://sppucodes.albatrossc.workers.dev/cse/sem-6/cloud-computing-cse/endsem-may-jun-2024-pat2019-ccc.pdf
+[2026-05-09 14:21:31]
+
+Processed: 95
+Skipped: 0
+Failed: 0
+Remaining: 26
+Gemini failures: 0
+OCR usage: 0
+
+Current:
+Branch: cse
+Semester: sem-6
+Subject: cloud-computing-cse
+
+[2026-05-09 14:21:41] Processed PDF: https://sppucodes.albatrossc.workers.dev/cse/sem-6/cloud-computing-cse/endsem-may-jun-2025-pat2019-ccc.pdf
+[2026-05-09 14:21:41]
+
+Processed: 96
+Skipped: 0
+Failed: 0
+Remaining: 25
+Gemini failures: 0
+OCR usage: 0
+
+Current:
+Branch: cse
+Semester: sem-6
+Subject: cloud-computing-cse
+
+[2026-05-09 14:21:49] Processed PDF: https://sppucodes.albatrossc.workers.dev/cse/sem-6/cloud-computing-cse/endsem-nov-dec-2022-pat2019-ccc.pdf
+[2026-05-09 14:21:49]
+
+Processed: 97
+Skipped: 0
+Failed: 0
+Remaining: 24
+Gemini failures: 0
+OCR usage: 0
+
+Current:
+Branch: cse
+Semester: sem-6
+Subject: cloud-computing-cse
+
+[2026-05-09 14:21:55] Processed PDF: https://sppucodes.albatrossc.workers.dev/cse/sem-6/cloud-computing-cse/endsem-nov-dec-2023-pat2019-ccc.pdf
+[2026-05-09 14:21:55]
+
+Processed: 98
+Skipped: 0
+Failed: 0
+Remaining: 23
+Gemini failures: 0
+OCR usage: 0
+
+Current:
+Branch: cse
+Semester: sem-6
+Subject: cloud-computing-cse
+
+[2026-05-09 14:22:05] Processed PDF: https://sppucodes.albatrossc.workers.dev/cse/sem-6/cloud-computing-cse/endsem-nov-dec-2024-pat2019-ccc.pdf
+[2026-05-09 14:22:05]
+
+Processed: 99
+Skipped: 0
+Failed: 0
+Remaining: 22
+Gemini failures: 0
+OCR usage: 0
+
+Current:
+Branch: cse
+Semester: sem-6
+Subject: cloud-computing-cse
+
+[2026-05-09 14:22:14] Processed PDF: https://sppucodes.albatrossc.workers.dev/cse/sem-6/cloud-computing-cse/insem-feb-2023-pat2019-ccc.pdf
+[2026-05-09 14:22:14]
+
+Processed: 100
+Skipped: 0
+Failed: 0
+Remaining: 21
+Gemini failures: 0
+OCR usage: 0
+
+Current:
+Branch: cse
+Semester: sem-6
+Subject: cloud-computing-cse
+
+[2026-05-09 14:22:22] Processed PDF: https://sppucodes.albatrossc.workers.dev/cse/sem-6/cloud-computing-cse/insem-march-2024-pat2019-ccc.pdf
+[2026-05-09 14:22:22]
+
+Processed: 101
+Skipped: 0
+Failed: 0
+Remaining: 20
+Gemini failures: 0
+OCR usage: 0
+
+Current:
+Branch: cse
+Semester: sem-6
+Subject: cloud-computing-cse
+
+[2026-05-09 14:22:30] Processed PDF: https://sppucodes.albatrossc.workers.dev/cse/sem-6/data-science-and-big-data-analytics-cse/endsem-may-jun-2022-pat2019-dsabdac.pdf
+[2026-05-09 14:22:30]
+
+Processed: 102
+Skipped: 0
+Failed: 0
+Remaining: 19
+Gemini failures: 0
+OCR usage: 0
+
+Current:
+Branch: cse
+Semester: sem-6
+Subject: data-science-and-big-data-analytics-cse
+
+[2026-05-09 14:22:41] Processed PDF: https://sppucodes.albatrossc.workers.dev/cse/sem-6/data-science-and-big-data-analytics-cse/endsem-may-jun-2023-pat2019-dsabdac.pdf
+[2026-05-09 14:22:41]
+
+Processed: 103
+Skipped: 0
+Failed: 0
+Remaining: 18
+Gemini failures: 0
+OCR usage: 0
+
+Current:
+Branch: cse
+Semester: sem-6
+Subject: data-science-and-big-data-analytics-cse
+
+[2026-05-09 14:22:50] Processed PDF: https://sppucodes.albatrossc.workers.dev/cse/sem-6/data-science-and-big-data-analytics-cse/endsem-may-jun-2024-pat2019-dsabdac.pdf
+[2026-05-09 14:22:50]
+
+Processed: 104
+Skipped: 0
+Failed: 0
+Remaining: 17
+Gemini failures: 0
+OCR usage: 0
+
+Current:
+Branch: cse
+Semester: sem-6
+Subject: data-science-and-big-data-analytics-cse
+
+[2026-05-09 14:23:01] Processed PDF: https://sppucodes.albatrossc.workers.dev/cse/sem-6/data-science-and-big-data-analytics-cse/endsem-may-jun-2025-pat2019-dsabdac.pdf
+[2026-05-09 14:23:01]
+
+Processed: 105
+Skipped: 0
+Failed: 0
+Remaining: 16
+Gemini failures: 0
+OCR usage: 0
+
+Current:
+Branch: cse
+Semester: sem-6
+Subject: data-science-and-big-data-analytics-cse
+
+[2026-05-09 14:23:14] Processed PDF: https://sppucodes.albatrossc.workers.dev/cse/sem-6/data-science-and-big-data-analytics-cse/endsem-nov-dec-2022-pat2019-dsabdac.pdf
+[2026-05-09 14:23:14]
+
+Processed: 106
+Skipped: 0
+Failed: 0
+Remaining: 15
+Gemini failures: 0
+OCR usage: 0
+
+Current:
+Branch: cse
+Semester: sem-6
+Subject: data-science-and-big-data-analytics-cse
+
+[2026-05-09 14:23:25] Processed PDF: https://sppucodes.albatrossc.workers.dev/cse/sem-6/data-science-and-big-data-analytics-cse/endsem-nov-dec-2023-pat2019-dsabdac.pdf
+[2026-05-09 14:23:25]
+
+Processed: 107
+Skipped: 0
+Failed: 0
+Remaining: 14
+Gemini failures: 0
+OCR usage: 0
+
+Current:
+Branch: cse
+Semester: sem-6
+Subject: data-science-and-big-data-analytics-cse
+
+[2026-05-09 14:23:31] Processed PDF: https://sppucodes.albatrossc.workers.dev/cse/sem-6/data-science-and-big-data-analytics-cse/endsem-nov-dec-2024-pat2019-dsabdac.pdf
+[2026-05-09 14:23:31]
+
+Processed: 108
+Skipped: 0
+Failed: 0
+Remaining: 13
+Gemini failures: 0
+OCR usage: 0
+
+Current:
+Branch: cse
+Semester: sem-6
+Subject: data-science-and-big-data-analytics-cse
+
+[2026-05-09 14:23:38] Processed PDF: https://sppucodes.albatrossc.workers.dev/cse/sem-6/data-science-and-big-data-analytics-cse/insem-feb-2023-pat2019-dsabdac.pdf
+[2026-05-09 14:23:38]
+
+Processed: 109
+Skipped: 0
+Failed: 0
+Remaining: 12
+Gemini failures: 0
+OCR usage: 0
+
+Current:
+Branch: cse
+Semester: sem-6
+Subject: data-science-and-big-data-analytics-cse
+
+[2026-05-09 14:23:47] Processed PDF: https://sppucodes.albatrossc.workers.dev/cse/sem-6/data-science-and-big-data-analytics-cse/insem-march-2024-pat2019-dsabdac.pdf
+[2026-05-09 14:23:47]
+
+Processed: 110
+Skipped: 0
+Failed: 0
+Remaining: 11
+Gemini failures: 0
+OCR usage: 0
+
+Current:
+Branch: cse
+Semester: sem-6
+Subject: data-science-and-big-data-analytics-cse
+
+[2026-05-09 14:23:56] Processed PDF: https://sppucodes.albatrossc.workers.dev/cse/sem-6/information-security-ele-ii-cse/endsem-may-jun-2025-pat2019-iseiic.pdf
+[2026-05-09 14:23:56]
+
+Processed: 111
+Skipped: 0
+Failed: 0
+Remaining: 10
+Gemini failures: 0
+OCR usage: 0
+
+Current:
+Branch: cse
+Semester: sem-6
+Subject: information-security-ele-ii-cse
+
+[2026-05-09 14:24:07] Processed PDF: https://sppucodes.albatrossc.workers.dev/cse/sem-6/software-modeling-and-architectures-ele-ii-cse/endsem-may-jun-2023-pat2019-smaaeiic.pdf
+[2026-05-09 14:24:07]
+
+Processed: 112
+Skipped: 0
+Failed: 0
+Remaining: 9
+Gemini failures: 0
+OCR usage: 0
+
+Current:
+Branch: cse
+Semester: sem-6
+Subject: software-modeling-and-architectures-ele-ii-cse
+
+[2026-05-09 14:24:15] Processed PDF: https://sppucodes.albatrossc.workers.dev/cse/sem-6/web-technology-cse/endsem-may-jun-2022-pat2019-wtc.pdf
+[2026-05-09 14:24:15]
+
+Processed: 113
+Skipped: 0
+Failed: 0
+Remaining: 8
+Gemini failures: 0
+OCR usage: 0
+
+Current:
+Branch: cse
+Semester: sem-6
+Subject: web-technology-cse
+
+[2026-05-09 14:24:32] Processed PDF: https://sppucodes.albatrossc.workers.dev/cse/sem-6/web-technology-cse/endsem-may-jun-2023-pat2019-wtc.pdf
+[2026-05-09 14:24:32]
+
+Processed: 114
+Skipped: 0
+Failed: 0
+Remaining: 7
+Gemini failures: 0
+OCR usage: 0
+
+Current:
+Branch: cse
+Semester: sem-6
+Subject: web-technology-cse
+
+[2026-05-09 14:24:41] Processed PDF: https://sppucodes.albatrossc.workers.dev/cse/sem-6/web-technology-cse/endsem-may-jun-2024-pat2019-wtc.pdf
+[2026-05-09 14:24:41]
+
+Processed: 115
+Skipped: 0
+Failed: 0
+Remaining: 6
+Gemini failures: 0
+OCR usage: 0
+
+Current:
+Branch: cse
+Semester: sem-6
+Subject: web-technology-cse
+
+[2026-05-09 14:24:46] Processed PDF: https://sppucodes.albatrossc.workers.dev/cse/sem-6/web-technology-cse/endsem-may-jun-2025-pat2019-wtc.pdf
+[2026-05-09 14:24:46]
+
+Processed: 116
+Skipped: 0
+Failed: 0
+Remaining: 5
+Gemini failures: 0
+OCR usage: 0
+
+Current:
+Branch: cse
+Semester: sem-6
+Subject: web-technology-cse
+
+[2026-05-09 14:24:56] Processed PDF: https://sppucodes.albatrossc.workers.dev/cse/sem-6/web-technology-cse/endsem-nov-dec-2022-pat2019-wtc.pdf
+[2026-05-09 14:24:56]
+
+Processed: 117
+Skipped: 0
+Failed: 0
+Remaining: 4
+Gemini failures: 0
+OCR usage: 0
+
+Current:
+Branch: cse
+Semester: sem-6
+Subject: web-technology-cse
+
+[2026-05-09 14:25:04] Processed PDF: https://sppucodes.albatrossc.workers.dev/cse/sem-6/web-technology-cse/endsem-nov-dec-2023-pat2019-wtc.pdf
+[2026-05-09 14:25:04]
+
+Processed: 118
+Skipped: 0
+Failed: 0
+Remaining: 3
+Gemini failures: 0
+OCR usage: 0
+
+Current:
+Branch: cse
+Semester: sem-6
+Subject: web-technology-cse
+
+[2026-05-09 14:25:23] Processed PDF: https://sppucodes.albatrossc.workers.dev/cse/sem-6/web-technology-cse/endsem-nov-dec-2024-pat2019-wtc.pdf
+[2026-05-09 14:25:23]
+
+Processed: 119
+Skipped: 0
+Failed: 0
+Remaining: 2
+Gemini failures: 0
+OCR usage: 0
+
+Current:
+Branch: cse
+Semester: sem-6
+Subject: web-technology-cse
+
+[2026-05-09 14:25:29] Processed PDF: https://sppucodes.albatrossc.workers.dev/cse/sem-6/web-technology-cse/insem-feb-2023-pat2019-wtc.pdf
+[2026-05-09 14:25:29]
+
+Processed: 120
+Skipped: 0
+Failed: 0
+Remaining: 1
+Gemini failures: 0
+OCR usage: 0
+
+Current:
+Branch: cse
+Semester: sem-6
+Subject: web-technology-cse
+
+[2026-05-09 14:25:37] Processed PDF: https://sppucodes.albatrossc.workers.dev/cse/sem-6/web-technology-cse/insem-march-2024-pat2019-wtc.pdf
+[2026-05-09 14:25:37]
+
+Processed: 121
+Skipped: 0
+Failed: 0
+Remaining: 0
+Gemini failures: 0
+OCR usage: 0
+
+Current:
+Branch: cse
+Semester: sem-6
+Subject: web-technology-cse
+
+[2026-05-09 14:25:37] Pipeline completed.
+[2026-05-09 14:25:37]
+
+Processed: 121
+Skipped: 0
+Failed: 0
+Remaining: 0
+Gemini failures: 0
+OCR usage: 0
+
+Current:
+Branch: cse
+Semester: sem-6
+Subject: web-technology-cse
+

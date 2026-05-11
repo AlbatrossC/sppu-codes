@@ -1,199 +1,326 @@
-# SPPU Platform
+<div align="center">
 
-Monorepo containing two separate SPPU student resource websites + shared Cloudflare Worker infrastructure.
+<br/>
 
----
+# 🎓 sppu-academics
 
-## Folder Structure
+**Two websites. One repo. Everything an SPPU student needs.**
 
-### `sppucodes/`
-**SPPU Codes** — Code-focused website deployed at `https://sppucodes.vercel.app`
+<br/>
 
-Serves programming lab codes and answers for SPPU engineering subjects.
+[![sppucodes](https://img.shields.io/badge/sppucodes-●%20live-2ea043?style=flat-square&logo=vercel&logoColor=white)](https://sppucodes.vercel.app)&nbsp;
+[![sppupyqs](https://img.shields.io/badge/sppupyqs-●%20live-0ea5e9?style=flat-square&logo=vercel&logoColor=white)](https://sppupyqs.vercel.app)&nbsp;
+[![Python](https://img.shields.io/badge/Python-3.x-f59e0b?style=flat-square&logo=python&logoColor=white)](https://python.org)&nbsp;
+[![Flask](https://img.shields.io/badge/Flask-framework-gray?style=flat-square&logo=flask&logoColor=white)](https://flask.palletsprojects.com)&nbsp;
+[![License](https://img.shields.io/badge/license-MIT-8b5cf6?style=flat-square)](./LICENSE)
 
-**Routes:** `/`, `/<subject_code>`, `/<subject_code>/<question_id>`, `/submit`, `/contact`, `/sitemap`, `/api/<subject>/<question_no>`, `/raw-answers/...`
+<br/>
 
-**Contents:**
-```
-sppucodes/
-├── app.py              # Flask entry point
-├── vercel.json         # Vercel deployment config
-├── requirements.txt
-├── robots.txt
-├── sitemap.xml
-├── sw.js               # Service worker
-├── ads.txt
-├── src/
-│   ├── __init__.py     # App factory, blueprint registration
-│   ├── config.py       # Site config, env vars
-│   ├── db.py           # DB client → Cloudflare Worker
-│   ├── utils.py        # Subject/answer data loaders
-│   ├── async_logger.py # API request logging
-│   ├── notifications.py# Discord webhook notifications
-│   ├── terminal_beautify.py
-│   └── routes/
-│       ├── main.py     # Homepage, submit, contact, static files, sitemap
-│       ├── subjects.py # Subject/answer pages
-│       └── api.py      # Code answer API + raw file serving
-├── templates/          # Jinja2 HTML (index, subject, submit, contact, error, sitemap, maintenance)
-├── static/             # CSS, JS, fonts, images, SVG
-├── questions/          # Subject JSON data (ai.json, dbms.json, oop.json, ...)
-└── answers/            # Answer files by subject code (ai/, dbms/, oop/, ...)
-```
+| | Site | What it does |
+|:---:|:---|:---|
+| 🖥️ | [**sppucodes.vercel.app**](https://sppucodes.vercel.app) | Lab programs & code solutions for all SPPU subjects |
+| 📄 | [**sppupyqs.vercel.app**](https://sppupyqs.vercel.app) | Previous year question papers with exam-prep tools |
+| ⚙️ | `shared/` | Worker scripts & utilities shared across both sites |
 
-**What it does NOT contain:** Question paper routes, viewer UI, paper list APIs, paper data. Old `/question-papers/*` and `/questionpapers/*` URLs 301 redirect to `sppupyqs`.
+<br/>
+
+</div>
 
 ---
 
-### `sppupyqs/`
-**SPPU PYQs** — Question-paper-focused website deployed at `https://sppupyqs.vercel.app`
+## 📁 Repository Structure
 
-Serves discoverable, browsable previous year question papers with an embedded PDF.js viewer.
+This repo is a monorepo — both sites live here, along with shared utilities that power them both.
 
-**Routes:** `/`, `/<subject>`, `/sitemap`, `/api/question-papers/list`, `/api/notify-download`, `/api/pdf-proxy`
-
-**Contents:**
 ```
-sppupyqs/
-├── app.py              # Flask entry point
-├── vercel.json         # Vercel deployment config
-├── requirements.txt
-├── robots.txt
-├── sitemap.xml
-├── ads.txt
-├── src/
-│   ├── __init__.py     # App factory, blueprint registration
-│   ├── config.py       # Site config, PDF source, proxy allowlist
-│   ├── db.py           # DB client → Cloudflare Worker
-│   ├── utils.py        # Question paper data loaders
-│   ├── async_logger.py # Paper download logging
-│   └── routes/
-│       ├── main.py            # Static files, robots, sitemap, ads
-│       ├── question_papers.py # Homepage (select) + subject viewer pages
-│       └── api.py             # Paper list, download notify, PDF proxy
-├── templates/          # Jinja2 HTML (select, viewer, error, sitemap, maintenance)
-├── static/
-│   ├── css/
-│   │   ├── select.css  # Homepage/branch picker styles
-│   │   └── viewer.css  # Subject viewer styles
-│   ├── js/
-│   │   ├── analytics.js       # Placeholder — replace with QP-specific analytics
-│   │   └── download-paper.js  # PDF viewer + download tracking
-│   ├── images/         # favicon.ico, logo.png, logo.webp
-│   ├── fonts/          # JetBrainsMono (used in viewer)
-│   ├── pdfjs/          # PDF.js library for embedded viewer
-│   ├── pdfviewer/      # Custom PDF viewer HTML/CSS
-│   └── pyqs/           # Question paper upload/validation tooling
-└── question-papers/    # Paper data (R2 JSONs, Supabase JSONs, SEO metadata)
+sppu-academics/
+│
+├── 📂 sppucodes/       →  Programs & Code Solutions (Flask app)
+├── 📂 sppupyqs/        →  Previous Year Question Papers (Flask app)
+└── 📂 shared/          →  Shared workers & common utilities
 ```
 
-**What it does NOT contain:** Code subject routes, answer files, code submission forms, terminal-related assets.
+> 🔧 The `shared/` folder contains worker logic used across both sites — background jobs, data fetching, and common helpers. See [**worker.md**](./worker.md) for a detailed breakdown.
 
 ---
 
-### `shared/`
-**Shared resources** used by both deployed sites.
+<br/>
 
-#### `shared/workers/sppucodes-db/`
-**Cloudflare Worker + D1** — the analytics/logging backend for both sites. Deployed at `https://sppucodes-db.albatrossc.workers.dev`.
+## 🖥️ sppucodes — Code & Programs
+
+> 🌐 **[sppucodes.vercel.app](https://sppucodes.vercel.app)** &nbsp;|&nbsp; 📖 [Developer breakdown →](./sppucodes/README.md)
+
+`sppucodes` is a lightweight portal for SPPU lab programs and code solutions. Whether you're stuck on a DSL question at midnight or just want to cross-check your output, this site has you covered — no account, no clutter, no wait.
+
+Browse solutions by subject directly in the browser, or skip the browser entirely and pull code straight into your terminal using the built-in API.
+
+<br/>
+
+**Features**
+
+<table>
+<tr>
+<td width="50%">
+
+📚 &nbsp;**Subject-wise solutions**
+Solutions are organized by subject code so you can jump straight to what you need — no digging through unrelated content.
+
+</td>
+<td width="50%">
+
+⚡ &nbsp;**Terminal API**
+Fetch any program directly from your command line with a single `curl` command. No browser, no tabs, no fuss.
+
+</td>
+</tr>
+<tr>
+<td>
+
+🔍 &nbsp;**Clean, readable code**
+Every solution is formatted for readability — proper indentation, clear structure, and context where it helps.
+
+</td>
+<td>
+
+🚪 &nbsp;**Zero friction**
+No login. No signup. No paywalls. Open the site and start browsing immediately.
+
+</td>
+</tr>
+</table>
+
+<br/>
+
+### 🖼️ Screenshots
+
+<p>
+  <img src="./docs/images/sppucodes_home_screen.png" width="49%" />
+  &nbsp;
+  <img src="./docs/images/sppucodes_view_codes.png" width="49%" />
+</p>
+
+<br/>
+
+### 🚀 Terminal API — Get Code Without Opening a Browser
+
+Why switch to a browser when your terminal is already open? The `sppucodes` API lets you fetch any lab solution with a single command — works on Windows, and prints the output directly in your terminal.
+
+<br/>
+
+**URL format:**
 
 ```
-shared/workers/sppucodes-db/
-├── wrangler.toml       # Worker + D1 binding config
-├── package.json        # Dependencies + wrangler scripts
-├── tsconfig.json
-├── schema.sql          # D1 table definitions
-└── src/
-    └── index.ts        # Worker entry point
+https://sppucodes.vercel.app/api/{subject_code}/{question_no}
 ```
 
-**D1 Tables:**
-| Table | Used By | Purpose |
-|-------|---------|---------|
-| `code_submissions` | sppucodes | User code submissions |
-| `contact_messages` | sppucodes | Contact form messages |
-| `api_requests` | sppucodes | API usage logs (success/not_found) |
-| `paper_downloads` | sppupyqs | Paper download tracking (upsert by fingerprint) |
+| Placeholder | Description | Examples |
+|:---|:---|:---|
+| `{subject_code}` | Short name for your subject | `cnl` &nbsp; `dsl` &nbsp; `oopl` |
+| `{question_no}` | The question number you want | `1` &nbsp; `16` &nbsp; `22` |
 
-**API Endpoints (all POST, require `X-API-Key` header):**
-| Endpoint | Payload | Table |
-|----------|---------|-------|
-| `/api/submit` | `name, email, subject, question, code` | `code_submissions` |
-| `/api/contact` | `name, email, message` | `contact_messages` |
-| `/api/log` | `subject, question_no, status` | `api_requests` |
-| `/api/download` | `fingerprint_id, subject` | `paper_downloads` (upsert) |
+<br/>
 
-**Both `sppucodes` and `sppupyqs` call this worker** via their `src/db.py` modules using `CF_WORKER_DB_URL` + `DB_API_KEY` environment variables. The worker uses `ctx.waitUntil()` so responses return immediately while D1 inserts happen in the background.
+**Step-by-step:**
 
-**Deploy:**
+**1️⃣ &nbsp; Open Terminal**
+
+Press the **Windows key**, type **`terminal`**, and press **Enter** to open Windows Terminal.
+
+**2️⃣ &nbsp; Run the command**
+
+Replace `{subject_code}` and `{question_no}` with your values, then run:
+
 ```bash
-cd shared/workers/sppucodes-db
-npm run deploy          # wrangler deploy
-npm run db:execute      # apply schema.sql to D1
-npm run secret:set      # set DB_API_KEY secret
+curl.exe https://sppucodes.vercel.app/api/{subject_code}/{question_no}
 ```
 
----
+**3️⃣ &nbsp; Your code appears instantly**
 
-## Deployment
+The full solution is printed right in your terminal — ready to copy, run, or save.
 
-Each app deploys independently on Vercel from the same Git repo using different **Root Directory** settings:
+<br/>
 
-| Project | Root Directory | URL |
-|---------|---------------|-----|
-| sppucodes | `sppucodes` | `https://sppucodes.vercel.app` |
-| sppupyqs | `sppupyqs` | `https://sppupyqs.vercel.app` |
+**Example — fetching CNL Question 16:**
 
-The Cloudflare Worker deploys separately via `wrangler deploy`.
+```bash
+curl.exe https://sppucodes.vercel.app/api/cnl/16
+```
 
-See `deploy.md` for detailed Vercel setup and post-deploy checks.
+> This returns the complete solution for **Computer Networks Lab (CNL)**, Question **16**, directly in your terminal — no browser tab needed.
 
----
+<br/>
 
-## Local Development
+<div align="center">
 
-```powershell
-# Codes site
+![Terminal output showing curl command fetching CNL question 16](./docs/images/terminal_demo.png)
+
+</div>
+
+<br/>
+
+### ⚙️ Run Locally
+
+Both sites are independent Flask apps. To run `sppucodes` on your machine:
+
+```bash
 cd sppucodes
 pip install -r requirements.txt
 python app.py
-
-# Question papers site
-cd sppupyqs
-pip install -r requirements.txt
-python app.py
-
-# Worker (requires wrangler)
-cd shared/workers/sppucodes-db
-npm install
-npm run dev
 ```
 
-Set required env vars or use the root `.env` file (loaded via `python-dotenv`).
+Then open **[http://localhost:5000](http://localhost:5000)** in your browser.
+
+<br/>
 
 ---
 
-## Environment Variables
+<br/>
 
-Both Flask apps look for a `.env` file at the **repo root** (loaded by `python-dotenv`). In production, set these in each Vercel project.
+## 📄 sppupyqs — Previous Year Question Papers
 
-### Cross-site linking (why both URLs are needed)
+> 🌐 **[sppupyqs.vercel.app](https://sppupyqs.vercel.app)** &nbsp;|&nbsp; 📖 [Developer breakdown →](./sppupyqs/README.md)
 
-Both `SPPUCODES_SITE_URL` and `SPPUPYQS_SITE_URL` are required by **both** apps for bidirectional linking:
+`sppupyqs` is a dedicated portal for SPPU previous year question papers. Finding old papers shouldn't be a scavenger hunt — this site organizes everything cleanly, lets you view papers without downloading, and removes the watermarks that make papers hard to read. Whether you're doing a full revision or just checking which questions repeat, it's built to get out of your way and let you focus.
 
-- **sppucodes** uses `QUESTION_PAPERS_SITE_URL` to 301-redirect legacy `/question-papers/*` URLs and to generate the "Question Papers" button link.
-- **sppupyqs** uses `CODES_SITE_URL` for the "Home" / "Go to SPPU Codes" buttons and backlinks.
+<br/>
 
-Without these, the two sites can't reference each other, and old bookmarked URLs break.
+**Features**
 
-| Variable | Used By | Purpose |
-|----------|---------|---------|
-| `SPPUCODES_SITE_URL` | Both | Codes site URL for cross-linking |
-| `SPPUPYQS_SITE_URL` | Both | QP site URL for cross-linking + redirects |
-| `CF_WORKER_DB_URL` | Both | sppucodes-db Worker endpoint |
-| `DB_API_KEY` | Both | Auth key for DB worker |
-| `DISCORD_WEBHOOK_URL` | Both | Discord notifications |
-| `MAINTENANCE_MODE` | Both | Toggle maintenance page |
-| `SECRET_KEY` | Both | Flask session secret |
+<table>
+<tr>
+<td width="50%">
 
-**QP-site-specific:** `PDF_SOURCE` (r2/supabase), `DEFAULT_EXAM_TYPE` (endsem/insem), `PDF_PROXY_ALLOWED_HOSTS`
+🪟 &nbsp;**Split Layout**
+Open two papers side by side in a split view — compare questions across years without juggling tabs or windows.
+
+</td>
+<td width="50%">
+
+📥 &nbsp;**Free Downloads**
+Every paper is available to download, completely free. No account, no form, no waiting.
+
+</td>
+</tr>
+<tr>
+<td>
+
+🚫 &nbsp;**Watermark Remover**
+Papers are served clean — watermarks stripped so you can read and select questions without visual noise getting in the way.
+
+</td>
+<td>
+
+👁️ &nbsp;**Direct View**
+Read any paper right in the browser without downloading it. Quick reference, zero clutter.
+
+</td>
+</tr>
+<tr>
+<td>
+
+📂 &nbsp;**EndSem / InSem Split**
+Papers are clearly separated by exam type — EndSem and InSem — so you're never looking at the wrong set.
+
+</td>
+<td>
+
+🏷️ &nbsp;**Smart PDF Naming**
+Every file follows a consistent naming format with year and month — no more `paper_final_v2_ACTUAL.pdf` chaos.
+
+</td>
+</tr>
+</table>
+
+<br/>
+
+### 🖼️ Screenshots
+
+![sppupyqs split layout showing two question papers open side by side](./docs/images/sppupqs_split_demo.png)
+
+<br/>
+
+<p>
+  <img src="./docs/images/sppupyqs_ai_answers.png" width="49%" />
+  &nbsp;
+  <img src="./docs/images/sppupyqs_watermark_remove.png" width="49%" />
+</p>
+
+<br/>
+
+### ⚙️ Run Locally
+
+To run `sppupyqs` on your machine:
+
+```bash
+cd sppupyqs
+pip install -r requirements.txt
+python app.py
+```
+
+Then open **[http://localhost:5000](http://localhost:5000)** in your browser.
+
+<br/>
+
+---
+
+<br/>
+
+## 🔧 Workers & Shared Logic
+
+The `shared/` directory is the backbone connecting both sites. It contains background workers, data-fetching utilities, and any logic that would otherwise be duplicated across the two Flask apps. Keeping it in one place means fixes and updates apply everywhere automatically.
+
+📄 See [**worker.md**](./worker.md) for a full breakdown of how the workers are structured, what each one does, and how they're wired into both sites.
+
+<br/>
+
+---
+
+<br/>
+
+## 🤝 Contributing
+
+Found a bug? A question missing? A paper that's wrong?
+
+Feel free to open an issue or submit a pull request. Contributions that improve accuracy, add missing papers, or fix broken solutions are always welcome.
+
+> For code contributions, please check the developer README in the relevant subfolder before making changes — [`sppucodes/README.md`](./sppucodes/README.md) or [`sppupyqs/README.md`](./sppupyqs/README.md).
+
+<br/>
+
+---
+
+<br/>
+
+## 📜 History
+
+`sppucodes` originally handled everything — code solutions **and** question papers — all from a single site. Over time it became clear that these were two distinct tools serving different needs, so they were separated into dedicated sites with their own domains, design, and codebases.
+
+```
+sppucodes  (original — served both codes and question papers)
+    │
+    ├── 🖥️  sppucodes  →  Programs & Code Solutions
+    └── 📄  sppupyqs   →  Previous Year Question Papers
+```
+
+The split made both sites faster to maintain, easier to improve independently, and cleaner to use.
+
+<br/>
+
+---
+
+<div align="center">
+
+<br/>
+
+Made with ❤️ for SPPU students
+
+<sub>If this saved you time before an exam, consider starring the repo ⭐</sub>
+
+<br/>
+
+[![Visit sppucodes](https://img.shields.io/badge/Visit-sppucodes-2ea043?style=for-the-badge&logo=vercel&logoColor=white)](https://sppucodes.vercel.app)&nbsp;
+[![Visit sppupyqs](https://img.shields.io/badge/Visit-sppupyqs-0ea5e9?style=for-the-badge&logo=vercel&logoColor=white)](https://sppupyqs.vercel.app)
+
+<br/>
+
+</div>

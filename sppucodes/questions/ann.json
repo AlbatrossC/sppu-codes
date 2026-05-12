@@ -87,7 +87,12 @@
       "question": "Write a Python program to implement artificial neural network for forward propagation and back propagation.",
       "subject_code": "ann",
       "file_name": [
-        "A7_ann_forward_backprop.py"
+        "A7_ann_forward_backprop.py",
+        "A7_B1_B3.py"
+      ],
+      "code_names": [
+        "View Code",
+        "SAME Code for A7 , B1, B3"
       ],
       "title": "ANN Forward and Back Propagation"
     },
@@ -98,7 +103,12 @@
       "question": "Write a Python program to implement XOR using back propagation algorithm.",
       "subject_code": "ann",
       "file_name": [
-        "B1_xor_backpropagation.py"
+        "B1_xor_backpropagation.py",
+        "A7_B1_B3.py"
+      ],
+      "code_names": [
+        "View Code",
+        "SAME Code for A7 , B1, B3"
       ],
       "title": "XOR Using Back Propagation"
     },
@@ -109,7 +119,12 @@
       "question": "Write a Python program to simulate a feed forward neural network using back propagation algorithm.",
       "subject_code": "ann",
       "file_name": [
-        "B3_feedforward_backprop_nn.py"
+        "B3_feedforward_backprop_nn.py",
+        "A7_B1_B3.py"
+      ],
+      "code_names": [
+        "View Code",
+        "SAME Code for A7 , B1, B3"
       ],
       "title": "Feed Forward Neural Network Using Back Propagation"
     },

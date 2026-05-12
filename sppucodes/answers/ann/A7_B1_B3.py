@@ -1,49 +1,56 @@
+# Forward and Back Propagation
+
 import numpy as np
 
-
-# Bipolar activation function
-def sign(value):
-    return 1 if value >= 0 else -1
-
-
-# Input patterns
-input_patterns = np.array([
-    [1, -1, 1],
-    [-1, 1, -1]
+# Input and Output
+X = np.array([
+    [0, 0],
+    [0, 1],
+    [1, 0],
+    [1, 1]
 ])
 
-# Output patterns
-output_patterns = np.array([
-    [1, 1],
-    [-1, -1]
+Y = np.array([
+    [0],
+    [1],
+    [1],
+    [0]
 ])
 
-# Initialize weights
-weights = np.zeros((3, 2))
+# Weights
+w1 = np.random.rand(2, 2)
+w2 = np.random.rand(2, 1)
+
+# Sigmoid Function
+def sigmoid(x):
+    return 1 / (1 + np.exp(-x))
+
+# Derivative
+def derivative(x):
+    return x * (1 - x)
 
 # Training
-for i in range(len(input_patterns)):
-    weights += np.outer(input_patterns[i], output_patterns[i])
+for i in range(5000):
 
-print("Weight Matrix:")
-print(weights)
+    # Forward Propagation
+    h_input = np.dot(X, w1)
+    h_output = sigmoid(h_input)
 
-# Forward propagation
-print("\nForward Propagation:")
+    o_input = np.dot(h_output, w2)
+    output = sigmoid(o_input)
 
-for pattern in input_patterns:
-    result = np.dot(pattern, weights)
-    prediction = [sign(v) for v in result]
+    # Error
+    error = Y - output
 
-    print(f"{pattern} -> {prediction}")
+    # Back Propagation
+    d_output = error * derivative(output)
 
-# Backward propagation
-print("\nBackward Propagation:")
+    d_hidden = d_output.dot(w2.T) * derivative(h_output)
 
-for pattern in output_patterns:
-    result = np.dot(pattern, weights.T)
-    prediction = [sign(v) for v in result]
+    # Update Weights
+    w2 += h_output.T.dot(d_output)
+    w1 += X.T.dot(d_hidden)
 
-    print(f"{pattern} -> {prediction}")
-
-    
+# Final Output
+print("Output:")
+print(np.round(output))

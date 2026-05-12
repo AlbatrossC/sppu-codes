@@ -141,7 +141,10 @@ def answer_api(subject_link, question_no):
 
     if terminal_request:
         question_text = question["question"].strip() if not no_question else None
-        beautified = beautify_terminal_output(contents, question_text)
+        full_csv = request.args.get("full") is not None
+        beautified = beautify_terminal_output(
+            contents, question_text, full_csv=full_csv, request_url=request.url
+        )
         if beautified is not None:
             response = _text_response(beautified, 200)
             api_logger.log_api_request(subject_link, question_no, "success")

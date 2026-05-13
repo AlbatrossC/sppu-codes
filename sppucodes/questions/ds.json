@@ -44,11 +44,11 @@
       "title": "Data Wrangling II",
       "subject_code": "ds",
       "file_name": [
-        "2_data_wrangling_2.py",
+        "2_data_wrangling_2.ipynb",
         "Data_2.csv"
       ],
       "code_names": [
-        "View Python Code",
+        "View Notebook",
         "Data_2.csv"
       ],
       "question": "Data Wrangling II\nCreate an \"Academic performance\" dataset of students and perform the following operations using Python.\n\n1. Scan all variables for missing values and inconsistencies. If there are missing values and/or inconsistencies, use any of the suitable techniques to deal with them.\n2. Scan all numeric variables for outliers. If there are outliers, use any of the suitable techniques to deal with them.\n3. Apply data transformations on at least one of the variables. The purpose of this transformation should be one of the following reasons: to change the scale for better understanding of the variable, to convert a non-linear relation into a linear one, or to decrease the skewness and convert the distribution into a normal distribution.\n\nReason and document your approach properly."
